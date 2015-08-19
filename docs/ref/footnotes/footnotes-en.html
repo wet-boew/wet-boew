@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Footnotes - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Provides a consistent, accessible way of handling footnotes across websites." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="footnotes-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Footnotes</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Footnotes</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/footnotes/footnotes-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Eric Dunsworth (<a href="https://github.com/EricDunsworth">@EricDunsworth</a>)</p>
+	<p>This component allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.0 compliance when providing such footnotes.</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The purpose of this component is to help ensure footnotes on Web pages conform to WCAG 2.0 requirements. Its main concept is to place footnotes in a definition list, within a dedicated section. A supporting plugin is used to enhance navigation, accessibility, and provide backwards compatibility to supported legacy browsers.</p>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<p>Throughout the web, many websites implement footnotes in inconsistent and/or inaccessible manners. This component aims to alleviate such issues on websites that implement WET.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>Please refer to this section for guidance on how to implement this component.</p>
+	<p>Working examples of an implementation (based on this section's guidance) can be found on the following pages:</p>
+	<ul>
+		<li><a href="../../../demos/footnotes/footnotes-en.html">English examples</a></li>
+		<li><a href="../../../demos/footnotes/footnotes-fr.html">French examples</a></li>
+	</ul>
+
+	<section>
+	<h3>Footnote Indicators</h3>
+	<p>Footnotes are generally denoted by numbers, but may also be represented by other kinds of indicators, such as single letters or symbols.</p>
+	<p>The numbers used throughout this documentation's footnote examples (including numbers within IDs) can be safely subsituted with alternate kinds of indicators.</p>
+	</section>
+
+	<section>
+		<h3>Linking to Footnotes</h3>
+		<p>This section discusses how to link to footnotes.</p>
+
+		<section>
+			<h4>Link to Footnotes Section</h4>
+			<p>Use the following code to link to a footnotes section.</p>
+			<pre><code>&lt;a href="#fnb"&gt;Footnotes&lt;/a&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>Link to a Footnote</h4>
+			<p>Use the following code as a basis to link to a particular footnote.</p>
+			<pre><code>&lt;sup id="fnb1-ref"&gt;&lt;a class="footnote-link" href="#fnb1"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<p><b>Note:</b> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fnb2a-ref"</code>,  <code>id="fnb2b-ref"</code>, <code>id="fnb2c-ref"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
+		</section>
+
+		<section>
+			<h4>Link to Multiple Footnotes</h4>
+			<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
+			<pre><code>&lt;sup id="fnb2-ref"&gt;&lt;a class="footnote-link" href="#fnb2"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fnb3-ref"&gt;&lt;a class="footnote-link" href="#fnb3"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Footnotes Section</h3>
+		<p>This section explains how to set-up a dedicated footnotes section.</p>
+		<p>Use the following code as a basis to create the section:</p>
+<pre><code>&lt;div class="wet-boew-footnotes" role="note"&gt;
+	&lt;section&gt;
+		&lt;h2 id="fnb" class="wb-invisible"&gt;Footnotes&lt;/h2&gt;
+		&lt;dl&gt;
+			&lt;!--PLACE FOOTNOTES HERE--&gt;
+		&lt;/dl&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Types of Footnotes</h3>
+		<p>This section explains how to create different types of footnotes, which are expected to be placed within the footnotes section.</p>
+
+		<section>
+			<h4>Standard Footnote</h4>
+			<p>This is a footnote that is referenced only once within a given page's content.</p>
+			<p>Use the following code as a basis to create a standard footnote:</p>
+<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
+&lt;dd id="fnb1"&gt;
+	&lt;p&gt;Example of a standard footnote.&lt;/p&gt;
+	&lt;p class="footnote-return"&gt;&lt;a href="#fnb1-ref"&gt;&lt;span class="wb-invisible"&gt;Return to footnote &lt;/span&gt;1&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>Multi-referenced Footnote</h4>
+			<p>This is a footnote that is referenced two or more times within a given page's content. By default, its return link should point to (and explicitly identify) the first reference to the footnote. If JavaScript support is available, a supporting plugin will automatically remove the explicit identifier in the return link text, in addition to managing the return link's destination when the footnote is accessed via a different reference from the content.</p>
+			<p>Use the following code as a basis to create a footnote that can be referenced by multiple pieces of content:</p>
+<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
+&lt;dd id="fnb2"&gt;
+	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
+	&lt;p class="footnote-return"&gt;&lt;a href="#fnb2a-ref"&gt;&lt;span class="wb-invisible"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+
+			<p><b>Note 1:</b> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fnb2a-ref"</code>).</p>
+			<p><b>Note 2:</b> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
+		</section>
+
+		<section>
+			<h4>Multi-paragraph Footnote</h4>
+			<p>Footnotes containing two or more paragraphs are supported. They can take the form of either a standard or multi-referenced footnote.</p>
+			<p>Use the following code as a basis to create a footnote containing multiple paragraphs:</p>
+<pre><code>&lt;dt&gt;Footnote 3&lt;/dt&gt;
+&lt;dd id="fnb3"&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (first paragraph).&lt;/p&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (second paragraph).&lt;/p&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (third paragraph).&lt;/p&gt;
+	&lt;p class="footnote-return"&gt;&lt;a href="#fnb3-ref"&gt;&lt;span class="wb-invisible"&gt;Return to footnote &lt;/span&gt;3&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Migrating from WET 2.x to WET 3.x</h3>
+		<p>If a WET 2.x implementation of this component is migrated into WET 3.x, the following HTML mark-up changes should be applied:</p>
+		<ul>
+			<li>ID attributes of footnote links are no longer placed on <code>&lt;a&gt;</code> elements; they should be now be placed on <code>&lt;sup&gt;</code> elements (as of version 1.01 in WET 2.3)</li>
+			<li>Footnotes section's class name has changed from <code>footnotes-container</code> to <code>wet-boew-footnotes</code></li>
+			<li>Footnotes section (or its <code>&lt;div&gt;</code> container) should be wrapped within a <code>&lt;section&gt;</code> element</li>
+			<li>Footnote IDs are now declared directly on <code>&lt;dd&gt;</code> elements (instead of <code>&lt;dt&gt;</code> elements)</li>
+			<li>Paragraph class name for footnote return links has changed from <code>float-left</code> to <code>footnote-return</code></li>
+			<li>Multi-referenced footnotes now use additional nested spans around the "first" text in their hidden return links (i.e. <code>first</code> now becomes <code>&lt;span&gt;first&lt;/span&gt;</code>)</li>
+			<li>Multi-paragraph footnotes no longer require a container <code>&lt;div&gt;</code> to render properly</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>This component's source code can be found within the following files under the <a href="https://github.com/wet-boew/wet-boew">WET repository</a>:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/footnotes.js">footnotes.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_footnotes.scss">footnotes.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_footnotes-ie.scss">footnotes-ie.scss</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>The following issues are currently known to exist within this component:</p>
+	<ul>
+		<li>Print CSS may break in Opera (appears to be a general problem with the browser itself)</li>
+		<li>HTML mark-up may change from version to version, breaking backwards-compatibility; long-term maintenance strategies should be considered</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Future</h2>
+	<p>The following enhancements are slated to be implemented in future versions of this component:</p>
+	<ul>
+		<li>Update dummy content in working example pages</li>
+		<li>Leverage placeholder selectors in SCSS (requires SASS 2.3.0 or higher; wasn't available in WET 3.0)</li>
+		<li>Properly "reset" dynamic return links in multi-referenced footnotes upon getting clicked</li>
+		<li>Fade-in/fade-out effect on highlighted footnotes via CSS3 <code>transition</code> property (and jQuery for supported legacy browsers)</li>
+		<li>Optional footnote "pop-up"" feature (tentative)</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/footnotes.js">footnotes.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_footnotes.scss">footnotes.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_footnotes-ie.scss">footnotes-ie.scss</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

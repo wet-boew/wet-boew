@@ -1,0 +1,52 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+%base-default-responsive-large-1200-min-width-1200 {
+	min-width: 1200px;
+}
+%base-default-responsive1200-width1200px {
+	width: 1200px;
+}
+
+body {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-core {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head-in {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-fullhd {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-bnr {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-core-in {
+	@extend %base-default-responsive1200-width1200px;
+}
+
+#base-fullhd-in {
+	@extend %base-default-responsive1200-width1200px;
+}
+
+#base-bnr-in {
+	@extend %base-default-responsive1200-width1200px;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %base-default-responsive1200-width1200px;
+	}
+}

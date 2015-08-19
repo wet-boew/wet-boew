@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Implementing WET - Getting started - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Implementing WET - Getting started - Documentation - Web Experience Toolkit (WET)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="impl-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Documentation</a></li>
+<li><a href="index-en.html">Getting started</a></li>
+<li>Implementing WET</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Implementing WET</h1>
+
+<span class="wet-boew-prettify all-pre"></span>
+<p>The following is a short overview for people who want to use WET for their websites.</p>
+
+<section>
+	<h2>What You Need</h2>
+	<p>The following are the only two folders you need to take from the WET project:
+	<ul>
+		<li>The <strong>dist folder</strong> includes all the components used to create a WET page.  Files in this folder should not be changed as they has been compiled specifically though a build process. <strong>Note:</strong> WET v3.0.2 and earlier included these components in the <strong>build folder</strong>.</li>
+		<li>The <strong>demos folder</strong> includes the html files for the website.  It does not have to be named "demos".  Currently, this folder includes a series of sample files showing WET functionality.  You won't need any of this for your website.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Creating a WET site (example)</h2>
+	<ol>
+		<li>Remove all of the files and folders from the "demos" folder except for:
+			<ol>
+				<li>index-en.html</li>
+				<li>index-fr.html</li>
+				<li>theme-gcwu-fegc</li>
+				<li>includes</li>
+			</ol>
+		</li>
+		<li>Rename the "demos" folder to whatever you want.</li>
+		<li>Open theme-gcwu-fegc and remove all files except cont-secnav1-en.html and cont-secnav1-fr.html (<strong>Note:</strong> You will have a lot more files here as you develop your website; but only two will be used in this example).</li>
+		<li>Open cont-secnav1-en.html using any Web editor.  Notice where the style sheets and jQuery files are being called. The .js files are now all included at the bottom of the page.  All of these components are located in the dist folder.  These should not be changed, however, you can add your own style sheets as well.  <strong>Note:</strong> The paths to the style sheets and jQuery will have to be changed depending upon where it's located in the folder structure.  Keep this in mind as you develop.</li>
+		<li>Edit the metadata, page title, and content area.</li>
+		<li>Edit the menu bar located under: <code>&lt;nav role="navigation"&gt;</code> Change the link text and adding hyperlinks for the seven list items that represent the horizontal menu bar at the top of the page. You can add an remove list items as necessary, however, there is a limit to how much space the top menu bar has.</li>
+		<li>
+			The extended bar that displays when the mouse hovers over the horizontal menu bar is included in the code here:
+			<code>&lt;ul class="mb-menu" data-ajax-replace="../includes/menu-en.txt"?gt;</code>
+		</li>
+	</ol>
+	<p>You can edit the menu-en.txt file to include whatever links you like.</p>
+	<p><strong>You now have a working WET Web page!</strong></p>
+</section>
+
+<section>
+	<h2>Using jQuery plugins</h2>
+	<p>Plugins are created using a class-based system. In order to use a plugin in your html, just call the plugin using a class named <strong>wet-boew-<em>pluginname</em></strong>.  For example, to use the zebra plugin, your table tag must include a class with the name "wet-boew-zebra": <code>&lt;table class="wet-boew-zebra"&gt;</code></p>
+	<p>Plugins have a series of different classes that can be used to style and change the functionality.  View the sample pages in the demos folder to see how different plugins and functionality can be applied in your website.</p>
+	<p><a href="../../demos/index-en.html">List of examples of plugins and how to use them</a>.</p>
+</section>
+
+<section>
+	<h2>Migrating pages from WET 2.3 to WET 3.x</h2>
+	<p>There are a variety of differences in the HTML for a page using WET 2.3 and a WET 3.x page.  When migrating a page from version 2.3 to 3.x, be aware of these changes and implement them in your code.</p>
+	<section>
+		<h3>HTML Tag</h3>
+		<p>WET 3.x uses IE conditional statements which change the classes in the html tag based on what browser is viewing the page.</p>
+		<section>
+			<h4>WET 2.3</h4>
+			<pre><code>&lt;html lang="en"&gt;</code></pre>
+		</section>
+		<section>
+			<h4>WET 3.x</h4>
+			<pre><code>&lt;--[if IE 7]&gt;&lt;html lang="en" class="no-js ie7"&gt; &lt;![endif]--&gt;
+&lt;--[if IE 8]&gt;&lt;html lang="en" class="no-js ie8"&gt; &lt;![endif]--&gt;
+&lt;--[if gt IE 8]&gt;&lt;!--&gt;
+&lt;html lang="en" class="no-js"&gt;
+&lt;--&lt;![endif]--&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Viewport metadata</h3>
+		<p>WET 3.x has an extra metadata element for the viewport.</p>
+		<section>
+			<h4>WET 3.x</h4>
+			<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>JQuery loading</h3>
+		<p>JQuery is loaded differently in WET 3.x. All JavaScript files (except for jQuery itself) are loaded at the end of the body element.</p>
+	</section>
+
+	<section>
+		<h3>Style sheet loading</h3>
+		<p>Style sheets are still loaded using conditional statements, however, in the newer version of WET, there are only two statements.  Style sheets are now loaded based on whether the browser is less than or equal to IE 8, or greater than IE 8 (which also includes browsers that are not IE).</p>
+		<section>
+			<h4>WET 2.3</h4>
+			<pre><code>&lt;link href="../css/base.css" rel="stylesheet" /&gt;
+&lt;--[if IE 6]&gt;&lt;![endif]--&gt;
+&lt;--[if IE 8]&gt;&lt;link href="../css/base-ie8.css" rel="stylesheet" /&gt;&lt;![endif]--&gt;
+&lt;--[if IE 7]&gt;&lt;link href="../css/base-ie7.css" rel="stylesheet" /&gt;&lt;![endif]--&gt;
+&lt;--[if lte IE 6]&gt;&lt;link href="../css/base-ie6.css" rel="stylesheet" /&gt;&lt;![endif]--&gt;
+&lt;-- CSSStart --&gt;
+&lt;link href="css/theme-clf2-nsi2.css" rel="stylesheet" /&gt;
+&lt;--[if IE 7]&gt;&lt;link href="css/theme-clf2-nsi2-ie7.css" rel="stylesheet" /&gt;&lt;![endif]--&gt;
+&lt;--[if lte IE 6]&gt;&lt;link href="css/theme-clf2-nsi2-ie6.css" rel="stylesheet" /&gt;&lt;![endif]--&gt;
+&lt;-- CSSEnd --&gt;</code></pre>
+		</section>
+		<section>
+			<h4>WET 3.1</h4>
+			<pre><code>&lt;!--[if lte IE 8]&gt;
+&lt;script src="../../dist/js/jquery-ie.min.js"&gt;&lt;/script&gt;
+&lt;script src="../../dist/js/polyfills/html5shiv-min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" /&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /&gt;&lt;/noscript&gt;
+&lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt;
+&lt;script src="../../dist/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="../../dist/grids/css/util-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" /&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /&gt;&lt;/noscript&gt;
+&lt;!--&lt;![endif]--&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Class names</h3>
+		<p>Most of the class names are different in this version of WET (<a href="../versions/master/changes2.3-3.0-en.html">full list of changes from v2.3 to v3.0</a>). The most common changes include:</p>
+		<ul>
+			<li>"cn" is often changed to either wb or gcwu.
+				<ul>
+					<li>"wb" stands for WET/BOEW, and should remain the same regardless of theme.</li>
+					<li>"gcwu" is a prefix used to define sections from the GC Web Usability Theme.</li>
+				</ul>
+			</li>
+			<li>
+				Themes should use prefixes to avoid conflict with non-WET CSS.
+				<section>
+					<h4>WET 2.3</h4>
+					<pre><code>&lt;ul id="cn-tphp"&gt;
+ &lt;li id="cn-sh-link-1"&gt;&lt;a href="#cn-cont"&gt;Skip to main content&lt;/a&gt;&lt;/li&gt;
+ &lt;li id="cn-sh-link-2"&gt;&lt;a href="#cn-nav"&gt;Skip to side navigation&lt;/a&gt;&lt;/li&gt;</code></pre>
+					and
+					<pre><code>&lt;div id="cn-bcrumb"&gt;&lt;h2&gt;Breadcrumb trail&lt;/h2&gt;</code></pre>
+				</section>
+				<section>
+					<h4>WET 3.x</h4>
+					<pre><code>&lt;ul id="wb-tphp"&gt;
+ &lt;li id="wb-skip1"&gt;&lt;a href="#wb-cont"&gt;Skip to main content&lt;/a&gt;&lt;/li&gt;
+ &lt;li id="wb-skip2"&gt;&lt;a href="#wb-nav"&gt;Skip to side navigation&lt;/a&gt;&lt;/li&gt;</code></pre>
+					and
+					<pre><code>&lt;div id="gcwu-bc"&gt;&lt;h2&gt;Breadcrumb trail&lt;/h2&gt;</code></pre>
+				</section>
+			</li>
+			<li>
+				Longer class names have been shortened.
+				<section>
+					<h4>WET 2.3</h4>
+					<pre><code>&lt;body&gt;
+ &lt;div id="cn-body-inner-1col&gt;</code></pre>
+				</section>
+				<section>
+					<h4>WET 3.x</h4>
+					<pre><code>&lt;body&gt;
+ &lt;div id="wb-body&gt;</code></pre>
+				</section>
+			</li>
+		</ul>
+	</section>
+		
+	<section>
+		<h3>Mobile support</h3>
+		<p>Although there isn't any code to change in the HTML for mobile support, be aware of WET's new support for mobile.  Since WET 3.x switches to mobile view based on browser size, this is easy to test on a desktop. Open up any browser aside from IE and resize your page horizontally so that it's smaller than the content area.  The page should change to mobile view.</p>
+		<p><strong>Note:</strong> A great <a href="../../test/responsive-emulator.html">tool for testing Web pages for mobile</a> is in the "test" folder included with WET.</p>
+	</section>
+
+	<section>
+		<h3>Browser support</h3>
+		<p>WET 3.x uses polyfills, which are essentially a way to automatically properly display pages using any browser.  It provides functionality that isn't natively available in a Web browser.  For example, polyfills will solve the issue of HTML5 tags that don't work natively on some browsers by loading JavaScript to mimic that functionality.  This means that when coding a page, you don't have to worry about certain tags not working on different browsers.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Server configuration</h2>
+	<section>
+		<h3>Enable SVG MIME type</h3>
+		<p>Certain webservers (e.g. IIS 6, 7.x) do not serve .svg files by default. If not already configured, you will need to add the <code>image/svg+xml</code> MIME type. Example configuration steps below:</p>
+		<ul>
+			<li><a href="http://support.microsoft.com/kb/326965">IIS 6.0</a></li>
+			<li><a href="http://technet.microsoft.com/en-us/library/cc725608%28WS.10%29.aspx">IIS 7.0</a></li>
+		</ul>
+		<p><strong>Note:</strong> If this MIME type is not enabled, it can result in 404 "File Not Found" errors, or display issues with the GCWU and other themes headers.</p>
+	</section>
+
+	<section>
+		<h3>IE Compatibility Mode</h3>
+		<p>By default, IE displays Intranet web pages using Compatibility View (IE7 standards mode).  This causes display and JavaScript problems with the WET template.  To fix the problem, configure your web server to send the <strong>"X-UA-Compatible" "IE=Edge"</strong> HTTP header. Instructions for <a rel="external" href="http://msdn.microsoft.com/en-ca/cc817572.aspx">configuring IIS</a> and for <a rel="external" href="http://msdn.microsoft.com/en-ca/library/cc817573.aspx">configuring Apache</a> can be found on MSDN.  The HTTP header ensures that IE 8, 9, and 10 use their most recent rendering engine, as opposed to Compatibility View.</p>
+		<p><strong>Note:</strong> Setting the <strong>meta tag</strong> in the HTML document (<code>&lt;http-equiv="X-UA-Compatible" content="IE=edge"&#160;/&gt;</code>) will '''not''' work for WET because of the conditional comments that configure the HTML element at the top of the page. These conditional comments force IE's rendering engine and the meta tag can't override it:</p>
+		<pre><code>&lt;!--[if IE 7]&gt;&lt;html lang="en" class="no-js ie7"&gt;&lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;&lt;html lang="en" class="no-js ie8"&gt;&lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt;</code></pre>
+
+		<section>
+			<h4>Troubleshooting</h4>
+			<p>It is possible for public facing, Internet webpages to display in Compatibility View because of user or administrator settings:</p>
+			<ul>
+				<li><a rel="external" href="http://blogs.msdn.com/b/ie/archive/2010/03/02/how-ie8-determines-document-mode.aspx">How IE Determines Document Mode</a></li>
+				<li><a rel="external" href="http://blogs.msdn.com/b/ieinternals/archive/2012/06/05/the-local-intranet-security-zone.aspx">IE's Intranet Zone Mapping</a></li>
+			</ul>
+			<p>To troubleshoot display problems in IE 8 and above, use the <a rel="external" href="http://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx">F12 Developer Tools</a> which are accessible by pressing F12 on your keyboard:</p>
+			<figure>
+				<img src="images/ie-compat-view.png" class="image-actual" alt="F12 Developer Tools showing a web page rendering in Compatibility View" />
+				<figcaption>F12 Developer Tools showing a web page rendering in Compatibility View</figcaption>
+			</figure>
+			<p>Fixing a web page that's displaying in Compatibility View can be accomplished by:</p>
+			<ol>
+				<li>sending the "X-UA-Compatible" "IE=Edge" HTTP header,</li>
+				<li>disabling the user or administrator setting that is triggering Compatibility View, or</li>
+				<li>configuring the <a rel="external" href="http://blogs.msdn.com/b/ie/archive/2008/10/02/ie8-group-policy.aspx">group policy objects</a> that control Compatibility View.</li>
+			</ol>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Related pages</h2>
+	<ul>
+		<li><a href="index-en.html">Getting started</a></li>
+		<li><a href="github-en.html">Using GitHub for WET</a></li>
+		<li><a href="dev-en.html">Developing for WET</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

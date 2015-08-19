@@ -1,12 +1,17 @@
 nbproject/*
 .sass-cache/
+<<<<<<< HEAD
+=======
 .c9revisions/*
+>>>>>>> wet-boew/master
 .DS_Store
 jruby*.jar
 dist/*
 build/lib/vendors*
 build/lib/jruby-compiled
 _notes/
+<<<<<<< HEAD
+=======
 .settings
 *.sublime-project
 *.sublime-workspace
@@ -14,6 +19,7 @@ sftp.json
 src/plugins/**/*.coffee
 .pydevproject
 .idea/
+>>>>>>> wet-boew/master
 
 # OS generated files #
 .DS_Store
@@ -32,6 +38,10 @@ sprite*.png
 *.tmp
 *.log
 node_modules/
+<<<<<<< HEAD
+lib/
+=======
 lib/
 wet-boew-dist/
 site/data/i18n/
+>>>>>>> wet-boew/master

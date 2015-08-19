@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Guide d'utilisation de GitHub pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Guide d'utilisation de GitHub pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="github-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fr.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-fr.html">Accueil</a></li>
+<li><a href="../index-fr.html">Documentation</a></li>
+<li><a href="index-fr.html">Comment démarrer</a></li>
+<li>Guide d'utilisation de GitHub pour la BOEW</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Guide d'utilisation de GitHub pour la BOEW</h1>
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+
+<section>
+	<h2>Contributing on GitHub</h2>
+	<p>In order to contribute to the WET project, you will have to use Git to commit your changes. The following is a explanation on using Git for this purpose.  The image and steps below illustrate the process you will take when contributing to wet-boew.</p>
+	<figure>
+		<img src="images/git_explain.JPG" class="image-actual" alt="Steps for contributing to WET" />
+		<figcaption>
+			<ol>
+				<li>Fork from the original repository</li>
+				<li>Clone your forked repository to your local machine.</li>
+				<li>Create a branch.</li>
+				<li>Update your files.</li>
+				<li>Make your changes.</li>
+				<li>Add and commit your changes.</li>
+				<li>Push your changes onto your forked repository on GitHub.</li>
+				<li>Send a pull request to the appropriate branch on wet-boew/wet-boew.</li>
+				<li>The pull request is accepted.</li>
+			</ol>
+		</figcaption>
+	</figure>
+</section>
+
+<section>
+	<h2>Software requirements</h2>
+	<ul>
+		<li><strong>GitHub:</strong> An account with GitHub is required.</li>
+		<li><strong>Git client:</strong> In order to contribute to the project, you will need to download a Git client.  There are a variety of different options, however, <a href="http://git-scm.com/downloads">Git Bash</a> is used in this tutorial.</li>
+		<li><strong>Ant:</strong> <a rel="external" href="http://ant.apache.org/">Apache Ant</a> needs to be installed on the machine you are using with the environment variables configured correctly.</li>
+		<li><strong>Java SE:</strong> <a rel="external" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE</a> needs to be installed on the machine you are using with the environment variables configured correctly.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Getting started</h2>
+	<ol>
+		<li><a rel="external" href="http://www.github.com/register">Create a GitHub user name and password</a></li>
+		<li>Open GIT Bash</li>
+		<li>Set your user name and email address:
+			<ol>
+				<li><code>$ git config --global user.name "John Doe"</code></li>
+				<li><code>$ git config --global user.email johndoe@example.com</code></li>
+			</ol>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Fork WET</h2>
+	<p>Forking is copying an existing repository to another repository under your user name. If you do not have read + write privileges, this is the first step to contributing to WET.</p>
+	<ol>
+		<li>Fork an existing repository by going to the repository page on GitHub. In this case, you will want to navigate to: <a href="https://github.com/wet-boew/wet-boew">https://github.com/wet-boew/wet-boew</a>.</li>
+		<li>Click on the "Fork" button on the top right.
+			<ul>
+				<li>This will create a copy of the repository on the GitHub website. This repository is under your user name and does not modify the original wet-boew repository if changes are made to it.</li>
+				<li>Notice how the repository you forked was not called wet-boew/wet-boew? Your repository instead is called "yourusername"/wet-boew</li>
+			</ul>
+		</li>
+	</ol>
+
+	<section>
+		<h3>Clone the project</h3>
+		<p>Clone the project on your local machine to work on the project. This will copy all the files folders to your local machine.</p>
+		<p><code>$ git clone https://github.com/"yourusername"/wet-boew.git</code></p>
+		<p><strong>Important:</strong> Whenever you want to make changes to a repository located on your computer (in this case your wet-boew clone), navigate to it using:</p>
+		<p><code>$ cd "repository name"</code></p>
+	</section>
+</section>
+
+<section>
+	<h2>Configure remotes</h2>
+	<p>A remote is a repository stored on another computer, in this case on GitHub’s server.</p>
+	<p>When you clone a project, a default remote called "origin" is automatically created which points to <strong>your</strong> fork on GitHub (not the original repository).</p>
+	<p>It is important to point back to the original wet-boew repository by adding a new remote. (This remote is usually named "upstream", but you can call it whatever you want.) This will allow you to fetch the changes made to the original repository and add them to your fork.</p>
+	<p><code>$ git remote add upstream git://github.com/wet-boew/wet-boew.git</code></p>
+	<figure>
+		<img src="images/git-remotes.JPG" class="image-actual" alt="Relationship between repositories">
+		<figcaption>
+			<p>A remote is a pointer to a repository on GitHub. In this case, you will have a remote to your forked repository and a remote to the original wet-boew repository.</p>
+		</figcaption>
+	</figure>
+	<p>Get all of the changes to the WET repository and add them to your local machine using fetch and merge.  The pull command does just that; it fetches the files and folders in the original wet-boew repository and attempts to merge it with the copy on your computer.  You may have to fix any merge conflicts if they appear.</p>
+	<p><code>$ git pull upstream</code></p>
+
+	<section>
+		<h3>Remove a remote</h3>
+		<p><code>$ git remote rm upstream</code></p>
+	</section>
+</section>
+
+<section>
+	<h2>Branching</h2>
+	<p>In order to contribute back to the wet-boew/wet-boew project without any merge conflicts, you will have to set up a branch. A branch allows you to keep the WET files forked from wet-boew/wet-boew untouched while you work on your variation of these files.</p>
+	<ol>
+		<li>
+			Create a new branch and make it active ("myBranch" can be any name you specify):
+			<p><code>$ git checkout -b myBranch</code></p>
+		</li>
+		<li>
+			Switch between branches using checkout. Remember that "master" is your main branch.
+			<p><code>$ git checkout "branchname"</code></p>
+		</li>
+		<li>
+			Once you’re finished working on your branch and are ready to combine it back into the master branch, use merge. Make sure you checkout to the master branch if you want to merge with the master branch.
+			<p><code>$ git checkout master</code></p>
+			<p><code>$ git merge myBranch</code></p>
+		</li>
+		<li>You may see a variety of conflicts as you are doing this. Make sure to resolve these conflicts.</li>
+		<li>Once you are finished with your branch, delete it using <code>git branch -d </code></li>
+	</ol>
+	<p><strong>Note:</strong> if you haven’t merged a branch, Git won’t let you delete it with this command; you’ll need to use an uppercase D in the option.</p>
+	<p><code>$ git branch -d branchname</code></p>
+</section>
+
+<section>
+	<h2>Commit</h2>
+	<p>A commit is essentially a snapshot of all the files in your project at a particular point in time. It is done locally, where you have stored your files, '''not''' on your GitHub repository. This means that you won't see any changes online - until you perform a <a href="#push">push</a>.</p>
+	<ol>
+		<li>
+			"Add" the files you want to capture in your commit.
+			<p><code>$ git add fileorfolder</code></p>
+			<p><strong>Note:</strong> Use <code>$ git add --all</code> to add everything.</p>
+		</li>
+		<li>
+			Commit your changes and add a message.
+			<p><code>$ git commit -m " Whatever message you want to add "</code></p>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="push">Push to your fork</h2>
+	<ul>
+		<li>You must push your changes from your local machine to your repository on GitHub's servers. Remember that "origin" is the remote that points to your forked repository on GitHub.</li>
+		<li>"Master" or "vx.x" (e.g., v3.0) is the default branch name. You can create multiple branches, but the default is usually master. More on that later.</li>
+	</ul>
+	<p><code>$ git push -u origin master</code></p>
+	<p>Remember that this push will update your fork of the original repository on GitHub, <strong>NOT</strong> the original repository itself.</p>
+</section>
+
+<section>
+	<h2>Contribute to the original repository</h2>
+	<p>In order to contribute back to the original repository (in this case wet-boew/wet-boew), you have to request that someone with read-write access to wet-boew/wet-boew take what you have in your fork and add it to their repository.  This means that they will be performing a <strong>PULL</strong> (fetch and merge) of your forked repository.</p>
+	<p>In order to inform the wet-boew/wet-boew group to add your files from the fork, you can send the original author a pull request.  A pull request is simply a notice asking them to pull from your fork.</p>
+	<figure>
+		<img src="images/git-pullrequest.JPG" class="image-actual" alt="Pull request process" />
+		<figcaption>
+			<p>The pull request process involves asking the owners of the wet-boew/wet-boew repository to take your changes. If your changes are expected, wet-boew will pull the files off your fork.</p>
+		</figcaption>
+	</figure>
+	<ol>
+		<li>Navigate to your fork of the original repository on GitHub ("your user name"/wet-boew)</li>
+		<li>Make sure that it is updated with all the content you'd like to add to the original repository.</li>
+		<li>Click on the <strong>Pull Request</strong> button on the page and send your request.</li>
+	</ol>
+	<p>If your request is accepted, your changes will be merged with the WET repository on GitHub.</p>
+</section>
+
+<section>
+	<h2>Related pages</h2>
+	<ul>
+		<li><a href="index-fr.html" lang="fr">Comment démarrer</a></li>
+		<li><a href="impl-fr.html" lang="fr">Mise en œuvre de la BOEW</a></li>
+		<li><a href="dev-fr.html" lang="fr">Développer pour la BOEW</a></li>
+	</ul>
+</section>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

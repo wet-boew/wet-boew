@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Délai d’expiration de la session - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Ferme la session de l'utilisateur après un certain délai." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="sessiontimeout-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Délai d'expiration de la session</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Expiration de la session</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/sessiontimeout/sessiontimeout-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<p>Cet élément aide les détenteurs d’actifs Web à offrir la fonctionnalité « délai d’expiration de la session et délai d’inactivité ».</p>
+	
+	<h2>Aperçu</h2>
+	<p><strong>Chef du projet :</strong> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
+
+	<section>
+		<h3>Objectif</h3>
+		<p>Ce sous-projet aidera les détenteurs d’actifs Web à offrir une fonctionnalité « délai d’expiration de la session et délai d’inactivité ». Lorsqu’un utilisateur demandera une page contenant le module d'extension nécessaire, la session sera lancée. À la fin de la période de temps déterminée, une boîte de dialogue l’avertissant que sa session est sur le point d’expirer apparaîtra. L’utilisateur pourra alors choisir de prolonger sa session en cliquant « OK » ou de la fermer en cliquant « Annuler ». Après une certaine période d’inactivité, une boîte de dialogue avertira l’utilisateur que sa session est sur le point d’expirer. Dans les deux cas, si l’utilisateur n’a pas réagi après un certain délai établi, il sera automatiquement redirigé à la page de fermeture de session lorsqu’il cliquera « OK » ou « Annuler ».</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+		<li>Les délais peuvent être ajuster dans les paramètres </li>
+		<li>Conformes à WCAG 2.0 AA</li>
+		<li>Approche d'amélioration progressive</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Utilisation recommandée</h3>
+		<p>Sur toutes les pages, au besoin.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en oeuvre</h2>
+	
+	<p>Le code que vous êtes autorisé à modifier est :</p>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
+
+	<p>Cela vous permet de configurer l’élément :</p>
+	<ul>
+		<li><strong><code>ajaxLimiter</code> :</strong> Ceci est le lapse de temps entre les requêtes AJAX pour actualiser la page de session côté serveur.</li>
+		<li><strong><code>inactivity</code> :</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
+		<li><strong><code>reactionTime</code> :</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît.</li>
+		<li><strong><code>sessionalive</code> :</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue apparaisse.</li>
+		<li><strong><code>logouturl</code> :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
+		<li><strong><code>refreshOnClick</code> :</strong> Mettre cette option à true ou false aura pour effet d'activer ou désactiver l'actualisation ajax à l'aide du paramètre <code>refreshCallbackUrl</code>.</li>
+		<li><strong><code>refreshCallbackUrl</code> :</strong> l'URL pour effectuer une actualisation ajax : doit retourner true/false.</li>
+	</ul>
+	 
+	<p>Le seul paramètre requis est <code>logouturl</code>tous les autres champs sont facultatifs. Le code par défaut serait :</p>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"'}'&gt;&lt;/span&gt;</code></pre>
+	
+	<p><strong>NOTE IMPORTANTE :</strong> les paramètres <code>ajaxLimiter</code>, <code>inactivity</code>, <code>reactionTime</code> et <code>sessionAlive</code> sont en millisecondes. Le seule paramètre requis est <code>logouturl</code>. Les paramètres <code>inactivity</code> et <code>sessionalive</code> sont réglés par défaut à 20 minutes avec 30 secondes pour la confirmation dans la boîte de dialogue. La requête Ajax se fera toutes les 2 minutes par défaut en utilisant le paramètre <code>refreshCallbackUrl</code>. L’élément <code>refreshCallbackUrl</code> ne doit pas être une page qui contient aussi une fonctionnalité « délai d’expiration de la session », car cela créerait une boucle; il devrait simplement s’agir d’une page non affichée qui rafraîchit la session.</p>
+	<p>Si vous avez besoin d’aide pour la conversion, veuillez vous rendre à l’adresse suivante : <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>	
+	<p><strong>NOTE IMPORTANTE :</strong> Les paramètres <code>sessionalive</code> et <code>inactivity</code> devraient correspondre à la période de votre session active sur le serveur Web moins le délai associé à <code>reactionTime</code>. Si les délais des paramètres <code>sessionalive</code> et <code>inactivity</code> sont les mêmes que ceux de votre serveur Web et qu’ils ne tiennent pas compte du temps associé au paramètre <code>reactionTime</code>, le serveur mettra fin à la session dès l’apparition de la boîte de dialogue qui permet de la prolonger.</p>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/sessiontimeout/sessiontimeout-en.html" target="_blank">Exemples en anglais</a></li>
+		<li><a href="../../../demos/sessiontimeout/sessiontimeout-fr.html" target="_blank">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>Le code pour l'expiration de la session se trouve à plusieurs endroits dans le répertoire <strong>source</strong> de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/sessiontimeout.js">js/workers/sessiontimeout.js</a> - contient le code JavaScript pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_sessiontimeout.scss">js/sass/includes/_sessiontimeout.scss</a> - contient le CSS pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_sessiontimeout-ie.scss">js/sass/includes/_sessiontimeout-ie.scss</a> - contient le CSS spécifique à IE7/8 pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/sessiontimeout/">js/images/sessiontimeout/</a> - contient les images pour l'expiration de la session</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>Le délai très court pourrait poser des problèmes à certains groupes de personnes handicapées</li>
+		<li>Ne fonctionne pas si JavaScript est désactivé</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/sessiontimeout.js">sessiontimeout.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_sessiontimeout.scss">_sessiontimeout.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_sessiontimeout-ie.scss">_sessiontimeout-ie.scss</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

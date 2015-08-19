@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Barre coulissante - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Émule l’élément &lt;input type=&quot;range&quot; /&gt; pour les navigateurs qui ne le supportent pas." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="slider-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../polyfills-fr.html">Correctifs</a></li>
+<li>Barre coulissante</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Barre coulissante</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/slider/slider-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+<section>
+	<h2>Aperçu</h2>
+	<p><strong>Chef de project :</strong> Serge Bédard (<a href="https://github.com/sbed">@sbed</a>)</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>Le <code>&lt;input type="range" /&gt;</code> permet d'afficher une barre coulissante. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+	</section>
+
+	<section>
+		<h3>Raison d'être</h3>
+		<p>Les navigateurs qui ne prennent pas en charge l'élément <code>&lt;input type="range" /&gt;</code> ignore le <code>type="range"</code>. Par conséquent, une zone de texte normal est affiché et son contenu n'est pas exposé à des technologies d'assistance. Ce correctif assure que le <code>&lt;input type="range" /&gt;</code> est visuellement convertie barre coulissante et exposés aux technologies d'assistance en ajoutant WAI-ARIA.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<p>Pour utiliser le correctif, un élément input standard avec l'attribut <code>input type="range"</code> doit être utilisé. Dans le cas où le navigateur ne supporte pas le <code>input type="range"</code>, le correctif est automatiquement chargé.</p>
+	<section>
+		<h3>Paramètres</h3>
+		<p>Le correctif barre coulissante accepte les paramètres suivants&#160;: <code>min</code>, <code>max</code>, <code>step</code>, <code>value</code> et <code>data-fd-slider-vertical</code>.</p>
+		<section>
+			<h4>Paramètre <code>max</code></h4>
+			<p>Spécifie la valeur maximale autorisée. La valeur par défaut est 0.</p>
+		</section>
+		<section>
+			<h4>Paramètre <code>step</code></h4>
+			<p>Spécifie la longueur de l'intervalle. La valeur par défaut est 1.</p>
+		</section>
+		<section>
+			<h4>Paramètre <code>value</code></h4>
+			<p>Spécifie la valeur par défaut de départ (obligatoire).</p>
+		</section>
+		<section>
+			<h4>Paramètre <code>data-fd-slider-vertical</code></h4>
+			<p>Utilisez l'attribut <code>data-fd-slider-vertical="v-s"</code> pour placer la barre coulissante en position verticale.</p>
+			<pre><code>&lt;input type="range" data-fd-slider-vertical="v-s" min="0" max="100" step="1" value="1" /&gt;</code></pre>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/slider/slider-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/slider/slider-fr.html">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>La barre coulissante est dépendent sur le soutien natif pour l'élément <code>input type="range"</code> de HTML5 et le correctif pour l'élément input.</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/slider.js">js/polyfills/slider.js</a> - contient le code JavaScript pour le correctif de la barre coulissante.</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_slider.scss">js/sass/includes/_slider.scss</a> - contient le SCSS pour le correctif de la barre coulissante.</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/slider/">js/images/slider/</a> - contient les images pour le correctif de la barre coulissante.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/slider.js">slider.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_slider.scss">_slider.scss</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://www.w3.org/TR/html5/states-of-the-type-attribute.html#range-state-type-range">Élément <code>input type="range"</code> - HTML5</a><li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

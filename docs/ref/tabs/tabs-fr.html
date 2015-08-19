@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Interface à onglets - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Comprime plusieurs sections de contenu dans le même espace physique et fourni des onglets qui permettent à l'utilisateur de choisi la section de contenu à afficher." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="tabs-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Interface à onglets</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Interface à onglets</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/tabs/tabs-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Chef du projet :</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>Comprime plusieurs sections de contenu dans le même espace physique et fourni des onglets qui permettent à l'utilisateur de choisi la section de contenu à afficher.</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Prise en charge de plusieurs onglets sur une même page.</li>
+			<li>Plusieurs options de mise en forme.</li>
+			<li>Possibilité de régler l’onglet affiché par défaut.</li>
+			<li>Prise en charge du passage automatique d’un onglet au suivant; le délai est réglable.</li>
+			<li>Possibilité d’imposer la même hauteur à tous les onglets (celle du plus long).</li>
+			<li>Compatibilité avec le système de grille CSS.</li>
+			<li>Conformes à WCAG 2.0 AA</li>
+			<li>Recours aux WAI-ARIA pour accroître l’accessibilité</li>
+			<li>Approche d'amélioration progressive</li>
+		</ul>
+	</section>
+
+	<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<section>
+			<h3>Recommended usage</h3>
+
+			<section>
+				<h4>Use When</h4>
+				<ul>
+					<li>To display multiple pieces of content with the same format. </li>
+					<li>The tabbed interface can be used as a slideshow to display images.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h4>Appearance</h4>
+				<p>When using this feature to display images, corresponding numbers should be displayed that indicate which image is currently being displayed, as in <a href="http://canadiancrown.gc.ca/eng/1332788662861/1332788724918">this example on the Canadian Crown website</a>.</p>
+			</section>
+
+			<section>
+				<h4>Behaviour</h4>
+				<p>When using the tabbed interface to display text (as in <a href="http://pwgsc.gc.ca/">this example on pwgsc.gc.ca</a>), the transition speed must allow enough time for the user to read the text displayed.</p>
+				<p>When used to promote web content, selecting text or an image should take the user to a new page.</p>
+				<p>Users must be able to pause (or re-start) rotating tabs.</p>
+			</section>
+
+			<section>
+				<h4>Content</h4>
+				<p>When used to promote web content, selecting text or an image should take the user to a new page.</p>
+			</section>
+		</section>
+	</div>
+</section>
+
+<section>
+	<h2>Mise en oeuvre</h2>
+	<ul>
+		<li>Créez un groupe d’onglets pour chaque ensemble d’onglets à l’aide de <code>&lt;div class="wet-boew-tabbedinterface"&gt;. </code></li>
+		<li>Ajoutez <code>&lt;div class="tabs-panel"&gt;</code> à chaque groupe d'onglets, et les balises <code>&lt;div id...&gt;</code> à chaque onglet. L'attribute <b>id</b> pour chaque panneau doit avoir la même valeur que l'attribute <b>href</b> pour l'onglet associé (après le symbole "#"). Par exemple&#160;: </li>
+	</ul>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface"&gt;
+    &lt;ul class="tabs"&gt;
+        &lt;li&gt;&lt;a href="#tab1"&gt;Événements nationaux&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab2"&gt;Événements régionaux&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab3"&gt;Événements locaux&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="tabs-panel"&gt;
+        &lt;div id="tab1"&gt;
+            &lt;p&gt;onglet 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;lien factice&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="tab2"&gt;
+            &lt;p&gt;onglet 2 - Consectetur adipiscing elit. Praesent sit amet felis.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;lien factice&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="tab3"&gt;
+            &lt;p&gt;onglet 3 - Praesent sit amet felis. Etiam malesuada.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;lien factice&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Pour modifier l’apparence par défaut d’un ensemble d’onglets, ajoutez l’une des six classes suivantes au groupe d’onglets&#160;:</p>
+	<ul>
+		<li><b><code>tabs-style-1</code>:</b> onglets horizontaux stylisés</li>
+		<li><b><code>tabs-style-2</code>:</b> nouvelles déroulantes horizontales</li>
+		<li><b><code>tabs-style-3</code>:</b> nouvelles déroulantes verticales avec les liens à droit</li>
+		<li><b><code>tabs-style-4</code>:</b> diaporama avec des liens texte en dessous</li>
+		<li><b><code>tabs-style-5</code>:</b> diaporama sans liens texte</li>
+		<li><b><code>tabs-style-6</code>:</b> images déroulantes horizontales avec des liens texte ou des liens image en dessous</li>
+	</ul>
+
+	<p><b>Nota :</b> les classes <code>tabs-style-2</code> et <code>tabs-style-3</code> ont été conçues sans espacement interne; ainsi, les images peuvent remplir tout l’espace prévu. Vous devez donc utiliser la classe <code>&lt;div class="tabs-panel"&gt;</code> avec les paragraphes et tout autre contenu textuel afin d’ajouter les marges voulues. Par exemple&#160;:</p>
+	<p><b>Facultatif :</b> Spécifier l'onglet par défault par ajouter <code>class="default"</code> à l'onglet. Par exemple&#160;:</p>
+	<pre><code>&lt;ul class="tabs"&gt;
+    &lt;li&gt;&lt;a href="#tab1"&gt;Événements nationaux&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="default"&gt;&lt;a href="#tab2"&gt;Événements régionaux&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#tab3"&gt;Événements locaux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Ajouter <code>class="auto-height-none"</code> au groupe d'onglets pour annuler la mécanisme qui force le panneaux d'être la même hauteur&#160;:</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface auto-height-none"&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Ajouter <code>class="cycle-fast"</code>, <code>class="cycle"</code> ou <code>class="cycle-slow"</code> au groupe d'onglets pour ajouter les boutons "Jouer"/"Pause" (<span lang="en">"Play"/"Pause"</span>) pour passer automatiquement d'un onglet à l'autre. Les onglets changent chaque 2 secondes pour <code>cycle-fast</code>, chaque 6 secondes pour <code>cycle</code> et chaque 8 secondes pour <code>cycle-slow</code>. Un délai de rotation différent peut être spécifié avec <code>data-wet-boew='{"cycle":10000}'</code> où la valeur pour <code>cycle</code> est le délai en millisecondes. Les onglets passent de l'un à l'autre automatiquement par défault sauf si <code>class="auto-play-none"</code> est ajouté au groupe d'onglets.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface cycle auto-play-none"&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Ajouter <code>class="animate-fast"</code>, <code>class="animate"</code> ou <code>class="animate-slow"</code> au groupe d'onglets pour obtenir un effet rapide, moyenne ou lent de pâlissement en passant d'un onglet à l'autre.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate"&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Ajouter <code>class="slide-horz"</code> ou <code>class="slide-vert"</code> au groupe d'onglets pour obtenir un effet déroulant en passant d'un onglet à l'autre.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</code></pre>
+
+	<p><b>Facultatif :</b> Lorsque vous créez des tableaux parents - enfants, vous devez utiliser les éléments <code>row-start</code> et <code>row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous utilisez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code>row-start</code> ou <code>row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code>embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/tabs/tabs-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/tabs/tabs-fr.html">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>L'interface à onglets est dépendent sur <a href="http://os.alfajango.com/easytabs/">EasyTabs.js</a> (<a href="http://www.opensource.org/licenses/mit-license.php">licence MIT</a>, <a href="http://www.gnu.org/licenses/gpl.html">licence GPL</a>), <a href="http://filamentgroup.com/lab/setting_equal_heights_with_jquery/">EqualHeights</a> (<a href="http://www.opensource.org/licenses/gpl-license.php">licence GPL</a>) et le plugiciel <a href="https://github.com/jquery-orphans/jquery-metadata">jQuery Metadata</a> (<a href="http://www.opensource.org/licenses/mit-license.php">licence MIT</a>, <a href="http://www.gnu.org/licenses/gpl.html">licence GPL</a>).</p>
+	<p>Le code pour l'interface à onglets se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW&#160;:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/tabbedinterface.js">js/workers/tabbedinterface.js</a> - contient le code JavaScript pour l'interface à onglets</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_tabbedinterface.scss">js/sass/includes/_tabbedinterface.scss</a> - contient le CSS pour l'interface à onglets</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_tabbedinterface-ie.scss">js/sass/includes/_tabbedinterface-ie.scss</a> - contient le CSS spécifique à IE7/8 pour l'interface à onglets</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/tabs/">js/images/tabs/</a> - contient les images de l'interface à onglets</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/easytabs.js">js/dependencies/easytabs.js</a> - fichier script pour EasyTabs.js</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/easytabs.js">js/dependencies/equalheights.js</a> - fichier script pour EqualHeights</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/metadata.js">js/dependencies/metadata.js</a> - fichier script pour jQuery Metadata</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>Les utilisateurs risquent de ne pas consulter le contenu caché par défaut.</li>
+		<li>Le fait de consulter tout le contenu exige un effort supplémentaire de la part des utilisateurs.</li>
+		<li>Une page d’envergure peut être publiée intégralement à son chargement avant que cette fonction ne la divise en onglets.</li>
+		<li>L’en-tête des onglets peut entraîner des problèmes d’accessibilité s’il n’est pas assez descriptif (utiliser «&#160;1&#160;», «&#160;2&#160;» et «&#160;3&#160;» pour les actualités par exemple). Utilisez la classe <code>wb-invisible</code> pour donner aux onglets des en-têtes plus descriptifs sans en modifier l’apparence. Par exemple&#160;:
+			<pre><code>1&lt;span class="wb-invisible"&gt; Onglet 1&lt;/span&gt;
+2&lt;span class="wb-invisible"&gt; Onglet 2&lt;/span&gt;</code></pre>
+		</li>
+		<li>L’ajout d’effets de transition entre les onglets (le fondu, entre autres) risque de permettre à l’utilisateur de sélectionner un deuxième onglet avant que l’effet de transition du premier soit terminé. Dans ce cas, le deuxième onglet sélectionné est mis en évidence, mais le contenu du premier onglet est publié. Vu ce risque, cette composante ne démontre ni ne recommande l’utilisation des fonctions d’animation (qui sont réglées à «&#160;<code>false</code>&#160;»).</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/tabbedinterface.js">tabbedinterface.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_tabbedinterface.scss">_tabbedinterface.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_tabbedinterface-ie.scss">_tabbedinterface-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/easytabs.js">easytabs.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/equalheights.js">equalheigts.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/metadata.js">metadata.js</a> </li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://os.alfajango.com/easytabs/">EasyTabs.js</a></li>
+		<li><a href="http://filamentgroup.com/lab/setting_equal_heights_with_jquery/">EqualHeights</a></li>
+		<li><a href="https://github.com/jquery-orphans/jquery-metadata">jQuery Metadata plugin</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

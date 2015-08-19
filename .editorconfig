@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+; See http://EditorConfig.org for supported IDEs
+
+root = true  ; top-most EditorConfig file
+
+[*]
+indent_style = tab
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.csv]
+trim_trailing_whitespace = false
+insert_final_newline = false
+=======
 # This file is for unifying the coding style for different editors and IDEs
 # editorconfig.org
 
@@ -13,3 +29,4 @@ indent_size = 4
 [{package.json},{bower.json}]
 indent_style = space
 indent_size = 2
+>>>>>>> wet-boew/master

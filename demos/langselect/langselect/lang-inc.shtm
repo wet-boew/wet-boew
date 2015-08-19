@@ -1,0 +1,17 @@
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<!--#if expr="${REQUEST_URI} = /^(.*)-eng.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-fra.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)-en.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-fr.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)_e.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}_f.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)-fra.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-eng.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)-fr.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-en.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)_f.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}_e.${2}"-->
+<!--#else-->
+<!--#set var="pg-altlangurl" value="#"-->
+<!--#endif-->

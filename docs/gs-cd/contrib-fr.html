@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Lignes directrices pour les contributeurs - Développer pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Lignes directrices pour les contributeurs - Développer pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="contrib-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fr.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-fr.html">Accueil</a></li>
+<li><a href="../index-fr.html">Documentation</a></li>
+<li><a href="index-fr.html">Comment démarrer</a></li>
+<li><a href="dev-fr.html">Développer pour la BOEW</a></li>
+<li>Lignes directrices pour les contributeurs</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Lignes directrices pour les contributeurs</h1>
+
+<section>
+	<h2 id="prob">Rapporter un problème ou une anomalie</h2>
+	<ul>
+		<li>Quelle version de la BOEW est affectée (v3.1.0, v3.1.1, etc)? Si ce n'est pas la dernière version stable, est-ce que la dernière version a résolue le problème?</li>
+		<li>Le problème fut trouvé avec quel navigateur (IE8, FireFox 18, Chrome 24, ou une combinaison de navigateurs)?</li>
+		<li>Un lien vers une page pouvant être utilisée pour reproduire le problème (URL public ou démo). Si une page ne peut être fournie, une photo peut ête attachée montrant le problème (utilisez [[la capacité fichier joint de GitHub | https://github.com/blog/1347-issue-attachments]] à cet effet.)</li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="pr">Créér une demande de retrait</h2>
+	<p>Les demandes de retrait sont les bienvenues. Assurez-vous d'apporter les changements dans la dernière version du code et de limiter le champ de validation (commit range) seulement aux fichiers que vous aviez l’intention de modifier (pour éviter les conflits).</p>
+	<ul>
+		<li>Pour réduire la pollution du code de base avec chaque sauvegarde (commit) considérez <a rel="external" href="http://git-scm.com/book/en/Git-Branching-Rebasing">re-niveler (Rebasing)</a> vos sauvegardes avant de créér une demande de retrait sur la branche principale.</li>
+	</ul>
+
+	<section>
+		<h3>Nouveaux composants</h3>
+		<p>Les nouvelles composantes devraient être ajoutées dans un branchement de type feature-* (p. ex., feature-lightbox).</p>
+		<ul>
+			<li>Crééz une nouvelle branche de la principale de la façon suivante:
+				<ul>
+					<li><code>git fetch upstream</code></li>
+					<li><code>git checkout upstream/master</code></li>
+					<li><code>git checkout -b feature-nouvelle-composante</code></li>
+				</ul>
+			<li>Les licences de toutes les nouvelles composantes et du code afférent doivent être compatibles avec la licence MIT utilisée par la Boîte à outils de l’expérience Web (BOEW).</li>
+			<li>Les nouveaux modules d’extension devraient suivre le structure et format des plugiciels actuels.</li>
+			<li>Inclure le bloc de texte sur les conditions d’utilisation de la BOEW dans tous les fichiers sources textuels soumis aux droits d’auteur de la Couronne.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Résolution de bogues et rustines logicielles applicable à toutes les versions</h3>
+		<p>Devrait être soumise sur la branche master.</p>
+		<ul>
+			<li>Créér une nouvelle branche à partir de master de la façon suivante:
+				<ul>
+					<li><code>git fetch upstream</code></li>
+					<li><code>git checkout upstream/master</code></li>
+					<li><code>git checkout -b -description-ma-rustine</code></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3 id="test">Testez votre RP avant de le soumettre</h3>
+		<ul>
+			<li>
+				<a rel="external" href="http://validator.w3.org/nu/">Valider votre balisage HTML</a>. Le balisage devrait être en HTML5 bien formé.
+				<ul>
+					<li>Pour vérifier si le balisage est bien formé, valider à l’aide d’un préréglage XHTML5 et cocher la case «&#160;<span lang="en">Be lax about HTTP Content-Type</span>&#160;».</li>
+				</ul>
+			</li>
+			<li>
+				<a rel="external" href="http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options">Valider votre CSS</a> en apportant les changements suivants aux paramètres par défaut&#160;:
+				<ul>
+					<li><strong>Profil&#160;:</strong> CSS niveau 3</li>
+					<li><strong>Extensions Propriétaires&#160;:</strong> Avertissements</li>
+				</ul>
+			</li>
+			<li><a rel="external" href="http://www.jshint.com">Valider votre code JavaScript</a></li>
+			<li><a href="opt-fr.html">Optimiser votre code JavaScript, CSS et HTML</a></li>
+			<li>
+				Recommandations quant au formatage&#160;:
+				<ul>
+					<li>Ajouter les tabulations en utilisant le <a rel="external" href="http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R">style d'indentation K&amp;R</a></li>
+					<li>Utiliser les guillemets simples pour les chaînes de caractères en JavaScript (de façon à ce que les guillemets doubles non échappés (<span lang="en">unescaped</span>) puissent être utilisés pour les attributs dans les données de sortie HTML)</li>
+				</ul>
+			</li>
+			<li>
+				Mettre à l’essai les pages Web par rapport à la «&#160;base de référence des essais de navigateurs&#160;» (<span lang="en">browser test baseline</span>) qui suit&#160;:
+				<ul>
+					<li>la version majeure actuelle et précédente de chaque navigateur qui compte pour au moins 5&#160;% des visites au site Web;</li>
+					<li>toute version majeure d’un navigateur qui, à elle seule, compte pour au moins 5&#160;% des visites au site Web;</li>
+					<li>les versions actuelles et précédentes des navigateurs par défaut de chaque système d’exploitation mobile qui compte pour au moins 5&#160;% de la part de marché du système d’exploitation mobile à l’échelle du Canada ou à l’échelle mondiale.</li>
+				</ul>
+			</li>
+			<li>Les essais des RP sont effectués par <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, mais la même série d'essais peut être exécuté à l'aide de la commande locale "ant test" avant de soumettre,</li>
+		</ul>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

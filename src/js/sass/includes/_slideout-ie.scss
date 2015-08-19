@@ -1,0 +1,53 @@
+﻿/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+%so-filter-rotate-1 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+%so-filter-rotate-3 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+ 
+.ie7 {
+	&[dir="rtl"] {
+		#toggleLink {
+			@extend %so-filter-rotate-1;
+			left: 0;
+		}
+	}
+	#toggleLink {
+		@extend %so-filter-rotate-3;
+		right: 0;
+	}
+	#slideoutToggle {
+		width: auto !important;
+	}
+}
+.ie8 {
+	#toggleLink {
+		position: static;
+	}
+	#slideoutInnerWrapper {
+		width: auto;
+	}
+	&[dir="rtl"] {
+		#slideoutToggle {
+			@extend %so-filter-rotate-1;
+		}
+	}
+	#slideoutToggle {
+		@extend %so-filter-rotate-3;
+	}
+}
+
+/*Screen SCSS*/
+@media screen {
+	.ie7 {
+		.so-ie7 {
+			position: relative;
+		}
+	}
+}

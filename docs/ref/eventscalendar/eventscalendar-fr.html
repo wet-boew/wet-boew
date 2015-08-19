@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Calendrier d'événements - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Un calendrier servant à consulter une liste d'événements." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="eventscalendar-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Calendrier d'événements</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Calendrier d'événements</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/eventscalendar/eventscalendar-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<p>Cette fonctionnalité génère dynamiquement une interface du calendrier pour naviguer dans une liste d’événements.</p>
+	<h2>Vue d’ensemble</h2>
+	<p><strong>Responsable de projet :</strong> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
+
+	<section>
+		<h3>Description</h3>
+		<p>Le but de cette fonctionnalité est de fournir une interface pour parcourir une liste chronologique d'événements.</p>
+	</section>
+
+	<section>
+		<h3>Utiliser lorsque</h3>
+		<p>Cette fonctionnalité peut être utilisée pour afficher une liste d’événements sous forme de calendrier.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<ol>
+		<li>Ajouter un élément div à la page Web avec un attribut class contenant "wet-boew-calendar-events" et une classe unique (e.g.: <code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code>).<br><strong>Note:</strong> votre classe unique doit être la dernière dans la liste de classes.</li>
+		<li>Inclure dans l’élément div une liste ordonnée des événements (élément ol) en utilisant la structure suivante pour chaque événement :
+			<ol>
+				<li>L’élément de liste doit commencer par un élément d’en-tête (de h2 à h6, selon le contexte de la page).</li>
+				<li>L’élément d’en-tête doit inclure un lien vers la description de l’événement, avec le titre de l’événement comme hyperlien.</li>
+				<li>La date de l’événement doit être fournie dans un élément time en HTML5 contenu au sein d’un élément de paragraphe (à la suite de l’élément d’en-tête). La date à afficher est contenue dans l’élément time et une date de norme ISO-8601 (p. ex., 2010-03-11) est indiquée dans l’attribut datetime.</li>
+			</ol>
+		</li>
+		<li>Ajouter un deuxième élément div à la page Web avec une valeur d’attribut à identification contenant votre classe unique ci-haut (e.g.: <code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code>). Cela permettra de maintenir en place l’interface de calendrier.</li>
+	</ol>
+	<p>Exemple code:</p>
+	<pre><code>&lt;div id="calendar1"&gt;&lt;/div&gt;
+&lt;div class="wet-boew-eventscalendar calendar1"&gt;
+    &lt;ol&gt;
+        &lt;li&gt;
+            &lt;section&gt;
+                &lt;h4&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement de seul-jour&lt;/a&gt;&lt;/h4&gt;
+                &lt;p&gt;&lt;time datetime="2011-03-11"&gt;11 mars 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;p&gt;Description de l'événement&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;section&gt;
+                &lt;h4&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement sur plusieurs jours&lt;/a&gt;&lt;/h4&gt;
+                &lt;p&gt;&lt;time datetime="2011-03-22"&gt;22 mars 2011&lt;/time&gt; à &lt;time datetime="2011-04-26"&gt;26 avril 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;p&gt;Description de l'événement&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+
+	<ul>
+		<li><a href="../../../demos/eventscalendar/eventscalendar-fr.html">Exemple</a></li>
+	</ul>
+
+	<section>
+		<h3>Liaison aux détails</h3>
+		<p>Dans cette méthode, le calendrier lien avec les détails de l'événement. Ceci est utilisé quand un événement a des liens multiples.</p>
+		<pre><code>&lt;div id="calendar2"&gt;&lt;/div&gt;
+&lt;div class="wet-boew-eventscalendar event-anchoring calendar2"&gt;
+    &lt;ol&gt;
+        &lt;li&gt;
+            &lt;section&gt;
+                &lt;h4&gt;Événement de seul-jour&lt;/h4&gt;
+                &lt;p&gt;&lt;time datetime="2011-03-11"&gt;11 mars 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;p&gt;Description de l'événement&lt;/p&gt;
+                &lt;p&gt;Liens:&lt;/p&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement de seul-jour - Lien 1&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement de seul-jour - Lien 2&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/section&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;section&gt;
+                &lt;h4&gt;Événement sur plusieurs jours&lt;/h4&gt;
+                &lt;p&gt;&lt;time datetime="2011-03-22"&gt;22 mars 2011&lt;/time&gt; to &lt;time datetime="2011-04-26"&gt;26 avril 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;p&gt;Description de l'événement&lt;/p&gt;
+                &lt;p&gt;Liens:&lt;/p&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement sur plusieurs jours - Lien 1&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="http://www.canada.gc.ca"&gt;Événement sur plusieurs jours - Lien 2&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/section&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Filtrage de liste</h3>
+		<p>Cette option filtre des événements de la liste qui ne sont pas pour le mois actuel. Activez cette option en ajoutant la classe <code>calender-display-onshow</code> à chaque événement qui devrait être filtré par le mois.</p>
+		<p>Les événements qui n'ont pas la classe <code>calendar-display-onshow</code> seront visible toujours.</p>
+		<pre><code>&lt;div id="calendar3"&gt;&lt;/div&gt;
+&lt;div class="wet-boew-eventscalendar event-anchoring calendar3"&gt;
+    &lt;section&gt;
+        &lt;h4&gt;Événements - Liste 1&lt;/h4&gt;
+        &lt;ol&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://www.ec.gc.ca"&gt;Événement 1&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-03-11"&gt;11 mars 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Événement 2&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-03-11"&gt;11 mars 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;Expo 2010 Shanghai&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-03-22"&gt;22 mars 2011&lt;/time&gt; au &lt;time datetime="2011-04-26"&gt;26 avril 2011&lt;/time&gt;&lt;/p&gt;
+                    &lt;p&gt;Le Pavillon du Canada souligne le dynamisme et la vitalité des villes canadiennes et de leurs résidents.&lt;/p&gt;
+                    &lt;p&gt;Pour obtenir de plus amples renseignements, visitez le site Web de Canada à Expo 2010 Shanghai à l’adresse suivante : &lt;a href="http://www.expo2010canada.gc.ca/index-fra.cfm"&gt;www.expo2010canada.gc.ca/index-fra.cfm&lt;/a&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://gcpedia.gc.ca"&gt;Événement 4&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-03-24"&gt;24 mars 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://www.ec.gc.ca"&gt;Événement 6&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-04-11"&gt;11 avril 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Événement 7&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-04-23"&gt;23 avril 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+            &lt;li class="calendar-display-onshow"&gt;
+                &lt;section&gt;
+                    &lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Événement 17&lt;/a&gt;&lt;/h5&gt;
+                    &lt;p&gt;&lt;time datetime="2011-04-23"&gt;23 avril 2011&lt;/time&gt;&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/eventscalendar/eventscalendar-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/eventscalendar/eventscalendar-fr.html">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Le code pour le calendrier d'événements se trouve à plusieurs endroits dans le répertoire source de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/eventscalendar.js">js/workers/eventscalendar.js</a> - code JavaScript pour le calendrier d'événements</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_events-calendar.scss">js/sass/includes/_events-calendar.scss</a> - CSS pour le calendrier d'événements</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/calendar.js">js/dependencies/calendar.js</a> - Code JavaScript pour la bibiliothèque de calendrier</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_calendar-base.scss">js/sass/includes/_calendar-base.scss</a> - CSS de base pour la bibiliothèque de calendrier</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_calendar-theme.scss">js/sass/includes/_calendar-theme.scss</a> - CSS de thème pour la bibiliothèque de calendrier</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème technique connu. Des règles administratives qui reflètent les scénarios d’usage appropriés doivent être formulées.</p>
+</section>
+
+<section>
+	<h2>À venir</h2>
+	<p>Ne pas hésiter à suggérer des fonctionnalités/améliorations dans <a href="https:\github.com\wet-boew\wet-boew\issues">issue tracker</a>.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/eventscalendar.js">eventscalendar.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_events-calendar.scss">_events-calendar.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/calendar.js">calendar.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/calendar-base.scss">_calendar-base.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/calendar-theme.scss">_calendar-theme.scss</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Pages connexes</h2>
+	<ul>
+		<li><a href="../datepicker/datepicker-fr.html">Sélecteur de date (correctif pour input type='date', interface du calendrier)</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

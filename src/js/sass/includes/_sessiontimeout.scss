@@ -1,0 +1,15 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+/* Overlay class */
+.sOverlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999999;
+	@include opacity(0.9);
+	background-image: url(../images/sessiontimeout/scrim.png);
+}

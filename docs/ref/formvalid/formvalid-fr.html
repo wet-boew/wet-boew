@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Validation de formulaires - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="formvalid-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Validation de formulaires</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Validation de formulaires</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/formvalid/formvalid-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Chef du projet :</b> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>Ce composant fournit la validation générique et le soutien de message d'erreur générique pour les formulaires Web.</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Plusieurs méthodes de validation</li>
+			<li>Messages d'erreur personnalisés</li>
+			<li>Conformes à WCAG 2.0 AA</li>
+			<li>Recours aux WAI-ARIA pour accroître l'accessibilité</li>
+			<li>Approche d'amélioration progressive</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Utilisation recommandée</h3>
+		<p>Formulaires Web</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<ol>
+		<li>Ajouter <code>class="wet-boew-formvalid"</code> à l'élément <code>div</code> qui est à l'entour de lélément <code>form</code> <pre><code>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</code></pre></li>
+		<li><b>Facultatif :</b> Entourer le nom de chaque champ de formulaire avec <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. Ceci spécifie le préfixe pour chaque message d'erreur. <pre><code>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;</code></pre></li>
+		<li>Ajouter <code>required="required"</code> à chaque champ de formulaire obligatoire <pre><code>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</code></pre></li>
+		<li><b>Facultatif :</b> Pour les champs de saisie, ajouter la syntaxe suivante pour la validation spécializée :</li>
+	</ol>
+	<p><b>Note :</b> La syntaxe de validation spécialisée a changé en v3.0.6 et v3.1.0 de <code>class="{validate: {propriété: valeur}}"</code> à <code>data-rule-propriété="valeur"</code>. L'ancienne syntaxe est obsolète mais sera soutenue pour l'instant pour accommoder la transition vers la nouvelle syntaxe.</p>
+
+	<table>
+	<tr>
+		<th>Type de validation</th>
+		<th>Syntaxe</th>
+	</tr>
+	<tr>
+		<td>Adresse de courriel</td>
+		<td><code>type="email"</code></td>
+	</tr>
+	<tr>
+		<td>Alphanumérique</td>
+		<td><code>data-rule-alphanumeric:"true"</code></td>
+	</tr>
+	<tr>
+		<td>Chiffres seulement</td>
+		<td><code>type="number"</code></td>
+	</tr>
+	<tr>
+		<td>Date</td>
+		<td><code>type="date"</code></td>
+	</tr>
+	<tr>
+		<td>Date (ISO)</td>
+		<td><code>type="date" data-rule-dateISO="true"</code></td>
+	</tr>
+	<tr>
+		<td>Heure</td>
+		<td><code>type="time"</code></td>
+	</tr>
+	<tr>
+		<td>Lettres et des signes de ponctuation simples seulement (ponctuation qui est permis : [.])</td>
+		<td><code>data-rule-letterswithbasicpunc="true"</code></td>
+	</tr>
+	<tr>
+		<td>Lettres seulement</td>
+		<td><code>data-rule-lettersonly="true"</code></td>
+	</tr>
+	<tr>
+		<td>Longeur entre x et y</td>
+		<td><code>data-rule-rangelength="[x,y]"</code></td>
+	</tr>
+	<tr>
+		<td>Longeur maximum de x</td>
+		<td><code>data-rule-maxlength="x"</code></td>
+	</tr>
+	<tr>
+		<td>Longeur minimum de x</td>
+		<td><code>data-rule-minlength="x"</code></td>
+	</tr>
+	<tr>
+		<td>Nombre maximum de x</td>
+		<td><code>max="x"</code></td>
+	</tr>
+	<tr>
+		<td>Nombre minimum x</td>
+		<td><code>min="x"</code></td>
+	</tr>
+	<tr>
+		<td>Numéro de téléphone (É.-U.)</td>
+		<td><code>type="tel" data-rule-phoneUS="true"</code></td>
+	</tr>
+	<tr>
+		<td>URL (IPv4)</td>
+		<td><code>type="url"</code></td>
+	</tr>
+	<tr>
+		<td>URL (IPv6)</td>
+		<td><code>type="url" data-rule-ipv6="true"</code></td>
+	</tr>
+	</table>
+	<p>Liser <a href="http://jqueryvalidation.org/documentation">jQuery Validation Plugin - Documentation (Anglais seulement)</a> pour des renseignements supplémentaires.</p>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+	<li><a href="../../../demos/formvalid/formvalid-en.html">Exemples en anglais</a></li>
+	<li><a href="../../../demos/formvalid/formvalid-fr.html">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>La validation de formulaires est dépendent sur <a href="http://jqueryvalidation.org/">jQuery Validation (Anglais seulement)</a> (<a href="http://www.opensource.org/licenses/mit-license.php">licence MIT (Anglais seulement)</a>, <a href="http://www.gnu.org/licenses/gpl-3.0.fr.html">licence GPL</a>). Elle est aussi améliorer par le <a href="../datepicker/datepicker-fr.html">correctif de sélecteur de date</a> et le <a href="../../../demos/grids/grid-base-en.html">système de grille CSS</a>.</p>
+	<p>Le code pour la validation de formulaires est situé dans plusieurs endroits dans le dossier <b>source</b> de la BOEW :</p>
+
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/formvalid.js">js/workers/formvalid.js</a> - contient le JavaScript pour la validation de formulaires</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_formvalid.scss">js/sass/includes/_formvalid.scss</a> - contient le CSS pour la validation de formulaires</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/validate.js">js/dependencies/validate.js</a> - fichier de script principal de jQuery Validation</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/validateAdditional.js">js/dependencies/validateAdditional.js</a> - méthodes de validation supplémentaires pour jQuery Validation</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/tree/master/src/js/i18n/formvalid">js/i18n/formvalid/</a> - fichiers d'internalisation pour jQuery Validation</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>Fournir seulement la validation de côté client pour les champs de formulaire peut permettre des assauts malveillants sur le serveur</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/formvalid.js">formvalid.js</a> </li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_formvalid.scss">_formvalid.scss</a> </li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/validate.js">validate.js</a></li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/validateAdditional.js">validateAdditional.js</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Pages reliés</h2>
+	<ul>
+		<li><a href="../datepicker/datepicker-fr.html">Sélecteur de date (correctif pour input type='date', interface du calendrier)</a></li>
+		<li><a href="../../../demos/grids/grid-base-en.html">Système de grille CSS</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://jqueryvalidation.org/">jQuery Validation</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

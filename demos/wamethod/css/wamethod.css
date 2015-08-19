@@ -1,0 +1,150 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+.guidance-block h2 {
+  margin-left: 10px;
+  color: #000;
+  font-weight: bold;
+  border-top: 1px solid #cccccc;
+  padding-top: 30px;
+  margin-top: 0;
+}
+.guidance-block ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.guidance-block li {
+  padding: 10px 0 1px 0;
+  margin: 0 10px !important;
+}
+.guidance-block .wet-boew-zebra li.list-even {
+  background-color: white !important;
+}
+.guidance-block .wet-boew-zebra li.list-hover {
+  background-color: #dcd8bd !important;
+}
+.guidance-block fieldset {
+  border: none;
+  padding: 0.5em;
+  margin: 0;
+}
+.guidance-block legend {
+  display: block;
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+  float: left;
+  width: 70%;
+}
+.guidance-block legend.fra {
+  width: 60%;
+}
+.guidance-block label {
+  padding: 0 0.2em;
+}
+.guidance-block .box, .guidance-block .box-fra {
+  float: right;
+  text-align: right;
+  width: 30%;
+}
+.guidance-block .box-fra {
+  width: 40%;
+}
+.guidance-block ol.wet-boew-zebra > li:before {
+  content: none;
+}
+
+.guidance-sub-block h2, .guidance-sub-block h3 {
+  color: #000;
+  font-size: 1.25em;
+  border-bottom: none;
+  font-weight: bold;
+  margin-top: 0;
+}
+.guidance-sub-block h2, .guidance-sub-block h3, .guidance-sub-block h4, .guidance-sub-block p {
+  margin-left: 20px;
+}
+.guidance-sub-block p, .guidance-sub-block ul {
+  margin-top: 10px;
+}
+
+.guidance-sub-block3-top h3 {
+  float: left;
+  margin-top: 0;
+  margin-right: 20px;
+}
+.guidance-sub-block3-top h4 {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.guidance-sub-block3-top h4, .guidance-sub-block3-top ul {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.guidance-sub-block3-top ul {
+  list-style-type: none;
+}
+.guidance-sub-block3-top p {
+  margin-bottom: 0;
+}
+
+.guidance-sub-block3-top, .guidance-sub-block3-top-round, .guidance-sub-block3-bottom-round {
+  background: #F3F3F3;
+}
+
+.guidance-sub-block3-top-round {
+  -webkit-border-radius: 20px 20px 0 0;
+  -moz-border-radius: 20px 20px 0 0;
+  -ms-border-radius: 20px 20px 0 0;
+  -o-border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;
+  height: 20px;
+}
+
+.guidance-sub-block3-bottom-round {
+  -webkit-border-radius: 0 0 20px 20px;
+  -moz-border-radius: 0 0 20px 20px;
+  -ms-border-radius: 0 0 20px 20px;
+  -o-border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px;
+  height: 20px;
+}
+
+.wet-boew-wamethod label {
+  display: inline;
+}
+.wet-boew-wamethod legend {
+  font-size: 100%;
+}
+.wet-boew-wamethod legend:after {
+  border-top: none;
+  height: auto;
+}
+
+#summary-div {
+  margin: 0 20px;
+}
+
+#summary {
+  width: 100%;
+}
+#summary th {
+  width: 79%;
+  text-align: left;
+  background-color: #DDD;
+  border: 1px solid #cccccc;
+  padding: 5px;
+}
+#summary td {
+  width: 21%;
+  text-align: right;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  background-color: #FFF;
+}
+
+.summary-border {
+  border-top: 2px solid black;
+}

@@ -6,6 +6,17 @@
 	"expr": true,
 	"immed": true,
 	"noarg": true,
+<<<<<<< HEAD
+	"onevar": true,
+	"smarttabs": true,
+	"trailing": true,
+	"undef": true,
+	"unused": true,
+
+	"browser": true,
+	"strict": false,
+	"jquery": true
+=======
 	"undef": true,
 	"unused": true,
 
@@ -18,4 +29,5 @@
 	"jquery": true,
 	"browser": true,
 	"es3": true
+>>>>>>> wet-boew/master
 }

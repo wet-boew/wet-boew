@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Mise en surbrillance de texte - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Met en surbrillance sur une page Web les mots chois" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="texthighlight-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Mise en surbrillance de texte</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Mise en surbrillance de texte</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/texthighlight/texthighlight-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Chef de projet :</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
+	<p>Le composant de mise en subrillance de texte met en surbrillance n'importe quel texte dans un secteur pré-défini qui satisfait des critères de recherche. Les critères de recherche sont insensibles à la casse et sont spécifiés par la chaîne d'interrogation d'une addresse URL. Les chaînes avec plusieurs mots sont supportées, y compris les espaces et la ponctuation fondamentale.</p>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Aide les utilisateurs à trouver certains mots sur une page Web</li>
+			<li>Approche pour mettre les mots en surbrillance par défaut à travers la chaîne d'interrogation</li>
+			<li>Les chaînes avec plusieurs mots sont supportées, y compris les espaces et la ponctuation fondamentale</li>
+			<li>Conformes à WCAG 2.0 AA</li>
+			<li>Recours aux WAI-ARIA pour accroître l'accessibilité</li>
+			<li>Approche d'amélioration progressive</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Utilisation recommandée</h3>
+		<ul>
+			<li>Mettre en surbrillance les termes de recherche dans une page de résultats de recherche</li>
+			<li>Mettre en surbrillance des mots clés dans une page Web</li>
+			<li>Aider l'utilisateur à retrouver toutes les occurrences d'un ou de plusieurs mots dans une page Web</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en oeuvre</h2>
+	<ol>
+		<li>Définir votre zone de recherche. Ajouter la classe <code>wet-boew-texthighlight</code> à l'étiquette dont vous voulez chercher.</li>
+		<li>Spécifier les critères de recherche dans la chaîne d'interrogation de l'addresse URL. Ajouter <code>texthighlight=&lt;texte_1&gt;&lt;/texte_1&gt;+&lt;texte_2&gt;&lt;/texte_2&gt;+&lt;texte_3&gt;&lt;/texte_3&gt;</code> à la chaîne d'interrogation.</li>
+	</ol>
+	<p><b>Nota 1 :</b> Les critères de recherche regroupant des caractères spéciaux d'expression régulière («&#160;regex&#160;», p.ex., «&#160;"&#160;», «&#160;|&#160;», «&#160;?&#160;», «&#160;+&#160;», «&#160;(&#160;» ou «&#160;)&#160;») peuvent être partiellement ou entièrement exclus des résultats.</p>
+	<p><b>Nota 2 :</b> La validation des balises HTML exige que tous les espaces dans les liens soit remplacés par «&#160;%20&#160;».</p>
+
+	<section>
+		<h3>Exemple</h3>
+		<p><b>Critères de recherche - Exemple :</b></p>
+		<ul>
+			<li>influenza aviaire</li>
+			<li>monde</li>
+			<li>suffis</li>
+			<li>symptômes semblables à ceux de l'influenza</li>
+			<li>À titre de rappel</li>
+			<li>À de rares occasions, des humains ont été infectés par ce virus.</li>
+		</ul>
+		<p><b>La chaîne d'interrogation :</b></p>
+		<pre><code>?texthighlight&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;61&amp;amp;&amp;#35;59&amp;#59;influenza%20aviaire
++monde+suffis+symptômes%20semblables%20à%20ceux%20de%20l&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;39&amp;amp;&amp;#35;59&amp;#59;influenza
++À%20titre%20de%20rappel...+À%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus.</code></pre>
+
+		<p><a href="../../../demos/texthighlight/texthighlight-fr.html?texthighlight=influenza%20aviaire+monde+suffis+sympt%C3%B4mes%20semblables%20%C3%A0%20ceux%20de%20l%27influenza+%C3%80%20titre%20de%20rappel...+%C3%80%20de%20rares%20occasions,%20des%20humains%20ont%20%C3%A9t%C3%A9%20infect%C3%A9s%20par%20ce%20virus.#exemple">Mise en surbrillance le texte qui satisfait les critères de recherche</a></p>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/texthighlight/texthighlight-en.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don%27t%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.">Exemple en anglais</a></li>
+		<li><a href="../../../demos/texthighlight/texthighlight-fr.html?texthighlight=influenza%20aviaire+monde+suffis+sympt%C3%B4mes%20semblables%20%C3%A0%20ceux%20de%20l%27influenza+%C3%80%20titre%20de%20rappel+%C3%80%20de%20rares%20occasions,%20des%20humains%20ont%20%C3%A9t%C3%A9%20infect%C3%A9s%20par%20ce%20virus.">Exemple en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Le code pour la mise en surbrillance de texte se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/texthighlight.js">js/workers/texthighlight.js</a> - contien le code JavaScript pour la mise en surbrillance de texte</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_texthighlight.scss">js/sass/includes/_texthighlight.scss</a> - contient le CSS pour la mise en surbrillance de texte</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>N'aide pas l'utilisateur à accéder aux mots mis en surbrillance évidence</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/texthighlight.js">texthighlight.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_texthighlight.scss">_texthighlight.scss</a> </li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

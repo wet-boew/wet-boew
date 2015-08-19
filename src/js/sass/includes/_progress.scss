@@ -1,0 +1,30 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+@mixin progress ($color){
+	height: 1em;
+	width: 100%;
+	padding: 2px;
+	border: 1px solid black;
+	background-color: $color;
+}
+
+progress {
+	@include inline-block;
+
+	div {
+		&.wb-progress-outer  {
+			@include progress(#FFF);
+		}
+		&.wb-progress-undefined {
+			@include progress(#F99);
+		}
+		&.wb-progress-inner {
+			height: 100%;
+			border: none;
+			background-color: #090;
+		}
+	}
+}

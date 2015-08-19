@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Graphiques - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Génère des graphiques à partir de données d’un tableau." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="charts-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Graphiques</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Graphiques</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/charts/index-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><strong>Chef de projet :</strong> Pierre Dubois (<a href="https://github.com/duboisp">@duboisp</a>)</p>
+
+	<section>
+		<h3>Description</h3>
+		<p>Version 2.2 et versions antérieures de la BOEW. Au départ, le composant Graphiques était une intégration du <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">projet de visualisation du groupe Filament</a>(anglais seulement).</p>
+		<p>Version 2.3 de la BOEW. Le composant Graphiques a été entièrement réécrit. Cette version comprenait la première version de l’analyseur de tableaux complexes intégré directement dans les graphiques. Le système principal de dessin «&#160;Canvas&#160;» a été remplacé par «&#160;SVG/VML&#160;» dans la bibliothèque RaphaelJS. Il est maintenant possible de personnaliser le graphique directement en fonction de la catégorie CSS attribuée au balisage du graphique.</p>
+		<p>Version 3.0 de la BOEW. Presque identique à la version précédente. L’analyseur de tableaux a été réécrit et partiellement retranché du composant Graphiques. Cette version comprend une version hybride des analyseurs de tableaux précédent et actuel. Cette décision a été prise pour des raisons techniques et de délais. Malheureusement, cette version n’intègre pas pleinement l’analyseur de tableaux actuel, et l’analyseur ne traite que partiellement les tableaux complexes définis par douze nouvelles techniques HTML. Cette version comprend plus de catégories d’options de CSS pour la personnalisation des graphiques.</p>
+		<p><strong>(Needs translation)</strong> WET v3.1 release (Current). The previous drawing backend supported with RaphaelJS library was removed in favour of <a href="https://github.com/duboisp/flot">Flot project</a>. The goal was to provide the full advantage of the current table parser with the chart customization provided in the WET 3.0 release.</p>
+	</section>
+
+	<section>
+		<h3>Objet</h3>
+		<p>Ce composant génère de façon dynamique des graphiques à partir de données tabulaires. Les données utilisées pour générer le graphique doivent avoir une structure définie dans les techniques d’élaboration de tableaux. Le graphique généré peut être facilement personnalisé en fonction de l’option CSS choisie pour les différents éléments des tableaux.</p>
+		<ul>
+			<li>Il est plus facile à mettre à jour et à maintenir que les composants qui servent à créer des graphiques et des diagrammes à images.</li>
+			<li>Il permet de créer des graphiques linéaires simples, des graphiques à deux dimensions, des diagrammes en barres, des graphiques à échelles multiples superposées, des diagrammes à secteurs et tout agencement de graphiques linéaires simples, de graphiques à deux dimensions, de diagrammes en barres et de graphiques à échelles multiples superposées.</li>
+			<li>L’apparence visuelle peut être personnalisée au moyen de  CSS appliquées au conteneur du graphique (élément image), et la catégorie d’options CSS permet de personnaliser le graphique en tant que tel.</li>
+			<li>Méthode de l’amélioration progressive</li>
+			<li>Conformité aux WCAG 2.0 AA</li>
+			<li>Spécification WAI-ARIA pour accroître l’accessibilité.</li>
+			<li>Compatibilité avec  Firefox, Opera, Safari, Chrome et IE 8+.</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Raison d'être</h3>
+		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
+		<p>Si vous n’utilisez pas le composant Graphiques pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur&#160;: grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
+	</section>
+	<section>
+		<h3>Techniques pour créer des tableaux</h3>
+		<p>Le composant Graphiques permet l’utilisation des techniques suivantes.</p>
+		<ul>
+			<li><a href="../../../demos/tableparser/layoutcell-techniques.html">Cellule de disposition</a> (seulement celle qui est définie dans l’intersection du groupe d’en-têtes)</li>
+			<li><a href="../../../demos/tableparser/headerrowgroupstructure-techniques.html">Structure de l’en-tête de ligne</a></li>
+			<li><a href="../../../demos/tableparser/headercolgroupstructure-techniques.html">Structure de l’en-tête de colonne</a></li>
+		</ul>
+		<p>Vous devez utiliser les éléments de regroupement des tableaux <code>thead</code> et <code>tbody</code>. Seul le premier groupe de lignes de données peut être représenté dans un graphique.</p>
+	</section>
+</section>
+<section>
+	<h2>Mise en œuvre</h2>
+	<ol>
+		<li>Validez votre tableau HTML à l’aide du <a href="../../../demos/tableparser/validator-htmltable.html">Validateur de tableaux HTML</a> issu du projet des Outils optimaux de contenu. À titre informatif, vos identificateurs/en-têtes seront automatiquement corrigés par le valideur de tableau.</li>
+		<li>Ajoutez la catégorie «&#160;<code>wet-boew-charts</code>&#160;» dans l’élément «&#160;<code>table</code>&#160;».</li>
+		<li>Personnalisez vos graphiques avec la catégorie d’options CSS (dont il est question ci-après).</li>
+	</ol>
+	<p><strong>Nota :</strong> Consultez les sections Techniques pour créer des tableaux et Problèmes connus.</p>
+	<p><strong>Exemples pratiques</strong></p>
+	<ul>
+		<li><a href="../../../demos/charts/simple-fr.html">Graphiques</a></li>
+		<li><a href="../../../demos/charts/pie-fr.html">Diagramme circulaire (v3.1 seulement)</a></li>
+		<li><a href="../../../demos/charts/labels-fr.html">Étiquettes - English examples (v3.1 seulement)</a></li>
+		<li><a href="../../../demos/charts/simpleCustomized-fr.html">Graphiques - Personnalisés</a></li>
+		<li><a href="../../../demos/charts/complex-fr.html">Graphiques complexes</a></li>
+	</ul>
+	<section>
+		<h3>Paramètres</h3>
+		<p>Les options contenues dans l’élément Graphiques doivent avoir un préfixe d’espace de nommage. Il est possible d’écraser les valeurs contenues dans l’espace de nommage et les options par défaut en éditant le fichier des paramètres JavaScript.</p>
+
+		<section>
+			<h4>Espaces de nommage requis</h4>
+			<p><strong><code>wb-charts</code></strong> L’espace de nommage requis doit être inclus par défaut dans tous les paramètres et toutes les options définis ici.</p>
+		</section>
+		<section>
+			<h4>Élément <code>&lt;table&gt;</code></h4>
+			<ul>
+				<li><strong><code>type</code> par défaut :</strong> Énumération («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de tableau par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont des équivalents.</li>
+				<li><strong><code>width</code> :</strong> Nombre. Définit la largeur du graphique en pixels, p. ex., «&#160;<code>wb-charts-width-300</code>&#160;», «&#160;<code>wb-charts-width-255</code>&#160;».</li>
+				<li><strong><code>height</code> :</strong> Nombre. Définit la hauteur du graphique en pixels, p. ex., «&#160;<code>wb-charts-height-500</code>&#160;», «&#160;<code>wb-charts-height-715</code>&#160;».</li>
+				<li><strong><code>graphclass</code> :</strong> Chaîne. Permet d’attribuer une classe personnalisée à l’élément qui contient l’image générée par la création du graphique. Vous pouvez ainsi donner le style de votre choix au conteneur du graphique et à la légende. P. ex., Ajoutez la classe «&#160;<code>bold</code>&#160;» à un graphique après sa génération «&#160;<code>wb-charts-graphclass-bold</code>&#160;». Lorsque le graphique sera généré, la classe «&#160;<code>bold</code>&#160;» sera ajoutée à l’élément de l’image (<code>&lt;figure class="wb-charts bold"&gt;</code>) . Cette fonctionnalité peut être utile lorsque vous voulez donner un style particulier à la liste «&#160;<code>ul</code>&#160;» de la légende, comme un affichage en deux colonnes ou le masquage complet de la légende.</li>
+				<li><strong><code>topvalue</code> :</strong> (nouveau) Nombre. Fixe la valeur maximale de l’axe des y du graphique.  P. ex., «&#160;<code>wb-charts-topvalue-4000000</code>&#160;», «&#160;<code>wb-charts-topvalue-10</code>&#160;»</li>
+				<li><strong><code>topvaluenegative</code> :</strong> (nouveau) Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;<code>topvalue</code>&#160;».</li>
+				<li><strong><code>bottomvalue</code> :</strong> (nouveau) Nombre. Fixe la valeur minimale de l’axe des y du graphique. P. ex., «&#160;<code>wb-charts-bottomvalue-0</code>&#160;», «&#160;<code>wb-charts-bottomvalue-50</code>&#160;».</li>
+				<li><strong><code>bottomvaluenegative</code> :</strong> nouveau Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;<code>bottomvalue</code>&#160;».</li>
+				<li><strong><code>nocutaxis</code> :</strong> (nouveau) Paramètre booléen. Désactive la coupure automatique de l’axe. P. ex., «&#160;<code>wb-charts-nocutaxis-true</code>&#160;»</li>
+				<li><strong><code>steps</code> :</strong> (nouveau) Nombre. Oblige à appliquer la valeur associée à steps pour dessiner le graphique. P. ex., «&#160;<code>wb-charts-steps-5500</code>&#160;»</li>
+				<li><strong><code>parseDirection</code> :</strong> (nouveau) Énumération («&#160;<code>y</code>&#160;», «&#160;<code>x</code>&#160;»). Définit l’orientation de l’affichage des données dans le tableau. La valeur par défaut est «&#160;<code>x</code>&#160;»</li>
+				<li><strong><code>noencapsulation</code> :</strong> (nouveau) Paramètre booléen. Empêche le déplacement du tableau html de la source des données vers un récapitulatif ou une description détaillée située sous les graphiques. P. ex., «&#160;<code>wb-charts-noencapsulation-true</code>&#160;»</li>
+				<li><strong><code>maxwidth</code> :</strong> (nouveau) Nombre. Fixe la largeur maximale des graphiques (en pixels).</li>
+				<li><strong><code>labelposition</code> (v3.1 seulement) :</strong> Nombre. <strong>(Needs translation)</strong> Specify wich row or column that would be use to label the charts.</li>
+				<li><strong><code>uniformtick</code> (v3.1 seulement) :</strong> Paramètre booléen. <strong>(Needs translation)</strong> 'True' by default. Determine how the <code>colspan</code>/<code>rowspan</code> could have an effect on the position of the label in the chart.</li>
+				<li><strong><code>ticks</code> (v3.1 seulement) :</strong> Nombre. <strong>(Needs translation)</strong> Number of label for the y-axis. Used with "<code>topvalue</code>" and "<code>bottomvalue</code>" could simulate the unsupported "<code>steps</code>" parameter. p. ex., "<code>wb-charts-ticks-10</code>".
+			</ul>
+			<p><strong>Ne s’applique qu’aux diagrammes à secteurs</strong></p>
+			<ul>
+				<li><strong><code>decimal</code> :</strong> (nouveau) Nombre. Établit la précision décimale. Par exemple, un secteur d’un diagramme à secteurs qui représente moins de 0.5&#160;% ne peut pas s’afficher clairement. P. ex., «&#160;<code>wb-charts-decimal-1</code>&#160;», «&#160;<code>wb-charts-decimal-2</code>&#160;»</li>
+			</ul>
+
+			<p><strong>Éléments supprimés :</strong></p>
+			<ul>
+				<li><strong><code>hide</code> :</strong> Paramètre booléen. A été remplacé par un mécanisme intégré qui utilise un élément de récapitulatif  ou de détails pour donner accès aux données tabulaires.</li>
+				<li><strong><code>nocutaxis</code></strong></li>
+				<li><strong><code>steps</code></strong></li>
+				<li><strong><code>maxwidth</code></strong></li>
+				<li><strong><code>decimal</code></strong></li>
+=======
+>>>>>>> v3.0
+			</ul>
+			<p><strong>Truc technique</strong></p>
+			<ul>
+				<li><strong><code>execdelay</code> :</strong> (nouveau) Nombre. Détermine le temps d’attente (en millisecondes) avant la création du graphique suivant et des prochains. La valeur par défaut est de 200 millisecondes.</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Élément <code>&lt;tbody&gt;</code></h4>
+			<p><strong>Nota :</strong> Seul le premier tbody est utilisé pour créer le graphique, tous les autres groupes de données sont actuellement ignorés, tout simplement.</p>
+			<ul>
+				<li><strong><code>type</code> par défaut :</strong> Énumeration («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de tableau par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont des équivalents. Les valeurs par défaut écraseront toutes les valeurs spécifiques entrées pour le tableau.</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Élément <code>&lt;td&gt;</code></h4>
+			<p><strong>Nota :</strong> Uniquement disponible pour le diagramme à secteurs.</p>
+			<ul>
+				<li><strong><code>color</code> :</strong> Chaîne. Permet de choisir une couleur html personnalisée pour le secteur du diagramme correspondant. «&#160;<code>wb-charts-color-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-color-blue</code>&#160;», «&#160;<code>wb-charts-color-yellow</code>&#160;».</li>
+				<li><strong><code>overcolor</code> :</strong> Chaîne. Permet de personnaliser la couleur html du pointage de la souris lorsqu’on veut pointer un secteur du diagramme en particulier. «&#160;<code>wb-charts-overcolor-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-overcolor-red</code>&#160;», «&#160;<code>wb-charts-overcolor-orangered</code>&#160;»</li>
+			</ul>
+			<p>Pour en voir un exemple concret, veuillez regarder le diagramme à secteurs présenté dans l’exemple pratique sur les graphiques complexes.</p>
+		</section>
+		<section>
+			<h4>Élément <code>&lt;th&gt;</code> (défini dans le groupe de cellules d’en-tête thead)</h4>
+			<p><strong>Nota :</strong> Uniquement disponible pour le graphique linéaire simple, le graphique à deux dimensions, le diagramme en barres et le graphique à échelles multiples superposées.</p>
+			<ul>
+				<li><strong><code>fill</code> :</strong> Chaîne. Permet de personnaliser la couleur html de l’arrière-plan des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;<code>wb-charts-fill-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-fill-red</code>&#160;», «&#160;<code>wb-charts-fill-orangered</code>&#160;»</li>
+				<li><strong><code>fillover</code> :</strong> Chaîne. Permet de personnaliser la couleur html de l’effet de survol des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;<code>wb-charts-fillover-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-fillover-blue</code>&#160;», «&#160;<code>wb-charts-fillover-yellow</code>&#160;».</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Élément <code>&lt;th&gt;</code> (défini dans le premier groupe de lignes de données, <code>tbody</code>)</h4>
+			<p><strong>Nota :</strong> Ce type n’est disponible que pour les diagrammes à secteurs, toutes les autres options se rapportent aux graphiques linéaires simples, aux graphiques à deux dimensions, aux diagrammes en barres et aux graphiques à échelles multiples superposées.</p>
+			<ul>
+				<li><strong><code>type</code> par défaut :</strong> Énumération («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de diagramme par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont équivalents. Écrasera toute valeur saisie pour le groupe de lignes (tbody) et l’élément parent du tableau.</li>
+				<li><strong><code>color</code> :</strong> Chaîne. Permet de personnaliser la couleur html des barres, des échelles, des dimensions ou des lignes.  «&#160;<code>wb-charts-color-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-color-blue</code>&#160;», «&#160;<code>wb-charts-color-yellow</code>&#160;»</li>
+				<li><strong><code>fillopacity</code> :</strong> Nombre (entre 0 et 100). Permet de déterminer le degré d’opacité d’un objet barre, échelle ou dimension. «&#160;<code>wb-charts-fillopacity-[n’importe quel nombre entre 0 et 100]</code>&#160;» P. ex.. «&#160;<code>wb-charts-fillopacity-20</code>&#160;», «&#160;<code>wb-charts-fillopacity-50</code>&#160;»</li>
+				<li><strong><code>dasharray</code> :</strong> Valeur de la chaîne. Permet de préciser le type de trait. P. ex., «&#160;<code>wb-charts-dasharray-dashspacedot</code>&#160;». Voir la section sur les «&#160;<code>dasharray</code>&#160;» pour obtenir des exemples.</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Exemples de «&#160;<code>dasharray</code>&#160;»</h4>
+			<ul>
+				<li><strong><code>wb-charts-dasharray-none</code></strong> tracer une ligne continue, c’est la commande par défaut.</li>
+				<li><strong><code>wb-charts-dasharray-dash</code></strong> tracer : ------------</li>
+				<li><strong><code>wb-charts-dasharray-dashdot</code></strong> tracer : -.-.-.-.-.-.</li>
+				<li><strong><code>wb-charts-dasharray-dot</code></strong> tracer : ............</li>
+				<li><strong><code>wb-charts-dasharray-dotspace</code></strong> tracer : . . . . . . . . . . . .</li>
+				<li><strong><code>wb-charts-dasharray-dashspace</code></strong> tracer : - - - - - - - - - - - -</li>
+				<li><strong><code>wb-charts-dasharray-dashspacedot</code></strong> tracer : - . - . - . - . - . - . - . - . - . - . - . - .</li>
+			</ul>
+		</section>
+		<section>
+			<h4>Exemple pratique d’utilisation du paramètre</h4>
+			<ul>
+				<li><a href="../../../demos/charts/simpleCustomized-fr.html">Graphiques - Personnalisés</a></li>
+			</ul>
+		</section>
+	</section>
+</section>
+<section>
+	<h2>Développement</h2>
+	<p>Il est possible d’écraser les valeurs de tous les paramètres par défaut susmentionnés en utilisant le mécanisme de réglage des paramètres de la BOEW. Il faut utiliser la variable «&#160;<code>wet_boew_charts</code>&#160;». Cependant, il est impossible de modifier par écrasé la valeur de la couleur par défaut.</p>
+</section>
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>Il faut utiliser les balises de regroupement de cellules (<code>thead</code>, <code>tbody</code>).</li>
+		<li>Seul le premier groupe de lignes de données (<code>tbody</code>) peut être représenté dans un graphique.</li>
+		<li>Il n’est pas possible d’utiliser la technique du récapitulatif des groupes de colonnes.</li>
+		<li>Les éléments cellule principale et description de cellule ne fonctionnent pas.</li>
+	</ul>
+</section>
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><strong><em>2013-04-11</em> BOEW 3.1 :</strong> Version actuelle.</li>
+		<li><strong><em>2012-09-17</em> BOEW 3.0</strong></li>
+		<li><strong><em>2012-03-14</em> 2.01 :</strong> Le calcul du pourcentage pour le diagramme à secteurs a été corrigé, car il arrive qu’il ne soit pas égal à 100 %.</li>
+		<li><strong><em>2012-02-06</em> 2.0 :</strong> Réécriture complète pour intégrer les tableaux et les graphiques complexes.</li>
+		<li><strong><em>2011-08-08</em> 1.01 :</strong> Mise à niveau - Intégration des dernières versions de la structure des balises de base HTML5, du thème de la NSI 2.0 et du thème de base.</li>
+		<li><strong><em>2011-02-07</em> 1.0 :</strong> déploiement initial.</li>
+	</ul>
+</section>
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="../../../demos/tableparser/validator-htmltable.html">Validateur de tableaux HTML</a></li>
+	</ul>
+	<section>
+		<h3>Techniques pour créer des tableaux HTML</h3>
+		<ul lang="en">
+			<li><a href="../../../demos/tableparser/keycell-techniques.html">Defining a Key Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgrouping-techniques.html">Defining a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/summariesrowgroup-techniques.html">Summaries a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/headerrowgroupstructure-techniques.html">Structuring the Header Row</a></li>
+			<li><a href="../../../demos/tableparser/rowheader-description-techniques.html">Describing a Row Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgroupheader-description-techniques.html">Describing a Row Group Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/colgroupheader-techniques.html">Defining Column Group Header</a></li>
+			<li><a href="../../../demos/tableparser/headercolgroupstructure-techniques.html">Structuring the Header Column Cell</a></li>
+			<li><a href="../../../demos/tableparser/datacolgroup-techniques.html">Defining a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colgroupsummary-techniques.html">Summaries a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colheader-description-techniques.html">Describing a Column Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/layoutcell-techniques.html">Defining a Layout Cell</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Rayage du zèbre</h3>
+		<ul lang="en">
+			<li><a href="../../../demos/zebra/simple.html">Simple Table</a></li>
+			<li><a href="../../../demos/zebra/simplegrouping.html">Simple Grouping Table</a></li>
+			<li><a href="../../../demos/zebra/invoice.html">Invoice Table</a></li>
+			<li><a href="../../../demos/zebra/rowlevelwithsummary.html">Row level with summary Table</a></li>
+			<li><a href="../../../demos/zebra/zebra-en.html">Exemples en anglais</a></li>
+			<li><a href="../../../demos/zebra/zebra-fr.html">Exemples en français</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Tableau de données complexes</h3>
+		<ul lang="en">
+			<li><a href="../../../demos/tableparser/ExtendedDefinition.html">Extended definition of HTML 5 table elements</a></li>
+			<li><a href="../../../demos/tableparser/About-the-Table-Usability-Concept.html">About the Table Usability Concept</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Études de cas</h3>
+		<ul lang="en">
+			<li><a href="../../../demos/tableparser/Table-CaseStudies.html">Case Studies #1</a></li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-2.html">Case Studies #2 - Nutrition Facts complex table</a></li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-3.html">Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</a></li>
+		</ul>
+	</section>
+
+</section>
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

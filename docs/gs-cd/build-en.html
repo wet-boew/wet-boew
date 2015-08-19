@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Building WET - Developing for WET - Getting started - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Building WET - Developing for WET - Getting started - Documentation - Web Experience Toolkit (WET)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="build-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Documentation</a></li>
+<li><a href="index-en.html">Getting started</a></li>
+<li><a href="dev-en.html">Developing for WET</a></li>
+<li>Building WET</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Building WET</h1>
+
+<section>
+	<h2>About</h2>
+	<p>The build process allow developers to add new functionality (such as jQuery plugins) to an initial source folder and process these files into a final build folder.  Publishers and developers are also free to add new functionality without using the build process.  However, there are many benefits to adding code to the src folder and building it:</p>
+	<ul>
+		<li>Automate optimization tasks</li>
+		<li>Fewer files, therefore less concurrent HTTP request that slow down mobile devices</li>
+		<li>Smaller files for quicker download</li>
+	</ul>
+</section>
+
+<section>
+	<h2>How does it work?</h2>
+	<p>WET 3.x components are compiled through a build process, which is run using a variety of ant scripts. The build.xml file on the root is the main ant build file for the project.  In addition, each folder under the src folder has its own build.xml file. The main purpose of the ant script at the root is to run the other ant scripts in the project and clean up existing files.</p>
+	<p>These additional ant build files in the src folder do a variety of different things depending upon what is included in the folder associated with the build.xml file.  For example, if there is a SASS component in a folder with a build script, a compile.rb script will be run (located in the build folder) to compile SASS code into CSS.</p>
+	<p>These build files shouldn't have to be changed unless new functionality is added or new directories are included in src folder.  For example, new themes need their own ant scripts as they are seperate entities with many different components.  However, changes to the build are not needed when adding a new jQuery plugin or modifying existing functionality.</p>
+	<p>The "build.xml" file is the main build script and sits on the root. "Build" is the final build folder, "demos" includes sample web pages and the "src" folder has the initial source files. The "build" folder also includes some other build components, including ruby scripts which are responsible for SASS to CSS conversion.  The "src" folder includes a series of sub folders with their own build scripts.</p>
+</section>
+
+<section>
+	<h2>Running Ant script on the command line</h2>
+	<section>
+		<h3>Software requirements</h3>
+		<ul>
+			<li><a rel="external" href="http://ant.apache.org/bindownload.cgi">Ant</a></li>
+			<li><a rel="external" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE JDK</a></li>
+		</ul>
+		<p>In order to run Ant from within any directory on the command line, you need to set up your environment variables. They can be found under My Computer &gt; Properties &gt; Advanced &gt; Environment Variables. Create two new system variables and call them <code>ANT_HOME</code> and <code>JAVA_HOME</code>. <code>ANT_HOME</code> should point to the directory where ant is located and <code>JAVA_HOME</code> should point to the location of your Java directory.  Append <code>%ANT_HOME%/bin</code> and <code>%JAVA_HOME%/bin</code> to the end of the existing <code>PATH</code> variable.  You can test if Ant and Java are running properly by typing <code>ant -version</code> and <code>java -version</code> into the command line.  If you get a version number as the output then it has been installed correctly.</p> 
+		<figure>
+			<img src="images/antfun.JPG" class="image-actual" alt="The &quot;Environment Variables&quot; window where the ANT_Home environment variable is set." />
+			<figcaption>The "Environment Variables" window where the ANT_Home environment variable is set.</figcaption>
+		</figure>
+		<p>Run build.xml from the root by navigating to your wet-boew folder and run: <code>&gt; build.cmd</code>.  This will run a series of different ant scripts depending upon what is included in the main build.xml file.   Notice that there are a series of paths in the root build.xml which point to different build.xml files in other nested folders.  These build.xml files are located under each sub-folder in the src folder.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Running Ant script using Eclipse</h2>
+	<p>If you’d prefer to use an IDE to run your scripts and view your files, download the "Eclipse IDE for Java EE Developers" as it will have everything you need to run your project.</p>
+	<section>
+		<h3>Software requirements</h3>
+		<ul>
+			<li><a rel="external" href="http://www.eclipse.org/downloads/">Eclipse</a></li> 
+		</ul>
+		<p>Open up eclipse and create a new general project. Right click on your project folder in the project explorer window and select "Import". Select General &gt; File System and navigate to the WET folder.  Once imported, you should see all the directories and files the wet project on the left hand side.  Run the build.xml file by right clicking on it and selecting Run As &gt; Ant Build.
+		<figure>
+			<img src="images/eclipsefun.JPG" class="image-actual" alt="The ant script being run using Eclipse." />
+			<figcaption>The ant script being run using Eclipse.</figcaption>
+		</figure>
+		<p>You can see the progress of the build below your code view in the Console window.  If you cannot see it, select Window &gt; Show View &gt; Console.  This view allows you to debug errors in the build.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Running Ant script using Notepad++</h2>
+	<p>Use Notepad++? You can build WET right from within it by setting up a Run menu option.</p>
+	<section>
+		<h3>Software requirements</h3>
+		<ul>
+			<li><a rel="external" href="http://notepad-plus-plus.org/download/">Notepad++:</a></li>
+		</ul>
+	</section>
+	<ol>
+		<li>
+			Open Notepad++, press F5 and enter the following code:
+			<p><code>cmd /c d: &amp; cd "d:\Projects\GitHub\wet-boew" &amp; ant &amp; pause</code></p>
+			<p>Be sure to modify:</p>
+			<ol>
+				<li>The drive <strong>d:</strong> and the <strong>d:\Projects\GitHub\wet-boew</strong> path to reflect the location of your wet-boew folder.</li>
+				<li>The <strong>c:\ant\bin\ant</strong> to the location of your ant files.</li>
+			</ol>
+		</li>
+		<li>Click the <strong>Save...</strong> button</li>
+		<li>Enter <strong>Build WET-BOEW</strong> and optionally choose a keyboard accelerator.</li>
+		<li>Click <strong>OK</strong>.</li>
+	</ol>
+	<p>You will then be able to build WET-BOEW anytime using the specified keyboard accelerator in Notepad++ or by clicking on <strong>Run</strong> &gt; <strong>Build WET-BOEW</strong>.</p>
+</section>
+
+<section>
+	<h2>Proxy issues</h2>
+	<p>The build will download several files during the first build so those behind restrictive firewalls may encounter issues. See the <a rel="external" href="http://ant.apache.org/manual/proxy.html">Ant Proxy manual</a> for further information.</p>
+	<section>
+		<h3>Autoproxy flag</h3>
+		<p>The first way to get Ant to work through the proxy is by using the "autoproxy" flag at the command line <code>ant -autoproxy</code></p>
+	</section>
+
+	<section>
+		<h3>Passing values through ANT_OPTS</h3>
+		<p>If the "autoproxy" flag doesn't work, you should try manually setting your proxy information in the ANT_OPTS environmental variable.</p>
+		<p>On Windows you can use the build.cmd to set the ANT_OPTS variable:</p>
+		<p><code>build.cmd -Dhttp.proxyHost=PROXY -Dhttp.proxyPort=PORT</code></p>
+	</section>
+
+	<section>
+		<h3>Manually download through the browser</h3>
+		<p>If issues are still encountered, you may manually download the required files to their expected location before running Ant. Note that the below versions may change, you may verify the versions required in build/build-tasks.properties</p>
+		<ol>
+			<li>Download <a rel="external" href="http://jruby.org.s3.amazonaws.com/downloads/1.7.2/jruby-complete-1.7.2.jar">jRuby</a> to build/lib</li>
+			<li>Create the folder build/lib/jruby-compiled and copy the following gems inside:
+				<ol>
+					<li><a rel="external" href="http://production.cf.rubygems.org/gems/sass-3.2.5.gem">Sass</a></li>
+					<li><a rel="external" href="http://production.cf.rubygems.org/gems/chunky_png-1.2.7.gem">Chunky_png</a></li>
+					<li><a rel="external" href="http://production.cf.rubygems.org/gems/fssm-0.2.9.gem">fssm</a></li>
+					<li><a rel="external" href="http://production.cf.rubygems.org/gems/compass-0.12.2.gem">Compass</a></li>
+				</ol>
+			</li>
+		</ol>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Tabbed interface - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Dynamically transforms multiple sections of content into a tabbed interface." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="tabs-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Tabbed interface</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Tabbed interface</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/tabs/tabs-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The tabbed interface can be modified to suit different sizes and displays</p>
+	</section>
+
+	<section>
+		<h3>Benefits</h3>
+		<ul>
+			<li>Supports multiple tabs on the same page.</li>
+			<li>Supports multiple design options.</li>
+			<li>Supports setting the default tab</li>
+			<li>Supports automatic tab rotation and allows the rotation speed to be configured</li>
+			<li>Allows tab panels to be forced to the same height (height of the tallest tab panel)</li>
+			<li>Compatible with the CSS Grid System</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
+			<li>Progressive enhancement approach</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recommended usage</h3>
+		<section>
+			<h4>Use When</h4>
+			<ul>
+				<li>To display multiple pieces of content with the same format.</li>
+				<li>The tabbed interface can be used as a slideshow to display images.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>Appearance</h4>
+			<p>When using this feature to display images, corresponding numbers should be displayed that indicate which image is currently being displayed, as in <a href="http://canadiancrown.gc.ca/eng/1332788662861/1332788724918">this example on the Canadian Crown website</a>.</p>
+		</section>
+
+		<section>
+			<h4>Behaviour</h4>
+			<p>When using the tabbed interface to display text (as in <a href="http://pwgsc.gc.ca/">this example on pwgsc.gc.ca</a>), the transition speed must allow enough time for the user to read the text displayed.</p>
+			<p>When used to promote web content, selecting text or an image should take the user to a new page.</p>
+			<p>Users must be able to pause (or re-start) rotating tabs.</p>
+		</section>
+
+		<section>
+			<h4>Content</h4>
+			<p>When used to promote web content, selecting text or an image should take the user to a new page.</p>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<ul>
+		<li>Create a tab container for each set of tabs using <code>&lt;div class="wet-boew-tabbedinterface"&gt;&lt;/div&gt;</code>.</li>
+		<li>Add <code>&lt;div class="tabs-panel"&gt;</code> to each tab container and include <code>&lt;div id...&gt;</code> for each tab panel. The <b>id</b> for each tab panel must match the <b>href</b> for the associated tab (following the "#" symbol). For example:</li>
+	</ul>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface"&gt;
+    &lt;ul class="tabs"&gt;
+        &lt;li&gt;&lt;a href="#tab1"&gt;National events&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab2"&gt;Regional events&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab3"&gt;Local events&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="tabs-panel"&gt;
+        &lt;div id="tab1"&gt;
+            &lt;p&gt;tab 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;fake link&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="tab2"&gt;
+            &lt;p &gt;tab 2 - Consectetur adipiscing elit. Praesent sit amet felis.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;fake link&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="tab3"&gt;
+            &lt;p&gt;tab 3 - Praesent sit amet felis. Etiam malesuada.&lt;/p&gt;
+            &lt;p&gt;&lt;a href="#"&gt;fake link&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<p><b>Optional:</b> Change the default appearance of a tab set by adding one of the following classes to the tab container:</p>
+	<ul>
+		<li><b><code>tabs-style-1</code>:</b> Stylized horizontal tabs design </li>
+		<li><b><code>tabs-style-2:</code></b> Horizontal news scroller design</li>
+		<li><b><code>tabs-style-3:</code></b> Vertical news scroller design with links on the right </li>
+		<li><b><code>tabs-style-4:</code></b> Slideshow design with text-based links below </li>
+		<li><b><code>tabs-style-5:</code></b> Slideshow design without text-based links</li>
+		<li><b><code>tabs-style-6:</code></b> Horizontal image scroller design with text or image based links</li>
+	</ul>
+	<p><b>Note:</b> <code>tabs-style-2</code> and <code>tabs-style-3</code> have a news scroller design with no inner padding so images can have a full bleed. Paragraphs and other text-based content must be wrapped by <code>&lt;div class="tabs-panel"&gt;</code> to pad them in. For example:</p>
+	<p><b>Optional:</b> Specify which tab is selected by adding <code>class="default"</code> to that tab. For example:</p>
+	<pre><code>&lt;ul class="tabs"&gt;
+    &lt;li&gt;&lt;a href="#tab1"&gt;National events&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="default"&gt;&lt;a href="#tab2"&gt;Regional events&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#tab3"&gt;Local events&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+	<p><b>Optional:</b> Add <code>class="auto-height-none"</code> to the tab container to disable forcing all tab panels to be the same height:</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface auto-height-none"&gt;</code></pre>
+
+	<p><b>Optional:</b> Add <code>class="cycle-fast"</code>, <code>class="cycle"</code> or <code>class="cycle-slow"</code> to the tab container to add a "Play"/"Pause" (<span lang="fr">"Jouer"/"Pause"</span>) button for automatically rotating the tabs. The tabs rotate every 2 seconds for <code>cycle-fast</code>, every 6 seconds for <code>cycle</code> and every 8 seconds for <code>cycle-slow</code>. A different rotation delay can be specified using <code>data-wet-boew='{"cycle":10000}'</code> where the value for <code>cycle</code> is the delay in milliseconds. The tabs will automatically rotate by default unless <code>class="auto-play-none"</code> is added to the tab container.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface cycle auto-play-none"&gt;</code></pre>
+
+	<p><b>Optional:</b> Add <code>class="animate-fast"</code>, <code>class="animate"</code> or <code>class="animate-slow"</code> to the tab container for a fast, medium or slow fade effect when transitioning between tab panels.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate"&gt;</code></pre>
+
+	<p><b>Optional:</b> Add <code>class="slide-horz"</code> or <code>class="slide-vert"</code> to the tab container for a sliding transition between tab panels.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</code></pre>
+
+	<p><b>Optional:</b> Implement complex layouts within the tab containers. When creating parent/child grids, you must use <code>row-start<code> and <code>row-end</code>. There are rare times where this may not be desirable. For example with drag and drop widgets, each grid cell must be the same size so the addition of <code>row-start</code> or <code>row-end</code> on some of them may cause layout problems when the box is moved from one column to another. Therefore, you can use the class <code>embedded-grid</code>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/tabs/tabs-en.html">English examples</a></li>
+		<li><a href="../../../demos/tabs/tabs-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The tabbed interface is dependent upon <a href="http://os.alfajango.com/easytabs/">EasyTabs.js</a> (<a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>, <a href="http://www.gnu.org/licenses/gpl.html">GPL license</a>), <a href="http://filamentgroup.com/lab/setting_equal_heights_with_jquery/">EqualHeights</a> (<a href="http://www.opensource.org/licenses/gpl-license.php">GPL license</a>) and the <a href="https://github.com/jquery-orphans/jquery-metadata">jQuery Metadata plugin</a> (<a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>, <a href="http://www.gnu.org/licenses/gpl.html">GPL license</a>).</p>
+	<p>The code for the tabbed interface is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/tabbedinterface.js">js/workers/tabbedinterface.js</a> - contains the JavaScript code for the tabbed interface</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_tabbedinterface.scss">js/sass/includes/_tabbedinterface.scss</a> - contains the CSS for the tabbed interface</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_tabbedinterface-ie.scss">js/sass/includes/_tabbedinterface-ie.scss</a> - contains the IE7/8 specific CSS for the tabbed interface</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/tabs/">js/images/tabs/</a> - contains the images for the tabbed interface</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/easytabs.js">js/dependencies/easytabs.js</a> - script file for EasyTabs.js</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/equalheights.js">js/dependencies/equalheights.js</a> - script file for EqualHeights</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/metadata.js">js/dependencies/metadata.js</a> - script file for jQuery Metadata</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<ul>
+		<li>Content that is hidden by default can be missed by users</li>
+		<li>Extra user effort is required to view all the content</li>
+		<li>A large page load may initially show all the tab content prior to the feature restyling it.</li>
+		<li>Tab headings may have accessibility issues if they are not descriptive enough (e.g., using "1", "2", and "3" for the the news slider). Use the <code>wb-invisible</code> class to make tab headings more descriptive without affecting the appearance. For example:
+	<pre><code>1&lt;span class="wb-invisible"&gt; Top news today&lt;/span&gt;
+2&lt;span class="wb-invisible"&gt; Did you know?&lt;/span&gt;</code></pre>
+		</li>
+		<li>Adding transition effects to the tabs (e.g., elegant fade in/out) creates the risk of a user selecting two tabs in a row before the transition effect for the first tab can complete. In such a situation, the second tab will be selected but the first tab panel will be displayed. Because of this risk, this feature does not demonstrate, nor recommend adjusting the animate setting (currently set to "<code>false</code>").</li>
+		<li>Usability testing revealed critical issues with the tabbed interface when used with text. Users expect that when they select text, they will be taken to a new page.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/tabbedinterface.js">tabbedinterface.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_tabbedinterface.scss">_tabbedinterface.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_tabbedinterface-ie.scss">_tabbedinterface-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/easytabs.js">easytabs.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/equalheights.js">equalheights.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/metadata.js">metadata.js</a> </li>
+	</ul>
+</section>
+
+<section>
+	<h2>References</h2>
+	<ul>
+		<li><a href="http://os.alfajango.com/easytabs/">EasyTabs.js</a></li>
+		<li><a href="http://filamentgroup.com/lab/setting_equal_heights_with_jquery/">EqualHeights</a></li>
+		<li><a href="https://github.com/jquery-orphans/jquery-metadata">jQuery Metadata plugin</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

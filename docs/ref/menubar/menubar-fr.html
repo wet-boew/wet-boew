@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Barre de menu - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Une barre de menu interactive comprenant des sous-menus optionnels pour le mégamenu." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="menubar-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Barre de menu</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Barre de menu</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/menubar/megamenu-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<p>Cette composante fournit une barre de menu interactive, avec possibilité de créer des sous-menus dans les mégamenus.</p>
+	
+	<h2>Vue d’ensemble</h2>
+	<p><strong>Chef de projet :</strong> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
+
+	<section>
+		<h3>Description</h3>
+		<p>La navigation principale du site se présente sous forme de liens dans une barre de menu horizontale. Celle-ci facilite l’accès à tout moment aux principales options de navigation d’un site Web, peu importe leur emplacement sur celui-ci.</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Prend en charge les mégamenus</li>
+			<li>Est conforme à la norme WCAG 2.0 AA</li>
+			<li>Améliore l’accessibilité grâce à l’utilisation de WAI-ARIA</li>
+			<li>Adopte l’approche d’enrichissement d’images progressive</li>
+			<li>Les principaux éléments de navigation peuvent montrer aux utilisateurs l’ensemble du contenu et des services qui sont accessibles à partir du site.</li>
+			<li>Des éléments de navigation constamment visibles aident les utilisateurs à comprendre toute la portée du site et facilitent la navigation d’une section à une autre.</li>
+			<li>Les utilisateurs ne se rendent pas nécessairement à la page d’accueil d’un site lors de leur première visite (par exemple, quand ils suivent un lien à partir d’une page de résultats d’un moteur de recherche). La première visite d’un utilisateur peut commencer sur une page profondément imbriquée dans le site. Pour cette raison, des éléments de navigation constamment visibles peuvent aider à orienter l’utilisateur.</li>
+			<li>Une barre de menu horizontale convient bien aux éléments de navigation constamment visibles parce qu’elle prend très peu de la place qui peut autrement servir à présenter le contenu du site.</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Utilisation recommandée</h3>
+		<ul>
+			<li><a href="../../../demos/menubar/megamenu-fr.html">Navigation principale d'une site Web</a></li>
+			<li><a href="../../../demos/menubar/hsitenavbar-fr.html">Navigation horizontale</a></li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2>Mise en oeuvre</h2>
+	<ol>
+		<li>Créer un élément <strong>div</strong> avec la classe <strong>wet-boew-menubar</strong></li>
+		<li><strong>Facultatif :</strong> Lors de la création de mégamenus, ajouter la classe <strong>mb-mega</strong> à l'élément <strong>div</strong> créé précédemment. Nota : Les mégamenus peuvent soutenir un maximum de trois niveaux (p.ex., en-tête, liste et liste imbriquée).</li>
+		<li>
+			<strong>Facultatif :</strong> Si un lien à la page principale est exigé, ajouter le suivant à la fin du mégamenu&#160;: 
+			<pre><code>&lt;div class="mb-main-link"&gt;&lt;a href="#"&gt;Section 3 - Page principale&lt;/a&gt;&lt;/div&gt;</code></pre>
+		</li>
+	</ol>
+</section>
+<section>
+	<h2>Développement</h2>
+	<p>La barre de menu exige les modules d’extension suivants d’un tiers :</p>
+	<ul>
+		<li><a href="https://github.com/filamentgroup/jQuery-Equal-Heights">jQuery Equal Heights</a> (<a href="http://www.opensource.org/licenses/gpl-license.php">license GPL</a>)</li>
+		<li><a href="http://cherne.net/brian/resources/jquery.hoverIntent.html">hoverIntent</a> (<a href="http://www.opensource.org/licenses/mit-license.php">license MIT</a>, <a href="http://www.opensource.org/licenses/gpl-license.php">licence GPL</a>)</li>
+		<li><a href="http://benalman.com/projects/jquery-outside-events-plugin/">jQuery outside events</a> (<a href="http://benalman.com/about/license/">licences MIT et GPL</a>)</li>
+	</ul>
+
+	<p>Le code pour la barre de menu se trouve à plusieurs endroits dans le dossier <strong>source</strong> de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/menubar.js">js/workers/menubar.js</a> - contient le code JavaScript pour la barre de menu</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_menubar.scss">js/sass/menubar.scss</a> - contient le CSS pour la barre de menu</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_menubar-ie.scss">js/sass/includes/_menubar-ie.scss</a> - contien le CSS spécifique à IE pour la barre de menu</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/equalheights.js">js/dependencies/equalheights.js</a> - fichier script pour jQuery Equal Heights</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/hoverintent.js">js/dependencies/hoverintent.js</a> - fichier script pour hoverIntent</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/outside.js">js/dependencies/outside.js</a> - fichier script pour jQuery outside events</li>
+	</ul>
+</section>
+<section>	
+	<h2>Indications</h2>
+	<p>Navigation principale apparaissant sur chaque page d’un site Web.</p>
+	<section>
+		<h3>Quand l’utiliser</h3>
+		<p>Ce menu doit être utilisé dans les sites Web du gouvernement du Canada.</p>
+	</section>
+
+	<section>
+		<h3>Affichage</h3>
+		<p>La barre de navigation horizontale se présente sous forme d’une seule rangée d’éléments, placée en haut de page, au-dessus du contenu du site. Le nom des éléments de navigation dans la barre de menu horizontale ne doivent pas s’étendre sur deux lignes.</p>
+		<p>Sur la page d’accueil, chaque élément dans la barre de navigation a la même apparence. On accole un triangle inversé aux éléments menant à des fonctionnalités de navigation secondaire, ce qui indique que lorsqu’un curseur plane au-dessus de l’élément, un autre menu sera activé.</p>
+		<p>Quand le curseur passe au-dessus d’un élément de navigation, celui-ci est souligné et la couleur d’arrière-plan change. Sur les pages autres que la page d’accueil, l’élément sélectionné est mis en évidence visuellement par la couleur d’arrière-plan.</p>
+		<p>Veuillez lire les <a href="http://www.tbs-sct.gc.ca/ws-nw/mo-om/ts-st/p7-fra.asp#Section11_1_5">spécifications techniques pour la barre de navigation horizontale prescrites par le Programme de coordination de l’image de marque</a>.</p>
+	</section>
+
+	<section>
+		<h3>Fonctionnement</h3>
+		<p>L’article du menu pour l’article qui est actuellement actif n’est pas lié lorsqu’il est sélectionné. Ne liez pas l’article qui mènerait à la page sur laquelle l’utilisateur se trouve. Exception – si le menu de navigation horizontale est doté d’une navigation secondaire, celui-ci est déclenché même à partir de la page ciblée par l’article qui figure au menu.</p>
+	</section>
+
+	<section>
+		<h3>Contenu</h3>
+		<p>Les éléments du menu principal de navigation horizontale doivent décrire l’étendue de ce qui est offert sur le site. La barre horizontale peut contenir entre trois et douze éléments, en fonction de la longueur du nom de chacun. Les éléments de menu devraient être assortis de noms courts et clairs, qui décrivent efficacement l’ensemble de ce qui est offert dans la section.</p>
+		<p>La conception d’une architecture de l’information efficace est essentielle pour la mise en œuvre de menus de navigation efficaces. Les exercices d’essai de l’organisation de l’information comme le tri des cartes peuvent aider à choisir et à mettre à l’essai les noms accolés aux sections d’un site. Ces exercices doivent être effectués dans les deux langues officielles : un terme qui décrit une section dans une langue ne sera pas forcément la traduction littérale du terme utilisé dans l’autre langue. L’architecture de l’information proposée et le nom des éléments de navigation que celle-ci prévoit doivent faire l’objet d’essais de facilité d’emploi avant d’être mis en œuvre sur votre site. Parmi les éléments à vérifier, notons les plateformes et appareils divers, notamment les appareils mobiles et les interfaces tactiles.</p>
+		<p>Contrairement à ce qui se produit avec une barre de navigation verticale, l’utilisateur doit pouvoir voir toute la barre de navigation horizontale en tout temps (puisque l’utilisateur ne s’attendra pas à devoir défiler vers la droite). Contrairement à ce qui se produit avec une barre de navigation verticale, une barre de navigation horizontale n’est pas facilement en mesure de prendre de l’expansion si d’autres éléments de menu sont requis. Pour cette raison, veuillez choisir attentivement quels éléments devraient figurer dans le menu.</p>
+		<p>Planifier simultanément une version de la barre de navigation horizontale dans chaque langue officielle, pour éviter de rencontrer des problèmes parce que les traductions sont plus longues que prévu.</p>
+		<p>Tous les éléments du menu doivent mener vers une page du site. La barre de menu horizontale ne devrait pas contenir d’hyperliens vers des pages à l’extérieur du site en question.</p>
+	</section>
+
+	<section>
+		<h3>Références</h3>
+		<ul>
+			<li>Gube, Jacon. Module Tabs in Web Design: Best Practices and Solutions. Smashing Magazine, June 24, 2009. Mon. 21 Nov. 2011. </li>
+			<li>Lazaris, Louis. The Case Against Vertical Navigation. Smashing Magazine, Jan. 11, 2010. Mon. 21 Nov. 2011. </li>
+			<li>Horizontal Navigation Menus: Trends, Patterns and Best Practices. Smashing Magazine, Sept. 7, 2009. Mon. 21 Nov. 2011. </li>
+			<li>Outing, Steve and Laura Ruel. The Best Eyetrack III: What We Saw When We Looked Through Their Eyes. Eyetrack !!!, 2004. Mon. 21 Nov. 2011. </li>
+			<li>Ross, Tom. Tabbed Navigation — How To Do It Right. PSDFan.com, Oct. 13, 2010. Mon. 21 Nov. 2011. </li>
+			<li>van Welie, Martijn. Double Tab Navigation. Welie.com, 2008. Mon. 21 Nov. 2011. </li>
+			<li>Main Navigation. Welie.com, 2008. Mon. 21 Nov. 2011. </li>
+			<li>Wroblewski, Luke. The History of Amazon’s Tab Navigation. Lukew.com, May 7, 2005. Mon. 21 Nov. 2011. </li>
+			<li>Yahoo! Inc. Navigation Tabs. Yahoo! Developer Network, July 15, 2009. Mon. 21 Nov. 2011. </li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>À l’heure actuelle, il n’existe aucun problème technique connu.</li>
+		<li>Les structures de menu doivent faire l’objet d’essais de facilité d’emploi avant d’être mises en œuvre. Des techniques comme le tri des cartes peuvent contribuer à créer des menus faciles à utiliser.</li>
+	</ul>
+</section>
+<section>
+	<h2>À venir</h2>
+	<ul>
+		<li>Utilisation des éléments HTML5, si possible</li>
+		<li>Améliorer l’affichage sur les appareils mobiles</li>
+	</ul>
+</section>
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/menubar.js">menubar.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_menubar.scss">_menubar.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_menubar-ie.scss">_menubar-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/resize.js">resize.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/equalheights.js">equalheight.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/hoverintent.js">hoverintent.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/outside.js">outside.js</a></li>
+	</ul>
+</section>
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/resize.js">Resize Events</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/equalheights.js">jQuery Equal Heights</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/hoverintent.js">hoverIntent</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/outside.js">jQuery outside events</a></li>
+	</ul>
+</section>
+<section>
+	<h2>Documentation connexes</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/wiki/Th%C3%A8me-de-la-facilit%C3%A9-d%27emploi-Web-GC">Thème de la facilité d'emploi Web GC</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/wiki/Mega-menu">Mega menu (Anglais seulement)</a></li>
+		<li><a href="http://github.com/wet-boew/wet-boew/wiki/Vertical-menu">Vertical menu (Anglais seulement)</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-29</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

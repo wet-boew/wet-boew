@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Java &amp; Maven variant - Variants - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Bundles the Web Experience Toolkit (WET) as a Maven module." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="javamaven-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../variants-en.html">Variants</a></li>
+<li>Java &amp; Maven variant</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Java &amp; Maven variant</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><strong>Project lead:</strong> Eric Ehret (<a href="https://github.com/eehret">@eehret</a>)</p>
+	<section>
+		<h3>Purpose</h3>
+		<p>The Java &amp; Maven variant is essentially a bundling of WET as a Maven module called a 'WAR overlay'.  There is a WAR overlay for each available WET theme.</p>
+		<p>Providing WET for Java Web applications in this fashion provides the following main benefits:</p>
+		<ul>
+			<li>Makes adoption of WET simpler, for anyone already using Maven</li>
+			<li>Specific version of WET can be clearly identified in your project metadata</li>
+			<li>Updates to WET are made easier; in some cases if the changes are minor it may be as simple as incrementing the version number and rebuilding your application</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Background on Maven</h3>
+		<p>For those unfamiliar with Maven, it is a tool similar to Ant in some respects, but with many other capabilities that help developers with things like dependency management, project structure consistency, quality control, and code modularity and reuse.</p>
+		<p>With Maven, a project is described by metadata, contained within a Project Object Model (POM) file.  This metadata provides lots of useful information about the project, both technical and non-technical, including:</p>
+		<ul>
+			<li>Project description</li>
+			<li>Main contact information</li>
+			<li>Location of source code (GitHub or SVN coordinates, for example)</li>
+			<li>Location of continuous integration server</li>
+			<li>List of developers and contributors</li>
+			<li>Dependencies required to build the project</li>
+			<li>and more...</li>
+		</ul>
+		<p>Maven integrates with many different tools and technologies, and can provide powerful benefits in terms of configuration management of a project.  With Maven, you can specify exactly which versions of different Java libraries your project depends on.  Since this metadata is typically captured within your VCS, and tagged along with your releases, you will have the confidence of being able to rebuild your project any time with the correct libraries that you used at that point in time.</p>
+		<p>A lot of projects use Maven, and just about any Java open source component can be found online in the Maven Central repository. Maven is increasing in popularity, as indicated by <a href="http://www.google.com/trends/?q=java+ant,+java+maven">Google Trends</a>.</p>
+		<p>For more information about Maven, please see the official site, located at <a href="http://maven.apache.org">maven.apache.org</a>.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>If you use Maven, this means that you can include WET as a Maven dependency simply by providing the appropriate dependency information in the <code>&lt;dependencies&gt;</code> section of your POM file, like so:</p>
+	<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
+    &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
+    &lt;version&gt;3.0.3&lt;/version&gt;
+    &lt;type&gt;war&lt;/type&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+
+	<p>In this case we've specified the GC Web Usability Intranet theme from WET as a dependency.  That's fine, but doing this alone will not affect the <code>WEB-INF</code> folder of your Java web application. What you probably want to do is "overlay" this dependency onto your project, hence the term 'WAR overlay'. What you can do is tell Maven to take the WET theme overlay you've specified as a dependency, extract it, and combine it with the code from your own project.  This is done like so:</p>
+	<pre><code>&lt;build&gt;
+...
+    &lt;pluginManagement&gt;
+        &lt;plugins&gt;
+
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupid&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactid&gt;
+                &lt;configuration&gt;
+                    &lt;overlays&gt;
+                        &lt;overlay&gt;
+                            &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
+                            &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
+                            &lt;targetPath&gt;static/WET&lt;/targetpath&gt;
+                        &lt;/overlay&gt;
+                    &lt;/overlays&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/pluginmanagement&gt;
+...
+&lt;/build&gt;</code></pre>
+
+	<p>Notice above that within the <code>&lt;overlay&gt;</code> section, a <code>&lt;targetPath&gt;</code> is specified.  If a <code>&lt;targetPath&gt;</code> is specified, then instead of the WAR contents being extracted under <code>WEB-INF</code>, they will be extracted under <code>WEB-INF/&lt;targetPath&gt;</code>. This is recommended so that you can maintain a clean separation between your own code and WET.  Furthermore, having a dedicated folder under <code>WEB-INF</code> for static content will allow you to configure a caching strategy very easily, enhancing the performance of your application.</p>
+	<p>When you build your application, you should now find the folder indicated by <code>&lt;targetPath&gt;</code> in your WAR file, containing WET.</p>
+	<p>Be aware that if you happen to have some other content in your project, in the same location as the content from WET (e.g. <code>/static/WET</code>), by default the content from your project will override the content from the overlay.  When the WET overlay is applied, those files will be skipped.  This default behaviour can be changed, but requires additional configuration of the maven-war-plugin, which is beyond the scope of these instructions.</p>
+	<p>For more information, please read the <a href="http://maven.apache.org/plugins/maven-war-plugin/overlays.html">Maven documentation on overlays</a>.</p>
+</section>
+
+<section>
+	<h2>Artifacts at the Maven Central Repository</h2>
+	<section>
+		<h3>Overlays</h3>
+		<ul>
+			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-clf2-theme-overlay%22">wet-clf2-theme-overlay</a></li>
+			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-gcwu-theme-overlay%22">wet-gcwu-theme-overlay</a></li>
+			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-gcwu-intranet-theme-overlay%22">wet-gcwu-intranet-theme-overlay</a></li>
+		</ul>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-27</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<groupId>com.github.wet-boew</groupId>
+	<artifactId>wet-parent</artifactId>
+	<version>3.0.6-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>wet-base-theme-overlay</module>
+		<module>wet-wet-theme-overlay</module>
+		<module>wet-clf2-theme-overlay</module>
+		<module>wet-gcwu-theme-overlay</module>
+		<module>wet-gcwu-intranet-theme-overlay</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
+		<maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
+		<maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
+		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
+		<maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
+		<maven.dependency.plugin.version>2.7</maven.dependency.plugin.version>
+		<maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
+		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
+		<maven.enforcer.plugin.version>1.2</maven.enforcer.plugin.version>
+		<maven.failsafe.plugin.version>2.14</maven.failsafe.plugin.version>
+		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
+		<maven.install.plugin.version>2.4</maven.install.plugin.version>
+		<maven.jar.plugin.version>2.4</maven.jar.plugin.version>
+		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
+		<maven.project.info.reports.plugin.version>2.6</maven.project.info.reports.plugin.version>
+		<maven.release.plugin.version>2.4</maven.release.plugin.version>
+		<maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
+		<maven.site.plugin.version>3.2</maven.site.plugin.version>
+		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+		<maven.surefire.plugin.version>2.14</maven.surefire.plugin.version>
+		<maven.war.plugin.version>2.3</maven.war.plugin.version>
+		<nexus.staging.maven.plugin.version>1.3</nexus.staging.maven.plugin.version>
+		<dist.js.folder>${dist.folder}/js</dist.js.folder>
+		<dist.grids.folder>${dist.folder}/grids</dist.grids.folder>
+		<dist.theme.base.folder>${dist.folder}/theme-base</dist.theme.base.folder>
+		<dist.theme.wet.folder>${dist.folder}/theme-wet-boew</dist.theme.wet.folder>
+		<dist.theme.gcwu.folder>${dist.folder}/theme-gcwu-fegc</dist.theme.gcwu.folder>
+		<dist.theme.gcwu.intranet.folder>${dist.folder}/theme-gcwu-intranet</dist.theme.gcwu.intranet.folder>
+		<dist.theme.clf2.folder>${dist.folder}/theme-clf2-nsi2</dist.theme.clf2.folder>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${maven.enforcer.plugin.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <nexusUrl>https://oss.sonatype.org</nexusUrl>
+                    <serverId>sonatype-nexus-staging</serverId>
+                </configuration>
+            </plugin>
+		</plugins>
+
+		<!-- Manage plugin versions to provide stability of build environment -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven.antrun.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>${maven.archetype.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven.clean.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${maven.dependency.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven.deploy.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven.eclipse.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven.failsafe.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven.gpg.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven.install.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${maven.project.info.reports.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven.release.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-plugin</artifactId>
+					<version>${maven.scm.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${maven.site.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+				</plugin>
+
+				<!-- Tell Maven not to worry about requiring a web.xml, since this is 
+					just an overlay that will not stand alone (for now) -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.plugin.version}</version>
+					<configuration>
+						<warName>${project.artifactId}</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+						<packagingExcludes>**/.gitignore, **/WEB-INF/*</packagingExcludes>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${nexus.staging.maven.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- General project information -->
+	<name>Web Experience Toolkit - parent POM</name>
+
+	<description>
+	Web Experience Toolkit (WET) includes ready-made tools and solutions for building and maintaining innovative websites that 
+	are accessible, usable, and interoperable. These tools and solutions are open source software and free for use by departments 
+	and external Web communities.
+	</description>
+
+	<url>https://github.com/wet-boew/wet-boew</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://github.com/wet-boew/wet-boew/blob/master/License-eng.txt</url>
+			<distribution>repo</distribution>
+			<comments>License in English</comments>
+		</license>
+		<license>
+			<name>MIT License</name>
+			<url>https://github.com/wet-boew/wet-boew/blob/master/Licence-fra.txt</url>
+			<distribution>repo</distribution>
+			<comments>Licence en français</comments>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/wet-boew/wet-boew/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>travis-ci</system>
+		<url>http://travis-ci.org/#!/wet-boew/wet-boew</url>
+	</ciManagement>
+
+	<!-- Define location of the source -->
+	<scm>
+		<connection>scm:git:https://github.com/wet-boew/wet-boew.git</connection>
+		<developerConnection>scm:git:https://github.com/wet-boew/wet-boew.git</developerConnection>
+	</scm>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<properties>
+				<dist.folder>../../dist</dist.folder>
+				<license.location>../..</license.location>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+</project>

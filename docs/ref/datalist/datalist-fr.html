@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Saisie automatique - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Émule l'attribut list de l'élément &lt;input&gt;, ainsi que l'élément &lt;datalist&gt;, pour les navigateurs qui ne les supportent pas." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="datalist-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../polyfills-fr.html">Correctifs</a></li>
+<li>Saisie automatique</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Saisie automatique</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+<section>
+	<h2>Aperçu</h2>
+	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Dans les cas où le navigateur ne prend pas en charge l'attribut et l'élément, le correctif est automatiquement chargé.</li>
+			<li>Ce correctif assure que la fonctionnalité de saisie automatique est ajouté et les informations nécessaires sont exposées aux technologies d'assistance en ajoutant WAI-ARIA.</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<p>Pour utiliser le correctif, l'attribut <code>input list</code> et l'élément <code>datalist</code> doivent être utilisés. Dans les cas où le navigateur ne soutien pas l'attribut <code>input list</code> ou l'élément <code>datalist</code> le correctif est automatiquement chargé.</p>
+
+	<section>
+		<h3>Code d'exemple</h3>
+		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
+&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id="suggestions"&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
+	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
+	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
+	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
+	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
+	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
+	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
+	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
+	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
+	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
+	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
+	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
+	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
+	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
+	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
+	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
+	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
+	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
+	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
+	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
+	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
+	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+&lt;/datalist&gt;</code></pre>
+
+		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/datalist.js">datalist.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
+		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

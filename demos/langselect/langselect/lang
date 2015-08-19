@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+# Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+# wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+$q = $ENV{'QUERY_STRING'};
+if ($q =~ s/_e\./_f./gism) {
+} elsif ($q =~ s/-eng\./-fra./gism) {
+} elsif ($q =~ s/-en\./-fr./gism) {
+} elsif ($q =~ s/_f\./_e./gism) {
+} elsif ($q =~ s/-fra\./-eng./gism) {
+} elsif ($q =~ s/-fr\./-en./gism) {
+}
+print "Location: http://" . $ENV{'SERVER_NAME'} . $q . "#tphp\n\n";

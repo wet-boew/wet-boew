@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Charts and graphs - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Dynamically generates charts and graphs from table data." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="charts-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Charts and graphs</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Charts and graphs</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/charts/index-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><strong>Project lead:</strong> Pierre Dubois (<a href="https://github.com/duboisp">@duboisp</a>)</p>
+
+	<section>
+		<h3>Description</h3>
+		<p>WET v2.2 release and earlier. Initially the Charts and graphs component was an integration of the <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">visualize project from Filament Group</a>.</p>
+		<p>WET v2.3 release. The Charts and graphs component was fully re-written. That version was including the first version of the complex table parser build in directly in the charts. The web drawing backend was changed from "Canvas" to "SVG/VML" with the RaphaelJS library. An implementation of customizing the chart directly with the CSS class assigned to the table markup was used.</p>
+		<p>WET v3.0 release. Almost the same as the previous version. The table parser was re-written and partially removed from the chart and graph. This version include an hybrid version of the previous and the current table parser. That decision was made from technical reason and deadline issue. Unfortunately this version of the chart do not full benefit of the current table parser and partially support complex table as defined per twelve new HTML Technique. This version are including more CSS option class to provide more charts customization.</p>
+		<p>WET v3.1 release (current). The previous drawing backend supported with RaphaelJS library was removed in favour of <a href="https://github.com/duboisp/flot">Flot project</a>. The goal was to provide the full advantage of the current table parser with the chart customization provided in the WET 3.0 release.</p>
+	</section>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>This feature dynamically generates charts from table data. The table data used to generate the graphic need to have a structure as defined in the techniques for tables. The graphic generated can be easily customized by using the CSS Option set to the tables elements.</p>
+		<ul>
+			<li>Easier to update and maintain than image-based charts and graphs</li>
+			<li>Supports line charts, area charts, bar graphs, stacked graph, pie charts and any combinaison of line charts, area charts, bar graphs and stacked graph</li>
+			<li>Visual appearance can be customized through CSS for the graph container (figure element) and the CSS Option Class can be used to customize the graphic itself</li>
+			<li>Progressive enhancement approach</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
+			<li>Supports Firefox, Opera, Safari, Chrome, and IE 8+</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<p>As per the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">WCAG 2.0 Guideline 1.1</a> a chart need to have their tabular data equivalent. The chart and graph use the equivalent version (here the table element) to generate the graphic. The table data is used to provide a long description to the chart. The table caption and his description is present is used to provide the chart title and description.</p>
+		<p>If you do not use the chart and graph project to create your chart, please do not forget to include a long description. The WCAG 2.0 Guideline 1.1 is "Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language."</p>
+	</section>
+
+	<section>
+		<h3>Technique for tables</h3>
+		<p>The following technique is supported by the chart and graph</p>
+		<ul>
+			<li><a href="../../../demos/tableparser/layoutcell-techniques.html">Layout cell</a> (only the one defined at the header group intersection)</li>
+			<li><a href="../../../demos/tableparser/headerrowgroupstructure-techniques.html">Row header structure</a></li>
+			<li><a href="../../../demos/tableparser/headercolgroupstructure-techniques.html">Column header structure</a></li>
+		</ul>
+		<p>You need to use the grouping table element thead and tbody. Only the first data row group can be graphed.</p>
+	</section>
+</section>
+<section>
+	<h2>Implementation</h2>
+	<ol>
+		<li>Validate your HTML table using the <a href="../../../demos/tableparser/validator-htmltable.html">HTML Table Validator</a> issued from the Optimal Development Tool project. For your information, by using the table validator you will get your ids/headers automatically set correctly.</li>
+		<li>Add the class "wet-boew-charts" in the table element.</li>
+		<li>Customize your charts by using the CSS Option Class (documented bellow)</li>
+	</ol>
+	<p><strong>Note:</strong> See the Technique for tables and the Known issues section.</p>
+
+	<section>
+		<h3>Working examples</h3>
+		<ul>
+			<li><a href="../../../demos/charts/simple-en.html">Charts - English examples</a></li>
+			<li><a href="../../../demos/charts/pie-en.html">Pie chart - English examples (v3.1 only)</a></li>
+			<li><a href="../../../demos/charts/labels-en.html">Labels chart - English examples (v3.1 only)</a></li>
+			<li><a href="../../../demos/charts/simpleCustomized-en.html">Charts - Customized - English examples</a></li>
+			<li><a href="../../../demos/charts/complex-en.html">Complex charts - English examples</a></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Parameters</h3>
+		<p>The options in the Charts and graphs component need to be prefixed with a namespace. The namespace used and default options can be overwritten by using the JavaScript setting file.</p>
+
+		<section>
+			<h4>Required namespace</h4>
+			<p><strong><code>wb-charts</code></strong> Default required namespace for any parameters and options defined here.</p>
+		</section>
+
+		<section>
+			<h4><code>&lt;table&gt;</code> element</h4>
+			<ul>
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent.</li>
+				<li><strong><code>width</code>:</strong> Number. This sets the width of the graphic in pixel. e.g., "<code>wb-charts-width-300</code>", "<code>wb-charts-width-255</code>".</li>
+				<li><strong><code>height</code>:</strong> Number. This sets the height of the graphic in pixel. e.g., "<code>wb-charts-height-500</code>", "<code>wb-charts-height-715</code>".</li>
+				<li><strong><code>graphclass</code>:</strong> String. This allows you to set custom class to the figure container element generated during the creation of the chart. With this you can set your own style to the chart container and legend. e.g., Add the "bold" class to the graphic once generated "wb-charts-graphclass-bold". Once the charts is generated that will produce the action of adding the class "bold" to the figure element (<code>&lt;figure class="wb-charts bold"&gt;</code>). This can be useful when you want to set specific style to the legend."ul" list, like by forcing 2 column rendering or completly hide the legend.</li>
+				<li><strong><code>topvalue</code>:</strong> Number. This sets the top value used for y-axis in the chart. e.g., "<code>wb-charts-topvalue-4000000</code>", "<code>wb-charts-topvalue-10</code>"</li>
+				<li><strong><code>topvaluenegative</code>:</strong> Boolean. This sets the value set with "<code>topvalue</code>" to be in his negative form.</li>
+				<li><strong><code>bottomvalue</code>:</strong> Number. This sets the bottom value used for the y-axis in the chart. e.g.,"<code>wb-charts-bottomvalue-0</code>", "<code>wb-charts-bottomvalue-50</code>".</li>
+				<li><strong><code>bottomvaluenegative</code>:</strong> Boolean. This sets the value set with "<code>bottomvalue</code>" to be in its negative form.</li>
+				<li><strong><code>steps</code>:</strong> Number. This forces the step value to be taken to draw the chart. e.g., "<code>wb-charts-steps-5500</code>"</li>
+				<li><strong><code>parseDirection</code>:</strong> Enumeration ("y", "x"). This define the direction on how the data table should be read. By default the value is "x".</li>
+				<li><strong><code>noencapsulation</code>:</strong> Boolean. This disables the moving of the data source html table inside a <code>details</code>/<code>summary</code> below the charts. e.g., "<code>wb-charts-noencapsulation-true</code>"</li>
+				<li><strong><code>labelposition</code> (v3.1 only):</strong> Number. Specify wich row or column that would be use to label the charts.</li>
+				<li><strong><code>uniformtick</code> (v3.1 only):</strong> Boolean. <code>true</code> by default. Determine how the <code>colspan</code>/<code>rowspan</code> could have an effect on the position of the label in the chart.</li>
+				<li><strong><code>ticks</code> (v3.1 only):</strong> Number. Number of label for the y-axis. Used with "<code>topvalue</code>" and "<code>bottomvalue</code>" could simulate the unsupported "<code>steps</code>" parameter. eg. "<code>wb-charts-ticks-10</code>"</li>
+			</ul>
+
+			<p><strong>Removed</strong></p>
+			<ul>
+				<li><strong><code>hide</code>:</strong> Boolean. This was replaced by a build in mechanism that use a <code>details</code>/<code>summary</code> element under the chart to provide an access to the tabular data.</li>
+				<li><strong><code>nocutaxis</code></strong></li>
+				<li><strong><code>steps</code></strong></li>
+				<li><strong><code>maxwidth</code></strong></li>
+				<li><strong><code>decimal</code></strong></li>
+			</ul>
+
+			<p><strong>Technical cheat</strong></p>
+			<ul>
+				<li><strong><code>execdelay</code>:</strong> Number. This sets the amount of time (in milisecond) to wait before to create the second and subsequent charts. By default the value is set to 200 milisecond.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4><code>&lt;tbody&gt;</code> element</h4>
+			<p><strong>Note:</strong> Only the first tbody is used to create the graphic, all the subsequent data group are currently just ignored.</p>
+			<ul>
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent. This will overwrite any value set for the <code>table</code> element.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4><code>&lt;td&gt;</code> element</h4>
+			<p><strong>Note:</strong> Only available for the pie chart.</p>
+			<ul>
+				<li><strong><code>color</code>:</strong> String. This allow you to set a custom html color to the pie quarter associated. "<code>wb-charts-color-[Any]</code>" e.g., "<code>wb-charts-color-blue", "wb-charts-color-yellow</code>"</li>
+				<li><strong><code>overcolor</code>:</strong> String. This allow you to set a custom mouse hover html color to the pie quarter associated. "<code>wb-charts-overcolor-[Any]</code>" e.g., "<code>wb-charts-overcolor-red</code>", "<code>wb-charts-overcolor-orangered</code>"</li>
+			</ul>
+			<p>For an implementation example, please take a look at the pie chart in the complex charts working example.</p>
+		</section>
+
+		<section>
+			<h4><code>&lt;th&gt;</code> element (Defined in the header row group, <code>thead</code>)</h4>
+			<p><strong>Note:</strong> Only available for the Line, Area, Bar and Stacked Chart.</p>
+			<ul>
+				<li><strong><code>fill</code>:</strong> String. This allow you to set a custom background html color to this cell header once it's draw on the graphic. "<code>wb-charts-fill-[Any]</code>" e.g., "<code>wb-charts-fill-red</code>", "<code>wb-charts-fill-orangered</code>"</li>
+				<li><strong><code>fillover</code>:</strong> String. This allow you to set a custom <code>mouseover</code> background html color to this cell header once it's draw on the graphic. "<code>wb-charts-fillover-[Any]</code>" e.g., "<code>wb-charts-fillover-blue</code>", "<code>wb-charts-fillover-yellow</code>"</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4><code>&lt;th&gt;</code> element (Defined in the first data row group, tbody)</h4>
+			<p><strong>Note:</strong> Only the type is available for a pie chart, all the other option is for a Line, Area, Bar and Stacked Chart.</p>
+			<ul>
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent. This will overwrite any value set on row group (<code>tbody</code>) and <code>table</code> parent element.</li>
+				<li><strong><code>color</code>:</strong> String. This allow you to set a custom html color for the bar, stacked, area or line. "<code>wb-charts-color-[Any]</code>" e.g., "<code>wb-charts-color-blue</code>", "<code>wb-charts-color-yellow</code>"</li>
+				<li><strong><code>fillopacity</code>:</strong> Number (between 0 and 100). This allow you to set the opacity for a bar, stacked and area object. "<code>wb-charts-fillopacity-[Any]</code>" e.g., "<code>wb-charts-fillopacity-20</code>", "<code>wb-charts-fillopacity-50</code>"</li>
+				<li><strong><code>dasharray</code>:</strong> String value. This allow you to set a pattern stroke. e.g., "<code>wb-charts-dasharray-dashspacedot</code>". Please see the section on <code>dasharrary</code> for example</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>"<code>dasharray</code>" example</h4>
+			<ul>
+				<li><strong><code>wb-charts-dasharray-none</code></strong> draw a continuous line, <em>this is the default</em></li>
+				<li><strong><code>wb-charts-dasharray-dash</code></strong> draw: "------------"</li>
+				<li><strong><code>wb-charts-dasharray-dashdot</code></strong> draw: "-.-.-.-.-.-."</li>
+				<li><strong><code>wb-charts-dasharray-dot</code></strong> draw: "............"</li>
+				<li><strong><code>wb-charts-dasharray-dotspace</code></strong> draw: ". . . . . . . . . . . . "</li>
+				<li><strong><code>wb-charts-dasharray-dashspace</code></strong> draw: "- - - - - - - - - - - - "</li>
+				<li><strong><code>wb-charts-dasharray-dashspacedot</code></strong> draw: "- . - . - . - . - . - . - . - . - . - . - . - . "</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>Working example using parameter</h4>
+			<ul>
+				<li><a href="../../../demos/charts/simpleCustomized-en.html">Charts - Customized - English examples</a></li>
+			</ul>
+		</section>
+	</section>
+</section>
+<section>
+	<h2>Development</h2>
+	<p>It is possible to overwrite all the default setting above by using the WET setting mechanism. The variable to use is "<code>wet_boew_charts</code>". However the default color can not be overwritten.</p>
+</section>
+<section>
+	<h2>Known issues</h2>
+	<ul>
+		<li>Row grouping tag is required (<code>thead</code>, <code>tbody</code>)</li>
+		<li>Only the first data row group (<code>tbody</code>) is use to create the charts.</li>
+		<li>The column group summaries technique is not supported.</li>
+		<li>Key cell and description cell for a row is not supported.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Future</h2>
+	<ul>
+		<li>Add the possibility to overwrite the data cell parsing</li>
+		<li>Use the full potential of the complex table technique</li>
+	</ul>
+</section>
+<section>
+	<h2>Version history</h2>
+	<ul>
+		<li><strong><em>2013-04-11</em> WET v3.1:</strong> Flot used for drawing chart, Changed and more flexibility for chart labelling strategy, More customization available for a pie chart (e.g., Donut chart)
+		<li><strong><em>2012-09-17</em> WET v3.0</strong></li>
+		<li><strong><em>2012-03-14</em> 2.01:</strong> Percentage calculation for the pie chart was fixed because sometime it does not equal to 100%</li>
+		<li><strong><em>2012-02-06</em> 2.0:</strong> Complete re-write and support for complex tables and complex graphic</li>
+		<li><strong><em>2011-08-08</em> 1.01:</strong> Updated to latest versions of the HTML5 core markup structure, the CLF 2.0 theme, and the base theme</li>
+		<li><strong><em>2011-02-07</em> 1.0:</strong> Initial release</li>
+	</ul>
+</section>
+<section>
+	<h2>References</h2>
+	<ul>
+		<li><a href="../../../demos/tableparser/validator-htmltable.html">HTML Table Validator</a></li>
+	</ul>
+	<section>
+		<h3>HTML tables techniques</h3>
+		<ul>
+			<li><a href="../../../demos/tableparser/keycell-techniques.html">Defining a Key Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgrouping-techniques.html">Defining a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/summariesrowgroup-techniques.html">Summaries a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/headerrowgroupstructure-techniques.html">Structuring the Header Row</a></li>
+			<li><a href="../../../demos/tableparser/rowheader-description-techniques.html">Describing a Row Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgroupheader-description-techniques.html">Describing a Row Group Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/colgroupheader-techniques.html">Defining Column Group Header</a></li>
+			<li><a href="../../../demos/tableparser/headercolgroupstructure-techniques.html">Structuring the Header Column Cell</a></li>
+			<li><a href="../../../demos/tableparser/datacolgroup-techniques.html">Defining a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colgroupsummary-techniques.html">Summaries a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colheader-description-techniques.html">Describing a Column Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/layoutcell-techniques.html">Defining a Layout Cell</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Zebra striping</h3>
+		<ul>
+			<li><a href="../../../demos/zebra/simple.html">Simple Table</a></li>
+			<li><a href="../../../demos/zebra/simplegrouping.html">Simple Grouping Table</a></li>
+			<li><a href="../../../demos/zebra/invoice.html">Invoice Table</a></li>
+			<li><a href="../../../demos/zebra/rowlevelwithsummary.html">Row level with summary Table</a></li>
+			<li><a href="../../../demos/zebra/zebra-en.html">English working example</a></li>
+			<li><a href="../../../demos/zebra/zebra-fr.html">French working example</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Complex data table</h3>
+		<ul>
+			<li><a href="../../../demos/tableparser/ExtendedDefinition.html">Extended definition of HTML 5 table elements</a></li>
+			<li><a href="../../../demos/tableparser/About-the-Table-Usability-Concept.html">About the Table Usability Concept</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Case studies</h3>
+		<ul>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies.html">Case Studies #1</a> </li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-2.html">Case Studies #2 - Nutrition Facts complex table</a></li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-3.html">Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</a></li>
+		</ul>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

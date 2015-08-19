@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Onglet coulissant - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Masque une section de contenu et affiche un onglet à l'extrémité de la zone de contenu permettant de faire basculer l'état d'affichage de ce contenu." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="slideout-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Onglet coulissant</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Onglet coulissant</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/slideout/slideout-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Chef du projet :</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>L'objet de ce composant est d'ajouter un mécanisme pour afficher de contenu additional (p. ex. une table des matières) sans gaspiller d'espace valable sur la page.</p>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<p>Ce composant peut être utilisé sur n'importe quelle page où il fait de bon sens d'afficher une table des matières.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en oeuvre</h2>
+	<p>Dans votre contenu, affichez un élément avec la classe <b>wet-boew-slideout</b> :</p>
+	<pre><code>&lt;div class="wet-boew-slideout"&gt;
+    &lt;h2&gt;Table des matières&lt;/h2&gt;
+    &lt;ul id="list"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contexte&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Guide infonaute de technologie &amp;mdash; Le processus&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Structure et aperçu d'industrie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://alpha.gcwwwtemplates.tbs-sct.ircan.gc.ca/theme-clf2-nsi2/slideout-fra.html"&gt;Page actuelle&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Partenariats&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;E-commerce&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Commercialisation&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Productivité&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+	<p><a href="../../../demos/slideout/slideout-fr.html">Exemple pratique</a></p>
+
+	<section>
+		<h3>Paramètres</h3>
+		<p>Utilisés les paramètres suivants dans l'attribut <code>data-wet-boew</code> pour changer l'image qui est utilsée par l'onglet coulissant.</p>
+
+		<section>
+			<h4><code>txtShow</code></h4>
+			<p>Contient le texte montré quand le panneau de l'onglet coulissant est fermé.</p>
+		</section>
+
+		<section>
+			<h4><code>txtHide</code></h4>
+			<p>Contient le texte montré quand le panneau de l'onglet coulissant est ouvert.</p>
+
+			<h3>Exemple</h3>
+			<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Afficher la table des matières", "txtHide": "Cacher la table des matières"} }'&gt;
+    &lt;h2&gt;Table of Contents&lt;/h2&gt;
+    &lt;ul id="list"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Technology Roadmapping &amp;mdash; The Process&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Industry Structure and Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://alpha.gcwwwtemplates.tbs-sct.ircan.gc.ca/theme-clf2-nsi2/slideout-eng.html"&gt;Current page&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Partnerships&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;E-commerce&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3 id="v31migration">Migration de 3.0 à 3.1</h3>
+		<p>Avec la version 3.1, l'onglet coulissant utilise maintenant du texte plutôt que des images.</p>
+		<p>Les paramètres pour modifier le contenu de l'onglet ont été changés de <code>imgShow</code> et <code>imgHide</code> à <code>txtShow</code> et <code>txtHide</code> respectivement.</p>
+		<p>Par exemple, cette boîte "wet-boew-slideout" version 3.0&#160;:</p>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"imgShow": {"src": "images/show-afficher.png", "height": 62, "width": 17, "alt": "Afficher la table des matières"}, "imgHide": {"src": "images/hide-cacher.png", "height": 62, "width": 17, "alt": "Cacher la table des matières"} }'&gt;</code></pre>
+
+		<p>Devrait être remplacé par ce qui suit dans v3.1&#160;:</p>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Afficher la table des matières", "txtHide": "Cacher la table des matières"} }'&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/slideout/slideout-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/slideout/slideout-fr.html">Exemple en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Le code pour l'onglet coulissant se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/slideout.js">js/workers/slideout.js</a> - contient le code JavaScript de l'onglet coulissant</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_slideout.scss">js/sass/includes/_slideout.scss</a> - contient le CSS pour l'onglet coulissant</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_slideout-ie.scss">js/sass/includes/_slideout-ie.scss</a> - contient le CSS spécifique à IE7 pour l'onglet coulissant</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/slideout.js">slideout.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_slideout.scss">_slideout.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_slideout-ie.scss">_slideout-ie.scss</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

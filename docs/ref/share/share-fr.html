@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Gadget de partage - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="share-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Gadget de partage</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Gadget de partage</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/share/share-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Responsable de projet :</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
+</section>
+
+<div lang="en">
+	<p><strong>Needs translation</strong></p>
+	<section>
+		<h2>Purpose</h2>
+		<p>Having a share widget on your site enables users to quickly share content with their networks, hence increasing the reach of your website. This increase in reach comes at very minimal cost as all it requires is the inclusion of a share widget somewhere on your page.</p>
+	</section>
+
+	<section>
+		<h2>Recommended usage</h2>
+
+		<section>
+			<h3>Use when</h3>
+			<p>Use on specific content that you want users to share or that users would find useful to share with others via their social media outlets. Use the filtered version if you want to target certain platforms, for example, if your research indicates that your target audience tends to use one or a few platforms over others.</p>
+
+			<section>
+				<h4>Content</h4>
+				<p>Rather than automatically including the share button on every page of your site, think about users and when and where they may want to take a call to action to digg, share, tweet or follow. A well designed site will facilitate a 'frictionless' experience for the user where they would otherwise have to copy and paste. (Source).</p>
+				<p>A disclaimer must be included that states no endorsement is implied through use of social media icons.</p>
+			</section>
+		</section>
+
+		<section>
+			<h3>Do not use when</h3>
+			<ul>
+				<li>The page does not contain useful content (e.g., splash pages)</li>
+				<li>The page does not have a unique URL. Sharing the page would send people to a different page if users clicked on the shared link.</li>
+				<li>Automatically on every page. </li>
+			</ul>
+		</section>
+	</section>
+</div>
+
+<section>
+	<h2>Mise en oeuvre</h2>
+	<ol>
+		<li>Ajouter <code>&lt;div class="wet-boew-share"&gt;&lt;/div&gt;</code> à une page Web.</li>
+		<li>Specifier la largeur du gadget (p. ex., <code>class="span-5 margin-bottom-none"</code>)</li>
+		<li>Configurer les options globales ou uniques à chaque page. Configurer les options globales en ajoutant <code>var wet_boew_share = { ... options ...};</code> à <b>settings.js</b>. Configurer les options uniques à chaque page en ajoutant à l'élément du gadget les classes de configuration ou <code>data_wet_boew_share='{"option1": valeur1, "option2": "valeur2" ...}'</code>.</li>
+	</ol>
+
+	<section>
+		<h3>Exemple d'une configuration globale :</h3>
+		<pre><code>var wet_boew_share = {
+   "sites" : ["del.icio.us", "digg", "facebook", "google", "linkedin", "reddit", "stumbleupon", "twitter", "yahoobuzz"]
+};</code></pre>
+		<p><a href="../../../demos/share/share-filtered-fr.html">Exemple d'une configuration globale</a></p>
+	</section>
+
+	<section>
+		<h3>Exemple d'une configuration unique à une page :</h3>
+		<pre><code>&lt;div class="wet-boew-share" data-wet-boew='{"sites":["digg","facebook","twitter"]}'&gt;&lt;/div&gt;</code></pre>
+	</section>
+
+	<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<section>
+			<h3>Adding additional social media sites</h3>
+			<p>If a social media site is not in the list of supported sites, there are two ways to add your own starting in v3.0.8 and v3.1.2.</p>
+			<p>In settings.js (using the form <code>'id': {display, icon, lang, category, url}</code>):</p>
+			<pre><code>var wet_boew_share = {"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}};</code></pre>
+
+			<p>Using data-wet-boew:</p>
+			<pre><code>data_wet_boew='{"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}}'</code></pre>
+		</section>
+	</div>
+
+	<section>
+		<h3>Options de configuration</h3>
+		<table>
+		<tr>
+			<th>Paramètre (options globale et data-wet-boew)</th>
+			<th>Valeur</th>
+			<th>Par défault</th>
+			<th>Classe de configuration</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td><code>addEmail</code></td>
+			<td>Booléen</td>
+			<td><code>false</code></td>
+			<td><code>email</code> (même que <code>addEmail:true</code>)</td>
+			<td>Contrôle l'affichage du lien de courriel. C'est relié aux paramètres <code>emailSubject</code> et <code>emailBody</code>.</td>
+		</tr>
+		<tr>
+			<td><code>addAnalytics</code></td>
+			<td>Boolean</td>
+			<td><code>false</code></td>
+			<td><code>analytics</code> (même que <code>addAnalytics:true</code>)</td>
+			<td>Contrôle l'activation de Google Analytics pour les liens. C'est relié au paramètre <code>analyticsName</code>.</td>
+		</tr>
+		<tr>
+			<td><code>addFavorite</code></td>
+			<td>Booléen</td>
+			<td><code>false</code></td>
+			<td><code>favourite</code> (même que <code>addFavorite:true</code>)</td>
+			<td>Contrôle l'affichage du lien préféré.</td>
+		</tr>
+		<tr>
+			<td><code>analyticsName</code></td>
+			<td>String</td>
+			<td>'<code>/share/{r}/{s}</code>' où '<code>{s}</code>' est le code du site, '<code>{n}</code>' est le nom du site, '<code>{u}</code>' est l'URL complet, '<code>{r}</code>' est l'URL relatif et '<code>{t}</code>' est le titre</td>
+			<td>s/o</td>
+			<td>L'URL qui est renvoyé à Google Analytics.</td>
+		</tr>
+		<tr>
+			<td><code>description</code></td>
+			<td>Chaîne</td>
+			<td></td>
+			<td>s/o</td>
+			<td>Description de la page ou du site. Il remplace <code>{d}</code> dans le texte généré.</td>
+		</tr>
+		<tr>
+			<td><code>emailBody</code></td>
+			<td>Chaîne</td>
+			<td>"<code>I thought you might find this page interesting:\n{t} ({u})</code>" / "<code>J'espère que cette page vous intéresse :\n{t} ({u})</code>"</td>
+			<td>s/o</td>
+			<td>Le contenu du courriel généré par le lien de courriel. <code>{t}</code> est remplacé par let titre de la page, <code>{u}</code> est remplacé par le URL de la page et <code>{d}</code> est remplacé par la description de la page (où elle existe). Utiliser <code>\n</code> pour les nouvelles lignes. C'est relié aux paramètres <code>addEmail</code> et <code>emailSubject</code>.</td>
+		</tr>
+		<tr>
+			<td><code>emailSubject</code></td>
+			<td>Chaîne</td>
+			<td>"<code>Interesting page</code>" / "<code>Page qui est intéressante</code>"</td>
+			<td>s/o</td>
+			<td>Sujet du courriel généré par le lien de courriel. C'est relié aux paramètres <code>addEmail</code> et <code>emailBody</code>.</td>
+		</tr>
+		<tr>
+			<td><code>sites</code></td>
+			<td>Tableau</td>
+			<td><code>[]</code></td>
+			<td>s/o</td>
+			<td>Liste des sites Web de médias sociaux à inclure dans le gadget (p. ex., <code>sites:['digg','facebook','twitter']</code>). Laisser vide pour inclure tous les sites Web de médias sociaux qui sont soutenus par ce gadget.</td>
+		</tr>
+		<tr>
+			<td><code>sourceTag</code></td>
+			<td>Chaîne</td>
+			<td></td>
+			<td>s/o</td>
+			<td>Balise supplémentaire a ajouté a l'URL pour indiquer le source du lien partagé.</td>
+		</tr>
+		<tr>
+			<td><code>title</code></td>
+			<td>Chaîne</td>
+			<td></td>
+			<td>s/o</td>
+			<td>Titre à partager. Laisser vide pour utiliser le titre de la page actuelle.</td>
+		</tr>
+		<tr>
+			<td><code>url</code></td>
+			<td>Chaîne</td>
+			<td></td>
+			<td>s/o</td>
+			<td>URL à partager. Laisser vide pour utiliser l'URL de la page actuelle.</td>
+		</tr>
+		</table>
+	</section>
+
+	<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<section>
+			<h3>Configuring <code>emailBody</code> and <code>emailSubject</code> text</h3>
+			<p>Add the following to settings.js:</p>
+			<pre><code>var wet_boew_share;
+if ($('html').attr('lang') === 'fr')
+    wet_boew_share = {
+        'emailSubject': 'French subject of the email',
+        'emailBody': 'French body of the email. Use {t} for the page title, {u} for the page URL and {d} for the page description.'
+    };
+else {
+    wet_boew_share = {
+        'emailSubject': 'English subject of the email',
+        'emailBody': 'English body of the email. Use {t} for the page title, {u} for the page URL and {d} for the page description.'
+    };
+}</code></pre>
+		</section>
+	</div>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/share/share-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/share/share-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/share/share-filtered-en.html">Exemple en anglais - Sites filtrés</a></li>
+		<li><a href="../../../demos/share/share-filtered-fr.html">Exemple en français - Sites filtrés</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Le gadget de partage est dépendentsur <a href="http://keith-wood.name/bookmark.html">jQuery Bookmark</a> (<a href="http://opensource.org/licenses/MIT">licence MIT</a>, <a href="http://www.gnu.org/licenses/gpl-3.0.fr.html">licence GPL</a>).</p>
+	<p>Le code pour le gadget de partage se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/share.js">js/workers/share.js</a> - contien le code JavaScript pour le gadget de partage</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_share.scss">js/sass/includes/_share.scss</a> - contient le CSS pour le gadget de partage</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_share-ie.scss">js/sass/includes/_share-ie.scss</a> - contient le CSS spécifique à IE7 pour le gadget de partage</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/share/">js/images/share/</a> - contient les images pour le gadget de partage</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/bookmark.js">js/dependencies/bookmark.js</a> - fichier script principal pour jQuery Bookmark</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/share.js">share.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_share.scss">_share.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_share-ie.scss">_share-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/bookmark.js">bookmark.js</a> </li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://keith-wood.name/bookmark.html">jQuery Bookmark</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

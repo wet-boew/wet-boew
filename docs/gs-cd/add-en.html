@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Adding new functionality - Developing for WET - Getting started - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Adding new functionality - Developing for WET - Getting started - Documentation - Web Experience Toolkit (WET)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="add-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Documentation</a></li>
+<li><a href="index-en.html">Getting started</a></li>
+<li><a href="dev-en.html">Developing for WET</a></li>
+<li>Adding new functionality</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Adding new functionality</h1>
+
+<span class="wet-boew-prettify all-pre"></span>
+<p>In order to add new functionality, such as a jQuery plugin, you will want to develop within the appropriate src folder and build the finished code with an Ant script.</p>
+
+<section>
+	<h2>jQuery Plugins</h2>
+	<section>
+		<h3>Changes to jQuery integration</h3>
+		<p>WET v3.0 jQuery integration is different from previous versions.  There are a few major changes to how jQuery is integrated into WET that developers should be aware of.</p>
+		<ol>
+			<li>jQuery is called at the end of the body of an HTML page instead of in the header.  The reason for this is to allow asynchronous loading of PE object.  This means that the plugins are loaded at the same time as the DOM, not after.</li>
+			<li>The new PE object does not employ the progress method call in the head any more. Everything is handled by the PE file at the bottom of the page.</li>
+			<li>Plugins are called using a class-based system, eliminating the param tag in the header. (ex: <code>&lt;table class="wet-boew-zebra"&gt;</code>)</li>
+		</ol>
+
+		<section>
+			<h4>WET v2.3</h4>
+			<pre><code>&lt;script src="../js/lib/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="../js/pe-ap.js" id="progressive"&gt;&lt;/script&gt;
+&lt;script&gt;
+/* &lt;![CDATA[ */
+var params = {
+};
+PE.progress(params);
+/* ]]&gt; */
+&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>WET v3.0</h4>
+			<pre><code>&lt;script src="../../build/theme-gcwu-fegc/js/theme-min.js"&gt;&lt;/script&gt;
+&lt;script src="../../build/js/settings.js"&gt;&lt;/script&gt;
+&lt;script src="../../build/js/pe-ap-min.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Creating plugins</h3>
+		<p>To create a new plugin navigate to <strong>src/js/workers</strong> and add your code in a separate .js file.  Make sure to follow the coding conventions used in the other jQuery plugins so your code will properly compile during the build process. Fortunately, there is already an ant script which will build our plugin.  All you have to do is worry about the plugin file.</p>
+		<p>You will need to always follow these conventions when creating a jQuery plugin:</p>
+		<ol>
+			<li>
+				Begin your code with:
+				<pre><code>(function ($) {	
+	var _pe = window.pe || {		
+		fn: {}	
+	};</code></pre>
+			<li>
+			<li>Specify your plug-in name in <code>_pe.fn.pluginName</code>.  This will be the name of your file.  Also the class name you will use to call the plugin is always <strong>wet-boew-<em>pluginname</em></strong></li>
+			<li>Run the plugin using <code>_exec: function (elm) { }</code>.</li>
+			<li>
+				Finally, end the plugin with the following:
+				<pre><code>window.pe = _pe;
+	return _pe;
+}(jQuery));</code></pre>
+			</li>
+		</ol>
+
+		<p>The following is optional:</p>
+		<ul>
+			<li>Specify any dependencies.  These are a series of libraries located in src/js/dependencies. (e.g., <code>depends: (_pe.mobile ? [] : ['easytabs', 'calendar']),</code>)</li>
+			<li>Include a mobile function if your plugin should run in mobile mode. (e.g., <code>mobile: function (elm) {</code>)</li>
+		</ul>
+
+		<p>When the plugin is finished, and the project has been built, your plugin will be added to the dist folder.  It will reside in \dist\js\pe-ap-min.js.  Notice that all plugins in the workers folder have been added to this one file.  However, the code has been minified and variables names have been changed for optimization.</p>
+		<p><strong>Note 1:</strong> You can test your plugin without building the entire project. Simply include the path at the bottom of your html page where the rest of the javascript files are added.  Once you see that it works, start the build process.</p>
+		<p><strong>Note 2:</strong> You can still create or add additional plugins that do not depend on the PE object or WET and leverage the <code>_pe.document.on('wb-init-loaded', function() {...});</code>, to execute the code after WET has finished loading.</p>
+	</section>
+
+	<section>
+		<h3>Executing plugins on unenhanced content</h3>
+		<p>The wb_load function (<code>_pe.wb_load(options, finished_event)</code>) allows you to execute plugins on unenhanced content (e.g., content that was added to the page after the initial page load). It's useful to developers who want to dynamically add a tabbed interface or a multimedia player after the page has already loaded.</p>
+		<p>The first parameter is an object with all the options and the second is the event name to use for the event handler (used to determine when loading has finished).</p>
+		<p>Here are the options that can be included in the options object (all optional) that handle the loading of the plugins, dependencies and polyfills:</p>
+		<ul>
+			<li><strong>plugins:</strong> <code>{'plugin_name1': elms1, 'plugin_name2': elms2, ...}</code> - Names of plugins to load and elements to load them on (no longer need to specify dependencies or polyfills separately)</li>
+			<li><strong>global:</strong> <code>&#91;'plugin_name1', 'plugin_name2', ...&#93;</code> - Names of global plugins to load</li>
+			<li><strong>dep:</strong> <code>&#91;'dependency_name1', 'dependency_name2', ...&#93;</code> - Names of dependencies to load</li>
+			<li><strong>poly:</strong> <code>&#91;'polyfill_name1', 'polyfill_name2', ...&#93;</code> - Names of polyfills to load</li>
+			<li><strong>checkdom:</strong> <code>true/false</code> - Enable/disable checking the DOM for "wet-boew-*" triggers</li>
+			<li><strong>polycheckdom:</strong> <code>true/false</code> - Enable/disable checking the DOM for elements to polyfill</li>
+		</ul>
+		<p>For example, if you just want to load the tabbed interface plugin on <code>$('.target')</code> then you would call the following:</p>
+		<pre><code>pe.document.on('my-event-name', function () {
+	//... do something ...
+});
+pe.wb_load({'plugins': {'tabbedinterface': $('.target')}}, 'my-event-name');</code></pre>
+
+		<p>To load a polyfill when it's already <strong>declared in your plugin</strong>, you would just do this:</p>
+		<pre><code>pe.polyfills.enhance('polyfill_name', objs);</code></pre>
+
+		<p>Where <strong>polyfill_name</strong> is the key in _pe.polyfills.polyfill and <strong>objs</strong> is either a DOM object (preferred) or a jQuery object. For example:</p>
+		<pre><code>pe.polyfills.enhance('detailssummary', document.getElementsByTagName('details'));</code></pre>
+		<p>[or]</p>
+		<pre><code>pe.polyfills.enhance('detailssummary', tblSrcContainer); // where tblSrcContainer is already a jQuery object</code></pre>
+
+		<p>Otherwise, to load a polyfill only on request, you would just do this:</p>
+		<pre><code>pe.document.on('my-event-name', function () {
+	//... do something ...
+});
+pe.wb_load({'datepicker', "my-event-name");</code></pre>
+
+		<p>To load a dependency, you would just do this:</p>
+		<pre><code>pe.document.on('my-event-name', function () {
+	//... do something ...
+});
+pe.wb_load({'dep': ['parserTable']}, 'my-event-name');</code></pre>
+	</section>
+
+	<section>
+		<h3>Loading dependency only on request</h3>
+		<p><strong>Target Audience:</strong> Intermediate and advanced WET developers</p>
+		<p>As previously described in the section "Executing Plugins on Unenhanced Content" you would just do this to load a dependency:</p>
+		<pre><code>pe.document.on('my-event-name', function () {
+	//... do something ...
+});
+pe.wb_load({'dep': ['parserTable']}, 'my-event-name');</code></pre>
+
+		<p>The rule is simple, make sure that your make <strong>only one call to load the dependency</strong>. So the previous code snippet would do the work as long it's not included in a loop.</p>
+		<p>You wont be notified of any error until you have two or more call to the "_exec" function in the plugins.</p>
+		<p>For example, the zebra stripping applied on a complex table require the dependency "parserTable" to complete the styling. If there is only one complex table on the web page, that are not causing any issue, but if there is more than one complex table that required the zebra stripping can break the rule of make only one call. For reference you can take a look at <a href="https://github.com/wet-boew/wet-boew/issues/518">issue #508</a>.</p>
+		<ol>
+			<li>
+				Function that would be executed once the dependency is loaded
+				<p>Create your function at the same level of your "._exec" declaration, but before the "_exec" method.</p>
+				<pre><code>_pe.fn.yourPluginName = {
+	type: 'plugin',
+	fnExecutedOnDependencyLoad: function (elem) {
+		
+	},
+	_exec: function (elem) {
+		
+	}
+};</code></pre>
+			</li>
+			<li>
+				Check the dependency requirement
+				<pre><code>_pe.fn.yourPluginName = {
+	type: 'plugin',
+	fnExecutedOnDependencyLoad: function (elem) {
+		
+	},
+	_exec: function (elem) {
+		[...] Put your logic here regarding whether the dependency is required [...]
+	}
+};</code></pre>
+			</li>
+			<li>
+				Check if your dependency is already loaded, if yes then call it. Before each plugin execution call, check if the dependency is already loaded. 
+				<pre><code>if (_pe.fn.parsertable) {
+	_pe.fn.yourPluginName.fnExecutedOnDependencyLoad(elem);
+	return;
+}</code></pre>
+				<p>Replace the "_pe.fn.parsertable" by the function name from the dependency that you would attempts to use later.</p>
+			</li>
+			<li>
+				Check if your already defined a plugin execution stack, if yes just stack it and return
+				<pre><code>if (_pe.fn.yourPluginName.execStack) {
+	_pe.fn.yourPluginName.execStack.push(elem);
+	return;
+}</code></pre>
+			</li>
+			<li>
+				Stack initialization and insertion of the first item
+				<pre><code>_pe.fn.yourPluginName.execStack = [];
+_pe.fn.yourPluginName.execStack.push(elem);</code></pre>
+			</li>
+			<li>
+				Function Event triggered once the dependency is loaded
+				<p>It is here where your stack would be processed one at the time.</p>
+				<pre><code>$(document).on('my-event-name', function () {
+	while (_pe.fn.yourPluginName.execStack.length > 0) {
+		__pe.fn.yourPluginName.fnExecutedOnDependencyLoad(_pe.fn.yourPluginName.execStack.shift());
+	}
+});</code></pre>
+			</li>
+			<li>
+				Load your dependency
+				<pre><code>_pe.wb_load({'dep': ['parserTable']}, 'my-event-name');</code></pre>
+			</li>
+		</ol>
+	
+		<p>The Zebra striping plugin has implemented this method.</p>
+	</section>
+
+	<section>
+		<h3>Loading your own dependency after the PE</h3>
+		<p>Technically you could wait for the "wb-init-loaded" event and then fire <code>pe.add._load(js, msg)</code> where "js" is the path to the JS file and "msg" is a string with the event name to fire once loading is complete.</p>
+		<p>So something like the following would work:</p>
+		<pre><code>_pe.document.one('my-custom-event', function () {
+	//...form stuff...
+});
+
+_pe.document.one('wb-init-loaded', function () {
+    _pe.add._load(js, 'my-custom-event');
+});</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Adding SASS/SCSS</h2>
+	<section>
+		<h3>SASS overview</h3>
+		<p>SASS is an extension to the CSS format that adds extra feature like variables, nested rules, math, mixins, etc.  SASS needs to be converted into CSS when used on the web, so part of the build process involves converting your SASS into CSS usable in your web project.  In WET, there are different SASS files which style the website depending upon how it is being viewed (e.g., base-print.scss is for print view while base-ie.scss includes old Internet Explorer specific styling).</p>
+		<p><a href="http://sass-lang.com/">View information about SASS</a></p>
+	</section>
+
+	<section>
+		<h3>Compass Overview</h3>
+		<p>Compass is a helper library for SASS which is also used in WET. It includes libraries of shared mixins, a package manager to add additional extension libraries, and an executable that can easily convert SASS files into CSS.</p>
+		<p><a href="http://compass-style.org">Learn more about Compass</a></p>
+	</section>
+
+	<section>
+		<h3>Developing with SASS</h3>
+		<p>When creating new SASS code, make sure to add it in the appropriate directory inside the src folder in the root.  Where to add the SASS depends on what you want to do.  For example, if you would like to add CSS for your jQuery plugins, you will add your files to src/js/sass.</p>
+		<p>In order to test your code, you may want to compile it from SASS to CSS prior to building since the build process takes some time.  A great tool to do this is <a href="http://mhs.github.com/scout-app/">Scout</a>, which does not require that you have a working knowledge of Ruby and the command line.
+		<p>There are a series of different SASS files that are used in the website:</p>
+		<ul>
+			<li><strong>src/base/sass:</strong> The SASS in this folder includes the basic css that is used in any WET site.  It is not template dependant; as all templates include these SASS files.</li>
+			<li><strong>src/grids/sass:</strong> This folder includes SASS used for the grid system.</li>
+			<li><strong>src/js/sass:</strong> jQuery plugin specific SASS files.  The scss files should be seperated into a different file for each plugin.</li>
+			<li><strong>src/theme-gcwu-fegc/sass:</strong> This folder includes a series of different theme-specific SASS files. The SASS is initially broken up into different files based upon how your website can be viewed.  These files are located in the "includes" folder.</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Theme development</h2>
+	<p>The following details the steps for creating a new theme in WET.</p>
+	<p>In order to create a new theme, you will have to add a folder named after your theme to src.  This folder will contain any theme specific components you want to build into your website.</p>
+	<p>Your new theme should generally follow the theme-gcwu-fegc folder structure which includes folders called images, jquery.mobile, js and sass.  In order to remain consistent, and to modify less of the build script, use these naming conventions.</p>
+	<p>There are a few different things to add/modify when building a new theme. <strong>Note:</strong> "new-theme" is used below to represent a new theme folder name.</p>
+	<ol>
+		<li>The <strong>build.xml in the root</strong> needs to have some additional code to call the build.xml file for your new theme.
+			<ol>
+				<li>Copy + paste the code from the root build.xml under "---Building GCWU Theme---" into that same file.</li>
+				<li>Change the comment to reflect the name of your new theme.</li>
+				<li>Add your new theme folder name to the directory path: <code>&lt;ant dir="${src.dir}/new-theme" antfile="build.xml" target="build" inheritAll="false"/&gt;</code></li>
+				<li>Add code to clean up your new theme folder under <code>&lt;target name="clean-css"&gt;</code> and <code>&lt;target name="clean"&gt;</code>.  Just copy paste the code used for another theme and change the path to point to your new theme folder.</li>
+			</ol>
+			<pre><code>&lt;target name="clean-css"&gt;
+	&lt;ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/&gt;
+	...
+&lt;target name="clean"&gt;
+	&lt;ant dir="${src.dir}/base" target="clean" antfile="build.xml" inheritAll="false"/&gt;
+	...</code></pre>
+		</li>
+		<li>The <strong>build.xml in your theme folder</strong> needs to be created, as well as other build-related files. The easiest way to do this is to copy paste the following from an existing theme, and just edit the files as needed.
+			<ol>
+				<li><strong>build.properties:</strong> Change the build.dir path so that it points to where your theme folder will be located in the build.</li>
+				<li>
+					<strong>build.xml:</strong> Change
+					<pre><code>&lt;project name="new-theme" default="default" basedir="."&gt;</code></pre>
+					to your new theme name.
+				</li>
+			</ol>
+		</li>
+		<li>
+			At this point, your theme folder should have the following files and folders in it:
+			<ol>
+				<li><strong>folders:</strong> images, jquery,mobile, js, sass</li>
+				<li><strong>files:</strong> build.properties, build.xml, build.tasks.xml, compile.rb</li>
+			</ol>
+		</li>
+		<li>
+			Edit your SASS and jQuery files for your theme.  Use the file names used in existing themes.
+			<p><strong>Note:</strong> Remove mobile support deleting the theme.js file under the js folder in your new theme.</p>
+		</li>
+	</ol>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

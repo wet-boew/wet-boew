@@ -1,0 +1,22 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+// Standard gutter width
+$gutter: 10px;
+
+//Functions and mixins for grids
+@function -wet-boew-calculate-width($width, $columns) {
+	@return ($width * $columns) + (($gutter * 2) * ($columns - 1));		
+}
+
+@function -wet-boew-calculate-offset($width, $columns){
+	@return (($width + (2 * $gutter)) * $columns) + $gutter;
+}
+
+@mixin create_grid($width, $max){
+	@for $i from 1 through $max {
+		.span-#{$i} { width: -wet-boew-calculate-width($width, $i); }	
+		.offset-#{$i} {	margin-left: -wet-boew-calculate-offset($width, $i); }
+	}
+}

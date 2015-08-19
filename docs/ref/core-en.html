@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Core framework - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Core framework - Documentation - Web Experience Toolkit (WET)" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="core-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Documentation</a></li>
+<li>Core framework</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Core framework</h1>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<p>The core Framework binds the themes, plugins, polyfills and other components together into a seamless toolkit that promotes accessibility, usability and a mobile conscious design. </p>
+
+<section>
+	<h2>Overview</h2>
+	<p>The Web Experience Toolkit (WET) emerged out of CLF (Common Look and Feel), but its current incarnation is focused on promoting accessible and usable solutions for websites, by using best practices, meeting <a href="http://www.w3.org/TR/WCAG/">WCAG</a> requirements and following <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a> guidelines set by the <a href="http://www.w3.org">W3C</a>.</p>
+	<p>WET also provides a strong mobile experience, by maintaining a small footprint and implementing a responsive-design layout.</p>
+
+	<section>
+		<h3>Rationale</h3>
+		<p>There are many benefits to using WET, some of which include:</p>
+		<ul>
+			<li>Respects accessibility (WCAG 2.0 AA and WAI-ARIA), usability, and interoperability.</li>
+			<li>Reduces costs by consolidating Web tools and solutions.</li>
+			<li>Open source software that is free to use by departments and external Web communities.</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>To implement WET use the <strong>dist</strong>. The only necessary sub-folders are:</p>
+	<ul>
+		<li><strong>grids</strong> - the CSS grid system folder;</li>
+		<li><strong>js</strong> - the JavaScript folder; and</li>
+		<li>an appropriate <strong>theme</strong> folder (optional):
+			<ul>
+				<li><strong>theme-gcwu-fegc</strong> - The Government of Canada Web Usability theme</li>
+				<li><strong>theme-gcwu-intranet</strong> - The Government of Canada Web Usability Intranet theme</li>
+				<li><strong>theme-clf2-nsi2</strong> - The CLF 2.0 theme</li>
+			</ul>
+		</li>
+	</ul>
+	<p><strong>Note:</strong> Keep the folder names and hierarchy, as the files use relative paths to refer to each other. The other folders and files are created during the build process and are unnecessary to implementation.</p>
+
+	<section>
+		<h3>Header</h3>
+		<p>WET requires that the following style sheets and jQuery be loaded in the header.</p>
+
+		<section>
+			<h4>Style sheets</h4>
+			<p>The style sheets are separated into two different sets, one for IE7 and another for all other browsers.</p>
+			<pre>&lt;head&gt;
+...
+&lt;--[if lte IE 8]&gt;
+&lt;script src="../../dist/js/polyfills/html5shiv-min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" /&gt;
+&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" /&gt;
+&lt;![endif]--&gt;
+&lt;--[if gt IE 8]&gt;&lt;--&gt;
+&lt;link rel="stylesheet" href="../../dist/grids/css/util-min.css"&gt;
+&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css"&gt;
+&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css"&gt;
+&lt;--&lt;![endif]--&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css"&gt;&lt;/noscript&gt;
+...
+&lt;/head&gt;</pre>
+		</section>
+
+		<section>
+			<h4>jQuery</h4>
+			<p>jQuery is the only JavaScript file that we recommend loading in the header.</p>
+			<pre>&lt;head&gt;
+...
+&lt;script src="../../dist/js/jquery.min.js"&gt;&lt;/script&gt;
+...
+&lt;/head&gt;</pre>
+			<p><strong>Note:</strong> We recommend you use the jQuery file included in WET and not from a public CDN as this is the version used within the toolkit.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Body</h3>
+		<p>We load the rest of the JavaScript files at the end of the body to decrease the load time of the page. This way the browser will load the content and run the JavaScript enhancements simultaneously.</p>
+		<p>Load the following files at the bottom of the body:</p>
+		<pre>&lt;body&gt;
+...
+&lt;-- ScriptsStart --&gt;
+&lt;script src="../../build/theme-gcwu-fegc/js/theme-min.js"&gt;&lt;/script&gt;
+&lt;script src="../../build/js/settings.js"&gt;&lt;/script&gt;
+&lt;script src="../../build/js/pe-ap-min.js"&gt;&lt;/script&gt;
+&lt;-- ScriptsEnd --&gt;
+&lt;/body&gt;</pre>
+	</section>
+
+	<section>
+		<h3>Grid System</h3>
+		<p>The Grid System provides a layout grid for dividing up horizontal and vertical space. This helps to create visually appealing layouts by enabling consistent placement of content. The Grid System also enhances the appearance of standard Web page components and provides modules and other features building building and styling Web page content.</p>
+		<p><a href="../../demos/grids/grid-base-en.html">How to use the Grid System</a></p>
+	</section>
+
+	<section>
+		<h3>Plugins</h3>
+		<p>All plugin calls in WET are done via the class tags using the format: <code>class="wet-boew-<em>plugin-name parameter1 parameter2 etc</em>"</code></p>
+		<p>Here is an example using the Prettify plugin: <code>&lt;h2 id="examples" class="wet-boew-prettify all-pre" data-load="prettify"&gt;Examples&lt;/h2&gt;</code></p>
+		<p>In this example the <em>plugin-name</em> is "prettify" and there is only one <em>parameter</em> "all-pre" which is passed.</p>
+		<p>For more detailed instructions regarding plugins see the documentation regarding each individual <a href="plugins-en.html">plugin</a></p>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

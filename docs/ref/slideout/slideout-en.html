@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Slide-out tab - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Provides a tab at the edge of the content area that can slide out to show content." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="slideout-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Slide-out tab</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Slide-out tab</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/slideout/slideout-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify tab all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>This feature adds a mechanism for providing additional content without wasting valuable space on the page.</p>
+
+		<section>
+			<h4>Use When</h4>
+			<p>The slide out tab has been used predominantly on Government of Canada websites to display a Table of Contents of the content on the page.</p>
+		</section>
+
+		<section>
+			<h4>Do Not Use When</h4>
+			<p>Do not use with important content that could be missed by the user.</p>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>In your content, add a container with the <b>wet-boew-slideout</b> class:</p>
+	<pre><code>&lt;div class="wet-boew-slideout"&gt;
+    &lt;h2&gt;Table of Contents&lt;/h2&gt;
+    &lt;ul id="list"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Technology Roadmapping &mdash; The Process&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Industry Structure and Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://alpha.gcwwwtemplates.tbs-sct.ircan.gc.ca/theme-clf2-nsi2/slideout-eng.html"&gt;Current page&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Partnerships&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;E-commerce&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+	<p><a href="../../../demos/slideout/slideout-en.html">Working example</a></p>
+
+	<section>
+		<h3>Parameters</h3>
+		<p>To change the images used in the tab, you can use the following parameters in the <code>data-wet-boew</code> attribute of the above container.</p>
+
+		<section>
+			<h4><code>txtShow</code></h4>
+			<p>Contains the text shown when the slide out panel is closed.</p>
+		</section>
+
+		<section>
+			<h4><code>txtHide</code></h4>
+			<p>Contains the text shown when the slide out panel is opened.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Example</h3>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;
+    &lt;h2&gt;Table of Contents&lt;/h2&gt;
+    &lt;ul id="list"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Technology Roadmapping &mdash; The Process&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Industry Structure and Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://alpha.gcwwwtemplates.tbs-sct.ircan.gc.ca/theme-clf2-nsi2/slideout-eng.html"&gt;Current page&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Partnerships&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;E-commerce&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3 id="v31migration">Migration from 3.0 to 3.1</h3>
+		<p>With version 3.1, the slideout tab now uses text instead of images.</p>
+		<p>The parameters to change the default tab content have been changed from "<code>imgShow</code>" and "<code>imgHide</code>" to "<code>txtShow</code>" and "<code>txtHide</code>" respectively.</p>
+		<p>For example, this "wet-boew-slideout" container from 3.0:</p>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"imgShow": {"src": "images/show-afficher.png", "height": 62, "width": 17, "alt": "Show the table of contents"}, "imgHide": {"src": "images/hide-cacher.png", "height": 62, "width": 17, "alt": "Hide the table of contents"} }'&gt;</code></pre>
+
+		<p>Should be replaced with the following in v3.1:</p>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/slideout/slideout-en.html">English example</a></li>
+		<li><a href="../../../demos/slideout/slideout-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The code for the slide out tab is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/slideout.js">js/workers/slideout.js</a> - contains the JavaScript code for the slide out tab</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_slideout.scss">js/sass/includes/_slideout.scss</a> - contains the CSS for the slide out tab</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_slideout-ie.scss">js/sass/includes/_slideout-ie.scss</a> - contains the old specific CSS for the slide out tab</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>There are no known technical issues. If you find one, please contribute by filing an issue.</p>
+	<p>Usability testing on this feature has not yet been conducted.</p>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/slideout.js">slideout.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_slideout.scss">_slideout.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_slideout-ie.scss">_slideout-ie.scss</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

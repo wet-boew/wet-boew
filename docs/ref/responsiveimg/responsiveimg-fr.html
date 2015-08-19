@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Images réactives - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Émule l’élément proposé &lt;picture&gt; pour permettre que la source d'une image soit déterminée en fonction de Media Queries CSS." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="responsiveimg-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Images réactives</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Images réactives</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/responsiveimg/responsiveimg-en.html" class="button">Examples pratiques (Anglais seulement)</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<div lang="en">
+
+<p><strong>Needs translation</strong></p>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+		<h2>Overview</h2>
+		<p><b>Project lead:</b> Pat Heard (<a href="https://github.com/patheard">@patheard</a>)</p>
+
+	<section>
+		<h3>Benefits</h3>
+		<ul>
+			<li>User is shown an image tailored to their screen resolution and device.</li>
+			<li>Supports all media queries and combinations of media queries (fine grained control over the display of images to the user).  </li>
+			<li>Conforms to WCAG 2.0 AA.</li>
+			<li>Progressive enhancement approach.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recommended usage</h3>
+		<p>Prominent images used in the content area of the page.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<ol>
+		<li>Add the <code>wet-boew-responsiveimg</code> class to any element on the page.</li>
+		<li>Specify the image source(s), alt tag and media queries with data attributes:</li>
+	</ol>
+
+	<section>
+		<h3>Data Attributes</h3>
+		<table>
+			<tr>
+				<th>Attribute</th>
+				<th>Purpose</th>
+			</tr>
+			<tr>
+				<td>data-picture</td>
+				<td>Identifies the &lt;div&gt; as a responsive image.</td>
+			</tr>
+			<tr>
+				<td>data-alt</td>
+				<td>Alternate text that will be used for the image's alt attribute.</td>
+			</tr>
+			<tr>
+				<td>data-src</td>
+				<td>Path to the image.</td>
+			</tr>
+			<tr>
+				<td>data-media</td>
+				<td>CSS media query that determines when the image source is used. <br>If not specified, this is the default image to display for browsers that don't support CSS media queries.</td>
+			</tr>
+		</table>
+	</section>
+
+	<section>
+		<h3>Examples</h3>
+
+		<section>
+			<h4>Browser Width</h4>
+			<p>Uses a min-width media query to display different image sizes based on the user's browser width:</p>
+			<ul>
+				<li>First &lt;div [data-src]&gt; is the default image. This is displayed if the browser doesn't support media queries or none of the media queries match.</li>
+				<li>Next four &lt;div [data-src] [data-media]&gt; elements are the image sources for different min-widths.</li>
+				<li>&lt;img&gt; in the &lt;noscript&gt; tag is served to non-JavaScript browsers.</li>
+			</ul>
+			<pre>&lt;div data-picture data-alt="Image alt text" class="wet-boew-responsiveimg"&gt;
+	&lt;div data-src="large.jpg"&gt;&lt;/div&gt;
+
+	&lt;div data-src="small.jpg" data-media="(min-width: 0px)"&gt;&lt;/div&gt;
+	&lt;div data-src="medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/div&gt;
+	&lt;div data-src="large.jpg" data-media="(min-width: 960px)"&gt;&lt;/div&gt;
+	&lt;div data-src="extralarge.jpg" data-media="(min-width: 1200px)"&gt;&lt;/div&gt;
+
+	&lt;noscript&gt;&lt;img src="large.jpg" alt="Image alt text"&gt;&lt;/noscript&gt;
+&lt;/div&gt;</pre>
+
+			<ul>
+				<li><a href="../../../demos/responsiveimg/responsiveimg-en.html#example1">Working Example</a></li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>Device Resolution</h4>
+			<p>Uses two media queries to display high-resolution versions of an image to devices that will support it (i.e. Retina displays):</p>
+			<pre>&lt;div data-picture data-alt="Image alt text" class="wet-boew-responsiveimg"&gt;
+	&lt;div data-src="low-resolution.jpg"&gt;&lt;/div&gt;
+	&lt;div data-src="high-resolution.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/div&gt;
+
+	&lt;noscript&gt;&lt;img src="low-resolution.jpg" alt="Image alt text"&gt;&lt;/noscript&gt;
+&lt;/div&gt;</pre>
+			<ul>
+				<li><a href="../../../demos/responsiveimg/responsiveimg-en.html#example2">Working Example</a></li>
+			</ul>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Working Example</h2>
+	<ul>
+		<li><a href="../../../demos/responsiveimg/responsiveimg-en.html">English</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The code for responsive images is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/responsiveimg.js">js/workers/responsiveimg.js</a> - contains the JavaScript code for responsive images</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/picturefill.js">js/dependencies/picturefill.js</a> - <a href="https://github.com/scottjehl/picturefill">responsive image library</a> by Scott Jehl (License: MIT/GPLv2)</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/matchMedia.js">js/dependencies/matchMedia.js</a> - <a href="https://github.com/paulirish/matchMedia.js">window.matchMedia</a> polyfill by Scott Jehl, Paul Irish and Nicholas Zakas (License: Dual MIT/BSD)</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>The plugin only works with browsers that <a href="http://caniuse.com/css-mediaqueries">support CSS media queries</a>.  Browsers that don't support media queries display the image from the &lt;div [data-src]&gt; element with no data-media attribute set.</p>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/responsiveimg.js">responsiveimg.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/picturefill.js">picturefill.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/dependencies/matchMedia.js">matchMedia.js</a></li>
+	</ul>
+</section>
+
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-15</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

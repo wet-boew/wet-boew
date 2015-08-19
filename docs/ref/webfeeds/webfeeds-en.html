@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Web feeds - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Aggregates and displays entries from one or more Web feeds." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="webfeeds-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Web feeds</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Web feeds</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/webfeeds/webfeeds-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Mario Bonito (<a href="https://github.com/masterbee">@masterbee</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The purpose of this feature is to provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS. The widget can also display Twitter feeds as well as weather information from Environment Canada.</p>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<ul>
+			<li>why does it work the way it does?</li>
+			<li>why is it necessary?</li>
+			<li>when should we use it?</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Benefits</h3>
+		<ul>
+			<li>Displays entries from one or more Atom, RSS, and Media RSS and Twitter feeds on a Web page without the need for a Web feed reader</li>
+			<li>Dynamically fetches the top items of any public Atom, RSS, or Media RSS feed</li>
+			<li>Enables cross-promotion and sharing of information between Web sites</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
+			<li>Progressive enhancement approach</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recommended usage</h3>
+		<p>Promoting and sharing information from Web feeds on a Web page </p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<section>
+		<h3>Getting Started</h3>
+		<ol>
+			<li>For each Web feed, create a <code>div</code>element with <code>class="wet-boew-webwidget</code> with an inner <code>div</code> element with <code>class="widget-container"</code></li>
+			<li>Inside the inner <code>div</code> created in the previous step add a <code>section</code> element</li>
+			<li>Inside the <code>section</code> element add a heading (h1-h6) with one of the following classes: <code>widget-title-attention</code>, <code>widget-title-dark</code> or <code>widget-title-attention</code></li>
+			<li>Add an unordered list (<code>ul</code>) after the heading with the <code>widget-content</code> class.</li>
+			<li>For every Web feed source to display add a list element containing a link to the feed: <pre><code>&lt;li&gt;&lt;a href="http://canada.gc.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;</code></pre></li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>Example Code</h3>
+		<pre><code>&lt;div class="wet-boew-webwidget limit-5 span-4"&gt;&lt;div class="widget-container"&gt;
+	&lt;section&gt;
+	&lt;h3 class="widget-title-dark"&gt;RSS Feed&lt;/h3&gt;
+		&lt;ul class="widget-content"&gt;
+			&lt;li&gt;&lt;a href="http://www.tc.gc.ca/mediaroom/rss/road.xml"&gt;Road News Releases (All)&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx"&gt;Road Safety Recalls&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/div&gt;&lt;/div&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Parameters</h3>
+		<p>The web feeds widget accept the following parameter: <code>limit</code></p>
+
+		<section>
+			<h4>Limit Parameter</h4>
+			<p>Each feed widget can specify a limit of element to display. To use this parameter add a class to the parent element (the <code>div</code> with the <code>wet-boew-webwidget</code> class) that start with "<code>limit</code>" followed by a dash then followed by the number of elements to limit the feed too. For a 5 items limit, use the following class: <code>class="limit-5"</code>. If no class is provided then no limit is set.</p>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/webfeeds/webfeeds-en.html">English examples</a></li>
+		<li><a href="../../../demos/webfeeds/webfeeds-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The Web feeds widget is dependent upon <a href="http://code.google.com/apis/feed/">Google Feed API</a> (<a href="http://code.google.com/apis/feed/terms.html">Terms of Service</a>).</p>
+	<p>The code for the Web feeds widget is located in several places within the <b>source</b> folder of WET:</p>
+
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/webwidget.js">js/workers/webwidget.js</a> - contains the JavaScript code for the Web feeds widget</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_webwidget.scss">js/sass/webwidget.scss</a> - contains the CSS for the Web feeds widget</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/webfeeds/">js/images/webfeeds/</a> - contains the images for the Web feeds widget</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<ul>
+		<li>Default refresh period is set to 5 minutes which could create a noticeable delay before the widget posts a Web feed update.</li>
+		<li>Potential for slowdowns when there is a lot of traffic on the server.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/webwidget.js">webwidget.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_webwidget.scss">webwidget.scss</a> </li>
+	</ul>
+</section>
+
+<section>
+	<h2>References</h2>
+	<ul>
+		<li><a href="http://code.google.com/apis/feed/">Google Feed API</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

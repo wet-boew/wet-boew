@@ -1,0 +1,97 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/* details polyfill */
+
+/* <details> and <summary> are block level elements */
+%pe-ie-details-display-block {
+    display: block;
+}
+
+.ie7, .ie8 {
+	summary {
+		@extend %pe-ie-details-display-block;
+	}
+	details {
+		@extend %pe-ie-details-display-block;
+		> {
+			* {
+				display: none;
+			}
+		}
+	}
+	&.no-js {
+		details {
+			> {
+				* {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+.ie7 {
+	details {
+		summary {
+			*zoom: expression(
+				this.runtimeStyle.zoom="1",
+				this.innerHTML = '<span class="details-closed">\25BA\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
+			);
+		}
+		> summary .details-closed, &.open > summary .details-open {
+			display: inline;
+		}
+		&.open > summary .details-closed, > summary .details-open {
+			display: none;
+		}
+	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		details {
+			summary {
+				*zoom: expression(
+					this.runtimeStyle.zoom="1",
+					this.innerHTML = '<span class="details-closed">\25C0\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
+				);
+			}
+		}
+	}
+}
+
+.ie8 {
+	details {
+		> {
+			summary {
+				&:before { /* Add the closed pointer */
+					content: "\25BA\a0";
+				}
+			}
+		}
+		&.open {
+			> {
+				summary {
+					&:before { /* Add the opened pointer */
+						content: "\25BC\a0" !important;
+					}
+				}
+			}
+		}
+	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		details {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C0\a0";
+					}
+				}
+			}
+		}
+	}
+}
