@@ -1,0 +1,44 @@
+/*
+  WET-BOEW
+  @title: Form additions to WET-BOEW
+ */
+
+$asterisk-width: 0.665em;
+
+%forms-color-red-italic {
+	color: #d3080c;
+	font-style: italic;
+}
+
+// scss-lint:disable QualifyingElement
+label,
+legend,
+.checkbox,
+input[type="checkbox"] {
+	&.required {
+		&:before {
+			@extend %forms-color-red-italic;
+			content: "* ";
+			margin-left: -$asterisk-width;
+		}
+
+		strong {
+			&.required {
+				@extend %forms-color-red-italic;
+			}
+		}
+	}
+}
+// scss-lint:enable QualifyingElement
+
+[dir=rtl] {
+	label,
+	legend {
+		&.required {
+			&:before {
+				margin-left: auto;
+				margin-right: -$asterisk-width;
+			}
+		}
+	}
+}

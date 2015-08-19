@@ -1,0 +1,67 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+%wb-cal-event-show-event {
+	background-color: $clrWhite;
+	border: 1px solid #333;
+	clip: rect(auto, auto, auto, auto);
+	color: #000;
+	height: inherit;
+	list-style-type: none;
+	margin: 0;
+	margin-top: -0.5em;
+	overflow: inherit;
+	padding: 0;
+	position: absolute;
+	width: 10em;
+	z-index: 5;
+
+	a {
+		&:hover,
+		&:focus {
+			color: $clrWhite;
+		}
+	}
+}
+
+.cal-days {
+	a {
+		&.cal-evt {
+			background: #176ca7;
+			color: $clrWhite;
+		}
+	}
+
+	td {
+		ul {
+			@extend %accessible-invisible;
+
+			&.ev-details {
+				@extend %wb-cal-event-show-event;
+			}
+		}
+
+		&:hover {
+			ul {
+				@extend %wb-cal-event-show-event;
+			}
+		}
+	}
+}
+
+%wb-cal-evt-width-100 {
+	width: 100%;
+}
+
+.cal-cnt-fluid {
+	&.cal-cnt {
+		@extend %wb-cal-evt-width-100;
+	}
+
+	table {
+		&.cal-cnt {
+			@extend %wb-cal-evt-width-100;
+		}
+	}
+}

@@ -1,0 +1,339 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+*/
+@import "sprites/sprites_geomap";
+
+%geomap-overflow-cursor-move {
+	cursor: move;
+}
+
+%geomap-position-absolute-bg-color-fff-opacity-05-font-size-1 {
+	background-color: #fff;
+	font-size: 0.01em;
+	opacity: 0.5;
+	position: absolute;
+}
+
+%geomap-locate-bg-size {
+	background-size: 33px auto;
+}
+
+/**
+ * Openlayer pan zoom bar button
+ */
+.olButton {
+	height: 33px;
+	width: 33px;
+
+	img {
+		float: left;
+		height: 33px;
+		left: 0;
+		margin: 0;
+		top: 0;
+		width: 33px;
+	}
+}
+
+.olControlzoomin {
+	left: 15px;
+	top: 10px;
+}
+
+.olControlzoomout {
+	left: 15px;
+	top: 43px;
+}
+
+.olControlzoomworld {
+	left: 15px;
+	top: 83px;
+}
+
+.olPanelGeolocate {
+	left: 19px;
+	top: 127px;
+
+	button {
+		border: 0;
+		cursor: pointer;
+		height: 33px;
+		width: 33px;
+	}
+}
+
+.olButtonGeolocateItemActive {
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
+}
+
+.olButtonGeolocateItemInactive {
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
+	background-position: 0 -34px;
+}
+
+/*
+ * When a potential text is bigger than the image it move the image
+ * with some headers (closes #3154)
+ */
+.olControlPanZoomBar {
+
+	div {
+		font-size: 0.01em;
+	}
+}
+
+.olMap {
+	cursor: default;
+	z-index: 0;
+}
+
+.olMapViewport {
+	text-align: left;
+}
+
+.olLayerDiv {
+	user-select: none;
+
+	img {
+		max-width: none !important;
+	}
+}
+
+.olControlMousePosition {
+	bottom: 5px;
+	display: block;
+	font-family: Arial;
+	font-size: 0.75em;
+	left: 100px;
+	position: absolute;
+}
+
+.olControlScale {
+	bottom: 3em;
+	display: block;
+	font-size: 0.75em;
+	position: absolute;
+	right: 3px;
+}
+
+.olControlScaleLine {
+	bottom: 15px;
+	display: block;
+	font-size: 0.65em;
+	left: 10px;
+	position: absolute;
+}
+
+.olControlScaleLineBottom {
+	border: solid 2px #000;
+	border-bottom: 0;
+	margin-top: -2px;
+	text-align: center;
+}
+
+.olControlScaleLineTop {
+	border: solid 2px #000;
+	border-top: 0;
+	text-align: center;
+}
+
+.olControlAttribution {
+	bottom: 5px;
+	font-size: 0.75em;
+	right: 5px;
+
+	p {
+		margin: 0;
+	}
+}
+
+.olHandlerBoxZoomBox {
+	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
+	border: 2px solid #f00;
+}
+
+.olHandlerBoxSelectFeature {
+	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
+	border: 2px solid #00f;
+}
+
+.olPopupCloseBox {
+	cursor: pointer;
+}
+
+.olFramedCloudPopupContent {
+	overflow: auto;
+	padding: 5px;
+}
+
+%olPopupMargin {
+	margin: 5px;
+}
+
+.olPopup {
+
+	h1 {
+		@extend %olPopupMargin;
+	}
+
+	h2 {
+		@extend %olPopupMargin;
+	}
+
+	h3 {
+		@extend %olPopupMargin;
+	}
+
+	h4 {
+		@extend %olPopupMargin;
+	}
+
+	h5 {
+		@extend %olPopupMargin;
+	}
+
+	h6 {
+		@extend %olPopupMargin;
+	}
+
+	p {
+		@extend %olPopupMargin;
+	}
+
+	ol {
+		@extend %olPopupMargin;
+	}
+
+	ul {
+		@extend %olPopupMargin;
+	}
+}
+
+.olControlNoSelect {
+	user-select: none;
+}
+
+.olImageLoadError {
+	display: none !important;
+}
+
+/**
+ * Cursor styles
+ */
+.olCursorWait {
+	cursor: wait;
+}
+
+.olDragDown {
+	@extend %geomap-overflow-cursor-move;
+}
+
+.olDrawBox {
+	cursor: crosshair;
+}
+
+.olControlDragFeatureOver {
+	@extend %geomap-overflow-cursor-move;
+}
+
+.olControlDragFeatureActive {
+	&.olControlDragFeatureOver {
+		&.olDragDown {
+			cursor: grabbing;
+		}
+	}
+}
+
+/**
+ * Animations
+ */
+.olLayerGrid {
+	.olTileImage {
+		transition: opacity 0.2s linear;
+	}
+}
+
+/**
+ * GeoMap
+ */
+.wb-geomap-map {
+	outline: 1px solid #ccc;
+	position: relative;
+
+	&.active {
+		outline-color: #07f;
+	}
+}
+
+.wb-geomap-detail {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.geomap-legend-detail {
+	padding-top: 10px;
+}
+
+.geomap-legend-symbol {
+	height: 18px;
+	margin: 5px;
+	width: 18px;
+}
+
+.geomap-clear-format {
+	clear: both;
+}
+
+.geomap-legend-label {
+	display: inline;
+}
+
+.geomap-lgnd-layer {
+	margin-top: 20px !important;
+}
+
+.geomap-geoloc {
+	left: 70px;
+	position: absolute;
+	right: 70px;
+	top: 15px;
+	z-index: 10000;
+
+	input {
+		&[type="text"] {
+			width: 80%;
+		}
+	}
+}
+
+button {
+	&.geomap-geoloc-aoi-btn {
+		background-color: #fff;
+		border-color: #eee;
+		box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+		color: #666;
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		z-index: 10000;
+	}
+}
+
+.geomap-aoi {
+	legend {
+		border: 0;
+		font-size: 1em;
+		margin-bottom: 1em;
+	}
+
+	button {
+		&.geomap-geoloc-aoi-btn {
+			position: absolute;
+			right: 15px;
+			top: auto;
+		}
+	}
+}

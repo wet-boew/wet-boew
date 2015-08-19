@@ -1,0 +1,42 @@
+/*
+  WET-BOEW
+  @title: Language selector
+ */
+
+//	Sourced from http://css-tricks.com/snippets/css/clear-fix/
+%clear-fix {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+//	Horizontal language selector
+.wb-lng-lnks-horiz {
+	.wb-lng-lnk {
+		display: inline-block;
+	}
+}
+
+//	Vertical language selector
+.wb-lng-lnks-vert {
+	.wb-lng-lnk {
+		display: block;
+	}
+}
+
+//	Right-to-left horizontal language selector
+.wb-lng-lnks-rtl {
+	.wb-lng-lnk {
+		float: right;
+	}
+}
+
+.wb-lng-lnks-rtl:after {
+	@extend %clear-fix;
+}
+
+#wb-lng {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}

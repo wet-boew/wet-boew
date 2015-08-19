@@ -1,0 +1,26 @@
+---
+{
+	"title": "Favoricône",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Offre la possibilité d'ajouter et de mettre à jour les favoricônes d'une page.",
+	"tag": "favicon",
+	"parentdir": "favicon",
+	"altLangPrefix": "favicon",
+	"dateModified": "2014-02-19"
+}
+---
+
+<p>Offre la possibilité d'ajouter et de mettre à jour les favoricônes d'une page. Son comportement par défaut consiste à ajouter une favoricône d'appareil mobile à des pages Web définie par l'élément <code>&lt;link rel="icon" type="image/x-icon"&gt;</code>.</p>
+<p>Le nom de fichier de la favoricône, attribut <code>rel</code>, le chemin et les tailles peuvent être définies avec des attributs <code>data</code> sur l'élément <code>&lt;link rel="icon" type="image/x-icon"&gt;</code>&#160;:</p>
+
+<ul>
+	<li><strong>data-filename :</strong> Le nom de fichier de la favoricône de l'appareil mobile (&#171;&#160;favicon-mobile.png&#160;&#187;" par défaut). Ce sera ajoutée au chemin de la favoricône.</li>
+	<li><strong>data-path :</strong> Le chemin au favoricône de l'appareil mobile (utilise le même chemin que l'élément <code>&lt;link rel="icon" type="image/x-icon"&gt;</code> par défaut).</li>
+	<li><strong>data-rel :</strong> L'attribut <code>rel</code> de la favoricône de l'appareil mobile (&#171;&#160;apple-touch-icon&#160;&#187; par défaut).</li>
+	<li><strong>data-sizes :</strong> L'attribut <code>sizes</code> de la favoricône de l'appareil mobile (&#171;&#160;57x57 72x72 114x114 144x144 150x150&#160;&#187; par défaut).</li>
+</ul>
+
+<p>Par exemple, code suivant substitue les attributs <code>rel</code> et <code>filename</code> de la favoricône de l'appareil mobile&#160;:</p>
+
+<code class="prettyprint">&lt;link href="favion.ico" rel="icon" type="image/x-icon" data-filename="my-mobile-favicon.ico" data-rel="apple-touch-icon-precomposed"&gt;</code>

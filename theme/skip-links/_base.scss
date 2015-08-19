@@ -1,0 +1,10 @@
+.wb-sl {
+	background-color: #000;
+	color: #fff;
+	font-weight: 700;
+
+	&:focus {
+		color: #fff;
+		text-decoration: none;
+	}
+}

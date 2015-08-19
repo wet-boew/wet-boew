@@ -1,0 +1,130 @@
+/*
+  WET-BOEW
+  @title: Accessibility Additions to WET-BOEW
+ */
+
+.wb-invisible {
+	@extend %accessible-invisible;
+}
+
+.wb-inv {
+	@extend %accessible-invisible;
+}
+
+.wb-show-onfocus {
+	@extend %accessible-invisible;
+
+	&:focus {
+		@extend %accessible-invisible-show;
+	}
+}
+
+#wb-tphp {
+	list-style-type: none;
+	margin-bottom: 0;
+}
+
+.wb-slc {
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 10px;
+	width: 100%;
+	z-index: 3;
+}
+
+.wb-sl {
+	@extend %accessible-invisible;
+	padding: 5px;
+	z-index: 501;
+
+	&:focus {
+		@extend %accessible-invisible-show;
+	}
+}
+
+.wb-disable {
+	#wb-tphp {
+		background: #fff;
+	}
+
+	.wb-slc {
+		position: static;
+
+		.wb-sl {
+			@extend %accessible-invisible-show;
+			background: none;
+			color: $link-color;
+			display: block !important;
+			font-weight: 400;
+
+			&:hover,
+			&:focus {
+				color: $link-hover-color;
+			}
+		}
+	}
+
+	#wb-dtmd {
+		float: none !important;
+	}
+}
+
+#wb-lng {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-glb-mn {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-srch {
+	h2 {
+		@extend %accessible-invisible;
+	}
+
+	label {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-sm {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-bc {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-sec {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-info {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#mb-pnl {
+	h3 {
+		@extend %accessible-invisible;
+	}
+}
+
+q {
+	&:before,
+	&:after {
+		content: "";
+	}
+}

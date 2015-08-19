@@ -1,0 +1,122 @@
+---
+{
+	"title": "Correctif « datalist » (saisie automatique) - Dynamique",
+	"language": "fr",
+	"category": "Correctifs",
+	"description": "Montre comment mettre à jour de façon dynamique le contenu de l'élément « datalist », sur la base de l'entrée utilisateur. Particulièrement utile où il ya un grand nombre de suggestions de saisie semi-automatique.",
+	"tag": "datalist",
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist-dynamic",
+	"js": ["demo/datalist_dynamic"],
+	"dateModified": "2014-07-20"
+}
+---
+<section>
+	<h2>But</h2>
+	<p>Montre comment mettre à jour de façon dynamique le contenu de l'élément «&#160;<code>datalist</code>&#160;», sur la base de l'entrée utilisateur. Particulièrement utile où il ya un grand nombre de suggestions de saisie semi-automatique.</p>
+</section>
+
+<section>
+	<h2>Exemple</h2>
+	<form action="#" method="get">
+		<fieldset>
+			<legend>Choisir un bogue ou problême</legend>
+			<div class="form-group">
+				<label for="plugin">Plugiciel:</label>
+				<select class="form-control" id="plugin" name="plugin">
+					<option label="Choisir un plugiciel"> </option>
+					<option value="Multimedia player">Lecteur multimédia</option>
+					<option value="Lightbox" lang="en">Lightbox</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="issue">Bogue ou problême:</label>
+				<input class="form-control" type="text" id="issue" name="issue" list="issues" />
+			</div>
+			<datalist id="issues" lang="en">
+				<!--[if lte IE 9]><select><![endif]-->
+				<!--[if lte IE 9]></select><![endif]-->
+			</datalist>
+		</fieldset>
+	</form>
+
+	<details>
+		<summary>Visualiser le code</summary>
+		<section>
+			<h3>HTML</h3>
+			<pre><code>&lt;form action=&quot;#&quot; method=&quot;get&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;Choisir un bogue ou problême&lt;/legend&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;label for=&quot;plugin&quot;&gt;Plugiciel:&lt;/label&gt;
+			&lt;select class=&quot;form-control&quot; id=&quot;plugin&quot; name=&quot;plugin&quot;&gt;
+				&lt;option label=&quot;Choisir un plugiciel&quot;&gt; &lt;/option&gt;
+				&lt;option value=&quot;Multimedia player&quot;&gt;Lecteur multimédia&lt;/option&gt;
+				&lt;option value=&quot;Lightbox&quot; lang=&quot;en&quot;&gt;Lightbox&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;label for=&quot;issue&quot;&gt;Bogue ou problême:&lt;/label&gt;
+			&lt;input class=&quot;form-control&quot; type=&quot;text&quot; id=&quot;issue&quot; name=&quot;issue&quot; list=&quot;issues&quot; /&gt;
+		&lt;/div&gt;
+		&lt;datalist id=&quot;issues&quot; lang=&quot;en&quot;&gt;
+			&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+			&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+		&lt;/datalist&gt;
+	&lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>JavaScript</h3>
+			<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+var $document = wb.doc,
+	pluginSelector = &quot;#plugin&quot;,
+	issueInput = $( &quot;#issue&quot; );
+
+$document.on( &quot;change&quot;, pluginSelector, function( event ) {
+	var pluginName = event.target.value;
+
+	$document.trigger({
+		type: &quot;ajax-fetch.wb&quot;,
+		element: this,
+		fetch: {
+			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: &quot; + pluginName ),
+			dataType: wb.ielt10 ? &quot;jsonp&quot; : &quot;json&quot;,
+			jsonp: wb.ielt10 ? &quot;callback&quot; : null
+		}
+	});
+
+	issueInput.get( 0 ).value = &quot;&quot;;
+});
+
+$document.on( &quot;ajax-fetched.wb&quot;, pluginSelector, function( event ) {
+	var dataList = $( &quot;#&quot; + issueInput.attr( &quot;list&quot; ) ),
+		issues = wb.ielt10 ? event.fetch.response.data : event.fetch.response,
+		lenIssues = issues.length,
+		options = &quot;&quot;,
+		indIssue, issue;
+
+	dataList.empty();
+
+	for ( indIssue = 0; indIssue !== lenIssues; indIssue += 1 ) {
+		issue = issues[ indIssue ];
+
+		options += &quot;&lt;option label=\&quot;&quot; + issue.title + &quot;\&quot; value=\&quot;&quot; + issue.title + &quot;\&quot;&gt;&lt;/option&gt;&quot;;
+	}
+
+	if ( wb.ielt10 ) {
+		options = &quot;&lt;select&gt;&quot; + options + &quot;&lt;/select&gt;&quot;;
+	}
+
+	dataList.append( options );
+
+	issueInput.trigger( &quot;wb-update.wb-datalist&quot; );
+});
+
+})( jQuery, wb );</code></pre>
+		</section>
+	</details>
+</section>

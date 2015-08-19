@@ -1,0 +1,60 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/**
+ * Mobile-friendly styles
+ */
+%tabs-screen-sm-max-backwards-compat {
+	> {
+		details {
+			border-bottom: $tablist-screen-sm-seperator-border-color $tablist-screen-sm-seperator-border-style $tablist-screen-sm-seperator-border-width;
+
+			&:last-of-type {
+				border-bottom: 0;
+			}
+
+			&[style] {
+				min-height: 0 !important;
+			}
+
+			&[open] {
+				> {
+					summary {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+.wb-tabs {
+	@extend %tabs-screen-sm-max-backwards-compat; /* Only for backwards compatibility. Should be removed in v4.1. */
+	border: {
+		color: $tablist-screen-sm-border-color;
+		radius: $tablist-screen-sm-border-radius;
+		style: $tablist-screen-sm-border-style;
+		width: $tablist-screen-sm-border-width;
+	}
+	margin-bottom: 15px;
+	padding: {
+		left: 0;
+		right: 0;
+	}
+
+	> {
+		.tabpanels {
+			@extend %tabs-screen-sm-max-backwards-compat;
+		}
+	}
+
+	&.tabs-acc {
+		> {
+			ul {
+				display: none;
+			}
+		}
+	}
+}

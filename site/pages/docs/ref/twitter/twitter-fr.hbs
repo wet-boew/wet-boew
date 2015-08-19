@@ -1,0 +1,98 @@
+---
+{
+	"title": "Chronologie intégrée Twitter",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Affiche des chronologies intégrées Twitter.",
+	"altLangPrefix": "twitter",
+	"dateModified": "2014-08-04"
+}
+---	
+<span class="wb-prettify all-pre hide"></span>
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+<section>
+	<h2>Purpose</h2>
+	<p>Helps with implementing Twitter embedded timelines.</p>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/twitter/twitter-en.html">English example</a></li>
+		<li><a href="../../../demos/twitter/twitter-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Create an embedded timeline on Twitter.com according to Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#creating">Creating an Embeddable Timeline</a> documentation.</li>
+		<li>For each area that will display a Twitter embedded timeline, create a <code>div</code> element with <code>class="wb-twitter"</code>.
+			<pre><code>&lt;div class="wb-twitter"&gt;&lt;/div&gt;</code></pre>
+		</li>
+		<li>Inside the <code>div</code> element add a link with:
+			<ol>
+				<li><code>class="twitter-timeline"</code></li>
+				<li><code>href</code> attribute with the URL for the equivalent query on Twitter.com (e.g., https://twitter.com/search?q=%23WxT)</li>
+				<li><code>widget-id</code> attribute with the id of the embedded timeline (e.g., "329066756620566528")</li>
+				<li>link text that describes timeline (e.g., <code>Tweets about "#WxT"</code>)</li>
+			</ol>
+			<pre><code>&lt;div class="wb-twitter"&gt;
+	&lt;a class="twitter-timeline" href="https://twitter.com/search?q=%23WxT" data-widget-id="329066756620566528"&gt;Tweets about "#WxT"&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+		</li>
+		<li>Configure the timeline according to Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#customization">Customization Options</a> documentation.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>All configuration options are detailed in Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#customization">Customization Options</a> documentation.</p>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-twitter</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-twitter" ).trigger( "wb-init.wb-twitter" );</code>).</td>
+				<td>Used to manually initialize the Twitter embedded timeline. <strong>Note:</strong> The Twitter embedded timeline will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-twitter</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Twitter embedded timeline initializes.</td>
+				<td>Used to identify where the Twitter embedded timeline was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-twitter", ".wb-twitter", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-twitter" ).on( "wb-ready.wb-twitter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/twitter">Twitter embedded timeline plugin source code on GitHub</a></p>
+</section>
+</div>

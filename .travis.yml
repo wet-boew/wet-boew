@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 language: java
 
 env:
@@ -11,3 +12,35 @@ script:
 notifications:
   irc:
   - "chat.freenode.net#wet-boew"
+=======
+language: node_js
+node_js:
+  - "0.12"
+
+sudo: false
+
+env:
+  global:
+    - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
+
+install:
+  - ./script/setup
+  - bundle install
+
+script:
+  - npm run-script travis_script
+
+after_success:
+  - npm run-script travis_after_success
+
+notifications:
+  irc:
+  - "chat.freenode.net#wet-boew"
+
+cache:
+  bundler: true
+  directories:
+  - node_modules
+  - lib
+  - vendor/cache
+>>>>>>> wet-boew/master

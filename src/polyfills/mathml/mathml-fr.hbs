@@ -1,0 +1,1337 @@
+---
+{
+	"title": "Correctif MathML",
+	"language": "fr",
+	"category": "Correctifs",
+	"description": "Émule le MathML pour les navigateurs qui ne le supportent pas.",
+	"tag": "mathml",
+	"parentdir": "mathml",
+	"altLangPrefix": "mathml",
+	"dateModified": "2014-02-19"
+}
+---
+
+<div lang="en">
+<section><h2>Overview</h2>
+<p>This polyfill loads MathJax when MathML is detected on the page and the browser has inadequate MathML support.</p>
+<section><h3>Known issues</h3>
+<ol>
+<li>Browsers that lack both MathML and SVG support (e.g., IE7 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
+<li>IE8 takes a lot longer to load MathML than either IE7 or IE9 (known MathJax reflow issue)</li>
+<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
+</ol>
+</section>
+</section>
+</div>
+
+<section><h2>Exemples de formules simples</h2>
+
+<p>
+Compte tenu de l'équation quadratique
+<math>
+	<mrow>
+	<mi>a</mi>
+	<mo>⁢</mo>
+	<msup>
+		<mi>x</mi>
+		<mn>2</mn>
+	</msup>
+	<mo>+</mo>
+	<mi>b</mi>
+	<mo>⁢</mo>
+	<mi>x</mi>
+	<mo>+</mo>
+	<mi>c</mi>
+	<mo>=</mo>
+	<mi>0</mi>
+	</mrow>
+</math>
+, les racines sont données par
+<math>
+	<mrow>
+	<mi>x</mi>
+	<mo>=</mo>
+	<mfrac>
+		<mrow>
+		<mo form="prefix">−</mo>
+		<mi>b</mi>
+		<mo>±</mo>
+		<msqrt>
+			<msup>
+			<mi>b</mi>
+			<mn>2</mn>
+			</msup>
+			<mo>−</mo>
+			<mn>4</mn>
+			<mo>⁢</mo>
+			<mi>a</mi>
+			<mo>⁢</mo>
+			<mi>c</mi>
+		</msqrt>
+		</mrow>
+		<mrow>
+		<mn>2</mn>
+		<mo>⁢</mo>
+		<mi>a</mi>
+		</mrow>
+	</mfrac>
+	</mrow>
+</math>
+.
+</p>
+</section>
+
+<section><h2>Exemples de formules complexes</h2>
+<table class="table width-30">
+<thead>
+<tr>
+<th scope="col" style="width: 30%">Formule</th>
+<th scope="col">Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Épreuve de Bernoulli</td>
+<td>
+<math>
+<mrow>
+	<maction actiontype="statusline">
+		<mrow>
+			<mi>P</mi>
+			<mo stretchy="false">(</mo>
+			<mi>E</mi>
+			<mo stretchy="false">)</mo>
+		</mrow>
+		<mtext>Probabilité d'un événement E : Obtenir exactement k faces sur n tirages à pile ou face.</mtext>
+	</maction>
+	<mo>=</mo>
+	<maction actiontype="statusline">
+		<mrow>
+			<mo>(</mo>
+			<mfrac linethickness="0">
+				<mi>n</mi>
+				<mi>k</mi>
+			</mfrac>
+			<mo>)</mo>
+		</mrow>
+		<mtext>Nombre de façons permettant d'obtenir exactement k faces sur n tirages à pile ou face</mtext>
+	</maction>
+	<msubsup>
+		<maction actiontype="statusline">
+			<mi>p</mi>
+			<mtext>Probabilité d'obtenir face sur un tirage à pile ou face</mtext>
+		</maction>
+		<mrow></mrow>
+		<maction actiontype="statusline">
+			<mi>k</mi>
+			<mtext>Nombre de faces</mtext>
+		</maction>
+	</msubsup>
+	<msubsup>
+		<maction actiontype="statusline">
+			<mrow>
+				<mo stretchy="false">(</mo>
+				<mn>1</mn>
+				<mo>-</mo>
+				<mi>p</mi>
+				<mo stretchy="false">)</mo>
+			</mrow>
+			<mtext>Probabilité d'obtenir pile sur un tirage à pile ou face</mtext>
+		</maction>
+		<mrow></mrow>
+		<maction actiontype="statusline">
+			<mrow>
+				<mi>n</mi>
+				<mo>-</mo>
+				<mi>k</mi>
+			</mrow>
+			<mtext>Nombre de piles</mtext>
+		</maction>
+	</msubsup>
+</mrow>
+</math>
+</td>
+</tr>
+<tr>
+<td>Inégalité de Cauchy-Schwarz</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<msubsup>
+			<mrow>
+				<mo>(</mo>
+				<munderover>
+					<mo>∑</mo>
+					<mrow>
+						<mi>k</mi>
+						<mo>=</mo>
+						<mn>1</mn>
+					</mrow>
+					<mi>n</mi>
+				</munderover>
+				<msubsup>
+					<mi>a</mi>
+					<mi>k</mi>
+					<mrow></mrow>
+				</msubsup>
+				<msubsup>
+					<mi>b</mi>
+					<mi>k</mi>
+					<mrow></mrow>
+				</msubsup>
+				<mo>)</mo>
+			</mrow>
+			<mrow></mrow>
+			<mn>2</mn>
+		</msubsup>
+		<mo>≤</mo>
+		<mrow>
+			<mo>(</mo>
+			<munderover>
+				<mo>∑</mo>
+				<mrow>
+					<mi>k</mi>
+					<mo>=</mo>
+					<mn>1</mn>
+				</mrow>
+				<mi>n</mi>
+			</munderover>
+			<msubsup>
+				<mi>a</mi>
+				<mi>k</mi>
+				<mn>2</mn>
+			</msubsup>
+		<mo>)</mo>
+		</mrow>
+		<mrow>
+			<mo>(</mo>
+			<munderover>
+				<mo>∑</mo>
+				<mrow>
+					<mi>k</mi>
+					<mo>=</mo>
+					<mn>1</mn>
+				</mrow>
+				<mi>n</mi>
+			</munderover>
+			<msubsup>
+				<mi>b</mi>
+				<mi>k</mi>
+				<mn>2</mn>
+			</msubsup>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Formule intégrale de Cauch</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<mi>f</mi>
+		<mo stretchy="false">(</mo>
+		<mi>z</mi>
+		<mo stretchy="false">)</mo>
+		<mtext> </mtext>
+		<mo>·</mo>
+		<msubsup>
+			<mi>Ind</mi>
+			<mi>γ</mi>
+			<mrow></mrow>
+		</msubsup>
+		<mo stretchy="false">(</mo>
+		<mi>z</mi>
+		<mo stretchy="false">)</mo>
+		<mo>=</mo>
+		<mfrac>
+			<mn>1</mn>
+			<mrow>
+				<mn>2</mn>
+				<mi>π</mi>
+				<mi>i</mi>
+			</mrow>
+		</mfrac>
+		<munderover>
+			<mo>∮</mo>
+			<mi>γ</mi>
+			<mrow></mrow>
+		</munderover>
+		<mfrac>
+			<mrow>
+				<mi>f</mi>
+				<mo stretchy="false">(</mo>
+				<mstyle scriptlevel="1">
+					<mi>ξ</mi>
+				</mstyle>
+				<mo stretchy="false">)</mo>
+			</mrow>
+			<mrow>
+				<mstyle scriptlevel="1">
+					<mi>ξ</mi>
+				</mstyle>
+				<mo>-</mo>
+				<mi>z</mi>
+			</mrow>
+		</mfrac>
+		<mtext> </mtext>
+		<mi>d</mi>
+		<mstyle scriptlevel="1">
+			<mi>ξ</mi>
+		</mstyle>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Produit vectoriel</td>
+<td>
+<math>
+<mrow>
+	<msubsup>
+		<mstyle fontweight="bold">
+			<mi>V</mi>
+		</mstyle>
+		<mn>1</mn>
+		<mrow></mrow>
+	</msubsup>
+	<mo>×</mo>
+	<msubsup>
+		<mstyle fontweight="bold">
+			<mi>V</mi>
+		</mstyle>
+		<mn>2</mn>
+		<mrow></mrow>
+	</msubsup>
+	<mo>=</mo>
+	<mrow>
+		<mo>|</mo>
+		<mtable equalrows="false">
+			<mtr>
+				<mtd>
+					<mstyle fontweight="bold">
+						<mi>i</mi>
+					</mstyle>
+				</mtd>
+				<mtd>
+					<mstyle fontweight="bold">
+						<mi>j</mi>
+					</mstyle>
+				</mtd>
+				<mtd>
+					<mstyle fontweight="bold">
+						<mi>k</mi>
+					</mstyle>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mfrac>
+						<mrow>
+							<mo>∂</mo>
+							<mi>X</mi>
+						</mrow>
+						<mrow>
+							<mo>∂</mo>
+							<mi>u</mi>
+						</mrow>
+					</mfrac>
+				</mtd>
+				<mtd>
+					<mfrac>
+						<mrow>
+							<mo>∂</mo>
+							<mi>Y</mi>
+						</mrow>
+						<mrow>
+							<mo>∂</mo>
+							<mi>u</mi>
+						</mrow>
+					</mfrac>
+				</mtd>
+				<mtd>
+					<mn>0</mn>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mfrac>
+						<mrow>
+							<mo>∂</mo>
+							<mi>X</mi>
+						</mrow>
+						<mrow>
+							<mo>∂</mo>
+							<mi>v</mi>
+						</mrow>
+					</mfrac>
+				</mtd>
+				<mtd>
+					<mfrac>
+						<mrow>
+							<mo>∂</mo>
+							<mi>Y</mi>
+						</mrow>
+						<mrow>
+							<mo>∂</mo>
+							<mi>v</mi>
+						</mrow>
+					</mfrac>
+				</mtd>
+				<mtd>
+					<mn>0</mn>
+				</mtd>
+			</mtr>
+		</mtable>
+		<mo>|</mo>
+	</mrow>
+</mrow>
+</math>
+</td>
+</tr>
+<tr>
+<td>Déterminant de Vandermonde</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<mrow>
+			<mo>|</mo>
+			<mtable equalrows="false">
+				<mtr>
+					<mtd>
+						<mn>1</mn>
+					</mtd>
+					<mtd>
+						<mn>1</mn>
+					</mtd>
+					<mtd>
+						<mo>⋯</mo>
+					</mtd>
+					<mtd>
+						<mn>1</mn>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>1</mn>
+							<mrow></mrow>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>2</mn>
+							<mrow></mrow>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<mo>⋯</mo>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mi>n</mi>
+							<mrow></mrow>
+						</msubsup>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>1</mn>
+							<mn>2</mn>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>2</mn>
+							<mn>2</mn>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<mo>⋯</mo>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mi>n</mi>
+							<mn>2</mn>
+						</msubsup>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<mo>⋮</mo>
+					</mtd>
+					<mtd>
+						<mo>⋮</mo>
+					</mtd>
+					<mtd>
+						<mo>⋱</mo>
+					</mtd>
+					<mtd>
+						<mo>⋮</mo>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>1</mn>
+							<mrow>
+								<mi>n</mi>
+								<mo>-</mo>
+								<mn>1</mn>
+							</mrow>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mn>2</mn>
+							<mrow>
+								<mi>n</mi>
+								<mo>-</mo>
+								<mn>1</mn>
+							</mrow>
+						</msubsup>
+					</mtd>
+					<mtd>
+						<mo>⋯</mo>
+					</mtd>
+					<mtd>
+						<msubsup>
+							<mi>v</mi>
+							<mi>n</mi>
+							<mrow>
+								<mi>n</mi>
+								<mo>-</mo>
+								<mn>1</mn>
+							</mrow>
+						</msubsup>
+					</mtd>
+				</mtr>
+			</mtable>
+			<mo>|</mo>
+		</mrow>
+		<mo>=</mo>
+		<munderover>
+			<mo>∏</mo>
+			<mrow>
+				<mn>1</mn>
+				<mo>≤</mo>
+				<mi>i</mi>
+				<mo>&lt;</mo>
+				<mi>j</mi>
+				<mo>≤</mo>
+				<mi>n</mi>
+			</mrow>
+			<mrow></mrow>
+		</munderover>
+		<mo stretchy="false">(</mo>
+		<msubsup>
+			<mi>v</mi>
+			<mi>j</mi>
+			<mrow></mrow>
+		</msubsup>
+		<mo>-</mo>
+		<msubsup>
+			<mi>v</mi>
+			<mi>i</mi>
+			<mrow></mrow>
+		</msubsup>
+		<mo stretchy="false">)</mo>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Attracteur de Lorenz</td>
+<td>
+<math>
+<mtable columnalign="right center left" equalcolumns="false">
+	<mtr>
+		<mtd>
+			<munderover accent="true">
+				<mi>x</mi>
+				<mrow></mrow>
+				<mo>˙</mo>
+			</munderover>
+		</mtd>
+		<mtd>
+			<mo>=</mo>
+		</mtd>
+		<mtd>
+			<mrow>
+				<mi>σ</mi>
+				<mo stretchy="false">(</mo>
+				<mi>y</mi>
+				<mo>-</mo>
+				<mi>x</mi>
+				<mo stretchy="false">)</mo>
+			</mrow>
+		</mtd>
+	</mtr>
+	<mtr>
+		<mtd>
+			<munderover accent="true">
+				<mi>y</mi>
+				<mrow></mrow>
+				<mo>˙</mo>
+			</munderover>
+		</mtd>
+		<mtd>
+			<mo>=</mo>
+		</mtd>
+		<mtd>
+			<mrow>
+				<mi>ρ</mi>
+				<mi>x</mi>
+				<mo>-</mo>
+				<mi>y</mi>
+				<mo>-</mo>
+				<mi>x</mi>
+				<mi>z</mi>
+			</mrow>
+		</mtd>
+	</mtr>
+	<mtr>
+		<mtd>
+			<munderover accent="true">
+				<mi>z</mi>
+				<mrow></mrow>
+				<mo>˙</mo>
+			</munderover>
+		</mtd>
+		<mtd>
+			<mo>=</mo>
+		</mtd>
+		<mtd>
+			<mrow>
+				<mo>-</mo>
+				<mi>β</mi>
+				<mi>z</mi>
+				<mo>+</mo>
+				<mi>x</mi>
+				<mi>y</mi>
+			</mrow>
+		</mtd>
+	</mtr>
+</mtable>
+</math>
+</td>
+</tr>
+<tr>
+<td>Équations de Maxwell</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="right center left" equalrows="false" equalcolumns="false">
+			<mtr>
+				<mtd>
+					<mrow>
+						<mo>∇</mo>
+						<mtext>​</mtext>
+						<mo>×</mo>
+						<munderover accent="true">
+							<mstyle fontweight="bold">
+								<mi>B</mi>
+							</mstyle>
+							<mrow></mrow>
+							<mo stretchy="true">↼</mo>
+						</munderover>
+						<mo>-</mo>
+						<mtext> </mtext>
+						<mfrac>
+							<mn>1</mn>
+							<mi>c</mi>
+						</mfrac>
+						<mtext> </mtext>
+						<mfrac>
+							<mrow>
+								<mo>∂</mo>
+								<mtext>​</mtext>
+								<munderover accent="true">
+									<mstyle fontweight="bold">
+										<mi>E</mi>
+									</mstyle>
+									<mrow></mrow>
+									<mo stretchy="true">↼</mo>
+								</munderover>
+							</mrow>
+							<mrow>
+								<mo>∂</mo>
+								<mtext>​</mtext>
+								<mi>t</mi>
+							</mrow>
+						</mfrac>
+					</mrow>
+				</mtd>
+				<mtd>
+					<mo>=</mo>
+				</mtd>
+				<mtd>
+					<mrow>
+						<mfrac>
+							<mrow>
+								<mn>4</mn>
+								<mi>π</mi>
+							</mrow>
+							<mi>c</mi>
+						</mfrac>
+						<mtext> </mtext>
+						<munderover accent="true">
+							<mstyle fontweight="bold">
+								<mi>j</mi>
+							</mstyle>
+							<mrow></mrow>
+							<mo stretchy="true">↼</mo>
+						</munderover>
+					</mrow>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mrow>
+						<mo>∇</mo>
+						<mtext>​</mtext>
+						<mo>·</mo>
+						<munderover accent="true">
+							<mstyle fontweight="bold">
+								<mi>E</mi>
+							</mstyle>
+							<mrow></mrow>
+							<mo stretchy="true">↼</mo>
+						</munderover>
+					</mrow>
+				</mtd>
+				<mtd>
+					<mo>=</mo>
+				</mtd>
+				<mtd>
+					<mrow>
+						<mn>4</mn>
+						<mi>π</mi>
+						<mi>ρ</mi>
+					</mrow>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mrow>
+						<mo>∇</mo>
+						<mtext>​</mtext>
+						<mo>×</mo>
+						<munderover accent="true">
+							<mstyle fontweight="bold">
+								<mi>E</mi>
+							</mstyle>
+							<mrow></mrow>
+							<mo stretchy="true">↼</mo>
+						</munderover>
+						<mtext> </mtext>
+						<mo>+</mo>
+						<mtext> </mtext>
+						<mfrac>
+							<mn>1</mn>
+							<mi>c</mi>
+						</mfrac>
+						<mtext> </mtext>
+						<mfrac>
+							<mrow>
+								<mo>∂</mo>
+								<mtext>​</mtext>
+								<munderover accent="true">
+									<mstyle fontweight="bold">
+										<mi>B</mi>
+									</mstyle>
+									<mrow></mrow>
+									<mo stretchy="true">↼</mo>
+								</munderover>
+							</mrow>
+							<mrow>
+								<mo>∂</mo>
+								<mtext>​</mtext>
+								<mi>t</mi>
+							</mrow>
+						</mfrac>
+					</mrow>
+				</mtd>
+				<mtd>
+					<mo>=</mo>
+				</mtd>
+				<mtd>
+					<munderover accent="true">
+						<mstyle fontweight="bold">
+							<mn>0</mn>
+						</mstyle>
+						<mrow></mrow>
+						<mo stretchy="true">↼</mo>
+					</munderover>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mrow>
+						<mo>∇</mo>
+						<mtext>​</mtext>
+						<mo>·</mo>
+						<munderover accent="true">
+							<mstyle fontweight="bold">
+								<mi>B</mi>
+							</mstyle>
+							<mrow></mrow>
+							<mo stretchy="true">↼</mo>
+						</munderover>
+					</mrow>
+				</mtd>
+				<mtd>
+					<mo>=</mo>
+				</mtd>
+				<mtd>
+					<mn>0</mn>
+				</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Équation de champ d'Einstein</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<msubsup>
+			<mstyle fontstyle="normal">
+				<mi>R</mi>
+			</mstyle>
+			<mstyle scriptlevel="1">
+				<mrow>
+					<mi>μ</mi>
+					<mi>ν</mi>
+				</mrow>
+			</mstyle>
+			<mrow></mrow>
+		</msubsup>
+		<mo>-</mo>
+		<mfrac>
+			<mn>1</mn>
+			<mn>2</mn>
+		</mfrac>
+		<mtext> </mtext>
+		<msubsup>
+			<mi>g</mi>
+			<mstyle scriptlevel="1">
+				<mrow>
+					<mi>μ</mi>
+					<mi>ν</mi>
+				</mrow>
+			</mstyle>
+			<mrow></mrow>
+		</msubsup>
+		<mtext> </mtext>
+		<mstyle fontstyle="normal">
+			<mi>R</mi>
+		</mstyle>
+		<mo>=</mo>
+		<mfrac>
+			<mrow>
+				<mn>8</mn>
+				<mi>π</mi>
+				<mstyle fontstyle="normal">
+					<mi>G</mi>
+				</mstyle>
+			</mrow>
+			<msubsup>
+				<mi>c</mi>
+				<mrow></mrow>
+				<mn>4</mn>
+			</msubsup>
+		</mfrac>
+		<mtext> </mtext>
+		<msubsup>
+			<mstyle fontstyle="normal">
+				<mi>T</mi>
+			</mstyle>
+			<mstyle scriptlevel="1">
+				<mrow>
+					<mi>μ</mi>
+					<mi>ν</mi>
+				</mrow>
+			</mstyle>
+			<mrow></mrow>
+		</msubsup>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Identité de Ramanujan</td>
+<td>
+<math>
+<mrow>
+	<mfrac>
+		<mn>1</mn>
+		<mrow>
+			<mo stretchy="false">(</mo>
+			<msqrt>
+				<mrow>
+					<mi>φ</mi>
+					<msqrt>
+						<mn>5</mn>
+					</msqrt>
+				</mrow>
+			</msqrt>
+			<mo>-</mo>
+			<mi>φ</mi>
+			<mo stretchy="false">)</mo>
+			<msubsup>
+				<mi>e</mi>
+				<mrow></mrow>
+				<mfrac>
+					<mn>25</mn>
+					<mi>π</mi>
+				</mfrac>
+			</msubsup>
+		</mrow>
+	</mfrac>
+	<mo>=</mo>
+	<mn>1</mn>
+	<mo>+</mo>
+	<mstyle scriptlevel="1">
+		<mfrac>
+			<msubsup>
+				<mi>e</mi>
+				<mrow></mrow>
+				<mstyle scriptlevel="2">
+					<mrow>
+						<mo>-</mo>
+						<mn>2</mn>
+						<mi>π</mi>
+					</mrow>
+				</mstyle>
+			</msubsup>
+			<mrow>
+				<mn>1</mn>
+				<mo>+</mo>
+				<mfrac>
+					<msubsup>
+						<mi>e</mi>
+						<mrow></mrow>
+						<mstyle scriptlevel="2">
+							<mrow>
+								<mo>-</mo>
+								<mn>4</mn>
+								<mi>π</mi>
+							</mrow>
+						</mstyle>
+					</msubsup>
+					<mrow>
+						<mn>1</mn>
+						<mo>+</mo>
+						<mfrac>
+							<msubsup>
+								<mi>e</mi>
+								<mrow></mrow>
+								<mstyle scriptlevel="2">
+									<mrow>
+										<mo>-</mo>
+										<mn>6</mn>
+										<mi>π</mi>
+									</mrow>
+								</mstyle>
+							</msubsup>
+							<mrow>
+								<mn>1</mn>
+								<mo>+</mo>
+								<mfrac>
+									<msubsup>
+										<mi>e</mi>
+										<mrow></mrow>
+										<mstyle scriptlevel="2">
+											<mrow>
+												<mo>-</mo>
+												<mn>8</mn>
+												<mi>π</mi>
+											</mrow>
+										</mstyle>
+									</msubsup>
+									<mrow>
+										<mn>1</mn>
+										<mo>+</mo>
+										<mo>…</mo>
+									</mrow>
+								</mfrac>
+							</mrow>
+						</mfrac>
+					</mrow>
+				</mfrac>
+			</mrow>
+		</mfrac>
+	</mstyle>
+</mrow>
+</math>
+</td>
+</tr>
+<tr>
+<td>Une autre identité de Ramanujan</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<munderover>
+			<mo>∑</mo>
+			<mrow>
+				<mi>k</mi>
+				<mo>=</mo>
+				<mn>1</mn>
+			</mrow>
+			<mi>∞</mi>
+		</munderover>
+		<mfrac>
+			<mn>1</mn>
+			<msubsup>
+				<mn>2</mn>
+				<mrow></mrow>
+				<mrow>
+					<mo stretchy="false">⌊</mo>
+					<mi>k</mi>
+					<mo>·</mo>
+					<mtext>​</mtext>
+					<mi>φ</mi>
+					<mo stretchy="false">⌋</mo>
+				</mrow>
+			</msubsup>
+		</mfrac>
+		<mo>=</mo>
+		<mstyle scriptlevel="1">
+			<mfrac>
+				<mn>1</mn>
+				<mrow>
+					<msubsup>
+						<mn>2</mn>
+						<mrow></mrow>
+						<mstyle scriptlevel="2">
+							<mn>0</mn>
+						</mstyle>
+					</msubsup>
+					<mo>+</mo>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<msubsup>
+								<mn>2</mn>
+								<mrow></mrow>
+								<mstyle scriptlevel="2">
+									<mn>1</mn>
+								</mstyle>
+							</msubsup>
+							<mo>+</mo>
+							<maction actiontype="toggle">
+								<mo>⋯</mo>
+								<mfrac>
+									<mn>1</mn>
+									<mrow>
+										<msubsup>
+											<mn>2</mn>
+											<mrow></mrow>
+											<mstyle scriptlevel="2">
+												<mn>1</mn>
+											</mstyle>
+										</msubsup>
+										<mo>+</mo>
+										<mfrac>
+											<mn>1</mn>
+											<mrow>
+												<msubsup>
+													<mn>2</mn>
+													<mrow></mrow>
+													<mstyle scriptlevel="2">
+														<mn>2</mn>
+													</mstyle>
+												</msubsup>
+												<mo>+</mo>
+												<maction actiontype="toggle">
+													<mo>⋯</mo>
+													<mfrac>
+														<mn>1</mn>
+														<mrow>
+															<msubsup>
+																<mn>2</mn>
+																<mrow></mrow>
+																<mstyle scriptlevel="2">
+																	<mn>3</mn>
+																</mstyle>
+															</msubsup>
+															<mo>+</mo>
+															<mfrac>
+																<mn>1</mn>
+																<mrow>
+																	<msubsup>
+																		<mn>2</mn>
+																		<mrow></mrow>
+																		<mstyle scriptlevel="2">
+																			<mn>5</mn>
+																		</mstyle>
+																	</msubsup>
+																	<mo>+</mo>
+																	<mo>…</mo>
+																</mrow>
+															</mfrac>
+														</mrow>
+													</mfrac>
+												</maction>
+											</mrow>
+										</mfrac>
+									</mrow>
+								</mfrac>
+							</maction>
+						</mrow>
+					</mfrac>
+				</mrow>
+			</mfrac>
+		</mstyle>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+<tr>
+<td>Identité de Rogers-Ramanujan</td>
+<td>
+<math>
+<mstyle displaystyle="true">
+	<mrow>
+		<mn>1</mn>
+		<mo>+</mo>
+		<maction actiontype="highlight" other="background='#0000ff'">
+			<maction actiontype="toggle">
+				<mrow>
+					<munderover>
+						<mo>∑</mo>
+						<mrow>
+							<mi>k</mi>
+							<mo>=</mo>
+							<mn>1</mn>
+						</mrow>
+						<mi>∞</mi>
+					</munderover>
+					<mfrac>
+						<msubsup>
+							<mi>q</mi>
+							<mrow></mrow>
+							<mrow>
+								<msubsup>
+									<mi>k</mi>
+									<mrow></mrow>
+									<mn>2</mn>
+								</msubsup>
+								<mo>+</mo>
+								<mi>k</mi>
+							</mrow>
+						</msubsup>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<mi>q</mi>
+							<mo stretchy="false">)</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>2</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+							<mo>⋯</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mi>k</mi>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+				</mrow>
+				<mrow>
+					<mfrac>
+						<msubsup>
+							<mi>q</mi>
+							<mrow></mrow>
+							<mn>2</mn>
+						</msubsup>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<mi>q</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+					<mo>+</mo>
+					<mfrac>
+						<msubsup>
+							<mi>q</mi>
+							<mrow></mrow>
+							<mn>6</mn>
+						</msubsup>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<mi>q</mi>
+							<mo stretchy="false">)</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>2</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+					<mo>+</mo>
+					<mo>⋯</mo>
+				</mrow>
+			</maction>
+		</maction>
+		<mo>=</mo>
+		<maction actiontype="highlight" other="background='#0000ff'">
+			<maction actiontype="toggle">
+				<mrow>
+					<munderover>
+						<mo>∏</mo>
+						<mrow>
+							<mi>j</mi>
+							<mo>=</mo>
+							<mn>0</mn>
+						</mrow>
+						<mi>∞</mi>
+					</munderover>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mrow>
+									<mn>5</mn>
+									<mi>j</mi>
+									<mo>+</mo>
+									<mn>2</mn>
+								</mrow>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mrow>
+									<mn>5</mn>
+									<mi>j</mi>
+									<mo>+</mo>
+									<mn>3</mn>
+								</mrow>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+				</mrow>
+				<mrow>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>2</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>3</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+					<mo>×</mo>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>7</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+							<mo stretchy="false">(</mo>
+							<mn>1</mn>
+							<mo>-</mo>
+							<msubsup>
+								<mi>q</mi>
+								<mrow></mrow>
+								<mn>8</mn>
+							</msubsup>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</mfrac>
+					<mo>×</mo>
+					<mo>⋯</mo>
+				</mrow>
+			</maction>
+		</maction>
+		<mo>,</mo>
+		<mtext>&#160;&#160;for&#160;&#160;</mtext>
+		<mo stretchy="false">|</mo>
+		<mi>q</mi>
+		<mo stretchy="false">|</mo>
+		<mo>&lt;</mo>
+		<mn>1</mn>
+		<mi>.</mi>
+	</mrow>
+</mstyle>
+</math>
+</td>
+</tr>
+</tbody>
+</table>
+</section>

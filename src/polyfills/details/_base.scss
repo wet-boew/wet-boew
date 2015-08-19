@@ -1,0 +1,93 @@
+/*
+  WET-BOEW
+  @title: Details/summary polyfill pre-Modernizr CSS
+ */
+
+summary {
+	// Make sure summary remains visible
+	display: block !important;
+	visibility: visible !important;
+}
+
+%details-nested-in-hidden-details {
+	details {
+		summary {
+			display: none !important;
+		}
+	}
+}
+
+details {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+
+	summary {
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		color: #295376;
+		padding: 5px 15px;
+
+		&:focus,
+		&:hover {
+			background-color: transparent;
+			color: #0535d2;
+			text-decoration: underline;
+		}
+	}
+
+	&[open] {
+		summary {
+			border: 0;
+			border-bottom: 1px solid #ddd;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	// Prevent FOUC
+	&:not([open]) {
+		@extend %details-nested-in-hidden-details;
+		visibility: hidden;
+
+		> {
+			// Need details and * to deal with specificity issues
+			details,
+			* {
+				display: none;
+			}
+		}
+	}
+
+	&.alert {
+		&:not([open]) {
+			visibility: visible;
+		}
+	}
+
+	.out {
+		@extend %details-nested-in-hidden-details;
+	}
+}
+
+.tabpanels {
+	> {
+		details {
+			&:not([open]) {
+				visibility: visible;
+			}
+		}
+	}
+}
+
+// Prevent FOUC when polyfill is disabled
+.wb-disable {
+	details {
+		visibility: visible !important;
+
+		> {
+			* {
+				display: block !important;
+			}
+		}
+	}
+}

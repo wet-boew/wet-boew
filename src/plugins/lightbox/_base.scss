@@ -1,0 +1,80 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+@import "../../variables";
+@import "../../../lib/magnific-popup/src/css/main";
+
+%lightbox-button-outline {
+	outline: 1px dotted #fff;
+	outline-offset: -2px;
+}
+
+.lbx-hide-gal {
+	li {
+		display: none;
+		list-style-type: none;
+
+		&:first-child {
+			display: block;
+		}
+	}
+}
+
+.modal-dialog {
+	left: auto;
+	padding: 0;
+	position: relative;
+}
+
+.modal-content {
+	background: transparent;
+}
+
+.modal-body {
+	background: $clrWhite;
+}
+
+.mfp-gallery {
+	.modal-body {
+		padding: 20px 30px;
+	}
+}
+
+.mfp-close {
+	cursor: pointer !important;
+	font-weight: 700;
+
+	/* Should fix upstream in Magnific Popup rather than overriding in WET */
+	&:focus {
+		@extend %lightbox-button-outline;
+	}
+}
+
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
+.mfp-arrow {
+	&:focus {
+		@extend %lightbox-button-outline;
+	}
+}
+
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
+.mfp-bottom-bar {
+	.mfp-title {
+		padding-right: 5px;
+		width: 75%;
+	}
+
+	.mfp-counter {
+		font-size: 1em;
+		text-align: right;
+		width: 25%;
+	}
+}
+
+.wb-disable {
+	.mfp-hide {
+		@extend %global-display-block-important;
+	}
+}

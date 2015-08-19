@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+/*
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ */
+
+@import "variables";
+@import "defaults";
+
+
+/* Bootstrap
+ *
+ * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
+ */
+@import "../src/base/ie8-bootstrap";
+
+/* WET Core */
+@import "../src/base/ie8-wet-boew";
+
+
+@import "banner/base";
+@import "breadcrumb/base";
+@import "footer/base";
+@import "language-bar/base";
+@import "main/base";
+@import "menu/base";
+@import "search/base";
+@import "secondary-menu/base";
+@import "skip-links/base";
+
+/*
+ Views
+ */
+/* All screen views */
+@media screen {
+	@import "views/screen";
+}
+
+/* Extra-small view and under */
+@media screen and (max-width: $screen-xs-max) {
+	@import "views/screen-xs-max";
+}
+
+/* Small view and under */
+@media screen and (max-width: $screen-sm-max) {
+	@import "views/screen-sm-max";
+	@import "banner/screen-sm-max";
+	@import "search/screen-sm-max";
+	@import "secondary-menu/screen-sm-max";
+}
+
+/* Medium view and under */
+@media screen and (max-width: $screen-md-max) {
+	@import "views/screen-md-max";
+}
+
+/* Large view and under */
+@media screen and (max-width: $screen-lg-max) {
+	@import "views/screen-lg-max";
+}
+
+/* Extra-small view and over */
+@media screen and (min-width: $screen-xs-min) {
+	@import "views/screen-xs-min";
+}
+
+/* Small view and over */
+@media screen and (min-width: $screen-sm-min) {
+	@import "views/screen-sm-min";
+}
+
+/* Medium view and over */
+@media screen and (min-width: $screen-md-min) {
+	@import "views/screen-md-min";
+	@import "banner/screen-md-min";
+}
+
+/* Large view and over */
+@media screen and (min-width: $screen-lg-min) {
+	@import "views/screen-lg-min";
+}
+
+/* Extra-extra-small view */
+@media screen and (max-width: $screen-xxs-max) {
+	@import "views/screen-xxs-max";
+}
+
+/* Extra-small view */
+@media screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+	@import "views/screen-xs-min-to-screen-xs-max";
+}
+
+/* Small view */
+@media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+	@import "views/screen-sm-min-to-screen-sm-max";
+	@import "search/screen-sm-min-to-screen-sm-max";
+}
+
+/* Medium view */
+@media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+	@import "views/screen-md-min-to-screen-md-max";
+}
+
+/* Large view */
+@media screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+	@import "views/screen-lg-min-to-screen-lg-max";
+}
+
+/* Extra-large view */
+@media screen and (min-width: $screen-xl-min) {
+	@import "views/screen-xl-min";
+}
+
+/* Print view */
+@media print {
+	@import "views/print";
+	@import "banner/print";
+	@import "footer/print";
+	@import "menu/print";
+	@import "search/print";
+	@import "secondary-menu/print";
+}

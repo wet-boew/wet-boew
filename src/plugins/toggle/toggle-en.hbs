@@ -1,0 +1,524 @@
+---
+{
+	"title": "Toggle",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Allows a link to toggle elements between on and off states.",
+	"tag": "toggle",
+	"parentdir": "toggle",
+	"altLangPrefix": "toggle",
+	"css": ["demo/toggle"],
+	"dateModified": "2015-04-22"
+}
+---
+<section>
+	<h2>Purpose</h2>
+	<p>Create an element that toggles elements between on and off states.</p>
+</section>
+
+<div class="row">
+
+	<div class="col-md-3">
+		<div class="list-group">
+			<a href="#setup" class="list-group-item">Plugin Setup</a>
+			<a href="#simple" class="list-group-item">Simple Example</a>
+			<a href="#details" class="list-group-item">Details Elements</a>
+			<a href="#grouped" class="list-group-item">Grouped Toggle</a>
+			<a href="#accordion" class="list-group-item">Accordion</a>
+			<a href="#persist" class="list-group-item">Persist Toggle State</a>
+		</div>
+	</div>
+
+	<div class="col-md-9">
+
+		<section>
+			<h2 id="setup" class="mrgn-tp-0">Plugin Setup</h2>
+			<p>Adding the <code>.wb-toggle</code> CSS class to any element will turn it into a toggle element. The behaviour of this toggle element is then controlled by the <code>data-toggle</code> attribute which takes a JavaScript object of properties:</p>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Property</th>
+						<th>Purpose</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>selector</code></td>
+						<td>CSS selector that specifies the elements the toggle element controls. If no CSS selector is supplied, the toggle element controls itself.</td>
+					</tr>
+					<tr>
+						<td><code>parent</code></td>
+						<td>CSS selector that causes the toggle element to only control elements within a given parent element.</td>
+					</tr>
+					<tr>
+						<td><code>group</code></td>
+						<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
+					</tr>
+					<tr>
+						<td><code>persist</code></td>
+						<td>
+							Causes a toggle element to remember its current state and re-apply it when the page reloads. Supports the following values:
+							<ul>
+								<li><strong>session:</strong> toggle state will persist until the user closes their browser window or tab.</li>
+								<li><strong>local:</strong> toggle state will persist even after the browser window or tab is closed.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>print</code></td>
+						<td>
+							Causes a toggle element to turn the elements it controls on or off when the page is printed. Supports the following values:
+							<ul>
+								<li><strong>on:</strong> elements will be set to "on" toggle state for printing.</li>
+								<li><strong>off:</strong> elements will be set to "off" toggle state for printing.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>type</code></td>
+						<td>
+							Causes a toggle element to only turn the elements it controls on or off. Supports the following values:
+							<ul>
+								<li><strong>on:</strong> toggle element will only turn elements to the "on" toggle state.</li>
+								<li><strong>off:</strong> toggle element will only turn elements to the "off" toggle state.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>state</code> (v4.0.11+)</td>
+						<td>
+							Sets the initial state of a toggle element. Supports the following values:
+							<ul>
+								<li><strong>off (default):</strong> Toggle element initial state is "off"</li>
+								<li><strong>on:</strong> Toggle element initial state is "on"</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>stateOn</code></td>
+						<td>CSS class that's added to elements when they are toggled on. Defaults to "on".</td>
+					</tr>
+					<tr>
+						<td><code>stateOff</code></td>
+						<td>CSS class that's added to elements when they are toggled off. Defaults to "off".</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>For example, the following element will always toggle on elements with the <code>.foo</code> CSS class that are contained in a parent with the <code>.bar</code> CSS class. In addition, the elements it controls will be toggled on when the page is printed.</p>
+
+			<pre class="lang-css"><code>&lt;button type="button" class="wb-toggle" data-toggle='{"type": "on", "selector": ".foo", "parent": ".bar", "print": "on"}'&gt;Turn on&lt;/button&gt;</code></pre>
+		</section>
+
+		<section class="wb-prettify all-pre linenums">
+			<h2 id="simple">Simple Example</h2>
+			<p>This simple example shows:</p>
+			<ul>
+				<li>a group of buttons that control the toggle state of multiple elements, and</li>
+				<li>a single element that controls its own toggle state (the last box).</li>
+			</ul>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": ".box"}'>Toggle</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".box", "type": "on"}'>On</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".box", "type": "off"}'>Off</button>
+			</div>
+
+			<div class="mrgn-tp-lg mrgn-bttm-lg">
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box wb-toggle"></span>
+			</div>
+
+		</section>
+
+		<section id="details-elements">
+			<h2 id="details">Details Elements</h2>
+			<p>The toggle plugin can be used to open/close multiple <code>&lt;details&gt;</code> elements. By adding the <code>"print": "on"</code> setting to the first toggle element, the plugin will also open all details elements when the page is printed.</p>
+			<p><b>Note: </b> this example uses the <code>parent</code> configuration option to restrict the toggle of details elements to those that are contained in a specified parent element (<code>#details-element</code>). By doing this, the grouped toggle and accordion examples below aren't affected by the toggle.</p>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "print": "on"}'>Toggle</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "on"}'>On</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "off"}'>Off</button>
+			</div>
+
+			<div class="row">
+				<details class="col-sm-4">
+					<summary>Example 1</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Cups</th>
+								<th scope="col">Type of Coffee</th>
+								<th scope="col">Sugar?</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
+				<details class="col-sm-4">
+					<summary>Example 2</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
+				<details class="col-sm-4">
+					<summary>Example 3</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+			</div>
+
+		</section>
+
+		<section>
+			<h2 id="grouped">Grouped Toggle</h2>
+			<p>This parameter restricts grouped toggles to only have one of the elements active at a time much like the grouped checkbox behaviour.</p>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle1", "group": ".grouped", "type": "on"}'>Example 1</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle2", "group": ".grouped", "type": "on"}'>Example 2</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle3", "group": ".grouped", "type": "on"}'>Example 3</button>
+			</div>
+
+			<div class="row">
+				<details id="toggle1" class="col-sm-4 grouped">
+					<summary>Example 1</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Cups</th>
+								<th scope="col">Type of Coffee</th>
+								<th scope="col">Sugar?</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
+				<details id="toggle2" class="col-sm-4 grouped">
+					<summary>Example 2</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
+				<details id="toggle3" class="col-sm-4 grouped">
+					<summary>Example 3</summary>
+					<p>Example content that provides more details.</p>
+					<table>
+						<caption>Cups of coffee consumed by each delegate</caption>
+						<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>T. Sexton</td>
+								<td>10</td>
+								<td>Espresso</td>
+								<td>No</td>
+							</tr>
+							<tr>
+								<td>J. Dinnen</td>
+								<td>5</td>
+								<td>Decaf</td>
+								<td>Yes</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+			</div>
+
+		</section>
+
+		<section>
+			<h2 id="accordion">Accordion</h2>
+			<p>The group toggle feature of the plugin can also be used to create an accordion.</p>
+
+			<h3>Example</h3>
+			<div class="accordion">
+
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 1</summary>
+					<div class="tgl-panel">
+						<p>Example content that provides more details.</p>
+						<table>
+							<caption>Cups of coffee consumed by each delegate</caption>
+							<thead>
+								<tr>
+									<th scope="col">Name</th>
+									<th scope="col">Cups</th>
+									<th scope="col">Type of Coffee</th>
+									<th scope="col">Sugar?</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>T. Sexton</td>
+									<td>10</td>
+									<td>Espresso</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>J. Dinnen</td>
+									<td>5</td>
+									<td>Decaf</td>
+									<td>Yes</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</details>
+
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 2</summary>
+					<div class="tgl-panel">
+						<p>Example content that provides more details.</p>
+						<table>
+							<caption>Cups of coffee consumed by each delegate</caption>
+							<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Cups</th>
+								<th scope="col">Type of Coffee</th>
+								<th scope="col">Sugar?</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>T. Sexton</td>
+									<td>10</td>
+									<td>Espresso</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>J. Dinnen</td>
+									<td>5</td>
+									<td>Decaf</td>
+									<td>Yes</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</details>
+
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 3</summary>
+					<div class="tgl-panel">
+						<p>Example content that provides more details.</p>
+						<table>
+							<caption>Cups of coffee consumed by each delegate</caption>
+							<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Cups</th>
+								<th scope="col">Type of Coffee</th>
+								<th scope="col">Sugar?</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>T. Sexton</td>
+									<td>10</td>
+									<td>Espresso</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>J. Dinnen</td>
+									<td>5</td>
+									<td>Decaf</td>
+									<td>Yes</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</details>
+
+			</div>
+
+			<h3>Setup</h3>
+			<ul>
+				<li>Wrap all sections of the accordion in parent element with a unique CSS class or ID. <code>&lt;div class="accordion"&gt;</code></li>
+				<li>For each accordion section:
+					<ul>
+						<li>Add the <code>.wb-toggle</code> class and <code>data-toggle</code> attribute to the element the user will click to open/close the section.</li>
+						<li>Add the <code>.tgl-tab</code> class to the element that shows the section's heading.</li>
+						<li>Wrap the content in a <code>&lt;div class="tgl-panel"&gt;</code> element.</li>
+					</ul>
+				</li>
+			</ul>
+
+			<p>If you're using details elements for the accordion sections, the HTML should look like the following once you're finished:</p>
+
+<pre class="lang-html"><code>&lt;div class="accordion"&gt;
+
+	&lt;!-- Accordion section 1 --&gt;
+	&lt;details class="acc-group"&gt;
+		&lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 1's heading&lt;/summary&gt;
+		&lt;div class="tgl-panel"&gt;
+			&lt;!-- Section 1's content --&gt;
+		&lt;/div&gt;
+	&lt;/details&gt;
+
+	&lt;!-- Accordion section 2 --&gt;
+	&lt;details class="acc-group"&gt;
+		&lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 2's heading&lt;/summary&gt;
+		&lt;div class="tgl-panel"&gt;
+			&lt;!-- Section 2's content --&gt;
+		&lt;/div&gt;
+	&lt;/details&gt;
+
+&lt;/div&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h2 id="persist">Persist Toggle State</h2>
+			<p>The following <code>details</code> element will remember its toggle state as long as this browser window (or tab) remains open.</p>
+			<details>
+				<summary class="wb-toggle" data-toggle='{"persist": "session"}'>Example 1</summary>
+				<p>Example content that provides more details.</p>
+				<table>
+					<caption>Cups of coffee consumed by each delegate</caption>
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Espresso</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Decaf</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+
+		</section>
+	</div>
+</div>

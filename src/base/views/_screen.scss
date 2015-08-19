@@ -1,0 +1,52 @@
+/*
+  WET-BOEW
+  @title: All screen views
+ */
+%display-none-important {
+	display: none !important;
+}
+
+/* Hide MathML check */
+.mathml,
+.no-mathml {
+	body {
+		> {
+			div {
+				> {
+					math {
+						@extend %display-none-important;
+					}
+				}
+			}
+		}
+	}
+}
+
+#wb-dtmd {
+	margin: 2em 0 0;
+
+	dt,
+	dd {
+		display: inline;
+		font-weight: normal;
+		margin-right: 0;
+	}
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.nojs-show {
+	@extend %display-none-important;
+}
+
+.wb-disable {
+	.nojs-show {
+		display: block !important;
+	}
+
+	.nojs-hide {
+		@extend %display-none-important;
+	}
+}

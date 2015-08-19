@@ -1,0 +1,83 @@
+---
+{
+	"title": "Datalist polyfill (auto-complete)",
+	"language": "en",
+	"category": "Polyfills",
+	"description": "Emulates input list attribute and datalist element support for browsers that do not have support. This adds auto-complete functionality to specific input fields by dynamically displaying a list of words that match the datalist.",
+	"tag": "datalist",
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist",
+	"dateModified": "2014-08-06"
+}
+---
+<section>
+	<h2>Purpose</h2>
+	<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+	<form action="#" method="get">
+		<div class="form-group">
+			<label for="city">City</label>
+			<input class="form-control" type="text" id="city" name="city" list="suggestions" />
+		</div>
+		<datalist id="suggestions">
+			<!--[if lte IE 9]><select><![endif]-->
+			<option label="Barrie" value="Barrie"></option>
+			<option label="Calgary" value="Calgary"></option>
+			<option label="Charlottetown" value="Charlottetown"></option>
+			<option label="Chibougamau" value="Chibougamau"></option>
+			<option label="Chilliwack" value="Chilliwack"></option>
+			<option label="Cold Lake" value="Cold Lake"></option>
+			<option label="Dorval" value="Dorval"></option>
+			<option label="Edmonton" value="Edmonton"></option>
+			<option label="Flin Flon" value="Flin Flon"></option>
+			<option label="Hamilton" value="Hamilton"></option>
+			<option label="Iqualuit" value="Iqualuit"></option>
+			<option label="Ottawa" value="Ottawa"></option>
+			<option label="Miramichi" value="Miramichi"></option>
+			<option label="Montreal" value="Montreal"></option>
+			<option label="Red Deer" value="Red Deer"></option>
+			<option label="St. John" value="St. John"></option>
+			<option label="St. John's" value="St. John's"></option>
+			<option label="Toronto" value="Toronto"></option>
+			<option label="Vancouver" value="Vancouver"></option>
+			<option label="Whitehorse" value="Whitehorse"></option>
+			<option label="Winnipeg" value="Winnipeg"></option>
+			<option label="Yellowknife" value="Yellowknife"></option>
+			<!--[if lte IE 9]></select><![endif]-->
+		</datalist>
+	</form>
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify prettyprint linenums"><code>&lt;label for="city"&gt;City&lt;/label&gt;
+&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id="suggestions"&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
+	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
+	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
+	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
+	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
+	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
+	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
+	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
+	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
+	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
+	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
+	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
+	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
+	&lt;option label="Montreal" value="Montreal"&gt;&lt;/option&gt;
+	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
+	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
+	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
+	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
+	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
+	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
+	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
+	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+&lt;/datalist&gt;</code></pre>
+	</details>
+</section>

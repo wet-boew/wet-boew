@@ -1,0 +1,19 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+*/
+%geomap-print-visibility-hidden {
+	visibility: hidden;
+}
+
+.wb-geomap-detail {
+	@extend %geomap-print-visibility-hidden;
+}
+
+.olControlMousePosition {
+	@extend %geomap-print-visibility-hidden;
+}
+
+.olControlPanZoomBar {
+	@extend %geomap-print-visibility-hidden;
+}

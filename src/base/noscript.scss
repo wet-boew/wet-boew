@@ -1,0 +1,35 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+@import "../variables";
+
+%noscript-display-block-important {
+	display: block !important;
+}
+
+/*
+ Plugins
+ */
+@import "../plugins/tabs/noscript";
+@import "../plugins/menu/noscript";
+@import "../plugins/overlay/noscript";
+@import "../plugins/lightbox/noscript";
+
+/*
+ Polyfills
+ */
+@import "../polyfills/details/noscript";
+@import "../polyfills/datepicker/noscript";
+
+#wb-dtmd {
+	float: none !important;
+}
+
+.nojs-show {
+	display: block !important;
+}
+
+.nojs-hide {
+	display: none !important;
+}

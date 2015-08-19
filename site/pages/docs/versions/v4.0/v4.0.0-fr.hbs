@@ -1,0 +1,169 @@
+---
+{
+	"title": "v4.0.0 - Notes d'utilisation",
+	"language": "fr",
+	"description": "v4.0.0 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+	"altLangPrefix": "v4.0.0",
+	"dateModified": "2014-03-31"
+}
+---
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2014-03-31</time></li>
+	<li><a href="../dwnld-fr.html#v400">Téléchargements</a></li>
+</ul>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+	<div lang="en">
+	<p><strong>Needs translation</strong></p>
+	<ul>
+		<li>Buttons: Changed button borders to give them more depth</li>
+		<li>Calendar of Events: Removed role='application'</li>
+		<li>Core: Standardized WET data handling to data-wb-pluginName and global overrides to window[ pluginName ]</li>
+		<li>CSS: Overrode the default width of 100% for form controls and added a class for enabling 100% width</li>
+		<li>CSS: Fixed the sizes and top margins of heading elements</li>
+		<li>CSS: Made footer visible in small view</li>
+		<li>Form validation: Improved compatibility with name attributes containing periods</li>
+		<li>Geomap: Fixed map not loading IE8 </li>
+		<li>Input type='date' polyfill: Made close button label more meaningful</li>
+		<li>Input type='date' polyfill: Changed toggle from button to link to prevent inadvertent triggering of the toggle</li>
+		<li>Input type="date" polyfill: Fixed keyboard focus handling on calendar days</li>
+		<li>Lightbox: Added focus redirection to prevent Jaws from exiting the Lightbox prematurely</li>
+		<li>Markup: Fixed a validation error with favicon references</li>
+		<li>Menu: Removed the box shadow from the sub menus, added wb-navcurr styling and changed the colour of the lines separating menu items</li>
+		<li>Menu: Added support for wb-navcurr highlighting in the mobile panel</li>
+		<li>Menu: Fixed display of non-section links and summary focus in mobile panel</li>
+		<li>Menu: Made mobile panel button look more like a button</li>
+		<li>Menu: Improved support for nested menu items</li>
+		<li>Multimedia player: Added the ability to include the multimedia player in a tab panel</li>
+		<li>Multimedia player: Fixed issue where the multimedia player would not initialize for dynamic elements</li>
+		<li>Overlay: Ensured overlay is scrolled to the top when opened</li>
+		<li>Pagination: Fixed the design of the pagination widget</li>
+		<li>Share widget: Added ability to customize the link CSS and add sites to the panel</li>
+		<li>Tabs: Updated the design of the accordion style in small view and under to better represent the relationship of the elements.</li>
+		<li>Tabs: Fixed carousel-s2 display issue in small and extra-small view</li>
+	</ul>
+	</div>
+</section>
+
+<section>
+	<h2>Détails</h2>
+	<p><strong>Nombre des &#171;&#160;commits&#160;&#187;</strong> 182</p>
+	<ul>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>&#160;: 132 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/thomasgohard">@thomasgohard</a>&#160;: 17 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>&#160;: 15 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/nschonni">@nschonni</a>&#160;: 5 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/m14e">@m14e</a>&#160;: 5 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>&#160;: 4 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/patheard">@berubs</a>&#160;: 2 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/shawnthompson">@shawnthompson</a>&#160;: 1 &#171;&#160;commit&#160;&#187;</li>
+		<li><a href="https://github.com/sviens">@sviens</a>&#160;: 1 &#171;&#160;commit&#160;&#187;</li>
+	</ul>
+	<section>
+		<h3>Liste des &#171;&#160;commits&#160;&#187;</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e1aa14c">Updated build version to v4.0.0-development</a> - Paul Jackson, 2014-03-18 03:33:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a4f8b21">Documentation: Updated v4.0 changelogs with information about v4.0.0-rc1</a> - Paul Jackson, 2014-03-18 03:44:33 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7f8f9f9">Corrected the number of commits in the French v4.0 release notes</a> - Paul Jackson, 2014-03-18 04:03:55 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/90e42fd">Tabs: Fixed z-index issue that created issues between the tablist and nested content in carousel style 2 (fixes #4571)</a> - Paul Jackson, 2014-03-18 11:34:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9d1343e">Added event filtering for tabbed interface</a> - Laurent Goderre, 2014-03-18 13:54:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/329961e">Fixed mutlimedia in tabs by resolving event conflicts Fix #4571</a> - Laurent Goderre, 2014-03-18 14:01:22 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1070333">Chnaged the grunt-html module to point to the npm registry</a> - Laurent Goderre, 2014-03-18 14:08:33 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8826ede">Fixed a bug where only the first player would be enhanced. Bug introduced by 329961e783a8545d1904e8009938089cb6799904 and reported as #4897</a> - Laurent Goderre, 2014-03-18 16:48:49 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/393c9c7">Fixed the multimedia not initalizing for dynamic elements</a> - Laurent Goderre, 2014-03-18 17:20:28 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7906f44">Tabs: Fixed tablist overlapping issues for carousel style 2 in small view.</a> - Paul Jackson, 2014-03-19 10:37:45 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2f7223d">Build: Fixed injecting of charset and terms and conditions into wet-boew.css and ie8-wet-boew.css</a> - Paul Jackson, 2014-03-19 11:28:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7710a70">Documentation: Fixed and removed a few broken links.</a> - Eric Dunsworth, 2014-03-19 14:16:57 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d02749a">Details polyfill: Restored original hover state</a> - Paul Jackson, 2014-03-19 14:52:18 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c35df87">Removed usage of inline alerts (fixes #4908)</a> - Paul Jackson, 2014-03-19 15:05:58 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f54717d">Tabs: Removed blue colour from item x of n in carousel style 2 small view (fixes #4920)</a> - Paul Jackson, 2014-03-19 15:29:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/72e6afd">Calendar of Events: Removed role='application' (fixes #4821)</a> - Paul Jackson, 2014-03-19 23:18:22 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e4a6305">WET theme: Removed box shadow from site menu sub-menu (fixes #4918)</a> - Paul Jackson, 2014-03-19 23:34:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f15499b">WET theme: Changed lines separating menu bar links to grey (fixes #4919)</a> - Paul Jackson, 2014-03-20 00:46:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/95ed6ba">WET theme: Fixed line separators for active menu link</a> - Paul Jackson, 2014-03-20 01:49:13 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3fa399e">Tabs: Fixed carousel next and previous buttons (fixes #4898)</a> - Paul Jackson, 2014-03-20 03:21:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8b3a473">Feeds: Removed extra div from demos and documentation</a> - Paul Jackson, 2014-03-20 10:22:55 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/88baf5f">Input type='date' polyfill: Made close button label more meaningfull (fixes #4821)</a> - Paul Jackson, 2014-03-20 11:34:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ac81434">Date picker: Changed focus behaviour on toggle</a> - Stephane Berube, 2014-03-20 12:26:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a36ef2">Input type='date' polyfill: Changed toggle from button to link to prevent inadvertent triggering of the toggle (fixes #4942)</a> - Paul Jackson, 2014-03-20 12:26:30 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/445e7bf">Form validation: Added additional help for the email address and digit fields (fixes #4939)</a> - Paul Jackson, 2014-03-20 12:37:35 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/65f2b8e">Menu: Added support for wb-navcurr highlighting in the mobile panel (fixes #4916)</a> - Paul Jackson, 2014-03-20 15:21:38 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7168584">Details/summary polyfill: Improved compatibility with the mobile panel</a> - Paul Jackson, 2014-03-20 15:29:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7d849d0">[CSS] Cleaned up Bootstrap overrides.</a> - Thomas Gohard, 2014-03-20 17:05:31 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2297840">Overlay: Use hexadecimal character reference</a> - m14e, 2014-03-20 17:38:01 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e67ac16">Multimedia plugin: Remove duplicate code</a> - m14e, 2014-03-20 19:25:22 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b7cfd83">Menu: Fixed display of non-section links and summary focus in mobile panel</a> - Paul Jackson, 2014-03-20 22:51:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9f75540">Input type='date' polyfill: Changed character used for datepicker close button (related to #4958)</a> - Paul Jackson, 2014-03-21 00:01:00 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/55c6f4d">Overlay: Ensured overlay is scrolled to the top when opened (fixes #4953)</a> - Paul Jackson, 2014-03-21 02:23:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3109d53">[CSS] Changed the brand colours.</a> - Thomas Gohard, 2014-03-21 16:11:15 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/039ac64">Documentation - zebra plugin - fix dollar signs in English version</a> - m14e, 2014-03-23 11:53:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b2c8a5a">Documentation: Fixed a few broken links.</a> - Eric Dunsworth, 2014-03-23 13:43:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f3342c4">Documentation: zebra plugin - add space before percent sign - French version</a> - m14e, 2014-03-23 16:39:13 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a9f774f">Remove non-breaking space</a> - m14e, 2014-03-23 17:06:56 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4262f27">Share widget: Added the ability to customize the link CSS (fixes #4976)</a> - Paul Jackson, 2014-03-24 12:21:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dd58d94">[CSS] Optimised colour overrides.</a> - Thomas Gohard, 2014-03-24 13:24:28 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d6d3411">WET theme: Added wb-navcurr styling to mega menu (fixes #4916)</a> - Paul Jackson, 2014-03-24 15:08:58 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/518eef9">[CSS] Overrode the default width of 100% for form controls.</a> - Thomas Gohard, 2014-03-24 15:20:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bed4dbe">WET theme: Normalized wb-navcurr and hover colours in mega menu</a> - Paul Jackson, 2014-03-24 16:33:04 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bbdfe40">Menu: Add example of 'More' link to section 2 example menu (fixes #4807)</a> - Paul Jackson, 2014-03-24 23:10:30 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6985801">WET theme: Fixed validation error with favicon reference (fixes #4987)</a> - Paul Jackson, 2014-03-25 10:18:05 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/472129d">Transitions: Added transitions plugin base</a> - sviens, 2014-03-25 12:07:01 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b1a8a0f">[CSS] Implemented the 'default' button style using the same method as the other buttons.</a> - Thomas Gohard, 2014-03-25 14:04:07 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/551bd74">Optimized the i18n hanldebars markup</a> - Laurent Goderre, 2014-03-25 16:38:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cb9961f">WET theme: Made footer visible in small view (fixes #4867)</a> - Paul Jackson, 2014-03-26 01:12:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5e90ddc">WET theme: Added wb-navcurr trigger to the footer</a> - Paul Jackson, 2014-03-26 02:00:38 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d2d4aba">WET theme: Fixed footer padding and wrapping issues</a> - Paul Jackson, 2014-03-26 04:16:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/654e5f2">WET theme: Fixed wrapping issue in the footer</a> - Paul Jackson, 2014-03-26 05:13:46 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/50327b8">Added logic to allow more than one custom stylehseet or script</a> - Laurent Goderre, 2014-03-26 10:06:35 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4c5d93e">[CSS] Added arrows to previous and next buttons of the pagination widget.</a> - Thomas Gohard, 2014-03-26 11:42:48 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3481daf">[CSS] Increased the size of the buttons for the pagination widget.</a> - Thomas Gohard, 2014-03-26 11:53:58 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0e7e950">[CSS] Applied the colour scheme of the default button style to the pagination widget.</a> - Thomas Gohard, 2014-03-26 12:16:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/350fcee">Fixed links to minified custom stylesheet</a> - Laurent Goderre, 2014-03-26 12:29:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7032572">WET theme: Made mobile panel button look more like a button (fixes 4865)</a> - Paul Jackson, 2014-03-26 13:17:38 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/da8f96d">CSS: Added lst-spcd class for custom list spacing (fixes wet-boew/wet-boew-styleguide#87)</a> - Paul Jackson, 2014-03-26 15:00:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/48c1173">Fixed the escaped space in the date modified</a> - Laurent Goderre, 2014-03-26 15:03:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6d475c5">Fixed another esacped string</a> - Laurent Goderre, 2014-03-26 16:37:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f7fc401">Prevent i18n strings from being escaped.</a> - Laurent Goderre, 2014-03-27 09:45:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/92b41e2">Input type="date" polyfill: allow focus on 1st selectable day</a> - Stephane Berube, 2014-03-27 15:12:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b585872">[CSS] Updated the pager style to match that of the pagination.</a> - Thomas Gohard, 2014-03-27 16:56:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1a58651">Core: Standardized WET data to data-wb-pluginName and global overrides to window[ pluginName ]</a> - Paul Jackson, 2014-03-27 21:47:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3ac8438">i18n: Fix ignore to capture folder</a> - Nick Schonning, 2014-03-28 00:24:43 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e4d9167">Bower: Convert to spaces</a> - Nick Schonning, 2014-03-28 00:36:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d9a57bd">Fixed demo CSS and JS file references</a> - Paul Jackson, 2014-03-28 00:38:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5404e36">Form validation: Added information about global overrides to the documentation.</a> - Paul Jackson, 2014-03-28 00:43:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7e8a33d">Share widget: Added examples of how to add a site (fixes #4729 and #4742)</a> - Paul Jackson, 2014-03-28 00:55:10 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/48be05c">CSS: Changed mrgn-*-lg from 25px to 30px (fixes #5034)</a> - Paul Jackson, 2014-03-28 00:58:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/61ab7ea">Build: Use bower jquery to populate CDN version</a> - Nick Schonning, 2014-03-28 01:05:06 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0c4cfa6">Splash Page: Remove old reference to test partial</a> - Nick Schonning, 2014-03-28 01:06:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5c63ccc">Build: Remove Bower interactive hack</a> - Nick Schonning, 2014-03-28 01:17:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2466273">Documentation: Updated documentation for the v3.0.14 and v3.1.9 maintenance releases</a> - Paul Jackson, 2014-03-28 11:52:15 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/33c2fc5">added space to definition list items</a> - Shawn Thompson, 2014-03-28 15:31:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8ea60a6">Replaced data-wet-boew with data-wb-tables on working examples table</a> - Paul Jackson, 2014-03-28 15:35:55 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/73cdf82">Tabs: Replaced play button i element with span</a> - Paul Jackson, 2014-03-28 15:43:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/88b5c08">Tabs: Changed reference to i element to span</a> - Paul Jackson, 2014-03-28 16:11:40 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/48a7d02">[CSS] Updated the design of the accordion to better represent the relationship of the elements.</a> - Thomas Gohard, 2014-03-28 16:37:58 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0ccfa9a">Form validation: Improved compatibility with name attributes containing periods (fixes #5018)</a> - Paul Jackson, 2014-03-28 21:45:44 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f3117a0">Menu: Fixed working example</a> - Paul Jackson, 2014-03-28 22:39:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/04ac057">Input type='date' polyfill: Cached the i18n space lookup</a> - Paul Jackson, 2014-03-28 23:33:46 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8ed92eb">Menu: Improved support for nested menu items (#5029)</a> - Paul Jackson, 2014-03-29 04:51:19 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dfd3374">Menu: Improved support for nested content</a> - Paul Jackson, 2014-03-30 00:46:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/22f7540">Lightbox: Added focus redirection to prevent Jaws from exiting the Lightbox prematurely (fixes #5009)</a> - Paul Jackson, 2014-03-30 01:24:30 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a824b99">Geomap: Added es5-shim to address IE8 support issues (#4998)</a> - Paul Jackson, 2014-03-30 02:35:36 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/15d3837">Tabs: Fixed carousel-s2 display issue in xxSmallView</a> - Paul Jackson, 2014-03-30 03:01:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bdcda97">Geomap: Corrected incorrect es5-shim dependency path</a> - Paul Jackson, 2014-03-30 04:55:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/97d1661">[CSS] Updated the overrides for the visited link color.</a> - Thomas Gohard, 2014-03-30 09:17:12 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/28b60f0">[CSS] Moved the font scaling ratios to variables so that they can be reused to scale other things.</a> - Thomas Gohard, 2014-03-30 09:30:55 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/40cc36a">[CSS] Scaled the top margins for the headings using the font scale ratios.</a> - Thomas Gohard, 2014-03-30 09:32:35 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6266ffa">[CSS] Add a class to set elements to the full width of their container.</a> - Thomas Gohard, 2014-03-30 13:43:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4ddce74">[CSS] Increased border darken to 20% for buttons.</a> - Thomas Gohard, 2014-03-30 16:24:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c5a0023">[CSS] Set button borders to 'outset' to give them more depth.</a> - Thomas Gohard, 2014-03-30 16:24:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/26f4b9d">[CSS] Removed the outset border for disabled buttons.</a> - Thomas Gohard, 2014-03-30 16:24:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ebc7547">Geomap: Fixed issue in IE8 with thead manipulation (fixes #4998)</a> - Paul Jackson, 2014-03-30 22:22:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0eae1b39">Transitions: Fixed broken links via adding placeholder documentation pages.</a> - Eric Dunsworth, 2014-03-31 01:12:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/55c610e">Footnotes: Removed filler content from English documentation.</a> - Eric Dunsworth, 2014-03-31 01:18:52 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9058dfb">Lightbox: Added the Lightbox documentation</a> - Paul Jackson, 2014-03-31 02:14:12 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/81dd222">Documentation: Added partial documentation for several plugins</a> - Paul Jackson, 2014-03-31 02:17:01 -0400</li>
+		</ul>
+	</section>
+</section>

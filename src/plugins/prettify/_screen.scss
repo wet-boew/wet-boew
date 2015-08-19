@@ -1,0 +1,85 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/* Pretty printing styles. Used with prettify.js. */
+%prettify-screen-color-606 {
+	color: #606;
+}
+
+%prettify-screen-color-660 {
+	color: #660;
+}
+
+%prettify-screen-color-2f6d2f {
+	color: #2f6d2f;
+}
+
+/* string content - from #080 */
+.str {
+	@extend %prettify-screen-color-2f6d2f;
+}
+
+/* a keyword - from #008 */
+.kwd {
+	color: #024b6e;
+}
+
+/* a comment */
+.com {
+	color: #800;
+}
+
+/* a type name */
+.typ {
+	@extend %prettify-screen-color-606;
+}
+
+/* a literal value */
+.lit {
+	color: #066;
+}
+
+/* punctuation, lisp open bracket, lisp close bracket */
+.pun {
+	@extend %prettify-screen-color-660;
+}
+
+.opn {
+	@extend %prettify-screen-color-660;
+}
+
+.clo {
+	@extend %prettify-screen-color-660;
+}
+
+/* a markup tag name - from #008 */
+.tag {
+	color: #125b7e;
+}
+
+/* a markup attribute name */
+.atn {
+	@extend %prettify-screen-color-606;
+}
+
+/* a markup attribute value - from #080 */
+.atv {
+	@extend %prettify-screen-color-2f6d2f;
+}
+
+/* a declaration */
+.dec {
+	@extend %prettify-screen-color-606;
+}
+
+/* a variable name */
+.var {
+	@extend %prettify-screen-color-606;
+}
+
+/* a function name */
+.fun {
+	color: #f00;
+}

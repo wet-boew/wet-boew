@@ -1,0 +1,48 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/* Pretty printing styles. Used with prettify.js. */
+
+/* SPAN elements with the classes below are added by prettyprint. */
+
+/* plain text */
+.pln {
+	color: #000;
+}
+
+pre {
+	&.prettyprint {
+		background-color: #f5f5f5;
+		border: 1px solid #ddd;
+		color: #707070;
+		font-size: 95%;
+		padding: 8px;
+
+		/* Specify class=linenums on a pre to get line numbering */
+		&.linenums {
+			box-shadow: 40px 0 0 #fbfbfc inset, 41px 0 0 #eee inset;
+		}
+	}
+}
+
+ol {
+	&.linenums {
+		margin: 0 !important;
+
+		li {
+			padding-left: 10px;
+			text-shadow: 0 1px 0 #fff;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	pre {
+		&.prettyprint {
+			direction: ltr;
+		}
+	}
+}

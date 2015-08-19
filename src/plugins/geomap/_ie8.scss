@@ -1,0 +1,20 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+*/
+@import "sprites/sprites_geomap";
+
+.lt-ie9 {
+	.olControlZoom {
+		a {
+			&:hover,
+			&:focus {
+				background: #130085;
+			}
+		}
+	}
+
+	.olButtonGeolocateItemInactive {
+		@extend %locate;
+	}
+}

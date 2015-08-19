@@ -1,0 +1,121 @@
+---
+{
+	"title": "Datalist polyfill (auto-complete) - Dynamic",
+	"language": "en",
+	"category": "Polyfills",
+	"description": "Demonstrates how to dynamically update the contents of the datalist element, based upon user input. Particularly useful where there are a large number of auto-complete suggestions.",
+	"tag": "datalist",
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist-dynamic",
+	"js": ["demo/datalist_dynamic"],
+	"dateModified": "2014-07-20"
+}
+---
+<section>
+	<h2>Purpose</h2>
+	<p>Demonstrates how to dynamically update the contents of the datalist element, based upon user input. Particularly useful where there are a large number of auto-complete suggestions.</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+	<form action="#" method="get">
+		<fieldset>
+			<legend>Select an issues</legend>
+			<div class="form-group">
+				<label for="plugin">Plugin</label>
+				<select class="form-control" id="plugin" name="plugin">
+					<option label="Select a plugin"> </option>
+					<option value="Multimedia player">Multimedia Player</option>
+					<option value="Lightbox">Lightbox</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="issue">Issue</label>
+				<input class="form-control" type="text" id="issue" name="issue" list="issues" />
+			</div>
+			<datalist id="issues">
+				<!--[if lte IE 9]><select><![endif]-->
+				<!--[if lte IE 9]></select><![endif]-->
+			</datalist>
+		</fieldset>
+	</form>
+
+	<details>
+		<summary>View code</summary>
+		<section>
+			<h3>HTML</h3>
+			<pre><code>&lt;form action=&quot;#&quot; method=&quot;get&quot;&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;Select an issues&lt;/legend&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;label for=&quot;plugin&quot;&gt;Plugin&lt;/label&gt;
+			&lt;select class=&quot;form-control&quot; id=&quot;plugin&quot; name=&quot;plugin&quot;&gt;
+				&lt;option label=&quot;Select a plugin&quot;&gt; &lt;/option&gt;
+				&lt;option value=&quot;Multimedia player&quot;&gt;Multimedia Player&lt;/option&gt;
+				&lt;option value=&quot;Lightbox&quot;&gt;Lightbox&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;label for=&quot;issue&quot;&gt;Issue&lt;/label&gt;
+			&lt;input class=&quot;form-control&quot; type=&quot;text&quot; id=&quot;issue&quot; name=&quot;issue&quot; list=&quot;issues&quot; /&gt;
+		&lt;/div&gt;
+		&lt;datalist id=&quot;issues&quot;&gt;
+			&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+			&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+		&lt;/datalist&gt;
+	&lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>JavaScript</h3>
+			<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+var $document = wb.doc,
+	pluginSelector = &quot;#plugin&quot;,
+	issueInput = $( &quot;#issue&quot; );
+
+$document.on( &quot;change&quot;, pluginSelector, function( event ) {
+	var pluginName = event.target.value;
+
+	$( this ).trigger({
+		type: &quot;ajax-fetch.wb&quot;,
+		fetch: {
+			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: &quot; + pluginName ),
+			dataType: wb.ielt10 ? &quot;jsonp&quot; : &quot;json&quot;,
+			jsonp: wb.ielt10 ? &quot;callback&quot; : null
+		}
+	});
+
+	issueInput.get( 0 ).value = &quot;&quot;;
+});
+
+$document.on( &quot;ajax-fetched.wb&quot;, pluginSelector, function( event ) {
+	var dataList = $( &quot;#&quot; + issueInput.attr( &quot;list&quot; ) ),
+		issues = wb.ielt10 ? event.fetch.response.data : event.fetch.response,
+		lenIssues = issues.length,
+		options = &quot;&quot;,
+		indIssue, issue;
+
+	dataList.empty();
+
+	for ( indIssue = 0; indIssue !== lenIssues; indIssue += 1 ) {
+		issue = issues[ indIssue ];
+
+		options += &quot;&lt;option label=\&quot;&quot; + issue.title + &quot;\&quot; value=\&quot;&quot; + issue.title + &quot;\&quot;&gt;&lt;/option&gt;&quot;;
+	}
+
+	if ( wb.ielt10 ) {
+		options = &quot;&lt;select&gt;&quot; + options + &quot;&lt;/select&gt;&quot;;
+	}
+
+	dataList.append( options );
+
+	issueInput.trigger( &quot;wb-update.wb-datalist&quot; );
+});
+
+})( jQuery, wb );</code></pre>
+		</section>
+	</details>
+</section>

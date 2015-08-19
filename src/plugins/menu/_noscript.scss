@@ -1,0 +1,31 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*
+ * Menu Sass (noscript)
+ */
+#wb-glb-mn {
+	display: none !important;
+}
+
+#wb-srch {
+	@extend %noscript-display-block-important;
+}
+
+#wb-sm {
+	@extend %noscript-display-block-important;
+
+	.nvbar {
+		@extend %noscript-display-block-important;
+	}
+}
+
+#wb-sec {
+	@extend %noscript-display-block-important;
+}
+
+#wb-info {
+	@extend %menu-noscript-display-block-important;
+}

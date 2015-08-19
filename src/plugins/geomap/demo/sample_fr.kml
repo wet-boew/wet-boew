@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gml="http://www.opengis.net/gml"
+     xmlns:georss="http://www.georss.org/georss">
+   <Document>
+      <name>GeoGratis</name>
+      <open>1</open>
+      <description>Sélection des produits</description>
+      <Style id="poly">
+         <LineStyle>
+            <color>ffff0000</color>
+            <width>1.5</width>
+         </LineStyle>
+         <PolyStyle>
+            <color>80ff0000</color>
+         </PolyStyle>
+      </Style>
+      <StyleMap id="poly0">
+         <Pair>
+            <key>normal</key>
+            <styleUrl>#poly1</styleUrl>
+         </Pair>
+         <Pair>
+            <key>highlight</key>
+            <styleUrl>#poly</styleUrl>
+         </Pair>
+      </StyleMap>
+      <Style id="poly1">
+         <LineStyle>
+            <color>ff0080ff</color>
+            <width>1.5</width>
+         </LineStyle>
+         <PolyStyle>
+            <color>800080ff</color>
+         </PolyStyle>
+      </Style>      
+      <Placemark>
+         <name>U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut</name>
+         <description><![CDATA[<ul class="list-unstyled">
+		 <li><strong>Date d'ajout&#160;:</strong> 5 septembre, 2012</li>
+		 <li><strong>Auteur&#160;:</strong> Rayner, N M; Sanborn-Barrie, M; Young, M D; Whalen, J B</li>
+		 <li><a href="http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html">Pour plus d'information</a></li>
+         <li><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-fra.gif" alt="Ressources naturelles Canada" /></li>
+		 </ul>]]></description>
+         <styleUrl>#poly0</styleUrl>
+         <Polygon>
+            <outerBoundaryIs>
+               <LinearRing>
+                  <coordinates>-66.5,64.75 -66.5,67.5 -60.5,67.5 -60.5,64.75 -66.5,64.75</coordinates>
+               </LinearRing>
+            </outerBoundaryIs>
+         </Polygon>
+      </Placemark>
+      <Placemark>
+         <name>Série des cartes géophysiques, projet de compilation géophysique détaillée, Plateau du Yukon, Yukon, SNRC 115-I, J, K, N, O, P et 116A et B</name>
+         <description><![CDATA[<ul class="list-unstyled">
+		 <li><strong>Date d'ajout&#160;:</strong> 21 novembre, 2012</li>
+		 <li><strong>Auteur&#160;:</strong> Hayward, N; Miles, W; Oneschuk, D</li>
+		 <li><a href="http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html">Pour plus d'information</a></li>
+         <li><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-fra.gif" alt="Ressources naturelles Canada" /></li>
+		 </ul>]]></description>
+         <styleUrl>#poly0</styleUrl>
+         <Polygon>
+            <outerBoundaryIs>
+               <LinearRing>
+                  <coordinates>-141.0,60.75 -141.0,64.25 -136.5,64.25 -136.5,60.75 -141.0,60.75</coordinates>
+               </LinearRing>
+            </outerBoundaryIs>
+         </Polygon>
+      </Placemark>
+      <Placemark>
+         <name>Configuration of Mike21 for the simulation of nearshore storm waves, currents and sediment transport: Brackley Bight, Prince Edward Island</name>
+         <description><![CDATA[<ul class="list-unstyled">
+		 <li><strong>Date d'ajout&#160;:</strong> 22 novembre, 2012</li>
+		 <li><strong>Auteur&#160;:</strong> Manson, G K</li>
+		 <li><a href="http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html">Pour plus d'information</a></li>
+         <li><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-fra.gif" alt="Ressources naturelles Canada" /></li>
+		 </ul>]]></description>
+         <styleUrl>#poly0</styleUrl>
+         <Polygon>
+            <outerBoundaryIs>
+               <LinearRing>
+                  <coordinates>-63.5,47.3333 -63.5,47.5833 -62.6667,47.5833 -62.6667,47.3333 -63.5,47.3333</coordinates>
+               </LinearRing>
+            </outerBoundaryIs>
+         </Polygon>
+      </Placemark>
+      <Placemark>
+         <name>Dérivée première verticale du champ magnétique, levé aéromagnétique des régions du ruisseau Scroggie et du ruisseau Wolverine, SNRC 115-P/12 et partie de 115-P/11, Yukon</name>
+         <description><![CDATA[<ul class="list-unstyled">
+		 <li><strong>Date d'ajout&#160;:</strong> 20 novembre, 2012</li>
+		 <li><strong>Auteur&#160;:</strong> Kiss, F</li>
+		 <li><a href="http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html">Pour plus d'information</a></li>
+         <li><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-fra.gif" alt="Ressources naturelles Canada" /></li>
+		 </ul>]]></description>
+         <styleUrl>#poly0</styleUrl>
+         <Polygon>
+            <outerBoundaryIs>
+               <LinearRing>
+                  <coordinates>-138.0,63.5 -138.0,63.75 -137.4167,63.75 -137.4167,63.5 -138.0,63.5</coordinates>
+               </LinearRing>
+            </outerBoundaryIs>
+         </Polygon>
+      </Placemark>     
+      <NetworkLink>
+         <name>Prochain</name>
+         <visibility>0</visibility>
+         <open>0</open>
+         <description>Voir d'autres résultats</description>
+         <Link>
+            <href>http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst?start-index=944099&amp;alt=kml</href>
+            <viewRefreshMode>onRequest</viewRefreshMode>
+         </Link>
+      </NetworkLink>
+   </Document>
+</kml>

@@ -1,0 +1,49 @@
+/*
+  WET-BOEW
+  @title: Details/summary CSS
+ */
+
+summary {
+	// Apply a pointer cursor upon hover to indicate it’s a clickable element.
+	// These styles can be applied regardless of whether the fallback is needed
+	cursor: pointer;
+
+	// Add focus styles (for keyboard accessibility)
+	&:hover,
+	&:focus {
+		background: #ddd;
+		color: #000;
+	}
+
+	> {
+
+		// Only apply inline to first child to allow
+		// subsequent elements to use block layouts
+		:first-child {
+			display: inline;
+		}
+	}
+}
+
+details {
+	> {
+		:not(summary) {
+			margin-left: $details-identation;
+		}
+	}
+
+	&[open] {
+		padding-bottom: 1em;
+	}
+}
+
+[dir=rtl] {
+	details {
+		> {
+			:not(summary) {
+				margin-left: 0;
+				margin-right: $details-identation;
+			}
+		}
+	}
+}

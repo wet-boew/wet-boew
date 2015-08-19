@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **/node_modules/
 lib/
 build/
@@ -37,3 +38,9 @@ src/js/dependencies/validate.js
 src/js/dependencies/validateAdditional.js
 src/js/dependencies/xregexp.js
 **/*.min.js
+=======
+src/polyfills/slider/slider.js
+src/polyfills/events/mobile.js
+src/plugins/geomap/data/config-en.js
+src/plugins/geomap/data/config-fr.js
+>>>>>>> wet-boew/master

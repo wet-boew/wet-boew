@@ -1,0 +1,26 @@
+{{#striptags}}{{{title}}}{{/striptags}}
+{{#contains page.src "/demos/index"}}
+{{else}}
+	{{#contains page.src "/docs/"}}
+		{{#contains page.src "/docs/index"}}
+		{{else}}
+			{{#contains page.src "/versions/"}}
+				{{#contains page.src "/index"}}
+				{{else}}
+					{{{i18n "hyphen"}}}{{{i18n "tmpl-version-history"}}}
+				{{/contains}}
+			{{else}}
+				{{#if page.category}}
+					{{{i18n "hyphen"}}}{{page.category}}
+				{{/if}}
+				{{{i18n "hyphen"}}}{{{i18n "tmpl-documentation"}}}
+			{{/contains}}
+		{{/contains}}
+	{{else}}
+		{{#is breadcrumb3 "true"}}
+			{{{i18n "hyphen"}}}{{breadcrumb3-title}}
+		{{/is}}
+		{{{i18n "hyphen"}}}{{{i18n "tmpl-work-examples"}}}
+	{{/contains}}
+{{/contains}}
+{{{i18n "hyphen"}}}{{{i18n "site-title"}}}

@@ -1,0 +1,295 @@
+---
+{
+	"title": "Form validation",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Provides generic validation and error message handling for Web forms.",
+	"altLangPrefix": "formvalid",
+	"dateModified": "2015-07-22"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>This component provides generic validation and error message handling for Web forms.</p>
+</section>
+
+<section>
+	<h2>Use when</h2>
+	<ul>
+		<li>Web forms</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/formvalid/formvalid-en.html">English example</a></li>
+		<li><a href="../../../demos/formvalid/formvalid-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Add <code>class="wb-frmvld"</code> to a <code>div</code> element surrounding the <code>form</code> element
+			<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+	...
+	&lt;/form&gt;</code></pre>
+		</li>
+		<li><strong>Optional:</strong> Wrap each form field name with <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. This specifies the prefix to use for the error message summary.
+			<pre><code>&lt;label for="fname1"&gt;
+	&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong>(required)&lt;/strong&gt;
+&lt;/label&gt;</code></pre>
+		</li>
+		<li>Add <code>required="required"</code> to each mandatory form field
+			<pre><code>&lt;input id="fname1" name="fname1" type="text" required="required" /&gt;</code></pre>
+		</li>
+		<li><strong>Optional:</strong> For input fields, add one of the <a href="#config">configuration options</a> for specialized validation.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="config">Configuration options</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>hdLvl</code></td>
+				<td>Heading level for error summary.</td>
+				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-frmvld</code> attribute or <code>window[ "wb-frmvld" ]</code> where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-frmvld" ] = {"hdLvl": "headingLevel"};</code>.</td>
+				<td>
+					<dl>
+						<dt><code>h2</code> (default):</dt>
+						<dd>Heading level 2</dd>
+						<dt><code>h3</code>:</dt>
+						<dd>Heading level 3</dd>
+						<dt><code>h4</code>:</dt>
+						<dd>Heading level 4</dd>
+						<dt><code>h5</code>:</dt>
+						<dd>Heading level 5</dd>
+						<dt><code>h6</code>:</dt>
+						<dd>Heading level 6</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>ignore</code></td>
+				<td>Selector identifying the fields to ignore.</td>
+				<td>Add <code>"ignore": "selector"</code> to the <code>data-wb-frmvld</code> attribute or <code>window[ "wb-frmvld" ]</code> where <code>selector</code> is a valid jQuery selector. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-frmvld" ] = {"ignore": ".ignore"};</code>.</td>
+				<td>
+					<dl>
+						<dt><code>:hidden</code> (default):</dt>
+						<dd>All hidden fields</dd>
+						<dt><code>.ignore</code>:</dt>
+						<dd>All fields with the <code>ignore</code> class</dd>
+						<dt>Empty string ("")</dt>
+						<dd>None of the fields</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<section>
+		<h3>Specialized validation</h3>
+		<p>Add specialized validation to an input field by applying the following options.</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Validation type</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>data-rule-alphanumeric="true"</code></td>
+					<td>Alphanumeric</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-cifES="true"</code></td>
+					<td>CIF code (Spain)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-creditcard="true"</code></td>
+					<td>Credit card number</td>
+				</tr>
+				<tr>
+					<td><code>type="date"</code></td>
+					<td>Date</td>
+				</tr>
+				<tr>
+					<td><code>type="date" data-rule-dateISO="true"</code></td>
+					<td>Date (ISO)</td>
+				</tr>
+				<tr>
+					<td><code>type="date" data-rule-dateITA="true"</code></td>
+					<td>Date (Italy)</td>
+				</tr>
+				<tr>
+					<td><code>type="number"</code></td>
+					<td>Digits only</td>
+				</tr>
+				<tr>
+					<td><code>type="email"</code></td>
+					<td>Email</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-equalTo="#x"</code></td>
+					<td>Equal to field with id = "x"</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-lettersonly="true"</code></td>
+					<td>Letters only</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-letterswithbasicpunc="true"</code></td>
+					<td>Letters and basic punctuation only (allowed punctuation: [.])</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-maxlength="x"</code></td>
+					<td>Maximum length of x</td>
+				</tr>
+				<tr>
+					<td><code>max="x"</code></td>
+					<td>Maximum number x</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-maxWords="x"</code></td>
+					<td>Maximum of x words</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-minlength="x"</code></td>
+					<td>Minimum length of x</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-strippedminlength="x"</code></td>
+					<td>Minimum length of x (when HTML tags are removed)</td>
+				</tr>
+				<tr>
+					<td><code>min="x"</code></td>
+					<td>Minimum number x</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-minWords="x"</code></td>
+					<td>Minimum of x words</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-nieES="true"</code></td>
+					<td>NIE code (Spain)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-nifES="true"</code></td>
+					<td>NIF code (Spain)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-nowhitespace="true"</code></td>
+					<td>No white space</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-postalCodeCA="true"</code></td>
+					<td>Postal code (Canada)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-rangelength="[x,y]"</code></td>
+					<td>Range (number)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-rangelength="[x,y]"</code></td>
+					<td>Range length x to y</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-rangeWords="[x,y]"</code></td>
+					<td>Range of x to y words</td>
+				</tr>
+				<tr>
+					<td><code>type="tel" data-rule-phoneUK="true"</code></td>
+					<td>Telephone number (UK)</td>
+				</tr>
+				<tr>
+					<td><code>type="tel" data-rule-mobileUK="true"</code></td>
+					<td>Mobile number (UK)</td>
+				</tr>
+				<tr>
+					<td><code>type="tel" data-rule-phoneUS="true"</code></td>
+					<td>Telephone number (US)</td>
+				</tr>
+				<tr>
+					<td><code>type="time"</code></td>
+					<td>Time</td>
+				</tr>
+				<tr>
+					<td><code>type="url"</code></td>
+					<td>URL (IPv4)</td>
+				</tr>
+				<tr>
+					<td><code>type="url" data-rule-ipv6="true"</code></td>
+					<td>URL (IPv6)</td>
+				</tr>
+				<tr>
+					<td><code>type="url" data-rule-url2="true"</code></td>
+					<td>URL (TLD optional)</td>
+				</tr>
+				<tr>
+					<td><code>data-rule-vinUS="true"</code></td>
+					<td>Vehice Identification Number (VIN, US)</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>See <a href="http://jqueryvalidation.org/documentation/">jQuery Validation Plugin - Documentation</a> for more details.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>Document the public events that can be used by implementers or developers.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-frmvld</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-frmvld" ).trigger( "wb-init.wb-frmvld" );</code>).</td>
+				<td>Used to manually initialize the form validation. <strong>Note:</strong> The Form validation plugin will be initialized automatically unless the form elements are added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-frmvld</code> (v4.0.5+)</td>
+				<td>Triggered automatically after form validation initializes.</td>
+				<td>Used to identify the element where form validation has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-frmvld", ".wb-frmvld", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-frmvld" ).on( "wb-ready.wb-frmvld", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>See <a href="http://jqueryvalidation.org/documentation/">jQuery Validation Plugin - Documentation</a> for details about events specific to jQuery Validation.</p>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/formvalid">Form validation source code on GitHub</a></p>
+</section>

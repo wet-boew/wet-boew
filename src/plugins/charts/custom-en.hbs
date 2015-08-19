@@ -1,0 +1,444 @@
+---
+{
+	"title": "Charts and graphs - Customization",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Customization, custom presets and multiple charts and graphs types.",
+	"tag": "charts",
+	"parentdir": "charts",
+	"altLangPrefix": "custom",
+	"dateModified": "2015-03-14"
+}
+---
+
+<ul>
+	<li><a href="charts-en.html">Charts and graphs - Simple and easy</a></li>
+	<li><a href="labelsandreferencevalue-en.html">Labels and reference values</a></li>
+	<li><a href="custom-en.html">Customization, custom presets and multiple charts and graphs types (current)</a></li>
+	<li><a href="piecustom-en.html">Customizing pie charts</a></li>
+	<li><a href="testing-en.html">Specific test cases</a></li>
+</ul>
+
+<hr />
+
+<span class="wb-prettify all-pre"></span>
+<section>
+	<h2>Customization</h2>
+	<p>The following example shows how the <code>data-flot</code> attribute can be used to produce customized charts. All the available options are described in the <a href="https://github.com/flot/flot/blob/master/API.md">Flot API reference</a>. It also show the i18n support for thousand seperator like the comas in English.</p>
+
+	<pre><code>&lt;table class="<strong>wb-charts wb-charts-bar table</strong>" <strong>data-flot</strong>='{ "yaxis": { "max": 150000} }'&gt;</code></pre>
+
+	<ul>
+		<li><code>wb-charts</code>: Calls the WET Charts and graphs plugin</li>
+		<li><code>wb-charts-bar</code>: Applies the global &quot;bar&quot; preset</li>
+		<li><code>data-flot</code>: Extends the global Flot settings, after any presets have been applied, with a JSON object.</li>
+	</ul>
+
+	<table class="wb-charts wb-charts-bar table" data-flot='{ "yaxis": { "max": 150000} }'>
+		<caption>Enquiries</caption>
+		<thead>
+			<tr>
+				<td></td>
+				<th>2008-09</th>
+				<th>2009-10</th>
+				<th>2010-11</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th data-flot='{ "color":"#191970" }'>Enquiries</th>
+				<td>80,189.56</td>
+				<td>65,297,98</td>
+				<td>70,387.33</td>
+			</tr>
+			<tr>
+				<th data-flot='{ "color":"#FF2222" }'>Threshold</th>
+				<td colspan="2">70,000.24</td>
+				<td>75,000.09</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<details>
+		<summary>View code</summary>
+		<pre><code>&lt;table class=&quot;wb-charts wb-charts-bar table&quot; data-flot='{ &quot;yaxis&quot;: { &quot;max&quot;: 150000} }'&gt;
+		&lt;caption&gt;Enquiries&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;2008-09&lt;/th&gt;
+			&lt;th&gt;2009-10&lt;/th&gt;
+			&lt;th&gt;2010-11&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th <strong>data-flot='{ &quot;color&quot;:&quot;#191970&quot; }'</strong>&gt;Enquiries&lt;/th&gt;
+			&lt;td&gt;80,189.56&lt;/td&gt;
+			&lt;td&gt;65,297,98&lt;/td&gt;
+			&lt;td&gt;70,387.33&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th <strong>data-flot='{ &quot;color&quot;:&quot;#FF2222&quot; }'</strong>&gt;Threshold&lt;/th&gt;
+			&lt;td colspan=&quot;2&quot;&gt;70,000.24&lt;/td&gt;
+			&lt;td&gt;75,000.09&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+	</details>
+</section>
+
+<section>
+	<h2>Multiple charts and graphs types</h2>
+
+	<pre><code>&lt;table class="<strong>wb-charts</strong> table" <strong>data-flot</strong>='{ "yaxis": { "max": 150000} }'&gt;</code></pre>
+
+	<ul>
+		<li><code>wb-charts</code>: Calls the WET Charts and graphs plugin</li>
+		<li><code>data-flot</code>: Extends the global Flot settings, after any presets have been applied, with a JSON object.</li>
+	</ul>
+
+	<p>To combine a bar chart with a line chart, the chart type needs to be configured at the series levels.</p>
+
+	<table class="wb-charts table" data-flot='{ "yaxis": { "max": 150000} }'>
+		<caption>Enquiries</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>2008-09</th>
+				<th>2009-10</th>
+				<th>2010-11</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th data-flot='{ "color":"#191970" }' class="wb-charts-bar">Enquiries</th>
+				<td>80 189</td>
+				<td>65 297</td>
+				<td>70 387</td>
+			</tr>
+			<tr>
+				<th data-flot='{ "color":"#FF2222" }'>Threshold</th>
+				<td colspan="2">70 000</td>
+				<td>75 000</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<details>
+		<summary>View code</summary>
+		<pre><code>&lt;table class=&quot;wb-charts table&quot; data-flot='{ &quot;yaxis&quot;: { &quot;max&quot;: 150000} }'&gt;
+	&lt;caption&gt;Enquiries&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;2008-09&lt;/th&gt;
+			&lt;th&gt;2009-10&lt;/th&gt;
+			&lt;th&gt;2010-11&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th data-flot='{ &quot;color&quot;:&quot;#191970&quot; }' <strong>class=&quot;wb-charts-bar&quot;</strong>&gt;Enquiries&lt;/th&gt;
+			&lt;td&gt;80 189&lt;/td&gt;
+			&lt;td&gt;65 297&lt;/td&gt;
+			&lt;td&gt;70 387&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th data-flot='{ &quot;color&quot;:&quot;#FF2222&quot; }'&gt;Threshold&lt;/th&gt;
+			&lt;td colspan=&quot;2&quot;&gt;70 000&lt;/td&gt;
+			&lt;td&gt;75 000&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+	</details>
+</section>
+
+<section>
+	<h2>Custom presets</h2>
+	<p>Custom presets can be declared using embedded JavaScript where <code>custom</code> (name of the preset) can be any name. The custom preset can be applied using a class name with <code>wb-charts-</code> as the prefix followed by your custom preset name.</p>
+
+	<pre><code>&lt;script&gt;
+window[ "wb-charts" ] = {
+	flot: {
+		<strong>custom</strong>: {
+			colors: [ &quot;#ff0000&quot;,
+					&quot;#00ff00&quot;,
+					&quot;#0000ff&quot;,
+					&quot;#ff0000&quot;,
+					&quot;#00ff00&quot;,
+					&quot;#0000ff&quot;,
+					&quot;#ff0000&quot;,
+					&quot;#00ff00&quot;,
+					&quot;#0000ff&quot;]
+		}
+	}
+};
+&lt;/script&gt;</code></pre>
+	<script>
+	window[ "wb-charts" ] = {
+		flot: {
+			custom: {
+				colors: [ "#ff0000",
+						"#00ff00",
+						"#0000ff",
+						"#ff0000",
+						"#00ff00",
+						"#0000ff",
+						"#ff0000",
+						"#00ff00",
+						"#0000ff"]
+			}
+		}
+	};
+	</script>
+
+	<p><code>&lt;table class=&quot;wb-charts <strong>wb-charts-custom</strong> table&quot;&gt;</code></p>
+
+	<table class="wb-charts wb-charts-custom table">
+		<caption>Number of pages by main purpose and audience</caption>
+		<tr>
+			<td></td>
+			<th>Education</th>
+			<th>Task</th>
+			<th>Navigation</th>
+			<th>Support</th>
+			<th>Information</th>
+			<th>Corporate</th>
+		</tr>
+		<tr>
+			<th data-flot='{ "bars":{ "show": true, "barWidth": 0.9, "order":1}}'>General</th>
+			<td>2</td>
+			<td>0</td>
+			<td>20</td>
+			<td>4</td>
+			<td>100</td>
+			<td>50</td>
+		</tr>
+		<tr>
+			<th data-flot='{ "bars":{ "show": true, "barWidth": 0.9, "order":2}}'>Students</th>
+			<td>2</td>
+			<td>2</td>
+			<td>1</td>
+			<td>5</td>
+			<td>50</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<th data-flot='{ "bars":{ "show": true, "barWidth": 0.9, "order":3}}'>Business</th>
+			<td>60</td>
+			<td>10</td>
+			<td>20</td>
+			<td>90</td>
+			<td>50</td>
+			<td>8</td>
+		</tr>
+		<tr>
+			<th data-flot='{ "bars":{ "show": true, "barWidth": 0.9, "order":4}}'>Professional</th>
+			<td>46</td>
+			<td>26</td>
+			<td>5</td>
+			<td>101</td>
+			<td>200</td>
+			<td>142</td>
+		</tr>
+		<tr>
+			<th data-flot='{ "bars":{ "show": true, "barWidth": 0.9, "order":5}}'>Lawyer</th>
+			<td>0</td>
+			<td>2</td>
+			<td>4</td>
+			<td>0</td>
+			<td>300</td>
+			<td>300</td>
+		</tr>
+	</table>
+
+	<details>
+		<summary>Table Source - <code>data-flot</code> attribute on <code>&lt;th&gt;</code></summary>
+		<pre><code>&lt;table class=&quot;wb-charts <strong>wb-charts-custom</strong> table&quot;&gt;
+	&lt;caption&gt;Number of pages by main purpose and audience&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;th&gt;Education&lt;/th&gt;
+		&lt;th&gt;Task&lt;/th&gt;
+		&lt;th&gt;Navigation&lt;/th&gt;
+		&lt;th&gt;Support&lt;/th&gt;
+		&lt;th&gt;Information&lt;/th&gt;
+		&lt;th&gt;Corporate&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th <strong>data-flot='{ &quot;bars&quot;:{ &quot;show&quot;: true, &quot;barWidth&quot;: 0.9, &quot;order&quot;:1}}'</strong>&gt;General&lt;/th&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;20&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;100&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th <strong>data-flot='{ &quot;bars&quot;:{ &quot;show&quot;: true, &quot;barWidth&quot;: 0.9, &quot;order&quot;:2}}'</strong>&gt;Students&lt;/th&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th <strong>data-flot='{ &quot;bars&quot;:{ &quot;show&quot;: true, &quot;barWidth&quot;: 0.9, &quot;order&quot;:3}}'</strong>&gt;Business&lt;/th&gt;
+		&lt;td&gt;60&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+		&lt;td&gt;20&lt;/td&gt;
+		&lt;td&gt;90&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+		&lt;td&gt;8&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th <strong>data-flot='{ &quot;bars&quot;:{ &quot;show&quot;: true, &quot;barWidth&quot;: 0.9, &quot;order&quot;:4}}'</strong>&gt;Professional&lt;/th&gt;
+		&lt;td&gt;46&lt;/td&gt;
+		&lt;td&gt;26&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;101&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;142&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th <strong>data-flot='{ &quot;bars&quot;:{ &quot;show&quot;: true, &quot;barWidth&quot;: 0.9, &quot;order&quot;:5}}'</strong>&gt;Lawyer&lt;/th&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;300&lt;/td&gt;
+		&lt;td&gt;300&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+	</details>
+
+	<section>
+		<h3>Applying a preset to multiple settings</h3>
+		<p>It is possible to apply a preset to multiple settings. When the same preset name exists and is applied to multiple settings, the preset is applied across all those settings.</p>
+
+		<pre><code>&lt;script&gt;
+window[ "wb-charts" ] = {
+
+	// Flot global settings. Equivalent to applying &quot;data-flot&quot; to the table element.
+	flot: { },
+
+	// Flot series-specific setting. Equivalent to applying &quot;data-flot&quot; to the th element.
+	series: { },
+
+	// WET chart-specific setting. Equivalent to applying &quot;data-wb-charts&quot; on the table element.
+	charts: { }
+};
+&lt;/script&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Negative tabular values</h2>
+
+	<table class="wb-charts table">
+		<caption>Negative number of pages by main purpose and audience</caption>
+		<tr>
+			<td></td>
+			<th>Education</th>
+			<th>Task</th>
+			<th>Navigation</th>
+			<th>Support</th>
+			<th>Information</th>
+			<th>Corporate</th>
+		</tr>
+		<tr>
+			<th>General</th>
+			<td>-2</td>
+			<td>0</td>
+			<td>-20</td>
+			<td>-4</td>
+			<td>-100</td>
+			<td>-50</td>
+		</tr>
+		<tr>
+			<th>Students</th>
+			<td>-2</td>
+			<td>-2</td>
+			<td>-1</td>
+			<td>-5</td>
+			<td>-50</td>
+			<td>-0</td>
+		</tr>
+		<tr>
+			<th>Business</th>
+			<td>-60</td>
+			<td>-10</td>
+			<td>-20</td>
+			<td>-90</td>
+			<td>-50</td>
+			<td>-8</td>
+		</tr>
+		<tr>
+			<th>Professional</th>
+			<td>-46</td>
+			<td>-26</td>
+			<td>-5</td>
+			<td>-101</td>
+			<td>-200</td>
+			<td>-142</td>
+		</tr>
+		<tr>
+			<th>Lawyer</th>
+			<td>0</td>
+			<td>-2</td>
+			<td>-4</td>
+			<td>0</td>
+			<td>-300</td>
+			<td>-300</td>
+		</tr>
+	</table>
+</section>
+
+<section>
+	<h2>Pie chart with customized segments</h2>
+
+	<pre><code>&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;th&gt;General&lt;/th&gt;
+		&lt;th <strong>data-flot='{&quot;color&quot;:&quot;#00FF00&quot;}'</strong>&gt;Students&lt;/th&gt;
+		&lt;th&gt;Buisness&lt;/th&gt;
+		&lt;th&gt;Professional&lt;/th&gt;
+		&lt;th&gt;Lawyer&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/thead&gt;</code></pre>
+
+	<table class="wb-charts wb-charts-pie table" data-wb-charts='{ "height": 300, "decimal": 1 }'>
+		<caption>Number of pages with tasks as a main purpose per audience</caption>
+		<colgroup><col /></colgroup>
+		<colgroup>
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<td></td>
+				<th>General</th>
+				<th data-flot='{"color":"#00FF00"}'>Students</th>
+				<th>Buisness</th>
+				<th>Professional</th>
+				<th>Lawyer</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Task</th>
+				<td>0</td>
+				<td>2</td>
+				<td>10</td>
+				<td>26</td>
+				<td>2</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
