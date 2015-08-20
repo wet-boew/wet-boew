@@ -60,15 +60,6 @@ $mm-volume-thumb-width: 10px;
 	}
 }
 
-@mixin multimedia_overlay_hidden {
-	.display {
-		&:before,
-		&:after {
-			display: none;
-		}
-	}
-}
-
 %controls-offset {
 	margin-bottom: -7px;
 	width: 100%;
@@ -92,8 +83,11 @@ $mm-volume-thumb-width: 10px;
 	position: relative;
 
 	&.video {
-		@include multimedia_overlay_base;
-		@include multimedia_overlay_play;
+
+		&:not(.playing):not(.waiting) {
+			@include multimedia_overlay_base;
+			@include multimedia_overlay_play;
+		}
 
 		&.playing {
 
