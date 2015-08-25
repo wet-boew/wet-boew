@@ -180,7 +180,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 						$elm
 							.trigger( resetEvent, settings )
 							.trigger( keepaliveEvent, settings );
-					    $elm.data( "lastActivity", currentTime );
+						$elm.data( "lastActivity", currentTime );
 					}
 				}
 			} );
