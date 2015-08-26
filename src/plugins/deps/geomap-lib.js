@@ -2436,7 +2436,7 @@ var componentName = "wb-geomap",
 
 		$document.on( "keyup", "#wb-geomap-geocode-search-" + geomap.mapid, function( evt ) {
 
-			var $dataList = $( "<datalist id='wb-geomap-geocode-results-" + geomap.mapid + "'></datalist>" ), /* $("#wb-geomap-geocode-results-" + geomap.mapid), */
+			var $dataList = $( "#wb-geomap-geocode-results-" + geomap.mapid ),
 				val,
 				bnd,
 				ll,
@@ -2450,8 +2450,7 @@ var componentName = "wb-geomap",
 
 			keycode = evt.which;
 
-			//if ( val === "" || val.length <= 2 || keycode === 13 || keycode === 9 || keycode === 40 || keycode === 39 || keycode === 38 ) { return; }
-			if ( val === "" || val.length <= 2  || keycode === 13 ) {
+			if ( val === "" || val.length <= 2 || keycode === 13 || keycode === 9 || keycode === 40 || keycode === 39 || keycode === 38 ) {
 				return;
 			}
 
@@ -2466,7 +2465,7 @@ var componentName = "wb-geomap",
 						q: val + "*"
 					}, function( res ) {
 
-					options = [ "<!--[if lte IE 9]><select><![endif]-->" ];
+					options = "<!--[if lte IE 9]><select><![endif]-->";
 
 					if ( res.length ) {
 						for ( var i = 0, len = res.length; i < len; i++ ) {
@@ -2480,24 +2479,27 @@ var componentName = "wb-geomap",
 
 							bnd = res[ i ].bbox ? res[ i ].bbox[ 0 ] + ", " + res[ i ].bbox[ 1 ] + ", " + res[ i ].bbox[ 2 ] + ", " + res[ i ].bbox[ 3 ] : null;
 							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1 ] : null;
-							options.push( "<option value='" + title + "' data-lat-lon='" + ll + "' data-bbox='" + bnd  + "' data-type='" + res[ i ].type + "'></option>" );
+							options += "<option value='" + title + "' data-lat-lon='" + ll + "' data-bbox='" + bnd  + "' data-type='" + res[ i ].type + "'></option>";
 
 							if ( i === len - 1 ) {
-								options.push( "<!--[if lte IE 9]></select><![endif]-->" );
+								options += "<!--[if lte IE 9]></select><![endif]-->";
 								$dataList.html( options );
 							}
 						}
 					}
 
-					// remove the data list and plugin elements
-					$( "#wb-geomap-geocode-search-" + geomap.mapid ).removeClass( "wb-datalist-inited" );
-					$( "#wb-geomap-geocode-results-" + geomap.mapid ).remove();
-					$( "#wb-al-wb-geomap-geocode-search-" + geomap.mapid ).remove();
-					$( "#wb-al-wb-geomap-geocode-search-" + geomap.mapid + "-src" ).remove();
+					if ( $( ".geomap-geoloc .wb-al-cnt" ).length > 0 ) {
 
-					// add the datalist and initialize the plugin
-					$( "#wb-geomap-geocode-search-" + geomap.mapid ).after( $dataList );
-					$( "#wb-geomap-geocode-search-" + geomap.mapid ).trigger( "wb-init.wb-datalist" );
+						// remove the data list and plugin elements
+						$( "#wb-geomap-geocode-search-" + geomap.mapid ).removeClass( "wb-datalist-inited" );
+						$( "#wb-geomap-geocode-results-" + geomap.mapid ).remove();
+						$( "#wb-al-wb-geomap-geocode-search-" + geomap.mapid ).remove();
+						$( "#wb-al-wb-geomap-geocode-search-" + geomap.mapid + "-src" ).remove();
+
+						// add the datalist and initialize the plugin
+						$( "#wb-geomap-geocode-search-" + geomap.mapid ).after( $dataList );
+						$( "#wb-geomap-geocode-search-" + geomap.mapid ).trigger( "wb-init.wb-datalist" );
+					}
 
 				}, "jsonp" );
 			}, 500 );
