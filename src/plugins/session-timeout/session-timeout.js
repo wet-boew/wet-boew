@@ -36,7 +36,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
 		logouturl: "./",			/* logout URL once the session has expired */
 		refreshOnClick: true,		/* refresh session if user clicks on the page */
-		refreshLimit: 200000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
+		refreshLimit: 120000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
 		method: "POST",				/* the request method to use */
 		additionalData: null,		/* additional data to send with the request */
 		refreshCallback: function( response ) {	/* callback function used to check the server response */
@@ -180,8 +180,8 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 						$elm
 							.trigger( resetEvent, settings )
 							.trigger( keepaliveEvent, settings );
+						$elm.data( "lastActivity", currentTime );
 					}
-					$elm.data( "lastActivity", currentTime );
 				}
 			} );
 		}
