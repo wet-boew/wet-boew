@@ -203,6 +203,9 @@ var componentName = "wb-feeds",
 						fType =  "flickr";
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
+					} else {
+						fType = "generic";
+						callback = "callback";
 					}
 
 					// We need a Gallery so lets add another plugin
