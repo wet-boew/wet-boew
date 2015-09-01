@@ -310,7 +310,7 @@ var componentName = "wb-toggle",
 			if ( !Modernizr.details ) {
 				$detail
 					.attr( "open", isOn ? null : "open" )
-					.find( "summary" ).trigger( "toggle.wb-details" );
+					.children( "summary" ).trigger( "toggle.wb-details" );
 			}
 
 			if ( data.isTablist ) {
