@@ -1,0 +1,31 @@
+<header role="banner">
+	<div id="wb-bnr">
+		<div id="wb-bar">
+			<div class="container">
+				<div class="row">
+					{{>headerbar}}
+{{#isnt mobimenu "false"}}
+	{{>mobimenu}}
+{{/isnt}}
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{{>brand}}
+{{#isnt sitesearch "false"}}
+	{{>sitesearch}}
+{{/isnt}}
+			</div>
+		</div>
+	</div>
+{{#isnt sitemenu "false"}}
+	{{>sitemenu}}
+{{else}}
+	<span data-trgt="mb-pnl" class="wb-menu hide"></span>
+{{/isnt}}
+{{#isnt breadcrumb "false"}}
+	{{>breadcrumbs}}
+{{/isnt}}
+</header>

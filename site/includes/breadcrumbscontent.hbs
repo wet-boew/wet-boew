@@ -1,0 +1,44 @@
+<li>
+	<a href="{{assets}}/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-home"}}}</a>
+</li>
+{{#contains page.src "/demos/index"}}
+{{else}}
+{{#contains page.src "/docs/"}}
+{{#contains page.src "/versions/"}}
+{{#contains page.src "/index"}}
+{{else}}
+	<li>
+		<a href="{{assets}}/docs/versions/index-{{language}}.html">{{{i18n "tmpl-version-history"}}}</a>
+	</li>
+{{/contains}}
+{{else}}
+{{#contains page.src "/docs/index"}}
+{{else}}
+		<li>
+			<a href="{{assets}}/docs/index-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a>
+		</li>
+	{{#if page.categoryfile}}
+		<li>
+			<a href="{{assets}}/docs/ref/{{page.categoryfile}}-{{language}}.html">{{page.category}}</a>
+		</li>
+	{{/if}}
+{{/contains}}
+{{/contains}}
+{{else}}
+<li>
+	<a href="{{assets}}/demos/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-work-examples"}}}</a>
+</li>
+{{#is breadcrumb3 "true"}}
+{{#contains tag "theme-wet-boew"}}
+	<li>
+		<a href="{{assets}}/theme/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{breadcrumb3-title}}</a>
+	</li>
+{{else}}
+	<li>
+		<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+	</li>
+{{/contains}}
+{{/is}}
+{{/contains}}
+{{/contains}}
+<li>{{title}}</li>

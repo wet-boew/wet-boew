@@ -1,0 +1,15 @@
+<ul id="wb-tphp">
+	<li class="wb-slc">
+		<a class="wb-sl" href="#wb-cont">{{{i18n "tmpl-skip-cont"}}}</a>
+	</li>
+{{#isnt footer "false"}}
+	<li class="wb-slc visible-sm visible-md visible-lg">
+		<a class="wb-sl" href="#wb-info">{{{i18n "tmpl-skip-about-site"}}}</a>
+	</li>
+{{/isnt}}
+{{#is secondarymenu "true"}}
+	<li class="wb-slc visible-md visible-lg">
+		<a class="wb-sl" href="#wb-sec">{{{i18n "tmpl-skip-section"}}}</a>
+	</li>
+{{/is}}
+</ul>

@@ -1,16 +1,10 @@
-<div class="container nvbar">
-	<h2>{{{i18n "tmpl-topics-menu"}}}</h2>
-	<div class="row">
-		<ul class="list-inline menu">
-{{#unless page.altMenu}}
-			<li><a href="{{assets}}/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-wet-project"}}}</a></li>
-			<li><a href="{{assets}}/docs/start-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html#implement">{{{i18n "tmpl-implement-wet"}}}</a></li>
-			<li><a href="{{assets}}/docs/start-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-contribute-wet"}}}</a></li>
-{{else}}
-			<li><a href="#">{{{i18n "tmpl-section"}}}{{{i18n "space"}}}1</a></li>
-			<li><a href="#">{{{i18n "tmpl-section"}}}{{{i18n "space"}}}2</a></li>
-			<li><a href="#">{{{i18n "tmpl-section"}}}{{{i18n "space"}}}3</a></li>
-{{/unless}}
-		</ul>
+<nav role="navigation" id="wb-sm"{{>sitemenureplace}} data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+	<div class="container nvbar">
+		<h2>{{{i18n "tmpl-topics-menu"}}}</h2>
+		<div class="row">
+			<ul class="list-inline menu">
+				{{>sitemenucontent}}
+			</ul>
+		</div>
 	</div>
-</div>
+</nav>

@@ -3,73 +3,9 @@
 	"layout": "core.hbs"
 }
 ---
-<ul id="wb-tphp">
-	<li class="wb-slc">
-		<a class="wb-sl" href="#wb-cont">{{{i18n "tmpl-skip-cont"}}}</a>
-	</li>
-{{#isnt footer "false"}}
-	<li class="wb-slc visible-sm visible-md visible-lg">
-		<a class="wb-sl" href="#wb-info">{{{i18n "tmpl-skip-about-site"}}}</a>
-	</li>
-{{/isnt}}
-{{#is secondarymenu "true"}}
-	<li class="wb-slc visible-md visible-lg">
-		<a class="wb-sl" href="#wb-sec">{{{i18n "tmpl-skip-section"}}}</a>
-	</li>
-{{/is}}
-</ul>
-<header role="banner">
-	<div id="wb-bnr">
-		<div id="wb-bar">
-			<div class="container">
-				<div class="row">
-{{#isnt languagetoggle "false"}}
-					<section id="wb-lng" class="visible-md visible-lg">
-						<h2>{{{i18n "tmpl-lang-select"}}}</h2>
-						{{>languagetoggle}}
-					</section>
-{{/isnt}}
-{{#isnt mobimenu "false"}}
-					<section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
-						<h2>{{{i18n "srch-menus"}}}</h2>
-						{{>mobimenu}}
-					</section>
-{{/isnt}}
-				</div>
-			</div>
-		</div>
+{{>skiplinks}}
 
-		<div class="container">
-			<div class="row">
-
-				<div id="wb-sttl" class="col-md-8">
-					{{>brand}}
-				</div>
-{{#isnt sitesearch "false"}}
-				<section id="wb-srch" class="col-md-4 visible-md visible-lg">
-					<h2>{{{i18n "tmpl-search"}}}</h2>
-					{{>sitesearch}}
-				</section>
-{{/isnt}}
-			</div>
-		</div>
-	</div>
-{{#isnt sitemenu "false"}}
-	<nav role="navigation" id="wb-sm" data-ajax-replace="{{#if page.altMenu}}{{page.altMenu}}{{else}}{{#if site.menuRoot}}{{site.menuRoot}}{{else}}{{assets}}{{/if}}/ajax/sitemenu{{/if}}-{{language}}.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
-		{{>sitemenu}}
-	</nav>
-{{else}}
-	<span data-trgt="mb-pnl" class="wb-menu hide"></span>
-{{/isnt}}
-{{#isnt breadcrumb "false"}}
-	{{#isnt assets "."}}
-		<nav role="navigation" id="wb-bc" property="breadcrumb">
-			<h2>{{{i18n "you-are-here"}}}</h2>
-			{{>breadcrumbs}}
-		</nav>
-	{{/isnt}}
-{{/isnt}}
-</header>
+{{>header}}
 
 {{#is secondarymenu "true"}}
 	<div class="container">
@@ -96,12 +32,5 @@
 {{/is}}
 
 {{#isnt footer "false"}}
-	<footer role="contentinfo" id="wb-info" class="visible-sm visible-md visible-lg wb-navcurr">
-		<div class="container">
-			<nav role="navigation" class="row">
-				<h2>{{{i18n "tmpl-about-site"}}}</h2>
-				{{>footer}}
-			</nav>
-		</div>
-	</footer>
+	{{>footer}}
 {{/isnt}}
