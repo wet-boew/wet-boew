@@ -1022,7 +1022,7 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib/jquery-oldIE/dist"
 					src: "*.*"
-					dest: "<%= coreDist %>/js/query/<%= jqueryVersion.version %>"
+					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion.version %>"
 					expand: true
 				,
 					cwd: "lib/jquery/dist"
