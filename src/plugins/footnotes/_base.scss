@@ -14,6 +14,7 @@
 %fnote-link-background-light-border-medium-padding-whitespace {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
+	display: inline-block;
 	padding: 1px 10px 2px;
 	white-space: nowrap;
 }
@@ -24,6 +25,7 @@
 
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
+	line-height: 1.15;
 	margin-left: 5px;
 
 	&:hover,
