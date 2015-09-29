@@ -104,9 +104,10 @@
 		animation-duration: 125ms;
 		animation-name: fadeout;
 		z-index: -1;
+
 		&.noheight {
-			max-height: 0;
 			animation-name: fadeoutnoheight;
+			max-height: 0;
 		}
 	}
 }
@@ -136,9 +137,11 @@
 		@include visible;
 		max-height: 100%;
 	}
+
 	99.9999% {
 		max-height: 100%;
 	}
+
 	100% {
 		@include invisible;
 		max-height: 0;
