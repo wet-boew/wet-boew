@@ -187,7 +187,7 @@ var componentName = "wb-tabs",
 							open: open
 						} );
 						$panel.addClass( ( Modernizr.details ? "" :  open + " " ) +
-							"fade " + ( isOpen ? "in" : "out wb-inv" ) );
+							"fade " + ( isOpen ? "in" : "noheight out wb-inv" ) );
 					}
 
 					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
@@ -207,11 +207,11 @@ var componentName = "wb-tabs",
 					.trigger( "wb-init.wb-toggle" );
 			} else if ( $openPanel && $openPanel.length !== 0 ) {
 				$panels.filter( ".in" )
-					.addClass( "out" )
+					.addClass( "out noheight" )
 					.removeClass( "in" );
 				$openPanel
 					.addClass( "in" )
-					.removeClass( "out" );
+					.removeClass( "out noheight" );
 				$tablist.find( ".active" )
 					.removeClass( "active" );
 				$tablist.find( "a" )
@@ -428,7 +428,7 @@ var componentName = "wb-tabs",
 
 		$currPanel
 			.removeClass( "in" )
-			.addClass( "out" )
+			.addClass( "out noheight" )
 			.attr( {
 				"aria-hidden": "true",
 				"aria-expanded": "false"
@@ -443,7 +443,7 @@ var componentName = "wb-tabs",
 		}
 
 		$next
-			.removeClass( "out" )
+			.removeClass( "out noheight" )
 			.addClass( "in" )
 			.attr( {
 				"aria-hidden": "false",
@@ -600,7 +600,7 @@ var componentName = "wb-tabs",
 
 								$detailsElm
 									.removeAttr( "role aria-expanded aria-hidden" )
-									.removeClass( "fade out in" )
+									.removeClass( "fade out noheight in" )
 									.toggleClass( "open", isActive );
 
 								$panelElm
@@ -637,7 +637,7 @@ var componentName = "wb-tabs",
 									open: "open"
 								} )
 								.not( $openDetails )
-									.addClass( "fade out wb-inv" )
+									.addClass( "fade out noheight wb-inv" )
 									.attr( {
 										"aria-hidden": "true",
 										"aria-expanded": "false"
