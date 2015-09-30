@@ -18,9 +18,6 @@ summary {
 }
 
 details {
-	border: 1px solid #ddd;
-	border-radius: 4px;
-
 	summary {
 		border: 1px solid #ddd;
 		border-radius: 4px;
@@ -36,6 +33,9 @@ details {
 	}
 
 	&[open] {
+		border: 1px solid #ddd;
+		border-radius: 4px;
+
 		summary {
 			border: 0;
 			border-bottom: 1px solid #ddd;
