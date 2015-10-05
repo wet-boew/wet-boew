@@ -91,6 +91,20 @@
 			z-index: -1;
 		}
 	}
+
+	details {
+		border: 0;
+
+		summary {
+			border: 0;
+			color: #fff;
+
+			&:focus,
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
 }
 
 %menu-mb-pnl-margin-bottom-5px {
