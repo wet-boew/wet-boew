@@ -337,6 +337,8 @@ module.exports = (grunt) ->
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/wb.js"
 					"src/core/helpers.js"
+					"src/core/base.js"
+					"src/core/baseplugin.js"
 					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
