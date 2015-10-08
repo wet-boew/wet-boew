@@ -45,8 +45,24 @@ a {
 }
 
 .dl-horizontal {
-	dt {
-		white-space: normal;
+	@media (min-width: $screen-sm-min) {
+		dt {
+			border-top: 1px solid $clrMedium;
+			padding: 10px 10px 10px 0;
+			text-align: left;
+			white-space: normal;
+		}
+
+		dd {
+			border-top: 1px solid $clrMedium;
+			margin-bottom: 3px;
+			margin-left: 160px;
+			padding: 10px 10px 10px 0;
+		}
+
+		dt + dd {
+			padding-bottom: 0;
+		}
 	}
 }
 
