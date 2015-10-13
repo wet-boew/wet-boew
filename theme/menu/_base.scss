@@ -7,24 +7,24 @@
 }
 
 %wet-theme-wb-menu-hover-active {
-	background: #ccc;
-	border-color: #ccc;
-	color: #000;
+	background: #bdccd4;
+	border-color: #0b3048;
+	color: #0b3048;
 }
 
 #wb-sm {
-	background: #0e4164;
+	background: #eaebed;
 
 	.menu {
 		margin-bottom: 0;
-		text-shadow: 1px 1px 1px #666;
 
 		> {
 			li {
 				> {
 					a {
-						border-left: 1px solid #999;
-						color: #fff;
+						border-left: 1px solid #0b3048;
+						color: #0b3048;
+						font-weight: bold;
 
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;
@@ -40,7 +40,7 @@
 				&:last-child {
 					> {
 						a {
-							border-right: 1px solid #999;
+							border-right: 1px solid #0b3048;
 						}
 					}
 				}
@@ -58,7 +58,7 @@
 
 	.sm {
 		&.open {
-			background: #ccc;
+			background: #bdccd4;
 			border-bottom: 5px solid #243850;
 			border-left: 0;
 			border-right: 0;
