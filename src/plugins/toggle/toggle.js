@@ -290,7 +290,7 @@ var componentName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggleDetails = function( event, data ) {
-		if ( event.namespace === componentName ) {
+		if ( event.namespace === componentName && event.target === event.currentTarget ) {
 			var top,
 				isOn = data.isOn,
 				$elms = data.elms,
