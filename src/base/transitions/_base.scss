@@ -104,6 +104,11 @@
 		animation-duration: 125ms;
 		animation-name: fadeout;
 		z-index: -1;
+
+		&.noheight {
+			animation-name: fadeoutnoheight;
+			max-height: 0;
+		}
 	}
 }
 
@@ -127,6 +132,21 @@
 	}
 }
 
+@keyframes fadeoutnoheight {
+	0% {
+		@include visible;
+		max-height: 100%;
+	}
+
+	99.9999% {
+		max-height: 100%;
+	}
+
+	100% {
+		@include invisible;
+		max-height: 0;
+	}
+}
 
 .slide {
 	&.out,
