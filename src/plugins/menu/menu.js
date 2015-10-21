@@ -260,7 +260,7 @@ var componentName = "wb-menu",
 			// Add the secondary menu
 			if ( $secnav.length !== 0 ) {
 				allProperties.push( [
-					$secnav.find( "> ul > li > *:first-child" ).get(),
+					$secnav.find( "ul" ).filter( ":not(li > ul)" ).find( " > li > *:first-child" ).get(),
 					"sec-pnl",
 					$secnav.find( "h2" ).html()
 				] );
