@@ -53,7 +53,7 @@ var componentName = "wb-lbx",
 				settings.callbacks = callbacks;
 
 				if ( elm.nodeName.toLowerCase() !== "a" ) {
-					settings.delegate = "a";
+					settings.delegate = "a:not(" + selector + "-skip)";
 					firstLink = elm.getElementsByTagName( "a" )[ 0 ];
 
 					// Is the element a gallery?
