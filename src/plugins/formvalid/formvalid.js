@@ -163,7 +163,6 @@ var componentName = "wb-frmvld",
 							this.defaultShowErrors();
 							var $errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
 								$errorfields = $form.find( "input.error, select.error, textarea.error" ),
-								$summaryContainer = $form.find( "#" + errorFormId ),
 								prefixStart = "<span class='prefix'>" + i18nText.error + "&#160;",
 								prefixEnd = i18nText.colon + " </span>",
 								separator = i18nText.hyphen,
@@ -240,7 +239,7 @@ var componentName = "wb-frmvld",
 
 								// Delay updating the summary container in case a summary link was clicked
 								setTimeout( function() {
-
+                                    var $summaryContainer = $form.find( "#" + errorFormId );
 									// Output our error summary and place it in the error container
 									// Create our container if one doesn't already exist
 									if ( $summaryContainer.length === 0 ) {
@@ -263,7 +262,7 @@ var componentName = "wb-frmvld",
 								if ( ariaLive.innerHTML.length !== 0 ) {
 									ariaLive.innerHTML = "";
 								}
-								$summaryContainer.detach();
+								$form.find( "#" + errorFormId ).detach();
 							}
 
 						}, /* End of showErrors() */
