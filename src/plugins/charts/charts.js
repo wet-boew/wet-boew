@@ -183,7 +183,7 @@
 									parseFloat( cellValue.replace( /(\d{1,3}(?:(?: |,)\d{3})*)(?:(?:.|,)(\d{1,2}))?$/, function( a, b, c ) {
 										return b.replace( / |,/g, "" ) + "." + c || "0";
 									} ), 10 ),
-									cellValue.match ( dataCellUnitRegExp )
+									cellValue.match( dataCellUnitRegExp )
 								];
 							}
 						}
