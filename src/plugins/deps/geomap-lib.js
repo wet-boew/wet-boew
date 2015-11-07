@@ -1347,7 +1347,7 @@ var componentName = "wb-geomap",
 											atts = {};
 											for ( name in layerAttributes ) {
 												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+													atts[ layerAttributes[ name ] ] = $row.find( name ).text();
 												}
 											}
 											feature.attributes = atts;
@@ -1435,7 +1435,7 @@ var componentName = "wb-geomap",
 											atts = {};
 											for ( name in layerAttributes ) {
 												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+													atts[ layerAttributes[ name ] ] = $row.find( name ).text();
 												}
 											}
 											feature.attributes = atts;

@@ -68,7 +68,7 @@ var componentName = "wb-mltmd",
 					volume: i18n( "volume" ),
 					cc_on: i18n( "cc", "on" ),
 					cc_off: i18n( "cc", "off" ),
-					cc_error: i18n ( "cc-err" ),
+					cc_error: i18n( "cc-err" ),
 					mute_on: i18n( "mute", "on" ),
 					mute_off: i18n( "mute", "off" ),
 					duration: i18n( "dur" ),
@@ -194,7 +194,7 @@ var componentName = "wb-mltmd",
 				}
 			} );
 		};
-	} () ),
+	}() ),
 
 	/**
 	 * @method parseHtml

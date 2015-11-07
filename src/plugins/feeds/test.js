@@ -145,7 +145,7 @@ describe( "Feeds test suite", function() {
 	describe( "multiple feed links", function() {
 		var $elm;
 
-		before ( function( done ) {
+		before( function( done ) {
 			ajaxCalls = [];
 			callback = done;
 
