@@ -47,7 +47,6 @@ module.exports = (grunt) ->
 		[
 			"js-min"
 			"css-min"
-			"imagemin"
 		]
 	)
 
@@ -1170,13 +1169,6 @@ module.exports = (grunt) ->
 						if filepath.match(/\.css/)
 							return content.replace(/\.\.\/\.\.\/wet-boew\/(assets|fonts)/g, '../$1')
 						content
-
-		imagemin:
-			all:
-				cwd: "dist/"
-				src: "**/*.png"
-				dest: "dist/"
-				expand: true
 
 		clean:
 			dist: ["dist", "src/base/partials/*sprites*"]
