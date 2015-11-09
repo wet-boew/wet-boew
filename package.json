@@ -55,7 +55,6 @@
     "grunt-imagine": "^0.3.54",
     "grunt-jscs": "^2.0.0",
     "grunt-mocha": "~0.4.12",
-    "grunt-modernizr": "~0.6.0",
     "grunt-sass": "^1.0.0",
     "grunt-saucelabs": "^8.5.0",
     "grunt-wet-boew-postbuild": "^0.1.3",

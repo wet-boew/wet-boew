@@ -90,7 +90,7 @@ module.exports = (grunt) ->
 		"init"
 		"Only needed when the repo is first cloned"
 		[
-			"modernizr"
+#			"modernizr"
 		]
 	)
 
@@ -333,7 +333,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/modernizr/modernizr-custom.js"
+					"dep/modernizr-custom.js"
 					"src/core/wb.js"
 					"src/core/helpers.js"
 					"src/plugins/**/*.js"
@@ -348,7 +348,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/modernizr/modernizr-custom.js"
+					"dep/modernizr-custom.js"
 					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
@@ -921,42 +921,43 @@ module.exports = (grunt) ->
 					"<%= themeDist %>/**/ie8*.min.css"
 				]
 
-		modernizr:
-			dist:
-				devFile: "lib/modernizr/modernizr-custom.js"
-				outputFile: "lib/modernizr/modernizr-custom.js"
-				extra:
-					shiv: false
-					printshiv: false
-					load: true
-					mq: true
-					css3: true
-					input: true
-					inputtypes: true
-					svg: true
-					html5: false
-					cssclasses: true
-					csstransitions: true
-					fontface: true
-					backgroundsize: true
-					borderimage: true
-				extensibility:
-					addtest: false
-					prefixed: false
-					teststyles: true
-					testprops: true
-					testallprops: true
-					hasevents: true
-					prefixes: true
-					domprefixes: true
-				tests: [
-					"elem_details"
-					"elem_progress_meter"
-					"mathml"
-					"cors"
-				]
-				parseFiles: false
-				matchCommunityTests: false
+# Remove modernizr temp
+#		modernizr:
+#			dist:
+#				devFile: "lib/modernizr/modernizr-custom.js"
+#				outputFile: "lib/modernizr/modernizr-custom.js"
+#				extra:
+#					shiv: false
+#					printshiv: false
+#					load: true
+#					mq: true
+#					css3: true
+#					input: true
+#					inputtypes: true
+#					svg: true
+#					html5: false
+#					cssclasses: true
+#					csstransitions: true
+#					fontface: true
+#					backgroundsize: true
+#					borderimage: true
+#				extensibility:
+#					addtest: false
+#					prefixed: false
+#					teststyles: true
+#					testprops: true
+#					testallprops: true
+#					hasevents: true
+#					prefixes: true
+#					domprefixes: true
+#				tests: [
+#					"elem_details"
+#					"elem_progress_meter"
+#					"mathml"
+#					"cors"
+#				]
+#				parseFiles: false
+#				matchCommunityTests: false
 
 		copy:
 			bootstrap:
