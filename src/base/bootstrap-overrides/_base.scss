@@ -7,11 +7,15 @@
  *	Link colour and decoration
  */
 
+%no-decoration {
+	text-decoration: none;
+}
+
 a {
 	text-decoration: underline;		// re-enable underlining
 
 	&.btn {
-		text-decoration: none;		// except for buttons
+		@extend %no-decoration;	// except for buttons
 	}
 
 	&:visited {
@@ -91,6 +95,10 @@ a {
 				}
 			}
 		}
+	}
+
+	a {
+		@extend %no-decoration;
 	}
 }
 
