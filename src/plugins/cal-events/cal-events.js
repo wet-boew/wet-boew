@@ -242,7 +242,7 @@ var componentName = "wb-calevt",
 
 					events.list[ events.iCount ] = {
 						title: title,
-						date: new Date(date.getTime()),
+						date: new Date( date.getTime() ),
 						href: href,
 						target: target
 					};
