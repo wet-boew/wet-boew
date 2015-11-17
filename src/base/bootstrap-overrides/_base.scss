@@ -749,6 +749,14 @@ fieldset {
 
 
 /*
+ * btn-xs should be equal to btn-sm in >v4.0.*
+*/
+.btn-group-xs .btn,
+.btn.btn-xs {
+	min-height: 0;
+}
+
+/*
  *  Right-to-left support
  */
 [dir=rtl] {
