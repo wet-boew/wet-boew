@@ -132,6 +132,12 @@ $tab-margin-width: 10px;
 	/* For backwards compatibility. Should be removed in v4.1 */
 	@extend %tabs-details-padding-6-12;
 
+	details {
+		&.open {
+			border-top-left-radius: 0;
+		}
+	}
+
 	> {
 		.tabpanels {
 			@extend %tabs-details-padding-6-12;
