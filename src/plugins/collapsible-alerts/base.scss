@@ -1,5 +1,8 @@
 details {
-	&.alert {
+	&.alert,
+	&.alert[open] {
+		border-radius: 0;
+		border-width: 0 0 0 4px;
 		padding-left: 45px;
 
 		&:before {
@@ -9,6 +12,10 @@ details {
 			margin-left: -1.3em;
 			margin-top: -3px;
 			position: absolute;
+		}
+
+		summary {
+			border-width: 0;
 		}
 
 		> {
@@ -25,54 +32,65 @@ details {
 				}
 			}
 		}
-	}
 
-	&.alert-success {
-		@extend %label-alert-success-bg-border-left;
+		&.alert-success {
+			@extend %label-alert-success-bg-border-left;
 
-		&:before {
-			color: $label-alert-success-border-icon-color;
-			content: "\e084";
+			&:before {
+				color: $label-alert-success-border-icon-color;
+				content: "\e084";
+			}
 		}
-	}
 
-	&.alert-info {
-		@extend %label-alert-info-bg-border-left;
+		&.alert-info {
+			@extend %label-alert-info-bg-border-left;
 
-		&:before {
-			color: $label-alert-info-border-icon-color;
-			content: "\e086";
+			&:before {
+				color: $label-alert-info-border-icon-color;
+				content: "\e086";
+			}
 		}
-	}
 
-	&.alert-warning {
-		@extend %label-alert-warning-bg-border-left;
+		&.alert-warning {
+			@extend %label-alert-warning-bg-border-left;
 
-		&:before {
-			color: $label-alert-warning-border-icon-color;
-			content: "\e107";
+			&:before {
+				color: $label-alert-warning-border-icon-color;
+				content: "\e107";
+			}
 		}
-	}
 
-	&.alert-danger {
-		@extend %label-alert-danger-bg-border-left;
+		&.alert-danger {
+			@extend %label-alert-danger-bg-border-left;
 
-		&:before {
-			color: $label-alert-danger-border-icon-color;
-			content: "\e101";
+			&:before {
+				color: $label-alert-danger-border-icon-color;
+				content: "\e101";
+			}
 		}
 	}
 }
 
 .no-details {
 	details {
-		&.alert {
+		&.alert,
+		&.alert[open] {
 			> {
 				summary {
 					margin-left: 1.4em;
 
 					&:before {
 						content: "\25BA\a0";
+					}
+				}
+			}
+
+			&[open] {
+				> {
+					summary {
+						&:before {
+							content: "\25BC\a0";
+						}
 					}
 				}
 			}
