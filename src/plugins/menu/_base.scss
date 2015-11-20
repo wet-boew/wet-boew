@@ -93,15 +93,18 @@
 	}
 
 	details {
-		border: 0;
-
-		summary {
+		&,
+		&[open] {
 			border: 0;
-			color: #fff;
 
-			&:focus,
-			&:hover {
-				text-decoration: none;
+			summary {
+				border: 0;
+				color: #fff;
+
+				&:focus,
+				&:hover {
+					text-decoration: none;
+				}
 			}
 		}
 	}
