@@ -133,7 +133,7 @@ $tab-margin-width: 10px;
 	@extend %tabs-details-padding-6-12;
 
 	details {
-		&.open {
+		&[open] {
 			border-top-left-radius: 0;
 		}
 	}
