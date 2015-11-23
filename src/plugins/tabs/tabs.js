@@ -676,9 +676,8 @@ var componentName = "wb-tabs",
 						}
 
 						// Enable equal heights for large view or disable for small view
-						if ( isSmallView !== $elm.hasClass( equalHeightOffClass ) ) {
-							$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-						}
+						$elm.toggleClass( equalHeightClass, !isSmallView );
+						$elm.toggleClass( equalHeightOffClass, isSmallView );
 
 						$summary.attr( "aria-hidden", !isSmallView );
 						$tablist.attr( "aria-hidden", isSmallView );
