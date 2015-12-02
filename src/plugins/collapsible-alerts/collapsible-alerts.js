@@ -16,7 +16,7 @@ var componentName = "wb-collapsible",
 	selector = "details.alert",
 	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
-	details, key,
+	details, key, $details,
 
 	/**
 	 * @method init
@@ -30,6 +30,7 @@ var componentName = "wb-collapsible",
 		details = wb.init( event, componentName, selector );
 
 		if ( details ) {
+			$details = $( details );
 
 			key = "alert-collapsible-state-" + details.getAttribute( "id" );
 
@@ -58,14 +59,14 @@ var componentName = "wb-collapsible",
 			} catch ( e ) {}
 
 			// Identify that initialization has completed
-			wb.ready( $document, componentName );
+			wb.ready( $details, componentName );
 		}
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "timerpoke.wb", function() {
+$document.on( "timerpoke.wb " + initEvent, selector, function() {
 
 	// Do not bind events if details polyfill is active
 	if ( Modernizr.details ) {
