@@ -275,6 +275,12 @@ var componentName = "wb-feeds",
 				items[ i ].publishedDate = ( items[ i ].published || items[ i ].pubDate || "" );
 			}
 
+			var link = items[ i ].link;
+
+			if ( link && link.href ) {
+				items[ i ].link = link.href;
+			}
+
 			entries.push( items[ i ] );
 		}
 
