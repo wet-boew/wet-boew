@@ -26,24 +26,17 @@ summary {
 }
 
 details {
+	padding-left: $details-identation;
+	padding-right: $details-identation;
+
 	> {
-		:not(summary) {
-			margin-left: $details-identation;
+		summary {
+			margin-left: -$details-identation;
+			margin-right: -$details-identation;
 		}
 	}
 
 	&[open] {
 		padding-bottom: 1em;
-	}
-}
-
-[dir=rtl] {
-	details {
-		> {
-			:not(summary) {
-				margin-left: 0;
-				margin-right: $details-identation;
-			}
-		}
 	}
 }

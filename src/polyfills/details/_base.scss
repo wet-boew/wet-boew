@@ -18,6 +18,8 @@ summary {
 }
 
 details {
+	margin-bottom: .25em;
+
 	summary {
 		border: 1px solid #ddd;
 		border-radius: 4px;
@@ -36,11 +38,14 @@ details {
 		border: 1px solid #ddd;
 		border-radius: 4px;
 
-		summary {
-			border: 0;
-			border-bottom: 1px solid #ddd;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
+		> {
+			summary {
+				border: 0;
+				border-bottom: 1px solid #ddd;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				margin-bottom: .25em;
+			}
 		}
 	}
 
