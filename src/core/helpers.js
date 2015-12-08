@@ -30,7 +30,7 @@
 	// Escapes the characters in a string for use in a jQuery selector
 	// Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
 	wb.jqEscape = function( selector ) {
-		return selector.replace( /([;&,\.\+\*\~':"\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
+		return selector.replace( /([;&,\.\+\*\~':"\\\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
 
 	// RegEx used by formattedNumCompare
