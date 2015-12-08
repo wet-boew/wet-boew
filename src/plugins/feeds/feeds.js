@@ -272,7 +272,7 @@ var componentName = "wb-feeds",
 			items[ i ].fIcon =  icon ;
 
 			if ( items[ i ].publishedDate === undef ) {
-				items[ i ].publishedDate = ( items[ i ].published || items[ i ].pubDate || "" );
+				items[ i ].publishedDate = ( items[ i ].published || items[ i ].pubDate || items[ i ].updated || "" );
 			}
 
 			var link = items[ i ].link;
