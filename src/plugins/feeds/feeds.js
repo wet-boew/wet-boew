@@ -190,7 +190,7 @@ var componentName = "wb-feeds",
 
 				fetch = {
 					dataType: "jsonp",
-					timeout: 3000
+					timeout: 10000
 				};
 
 				if ( fElem.attr( "data-ajax" ) ) {
