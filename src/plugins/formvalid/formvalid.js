@@ -263,7 +263,7 @@ var componentName = "wb-frmvld",
 								if ( ariaLive.innerHTML.length !== 0 ) {
 									ariaLive.innerHTML = "";
 								}
-								$summaryContainer.detach();
+								$form.find( "#" + errorFormId ).detach();
 							}
 
 						}, /* End of showErrors() */
