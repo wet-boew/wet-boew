@@ -431,10 +431,6 @@ $tab-margin-width: 10px;
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background;
-
-			img {
-				@extend %tab-width-100-height-auto;
-			}
 		}
 
 		figcaption {
