@@ -509,6 +509,8 @@ module.exports = (grunt) ->
 				]
 
 			test:
+				options:
+					offline: true
 				expand: true
 				cwd: "site/pages"
 				src: "test/test.hbs"
