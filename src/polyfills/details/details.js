@@ -30,6 +30,11 @@ var componentName = "wb-details",
 
 		if ( summary ) {
 			details = summary.parentNode;
+			Object.defineProperty( details, "open", {
+				get: isOpen,
+				set: setOpen
+			} );
+			details.summary = summary;
 			summary.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
 
 			if ( !summary.getAttribute( "role" ) ) {
@@ -42,6 +47,49 @@ var componentName = "wb-details",
 			// Identify that initialization has completed
 			wb.ready( $( summary ), componentName );
 		}
+	},
+
+	isOpen = function() {
+		return this.getAttribute( "open" ) !== null;
+	},
+
+	open = function() {
+		this.setAttribute( "open", "open" );
+		this.className += " open";
+		saveState.call( this );
+	},
+
+	close = function() {
+		this.removeAttribute( "open" );
+		this.className = this.className.replace( " open", "" );
+		saveState.call( this );
+	},
+
+	setOpen = function( isOpen ) {
+		if ( typeof isOpen === "boolean" ) {
+			if ( isOpen ) {
+				open.call( this );
+			} else {
+				close.call( this );
+			}
+		}
+		this.summary.setAttribute( "aria-expanded", isOpen );
+		$( this ).trigger( "toggle" );
+	},
+
+	//TODO: Move to the alerts plugin
+	saveState = function() {
+		var key;
+
+		if ( this.className.indexOf( "alert" ) !== -1 ) {
+			key = "alert-collapsible-state-" + this.getAttribute( "id" );
+		}
+
+		if ( key ) {
+			try {
+				localStorage.setItem( key, this.open ? "open" : "closed" );
+			} catch ( e ) {}
+		}
 	};
 
 // Bind the init event of the plugin
@@ -51,38 +99,14 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "click keydown toggle." + componentName, selector, function( event ) {
 	var which = event.which,
 		currentTarget = event.currentTarget,
-		details, isClosed, key;
+		details;
 
 	// Ignore middle/right mouse buttons and wb-toggle enhanced summary elements (except for toggle)
 	if ( ( !which || which === 1 ) &&
 		( currentTarget.className.indexOf( "wb-toggle" ) === -1 ||
 		( event.type === "toggle" && event.namespace === componentName ) ) ) {
-
 		details = currentTarget.parentNode;
-		isClosed = details.getAttribute( "open" ) === null ;
-
-		if ( details.className.indexOf( "alert" ) !== -1 ) {
-			key = "alert-collapsible-state-" + details.getAttribute( "id" );
-		}
-
-		if ( isClosed ) {
-			details.setAttribute( "open", "open" );
-			details.className += " open";
-			if ( key ) {
-				try {
-					localStorage.setItem( key, "open" );
-				} catch ( e ) {}
-			}
-		} else {
-			details.removeAttribute( "open" );
-			details.className = details.className.replace( " open", "" );
-			if ( key ) {
-				try {
-					localStorage.setItem( key, "closed" );
-				} catch ( e ) {}
-			}
-		}
-		currentTarget.setAttribute( "aria-expanded", isClosed );
+		details.open = !details.open;
 	} else if ( which === 13 || which === 32 ) {
 		event.preventDefault();
 		$( currentTarget ).trigger( "click" );
