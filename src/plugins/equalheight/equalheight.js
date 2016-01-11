@@ -20,6 +20,7 @@ var componentName = "wb-eqht",
 	initEvent = "wb-init" + selector,
 	vAlignCSS = "vertical-align",
 	vAlignDefault = "top",
+	contentUpdatedEvent = "wb-contentupdated",
 	minHeightCSS = "min-height",
 	minHeightDefault = "0",
 	cssValueSeparator = ":",
@@ -203,7 +204,7 @@ var componentName = "wb-eqht",
 $document.on( eventTimerpoke + " " + initEvent, selector, init );
 
 // Handle text and window resizing
-$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb wb-updated.wb-tables wb-update" + selector, onResize );
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb " + contentUpdatedEvent + " wb-updated.wb-tables wb-update" + selector, onResize );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
