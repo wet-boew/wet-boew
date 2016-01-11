@@ -2,156 +2,109 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%cal-position-relative {
-	position: relative;
-}
 
-%cal-goto-btns {
-	display: inline-block;
-	margin: 10px 5px;
-}
-
-%cal-text-head {
-	color: $cal-text-head-color;
-}
-
-%cal-text-head-important {
-	color: $cal-text-head-color !important;
-}
-
-%cal-text-body {
-	color: $cal-text-body-color;
-}
-
-%cal-bg-dark {
-	background: $cal-dark-color;
-}
-
-.cal-cnt {
-	background: #fff;
-	text-shadow: none;
-	width: 18em;
-
-	* {
-		font-size: 100%;
-	}
-
-	.cal-hd {
-		@extend %cal-bg-dark;
-		@extend %cal-text-head;
-		font-weight: 700;
-		overflow: hidden;
-		padding: 0.5em 4px;
-		position: relative;
-		text-align: center;
-	}
-
-	.cal-mnth {
-		font-size: 110%;
-	}
-
-	.cal-goto {
-		display: inline-block;
-	}
-
-	.cal-goto-mnth {
-		@extend %cal-goto-btns;
-		@extend %cal-position-relative;
-		@extend %cal-text-body;
-	}
-
-	.cal-goto-yr {
-		@extend %cal-goto-btns;
-		@extend %cal-position-relative;
-		@extend %cal-text-body;
-	}
-
-	.cal-goto-btn {
-		@extend %cal-goto-btns;
-		@extend %cal-position-relative;
-
-		input {
-			min-width: 5em;
-			padding: 0.1em 0.2em;
-		}
-	}
-
-	.cal-goto-lnk {
-		@extend %cal-text-head-important;
-	}
-
-	td {
-		border: 1px solid #aaa;
-		padding: 0;
-		text-align: center;
-	}
-}
-
-.cal-nxtmnth,
-.cal-prvmnth {
-	background: none;
-	border: 0;
-	display: inline-block;
-	height: 2.5em;
-	width: 2.5em;
-
-	&:focus {
-		outline: 1px dotted;
-		outline-offset: -2px;
-	}
-
-	&[disabled] {
-		opacity: 0.2;
-	}
-
-	&.active {
-		color: $cal-mnth-arrows-active-color;
-
-		&:hover,
-		&:focus {
-			@extend %cal-text-head;
-		}
-	}
-}
-
-.cal-wd {
-	background: $cal-medium-color;
-	border: 1px solid $cal-dark-color;
-	color: #fff;
-	padding: 0.5em 0;
-	text-align: center;
-}
-
-%cal-days-a-div {
+%cal-days {
 	display: block;
 	height: 100%;
-	padding: 0.5em 0;
 	width: 100%;
 }
 
-.cal-days {
-	a {
-		@extend %cal-days-a-div;
+// TODO:  Combine with previous when libsass supports nested extends
+%cal-cell {
+	color: $cal-day-color;
+	padding: 20% 0;
+	text-align: center;
+}
 
-		&:hover,
-		&:focus {
-			@extend %cal-bg-dark;
-			@extend %cal-text-head-important;
+%cal-curr-day-color {
+	color: $cal-curr-day-color;
+}
+
+.wb-clndr {
+	background: #fff;
+	position: relative;
+	width: 100%;
+
+	.cal-nav {
+		background: $cal-header-bg-color;
+		padding: 0.5em;
+		text-align: center;
+	}
+
+	.form-group {
+		margin: 0;
+		padding: $padding-base-vertical $padding-base-horizontal;
+	}
+
+	.btn {
+		background: none;
+		color: $cal-mnth-arrows-color;
+
+		&[disabled] {
+			color: $cal-mnth-arrows-disabled-color;
 		}
 	}
 
-	div {
-		@extend %cal-days-a-div;
+	option {
+		&[disabled] {
+			color: #aaa;
+		}
 	}
 
-	.cal-currday {
-		@extend %cal-text-head;
-		@extend %cal-bg-dark;
-		font-weight: bolder;
+	table {
+		width: 100%;
+	}
+
+	th {
+		background: $cal-dow-bg;
+		border: $cal-dow-border;
+
+		abbr {
+			@extend %cal-cell;
+			color: $cal-dow-color;
+			display: block;
+		}
+	}
+
+	td {
+		background: $cal-day-bg;
+		border: 1px solid #aaa;
+		padding: 0;
+		text-align: center;
+
+		> {
+			time {
+				@extend %cal-cell;
+				display: block;
+			}
+
+			a {
+				@extend %cal-cell;
+				@extend %cal-days;
+			}
+		}
 
 		a {
-			@extend %cal-text-head-important;
-			@extend %cal-bg-dark;
+			&:hover,
+			&:focus {
+				background: $cal-day-hover-bg;
+				color: $cal-day-hover-color;
+			}
+		}
+
+		div {
+			@extend %cal-cell;
+		}
+	}
+
+	.cal-curr-day {
+		@extend %cal-curr-day-color;
+		background: $cal-curr-day-bg;
+		font-weight: bolder;
+
+		a,
+		div {
+			@extend %cal-curr-day-color;
 		}
 	}
 }

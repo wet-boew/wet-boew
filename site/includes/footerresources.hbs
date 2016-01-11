@@ -1,5 +1,5 @@
 <!--[if gte IE 9 | !IE ]><!-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/{{environment.jqueryVersion}}/jquery.js"></script>
+<script src="{{#if offline}}{{assets}}/../wet-boew/js{{else}}https://ajax.googleapis.com/ajax/libs{{/if}}/jquery/{{environment.jqueryVersion}}/jquery.js"></script>
 <script src="{{assets}}/../wet-boew/js/wet-boew.js"></script>
 <!--<![endif]-->
 {{#if page.js}}{{#each page.js}}<script src="{{this}}.js"></script>{{/each}}{{/if}}

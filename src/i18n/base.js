@@ -104,6 +104,7 @@ wb.i18nDict = {
 	"errs-fnd": "@errs-fnd@",
 	"err-fnd": "@err-fnd@",
 	/* Date picker */
+	"date-hide": "@date-hide@",
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
 	/* Calendar */
@@ -131,6 +132,7 @@ wb.i18nDict = {
 		"@mnths-12@"
 	],
 	cal: "@cal@",
+	"cal-format": "@cal-format@",
 	currDay: "@currDay@",
 	"cal-goToLnk": "@cal-goToLnk@",
 	"cal-goToTtl": "@cal-goToTtl@",

@@ -17,13 +17,47 @@ var componentName = "wb-date",
 	initEvent = "wb-init." + componentName,
 	setFocusEvent = "setfocus.wb",
 	containerName = "wb-picker",
-	date = new Date(),
-	month = date.getMonth(),
-	year = date.getFullYear(),
-	format = "YYYY-MM-DD",
+	toggleSuffix = "-picker-toggle",
+	today = new Date(),
 	initialized = false,
 	$document = wb.doc,
-	i18n, i18nText, $container,
+	fromDateISO = wb.date.fromDateISO,
+	defaults = {
+		minDate: new Date( 1800, 0, 1 ),
+		maxDate: new Date( 2100, 0, 1 ),
+		year: today.getFullYear(),
+		month: today.getMonth(),
+		daysCallback: function( year, month, $days, range ) {
+			var $inRange = $days,
+				selectedDate = this.date,
+				linkFocus;
+
+				if ( range ) {
+					if ( range.max ) {
+						$inRange = $inRange.filter( ":lt(" + ( range.max + 1 ) + ")" );
+					}
+
+					if ( range.min ) {
+						$inRange = $inRange.filter( ":gt(" + ( range.min - 1 ) + ")" );
+					}
+				}
+
+				$inRange.wrap( "<a href='javascript:;' tabindex='-1'></a>" );
+
+				if ( selectedDate && year === selectedDate.getFullYear() && month === selectedDate.getMonth() ) {
+					linkFocus = $days.eq( selectedDate.getDate() - 1 );
+
+					linkFocus.parent().attr( "aria-selected", true );
+				} else if ( year === today.getFullYear() && month === today.getMonth() ) {
+					linkFocus = $days.eq( today.getDate() - 1 );
+				} else {
+					linkFocus = $inRange.eq( 0 );
+				}
+
+				linkFocus.parent().removeAttr( "tabindex" );
+		}
+	},
+	i18n, i18nText, $container, calendar, $calendarObj, focusOutTimer,
 
 	/**
 	 * @method init
@@ -35,7 +69,8 @@ var componentName = "wb-date",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			elmId, closeLabel, space;
+			state = {},
+			elmId, space, settings, minDate, maxDate, initDate;
 
 		if ( elm ) {
 			elmId = elm.id;
@@ -50,48 +85,58 @@ var componentName = "wb-date",
 				space = i18n( "space" ).replace( "&#32;", " " ).replace( "&#178;", "" );
 				i18nText = {
 					show: i18n( "date-show" ).replace( "\\\'", "'" ) + space,
-					selected: i18n( "date-sel" ).replace( "\\\'", "'" ),
-					close: i18n( "close" ) + i18n( "colon" ).replace( "&#160;", " " ) +
-						space + i18n( "cal" ).toLowerCase() +
-						space + i18n( "esc-key" ).replace( "\\\'", "'" )
+					hide: i18n( "date-hide" ).replace( "\\\'", "'" ) + space +
+						space + i18n( "esc-key" ).replace( "\\\'", "'" ),
+					selected: i18n( "date-sel" ).replace( "\\\'", "'" )
 				};
 			}
 
 			elm.className += " picker-field";
 
-			if ( !$container ) {
-				$container = $( "<div id='" + containerName + "' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
-				closeLabel = i18nText.close;
+			//Build the calendar state
+			settings = {
+				field: this,
+				$field: $( this ),
+				labelText: $( "label[for=" + elm.id + "]" )
+					.clone()
+					.find( ".datepicker-format, .error" )
+						.remove()
+						.end()
+					.text()
+			};
 
-				// Close button
-				$( "<button type='button' class='picker-close mfp-close overlay-close' title=\"" +
-					closeLabel + "\">&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
-					.appendTo( $container )
-					.on( "click", function( event ) {
-						var which = event.which;
+			minDate = fromDateISO( elm.getAttribute( "min" ) );
+			maxDate = fromDateISO( elm.getAttribute( "max" ) );
 
-						// Ignore middle/right mouse buttons
-						if ( !which || which === 1 ) {
+			if ( minDate ) {
+				settings.minDate = minDate;
+			}
 
-							// Stop propagation of the click event
-							if ( event.stopPropagation ) {
-								event.stopImmediatePropagation();
-							} else {
-								event.cancelBubble = true;
-							}
+			if ( maxDate ) {
+				settings.maxDate = maxDate;
+			}
 
-							toggle( $container.attr( "aria-controls" ) );
-						}
-					} );
+			elm.state = $.extend( state, defaults, settings );
 
-				// Disable the tabbing of all the links when calendar is hidden
-				$container.find( "a" ).attr( "tabindex", "-1" );
+			if ( today >= state.minDate && today <= state.maxDate ) {
+				initDate = today;
+			} else {
+				initDate = state.maxDate;
+			}
 
-				$( "main" ).after( $container );
+			if ( initDate ) {
+				state.year = initDate.getFullYear();
+				state.month = initDate.getMonth();
+			}
+
+			updateState.call( elm );
+
+			if ( !calendar ) {
+				createCalendar( elm );
 			}
 
 			if ( elmId ) {
-				createToggleIcon( elmId );
+				createToggleIcon( elm );
 			}
 
 			// Identify that initialization has completed
@@ -100,254 +145,146 @@ var componentName = "wb-date",
 		}
 	},
 
-	createToggleIcon = function( fieldId ) {
-			var fieldLabel = $( "label" )
-					.filter( "[for='" + fieldId + "']" )
-						.clone()
-						.find( ".datepicker-format" )
-							.remove()
-							.end()
-						.text(),
-			showFieldLabel = i18nText.show + fieldLabel,
-			objToggle = "<a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title=\"" +
-				showFieldLabel + "\"><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
-				showFieldLabel + "</span></a>";
+	createCalendar = function( elm ) {
+		var closeText = i18nText.hide;
 
-		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
+		$container = $( "<div id='" + containerName + "' class='picker-overlay' role='dialog' tabindex='-1' aria-hidden='true'></div>" );
+
+		// Disable the tabbing of all the links when calendar is hidden
+		$container.find( "a" ).attr( "tabindex", "-1" );
+
+		$( "main" ).after( $container );
+
+		calendar = wb.calendar.create( $container, elm.state );
+		$calendarObj = calendar.$o;
+
+		// Close button
+		$( "<button type='button' class='picker-close mfp-close overlay-close' title=\"" +
+			closeText + "\">&#xd7;<span class='wb-inv'> " + closeText + "</span></button>" )
+			.appendTo( $container );
+	},
+
+	createToggleIcon = function( elm ) {
+		var fieldId = elm.id,
+			fieldLabelText = elm.state.labelText,
+			showFieldLabelText = i18nText.show + fieldLabelText,
+			objToggle = "<span class='input-group-btn'><a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='btn btn-default picker-toggle' href='javascript:;' title=\"" +
+				showFieldLabelText + "\"><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
+				showFieldLabelText + "</span></a></span>";
+
+		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap input-group'/>" ).after( objToggle );
 		$container.slideUp( 0 );
 	},
 
-	addLinksToCalendar = function( fieldId, year, month, $days ) {
-		var field = document.getElementById( fieldId ),
-			minDate = field.getAttribute( "min" ),
-			maxDate = field.getAttribute( "max" ),
-			fromDateISO = wb.date.fromDateISO,
-			len = $days.length,
-			lowLimit, highLimit, minDay, maxDay, index, day;
+	updateState = function() {
+		var state = this.state,
+			minDate = state.minDate,
+			maxDate = state.maxDate,
+			date = fromDateISO( this.value );
 
-		minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
-		minDay = minDate.getDate() - 1;
-		maxDate = fromDateISO( ( maxDate ? maxDate : "2100-01-01" ) );
-		maxDay = maxDate.getDate();
-
-		lowLimit = ( year === minDate.getFullYear() && month === minDate.getMonth() );
-		highLimit = ( year === maxDate.getFullYear() && month === maxDate.getMonth() );
-
-		for ( index = 0; index !== len; index += 1 ) {
-			if ( ( !lowLimit && !highLimit ) || ( lowLimit && index >= minDay ) || ( highLimit && index < maxDay ) ) {
-				day = $days[ index ];
-				day.innerHTML = "<a href='javascript:;' tabindex='-1'>" +
-					day.getElementsByTagName( "div" )[ 0 ].innerHTML + "</a>";
-			}
-		}
-
-		$days.find( "a" ).eq( 0 ).attr( "tabindex", "0" );
-	},
-
-	setSelectedDate = function( fieldId, year, month, days ) {
-		var date, cpntDate;
-
-		// Reset selection state
-		$( days )
-			.removeClass( "picker-sel" )
-			.find( ".picker-sel-text" )
-				.detach();
-
-		// Get the date from the field
-		date = document.getElementById( fieldId ).value;
-
-		try {
-			if ( date !== "" ) {
-				cpntDate = new Date( date );
-				if ( cpntDate.getUTCFullYear() === year && cpntDate.getUTCMonth() === month ) {
-					$( days[ cpntDate.getUTCDate() - 1 ] )
-						.addClass( "picker-sel" )
-						.children( "a" )
-						.attr( "aria-selected", "true" )
-						.append( "<span class='wb-inv picker-sel-text'> [" +
-							i18nText.selected + "]</span>" );
-				}
-			}
-		} catch ( error ) {
-		}
-	},
-
-	toggle = function( fieldId ) {
-		var field = document.getElementById( fieldId ),
-			$field = $( field ),
-			minDate = field.getAttribute( "min" ),
-			maxDate = field.getAttribute( "max" ),
-			fromDateISO = wb.date.fromDateISO,
-			targetDate = fromDateISO( field.value ),
-			closeLabel;
-
-		if ( !minDate ) {
-			minDate = "1800-01-01";
-		}
-
-		if ( !maxDate ) {
-			maxDate = "2100-01-01";
-		}
-
-		$document.trigger( "create.wb-cal", [
-				containerName,
-				year,
-				month,
-				true,
-				minDate,
-				maxDate,
-				undefined,
-				fieldId,
-				fieldId + "-picker-toggle"
-			]
-		);
-
-		$field.after( $container );
-
-		if ( $container.attr( "aria-hidden" ) !== "false" ) {
-			closeLabel = i18nText.close;
-
-			// Hide all other calendars
-			hideAll( fieldId );
-
-			// Enable the tabbing of all the links when calendar is visible
-			// TODO: Replace with CSS animation
-			$container
-				.slideDown( "fast" )
-				.attr( "aria-hidden", "false" );
-			$( "#" + fieldId + "-picker-toggle" )
-				.attr( "title", closeLabel )
-				.children( ".wb-inv" )
-					.text( closeLabel );
-
-			if ( targetDate !== null ) {
-				targetDate.setDate( targetDate.getDate() + 1 );
-				$document.trigger( "setFocus.wb-cal", [
-						containerName,
-						year,
-						month,
-						fromDateISO( minDate ),
-						fromDateISO( maxDate ),
-						targetDate
-					]
-				);
-			} else {
-				$( "#" + containerName ).trigger( setFocusEvent );
-			}
+		if ( date && date >= minDate && date <= maxDate ) {
+			state.date = date;
+			state.year = date.getFullYear();
+			state.month = date.getMonth();
 		} else {
-			hide( fieldId );
-			$field.trigger( setFocusEvent );
+			state.date = null;
 		}
 	},
 
-	hideAll = function( exception ) {
-		var pickerFields = $( ".picker-field" ).get(),
-			len = pickerFields.length,
-			i, pickerFieldId;
-
-		for ( i = 0; i !== len; i += 1 ) {
-			pickerFieldId = pickerFields[ i ].id;
-			if ( pickerFieldId !== exception ) {
-				hide( pickerFieldId );
-			}
+	toggle = function( field ) {
+		if ( $container.attr( "aria-hidden" ) !== "false" ) {
+			show( field );
+		} else {
+			hide();
 		}
 	},
 
-	hide = function( fieldId ) {
-		var toggle = $( "#" + fieldId + "-picker-toggle" ),
-			label = i18nText.show +
-				$( "label[for=" + fieldId + "]" )
-					.clone()
-					.find( ".datepicker-format" )
-						.remove()
-						.end()
-					.text();
+	hide = function() {
+		var field = calendar.field,
+			$field = calendar.$field,
+			labelText = i18nText.show + calendar.labelText;
+
+		$( "#" + field.id + toggleSuffix )
+			.attr( "title", labelText.replace( "&#32;", " " ) )
+			.children( ".wb-inv" )
+				.html( labelText );
 
 		$container
-			.slideUp( "fast" )
-			.attr( "aria-hidden", "true" )
-			.trigger( "hideGoToFrm.wb-cal" );
-		toggle
-			.attr( "title", label.replace( "&#32;", " " ) )
-			.children( ".wb-inv" )
-				.html( label );
+			.removeClass( "open" )
+			.attr( "aria-hidden", "true" );
+
+		$field.trigger( setFocusEvent );
 	},
 
-	formatDate = function( year, month, day, format ) {
-		var pad = wb.string.pad;
-		return format
-			.replace( "DD", pad( day, 2 ) )
-			.replace( "D", day )
-			.replace( "MM", pad( month, 2 ) )
-			.replace( "M", month )
-			.replace( "YYYY", year )
-			.replace( "YY", year.toString().substr( 2, 2 ) );
+	show = function( field ) {
+		var fieldId = field.id,
+			closeText = i18nText.hide;
+
+		updateState.call( field );
+		calendar.reInit( field.state );
+
+		$container
+			.addClass( "open" )
+			.attr( {
+				"aria-controls": fieldId,
+				"aria-labelledby": fieldId + toggleSuffix,
+				"aria-hidden": "false"
+			} )
+			.get( 0 ).focus();
+
+		position();
+
+		$( "#" + fieldId + toggleSuffix )
+			.attr( "title", closeText )
+			.children( ".wb-inv" )
+				.text( closeText );
+	},
+
+	position = function() {
+		var field = calendar.field,
+			position = calendar.$field.offset();
+
+		$container
+			.attr( "style", "top:" + ( position.top + field.offsetHeight ) + "px;left:" + position.left + "px" );
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "click vclick touchstart focusin", function( event ) {
-	var which = event.which,
-		container;
+$document.on( "focusout focusin", "#" + containerName + " .wb-clndr",  function( event ) {
 
-	// Ignore middle/right mouse buttons
-	if ( initialized && ( !which || which === 1 ) ) {
-		container = document.getElementById( containerName );
-
-		if ( container !== null &&
-			container.getAttribute( "aria-hidden" ) === "false" &&
-			event.target.id !== container.id &&
-			!$.contains( container, event.target ) ) {
-
-			hide( container.getAttribute( "aria-controls" ) );
-			return false;
-		}
+	// Hide the calendar when the focus leaves the calendar
+	switch ( event.type ) {
+		case "focusout":
+			focusOutTimer = setTimeout( hide, 10 );
+			break;
+		case "focusin":
+			clearTimeout( focusOutTimer );
 	}
 } );
 
-$document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, year, month, $days, day ) {
-	var $container = $( this ),
-		eventType = event.type,
-		which = event.which,
-		fieldId = $container.attr( "aria-controls" );
+$document.on( "keydown", "#" + containerName, function( event ) {
 
-	switch ( eventType ) {
-	case "keydown":
+	// Escape key to close overlay
+	if ( event.which === 27 ) {
+		hide();
+	}
 
-		// Escape key to close overlay
-		if ( which === 27 ) {
-			hideAll();
-			$( "#" + fieldId ).trigger( setFocusEvent );
-		}
-		break;
+} );
 
-	case "displayed":
-		if ( event.namespace === "wb-cal" ) {
-			addLinksToCalendar( fieldId, year, month, $days );
-			setSelectedDate( fieldId, year, month, $days );
-			( day ?
-				$container.find( ".cal-index-" + day + " a" ) :
-				$container
-			).trigger( setFocusEvent );
-		}
-		break;
+$document.on( "click", ".picker-overlay .cal-days a", function( event ) {
+	var which = event.which,
+		field = calendar.field;
 
-	case "click":
-	case "vclick":
-	case "touchstart":
-	case "focusin":
-		if ( $container.attr( "aria-hidden" ) === false ) {
+	// Ignore middle/right mouse buttons
+	if ( ( !which || which === 1 ) && !field.disabled && !field.readOnly ) {
+		field.value = $( event.currentTarget ).find( "time" ).attr( "datetime" );
+		$( field ).trigger( "change" );
 
-			// Ignore middle/right mouse buttons
-			if ( !which || which === 1 ) {
-				if ( event.stopPropagation ) {
-					event.stopImmediatePropagation();
-				} else {
-					event.cancelBubble = true;
-				}
-			}
-		}
+		// Hide the calendar on selection
+		hide();
+
+		return false;
 	}
 } );
 
@@ -355,39 +292,39 @@ $document.on( "click", ".picker-toggle", function( event ) {
 	event.preventDefault();
 
 	var which = event.which,
-		pickerId;
+		pickerId, field;
 
 	// Ignore middle/right mouse buttons
 	if ( ( !which || which === 1 ) ) {
-		pickerId = this.id;
-		toggle( pickerId.substring( 0, pickerId.indexOf( "-picker-toggle" ) ) );
-		return false;
+		pickerId = event.currentTarget.id;
+		field = $( "#" + pickerId.substring( 0, pickerId.indexOf( toggleSuffix ) ) ).get( 0 );
+		if ( !field.disabled && !field.readOnly ) {
+			toggle( field );
+			return false;
+		}
 	}
 } );
 
-$document.on( "click", ".cal-days a", function( event ) {
-	var which = event.which,
-		fieldId, date, year, month, day, $field;
+$document.on( "click", ".picker-close", function( event ) {
+	var which = event.which;
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		fieldId = document.getElementById( containerName )
-			.getAttribute( "aria-controls" );
-		date = wb.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
-			.getAttribute( "datetime" ) );
-		year = date.getFullYear();
-		month = date.getMonth();
-		day = date.getDate();
 
-		$field = $( "#" + fieldId );
-		$field.val( formatDate( year, month + 1, day, format ) );
+		// Stop propagation of the click event
+		if ( event.stopPropagation ) {
+			event.stopImmediatePropagation();
+		} else {
+			event.cancelBubble = true;
+		}
 
-		setSelectedDate( fieldId, year, month, day );
+		hide();
+	}
+} );
 
-		// Hide the calendar on selection
-		toggle( fieldId );
-
-		return false;
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
+	if ( $container && $container.hasClass( "open" ) ) {
+		position();
 	}
 } );
 
