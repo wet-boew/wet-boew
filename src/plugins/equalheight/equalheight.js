@@ -101,8 +101,8 @@ var componentName = "wb-eqht",
 			$elm = reattachElement( $anchor );
 
 			// set the top and tallest to the first element
-			rowTop = $children[ 0 ].offsetTop;
-			tallestHeight = $children[ 0 ].offsetHeight;
+			rowTop = $children[ 0 ] ? $children[ 0 ].offsetTop : 0;
+			tallestHeight = $children[ 0 ] ? $children[ 0 ].offsetHeight : 0;
 
 			// first, the loop MUST be from start to end to work.
 			for ( j = 0; j < $children.length; j++ ) {
