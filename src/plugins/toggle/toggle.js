@@ -304,15 +304,7 @@ var componentName = "wb-toggle",
 				event.cancelBubble = true;
 			}
 
-			// Native details support
 			$detail.prop( "open", isOn );
-
-			// Polyfill details support
-			if ( !Modernizr.details ) {
-				$detail
-					.attr( "open", isOn ? null : "open" )
-					.children( "summary" ).trigger( "toggle.wb-details" );
-			}
 
 			if ( data.isTablist ) {
 
