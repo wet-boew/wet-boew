@@ -27,6 +27,7 @@ var componentName = "wb-data-ajax",
 	selector = selectors.join( "," ),
 	initEvent = "wb-init." + componentName,
 	updateEvent = "wb-update." + componentName,
+	contentUpdatedEvent = "wb-contentupdated",
 	$document = wb.doc,
 	s,
 
@@ -130,6 +131,8 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 
 				//Resets the initial jQuery caching setting
 				jQuery.ajaxSettings.cache = jQueryCaching;
+
+				$elm.trigger( contentUpdatedEvent, { "ajax-type": ajaxType, "content": content } );
 			}
 		}
 	}
