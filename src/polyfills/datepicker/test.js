@@ -312,8 +312,8 @@
 				var calendarPosition = $calendar.offset(),
 					fieldPosition = $elm.offset();
 
-				expect( Math.round( calendarPosition.left ) ).to.equal( Math.round( fieldPosition.left ) );
-				expect( Math.round( calendarPosition.top ) ).to.equal( Math.round( fieldPosition.top + $elm.outerHeight() ) );
+				expect( Math.floor( calendarPosition.left ) ).to.equal( Math.floor( fieldPosition.left ) );
+				expect( Math.floor( calendarPosition.top ) ).to.equal( Math.floor( fieldPosition.top + $elm.outerHeight() ) );
 			} );
 		} );
 
