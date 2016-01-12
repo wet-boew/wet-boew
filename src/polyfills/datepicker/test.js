@@ -7,7 +7,9 @@
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
 ( function( $, wb ) {
-	describe( "Input type=\"date\" polyfill (date picker)", function() {
+	var runTest = Modernizr.inputtypes.date ? describe.skip : describe;
+
+	runTest( "Input type=\"date\" polyfill (date picker)", function() {
 		var sandbox = sinon.sandbox.create(),
 			selector = "input[type=date]",
 			$document = wb.doc,
