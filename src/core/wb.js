@@ -73,7 +73,7 @@ var getUrlParts = function( url ) {
 				.split( "?" )[ 0 ].split( "/" )
 				.slice( 0, -1 )
 				.join( "/" );
-		paths.assets = paths.home + "/../assets",
+		paths.asset = paths.home + "/../assets",
 		paths.template = paths.home + "/assets/templates";
 		paths.dep = paths.home + "/deps";
 		paths.js = paths.home;
