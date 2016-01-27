@@ -571,6 +571,35 @@ runTest( "Input type=\"date\" polyfill (date picker)", function() {
 			expect( spy.calledWith( "change" ) ).to.equal( false );
 		} );
 	} );
+
+	describe( "updating the min and max date of the field after the creation of the element", function() {
+		before( function( done ) {
+			callback = function() {
+				$elm.next().find( "a" ).click().click();
+				$elm.attr( "min", "2014-03-12" );
+				$elm.attr( "max", "2014-03-17" );
+				$elm.next().find( "a" ).click();
+				done();
+			};
+			beforeFactory( "<input type=\"date\" id=\"appointment\" min=\"2014-03-08\" max=\"2014-03-22\"/>" )();
+		} );
+		after( function() {
+			$elm.next().find( "a" ).click();
+			defaultAfter();
+		} );
+
+		it( "should have update the field's state", function() {
+			var field = $elm.get( 0 ),
+				state = field.state;
+
+			expect( state.minDate.toString() ).to.equal( new Date( 2014, 2, 12 ).toString() );
+			expect( state.maxDate.toString() ).to.equal( new Date( 2014, 2, 17 ).toString() );
+		} );
+
+		it( "should have update the min and max date of the date picker", function() {
+			expect( $( calendarSelector ).find( ".cal-days a" ).length ).to.equal( 6 );
+		} );
+	} );
 } );
 
 }( jQuery, wb ) );
