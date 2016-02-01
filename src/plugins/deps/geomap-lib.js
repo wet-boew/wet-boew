@@ -2058,15 +2058,9 @@ var componentName = "wb-geomap",
 					if ( keyboardDefaults ) {
 						keyboardDefaults.activate();
 					}
-					if ( navigation ) {
-						navigation.activate();
-					}
 					$( target ).addClass( "active" );
 				}
 			} else if ( isActive > 0 ) {
-				if ( navigation ) {
-					navigation.deactivate();
-				}
 				if ( keyboardDefaults ) {
 					keyboardDefaults.deactivate();
 				}
