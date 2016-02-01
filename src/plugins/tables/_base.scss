@@ -904,27 +904,27 @@ table {
 	position: relative;
 	zoom: 1;
 
-	.dataTables_length {
-		@extend %tables-color-333;
-		@extend %tables-font-weight-400;
-		float: left;
-	}
-
 	.dataTables_filter {
 		@extend %tables-color-333;
 		@extend %tables-font-weight-400;
-		float: right;
-		text-align: right;
+		float: left;
+		margin-right: 15px;
 
 		input {
 			margin-left: 0.5em;
 		}
 	}
 
+	.dataTables_length {
+		@extend %tables-color-333;
+		@extend %tables-font-weight-400;
+		display: inline-block;
+		margin-top: 5px;
+	}
+
 	.dataTables_info {
 		@extend %tables-color-333;
-		clear: both;
-		float: left;
+		display: inline-block;
 	}
 
 	.dataTables_paginate {

@@ -74,7 +74,7 @@ var componentName = "wb-tables",
 			defaults = {
 				asStripeClasses: [],
 				language: i18nText,
-				dom: "<'top'ilf>rt<'bottom'p><'clear'>"
+				dom: "<'top'fil>rt<'bottom'p><'clear'>"
 			};
 
 			Modernizr.load( {
