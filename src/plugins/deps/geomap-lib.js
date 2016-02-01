@@ -2048,7 +2048,6 @@ var componentName = "wb-geomap",
 			target = event.currentTarget.className.indexOf( "wb-geomap-map" ) === -1 ?
 					event.currentTarget.parentElement : event.currentTarget,
 			keyboardDefaults = map.getControlsByClass( "OpenLayers.Control.KeyboardDefaults" )[ 0 ],
-			navigation = map.getControlsByClass( "OpenLayers.Control.Navigation" )[ 0 ],
 			isActive;
 
 		if ( map ) {
