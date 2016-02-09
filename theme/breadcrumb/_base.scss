@@ -1,6 +1,11 @@
 /*
  Breadcrumbs
  */
+
+%breadcrumb-no-icon {
+	display: none;
+}
+
 #wb-bc {
 	background: #f9f9f9;
 
@@ -16,20 +21,18 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 
-		&:before,
-		&:after {
-			color: #333;
-			font-family: "Glyphicons Halflings";
-			font-size: 0.7em;
-		}
-
 		&:before {
+			color: #333;
 			content: "\e092";
+			font: {
+				family: "Glyphicons Halflings";
+				size: 0.7em;
+			}
 		}
 
 		&:first-child {
 			&:before {
-				display: none;
+				@extend %breadcrumb-no-icon;
 			}
 		}
 	}
@@ -39,19 +42,13 @@
 	#wb-bc {
 		li {
 			&:before {
-				content: "";
-				padding: 0;
-			}
-
-			&:after {
 				content: "\e091";
-				padding: 0 5px;
+				display: inline-block;
 			}
 
 			&:first-child {
-				&:after {
-					content: "";
-					padding: 0;
+				&:before {
+					@extend %breadcrumb-no-icon;
 				}
 			}
 		}
