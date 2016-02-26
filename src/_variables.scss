@@ -77,6 +77,20 @@ $font-size-h6: ceil($font-size-base * $font-scale-sm) !default;
 $line-height-base: 1.4375 !default;
 
 
+//== Breadcrumb
+//
+//## Breacrumb enable/disable and colour settings.
+
+// WET Custom
+$wb-bc-enable: true !default; // Enable or disable WET's breadcrumb SCSS. Themes that don't use breadcrumbs can set this to false.
+$wb-bc-background-color: null !default; // Outer background colour. Override $breadcrumb-bg (Bootstrap variable) to change the inner background colour.
+$wb-bc-separator-color: #333 !default; // Separator colour.
+$wb-bc-separator-font-family: "Glyphicons Halflings" !default; // Separator font family.
+$wb-bc-separator-font-size: 0.7em !default; // Separator font size.
+$wb-bc-separator-content: "\e092" !default; // Separator content.
+$wb-bc-separator-content-rtl: "\e091" !default; // Separator content (right to left).
+
+
 //== Tables
 //
 //## Customizes the `.table` component with basic values, each used across all table variations.

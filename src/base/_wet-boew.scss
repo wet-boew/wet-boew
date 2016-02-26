@@ -101,6 +101,7 @@
 
 /*! WET-BOEW Core and Plugins */
 @import "accessibility/base";
+@import "breadcrumb/base";
 @import "language-selector/base";
 @import "transitions/base";
 @import "proximity/base";
@@ -238,6 +239,7 @@
 /* Print view */
 @media print {
 	@import "views/print";
+	@import "breadcrumb/print";
 	@import "../plugins/footnotes/print";
 	@import "../plugins/geomap/print";
 	@import "../plugins/lightbox/print";
