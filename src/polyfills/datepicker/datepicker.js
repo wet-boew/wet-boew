@@ -223,6 +223,8 @@ var componentName = "wb-date",
 		updateState.call( field );
 		calendar.reInit( field.state );
 
+		position();
+
 		$container
 			.addClass( "open" )
 			.attr( {
@@ -231,8 +233,6 @@ var componentName = "wb-date",
 				"aria-hidden": "false"
 			} )
 			.get( 0 ).focus();
-
-		position();
 
 		$( "#" + fieldId + toggleSuffix )
 			.attr( "title", closeText )
