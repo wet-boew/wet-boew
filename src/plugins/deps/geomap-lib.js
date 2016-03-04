@@ -516,13 +516,12 @@ var componentName = "wb-geomap",
 		var len = geomap.map.layers.length,
 			symbolItems = [],
 			ruleLen, $symbol, symbolList, symbolText, layer, style, styleDefault,
-			filter, symbolizer, i, j, rule, spanId, title;
+			filter, symbolizer, i, j, rule, spanId;
 
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
 			if ( !layer.isBaseLayer && layer.CLASS_NAME !== "OpenLayers.Layer.WMS" ) {
 				$symbol = $( "#sb_" + layer.name );
-				symbolText = "";
 
 				if ( $symbol.length ) {
 					style = layer.styleMap.styles[ "default" ];
@@ -537,23 +536,12 @@ var componentName = "wb-geomap",
 							rule = style.rules[ j ];
 							filter = rule.filter;
 							symbolizer = rule.symbolizer;
-							title = "";
-
 							spanId = "ls_" + layer.name + "_" + j;
-
-							if ( filter ) {
-								if ( filter.title ) {
-									title = filter.title;
-								}
-							} else if ( rule ) {
-								if ( rule.title ) {
-									title = rule.title;
-								}
-							}
+							symbolText = rule.title ? rule.title : symbolizer.name ? symbolizer.name : filter.value;
 
 							symbolList += "<li><div class='row'>" +
 								"<div id='" + spanId + "' class='col-md-2 geomap-legend-symbol'></div><div class='col-md-10'><small>" +
-									title + "</small></div></div></li>";
+								symbolText + "</small></div></div></li>";
 
 							symbolItems.push( { "id": spanId, "feature": layer.features[ 0 ], "symbolizer": symbolizer } );
 						}
@@ -1230,7 +1218,7 @@ var componentName = "wb-geomap",
 											i = 0,
 											features = [],
 											layerAttributes = layer.attributes,
-											name;
+											name, rowText;
 
 										// When read from server, data is string instead of #document
 										if ( typeof data === "string" ) {
@@ -1258,7 +1246,8 @@ var componentName = "wb-geomap",
 											atts = {};
 											for ( name in layerAttributes ) {
 												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = $row.find( name ).text();
+													rowText = $row.find( name ).text();
+													atts[ layerAttributes[ name ] ] = rowText ? rowText : $row.find( "[ name='" +  name + "']" ).text();
 												}
 											}
 											feature.attributes = atts;
