@@ -71,6 +71,16 @@ var componentName = "wb-tabs",
 			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );
 			$tablist = $elm.children( "[role=tablist]" );
 			isCarousel = $tablist.length !== 0;
+
+			// Stop carousel if only 1 panel
+			if ( isCarousel && $panels.length === 1 ) {
+
+				// Remove tabs roles
+				$tablist.remove();
+				$panels.removeAttr( "role" );
+				return true;
+			}
+
 			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
 			hashFocus = activeId.length !== 0;
 			$openPanel = hashFocus ? $panels.filter( "#" + activeId ) : undefined;
