@@ -34,7 +34,7 @@ var i18nText,
 		textWeekDayNames = i18nText.dayNames;
 		textMonthNames = i18nText.monthNames;
 
-		$calBase = $( "<div class='wb-clndr'>" +
+		$calBase = $( "<div class='wb-clndr' role='application'>" +
 			"<div class='cal-nav'>" +
 				"<button type='button' class='btn pull-left cal-month-prev'>" +
 					"<span class='glyphicon glyphicon-arrow-left'></span>" +
