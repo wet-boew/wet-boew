@@ -1,0 +1,54 @@
+/*
+  WET-BOEW
+  @title: Breadcrumb CSS
+ */
+
+@if $wb-bc-enable {
+	#wb-bc {
+		background-color: $wb-bc-background-color;
+
+		ol {
+			border-radius: 0;
+			margin-bottom: 0;
+		}
+
+		li {
+			max-width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+
+			&:before {
+				color: $wb-bc-separator-color;
+				content: $wb-bc-separator-content;
+				font: {
+					family: $wb-bc-separator-font-family;
+					size: $wb-bc-separator-font-size;
+				}
+			}
+
+			&:first-child {
+				&:before {
+					@extend %global-display-none;
+				}
+			}
+		}
+	}
+
+	[dir=rtl] {
+		#wb-bc {
+			li {
+				&:before {
+					content: $wb-bc-separator-content-rtl;
+					display: inline-block;
+				}
+
+				&:first-child {
+					&:before {
+						@extend %global-display-none;
+					}
+				}
+			}
+		}
+	}
+}

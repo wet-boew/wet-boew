@@ -1,0 +1,20 @@
+/*
+  WET-BOEW
+  @title: Breadcrumb print CSS overrides
+ */
+
+@if $wb-bc-enable {
+	#wb-bc {
+		.breadcrumb {
+			margin-bottom: 0;
+		}
+
+		a {
+			&[href] {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+}
