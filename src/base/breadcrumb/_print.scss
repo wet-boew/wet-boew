@@ -4,17 +4,23 @@
  */
 
 @if $wb-bc-enable {
-	#wb-bc {
-		.breadcrumb {
-			margin-bottom: 0;
-		}
+	@if $wb-bc-print-show {
+		#wb-bc {
+			.breadcrumb {
+				margin-bottom: 0;
+			}
 
-		a {
-			&[href] {
-				&:after {
-					content: "";
+			a {
+				&[href] {
+					&:after {
+						content: "";
+					}
 				}
 			}
+		}
+	} @else {
+		#wb-bc {
+			display: none;
 		}
 	}
 }
