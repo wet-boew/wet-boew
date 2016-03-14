@@ -1,6 +1,9 @@
 // Theme Variable overrides
 
-//Breadcrumb
+// Breadcrumb
 $breadcrumb-bg: #fff; // Inner background colour (Bootstrap override).
+
+// Sign in / off
+$wb-so-background-color: #fff;
 
 @import "../src/variables";

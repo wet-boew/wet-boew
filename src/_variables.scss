@@ -91,6 +91,14 @@ $wb-bc-separator-content: "\e092" !default; // Separator content.
 $wb-bc-separator-content-rtl: "\e091" !default; // Separator content (right to left).
 
 
+//== Sign in / off
+//
+//##
+$wb-so-background-color: null !default;
+$wb-so-text-align: right !default;
+$wb-so-padding: 1em 0 0 !default;
+
+
 //== Tables
 //
 //## Customizes the `.table` component with basic values, each used across all table variations.
@@ -271,4 +279,3 @@ $carousel-s2-tablist-thumbnail-active-border-width: 10px !default;
 $txthl-bg-color: #ff0 !default;
 $txthl-color: #000 !default;
 $txthl-font-weight: 700 !default;
-

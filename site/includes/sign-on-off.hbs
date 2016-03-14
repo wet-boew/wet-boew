@@ -4,16 +4,12 @@
 		<div class="row">
 			<div class="col-md-12">
 	{{#is signed "off"}}
-				<div class="pull-right">
-					<button class="btn btn-default" type="button">{{i18n "tmpl-register"}}</button>
-					<button class="btn btn-primary" type="button">{{i18n "tmpl-signin"}}</button>
-				</div>
+				<button class="btn btn-default" type="button">{{i18n "tmpl-register"}}</button>
+				<button class="btn btn-primary" type="button">{{i18n "tmpl-signin"}}</button>
 	{{else}}
 				<p class="btn">{{i18n "tmpl-signed-in-as"}} <span class="wb-so-uname">John Doe</span></p>
-				<div class="pull-right">
-					<button class="btn btn-default" type="button">{{i18n "tmpl-accountsettings"}}</button>
-					<button class="btn btn-primary" type="button">{{i18n "tmpl-signout"}}</button>
-				</div>
+				<button class="btn btn-default" type="button">{{i18n "tmpl-accountsettings"}}</button>
+				<button class="btn btn-primary" type="button">{{i18n "tmpl-signout"}}</button>
 	{{/is}}
 			</div>
 		</div>
