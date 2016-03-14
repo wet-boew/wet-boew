@@ -1,7 +1,8 @@
 #wb-so {
-	text-align: right;
+	text-align: $wb-so-text-align;
 
 	.row {
-		background: #fff;
+		background: $wb-so-background-color;
+		padding: $wb-so-padding;
 	}
 }
