@@ -23,8 +23,8 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		fetchOpts = event.fetch,
 		urlParts = fetchOpts.url.split( " " ),
 		url = urlParts[ 0 ],
-		urlHash = url.split( "#" )[ 1 ],
-		selector = urlParts[ 1 ] || ( urlHash ? "#" + urlHash : false ),
+		urlHash = url.split( "#" )[ 1 ],
+		selector = urlParts[ 1 ] || ( urlHash ? "#" + urlHash : false ),
 		fetchData, callerId;
 
 	// Separate the URL from the filtering criteria

@@ -187,7 +187,7 @@ var componentName = "wb-datalist",
 			} else if ( !autolistHidden ) {
 
 				// Tab or Escape key
-				if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
+				if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
 					closeOptions( input );
 				}
 			}
