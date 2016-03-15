@@ -1065,7 +1065,7 @@ var componentName = "wb-geomap",
 			hasBasemap = basemap && basemap.length !== 0,
 			configOpts = {},
 			controls = opts.useMapControls ? [ new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } ) ] : [],
-			layerOptions, mapOptions, mapOpts, aspectRatio, keys, o, obj;
+			layerOptions, mapOptions, mapOpts, keys, o, obj;
 
 		if ( hasBasemap ) {
 			mapOpts = basemap.mapOptions;
@@ -1106,7 +1106,6 @@ var componentName = "wb-geomap",
 		}
 
 		// set aspect ratio
-		aspectRatio = mapOptions.aspectRatio === undefined ? 0.8 : mapOptions.aspectRatio;
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions, { theme: null, controls: controls } ) );

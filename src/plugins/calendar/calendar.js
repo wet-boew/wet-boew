@@ -29,7 +29,7 @@ var i18nText,
 			dayNames: i18n( "days" ),
 			currDay: i18n( "currDay" ),
 			format: i18n( "cal-format" )
-		},
+		};
 
 		textWeekDayNames = i18nText.dayNames;
 		textMonthNames = i18nText.monthNames;

@@ -37,11 +37,11 @@ describe( "data-inview test suite", function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		$document.on( initEvent, selector, function( event ) {
+		$document.on( initEvent, selector, function() {
 			done();
 		} );
 
-		$document.on( "all.wb-inview partial.wb-inview none.wb-inview", selector, function( event ) {
+		$document.on( "all.wb-inview partial.wb-inview none.wb-inview", selector, function() {
 			if ( callback ) {
 				callback();
 			}

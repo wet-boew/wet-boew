@@ -19,7 +19,6 @@ var componentName = "wb-date",
 	containerName = "wb-picker",
 	toggleSuffix = "-picker-toggle",
 	today = new Date(),
-	initialized = false,
 	$document = wb.doc,
 	fromDateISO = wb.date.fromDateISO,
 	defaults = {
@@ -57,7 +56,7 @@ var componentName = "wb-date",
 				linkFocus.parent().removeAttr( "tabindex" );
 		}
 	},
-	i18n, i18nText, $container, calendar, $calendarObj, focusOutTimer,
+	i18n, i18nText, $container, calendar, focusOutTimer,
 
 	/**
 	 * @method init
@@ -141,7 +140,6 @@ var componentName = "wb-date",
 
 			// Identify that initialization has completed
 			wb.ready( $( elm ), componentName );
-			initialized = true;
 		}
 	},
 
@@ -156,7 +154,6 @@ var componentName = "wb-date",
 		$( "main" ).after( $container );
 
 		calendar = wb.calendar.create( $container, elm.state );
-		$calendarObj = calendar.$o;
 
 		// Close button
 		$( "<button type='button' class='picker-close mfp-close overlay-close' title=\"" +

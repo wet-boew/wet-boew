@@ -8,7 +8,7 @@
 
 var $document = wb.doc;
 
-$document.on( "click vclick", "#lbx-open-btn", function( event ) {
+$document.on( "click vclick", "#lbx-open-btn", function() {
 	var value = $( "#lbx-select" ).val();
 
 	if ( value === "1" ) {

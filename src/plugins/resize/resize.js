@@ -33,7 +33,7 @@ var componentName = "wb-rsz",
 		largeview: 1200,
 		xlargeview: 1600
 	},
-	eventsAll, resizeTest, currentView,
+	resizeTest, currentView,
 
 	/**
 	 * @method init
@@ -62,9 +62,6 @@ var componentName = "wb-rsz",
 				window.innerWidth || $document.width(),
 				window.innerHeight || $document.height()
 			];
-
-			// Create a string containing all the events
-			eventsAll = events.join( " " );
 
 			// Determine the current view
 			viewChange( sizes[ 1 ] );
