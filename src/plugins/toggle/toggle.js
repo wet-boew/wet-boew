@@ -84,7 +84,7 @@ var componentName = "wb-toggle",
 			hasOpen = false;
 
 		// Group toggle elements with a parent are assumed to be a tablist
-		if ( data.group != null && data.parent != null ) {
+		if ( data.group != null && data.parent != null ) { //eslint-disable-line no-eq-null
 			parent = document.querySelector( data.parent );
 
 			// Check that the tablist widget hasn't already been initialized

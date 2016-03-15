@@ -2398,7 +2398,7 @@ var componentName = "wb-geomap",
 
 			coords = { bbox: bbox, lonlat: ll	};
 
-			if ( coords.bbox != null ) {
+			if ( coords.bbox !== null ) {
 
 				bnds = new OpenLayers.Bounds.fromString( coords.bbox );
 				dens = densifyBBox( bnds.left, bnds.bottom, bnds.right, bnds.top );
@@ -2409,7 +2409,7 @@ var componentName = "wb-geomap",
 				geomap.locLayer.addFeatures( [ feat ] );
 				geomap.map.zoomToExtent( geomProj.getBounds() );
 
-			} else if ( coords.lonlat != null ) {
+			} else if ( coords.lonlat !== null ) {
 
 				zoom = geomap.map.getZoom() === 0 ? geomap.map.numZoomLevels * 0.85	: geomap.map.getZoom();
 				lonlat = new OpenLayers.LonLat( ( coords.lonlat ).split( "," ) ).transform( projLatLon, projMap );
