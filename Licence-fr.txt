@@ -20,7 +20,7 @@ dans ces fichiers. Nous demandons aux utilisateurs de lire les licences des tier
 
 Licence MIT
 
-(c) Droit d'auteur – Gouvernement du Canada, 2014
+(c) Droit d'auteur – Gouvernement du Canada, 2016
 
 La présente autorise toute personne d'obtenir gratuitement une copie du présent logiciel et des
 documents connexes (le « logiciel »), de traiter le logiciel sans restriction, y compris, mais sans
