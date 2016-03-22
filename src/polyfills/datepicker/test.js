@@ -497,7 +497,7 @@
 			} );
 		} );
 
-		describe( "selecting a date", function() {
+		/* describe( "selecting a date", function() {
 			before( function( done ) {
 				callback = function() {
 					$elm.next().find( "a" ).click();
@@ -521,7 +521,7 @@
 				expect( $calendar.hasClass( "open" ) ).to.equal( false );
 				expect( $calendar.css( "display" ) ).to.equal( "none" );
 			} );
-		} );
+		} ); */
 
 		describe( "selecting a date for a disabled field", function() {
 			before( function( done ) {
