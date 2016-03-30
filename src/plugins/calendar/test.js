@@ -78,12 +78,12 @@ describe( "calendar test suite", function() {
 			expect( lastDay ).to.be( 4 );
 		} );
 
-		/* it( "should use the HTML5 time element and specify the date in ISO format", function() {
+		it( "should use the HTML5 time element and specify the date in ISO format", function() {
 			var $times = $calendarObj.find( ".cal-days time" );
 
 			expect( $times.length ).to.be( 29 );
 			expect( $times.filter( ":eq(0)" ).attr( "datetime" ) ).to.be( "2012-02-01" );
-		} ); */
+		} );
 
 		it( "should format the dates", function() {
 			expect( $calendarObj.find( ".cal-days td:not(.cal-empty):eq(0)" ).text() ).to.be( "Wednesday, February 1, 2012" );
