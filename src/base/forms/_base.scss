@@ -5,9 +5,9 @@
 
 $asterisk-width: 0.665em;
 
-%forms-color-red-italic {
+%forms-color-red-bold {
 	color: #d3080c;
-	font-style: italic;
+	font-weight: 700;
 }
 
 // scss-lint:disable QualifyingElement
@@ -17,14 +17,14 @@ legend,
 input[type="checkbox"] {
 	&.required {
 		&:before {
-			@extend %forms-color-red-italic;
+			@extend %forms-color-red-bold;
 			content: "* ";
 			margin-left: -$asterisk-width;
 		}
 
 		strong {
 			&.required {
-				@extend %forms-color-red-italic;
+				@extend %forms-color-red-bold;
 			}
 		}
 	}
