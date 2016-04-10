@@ -32,7 +32,7 @@
     "jquery": "2.1.4",
     "jquery-oldIE": "jquery#1.11.1",
     "jquery-pjax": "1.9.6",
-    "jquery-validation": "1.13.1",
+    "jquery-validation": "1.15.0",
     "magnific-popup": "1.0.0",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.3.3",
