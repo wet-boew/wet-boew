@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var componentName = "wb-tabs",
-	selector = "." + componentName,
+	selector = "." + componentName + ":has( > .tabpanels > [role='tabpanel']:nth-of-type(2), > .tabpanels > details:nth-of-type(2), > [role='tabpanel']:nth-of-type(2), > details:nth-of-type(2))",
 	initEvent = "wb-init" + selector,
 	shiftEvent = "wb-shift" + selector,
 	selectEvent = "wb-select" + selector,
@@ -71,15 +71,6 @@ var componentName = "wb-tabs",
 			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );
 			$tablist = $elm.children( "[role=tablist]" );
 			isCarousel = $tablist.length !== 0;
-
-			// Stop carousel if only 1 panel
-			if ( isCarousel && $panels.length === 1 ) {
-
-				// Remove tabs roles
-				$tablist.remove();
-				$panels.removeAttr( "role" );
-				return true;
-			}
 
 			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
 			hashFocus = activeId.length !== 0;
