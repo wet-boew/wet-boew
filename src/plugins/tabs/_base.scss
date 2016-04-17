@@ -332,7 +332,11 @@ $tab-margin-width: 10px;
 	 */
 	&.carousel-s2 {
 		background: $carousel-s2-tablist-controls-bg-color;
-		padding-bottom: 4.375em;
+
+		// Only need to show controls when JS is active and plugin working
+		&.wb-init {
+			padding-bottom: 4.375em;
+		}
 
 		[role="tabpanel"] {
 			@extend %carousel-link;
