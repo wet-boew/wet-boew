@@ -97,7 +97,7 @@ var componentName = "wb-date",
 			settings = {
 				field: this,
 				$field: $( this ),
-				labelText: $( "label[for=" + elm.id + "]" )
+				labelText: $( "label[for=" + wb.jqEscape( elm.id ) + "]" )
 					.clone()
 					.find( ".datepicker-format, .error" )
 						.remove()
@@ -172,7 +172,9 @@ var componentName = "wb-date",
 				showFieldLabelText + "\"><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabelText + "</span></a></span>";
 
-		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap input-group'/>" ).after( objToggle );
+		$( "#" + wb.jqEscape( fieldId ) )
+			.wrap( "<span class='wb-date-wrap input-group'/>" )
+			.after( objToggle );
 		$container.slideUp( 0 );
 	},
 
@@ -204,7 +206,7 @@ var componentName = "wb-date",
 			$field = calendar.$field,
 			labelText = i18nText.show + calendar.labelText;
 
-		$( "#" + field.id + toggleSuffix )
+		$( "#" + wb.jqEscape( field.id + toggleSuffix ) )
 			.attr( "title", labelText.replace( "&#32;", " " ) )
 			.children( ".wb-inv" )
 				.html( labelText );
@@ -234,7 +236,7 @@ var componentName = "wb-date",
 			} )
 			.get( 0 ).focus();
 
-		$( "#" + fieldId + toggleSuffix )
+		$( "#" + wb.jqEscape( fieldId + toggleSuffix ) )
 			.attr( "title", closeText )
 			.children( ".wb-inv" )
 				.text( closeText );
@@ -297,7 +299,7 @@ $document.on( "click", ".picker-toggle", function( event ) {
 	// Ignore middle/right mouse buttons
 	if ( ( !which || which === 1 ) ) {
 		pickerId = event.currentTarget.id;
-		field = $( "#" + pickerId.substring( 0, pickerId.indexOf( toggleSuffix ) ) ).get( 0 );
+		field = $( "#" + wb.jqEscape( pickerId.substring( 0, pickerId.indexOf( toggleSuffix ) ) ) ).get( 0 );
 		if ( !field.disabled && !field.readOnly ) {
 			toggle( field );
 			return false;
