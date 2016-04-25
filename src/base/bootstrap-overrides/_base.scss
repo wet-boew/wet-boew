@@ -633,19 +633,19 @@ fieldset {
 	font-weight: 400;
 	line-height: 1em;
 	position: relative;
-	top: 0.1em;
+	top: .1em;
 }
 
 %pagination-left-arrow {
 	@extend %glyphicon-inline-icons;
 	content: "\e091";
-	margin-right: 0.5em;
+	margin-right: .5em;
 }
 
 %pagination-right-arrow {
 	@extend %glyphicon-inline-icons;
 	content: "\e092";
-	margin-left: 0.5em;
+	margin-left: .5em;
 }
 
 .pagination,
@@ -659,7 +659,7 @@ fieldset {
 			a {
 				cursor: pointer;
 				display: inline-block;
-				margin-bottom: 0.5em;
+				margin-bottom: .5em;
 				padding: $padding-large-vertical $padding-large-horizontal;
 			}
 		}
@@ -784,11 +784,11 @@ fieldset {
 
 			> {
 				* {
-					margin-right: 0.7em;
+					margin-right: .7em;
 				}
 
 				:first-child {
-					margin-right: 0.4em;
+					margin-right: .4em;
 				}
 			}
 		}

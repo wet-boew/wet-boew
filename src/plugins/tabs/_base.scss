@@ -19,7 +19,7 @@ $tab-margin-width: 10px;
 
 %tab-background {
 	background: $carousel-tabpanel-figcaption-bg-color;
-	background: transparentize($carousel-tabpanel-figcaption-bg-color, 0.1);
+	background: transparentize($carousel-tabpanel-figcaption-bg-color, .1);
 
 	img {
 		height: auto;
@@ -31,7 +31,7 @@ $tab-margin-width: 10px;
 	bottom: 0;
 	color: $carousel-tabpanel-figcaption-color;
 	left: 0;
-	padding: 0.5em 1em;
+	padding: .5em 1em;
 	position: relative;
 	right: 0;
 	z-index: 101;
@@ -181,7 +181,7 @@ $tab-margin-width: 10px;
 				&:focus,
 				&:hover {
 					background: $tablist-hover-bg-color;
-					background: transparentize($tablist-hover-bg-color, 0.1);
+					background: transparentize($tablist-hover-bg-color, .1);
 				}
 
 				&.active {
@@ -208,7 +208,7 @@ $tab-margin-width: 10px;
 					> {
 						div {
 							position: relative;
-							top: 0.4em;
+							top: .4em;
 						}
 					}
 
@@ -282,11 +282,11 @@ $tab-margin-width: 10px;
 					&.tab-count {
 						background: none;
 						border: 0;
-						font-size: 0.9em;
+						font-size: .9em;
 
 						> {
 							div {
-								top: 0.7em;
+								top: .7em;
 							}
 						}
 
@@ -417,8 +417,8 @@ $tab-margin-width: 10px;
 							@extend %carousel-s2-btn-common;
 							@extend %carousel-s2-btn-color;
 							font-size: 1.5em;
-							margin-right: 0.65em;
-							margin-top: 0.4em;
+							margin-right: .65em;
+							margin-top: .4em;
 							padding: 8px 10px 4px;
 
 							&:focus,
