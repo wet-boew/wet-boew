@@ -231,6 +231,7 @@ module.exports = (grunt) ->
 		[
 			"jshint"
 			"jscs"
+			"sasslint"
 		]
 	)
 
@@ -548,6 +549,20 @@ module.exports = (grunt) ->
 				map: "src/plugins/geomap/assets/sprites_geomap.png"
 				staticImagePath: '#{$wb-assets-path}'
 				output: "scss"
+
+		sasslint:
+			options:
+				configFile: ".sass-lint.yml"
+			all:
+				expand: true
+				src: [
+						"**/*.scss"
+						"!lib/**"
+					    "!node_modules/**"
+					    "!dist/**"
+						"!wet-boew-dist/**"
+					    "!src/**/sprites/**"
+					]
 
 		# Compiles the Sass files
 		sass:
