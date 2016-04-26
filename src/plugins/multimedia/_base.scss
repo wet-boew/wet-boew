@@ -126,7 +126,7 @@ $mm-volume-thumb-width: 10px;
 		.wb-mm-cc {
 			display: table;
 			height: 4em;
-			padding: 0.5em;
+			padding: .5em;
 		}
 
 		.cc {
@@ -178,7 +178,7 @@ $mm-volume-thumb-width: 10px;
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
 	text-align: center;
-	transition: all 0.26s ease;
+	transition: all .26s ease;
 	width: 100%;
 
 	&:before {
@@ -234,7 +234,7 @@ $mm-volume-thumb-width: 10px;
 		.wb-mm-tmln-crrnt {
 			&:after {
 				content: " / ";
-				padding: 0 0.5em;
+				padding: 0 .5em;
 			}
 		}
 	}

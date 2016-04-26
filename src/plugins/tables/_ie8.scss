@@ -40,7 +40,7 @@
 					&:after {
 						@extend %ie8-font;
 						content: "\e092";
-						margin-left: 0.5em;
+						margin-left: .5em;
 					}
 				}
 			}
@@ -67,7 +67,7 @@
 						&:after {
 							@extend %ie8-font;
 							content: "\e092";
-							margin-left: 0.5em;
+							margin-left: .5em;
 						}
 					}
 

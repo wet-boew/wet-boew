@@ -204,13 +204,13 @@ table {
 				&:before {
 					@extend %glyphicon-inline-icons;
 					content: "\e093";
-					padding: 0 0.1em 0 0;
+					padding: 0 .1em 0 0;
 				}
 
 				&:after {
 					@extend %glyphicon-inline-icons;
 					content: "\e094";
-					padding: 0 0.04em 0 0.06em;
+					padding: 0 .04em 0 .06em;
 				}
 			}
 
@@ -911,7 +911,7 @@ table {
 		margin-right: 15px;
 
 		input {
-			margin-left: 0.5em;
+			margin-left: .5em;
 		}
 	}
 
@@ -939,7 +939,7 @@ table {
 			cursor: pointer;
 			display: inline-block;
 			line-height: $line-height-base;
-			margin-bottom: 0.5em;
+			margin-bottom: .5em;
 			margin-left: -1px;
 			padding: $padding-large-vertical $padding-large-horizontal;
 			position: relative;
@@ -993,7 +993,7 @@ table {
 
 	.dataTables_processing {
 		@extend %tables-color-333;
-		background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+		background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .9) 25%, rgba(255, 255, 255, .9) 75%, rgba(255, 255, 255, 0) 100%);
 		background-color: #fff;
 		font-size: 1.2em;
 		height: 40px;
@@ -1102,7 +1102,7 @@ table {
 
 			input {
 				margin-left: auto;
-				margin-right: 0.5em;
+				margin-right: .5em;
 			}
 		}
 

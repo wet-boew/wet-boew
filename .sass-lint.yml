@@ -1,0 +1,39 @@
+options:
+  formatter: stylish
+  merge-default-rules: false
+rules:
+  class-name-format: 0
+  function-name-format: 0
+  id-name-format: 0
+  indentation:
+    - 2
+    - size: 1
+  leading-zero: 2
+  mixin-name-format: 0
+  nesting-depth: 0
+  no-color-literals: 0
+  no-css-comments: 0
+  no-duplicate-properties:
+    - 2
+    - exclude:
+        - background
+        - border
+        - border-left
+        - border-right
+        - border-top
+        - border-bottom
+        - cursor
+  no-empty-rulesets: 2
+  no-ids: 0
+  no-important: 0
+  # Set to 2 when following issue is resolved
+  # https://github.com/sasstools/sass-lint/issues/352
+  no-misspelled-properties: 0
+  no-url-protocols: 1
+  no-trailing-whitespace: 2
+  placeholder-name-format: 0
+  property-sort-order: 2
+  quotes:
+    - 2
+    - style: double
+  variable-name-format: 0

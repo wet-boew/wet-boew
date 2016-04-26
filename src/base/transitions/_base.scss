@@ -60,7 +60,7 @@
 
 		&.out {
 			animation-name: popout;
-			transform: scale(0.8);
+			transform: scale(.8);
 		}
 	}
 }
@@ -68,7 +68,7 @@
 @keyframes popin {
 	0% {
 		@include visible;
-		transform: scale(0.8);
+		transform: scale(.8);
 	}
 
 	100% {
@@ -85,7 +85,7 @@
 
 	100% {
 		@include invisible;
-		transform: scale(0.8);
+		transform: scale(.8);
 	}
 }
 

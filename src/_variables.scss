@@ -59,7 +59,7 @@ $font-scale-xxxl: 2.125 !default;
 $font-scale-xxl: 1.625 !default;
 $font-scale-xl: 1.375 !default;
 $font-scale-lg: 1.125 !default;
-$font-scale-sm: 0.875 !default;
+$font-scale-sm: .875 !default;
 
 // Bootstrap Overrides
 $font-size-base: 16px;
@@ -86,7 +86,7 @@ $wb-bc-enable: true !default; // Enable or disable WET's breadcrumb SCSS. Themes
 $wb-bc-background-color: null !default; // Outer background colour. Override $breadcrumb-bg (Bootstrap variable) to change the inner background colour.
 $wb-bc-separator-color: #333 !default; // Separator colour.
 $wb-bc-separator-font-family: "Glyphicons Halflings" !default; // Separator font family.
-$wb-bc-separator-font-size: 0.7em !default; // Separator font size.
+$wb-bc-separator-font-size: .7em !default; // Separator font size.
 $wb-bc-separator-content: "\e092" !default; // Separator content.
 $wb-bc-separator-content-rtl: "\e091" !default; // Separator content (right to left).
 $wb-bc-print-show: true !default; // Show or hide breadcrumb in print view.
