@@ -5,3 +5,11 @@
 .pg-brk-aft {
 	page-break-after: always;
 }
+
+a {
+	&[href] {
+		&:after {
+			content: none;
+		}
+	}
+}
