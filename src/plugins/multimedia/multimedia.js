@@ -74,8 +74,16 @@ var componentName = "wb-mltmd",
 					position: i18n( "pos" )
 				};
 			}
-
-			if ( template === undef ) {
+			
+			// if YouTube on iOS, don't load controls.  Due to restrictions by Apple
+			// and Youtube, videos cannot be played with external controls (i.e. playVideo())
+			var $yT = ( $(this).find( "[type='video/youtube']" ).length > 0 );
+			var $iOS = ( /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream );
+			if ($yT && $iOS) {
+				$(this).addClass("yt-ios");
+				template = "";
+				$( eventTarget ).trigger( templateLoadedEvent );
+			} else if ( template === undef ) {
 				template = "";
 				$( eventTarget ).trigger( {
 					type: "ajax-fetch.wb",
@@ -628,11 +636,18 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			$this = $( event.currentTarget ),
 			$media, ytPlayer;
 
+		// if YouTube on iOS, load YouTube's controls.  Due to restrictions by Apple
+		// and Youtube, videos cannot be played with external controls (i.e. playVideo())
+		var $iOS = ( /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream );
+		$iOS = true;
+		var $showControls = 0;
+		if ($iOS) var $showControls = 1;
+
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
 				autoplay: 0,
-				controls: 0,
+				controls: $showControls,
 				origin: wb.pageUrlParts.host,
 				modestbranding: 1,
 				rel: 0,
@@ -673,7 +688,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			currentUrl = wb.getUrlParts( window.location.href ),
 			$media = data.media,
 			$eventReceiver, $share;
-
+		
 		$media
 			.after( tmpl( template, data ) )
 			.wrap( "<div class=\"display\"></div>" );
@@ -739,7 +754,7 @@ $document.on( "click", selector, function( event ) {
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|display/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
-		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player( "play" ) : this.player( "pause" );
+		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player("play") : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
