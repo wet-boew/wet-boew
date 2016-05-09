@@ -641,7 +641,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		var $iOS = ( /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream );
 		$iOS = true;
 		var $showControls = 0;
-		if ($iOS) var $showControls = 1;
+		if ($iOS) $showControls = 1;
 
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
