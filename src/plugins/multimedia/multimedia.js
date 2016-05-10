@@ -641,7 +641,6 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		// if YouTube on iOS, load YouTube's controls.  Due to restrictions by Apple
 		// and Youtube, videos cannot be played with external controls ( i.e. playVideo() )
 		var $iOS = ( /iPad|iPhone|iPod/.test( navigator.userAgent ) && !window.MSStream );
-		$iOS = true;
 		var $showControls = 0;
 		if ( $iOS ) {
 			$showControls = 1;
