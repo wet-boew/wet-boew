@@ -722,7 +722,7 @@ var componentName = "wb-tabs",
 	};
 
  // Bind the init event of the plugin
- $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, selector, function( event ) {
+ $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, namespace, function( event ) {
 	var eventTarget = event.target,
 		eventCurrentTarget = event.currentTarget,
 		$elm;
