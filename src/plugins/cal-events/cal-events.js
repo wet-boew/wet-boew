@@ -81,7 +81,7 @@ var componentName = "wb-calevt",
 
 	processEvents = function( $elm ) {
 		var settings = $.extend( {}, window[ componentName ], $elm.data( dataAttr ) ),
-			year, month, events, minDate, containerId, $container, $calendar;
+			year, month, events, minDate, containerId, $container;
 
 		events = getEvents( $elm );
 		containerId = $elm.data( "calevtSrc" );
@@ -91,7 +91,7 @@ var componentName = "wb-calevt",
 		year = settings.year || minDate.getFullYear();
 		month = settings.month || minDate.getMonth();
 
-		$calendar = wb.calendar.create( $container, {
+		wb.calendar.create( $container, {
 			year: year,
 			month: month,
 			minDate: minDate,
@@ -155,10 +155,10 @@ var componentName = "wb-calevt",
 		for ( i = 0; i !== iLen; i += 1 ) {
 			$event = objEventsList.eq( i );
 			event = $event[ 0 ];
-			$objTitle = $event.find( "*:header:first" ),
-			className = $objTitle.attr( "class" ),
-			title = $objTitle.text(),
-			link = $event.find( "a" )[ 0 ],
+			$objTitle = $event.find( "*:header:first" );
+			className = $objTitle.attr( "class" );
+			title = $objTitle.text();
+			link = $event.find( "a" )[ 0 ];
 			href = link.getAttribute( "href" );
 			target = link.getAttribute( "target" );
 			zLen = 1;
@@ -268,7 +268,6 @@ var componentName = "wb-calevt",
 		var $inRange = $days,
 			today = new Date(),
 			eventsList = this.events,
-			firstDay = true,
 			i, eLen, date, $day, $dayLink, $dayEvents, event, eventMonth, linkFocus;
 
 		// Fix required to make up with the IE z-index behaviour mismatch
@@ -318,9 +317,7 @@ var componentName = "wb-calevt",
 					}
 
 					///Add the event to the list
-					$dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='" + event.href + "'>" + event.title + "</a></li>" );
-
-					firstDay = false;
+					$dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='javascript:;''>" + event.title + "</a></li>" );
 				}
 			}
 		}

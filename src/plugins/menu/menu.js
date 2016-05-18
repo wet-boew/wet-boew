@@ -154,7 +154,7 @@ var componentName = "wb-menu",
 	createMobilePanelMenu = function( allProperties ) {
 		var panel = "",
 			sectionHtml, properties, sections, section, parent, $items,
-			href, linkHtml, i, j, len, sectionsLength, itemsLength;
+			linkHtml, i, j, len, sectionsLength, itemsLength;
 
 		// Process the secondary and site menus
 		len = allProperties.length;
@@ -165,7 +165,6 @@ var componentName = "wb-menu",
 			sectionsLength = sections.length;
 			for ( j = 0; j !== sectionsLength; j += 1 ) {
 				section = sections[ j ];
-				href = section.getAttribute( "href" );
 				$items = $( section.parentNode ).find( "> ul > li" );
 				itemsLength = $items.length;
 

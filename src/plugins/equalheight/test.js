@@ -59,7 +59,7 @@ describe( "equalheights test suite", function() {
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before( function() {
-		$document.on( "wb-updated.wb-eqht", function( event ) {
+		$document.on( "wb-updated.wb-eqht", function() {
 			var currentTest = test || defaultTest;
 			if ( $row !== undef && callback ) {
 				currentTest( callback );

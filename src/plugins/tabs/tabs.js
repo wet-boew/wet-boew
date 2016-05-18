@@ -796,7 +796,7 @@ var componentName = "wb-tabs",
 		$elm = $( elm );
 		$sldr = $elm.closest( selector );
 		sldrId = $sldr[ 0 ].id;
-		isPlaying = $sldr.hasClass( "playing" ),
+		isPlaying = $sldr.hasClass( "playing" );
 		isPlayPause = className.indexOf( "plypause" ) !== -1;
 
 		// Reset ctime to 0
