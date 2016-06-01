@@ -4,6 +4,7 @@ details {
 		border-radius: 0;
 		border-width: 0 0 0 4px;
 		padding-left: 45px;
+		position: relative;
 
 		&:before {
 			display: inline-block;
@@ -12,6 +13,7 @@ details {
 			margin-left: -1.3em;
 			margin-top: -3px;
 			position: absolute;
+			top: 15px;
 		}
 
 		summary {
