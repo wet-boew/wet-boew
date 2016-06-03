@@ -18,7 +18,7 @@ describe( "Feedback test suite", function() {
 
 	var $document = wb.doc,
 		$body = $document.find( "body" ),
-		$elm, $script, $form, $reason, $reasonWeb, $access, $accessComp, $accessMobile, $info, $contact1, $contact2,
+		$elm, $form, $reason, $reasonWeb, $access, $accessComp, $accessMobile, $info, $contact1, $contact2,
 
 		// Tests sections for visibility.  Not using the ":visible" jQuery selector
 		// because it is giving inconsistent results in PhantomJS.
@@ -49,7 +49,7 @@ describe( "Feedback test suite", function() {
 
 		$document.on( "ajax-fetched.wb ajax-failed.wb", ".feedback", function( event ) {
 			if ( event.type === "ajax-fetched" ) {
-				$script = $( "<script src='../demos/feedback/demo/feedback.js'></script>" )
+				$( "<script src='../demos/feedback/demo/feedback.js'></script>" )
 					.appendTo( $elm );
 				$form = event.fetch.pointer.find( ".wb-fdbck" )
 					.appendTo( $elm )

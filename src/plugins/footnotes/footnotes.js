@@ -29,7 +29,7 @@ var componentName = "wb-fnote",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, footnoteDd, footnoteDt, i, len, dd, dt, dtId, $returnLinks;
+			$elm, footnoteDd, footnoteDt, i, len, dd, dt, dtId;
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -48,7 +48,7 @@ var componentName = "wb-fnote",
 			}
 
 			// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
-			$returnLinks = $elm.find( "dd p.fn-rtn a span span" ).remove();
+			$elm.find( "dd p.fn-rtn a span span" ).remove();
 
 			// Identify that initialization has completed
 			wb.ready( $elm, componentName );

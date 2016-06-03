@@ -1065,7 +1065,7 @@ var componentName = "wb-geomap",
 			hasBasemap = basemap && basemap.length !== 0,
 			configOpts = {},
 			controls = opts.useMapControls ? [ new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } ) ] : [],
-			layerOptions, mapOptions, mapOpts, aspectRatio, keys, o, obj;
+			layerOptions, mapOptions, mapOpts, keys, o, obj;
 
 		if ( hasBasemap ) {
 			mapOpts = basemap.mapOptions;
@@ -1106,7 +1106,6 @@ var componentName = "wb-geomap",
 		}
 
 		// set aspect ratio
-		aspectRatio = mapOptions.aspectRatio === undefined ? 0.8 : mapOptions.aspectRatio;
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions, { theme: null, controls: controls } ) );
@@ -2399,7 +2398,7 @@ var componentName = "wb-geomap",
 
 			coords = { bbox: bbox, lonlat: ll	};
 
-			if ( coords.bbox != null ) {
+			if ( coords.bbox !== null ) {
 
 				bnds = new OpenLayers.Bounds.fromString( coords.bbox );
 				dens = densifyBBox( bnds.left, bnds.bottom, bnds.right, bnds.top );
@@ -2410,7 +2409,7 @@ var componentName = "wb-geomap",
 				geomap.locLayer.addFeatures( [ feat ] );
 				geomap.map.zoomToExtent( geomProj.getBounds() );
 
-			} else if ( coords.lonlat != null ) {
+			} else if ( coords.lonlat !== null ) {
 
 				zoom = geomap.map.getZoom() === 0 ? geomap.map.numZoomLevels * 0.85	: geomap.map.getZoom();
 				lonlat = new OpenLayers.LonLat( ( coords.lonlat ).split( "," ) ).transform( projLatLon, projMap );

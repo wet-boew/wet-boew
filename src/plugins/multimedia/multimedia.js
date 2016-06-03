@@ -52,11 +52,9 @@ var componentName = "wb-mltmd",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var eventTarget = wb.init( event, componentName, selector ),
-			elmId;
+		var eventTarget = wb.init( event, componentName, selector );
 
 		if ( eventTarget ) {
-			elmId = eventTarget.id;
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -75,17 +73,7 @@ var componentName = "wb-mltmd",
 				};
 			}
 
-			// if YouTube on iOS, don't load controls.
-			// Due to restrictions by Apple
-			// and Youtube, videos cannot be played with
-			// external controls ( i.e. playVideo )
-			var $yT = ( $( this ).find( "[type='video/youtube']" ).length > 0 );
-			var $iOS = ( /iPad|iPhone|iPod/.test( navigator.userAgent ) && !window.MSStream );
-			if ( $yT && $iOS ) {
-				$( this ).addClass( "yt-ios" );
-				template = "";
-				$( eventTarget ).trigger( templateLoadedEvent );
-			} else if ( template === undef ) {
+			if ( template === undef ) {
 				template = "";
 				$( eventTarget ).trigger( {
 					type: "ajax-fetch.wb",
@@ -638,19 +626,11 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			$this = $( event.currentTarget ),
 			$media, ytPlayer;
 
-		// if YouTube on iOS, load YouTube's controls.  Due to restrictions by Apple
-		// and Youtube, videos cannot be played with external controls ( i.e. playVideo() )
-		var $iOS = ( /iPad|iPhone|iPod/.test( navigator.userAgent ) && !window.MSStream );
-		var $showControls = 0;
-		if ( $iOS ) {
-			$showControls = 1;
-		}
-
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
 				autoplay: 0,
-				controls: $showControls,
+				controls: 0,
 				origin: wb.pageUrlParts.host,
 				modestbranding: 1,
 				rel: 0,
@@ -690,7 +670,8 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			captionsUrl = wb.getUrlParts( data.captions ),
 			currentUrl = wb.getUrlParts( window.location.href ),
 			$media = data.media,
-			$eventReceiver, $share;
+			$eventReceiver;
+
 		$media
 			.after( tmpl( template, data ) )
 			.wrap( "<div class=\"display\"></div>" );
@@ -718,7 +699,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		// Create the share widgets if needed
 		if ( data.shareUrl !== undef ) {
-			$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
+			$( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
 				data.title.replace( "'", "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
 				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
