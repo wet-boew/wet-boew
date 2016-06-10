@@ -81,15 +81,21 @@ $document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", functi
 // Listen for footnote return links that get clicked
 $document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
 	var which = event.which,
+		ref,
 		refId;
 
 	// Ignore middle/right mouse button
 	if ( !which || which === 1 ) {
-		refId = "#" + wb.jqEscape( event.target.getAttribute( "href" ).substring( 1 ) );
+		ref = event.target.getAttribute( "href" );
 
-		// Assign focus to the link
-		$document.find( refId + " a" ).trigger( setFocusEvent );
-		return false;
+		// Focus on associated referrer link (if the return link points to an ID)
+		if ( ref.charAt( 0 ) === "#" ) {
+			refId = "#" + wb.jqEscape( ref.substring( 1 ) );
+
+			// Assign focus to the link
+			$document.find( refId + " a" ).trigger( setFocusEvent );
+			return false;
+		}
 	}
 } );
 
