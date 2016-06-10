@@ -6,14 +6,14 @@
 	"categoryfile": "plugins",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2014-08-04"
+	"dateModified": "2016-06-10"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>This component allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.0 compliance when providing such footnotes.</p>
+	<p>This plugin allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.0 compliance when providing such footnotes.</p>
 </section>
 
 <section>
@@ -76,11 +76,11 @@
 		<h3>Footnotes Section</h3>
 		<p>This section explains how to set-up a dedicated footnotes section.</p>
 		<p>Use the following code as a basis to create the section:</p>
-<pre><code>&lt;aside class="wb-fnote" role="note"&gt;
-		&lt;h2 id="fn"&gt;Footnotes&lt;/h2&gt;
-		&lt;dl&gt;
-			&lt;!--PLACE FOOTNOTES HERE--&gt;
-		&lt;/dl&gt;
+		<pre><code>&lt;aside class="wb-fnote" role="note"&gt;
+	&lt;h2 id="fn"&gt;Footnotes&lt;/h2&gt;
+	&lt;dl&gt;
+		&lt;!--PLACE FOOTNOTES HERE--&gt;
+	&lt;/dl&gt;
 &lt;/aside&gt;</code></pre>
 	</section>
 
@@ -92,7 +92,7 @@
 			<h4>Standard Footnote</h4>
 			<p>This is a footnote that is referenced only once within a given page's content.</p>
 			<p>Use the following code as a basis to create a standard footnote:</p>
-<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
 &lt;dd id="fn1"&gt;
 	&lt;p&gt;Example of a standard footnote.&lt;/p&gt;
 	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;&lt;span class="wb-inv"&gt;Return to footnote &lt;/span&gt;1&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
@@ -103,7 +103,7 @@
 			<h4>Multi-referenced Footnote</h4>
 			<p>This is a footnote that is referenced two or more times within a given page's content. By default, its return link should point to (and explicitly identify) the first reference to the footnote. If JavaScript support is available, a supporting plugin will automatically remove the explicit identifier in the return link text, in addition to managing the return link's destination when the footnote is accessed via a different reference from the content.</p>
 			<p>Use the following code as a basis to create a footnote that can be referenced by multiple pieces of content:</p>
-<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
 &lt;dd id="fn2"&gt;
 	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
 	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
@@ -117,7 +117,7 @@
 			<h4>Multi-paragraph Footnote</h4>
 			<p>Footnotes containing two or more paragraphs are supported. They can take the form of either a standard or multi-referenced footnote.</p>
 			<p>Use the following code as a basis to create a footnote containing multiple paragraphs:</p>
-<pre><code>&lt;dt&gt;Footnote 3&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Footnote 3&lt;/dt&gt;
 &lt;dd id="fn3"&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (first paragraph).&lt;/p&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (second paragraph).&lt;/p&gt;
@@ -157,7 +157,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
