@@ -2036,7 +2036,6 @@ var componentName = "wb-geomap",
 			target = event.currentTarget.className.indexOf( "wb-geomap-map" ) === -1 ?
 					event.currentTarget.parentElement : event.currentTarget,
 			keyboardDefaults = map.getControlsByClass( "OpenLayers.Control.KeyboardDefaults" )[ 0 ],
-			navigation = map.getControlsByClass( "OpenLayers.Control.Navigation" )[ 0 ],
 			isActive;
 
 		if ( map ) {
@@ -2046,15 +2045,9 @@ var componentName = "wb-geomap",
 					if ( keyboardDefaults ) {
 						keyboardDefaults.activate();
 					}
-					if ( navigation ) {
-						navigation.activate();
-					}
 					$( target ).addClass( "active" );
 				}
 			} else if ( isActive > 0 ) {
-				if ( navigation ) {
-					navigation.deactivate();
-				}
 				if ( keyboardDefaults ) {
 					keyboardDefaults.deactivate();
 				}
