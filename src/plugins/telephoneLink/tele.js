@@ -5,8 +5,8 @@
 * @author @atamsingh
 */
 
-function addTeleLink(){
-	if( screen.width < 650 ){
+function addTeleLink() {
+	if( screen.width < 650 ) {
 		var regex = /(|\()(\d{3}).{0,2}(\d{3}).{0,1}(\d{4})(?!([^<]*>)|(((?!<a).)*<\/a>))/g; 
 		var text = $( "main" ).html();
 
@@ -16,6 +16,6 @@ function addTeleLink(){
 	}
 }
 
-$( document ).ready( function(){
+$( document ).ready( function() {
 	addTeleLink();
 });
