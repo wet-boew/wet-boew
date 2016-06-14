@@ -337,3 +337,7 @@ button {
 		}
 	}
 }
+
+.geomap-progress {
+	@extend %global-loading;
+}
