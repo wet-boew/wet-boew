@@ -5,17 +5,41 @@
 * @author @atamsingh
 */
 
-function addTeleLink() {
-	if( screen.width < 650 ) {
-		var regex = /(|\()(\d{3}).{0,2}(\d{3}).{0,1}(\d{4})(?!([^<]*>)|(((?!<a).)*<\/a>))/g; 
-		var text = $( "main" ).html();
+( function( $, window, document, wb ) {
+	"use strict";
 
-		text = text.replace( regex, "<a href=\"tel:$&\">$&</a>" );
-		//console.log(text);
-		$( "main" ).html( text );
-	}
-}
 
-$( document ).ready( function() {
-	addTeleLink();
-});
+
+	var componentName = "wb-telLink",
+	selector = "." + componentName,
+	initEvent = "wb-init" + selector,
+	$document = wb.doc,
+
+	/**
+	* @method init
+	* @param {jQuery Event} event Event that triggered the function call
+	*/
+	init = function( event ) {
+		//var elm = wb.init( event, componentName, selector );
+		etup = function(){
+			if( screen.width < 650 ) {
+				var regex = /(|\()(\d{3}).{0,2}(\d{3}).{0,1}(\d{4})(?!([^<]*>)|(((?!<a).)*<\/a>))/g;
+				var text = $( "main" ).html();
+
+				text = text.replace( regex, "<a href=\"tel:$&\">$&</a>" );
+				//console.log(text);
+				$( "main" ).html( text );
+			}
+		};
+		setup();
+		//wb.ready( $( elm ), componentName );
+		wb.ready( componentName );
+	};
+
+	// Bind the init event of the plugin
+	$document.on( "timerpoke.wb " + initEvent, selector, init );
+
+	// Add the timer poke to initialize the plugin
+	wb.add( selector );
+
+} )( jQuery, window, document, wb );
