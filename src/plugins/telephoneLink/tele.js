@@ -20,8 +20,8 @@
 	* @param {jQuery Event} event Event that triggered the function call
 	*/
 	init = function( event ) {
-		//var elm = wb.init( event, componentName, selector );
-		etup = function(){
+		// var elm = wb.init( event, componentName, selector );
+		// var setup = function() {
 			if( screen.width < 650 ) {
 				var regex = /(|\()(\d{3}).{0,2}(\d{3}).{0,1}(\d{4})(?!([^<]*>)|(((?!<a).)*<\/a>))/g;
 				var text = $( "main" ).html();
@@ -30,8 +30,8 @@
 				//console.log(text);
 				$( "main" ).html( text );
 			}
-		};
-		setup();
+		// };
+		// setup();
 		//wb.ready( $( elm ), componentName );
 		wb.ready( componentName );
 	};
