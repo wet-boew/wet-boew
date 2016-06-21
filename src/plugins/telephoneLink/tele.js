@@ -19,7 +19,7 @@
 	* @method init
 	* @param {jQuery Event} event Event that triggered the function call
 	*/
-	init = function( event ) {
+	init = function() {
 		// var elm = wb.init( event, componentName, selector );
 		// var setup = function() {
 			if( screen.width < 650 ) {
