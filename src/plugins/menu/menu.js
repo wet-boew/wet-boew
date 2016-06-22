@@ -204,7 +204,7 @@ var componentName = "wb-menu",
 				sectionHtml + "</ul></nav>";
 		}
 
-		return panel.replace( /['"]?list-group-item['"]?/gi, "\"\"" ) + "</div>";
+		return panel.replace( /['"]?list-group-item['"]?/gi, "\"\"" );
 	},
 
 	/**
