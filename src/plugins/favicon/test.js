@@ -27,7 +27,7 @@ describe( "Favicon test suite", function() {
 		// Spy on jQuery's trigger methods
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		$favicon = $( "<link href='test/path/favicon.ico' rel='icon' type='image/x-icon'>" )
+		$favicon = $( "<link href='test/path/favicon.ico' rel='icon' type='image/x-icon'/>" )
 			.appendTo( wb.doc.find( "head" ) )
 			.trigger( "wb-init.wb-favicon" );
 	} );
