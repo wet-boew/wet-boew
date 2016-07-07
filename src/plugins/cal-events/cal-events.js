@@ -317,7 +317,7 @@ var componentName = "wb-calevt",
 					}
 
 					///Add the event to the list
-					$dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='javascript:;''>" + event.title + "</a></li>" );
+					$dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='" + event.href + "'>" + event.title + "</a></li>" );
 				}
 			}
 		}
