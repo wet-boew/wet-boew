@@ -35,7 +35,7 @@ var componentName = "wb-txthl",
 			if ( event.txthl ) {
 				searchCriteria = $.isArray( event.txthl ) ? event.txthl.join( "|" ) : event.txthl;
 			} else if ( params && params.txthl ) {
--				searchCriteria = decodeURIComponent(
+				searchCriteria = decodeURIComponent(
 					wb.pageUrlParts.params.txthl
 						.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" )
 				);
