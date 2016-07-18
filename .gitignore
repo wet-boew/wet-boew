@@ -33,5 +33,9 @@ sprite*.png
 *.log
 node_modules/
 lib/
-wet-boew-dist/
 site/data/i18n/
+
+#gh-pages
+wet-boew-cdn/
+wet-boew-theme-cdn/
+wet-boew-dist/
