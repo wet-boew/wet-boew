@@ -264,11 +264,9 @@ var componentName = "wb-calevt",
 		return events;
 	},
 
-	addEvents = function( year, month, $days, range ) {
-		var $inRange = $days,
-			today = new Date(),
-			eventsList = this.events,
-			i, eLen, date, $day, $dayLink, $dayEvents, event, eventMonth, linkFocus;
+	addEvents = function( year, month, $days ) {
+		var eventsList = this.events,
+			i, eLen, date, dayIndex, $day, $dayEvents, event, eventMonth;
 
 		// Fix required to make up with the IE z-index behaviour mismatch
 		// TODO: Move ot IE CSS? Which versions of IE should this fix be limited to?
@@ -277,18 +275,6 @@ var componentName = "wb-calevt",
 				$days.eq( i ).css( "z-index", 31 - i );
 			}
 		}
-
-		if ( range ) {
-			if ( range.max ) {
-				$inRange = $inRange.filter( ":lt(" + ( range.max + 1 ) + ")" );
-			}
-
-			if ( range.min ) {
-				$inRange = $inRange.filter( ":gt(" + ( range.min - 1 ) + ")" );
-			}
-		}
-
-		$inRange.wrap( "<a href='javascript:;' tabindex='-1'></a>" );
 
 		/*
 		 * Determines for each event, if it occurs in the display month
@@ -304,32 +290,33 @@ var componentName = "wb-calevt",
 					//End the loop if the next event is in a future month because events are sorted chronologically
 					break;
 				} else if ( date.getMonth() === month ) {
-					$day = $( $days[ date.getDate() - 1 ] );
-					$dayLink = $day.parent();
+					dayIndex = date.getDate() - 1;
+					$day = $( $days[ dayIndex ] );
 
-					//Create the link for the events if it doesn't exist
-					$dayLink.addClass( "cal-evt" );
-
-					//Create the event list container if it doesn't exist
-					$dayEvents = $dayLink.next();
-					if ( $dayEvents.length !== 1 ) {
-						$dayEvents = $( "<ul></ul>" ).insertAfter( $dayLink );
+					//Get the appropriate day events if a day link exists
+					if ( $day.parent().get( 0 ).nodeName !== "A" ) {
+						$dayEvents = $day.next();
+					}else{
+						$dayEvents = $day.parent().next();
 					}
 
-					///Add the event to the list
+					//Create the event list container if it doesn't exist
+					if ( $dayEvents.length !== 1) {
+						$dayEvents = $( "<ul></ul>" ).insertAfter( $day );
+
+						//Determine the focus based on the day before
+						if ( dayIndex && $days[ dayIndex - 1 ].parentNode.nodeName === "A" ) {
+							$day.wrap( "<a href='javascript:;' class='cal-evt' tabindex='-1'></a>" );
+						} else {
+							$day.wrap( "<a href='javascript:;' class='cal-evt'></a>" );
+						}
+					}
+
+					//Add the event to the list
 					$dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='" + event.href + "'>" + event.title + "</a></li>" );
 				}
 			}
 		}
-
-		//Determines the focus
-		if ( year === today.getFullYear() && month === today.getMonth() ) {
-			linkFocus = $days.eq( today.getDate() - 1 );
-		} else {
-			linkFocus = $inRange.eq( 0 );
-		}
-
-		linkFocus.parent().removeAttr( "tabindex" );
 	},
 
 	filterEvents = function( year, month ) {
