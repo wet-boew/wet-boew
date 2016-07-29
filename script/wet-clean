@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Does a clean install of the wet build
+
+rm -rf lib &&
+rm -rf node_modules &&
+rm -rf dist &&
+bower cache clean &&
+npm cache clean &&
+npm install
