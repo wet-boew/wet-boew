@@ -338,6 +338,10 @@ $tab-margin-width: 10px;
 			padding-bottom: 4.375em;
 		}
 
+		&.exclude-controls {
+			padding-bottom: 0;
+		}
+
 		[role="tabpanel"] {
 			@extend %carousel-link;
 		}
