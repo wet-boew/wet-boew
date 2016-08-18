@@ -854,4 +854,189 @@
 			</tr>
 		</tbody>
 	</table>
+
+
+    <h3>Filtering Example</h3>
+    <p>Le <a href="http://www.datatables.net/ref">DataTables API</a> (en anglais seulement) est entièrement accessible par le <code>data-wb-tables</code> attribut à l'aide d'un tableau JSON et pour filtrer vous pouvez utilizer le class <code>.wb-tables-filter</code> </p>
+    <div class="row">
+        <div class="col-md-3">
+            <h4 class="wb-inv">Options</h4>
+            <details open>
+                <summary><h4 class="h4">Options</h4></summary>
+                <p class="mrgn-tp-md">Utilisez les options ci-dessous pour modifier vos résultats dans le tableau suivant.</p>
+                <form class="wb-tables-filter" data-bind-to="dataset-filter">
+                    <div class="form-group">
+                        <label for="dt_type">Data Type</label>
+                        <select class="form-control" id="dt_type" name="dt_type" data-column="3">
+                            <option value="">All news types</option>
+                            <option value="News Releases">News Releases</option>
+                            <option value="Backgrounders">Backgrounders</option>
+                            <option value="Media Advisories">Media Advisories</option>
+                            <option value="Speeches">Speeches</option>
+                            <option value="Statements">Statements</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dt_department">Department</label>
+                        <select class="form-control" id="dt_department" name="dt_department" data-column="2">
+                            <option value="">From any department</option>
+                            <option value="Agriculture and Agri-Food Canada">Agriculture and Agri-Food Canada</option>
+                            <option value="Atlantic Canada Opportunities Agency">Atlantic Canada Opportunities Agency</option>
+                            <option value="Canadian Heritage">Canadian Heritage</option>
+                            <option value="Infrastructure Canada">Infrastructure Canada</option>
+                            <option value="Innovation, Science and Economic Development Canada">Innovation, Science and Economic Development Canada</option>
+                            <option value="National Defence and the Canadian Armed Forces">National Defence and the Canadian Armed Forces</option>
+                            <option value="Employment and Social Development Canada">Employment and Social Development Canada</option>
+                            <option value="Global Affairs Canada">Global Affairs Canada</option>
+                            <option value="Indigenous and Northern Affairs Canada">Indigenous and Northern Affairs Canada</option>
+                            <option value="Competition Bureau">Competition Bureau</option>
+                            <option value="Canadian Grain Commission">Canadian Grain Commission</option>
+                            <option value="National Energy Board">National Energy Board</option>
+                            <option value="Canadian Radio-television and Telecommunications Commission">Canadian Radio-television and Telecommunications Commission</option>
+                            <option value="Public Health Agency of Canada">Public Health Agency of Canada</option>
+                            <option value="Correctional Service Canada">Correctional Service Canada</option>
+                            <option value="Parks Canada">Parks Canada</option>
+                            <option value="Veterans Affairs Canada">Veterans Affairs Canada</option>
+                            <option value="Health Canada">Health Canada</option>
+                            <option value="National Film Board">National Film Board</option>
+                            <option value="Government of Canada">Government of Canada</option>
+                            <option value="Federal Economic Development Agency for Southern Ontario">Federal Economic Development Agency for Southern Ontario</option>
+                            <option value="Canadian Environmental Assessment Agency">Canadian Environmental Assessment Agency</option>
+                            <option value="Fisheries and Oceans Canada">Fisheries and Oceans Canada</option>
+                            <option value="Canadian Institutes of Health Research">Canadian Institutes of Health Research</option>
+                            <option value="Transportation Safety Board of Canada">Transportation Safety Board of Canada</option>
+                            <option value="Canadian Nuclear Safety Commission">Canadian Nuclear Safety Commission</option>
+                            <option value="Transport Canada">Transport Canada</option>
+                            <option value="Treasury Board of Canada Secretariat">Treasury Board of Canada Secretariat</option>
+                            <option value="Environment and Climate Change Canada">Environment and Climate Change Canada</option>
+                            <option value="Finance Canada">Finance Canada</option>
+                            <option value="Canada Economic Development for Quebec Regions">Canada Economic Development for Quebec Regions</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dt_minister">Minister</label>
+                        <select class="form-control" id="dt_minister" name="dt_minister" data-column="8">
+                            <option value="">Related to any minister</option>
+                            <option value="Hon. Lawrence MacAulay">Hon. Lawrence MacAulay</option>
+                            <option value="Hon. Navdeep Singh Bains">Hon. Navdeep Singh Bains</option>
+                            <option value="Hon. Amarjeet Sohi">Hon. Amarjeet Sohi</option>
+                            <option value="Hon. Kirsty Duncan">Hon. Kirsty Duncan</option>
+                            <option value="Hon. Jean-Yves Duclos">Hon. Jean-Yves Duclos</option>
+                            <option value="Hon. Stéphane Dion">Hon. Stéphane Dion</option>
+                            <option value="Hon. Carolyn Bennett">Hon. Carolyn Bennett</option>
+                            <option value="Hon. Jane Philpott">Hon. Jane Philpott</option>
+                            <option value="Hon. MaryAnn Mihychuk">Hon. MaryAnn Mihychuk</option>
+                            <option value="Hon. Ralph Goodale">Hon. Ralph Goodale</option>
+                            <option value="Hon. Catherine McKenna">Hon. Catherine McKenna</option>
+                            <option value="Hon. Kent Hehr">Hon. Kent Hehr</option>
+                            <option value="Hon. Harjit Singh Sajjan">Hon. Harjit Singh Sajjan</option>
+                            <option value="Hon. Dominic LeBlanc">Hon. Dominic LeBlanc</option>
+                            <option value="Hon. Mélanie Joly">Hon. Mélanie Joly</option>
+                            <option value="Hon. Marc Garneau">Hon. Marc Garneau</option>
+                            <option value="Hon. Scott Brison">Hon. Scott Brison</option>
+                            <option value="Hon. Marie-Claude Bibeau">Hon. Marie-Claude Bibeau</option>
+                            <option value="Hon. William Francis Morneau">Hon. William Francis Morneau</option>
+                            <option value="Right Hon. Justin P. J. Trudeau">Right Hon. Justin P. J. Trudeau</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dt_audience">For</label>
+                        <select class="form-control" id="dt_audience" name="dt_audience" data-column="6">
+                            <option value="">Everyone</option>
+                            <option value="Media">Media</option>
+                            <option value="Farmers">Farmers</option>
+                            <option value="General Public">General Public</option>
+                            <option value="Rural Community">Rural Community</option>
+                            <option value="Travellers">Travellers</option>
+                            <option value="Visitors">Visitors</option>
+                            <option value="Business">Business</option>
+                            <option value="Students">Students</option>
+                            <option value="Parents">Parents</option>
+                            <option value="Youth">Youth</option>
+                            <option value="Employers">Employers</option>
+                            <option value="Job Seekers">Job Seekers</option>
+                            <option value="Government">Government</option>
+                            <option value="Scientists">Scientists</option>
+                            <option value="Veterans">Veterans</option>
+                            <option value="Seniors">Seniors</option>
+                            <option value="Children">Children</option>
+                            <option value="Educators">Educators</option>
+                            <option value="Aboriginal Peoples">Aboriginal Peoples</option>
+                            <option value="Non-Governmental Organizations">Non-Governmental Organizations</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dt_location">Location</label>
+                        <select class="form-control" id="dt_location" name="dt_location" data-column="5">
+                            <option value="">Anywhere</option>
+                            <option value="Manitoba">Manitoba</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Nova Scotia">Nova Scotia</option>
+                            <option value="Alberta">Alberta</option>
+                            <option value="Ontario">Ontario</option>
+                            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                            <option value="New Brunswick">New Brunswick</option>
+                            <option value="Saskatchewan">Saskatchewan</option>
+                            <option value="British Columbia">British Columbia</option>
+                            <option value="Quebec">Quebec</option>
+                            <option value="Yukon Territory">Yukon Territory</option>
+                            <option value="Prince Edward Island">Prince Edward Island</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-primary" aria-controls="dataset-filter">Filter</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="reset" class="btn btn-default">Clear</button>
+                        </div>
+                    </div>
+                </form>
+            </details>
+        </div>
+        <div class="col-md-9">
+            <table class="wb-tables table table-striped table-hover" id="dataset-filter" aria-live="polite" data-wb-tables='{
+            "bDeferRender": true,
+            "ajaxSource": "ajax/datasource.json",
+            "order": [5, "desc"],
+             "columns": [
+                { "data": "TITLE", "className": "nws-tbl-ttl h4" },
+                { "data": "PUBDATE", "className": "nws-tbl-date" },
+                { "data": "DEPT", "className": "nws-tbl-dept" },
+                { "data": "TYPE", "className": "nws-tbl-type" },
+                { "data": "TEASER",  "className": "nws-tbl-desc" },
+                { "data": "LOCATION",  "visible": false },
+                { "data": "AUDIENCE",  "visible": false },
+                { "data": "SUBJECT", "visible": false },
+                { "data": "MINISTER", "visible": false }
+              ]}'>
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date de publication</th>
+                    <th>Département</th>
+                    <th>Type de nouvelles</th>
+                    <th>Résumé</th>
+                    <th>Emplacement</th>
+                    <th>Public</th>
+                    <th>Suject</th>
+                    <th>Ministre</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date de publication</th>
+                    <th>Département</th>
+                    <th>Type de nouvelles</th>
+                    <th>Résumé</th>
+                    <th>Emplacement</th>
+                    <th>Public</th>
+                    <th>Suject</th>
+                    <th>Ministre</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </section>
