@@ -82,6 +82,13 @@
 }
 
 /*
+ *	Removes bold from elements
+ */
+.fnt-nrml {
+	font-weight: normal;
+}
+
+/*
  *	Fix for missing bullets in Chrome and Safari
  */
 [class*=clmn-] {
