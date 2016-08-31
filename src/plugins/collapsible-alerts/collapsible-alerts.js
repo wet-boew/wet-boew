@@ -16,7 +16,7 @@ var componentName = "wb-collapsible",
 	selector = "details.alert",
 	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
-	details, key,
+	$elm, key, elm,
 
 	/**
 	 * @method init
@@ -27,28 +27,29 @@ var componentName = "wb-collapsible",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		details = wb.init( event, componentName, selector );
+		elm = wb.init( event, componentName, selector );
 
-		if ( details ) {
+		if ( elm ) {
+			$elm = $( elm );
 
-			key = "alert-collapsible-state-" + details.getAttribute( "id" );
+			key = "alert-collapsible-state-" + elm.getAttribute( "id" );
 
 			try {
 				if ( localStorage.getItem( key ) ) {
 
 					// Set open/closed state for existing localStorage keys
 					if ( localStorage.getItem( key ) === "open" ) {
-						details.setAttribute( "open", "open" );
-						details.className += " open";
+						elm.setAttribute( "open", "open" );
+						elm.className += " open";
 					} else if ( localStorage.getItem( key ) === "closed" ) {
-						details.removeAttribute( "open" );
-						details.className = details.className.replace( " open", "" );
+						elm.removeAttribute( "open" );
+						elm.className = elm.className.replace( " open", "" );
 					}
 
 				} else {
 
 					// Set new localStorage values
-					if ( details.hasAttribute( "open" ) ) {
+					if ( elm.hasAttribute( "open" ) ) {
 						localStorage.setItem( key, "open" );
 					} else {
 						localStorage.setItem( key, "closed" );
@@ -58,14 +59,14 @@ var componentName = "wb-collapsible",
 			} catch ( e ) {}
 
 			// Identify that initialization has completed
-			wb.ready( $document, componentName );
+			wb.ready( $elm, componentName );
 		}
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "timerpoke.wb", function() {
+$document.on( "timerpoke.wb " + initEvent, selector, function() {
 
 	// Do not bind events if details polyfill is active
 	if ( Modernizr.details ) {
@@ -81,9 +82,9 @@ $document.on( "timerpoke.wb", function() {
 				( currentTarget.className.indexOf( "wb-toggle" ) === -1 ||
 				( event.type === "toggle" && event.namespace === componentName ) ) ) {
 
-				details = currentTarget.parentNode;
-				isClosed = details.getAttribute( "open" ) === null ;
-				key = "alert-collapsible-state-" + details.getAttribute( "id" );
+				elm = currentTarget.parentNode;
+				isClosed = elm.getAttribute( "open" ) === null ;
+				key = "alert-collapsible-state-" + elm.getAttribute( "id" );
 
 				if ( isClosed ) {
 					try {
