@@ -53,48 +53,71 @@
 		<ol>
 			<li>Add a <code>div</code> element to the page with the class <code>wb-tabs</code>.</li>
 			<li>Add a <code>div</code> element to the previous <code>div</code> element with the class <code>tabpanels</code>.</li>
-			<li>For each tab panel, add a <code>details</code> element with a unique <code>id</code>. Add <code>open="open"</code> for the tab panel that should be open by default.
-				<pre><code>&lt;div class="wb-tabs"&gt;
-	&lt;div class="tabpanels"&gt;
-		&lt;details id="details-panel1"&gt;
-			...
-		&lt;/details&gt;
-		&lt;details id="details-panel2" open="open"&gt;
-			...
-		&lt;/details&gt;</code></pre>
+			<li>For each tab panel, add a <code>details</code> element with a unique <code>id</code>. 
+				<ul>
+					<li>Add <code>open="open"</code> for the tab panel that should be open by default.</li>
+					<li>Add <code>open="open" data-mobile="closed"</code> for tab panel that should be open on desktop but closed on mobile.</li>
+				</ul>
+				<pre><code>
+				&lt;div class="wb-tabs"&gt;
+					&lt;div class="tabpanels"&gt;
+						&lt;details id="details-panel1"&gt;
+						...
+						&lt;/details&gt;
+						&lt;details id="details-panel2" open="open"&gt;
+						...
+						&lt;/details&gt;
+						&lt;details id="details-panel3" open="open" data-mobile="closed"&gt;
+						...
+						&lt;/details&gt;						
+				</code></pre>
 			</li>
 			<li>Add a <code>summary</code> element with the label of the tab to each <code>details</code> element.
-				<pre><code>&lt;details id="details-panel1"&gt;
-		&lt;summary&gt;Example 1&lt;/summary&gt;
-		...
-	&lt;/details&gt;
-	&lt;details id="details-panel2" open="open"&gt;
-		&lt;summary&gt;Example 2&lt;/summary&gt;
-		...
-	&lt;/details&gt;</code></pre>
+				<pre><code>
+				&lt;details id="details-panel1"&gt;
+					&lt;summary&gt;Example 1&lt;/summary&gt;
+					...
+				&lt;/details&gt;
+				&lt;details id="details-panel2" open="open"&gt;
+					&lt;summary&gt;Example 2&lt;/summary&gt;
+					...
+				&lt;/details&gt;
+				&lt;details id="details-panel3" open="open" data-mobile="closed"&gt;
+					&lt;summary&gt;Example 3&lt;/summary&gt;
+					...
+				&lt;/details&gt;	
+				</code></pre>
 			</li>
 			<li>Add the tab panel content after each <code>summary</code> element.</li>
 		</ol>
 
 		<section>
 			<h4>Code</h4>
-			<pre><code>&lt;div class="wb-tabs"&gt;
-	&lt;div class="tabpanels"&gt;
-		&lt;details id="details-panel1"&gt;
-			&lt;summary&gt;Example 1&lt;/summary&gt;
-			&lt;p&gt;
-				...
-			&lt;/p&gt;
-		&lt;/details&gt;
-		&lt;details id="details-panel2" open="open"&gt;
-			&lt;summary&gt;Example 2&lt;/summary&gt;
-			&lt;p&gt;
-				...
-			&lt;/p&gt;
-		&lt;/details&gt;
-		...
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+			<pre><code>
+			&lt;div class="wb-tabs"&gt;
+				&lt;div class="tabpanels"&gt;
+					&lt;details id="details-panel1"&gt;
+						&lt;summary&gt;Example 1&lt;/summary&gt;
+						&lt;p&gt;
+						...
+						&lt;/p&gt;
+					&lt;/details&gt;
+					&lt;details id="details-panel2" open="open"&gt;
+						&lt;summary&gt;Example 2&lt;/summary&gt;
+						&lt;p&gt;
+						...
+						&lt;/p&gt;
+					&lt;/details&gt;
+					&lt;details id="details-panel3" open="open" data-mobile="closed"&gt;
+						&lt;summary&gt;Example 3&lt;/summary&gt;
+						&lt;p&gt;
+						...
+						&lt;/p&gt;
+					&lt;/details&gt;					
+					...
+				&lt;/div&gt;
+			&lt;/div&gt;
+			</code></pre>
 		</section>
 	</section>
 
