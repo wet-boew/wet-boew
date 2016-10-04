@@ -48,6 +48,21 @@
 							}
 							margin-bottom: 1px;
 							padding: 0;
+
+							&:focus {
+								&::before {
+									content: "";
+									height: calc(100% - #{$carousel-tabpanel-outline-offset * 3});
+									left: 0;
+									margin: 2px;
+									outline: inherit {
+										color: #FFF;
+									}
+									position: absolute;
+									top: 0;
+									width: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
+								}
+							}
 						}
 					}
 
