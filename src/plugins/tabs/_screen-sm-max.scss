@@ -6,6 +6,10 @@
 /**
  * Mobile-friendly styles
  */
+%carousel-border-0 {
+	border: 0;
+}
+
 %tabs-screen-sm-max-backwards-compat {
 	> {
 		details {
@@ -66,5 +70,13 @@
 				display: none;
 			}
 		}
+	}
+
+	&.carousel-s1 {
+		@extend %carousel-border-0;
+	}
+
+	&.carousel-s2 {
+		@extend %carousel-border-0;
 	}
 }
