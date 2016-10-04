@@ -7,7 +7,9 @@ details {
 
 	> {
 		* {
-			display: block !important;
+			&:not(summary) {
+				display: block !important;
+			}
 		}
 	}
 }
