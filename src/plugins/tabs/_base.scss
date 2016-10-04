@@ -37,9 +37,57 @@ $tab-margin-width: 10px;
 	z-index: 101;
 }
 
-%carousel-link {
-	a {
-		color: $carousel-tabpanel-link-color;
+%carousel-tabpanel-link-outline-common {
+	content: "";
+	outline: inherit;
+	position: absolute;
+}
+
+%carousel-tabpanel-link {
+	[role="tabpanel"] {
+		a {
+			color: #000;
+			outline-offset: 0;
+
+			figure {
+				outline: inherit;
+
+				&::before {
+					@extend %carousel-tabpanel-link-outline-common;
+					height: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
+					margin: 2px;
+					outline-color: #FFF;
+					width: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
+				}
+
+				&::after {
+					@extend %carousel-tabpanel-link-outline-common;
+					height: calc(100% - #{$carousel-tabpanel-outline-offset});
+					margin: 1px;
+					top: 0;
+					width: calc(100% - #{$carousel-tabpanel-outline-offset});
+				}
+			}
+
+			figcaption {
+				color: $carousel-tabpanel-link-color;
+				text-decoration: underline;
+			}
+		}
+
+		figure {
+			a {
+				color: $carousel-tabpanel-link-color;
+			}
+		}
+	}
+}
+
+%carousel-tabpanel-video {
+	video {
+		&:focus {
+			outline-offset: -1px;
+		}
 	}
 }
 
@@ -208,7 +256,7 @@ $tab-margin-width: 10px;
 					> {
 						div {
 							position: relative;
-							top: .4em;
+							top: 0;
 						}
 					}
 
@@ -254,11 +302,9 @@ $tab-margin-width: 10px;
 	 * Style 1 - Basic carousel style
 	 */
 	&.carousel-s1 {
+		@extend %carousel-tabpanel-link;
+		@extend %carousel-tabpanel-video;
 		border-top: 0;
-
-		[role="tabpanel"] {
-			@extend %carousel-link;
-		}
 
 		[role="tablist"] {
 			bottom: 1em;
@@ -283,26 +329,19 @@ $tab-margin-width: 10px;
 						background: none;
 						border: 0;
 						font-size: .9em;
-
-						> {
-							div {
-								top: .7em;
-							}
-						}
+						padding: 0 .1em;
+						top: .55em;
 
 						&.active,
 						&:focus,
 						&:hover {
 							cursor: default;
-							top: 0;
 						}
 					}
 
 					&.active,
 					&:focus,
 					&:hover {
-						top: 1px;
-
 						a {
 							@extend %tabs-carousel-border-top-none-padding-top-1;
 						}
@@ -319,7 +358,6 @@ $tab-margin-width: 10px;
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -331,6 +369,8 @@ $tab-margin-width: 10px;
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.carousel-s2 {
+		@extend %carousel-tabpanel-link;
+		@extend %carousel-tabpanel-video;
 		background: $carousel-s2-tablist-controls-bg-color;
 
 		// Only need to show controls when JS is active and plugin working
@@ -340,10 +380,6 @@ $tab-margin-width: 10px;
 
 		&.exclude-controls {
 			padding-bottom: 0;
-		}
-
-		[role="tabpanel"] {
-			@extend %carousel-link;
 		}
 
 		[role="tablist"] {
@@ -433,6 +469,12 @@ $tab-margin-width: 10px;
 					}
 				}
 			}
+
+			a {
+				&:focus {
+					outline-offset: 0;
+				}
+			}
 		}
 
 		// TODO: Simplify with extends when libsass fully supports @extends
@@ -443,7 +485,6 @@ $tab-margin-width: 10px;
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
