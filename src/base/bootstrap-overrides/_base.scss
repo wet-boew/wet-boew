@@ -21,6 +21,19 @@ a {
 	&:visited {
 		color: $link-visited-color;
 	}
+
+	// make placeholder links look like plain text
+	&:not([href]) {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: inherit;
+			outline: none;
+			text-decoration: none;
+		}
+	}
 }
 
 // do not change the visited link colour for certain elements
@@ -626,6 +639,7 @@ fieldset {
  *	Pagination
  *	  * Add left/right arrows to previous/next buttons
  *	  * Increase size of the pagination buttons
+ *	  * Prevent contrast ratio issues on active placeholder links
  */
 %glyphicon-inline-icons {
 	content: " ";
@@ -721,6 +735,14 @@ fieldset {
 					}
 				}
 			}
+		}
+	}
+}
+
+.pagination {
+	> {
+		.active {
+			color: $pagination-active-color;
 		}
 	}
 }
