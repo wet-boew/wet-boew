@@ -213,165 +213,182 @@ var componentName = "wb-menu",
 	 * @param {jQuery DOM element} $ajaxResult The AJAXed in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxResult ) {
-		var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
-			$menubar = $ajaxed.find( ".menu" ),
-			$menu = $menubar.find( "> li > a" ),
-			target = $elm.data( "trgt" ),
-			$secnav = $( "#wb-sec" ),
-			$info = $( "#wb-info" ),
-			$language = $( "#wb-lng" ),
-			search = document.getElementById( "wb-srch" ),
-			panel = "",
-			panelDOM = document.getElementById( target ),
-			$panel = $( panelDOM ),
-			allProperties = [],
-			$navCurr, $menuItem, $langItems, len, i;
+		var $info = $( "#wb-info" ),
+			inner = function() {
+				var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
+					$menubar = $ajaxed.find( ".menu" ),
+					$menu = $menubar.find( "> li > a" ),
+					target = $elm.data( "trgt" ),
+					$secnav = $( "#wb-sec" ),
+					$language = $( "#wb-lng" ),
+					search = document.getElementById( "wb-srch" ),
+					panel = "",
+					panelDOM = document.getElementById( target ),
+					$panel = $( panelDOM ),
+					allProperties = [],
+					$navCurr, $menuItem, $langItems, len, i;
 
-		/*
-		 * Build the mobile panel
-		 */
+				/*
+				 * Build the mobile panel
+				 */
 
-		// Add search
-		if ( search !== null ) {
-			panel += "<section class='srch-pnl'>" +
-				search.innerHTML
-					.replace( /h2>/i, "h3>" )
-					.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" ) +
-				"</section>";
-		}
-
-		// Add active language offer
-		if ( $language.length !== 0 ) {
-			$langItems = $language.find( "li:not(.curr)" );
-			len = $langItems.length;
-			panel += "<section class='lng-ofr'>" +
-				"<h3>" + $language.children( "h2" ).html() + "</h3>" +
-				"<ul class='list-inline'>";
-			for ( i = 0; i !== len; i += 1 ) {
-				panel += $langItems[ i ].innerHTML
-					.replace( /(<a\s.*<\/a>?)/, "<li>$1</li>" );
-			}
-			panel += "</ul></section>";
-		}
-
-		// Create menu system
-		if ( $secnav.length !== 0 || $menubar.length !== 0 || $info.length !== 0 ) {
-
-			// Add the secondary menu
-			if ( $secnav.length !== 0 ) {
-				allProperties.push( [
-					$secnav.find( "ul" ).filter( ":not(li > ul)" ).find( " > li > *:first-child" ).get(),
-					"sec-pnl",
-					$secnav.find( "h2" ).html()
-				] );
-
-				if ( $secnav.find( ".wb-navcurr" ).length === 0 ) {
-
-					// Trigger the navcurrent plugin
-					$secnav.trigger( navCurrentEvent, breadcrumb );
-				}
-			}
-
-			// Add the site menu
-			if ( $menubar.length !== 0 ) {
-
-				// Add the menubar role if it is missing
-				if ( !$menubar.attr( "role" ) ) {
-					$menubar.attr( "role", "menubar" );
+				// Add search
+				if ( search !== null ) {
+					panel += "<section class='srch-pnl'>" +
+						search.innerHTML
+							.replace( /h2>/i, "h3>" )
+							.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" ) +
+						"</section>";
 				}
 
-				allProperties.push( [
-					$menu.get(),
-					"sm-pnl",
-					$ajaxed.find( "h2" ).html()
-				] );
-			}
-
-			// Add the site information
-			if ( $info.length !== 0 ) {
-				allProperties.push( [
-					$info.find( "h3, a" ).not( "section a" ),
-					"info-pnl",
-					$info.find( "h2" ).html()
-				] );
-
-				if ( $info.find( ".wb-navcurr" ).length === 0 ) {
-
-					// Trigger the navcurrent plugin
-					$info.trigger( navCurrentEvent, breadcrumb );
+				// Add active language offer
+				if ( $language.length !== 0 ) {
+					$langItems = $language.find( "li:not(.curr)" );
+					len = $langItems.length;
+					panel += "<section class='lng-ofr'>" +
+						"<h3>" + $language.children( "h2" ).html() + "</h3>" +
+						"<ul class='list-inline'>";
+					for ( i = 0; i !== len; i += 1 ) {
+						panel += $langItems[ i ].innerHTML
+							.replace( /(<a\s.*<\/a>?)/, "<li>$1</li>" );
+					}
+					panel += "</ul></section>";
 				}
-			}
 
-			panel += createMobilePanelMenu( allProperties );
-		}
+				// Create menu system
+				if ( $secnav.length !== 0 || $menubar.length !== 0 || $info.length !== 0 ) {
 
-		// Let's now populate the DOM since we have done all the work in a documentFragment
-		panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
-				document.getElementById( "wb-glb-mn" )
-					.getElementsByTagName( "h2" )[ 0 ]
-						.innerHTML +
-				"</div></header><div class='modal-body'>" + panel + "</div>";
-		panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
-		$panel
-			.trigger( "wb-init.wb-overlay" )
-			.find( "summary" )
-				.attr( "tabindex", "-1" )
-				.trigger( detailsInitEvent );
-		$panel
-			.find( ".mb-menu > li:first-child" )
-				.find( ".mb-item" )
-					.attr( "tabindex", "0" );
+					// Add the secondary menu
+					if ( $secnav.length !== 0 ) {
+						allProperties.push( [
+							$secnav.find( "ul" ).filter( ":not(li > ul)" ).find( " > li > *:first-child" ).get(),
+							"sec-pnl",
+							$secnav.find( "h2" ).html()
+						] );
 
-		/*
-		 * Build the regular mega menu
-		 */
-		$ajaxed
-			.find( ":discoverable" )
-				.attr( "tabindex", "-1" );
+						if ( $secnav.find( ".wb-navcurr" ).length === 0 ) {
 
-		if ( $menu.length !== 0 ) {
-			$menu[ 0 ].setAttribute( "tabindex", "0" );
-			drizzleAria( $menu );
-			$menu
-				.filter( "[aria-haspopup=true]" )
-					.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
-		}
+							// Trigger the navcurrent plugin
+							$secnav.trigger( navCurrentEvent, breadcrumb );
+						}
+					}
 
-		// Replace elements
-		$elm.html( $ajaxed.html() );
+					// Add the site menu
+					if ( $menubar.length !== 0 ) {
 
-		// Trigger the navcurrent plugin
-		setTimeout( function() {
-			$elm.trigger( navCurrentEvent, breadcrumb );
-			$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
+						// Add the menubar role if it is missing
+						if ( !$menubar.attr( "role" ) ) {
+							$menubar.attr( "role", "menubar" );
+						}
 
-			// Ensure that wb-navcurr is reflected in the top level
-			$navCurr = $panel.find( ".wb-navcurr" );
-			len = $navCurr.length;
-			for ( i = 0; i !== len; i += 1 ) {
-				$menuItem = $navCurr.eq( i );
+						allProperties.push( [
+							$menu.get(),
+							"sm-pnl",
+							$ajaxed.find( "h2" ).html()
+						] );
+					}
 
-				// If not at the top level, then add wb-navcurr to the top level
-				if ( !$menuItem.hasClass( ".mb-item" ) ) {
-					$menuItem = $menuItem
-									.closest( "details" )
-										.children( "summary" )
-											.addClass( "wb-navcurr" );
+					// Add the site information
+					if ( $info.length !== 0 ) {
+						allProperties.push( [
+							$info.find( "h3, a" ).not( "section a" ),
+							"info-pnl",
+							$info.find( "h2" ).html()
+						] );
+
+						if ( $info.find( ".wb-navcurr" ).length === 0 ) {
+
+							// Trigger the navcurrent plugin
+							$info.trigger( navCurrentEvent, breadcrumb );
+						}
+					}
+
+					panel += createMobilePanelMenu( allProperties );
 				}
-			}
 
-			// Open up the secondary menu if it has wb-navcurr and has a submenu
-			$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
-			if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
-				$menuItem
-					.trigger( "click" )
-					.parent()
-						.prop( "open", "open" );
-			}
+				// Let's now populate the DOM since we have done all the work in a documentFragment
+				panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
+						document.getElementById( "wb-glb-mn" )
+							.getElementsByTagName( "h2" )[ 0 ]
+								.innerHTML +
+						"</div></header><div class='modal-body'>" + panel + "</div>";
+				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
+				$panel
+					.trigger( "wb-init.wb-overlay" )
+					.find( "summary" )
+						.attr( "tabindex", "-1" )
+						.trigger( detailsInitEvent );
+				$panel
+					.find( ".mb-menu > li:first-child" )
+						.find( ".mb-item" )
+							.attr( "tabindex", "0" );
 
-			// Identify that initialization has completed
-			wb.ready( $elm, componentName );
-		}, 1 );
+				/*
+				 * Build the regular mega menu
+				 */
+				$ajaxed
+					.find( ":discoverable" )
+						.attr( "tabindex", "-1" );
+
+				if ( $menu.length !== 0 ) {
+					$menu[ 0 ].setAttribute( "tabindex", "0" );
+					drizzleAria( $menu );
+					$menu
+						.filter( "[aria-haspopup=true]" )
+							.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
+				}
+
+				// Replace elements
+				$elm.html( $ajaxed.html() );
+
+				// Trigger the navcurrent plugin
+				setTimeout( function() {
+					$elm.trigger( navCurrentEvent, breadcrumb );
+					$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
+
+					// Ensure that wb-navcurr is reflected in the top level
+					$navCurr = $panel.find( ".wb-navcurr" );
+					len = $navCurr.length;
+					for ( i = 0; i !== len; i += 1 ) {
+						$menuItem = $navCurr.eq( i );
+
+						// If not at the top level, then add wb-navcurr to the top level
+						if ( !$menuItem.hasClass( ".mb-item" ) ) {
+							$menuItem = $menuItem
+											.closest( "details" )
+												.children( "summary" )
+													.addClass( "wb-navcurr" );
+						}
+					}
+
+					// Open up the secondary menu if it has wb-navcurr and has a submenu
+					$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
+					if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
+						$menuItem
+							.trigger( "click" )
+							.parent()
+								.prop( "open", "open" );
+					}
+
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
+				}, 1 );
+			},
+			$footerAjax  = $info.find( "[data-ajax-replace],[data-ajax-append],[data-ajax-prepend]" ),
+			footerAjaxLength = $footerAjax.length,
+			ajaxCount = 0;
+
+		//Delay the execution the menu until any ajaxed footer content is in
+		if ( footerAjaxLength === 0 ) {
+			inner();
+		} else {
+			$info.on( "wb-contentupdated ajax-failed.wb", function() {
+				ajaxCount += 1;
+				if ( ajaxCount === footerAjaxLength ) {
+					inner();
+				}
+			} )
+		}
 	},
 
 	/**
