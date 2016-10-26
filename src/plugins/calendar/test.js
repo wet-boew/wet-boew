@@ -168,7 +168,7 @@ describe( "calendar test suite", function() {
 
 			$calendarObj.trigger( {
 				type: "wb-navigate.wb-clndr",
-				year:2014,
+				year: 2014,
 				month: 6
 			} );
 		} );

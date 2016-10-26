@@ -296,12 +296,12 @@ var componentName = "wb-calevt",
 					//Get the appropriate day events if a day link exists
 					if ( $day.parent().get( 0 ).nodeName !== "A" ) {
 						$dayEvents = $day.next();
-					}else{
+					} else {
 						$dayEvents = $day.parent().next();
 					}
 
 					//Create the event list container if it doesn't exist
-					if ( $dayEvents.length !== 1) {
+					if ( $dayEvents.length !== 1 ) {
 						$dayEvents = $( "<ul></ul>" ).insertAfter( $day );
 
 						//Determine the focus based on the day before

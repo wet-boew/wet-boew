@@ -25,56 +25,56 @@ var componentName = "wb-tblvalidator",
 	logEvent = "log" + selector,
 	formSelector = "#formtablevalidator",
 	ErrorMessage = {
-		"%tblparser1":  "Only table can be parsed with this parser",
-		"%tblparser2":  "The table was already parsed.",
-		"%tblparser3":  "The first colgroup must be spanned to represent the header column group",
+		"%tblparser1": "Only table can be parsed with this parser",
+		"%tblparser2": "The table was already parsed.",
+		"%tblparser3": "The first colgroup must be spanned to represent the header column group",
 		"%tblparser3Tech": 6,
-		"%tblparser4":  " You have an invalid cell inside a row description",
+		"%tblparser4": " You have an invalid cell inside a row description",
 		"%tblparser4Tech": 4,
-		"%tblparser5":  "You need at least one data colgroup, review your table structure",
+		"%tblparser5": "You need at least one data colgroup, review your table structure",
 		"%tblparser5Tech": 8,
-		"%tblparser6":  "The Lowest column group level have been found, You may have an error in you column structure",
+		"%tblparser6": "The Lowest column group level have been found, You may have an error in you column structure",
 		"%tblparser6Tech": 9,
-		"%tblparser7":  "The initial colgroup should group all the header, there are no place for any data cell",
+		"%tblparser7": "The initial colgroup should group all the header, there are no place for any data cell",
 		"%tblparser7Tech": 4,
-		"%tblparser9":  "Error in you header row group, there are cell that are crossing more than one colgroup",
+		"%tblparser9": "Error in you header row group, there are cell that are crossing more than one colgroup",
 		"%tblparser9Tech": 4,
-		"%tblparser10":  "The header group cell used to represent the data at level must encapsulate his group",
+		"%tblparser10": "The header group cell used to represent the data at level must encapsulate his group",
 		"%tblparser10Tech": 7,
-		"%tblparser12":  "Last summary row group already found",
+		"%tblparser12": "Last summary row group already found",
 		"%tblparser12Tech": 3,
-		"%tblparser13":  "Error, Row group not calculated",
-		"%tblparser14":  "You can not have a summary at level under 0, add a group header or merge a tbody togheter",
+		"%tblparser13": "Error, Row group not calculated",
+		"%tblparser14": "You can not have a summary at level under 0, add a group header or merge a tbody togheter",
 		"%tblparser14Tech": 3,
-		"%tblparser15":  "tr element need to only have th or td element as his child",
-		"%tblparser16":  "The row do not have a good width",
+		"%tblparser15": "tr element need to only have th or td element as his child",
+		"%tblparser16": "The row do not have a good width",
 		"%tblparser16Tech": 12,
-		"%tblparser17":  "The layout cell is not empty",
+		"%tblparser17": "The layout cell is not empty",
 		"%tblparser17Tech": 11,
-		"%tblparser18":  "Row group header not well structured.",
+		"%tblparser18": "Row group header not well structured.",
 		"%tblparser18Tech": 7,
-		"%tblparser21":  "Move the row used as the column cell heading in the thead row group",
+		"%tblparser21": "Move the row used as the column cell heading in the thead row group",
 		"%tblparser21Tech": 7,
-		"%tblparser23":  "Avoid the use of have paralel row headers, it's recommended do a cell merge to fix it",
+		"%tblparser23": "Avoid the use of have paralel row headers, it's recommended do a cell merge to fix it",
 		"%tblparser23Tech": 3,
-		"%tblparser24":  "For a data row, the heading hiearchy need to be the Generic to the specific",
+		"%tblparser24": "For a data row, the heading hiearchy need to be the Generic to the specific",
 		"%tblparser24Tech": 3,
-		"%tblparser25":  "You have a problematic key cell",
+		"%tblparser25": "You have a problematic key cell",
 		"%tblparser25Tech": 0,
-		"%tblparser26":  "You can not define any row before the thead group",
+		"%tblparser26": "You can not define any row before the thead group",
 		"%tblparser26Tech": 12,
-		"%tblparser27":  "thead element need to only have tr element as his child",
+		"%tblparser27": "thead element need to only have tr element as his child",
 		"%tblparser27Tech": 12,
-		"%tblparser29":  "You cannot span cell in 2 different rowgroup",
+		"%tblparser29": "You cannot span cell in 2 different rowgroup",
 		"%tblparser29Tech": 12,
-		"%tblparser30":  "Use the appropriate table markup",
+		"%tblparser30": "Use the appropriate table markup",
 		"%tblparser30Tech": 12,
-		"%tblparser31":  "Internal Error, Number of virtual column must be set [ function processColgroup( ) ]",
-		"%tblparser32":  "Check your row cell headers structure",
+		"%tblparser31": "Internal Error, Number of virtual column must be set [ function processColgroup( ) ]",
+		"%tblparser32": "Check your row cell headers structure",
 		"%tblparser32Tech": 3,
-		"%tblparser34":  "Mark properly your data row group.",
+		"%tblparser34": "Mark properly your data row group.",
 		"%tblparser34Tech": 1,
-		"%tblparser35":  "Column, col element, are not correctly defined",
+		"%tblparser35": "Column, col element, are not correctly defined",
 		"%tblparser35Tech": 12 },
 	techniqueURL = [
 		"keycell-techniques.html", /* 1 */
@@ -125,7 +125,7 @@ $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /<br>/g, "<br />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
 
 	// Show the result
-	$output.html( "<pre class='prettyprint'><code>" + tableHTMLstring  + "</code></pre>" );
+	$output.html( "<pre class='prettyprint'><code>" + tableHTMLstring + "</code></pre>" );
 
 	if ( typeof window.prettyPrint === "function" ) {
 		window.prettyPrint( );
@@ -177,7 +177,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 		type: logEvent,
 		logtype: "Information",
 		logmessage: "Accessibility Strategy: Ids/Headers"
-	});
+	} );
 
 	$elm = $( elm );
 	tblparser = $elm.data( ).tblparser;
@@ -301,6 +301,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 
 				if ( currCell.col && currCell.col.dataheaders ) {
 					coldataheader = currCell.col.dataheaders;
+
 					/*
 					for ( var x = 0; x < currCell.col.dataheader.length; x += 1 ) {
 						coldataheader = ( coldataheader ? " ": "" );
@@ -500,7 +501,7 @@ $document.on( addscopeEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 		type: logEvent,
 		logtype: "Information",
 		logmessage: "Accessibility Strategy: Scope"
-	});
+	} );
 
 	$elm = $( elm );
 	tblparser = $elm.data( ).tblparser;
@@ -550,7 +551,7 @@ $document.on( addnothingEvent, "#visualoutput > table:eq( 0 )", function( event 
 		type: logEvent,
 		logtype: "Information",
 		logmessage: "Accessibility Strategy: Nothing"
-	});
+	} );
 
 	$elm = $( elm );
 
@@ -662,7 +663,7 @@ $document.on( "error" + tableParserSelector, "#visualoutput > table:eq( 0 )", fu
 		type: logEvent,
 		logtype: "Error",
 		logmessage: html
-	});
+	} );
 } );
 
 // On warning detected in the table
@@ -686,7 +687,7 @@ $document.on( "warning" + tableParserSelector, "#visualoutput > table:eq( 0 )", 
 		type: logEvent,
 		logtype: "Warning",
 		logmessage: html
-	});
+	} );
 } );
 
 // When the user validate the table in input
@@ -710,7 +711,7 @@ $document.on( "click", "#validatetable", function( ) {
 			type: logEvent,
 			logtype: "Error",
 			logmessage: "No HTML Table code provided in input"
-		});
+		} );
 
 		alert( "Please add HTML Table code" );
 		$( "#inputsourcecode" ).focus();

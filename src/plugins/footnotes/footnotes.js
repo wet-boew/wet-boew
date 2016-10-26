@@ -44,7 +44,7 @@ var componentName = "wb-fnote",
 				dtId = dd.id + "-dt";
 				dd.setAttribute( "tabindex", "-1" );
 				dd.setAttribute( "aria-labelledby", dtId );
-				dt.id = dtId ;
+				dt.id = dtId;
 			}
 
 			// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)

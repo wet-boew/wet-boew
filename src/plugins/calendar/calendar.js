@@ -126,7 +126,7 @@ var i18nText,
 		lastYear = this.maxDate.getFullYear();
 		$yearField = $calendarObj.find( ".cal-year" ).empty();
 		for ( y = this.minDate.getFullYear(); y <= lastYear; y += 1 ) {
-			years += "<option value='" + y + "'>" + y + "</option>" ;
+			years += "<option value='" + y + "'>" + y + "</option>";
 		}
 		$yearField.append( years );
 
@@ -348,6 +348,7 @@ $document.on( "keydown", selector, function( event ) {
 		//page up
 		case 33:
 			date.setDate( minDate.getDate() );
+
 			/* falls through */
 
 		//page down

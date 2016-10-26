@@ -86,6 +86,7 @@ var componentName = "wb-feeds",
 			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" + wb.escapeAttribute( JSON.stringify( youtubeDate ) ) + "'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" + wb.escapeAttribute( youtubeDate.title ) + "' title='" + wb.escapeAttribute( youtubeDate.title ) + "' class='img-responsive' /></a></li>";
 		},
+
 		/**
 		 * [pinterest template]
 		 * @param  {entry object}    data
@@ -97,6 +98,7 @@ var componentName = "wb-feeds",
 			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
 			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		},
+
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
@@ -269,7 +271,7 @@ var componentName = "wb-feeds",
 
 		len = items.length;
 		for ( i = 0; i !== len; i += 1 ) {
-			items[ i ].fIcon =  icon ;
+			items[ i ].fIcon =  icon;
 
 			if ( items[ i ].publishedDate === undef ) {
 				items[ i ].publishedDate = ( items[ i ].published || items[ i ].pubDate || items[ i ].updated || "" );
@@ -292,7 +294,7 @@ var componentName = "wb-feeds",
 			return 0;
 		}
 
-		toProcess -= 1 ;
+		toProcess -= 1;
 		$content.data( {
 			"toProcess": toProcess,
 			"entries": entries

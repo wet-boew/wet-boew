@@ -774,18 +774,17 @@ $document.on( "keydown", dispCtrls, function( event ) {
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 		switch ( which ) {
 		case 32:
+
 			// Mute/unmute if focused on the mute/unmute button or volume input.
 			if ( $( event.target ).hasClass( "mute" ) || event.target.nodeName === "INPUT" ) {
 				$playerTarget.find( ".mute" ).trigger( "click" );
-			}
+			} else if ( $( event.target ).hasClass( "cc" ) ) {
 
-			// Show/hide captions if focused on the closed captions button.
-			else if ( $( event.target ).hasClass( "cc" ) ) {
+				// Show/hide captions if focused on the closed captions button.
 				$playerTarget.find( ".cc" ).trigger( "click" );
-			}
+			} else {
 
-			// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
-			else {
+				// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
 				$playerTarget.find( ".playpause" ).trigger( "click" );
 			}
 			break;

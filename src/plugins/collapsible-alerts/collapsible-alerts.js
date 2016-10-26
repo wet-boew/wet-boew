@@ -82,7 +82,7 @@ $document.on( "timerpoke.wb", function() {
 				( event.type === "toggle" && event.namespace === componentName ) ) ) {
 
 				details = currentTarget.parentNode;
-				isClosed = details.getAttribute( "open" ) === null ;
+				isClosed = details.getAttribute( "open" ) === null;
 				key = "alert-collapsible-state-" + details.getAttribute( "id" );
 
 				if ( isClosed ) {

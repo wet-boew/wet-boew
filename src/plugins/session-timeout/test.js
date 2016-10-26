@@ -75,7 +75,7 @@ describe( "Session Timeout test suite", function() {
 	describe( "init plugin", function() {
 		it( "should trigger reset.wb-sessto event", function() {
 			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
-		} ) ;
+		} );
 
 		it( "should have marked the element as initialized", function() {
 			expect( $session.hasClass( "wb-sessto-inited" ) ).to.equal( true );

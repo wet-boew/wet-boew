@@ -983,6 +983,7 @@ wb.normalizeDiacritics = function( str ) {
  * @namespace wb.string
  */
 wb.string = {
+
 	/*
 	 * Left-pads a number with zeros.
 	 * @memberof wb.string
@@ -1006,6 +1007,7 @@ wb.string = {
  * @namespace wb.date
  */
 wb.date = {
+
 	/*
 	 * Converts the date to a date-object. The input can be:
 	 * <ul>

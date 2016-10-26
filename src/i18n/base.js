@@ -7,6 +7,7 @@
  */
 ( function( wb ) {
 "use strict";
+
 /* main index */
 wb.i18nDict = {
 	"lang-code": "@lang-code@",
@@ -71,6 +72,7 @@ wb.i18nDict = {
 	"tab-pnl-end2": "@tab-pnl-end2@",
 	"tab-pnl-end3": "@tab-pnl-end3@",
 	"tab-play": "@tab-play@",
+
 	/* Multimedia player */
 	"mmp-play": "@mmp-play@",
 	pause: "@pause@",
@@ -92,6 +94,7 @@ wb.i18nDict = {
 	},
 	pos: "@pos@",
 	dur: "@dur@",
+
 	/* Share widget */
 	"shr-txt": "@shr-txt@",
 	"shr-pg": "@shr-pg@",
@@ -99,14 +102,17 @@ wb.i18nDict = {
 	"shr-aud": "@shr-aud@",
 	"shr-hnt": "@shr-hnt@",
 	"shr-disc": "@shr-disc@",
+
 	/* Form validation */
 	"frm-nosubmit": "@frm-nosubmit@",
 	"errs-fnd": "@errs-fnd@",
 	"err-fnd": "@err-fnd@",
+
 	/* Date picker */
 	"date-hide": "@date-hide@",
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
+
 	/* Calendar */
 	days: [
 		"@days-1@",
@@ -141,13 +147,16 @@ wb.i18nDict = {
 	"cal-goToBtn": "@cal-goToBtn@",
 	prvMnth: "@prvMnth@",
 	nxtMnth: "@nxtMnth@",
+
 	/* Lightbox */
 	"lb-curr": "@lb-curr@",
 	"lb-xhr-err": "@lb-xhr-err@",
 	"lb-img-err": "@lb-img-err@",
+
 	/* Charts widget */
 	"tbl-txt": "@tbl-txt@",
 	"tbl-dtls": "@tbl-dtls@",
+
 	/* Session timeout */
 	"st-to-msg-bgn": "@st-to-msg-bgn@",
 	"st-to-msg-end": "@st-to-msg-end@",
@@ -155,12 +164,14 @@ wb.i18nDict = {
 	"st-alrdy-to-msg": "@st-alrdy-to-msg@",
 	"st-btn-cont": "@st-btn-cont@",
 	"st-btn-end": "@st-btn-end@",
+
 	/* Toggle details */
 	"td-toggle": "@td-toggle@",
 	"td-open": "@td-open@",
 	"td-close": "@td-close@",
 	"td-ttl-open": "@td-ttl-open@",
 	"td-ttl-close": "@td-ttl-close@",
+
 	/* Table enhancement */
 	sortAsc: "@sortAsc@",
 	sortDesc: "@sortDesc@",
@@ -171,6 +182,7 @@ wb.i18nDict = {
 	info1000: "@info1000@",
 	lenMenu: "@lenMenu@",
 	filter: "@filter@",
+
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
 	"geo-zmin": "@geo-zmin@",
@@ -205,11 +217,14 @@ wb.i18nDict = {
 	"geo-geoloc-fail": "@geo-geoloc-fail@",
 	"geo-geoloc-uncapable": "@geo-geoloc-uncapable@",
 	"geo-lgnd-grphc": "@geo-lgnd-grphc@",
+
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
+
 	/* Dismissable content */
 	"dismiss": "@dismiss@",
+
 	/* Template */
 	"tmpl-signin": "@tmpl-signin@"
 };

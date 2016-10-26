@@ -387,7 +387,7 @@ var componentName = "wb-menu",
 				if ( ajaxCount === footerAjaxLength ) {
 					inner();
 				}
-			} )
+			} );
 		}
 	},
 

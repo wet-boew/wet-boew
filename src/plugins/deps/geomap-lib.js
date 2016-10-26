@@ -524,7 +524,7 @@ var componentName = "wb-geomap",
 				$symbol = $( "#sb_" + layer.name );
 
 				if ( $symbol.length ) {
-					style = layer.styleMap.styles[ "default" ];
+					style = layer.styleMap.styles.default;
 					styleDefault = style.defaultStyle;
 					ruleLen = style.rules.length;
 
@@ -763,10 +763,10 @@ var componentName = "wb-geomap",
 				}
 
 				style.addRules( rules );
-				stylePrefs[ "default" ] = style;
+				stylePrefs.default = style;
 
 			} else if ( styleType !== "unique" ) {
-				stylePrefs[ "default" ] = new OpenLayers.Style( elmStyle.init );
+				stylePrefs.default = new OpenLayers.Style( elmStyle.init );
 			}
 		} else {
 			stylePrefs = {
