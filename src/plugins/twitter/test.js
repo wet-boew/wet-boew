@@ -19,37 +19,37 @@ describe( "Twitter test suite", function() {
   /*
    * Test the initialization and default behaviour of the plugin
    */
-  var $elm,
-    $document = wb.doc,
-    $body = $document.find( "body" );
+	var $elm,
+		$document = wb.doc,
+		$body = $document.find( "body" );
 
-  before( function( done ) {
+	before( function( done ) {
 
-    // The Twitter widget sometimes takes longer than two second to load
-    this.timeout( 5000 );
+		// The Twitter widget sometimes takes longer than two second to load
+		this.timeout( 5000 );
 
-    // Trigger plugin init
-    $elm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/search?q=%23WxT' data-widget-id='329066756620566528'>Tweets about '#WxT'</a></div>" )
-      .appendTo( $body )
-      .trigger( "wb-init.wb-twitter" );
+		// Trigger plugin init
+		$elm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/search?q=%23WxT' data-widget-id='329066756620566528'>Tweets about '#WxT'</a></div>" )
+			.appendTo( $body )
+			.trigger( "wb-init.wb-twitter" );
 
-    $document.on( "wb-ready.wb-twitter", ".wb-twitter", function() {
-      done();
-    } );
-  } );
+		$document.on( "wb-ready.wb-twitter", ".wb-twitter", function() {
+			done();
+		} );
+	} );
 
-  after( function() {
-    $elm.remove();
-  } );
+	after( function() {
+		$elm.remove();
+	} );
 
-  /*
-   * Test the initialization events of the plugin
-   */
-  describe( "init event", function() {
-    it( "should have added the wb-twitter-inited CSS class", function() {
-      expect( $elm.hasClass( "wb-twitter-inited" ) ).to.equal( true );
-    } );
-  } );
+	/*
+	* Test the initialization events of the plugin
+	*/
+	describe( "init event", function() {
+		it( "should have added the wb-twitter-inited CSS class", function() {
+			expect( $elm.hasClass( "wb-twitter-inited" ) ).to.equal( true );
+		} );
+	} );
 
 } );
 

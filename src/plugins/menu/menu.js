@@ -512,7 +512,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 } );
 
 $document.on( "mouseleave", selector + " .menu", function( event ) {
-    var $currentTarget = $( event.currentTarget );
+	var $currentTarget = $( event.currentTarget );
 
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
@@ -553,25 +553,25 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 		isOpen = submenu.getAttribute( "aria-hidden" ) === "false",
 		menuItemOffsetTop, menuContainer;
 
-		// Close any other open menus
-		if ( !isOpen ) {
-			$( parent )
-				.closest( "[role^='menu']" )
-					.find( "[aria-hidden=false]" )
-						.parent()
-							.find( "[aria-haspopup=true]" )
-								.not( menuItem )
-									.trigger( "click" );
+	// Close any other open menus
+	if ( !isOpen ) {
+		$( parent )
+			.closest( "[role^='menu']" )
+				.find( "[aria-hidden=false]" )
+					.parent()
+						.find( "[aria-haspopup=true]" )
+							.not( menuItem )
+								.trigger( "click" );
 
-			// Ensure the opened menu is in view if in a mobile panel
-			menuContainer = document.getElementById( "mb-pnl" );
-			menuItemOffsetTop = menuItem.offsetTop;
-			if ( $.contains( menuContainer, menuItem ) &&
-				menuItemOffsetTop < menuContainer.scrollTop ) {
+		// Ensure the opened menu is in view if in a mobile panel
+		menuContainer = document.getElementById( "mb-pnl" );
+		menuItemOffsetTop = menuItem.offsetTop;
+		if ( $.contains( menuContainer, menuItem ) &&
+			menuItemOffsetTop < menuContainer.scrollTop ) {
 
-				menuContainer.scrollTop = menuItemOffsetTop;
-			}
+			menuContainer.scrollTop = menuItemOffsetTop;
 		}
+	}
 
 	submenu.setAttribute( "aria-expanded", !isOpen );
 	submenu.setAttribute( "aria-hidden", isOpen );

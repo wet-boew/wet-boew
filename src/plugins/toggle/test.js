@@ -101,10 +101,10 @@ describe( "Toggle test suite", function() {
 			var ariaControls = "",
 				selector = $toggleOthers.data( "toggle" ).selector;
 
-				$( selector ).each( function() {
-					ariaControls += this.id + " ";
-				} );
-				expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
+			$( selector ).each( function() {
+				ariaControls += this.id + " ";
+			} );
+			expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
 		} );
 
 		it( "should have aria tablist attributes if a tablist", function() {

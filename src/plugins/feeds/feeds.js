@@ -405,28 +405,28 @@ $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSe
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
-			case "ajax-fetched":
-				response = event.fetch.response;
+		case "ajax-fetched":
+			response = event.fetch.response;
 
-				if ( response.query ) {
-					var results = response.query.results;
+			if ( response.query ) {
+				var results = response.query.results;
 
-					if ( results ) {
-						data = results.entry ? results.entry : results.item;
+				if ( results ) {
+					data = results.entry ? results.entry : results.item;
 
-						if ( !Array.isArray( data ) ) {
-							data = [ data ];
-						}
-					} else {
-						data = [];
+					if ( !Array.isArray( data ) ) {
+						data = [ data ];
 					}
 				} else {
-					data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+					data = [];
 				}
+			} else {
+				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+			}
 
-				break;
-			default:
-				data = event.feedsData;
+			break;
+		default:
+			data = event.feedsData;
 		}
 
 		// Identify that initialization has completed

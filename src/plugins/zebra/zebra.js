@@ -15,7 +15,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
- var componentName = "wb-zebra",
+var componentName = "wb-zebra",
 	selector = "." + componentName,
 	hoverColClass = componentName + "-col-hover",
 	selectorHoverCol = "." + hoverColClass + " td, " + hoverColClass + " th",

@@ -48,7 +48,7 @@
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-cssmin-ie8-clean": "0.0.1",
-    "grunt-eslint": "^18.0.0",
+    "grunt-eslint": "^19.0.0",
     "grunt-gh-pages": "~1.1.0",
     "grunt-html": "^5.0.0",
     "grunt-i18n-csv": "^0.1.0",

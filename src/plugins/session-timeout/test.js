@@ -186,9 +186,9 @@ describe( "Session Timeout test suite", function() {
 
 			// Add the session timeout element and trigger it's init'
 			$session.data( "wet-boew", {
-					sessionalive: 5000,
-					refreshCallbackUrl: "foo.html"
-				} )
+				sessionalive: 5000,
+				refreshCallbackUrl: "foo.html"
+			} )
 				.removeClass( "wb-sessto-inited" )
 				.trigger( "wb-init.wb-sessto" );
 		} );

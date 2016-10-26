@@ -371,18 +371,18 @@ $document.on( "focusin focusout keydown", ".wb-calevt-cal .cal-days td > a", fun
 		$link;
 
 	switch ( eventType ) {
-		case "focusin":
-			showEvents.call( event.target );
-			break;
-		case "focusout":
-			hideEvents.call( event.target );
-			break;
-		case "keydown":
-			$link = $( event.target );
-			if ( ( event.which === 13 || event.which === 32 ) && $link.hasClass( "cal-evt" ) ) {
-				$( event.target ).next().find( "a:first" ).trigger( setFocusEvent );
-			}
-			break;
+	case "focusin":
+		showEvents.call( event.target );
+		break;
+	case "focusout":
+		hideEvents.call( event.target );
+		break;
+	case "keydown":
+		$link = $( event.target );
+		if ( ( event.which === 13 || event.which === 32 ) && $link.hasClass( "cal-evt" ) ) {
+			$( event.target ).next().find( "a:first" ).trigger( setFocusEvent );
+		}
+		break;
 	}
 } );
 
@@ -391,24 +391,24 @@ $document.on( "keydown", ".wb-calevt-cal .cal-days td > ul li", function( event 
 		$toFocus, $itemParent;
 
 	switch ( event.which ) {
-		case 38:
-			$toFocus = $item.prev().find( "a" );
-			if ( $toFocus.length === 0 ) {
-				$toFocus = $item.siblings( ":last" ).find( "a" );
-			}
-			$toFocus.trigger( setFocusEvent );
-			break;
-		case 40:
-			$toFocus = $item.next().find( "a" );
-			if ( $toFocus.length === 0 ) {
-				$toFocus = $item.siblings( ":first" ).find( "a" );
-			}
-			$toFocus.trigger( setFocusEvent );
-			break;
-		case 27:
-			$itemParent = $item.closest( "td" ).children( "a" );
-			$itemParent.trigger( setFocusEvent );
-			break;
+	case 38:
+		$toFocus = $item.prev().find( "a" );
+		if ( $toFocus.length === 0 ) {
+			$toFocus = $item.siblings( ":last" ).find( "a" );
+		}
+		$toFocus.trigger( setFocusEvent );
+		break;
+	case 40:
+		$toFocus = $item.next().find( "a" );
+		if ( $toFocus.length === 0 ) {
+			$toFocus = $item.siblings( ":first" ).find( "a" );
+		}
+		$toFocus.trigger( setFocusEvent );
+		break;
+	case 27:
+		$itemParent = $item.closest( "td" ).children( "a" );
+		$itemParent.trigger( setFocusEvent );
+		break;
 	}
 } );
 

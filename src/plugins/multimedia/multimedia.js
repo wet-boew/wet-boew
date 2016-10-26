@@ -611,7 +611,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		} else {
 
 			// Do nothing since IE8 support is no longer required
-            return;
+			return;
 		}
 
 		// Identify that initialization has completed
@@ -824,7 +824,7 @@ $document.on( "keyup", ctrls, function( event ) {
 } );
 
 $document.on( "wb-activate", selector, function() {
-    this.player( "play" );
+	this.player( "play" );
 } );
 
 $document.on( multimediaEvents, selector, function( event, simulated ) {
@@ -905,8 +905,8 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		// Skip to pointer from the querystring
 		skipTo = wb.pageUrlParts.params[ event.target.id ];
 		if ( skipTo ) {
-				skipTo = parseTime( skipTo );
-				eventTarget.player( "setCurrentTime", skipTo );
+			skipTo = parseTime( skipTo );
+			eventTarget.player( "setCurrentTime", skipTo );
 		}
 		break;
 

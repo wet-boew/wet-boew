@@ -416,7 +416,7 @@ var componentName = "wb-toggle",
 
 // Bind the plugin's events
 $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
-	" click", selector, function( event, data ) {
+" click", selector, function( event, data ) {
 
 	var eventType = event.type;
 
