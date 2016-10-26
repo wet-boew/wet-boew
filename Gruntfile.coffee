@@ -230,6 +230,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"eslint"
+			"sasslint"
 		]
 	)
 

@@ -7,7 +7,7 @@ rules:
   id-name-format: 0
   indentation:
     - 2
-    - size: 1
+    - size: tab
   leading-zero: 2
   mixin-name-format: 0
   nesting-depth: 0
@@ -26,9 +26,11 @@ rules:
   no-empty-rulesets: 2
   no-ids: 0
   no-important: 0
-  # Set to 2 when following issue is resolved
-  # https://github.com/sasstools/sass-lint/issues/352
-  no-misspelled-properties: 0
+  no-misspelled-properties:
+      - 2
+      -
+          'extra-properties':
+              - 'overflow-scrolling'
   no-url-protocols: 1
   no-trailing-whitespace: 2
   placeholder-name-format: 0
