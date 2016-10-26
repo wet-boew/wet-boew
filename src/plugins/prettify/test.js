@@ -115,9 +115,7 @@ describe( "Prettify test suite", function() {
 			$body.append( "<pre class='test'></pre>" );
 			$prettify
 				.removeClass( "wb-prettify-inited" )
-				.addClass( "lang-sql" )
-				.addClass( "all-pre" )
-				.addClass( "linenums" )
+				.addClass( "lang-sql all-pre linenums" )
 				.trigger( "wb-init.wb-prettify" );
 		} );
 
@@ -148,8 +146,7 @@ describe( "Prettify test suite", function() {
 
 			$body.append( "<pre class='test'></pre>" );
 			$prettify
-				.removeClass( "wb-prettify-inited" )
-				.removeClass( "all-pre linenums" )
+				.removeClass( "wb-prettify-inited all-pre linenums" )
 				.data( {
 					allpre: true,
 					linenums: true
