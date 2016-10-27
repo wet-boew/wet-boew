@@ -119,7 +119,7 @@ var componentName = "wb-overlay",
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
-	" close" + selector, selector, function( event ) {
+" close" + selector, selector, function( event ) {
 
 	var eventType = event.type,
 		which = event.which,

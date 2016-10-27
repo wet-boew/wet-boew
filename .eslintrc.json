@@ -1,4 +1,5 @@
 {
+  "extends": "jquery",
   "env": {
     "browser": true,
     "jquery": true
@@ -10,32 +11,21 @@
     "JSON": true
   },
   "rules": {
-    "no-cond-assign": [
-      2,
-      "except-parens"
-    ],
-    "curly": 2,
+    "indent": ["error", "tab", { "outerIIFEBody": 0 }],
     "eqeqeq": [2, "allow-null"],
     "no-eq-null": 2,
-    "no-unused-expressions": [2, { allowTernary: true }],
+    "no-unused-expressions": [2, { "allowTernary": true }],
     "wrap-iife": [
       2,
       "any"
     ],
-    "no-caller": 2,
-    "no-undef": 2,
     "no-unused-vars": [2, { "varsIgnorePattern": "wet_boew_"}],
-    "linebreak-style": 0,
     "camelcase": 0,
     "max-len": [
       2,
       500
     ],
-    "space-before-blocks": [
-      2,
-      "always"
-    ],
-    "no-mixed-spaces-and-tabs": 2,
-    "no-irregular-whitespace": 2
+    "no-irregular-whitespace": 2,
+    "no-nested-ternary": 0
   }
 }

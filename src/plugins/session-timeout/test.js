@@ -75,7 +75,7 @@ describe( "Session Timeout test suite", function() {
 	describe( "init plugin", function() {
 		it( "should trigger reset.wb-sessto event", function() {
 			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
-		} ) ;
+		} );
 
 		it( "should have marked the element as initialized", function() {
 			expect( $session.hasClass( "wb-sessto-inited" ) ).to.equal( true );
@@ -186,9 +186,9 @@ describe( "Session Timeout test suite", function() {
 
 			// Add the session timeout element and trigger it's init'
 			$session.data( "wet-boew", {
-					sessionalive: 5000,
-					refreshCallbackUrl: "foo.html"
-				} )
+				sessionalive: 5000,
+				refreshCallbackUrl: "foo.html"
+			} )
 				.removeClass( "wb-sessto-inited" )
 				.trigger( "wb-init.wb-sessto" );
 		} );

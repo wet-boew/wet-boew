@@ -168,7 +168,7 @@ describe( "calendar test suite", function() {
 
 			$calendarObj.trigger( {
 				type: "wb-navigate.wb-clndr",
-				year:2014,
+				year: 2014,
 				month: 6
 			} );
 		} );
@@ -183,7 +183,7 @@ describe( "calendar test suite", function() {
 
 		it( "should update the month field", function() {
 			var monthField = $calendarObj.find( ".cal-month" ).get( 0 ),
-			val = monthField.selectedIndex;
+				val = monthField.selectedIndex;
 
 			expect( val ).to.be( 6 );
 			expect( monthField.options[ val ].text ).to.be( "July" );

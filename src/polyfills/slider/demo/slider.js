@@ -8,8 +8,8 @@
 var currentValueString = document.documentElement.lang === "fr" ?
 		"Valeur actuelle&#160;:" :
 		"Current Value:",
-		$document = wb.doc,
-		$slider;
+	$document = wb.doc,
+	$slider;
 
 $document.on( "change", "#html5shim-1, #html5shim-2", function( event ) {
 	document

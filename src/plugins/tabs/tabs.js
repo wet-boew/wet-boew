@@ -683,9 +683,9 @@ var componentName = "wb-tabs",
 							$openDetails
 								.addClass( "fade in" )
 								.attr( {
-										"aria-hidden": "false",
-										"aria-expanded": "true"
-									} );
+									"aria-hidden": "false",
+									"aria-expanded": "true"
+								} );
 						}
 
 						// Enable equal heights for large view or disable for small view
@@ -732,58 +732,58 @@ var componentName = "wb-tabs",
 		}
 	};
 
- // Bind the init event of the plugin
- $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, selector, function( event ) {
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventCurrentTarget = event.currentTarget,
 		$elm;
 
-		// Filter out any events triggered by descendants
-		if ( eventCurrentTarget === eventTarget ) {
-			switch ( event.type ) {
-			case "timerpoke":
-				$elm = $( eventTarget );
-				if ( !$elm.hasClass( componentName + "-inited" ) ) {
-					init( event );
-				} else if ( $elm.hasClass( "playing" ) ) {
-					onTimerPoke( $elm );
-				}
-				break;
-
-			/*
-			 * Init
-			 */
-			case "wb-init":
+	// Filter out any events triggered by descendants
+	if ( eventCurrentTarget === eventTarget ) {
+		switch ( event.type ) {
+		case "timerpoke":
+			$elm = $( eventTarget );
+			if ( !$elm.hasClass( componentName + "-inited" ) ) {
 				init( event );
-				break;
-
-			/*
-			 * Change tab panels by a delta
-			 */
-			case "wb-shift":
-				onShift( event, $( eventTarget ) );
-				break;
-
-			/*
-			 * Select a specific tab panel
-			 */
-			case "wb-select":
-				onSelect( event.id );
-				break;
+			} else if ( $elm.hasClass( "playing" ) ) {
+				onTimerPoke( $elm );
 			}
+			break;
+
+		/*
+		 * Init
+		 */
+		case "wb-init":
+			init( event );
+			break;
+
+		/*
+		 * Change tab panels by a delta
+		 */
+		case "wb-shift":
+			onShift( event, $( eventTarget ) );
+			break;
+
+		/*
+		 * Select a specific tab panel
+		 */
+		case "wb-select":
+			onSelect( event.id );
+			break;
 		}
+	}
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
- } );
+} );
 
- /*
-  * Tabs, next, previous and play/pause
-  */
- $document.on( activateEvent, controls, function( event ) {
+/*
+ * Tabs, next, previous and play/pause
+ */
+$document.on( activateEvent, controls, function( event ) {
 	var which = event.which,
 		elm = event.currentTarget,
 		className = elm.className,

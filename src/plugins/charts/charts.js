@@ -15,7 +15,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
- var componentName = "wb-charts",
+var componentName = "wb-charts",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	tableParsingEvent = "passiveparse.wb-tableparser",

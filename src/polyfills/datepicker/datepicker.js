@@ -31,29 +31,29 @@ var componentName = "wb-date",
 				selectedDate = this.date,
 				linkFocus;
 
-				if ( range ) {
-					if ( range.max ) {
-						$inRange = $inRange.filter( ":lt(" + ( range.max + 1 ) + ")" );
-					}
-
-					if ( range.min ) {
-						$inRange = $inRange.filter( ":gt(" + ( range.min - 1 ) + ")" );
-					}
+			if ( range ) {
+				if ( range.max ) {
+					$inRange = $inRange.filter( ":lt(" + ( range.max + 1 ) + ")" );
 				}
 
-				$inRange.wrap( "<a href='javascript:;' tabindex='-1'></a>" );
-
-				if ( selectedDate && year === selectedDate.getFullYear() && month === selectedDate.getMonth() ) {
-					linkFocus = $days.eq( selectedDate.getDate() - 1 );
-
-					linkFocus.parent().attr( "aria-selected", true );
-				} else if ( year === today.getFullYear() && month === today.getMonth() ) {
-					linkFocus = $days.eq( today.getDate() - 1 );
-				} else {
-					linkFocus = $inRange.eq( 0 );
+				if ( range.min ) {
+					$inRange = $inRange.filter( ":gt(" + ( range.min - 1 ) + ")" );
 				}
+			}
 
-				linkFocus.parent().removeAttr( "tabindex" );
+			$inRange.wrap( "<a href='javascript:;' tabindex='-1'></a>" );
+
+			if ( selectedDate && year === selectedDate.getFullYear() && month === selectedDate.getMonth() ) {
+				linkFocus = $days.eq( selectedDate.getDate() - 1 );
+
+				linkFocus.parent().attr( "aria-selected", true );
+			} else if ( year === today.getFullYear() && month === today.getMonth() ) {
+				linkFocus = $days.eq( today.getDate() - 1 );
+			} else {
+				linkFocus = $inRange.eq( 0 );
+			}
+
+			linkFocus.parent().removeAttr( "tabindex" );
 		}
 	},
 	i18n, i18nText, $container, calendar, focusOutTimer,
@@ -254,11 +254,11 @@ $document.on( "focusout focusin", "#" + containerName + " .wb-clndr",  function(
 
 	// Hide the calendar when the focus leaves the calendar
 	switch ( event.type ) {
-		case "focusout":
-			focusOutTimer = setTimeout( hide, 10 );
-			break;
-		case "focusin":
-			clearTimeout( focusOutTimer );
+	case "focusout":
+		focusOutTimer = setTimeout( hide, 10 );
+		break;
+	case "focusin":
+		clearTimeout( focusOutTimer );
 	}
 } );
 

@@ -353,8 +353,8 @@ $( document ).on( "open" + selector, function( event, items, modal, title, ajax 
 		var isGallery = items.length > 1,
 			isModal = modal && !isGallery ? modal : false,
 			titleSrc = title ? function() {
-					return title[ $.magnificPopup.instance.index ];
-				} : "title";
+				return title[ $.magnificPopup.instance.index ];
+			} : "title";
 
 		event.preventDefault();
 

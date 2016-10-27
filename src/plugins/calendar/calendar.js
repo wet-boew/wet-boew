@@ -72,7 +72,7 @@ var i18nText,
 							}
 
 							return days;
-					} )() +
+						} )() +
 					"</tr>" +
 				"</thead>" +
 				"<tbody class='cal-days'></tbody>" +
@@ -84,8 +84,8 @@ var i18nText,
 
 	createCalendar = function( $container, settings ) {
 		var calendar = {
-			reInit: initCalendar
-		}, $calendarObj, calendarObj;
+				reInit: initCalendar
+			}, $calendarObj, calendarObj;
 
 		if ( !inited ) {
 			init();
@@ -126,7 +126,7 @@ var i18nText,
 		lastYear = this.maxDate.getFullYear();
 		$yearField = $calendarObj.find( ".cal-year" ).empty();
 		for ( y = this.minDate.getFullYear(); y <= lastYear; y += 1 ) {
-			years += "<option value='" + y + "'>" + y + "</option>" ;
+			years += "<option value='" + y + "'>" + y + "</option>";
 		}
 		$yearField.append( years );
 
@@ -218,14 +218,14 @@ var i18nText,
 
 		return i18nText.format.replace( /\{ddd\}|\{d\}|\{M\}|\{Y\}/g, function( match ) {
 			switch ( match ) {
-				case "{ddd}":
-					return textWeekDayNames[ parseInt( date.getDay(), 10 ) ];
-				case "{d}":
-					return parseInt( date.getDate(), 10 );
-				case "{M}":
-					return textMonthNames[ parseInt( date.getMonth(), 10 ) ];
-				case "{Y}":
-					return date.getFullYear();
+			case "{ddd}":
+				return textWeekDayNames[ parseInt( date.getDay(), 10 ) ];
+			case "{d}":
+				return parseInt( date.getDate(), 10 );
+			case "{M}":
+				return textMonthNames[ parseInt( date.getMonth(), 10 ) ];
+			case "{Y}":
+				return date.getFullYear();
 			}
 		} );
 	};
@@ -345,21 +345,22 @@ $document.on( "keydown", selector, function( event ) {
 		//Key binding for the entire calendar
 		switch ( which ) {
 
-			//page up
-			case 33:
-				date.setDate( minDate.getDate() );
-				/* falls through */
+		//page up
+		case 33:
+			date.setDate( minDate.getDate() );
 
-			//page down
-			case 34:
-				modifier = ( which === 33 ? -1 : 1 );
+			/* falls through */
 
-				if ( event.ctrlKey || event.shiftKey || event.altKey ) {
-					date.setYear( date.getFullYear() + modifier );
-				} else {
-					date.setMonth( date.getMonth() + modifier );
-				}
-				break;
+		//page down
+		case 34:
+			modifier = ( which === 33 ? -1 : 1 );
+
+			if ( event.ctrlKey || event.shiftKey || event.altKey ) {
+				date.setYear( date.getFullYear() + modifier );
+			} else {
+				date.setMonth( date.getMonth() + modifier );
+			}
+			break;
 		}
 
 		//Key binding for navigating calendar days
@@ -371,27 +372,27 @@ $document.on( "keydown", selector, function( event ) {
 
 			switch ( which ) {
 
-				// end / home
-				case 35:
-					date.setDate( lastDay );
-					break;
-				case 36:
-					date.setDate( 1 );
-					break;
+			// end / home
+			case 35:
+				date.setDate( lastDay );
+				break;
+			case 36:
+				date.setDate( 1 );
+				break;
 
-				// left / up / right / down arrows
-				case 37:
-					date.setDate( day - 1 );
-					break;
-				case 38:
-					date.setDate( day - 7 );
-					break;
-				case 39:
-					date.setDate( day + 1 );
-					break;
-				case 40:
-					date.setDate( day + 7 );
-					break;
+			// left / up / right / down arrows
+			case 37:
+				date.setDate( day - 1 );
+				break;
+			case 38:
+				date.setDate( day - 7 );
+				break;
+			case 39:
+				date.setDate( day + 1 );
+				break;
+			case 40:
+				date.setDate( day + 7 );
+				break;
 			}
 		}
 

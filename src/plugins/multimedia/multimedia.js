@@ -611,7 +611,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		} else {
 
 			// Do nothing since IE8 support is no longer required
-            return;
+			return;
 		}
 
 		// Identify that initialization has completed
@@ -774,18 +774,17 @@ $document.on( "keydown", dispCtrls, function( event ) {
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 		switch ( which ) {
 		case 32:
+
 			// Mute/unmute if focused on the mute/unmute button or volume input.
 			if ( $( event.target ).hasClass( "mute" ) || event.target.nodeName === "INPUT" ) {
 				$playerTarget.find( ".mute" ).trigger( "click" );
-			}
+			} else if ( $( event.target ).hasClass( "cc" ) ) {
 
-			// Show/hide captions if focused on the closed captions button.
-			else if ( $( event.target ).hasClass( "cc" ) ) {
+				// Show/hide captions if focused on the closed captions button.
 				$playerTarget.find( ".cc" ).trigger( "click" );
-			}
+			} else {
 
-			// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
-			else {
+				// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
 				$playerTarget.find( ".playpause" ).trigger( "click" );
 			}
 			break;
@@ -824,7 +823,7 @@ $document.on( "keyup", ctrls, function( event ) {
 } );
 
 $document.on( "wb-activate", selector, function() {
-    this.player( "play" );
+	this.player( "play" );
 } );
 
 $document.on( multimediaEvents, selector, function( event, simulated ) {
@@ -905,8 +904,8 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		// Skip to pointer from the querystring
 		skipTo = wb.pageUrlParts.params[ event.target.id ];
 		if ( skipTo ) {
-				skipTo = parseTime( skipTo );
-				eventTarget.player( "setCurrentTime", skipTo );
+			skipTo = parseTime( skipTo );
+			eventTarget.player( "setCurrentTime", skipTo );
 		}
 		break;
 
