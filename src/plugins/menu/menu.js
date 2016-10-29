@@ -522,6 +522,13 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	}, hoverDelay );
 } );
 
+// Prevent opening another menu if mouse re-enters already opened menu
+$document.on( "mouseenter", selector + " .sm", function() {
+  if ( $( this ).attr( "aria-expanded" ) === "true" ) {
+    clearTimeout( globalTimeout );
+  }
+} );
+
 // Touchscreen "touches" on menubar items should close the submenu if it is open
 $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", function( event ) {
 	var isTouchstart = event.type === "touchstart",
