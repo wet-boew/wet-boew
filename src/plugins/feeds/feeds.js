@@ -100,7 +100,7 @@ var componentName = "wb-feeds",
 		 * @return {string}    HTML string of formatted using a simple list / anchor view
 		 */
 		pinterest: function( data ) {
-			var content = fromCharCode( data.content ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" +
+			var content = fromCharCode( data.description ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" +
                 data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
 			return "<li class='media'>" + content +
 			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
