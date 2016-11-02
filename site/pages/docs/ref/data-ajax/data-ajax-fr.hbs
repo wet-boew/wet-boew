@@ -8,14 +8,47 @@
 	"altLangPrefix": "data-ajax",
 	"dateModified": "2015-03-09"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
+
 <section>
 	<h2>Purpose</h2>
 	<p>A basic AjaxLoader wrapper that inserts AJAXed-in content.</p>
+</section>
+
+<section>
+	<h2>Executing WET plugin on AJAXed-in content</h2>
+
+	<pre><code>/**
+ * @title Execute any WET plugin on AJAXed-in content
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp (Github)
+ * @version 1.0.0+2016-10-14
+ */
+(function( $, document, wb ) {
+	&quot;use strict&quot;;
+	$('#mycontainer').on( &quot;wb-contentupdated&quot;, function( event, data ){
+		// &quot;data.ajax-type&quot; contains the insersion method [after, append, before, prepend, replace]
+		// &quot;data.content&quot; contains the
+		var $elm = $(event.currentTarget);
+		$elm
+			.find( wb.allSelectors )
+				.addClass( &quot;wb-init&quot; )
+				.filter( &quot;:not(#&quot; + $elm.attr( &quot;id&quot; ) + &quot; .wb-init .wb-init)&quot; )
+					.trigger( &quot;timerpoke.wb&quot; );
+		/*
+		 * Since we are working with events we want to ensure that we are being
+		 * passive about our control, so returning true allows for events to always
+		 * continue
+		 */
+		return true;
+	});
+})( jQuery, document, wb );
+</code></pre>
+<p>Be careful to not execute it on every data-ajax container to avoid a possible recursive self calling situation.</p>
 </section>
 
 <!--
@@ -152,8 +185,16 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-contentupdated</code></td>
+				<td>Triggered automatically when data-ajax has finished to load the response.</td>
+				<td>Use to perform a secondary action upon ajax content is loaded
+					<pre><code>$('#mycontainer').on( "wb-contentupdated", function( event, data ){
 });</code></pre>
 				</td>
 			</tr>
