@@ -160,6 +160,27 @@
 }
 
 /*
+ * Horizontal lines for tables
+ */
+.tables-rowgroupmarker-sm {
+	td:nth-child(n+4) {
+		border-top: 2px solid #000;
+	}
+}
+
+.tables-rowgroupmarker-md {
+	td:nth-child(n+3) {
+		border-top: 2px solid #000;
+	}
+}
+
+.tables-rowgroupmarker-lg {
+	td:nth-child(n+2) {
+		border-top: 2px solid #000;
+	}
+}
+
+/*
  * Table styles
  */
 table {
