@@ -6,18 +6,6 @@
 	display: inline-block;
 }
 
-.wb-overlay {
-	background-color: #fff;
-}
-
-.overlay-def {
-
-	header {
-		background-color: #000;
-		color: #fff;
-	}
-}
-
 .wb-panel-l,
 .wb-panel-r {
 	ul {
@@ -29,8 +17,6 @@
 
 .wb-bar-t,
 .wb-bar-b {
-	background-color: #000;
-
 	header {
 		@extend %overlay-demo-inline-block;
 	}

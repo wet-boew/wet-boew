@@ -8,6 +8,7 @@
  */
 .wb-overlay {
 	background-clip: border-box;
+	background-color: $overlay-background-color;
 	border: 0;
 	border-radius: 0;
 	display: none;
@@ -94,6 +95,8 @@
 	overflow-y: auto;
 
 	header {
+		background-color: $overlay-header-background-color;
+		color: $overlay-header-color;
 		display: block;
 		padding: 0 44px 0 1em;
 	}
@@ -101,6 +104,14 @@
 	.modal-title {
 		font-size: 1.15em;
 		padding: 10px 0;
+	}
+
+	&.wb-bar-t,
+	&.wb-bar-b {
+		background-color: $overlay-bar-background-color;
+		header {
+			background-color: $overlay-bar-background-color;
+		}
 	}
 
 	.mfp-close {
