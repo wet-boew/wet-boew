@@ -565,6 +565,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				media: $media,
 				captions: captions,
 				id: id,
+				autoplay: ($media.attr("autoplay")) ? 1 : 0,
 				mId: mId,
 				type: type,
 				title: title,
@@ -631,7 +632,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
-				autoplay: 0,
+				autoplay: data.autoplay,
 				controls: 0,
 				origin: wb.pageUrlParts.host,
 				modestbranding: 1,
@@ -1006,3 +1007,8 @@ window.youTube = {
 wb.add( selector );
 
 } )( jQuery, window, wb );
+
+
+
+
+
