@@ -5,6 +5,7 @@
 	"category": "Plugiciels",
 	"categoryfile": "plugins",
 	"description": "Affiche de contenu superposé quand une section se déplace hors de la clôture.",
+	"js": ["../../../demos/data-inview/demo/data-inview"],
 	"altLangPrefix": "data-inview",
 	"dateModified": "2014-08-04"
 }
@@ -53,7 +54,12 @@
 						<li>Add a CSS transition class to the element added in the previous step (e.g., <code>fade</code>, <code>slide</code>, <code>slidevert</code>, etc.)</li>
 						<li><strong>Optional:</strong> Reverse the transition by adding the <code>reverse</code> class with the CSS transition.</li>
 						<li>Add the <code>data-inview</code> attribute to the element with the <code>wb-inview</code> class with the value being the unique id of the element with the CSS transition class.</li>
-						<li><strong>Optional:</strong> Add the <code>show-none</code> class to the <code>wb-inview</code> element to make the CSS transition only occur when the <code>wb-inview</code> element is fully out of view (default is partially out of view).</li>
+						<li><strong>Optional:</strong> Add the <code>show-none</code> class to the <code>wb-inview</code> element, the CSS transition only occur when the <code>wb-inview</code> element is:
+							<ul>
+								<li>located <strong>Before</strong> and <strong>fully out of view</strong> (default is partially out of view)</li>
+								<li>located <strong>After</strong> and <strong>partially out of view</strong> (default is fully out of view)</li>
+							</ul>
+						</li>
 					</ol>
 				</li>
 				<li>
@@ -64,7 +70,7 @@
 							<pre><code>$( document ).trigger( "all.wb-inview partial.wb-inview none.wb-inview", function( event ) {
 	if ( event.namespace === "wb-inview" ) {
 		switch ( eventType ) {
-	
+
 		case "all":
 			// event.target is a wb-inview element that has become completely visible
 			break;
@@ -73,7 +79,7 @@
 			// event.target is a wb-inview element that has become partially hidden
 			break;
 
-		case "none": 
+		case "none":
 			// event.target is a wb-inview element that has become completely hidden
 		}
 	}
@@ -84,6 +90,33 @@
 			</ol>
 		</li>
 	</ol>
+</section>
+
+<section class="wb-inview panel panel-default" lang="fr">
+	<div class="panel-body">
+		<h2 class="mrgn-tp-sm">Événements de changement de l'état d'affichage</h2>
+
+		<p>L'état d'affichage de cette section est identifié ci-dessous via JavaScript.</p>
+		<p><strong>L'état d'affichage&#160;:</strong> <code class="view-state-status"></code></p>
+
+		<h3>HTML</h3>
+		<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Événements de changement de l'état d'affichage&lt;/h3&gt;
+	...
+&lt;/section&gt;</code></pre>
+
+		<h3>JavaScript</h3>
+		<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+wb.doc.on( &quot;all.wb-inview partial.wb-inview none.wb-inview&quot;, function( event) {
+	if ( event.namespace === &quot;wb-inview&quot; ) {
+		$( event.target ).find( &quot;.view-state-status&quot; ).html( event.type );
+	}
+});
+
+})( jQuery, wb );</code></pre>
+	</div>
 </section>
 
 <section>
@@ -106,7 +139,12 @@
 			</tr>
 			<tr>
 				<td><code>show-none</code></td>
-				<td>Overrides the overlay/CSS transition trigger to only occur when the element is completely hidden.</td>
+				<td>Overrides the overlay/CSS transition trigger to only occur when:
+					<ul>
+						<li>the element is completely hidden, if located before.</li>
+						<li>the element is partially hidden, if located after.</li>
+					</ul>
+				</td>
 				<td>Add the <code>show-none</code> class to the element.</td>
 				<td>n/a</td>
 			</tr>
@@ -173,7 +211,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
