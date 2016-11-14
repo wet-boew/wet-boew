@@ -182,6 +182,9 @@ wb.i18nDict = {
 	info1000: "@info1000@",
 	lenMenu: "@lenMenu@",
 	filter: "@filter@",
+	print: "@print@",
+	open_window: "@open_window@",
+	table_title: "@table_title@",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
