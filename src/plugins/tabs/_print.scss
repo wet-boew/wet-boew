@@ -19,6 +19,7 @@
 	[role="tabpanel"] {
 		display: block !important;
 		opacity: 1 !important;
+		overflow: visible !important;
 		position: static !important;
 		visibility: visible !important;
 
@@ -29,6 +30,14 @@
 		summary {
 			display: list-item !important;
 		}
+
+		&.noheight {
+			max-height: none;
+		}
+	}
+
+	& > .tabpanels {
+		overflow: visible !important;
 	}
 
 	&.print-active {
