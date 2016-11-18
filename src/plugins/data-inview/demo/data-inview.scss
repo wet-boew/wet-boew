@@ -11,18 +11,6 @@
 	padding: 15px;
 }
 
-.wb-overlay {
-	background-color: #fff;
-}
-
-.overlay-def {
-
-	header {
-		background-color: #000;
-		color: #fff;
-	}
-}
-
 .bar-demo {
 	border: 1px solid #ddd;
 	border-radius: 4px;
@@ -42,8 +30,6 @@
 
 .wb-bar-t,
 .wb-bar-b {
-	background-color: #000;
-
 	header {
 		@extend %data-inview-bar-demo-inline-block;
 	}

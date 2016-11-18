@@ -280,3 +280,27 @@ $carousel-s2-tablist-thumbnail-active-border-width: 10px !default;
 $txthl-bg-color: #ff0 !default;
 $txthl-color: #000 !default;
 $txthl-font-weight: 700 !default;
+
+
+//== Overlay
+//
+//##
+$overlay-background-color: #fff;
+$overlay-header-background-color: #2e5274;
+$overlay-header-color: #fff;
+$overlay-bar-background-color: #000;
+
+
+//
+// WET CUSTOM THEME VARIABLES
+//
+
+//== Mobile menu
+//
+//##
+$mb-pnl-background: #193451;
+$mb-pnl-header-background: $overlay-header-background-color;
+$mb-pnl-header-color: $overlay-header-color;
+$mb-pnl-body-background: #0e4164;
+$mb-pnl-body-color: #fff;
+$mb-pnl-body-link-color: #fff;
