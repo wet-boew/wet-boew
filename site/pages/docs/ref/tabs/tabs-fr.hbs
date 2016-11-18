@@ -8,7 +8,7 @@
 	"altLangPrefix": "tabs",
 	"dateModified": "2015-06-23"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
@@ -495,7 +495,7 @@
 				<td>Triggered manually or automatically to change which tab panel is visible.</td>
 				<td>Changes which tab panel is visible. The value of <code>id</code> is the id attribute of the tab panel to make visible.
 					<pre><code>$elm.trigger({
-	type: "wb-shift.wb-tabs",
+	type: "wb-select.wb-tabs",
 	id: "panel3"
 });</code></pre>
 				</td>
@@ -503,7 +503,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
