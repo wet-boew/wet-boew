@@ -116,6 +116,22 @@
 			</details>
 		</li>
 		<li>
+			<p><a href="#mid-screen" aria-controls="mid-screen" class="overlay-lnk" role="button">Middle screen overlay</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#mid-screen&quot; aria-controls=&quot;mid-screen&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Middle screen overlay&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;mid-screen&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Middle screen overlay&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
 			<p><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">Full-screen overlay</a></p>
 			<details class="mrgn-bttm-lg">
 				<summary>View code</summary>
@@ -161,6 +177,7 @@
 			<option value="right-panel">Right panel</option>
 			<option value="top-bar">Top bar</option>
 			<option value="bottom-bar">Bottom bar</option>
+			<option value="mid-screen">Middle screen overlay</option>
 			<option value="full-screen">Full-screen overlay</option>
 			<option value="hidden-header">Full-screen overlay - Hidden header</option>
 		</select>
@@ -178,6 +195,7 @@
 	&lt;option value="right-panel"&gt;Right panel&lt;/option&gt;
 	&lt;option value="top-bar"&gt;Top bar&lt;/option&gt;
 	&lt;option value="bottom-bar"&gt;Bottom bar&lt;/option&gt;
+	&lt;option value="mid-screen"&gt;Middle screen overlay&lt;/option&gt;
 	&lt;option value="full-screen"&gt;Full-screen overlay&lt;/option&gt;
 	&lt;option value="hidden-header"&gt;Full-screen overlay - Hidden header&lt;/option&gt;
 &lt;/select&gt;
@@ -339,6 +357,28 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 			</li>
 		</ol>
 		<button class="btn btn-primary popup-modal-dismiss" type="button">Close modal popup</button>
+	</div>
+</section>
+
+<section id="mid-screen" class="wb-overlay modal-content overlay-def wb-popup-mid">
+	<header class="modal-header">
+		<h2 class="modal-title">Middle screen overlay</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>ordered list (<code>ol</code>) first level default appearance</li>
+			<li>ordered list (<code>ol</code>) first level default appearance
+				<ol>
+					<li>ordered list (<code>ol</code>) second level default appearance</li>
+					<li>ordered list (<code>ol</code>) second level default appearance
+						<ol>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
 	</div>
 </section>
 

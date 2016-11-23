@@ -116,6 +116,22 @@
 			</details>
 		</li>
 		<li>
+			<p><a href="#cs-mi-ecran" aria-controls="cs-mi-ecran" class="overlay-lnk" role="button">Contenu superposé mi-écran</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-mi-ecran&quot; aria-controls=&quot;cs-mi-ecran&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé mi-écran&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-mi-ecran&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé mi-écran&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
 			<p><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Contenu superposé plein écran</a></p>
 			<details class="mrgn-bttm-lg">
 				<summary>Visualiser le code</summary>
@@ -161,6 +177,7 @@
 			<option value="panneau-droit">Panneau à droit</option>
 			<option value="barre-haut">Barre en haut</option>
 			<option value="barre-bas">Barre en bas</option>
+			<option value="cs-mi-ecran">Contenu superposé mi-écran</option>
 			<option value="cs-plein-ecran">Contenu superposé plein écran</option>
 			<option value="en-tete-cache">Contenu superposé plein écran - En-tête caché</option>
 		</select>
@@ -178,6 +195,7 @@
 	&lt;option value="panneau-droit"&gt;Panneau à droit&lt;/option&gt;
 	&lt;option value="barre-haut"&gt;Barre en haut&lt;/option&gt;
 	&lt;option value="barre-bas"&gt;Barre en bas&lt;/option&gt;
+	&lt;option value="cs-mi-ecran"&gt;Contenu superposé mi-écran&lt;/option&gt;
 	&lt;option value="cs-plein-ecran"&gt;Contenu superposé plein écran&lt;/option&gt;
 	&lt;option value="en-tete-cache"&gt;Contenu superposé plein écran - En-tête caché&lt;/option&gt;
 &lt;/select&gt;
@@ -340,6 +358,29 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 		</ol>
 		<p><a href="#">Lien - apparence par défaut</a></p>
 		<button class="btn btn-primary popup-modal-dismiss" type="button">Fermer le contenu superposé modal</button>
+	</div>
+</section>
+
+<section id="cs-mi-ecran" class="wb-overlay modal-content overlay-def wb-popup-mid">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé mi-écran</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
 	</div>
 </section>
 
