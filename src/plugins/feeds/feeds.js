@@ -113,8 +113,12 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string of formatted using a simple list / anchor view
 		 */
 		generic: function( data ) {
+			var title = data.title;
 
-			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
+			if ( typeof( title ) === "object" && title.content ) {
+				title = title.content;
+			}
+			return "<li><a href='" + data.link + "'>" + title + "</a><br />" +
 				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
 				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		}
