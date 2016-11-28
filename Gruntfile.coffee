@@ -1189,6 +1189,8 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: ["dist", "src/base/partials/*sprites*"]
+			npm: "node_modules"
+			bower: "lib"
 
 		watch:
 			options:
