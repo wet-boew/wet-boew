@@ -315,6 +315,22 @@ module.exports = (grunt) ->
 		i18nGDocsID: "1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o"
 		i18nGDocsSheet: 1
 
+		# Commit Messages
+		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
+		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+		distDeployMessage: ((
+			if process.env.TRAVIS_TAG
+				"Production files for the " + process.env.TRAVIS_TAG + " release."
+			else
+				"<%= travisBuildMessage %>"
+		)) + "<%= commitMessage %>"
+		cdnDeployMessage: ((
+			if process.env.TRAVIS_TAG
+				"CDN files for the " + process.env.TRAVIS_TAG + " release."
+			else
+				"<%= travisBuildMessage %>"
+		)) + "<%= commitMessage %>"
+
 		deployBranch: "v4.0-dist"
 
 		# Task configuration.
@@ -1316,12 +1332,7 @@ module.exports = (grunt) ->
 				options:
 					repo: process.env.DIST_REPO
 					branch: "<%= deployBranch %>"
-					message: ((
-						if process.env.TRAVIS_TAG
-							"Production files for the " + process.env.TRAVIS_TAG + " maintenance release"
-						else
-							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
-					))
+					message: "<%= distDeployMessage %>"
 					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
@@ -1336,12 +1347,7 @@ module.exports = (grunt) ->
 					branch: "<%= deployBranch %>"
 					clone: "wet-boew-cdn"
 					base: "<%= coreDist %>"
-					message: ((
-						if process.env.TRAVIS_TAG
-							"CDN files for the " + process.env.TRAVIS_TAG + " maintenance release"
-						else
-							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
-					))
+					message: "<%= cdnDeployMessage %>"
 					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
@@ -1356,12 +1362,7 @@ module.exports = (grunt) ->
 					branch: "theme-wet-boew"
 					clone: "wet-boew-theme-cdn"
 					base: "<%= themeDist %>"
-					message: ((
-						if process.env.TRAVIS_TAG
-							"CDN files for the " + process.env.TRAVIS_TAG + " maintenance release"
-						else
-							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
-					))
+					message: "<%= cdnDeployMessage %>"
 					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-theme-wet-boew" else false
@@ -1380,7 +1381,7 @@ module.exports = (grunt) ->
 				options:
 					repo: process.env.DEMOS_REPO
 					branch: process.env.DEMOS_BRANCH
-					message: "<%= grunt.config('gh-pages.travis.options.message') %>"
+					message: "<%= distDeployMessage %>"
 					silent: true
 
 		checkDependencies:
