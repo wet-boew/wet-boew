@@ -1,0 +1,220 @@
+---
+{
+	"title": "Field flow",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Transform a basic list into a selectable list.",
+	"tag": "fieldflow",
+	"parentdir": "fieldflow",
+	"altLangPrefix": "fieldflow",
+	"dateModified": "2016-11-30"
+}
+---
+<p>Transform a basic list into a selectable list.</p>
+
+
+<ul>
+	<li>Field flow (current)</li>
+	<li><a href="basic-en.html">Field flow basic configuration</a></li>
+	<li><a href="advanced-en.html">Field flow advanced</a></li>
+</ul>
+
+<hr />
+
+<div class="wb-prettify all-pre"></div>
+
+<p>On this page:</p>
+<ul>
+	<li><a href="#redirect">Redirection</a></li>
+	<li><a href="#ajax">Ajax</a></li>
+	<li><a href="#grouping">Grouping</a></li>
+	<li><a href="#nesting">Nesting</a></li>
+</ul>
+
+
+<h2 id="redirect" class="page-header">Redirection</h2>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need:</p>
+
+	<ul>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">Inserting content</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Photo galery</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html">Draw charts</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">Expand and collapse content</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Set a consistant height</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">Popup content</a></li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need:&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+
+<h2 id="ajax" class="page-header">Ajax</h2>
+
+<div class="well">
+	<p>This functionality depends on the <a href="http://wet-boew.github.io/wet-boew/docs/ref/data-ajax/data-ajax-en.html">Data ajax plugin</a>.</p>
+</div>
+
+<div class="wb-fieldflow">
+	<p>Choose content to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<!-- Providing an alternative/multiple way could be required for WCAG conformance and/or design conform to progressive enhancement -->
+<p><em><a rel="alternate" href="#">Consult one page with the full list of all options</a> (Link not working)</em></p>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-1.html">ajax/ajax-1.html</a>&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-2.html">ajax/ajax-2.html</a>&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-3.html">ajax/ajax-3.html</a>&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-4.html">ajax/ajax-4.html</a>&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-5.html">ajax/ajax-5.html</a>&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- Providing an alternative/multiple way could be required for WCAG conformance and/or design conform to progressive enhancement --&gt;
+&lt;p&gt;&lt;em&gt;&lt;a rel=&quot;alternate&quot; href=&quot;#&quot;&gt;Consult one page with the full list of all options&lt;/a&gt; (Link not working)&lt;/em&gt;&lt;/p&gt;</code></pre>
+
+
+
+
+
+<h2 id="grouping">Grouping</h2>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need.</p>
+	<ul>
+		<li>Layout and rendering
+			<ul>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">Inserting content</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html">Draw charts</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Set a consistant height</a></li>
+			</ul>
+		</li>
+		<li>Interactive
+			<ul>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">Expand and collapse content</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Photo galery</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">Popup content</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Layout and rendering
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Interactive
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+<h2 id="nesting" class="page-header">Nesting <small>Adding subsequent control</small></h2>
+
+<div class="well">
+	<p>Consider to insert a textual clue into an item that will open up a subsequent drop down. Like, by adding a plus sign "+" at the beginning of the label. Remark that the subsequent drop down is identified by: <code>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</code>.</p>
+</div>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need.</p>
+	<ul>
+		<li>+ Layout and rendering
+			<div class="wb-fieldflow-sub">
+				<p>It is for?..</p>
+				<ul>
+					<li>+ Esthetic
+						<div class="wb-fieldflow-sub">
+							<p>What kind of transformation</p>
+							<ul>
+								<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Set a consistant height</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">Inserting content</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html">Draw charts</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>+ Interactive
+			<div class="wb-fieldflow-sub">
+				<p class="wb-fieldflow-label">What kind of interaction?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">Expand and collapse content</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Photo galery</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">Popup content</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;+ Layout and rendering
+			<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+				&lt;p&gt;It is for?..&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;+ Esthetic
+						<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+							&lt;p&gt;What kind of transformation&lt;/p&gt;
+							&lt;ul&gt;
+								&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+							&lt;/ul&gt;
+						<strong>&lt;/div&gt;</strong>
+					&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			<strong>&lt;/div&gt;</strong>
+		&lt;/li&gt;
+		&lt;li&gt;+ Interactive
+			<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+				&lt;p class=&quot;wb-fieldflow-label&quot;&gt;What kind of interaction?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			<strong>&lt;/div&gt;</strong>
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>

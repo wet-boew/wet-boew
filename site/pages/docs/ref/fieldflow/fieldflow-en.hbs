@@ -1,0 +1,1542 @@
+---
+{
+	"title": "Field flow",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Transform a basic list into a drop down.",
+	"altLangPrefix": "fieldflow",
+	"dateModified": "2016-11-30"
+}
+---
+
+
+<div class="wb-prettify all-pre"></div>
+
+<section>
+	<h2>Purpose</h2>
+	<p>Provide an alternative user interface when a page contain a really long list. This plugin have two action phase, the first phase, initiation, is creating a drop down to let the user to select an option. The second phase, action, will provide result to the user like redirecting him, ajax-in content, toggle content, creating a second drop down.</p>
+
+	<p>This plugin is highly customizable and work in three phases</p>
+	<ol>
+		<li>Generate the user interface</li>
+		<li>Action upon selection</li>
+		<li>Action upon submission</li>
+	</ol>
+
+</section>
+
+<section>
+	<h2>Usage</h2>
+
+	<div class="row wb-eqht mrgn-tp-lg mrgn-bttm-xl">
+		<div class="col-md-6">
+			<h3 class="mrgn-tp-0 text-success h4">Use when <span class="glyphicon glyphicon-ok-circle"></span></h3>
+			<ul>
+				<li>Provide an alternative way to navigate easier in long listing.</li>
+				<li>Steamline complex navigation through multiple option.</li>
+			</ul>
+		</div>
+
+		<div class="col-md-6 brdr-lft">
+			<h3 class="mrgn-tp-0 text-danger h4">Do not use when <span class="glyphicon glyphicon-remove-circle"></span></h3>
+			<ul>
+				<li>For list 3 items or less, take time to reconsider the default rendering interface.</li>
+				<li>Simple navigation mechanism (like: tabs, expand/collapse (details/summary)) is more suitable for your use case.</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="well">
+		<h3 class="mrgn-tp-0 text-warning h4">Be carreful when <span class="glyphicon glyphicon-exclamation-sign"></span></h3>
+		<ul>
+			<li>Creating complex user interface, you may need to follow additional required for acessibilty (WCAG) or progressive enhancement, like to providing an alternative representation.</li>
+			<li>Amazing thing could be done, depending how you configure it you can make your page failing WCAG.</li>
+		</ul>
+	</div>
+</section>
+
+
+<section>
+	<h2>Working example</h2>
+
+	<p>English:</p>
+	<ul>
+		<li><a href="../../../demos/fieldflow/fieldflow-en.html">Working example</a></li>
+		<li><a href="../../../demos/fieldflow/basic-en.html">Basic configuration</a></li>
+		<li><a href="../../../demos/fieldflow/advanced-en.html">Advanced</a></li>
+	</ul>
+
+	<p>French:</p>
+	<ul>
+		<li><a href="../../../demos/fieldflow/fieldflow-fr.html" hreflang="fr" lang="fr">Example pratique de déroulement de champs</a></li>
+		<li><a href="../../../demos/fieldflow/basic-fr.html" hreflang="fr" lang="fr">Déroulement de champs avec des configurations de base </a></li>
+		<li><a href="../../../demos/fieldflow/advanced-fr.html" hreflang="fr" lang="fr">Déroulement de champs avancé</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<p>Take also a look of the varieties of working examples.</p>
+	<ol>
+		<li>Create an unordered bullet list where each list item is a link to a page
+			<pre><code>&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+		</li>
+		<li>Insert a paragraph before that list, it will be used to label the drop down (select).
+			<pre><code>&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+		</li>
+		<li>Wrap your paragraph and the list with a <code>&lt;div&gt;</code> container to call the plugin
+			<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;Inserting content&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;Photo galery&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;Draw charts&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;Expand and collapse content&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;Set a consistant height&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;Popup content&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		</li>
+	</ol>
+
+	<h3>Complex example <small>Content preparation step</small></h3>
+	<p>We recommend to do a content preparation step when your are planning to use the advanced fonctionality of this plugin. Preparation step could look like as the following but not limited to:</p>
+	<ul>
+		<li>Define what is the main result (business goal) you want, like insert content, redirect the user, filtering tables, ...</li>
+		<li>Design a full decission tree that represent all the possible results.</li>
+		<li>For each node (item) combination, define actions that should be taken, like:
+			<ul>
+				<li>Node 3 - Action 1: Insert content XYZ in the page feature container;</li>
+				<li>Node 3 - Action 2: Insert content ABC that have WET component;</li>
+			</ul>
+		</li>
+		<li>Review and get approved the logic of your mapping with a web specialist that know and have experience of using this plugin. He should be able to let you know the feasibility and the complexiness.</li>
+		<li>Develop an early prototype and finalize feasibility test</li>
+		<li>Finalise the content, for the logic and for the content, as per your internal process.</li>
+		<li>Do a high fidelity prototype.</li>
+	</ul>
+
+</section>
+
+<section>
+	<h2>Abstract fieldflow event chain</h2>
+	<ul>
+		<li>Upon plugin initialisation
+			<ul>
+				<li>[wet-boew plugin] <strong>Init</strong>: WET core initiate the creation of a fieldflow component. The fieldflow control is registered in the parent form</li>
+				<li>[extension] <strong>Ready</strong>: Notify the exention that it should init() and get his things ready to execute actions that is support.</li>
+			</ul>
+		</li>
+		<li>When creating a control
+			<ul>
+				<li>[Control] <strong>Draw</strong>: Read the html, standardize the output data</li>
+				<li>[Form component] <strong>Create ctrl</strong>: Create a component on the page (select, radio, checkbox). This component will be register to the field flow control</li>
+			</ul>
+		</li>
+		<li>When a selected option have action
+			<ul>
+				<li>[Control] <strong>Reset</strong>: Reset the initial state of the control, as configure</li>
+				<li>[Action] <strong>Clean</strong>: Cleaning task from the previous executed action</li>
+				<li>[Action] <strong>Action</strong>: An option has been selected, action need to be executed. Action can be postponed upon form submission.</li>
+			</ul>
+		</li>
+		<li>When the form is submited
+			<ul>
+				<li>[Action] <strong>Submit</strong>: When an action is postponed, triggered upon form submission. An action could prevent the form submission.</li>
+				<li>[Action] <strong>Submited</strong>: Triggered after all the submit action has been completed and just before the final form submission happend.</li>
+			</ul>
+		</li>
+	</ul>
+</section>
+<section>
+	<h2>Class delimiter</h2>
+
+	<p>Use those default class to specify thing inside you template</p>
+
+	<dl class="dl-horizontal">
+		<dt><code>[class="wb-fieldflow-label"]</code></dt>
+		<dd>Indicate content to use for labeling the control</dd>
+	</dl>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>Document the public configuration options that can be used by implementers or developers.</p>
+
+	<h3>Set on the plugin <code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow=&quot;{...}&quot;&gt;</code></h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>noForm</td>
+				<td>Wont generate a form wrapper, it is assumed it already exists and it is surronding the control.</td>
+				<td><code>data-wb-fieldflow='{&quot;noForm&quot;: true}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Create a form container along with the form validator plugin (wb-frmvld) and a submit button</dd>
+						<dt>true:</dt>
+						<dd>A binding will be done with the parent form element.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>srctype</td>
+				<td>Define what content interpreter to use in order to create a field flow control.</td>
+				<td><code>data-wb-fieldflow='{&quot;srctype&quot;: "wb-fieldflow"}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Same as if the value was set to <code>wb-fieldflow</code>, it will use the standard content interpreter.</dd>
+						<dt>Table filter <code>tblfilter</code>:</dt>
+						<dd>It will use a data table informatin to create a field flow control. The additional property <code>fltrseq</code> is requried.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>outputctnrid</td>
+				<td>Indicate what container in the page should be used to output content, like ajax</td>
+				<td><code>data-wb-fieldflow='{&quot;noForm&quot;: true}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Will create a container next to the form to output.</dd>
+						<dt>[ID]:</dt>
+						<dd>Any valid ID that could contain <a href="https://www.w3.org/TR/html/dom.html#kinds-of-content-flow-content">flow content</a>.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>source</td>
+				<td>Specify element to use as the source to feed.</td>
+				<td><code>data-wb-fieldflow='{&quot;source&quot;: &quot;<em>[jQuery selector]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Use the current plugin container</dd>
+						<dt>jQuery Selector</dt>
+						<dd>A <a href="http://api.jquery.com/category/selectors/">jQuery selector</a> that contain a understandable structure to proceed. For example when using field flow to dynamicly filter a table, the source property will make the binding to that table.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>renderas</td>
+				<td>Specify what UI to render.</td>
+				<td><code>data-wb-fieldflow='{&quot;renderas&quot;: &quot;<em>[Name of the UI]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Create a drop down for the field flow UI. Same as if the value was set to <code>select</code>.</dd>
+						<dt>checkbox</dt>
+						<dd>Create a list of checkbox.</dd>
+						<dt>radio</dt>
+						<dd>Create a list of checkbox.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>default</td>
+				<td>Specify a action or an array of action to be applied everytime a option is selected.</td>
+				<td><code>data-wb-fieldflow='{&quot;default&quot;: { <em>[action]</em> } }</code> or <code>data-wb-fieldflow='{&quot;default&quot;: [ { <em>[action]</em> }, { <em>[action]</em> } ] }</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Do nothing</dd>
+						<dt>Object</dt>
+						<dd>Execute the action prior actions defined by the options.</dd>
+						<dt>Array</dt>
+						<dd>Execute all those actions prior actions defined by the options.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>reset</td>
+				<td>Specify a action or an array of action to be applied everytime an option is changed or when the control is destroyed.</td>
+				<td><code>data-wb-fieldflow='{&quot;reset&quot;: { <em>[action]</em> } }</code> or <code>data-wb-fieldflow='{&quot;reset&quot;: [ { <em>[action]</em> }, { <em>[action]</em> } ] }</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Do nothing</dd>
+						<dt>Object</dt>
+						<dd>Execute the single action</dd>
+						<dt>Array</dt>
+						<dd>Execute all the action</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>base</td>
+				<td>Establish a baseline on which subsequent action will be extended from</td>
+				<td><code>data-wb-fieldflow='{&quot;base&quot;: { <em>[action configuration to use as a baseline]</em> } }</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Nothing</dd>
+						<dt>Object</dt>
+						<dd>Those configuration would be re-used in all action selected. When specifying the action for your selectable option, it is possible to overwrite a value defined by the base but not to remove it.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>inline</td>
+				<td>Indicate to render a inline interface. Availble only for <code>{&quot;renderas&quot;:&quot;checkbox&quot;}</code> and <code>{&quot;renderas&quot;:&quot;radio&quot;}</code> </td>
+				<td><code>data-wb-fieldflow='{&quot;renderas&quot;: &quot;<em>[radio|checkbox]</em>&quot;, &quot;inline&quot;: <em>true</em>}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Render one checkbox or radio per line</dd>
+						<dt>true</dt>
+						<dd>Checkbox or radio are side by side.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>isoptional</td>
+				<td>Indicate if the field flow control are optional.</td>
+				<td><code>data-wb-fieldflow='{&quot;isoptional&quot;: <em>true</em>}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>The field flow control require an input and get validated by the form validation plugin</dd>
+						<dt>true</dt>
+						<dd>The field flow control are optional.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>fltrseq</td>
+				<td>Array indicating the table filtering sequence to follow. Availble only for and required when <code>{&quot;srctype&quot;:&quot;tblfilter&quot;}</code></td>
+				<td><code>data-wb-fieldflow='{&quot;srctype&quot;: &quot;tblfilter&quot;, &quot;fltrseq&quot;: [<em>{Column filter object}</em>]}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Render one checkbox or radio per line</dd>
+						<dt>true</dt>
+						<dd>Checkbox or radio are side by side.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Column filter object</td>
+				<td>Object contained in the fltrseq array. Required for adding item in <code>fltrseq</code>.</td>
+				<td><code>&quot;fltrseq&quot;: [<em>{Column filter object}</em>, <em>{Column filter object}</em>, ...]</code></td>
+				<td>
+					<p>Note that all the following property can be used outside the <code>fltrseq</code> context like <code>data-wb-fieldflow='{&quot;srctype&quot;: &quot;tblfilter&quot;, &quot;columng&quot;: 0}</code>. If <code>Column filter object</code> property and the <code>fltrseq</code> property is present, then the "Column filter object" will be know as being the first column being filtered, then followed by the column being filtered in the array.</p>
+					<p>Properties:</p>
+					<ul>
+						<li><code>column</code> <strong>(required)</strong>: Integer representing the column number or a <a href="https://datatables.net/reference/type/column-selector">DataTable column selector</a>.</li>
+
+						<li><code>csvextract</code>: How to extract the value to feed the drop down from the selected column.
+							<dl>
+								<dt>false (default)</dt>
+								<dd>The value of each list item <code>&lt;li&gt;</code> will be extracted.</dd>
+								<dt>true</dt>
+								<dd>The information of each cell of the select column will be extracted as a <a href="https://tools.ietf.org/html/rfc4180">Comma-Separated Values</a>.</dd>
+							</dl>
+						</li>
+						<li><code>regex</code> as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a></li>
+						<li><code>smart</code> as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a></li>
+						<li><code>caseinsen</code> as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a></li>
+						<li><code>defaultselectedlabel</code> as defined by the property of the same name in the <strong>Text and i18n</strong> row group section in this table.</li>
+						<li><code>label</code>: Text label to use or a jQuery selector or text HTML.</li>
+						<li><code>lblselector</code> as defined by the property of the same name in the <strong>Text and i18n</strong> row group section in this table.</li>
+						<li><code>renderas</code> as defined by the property of the same name in this row group section in this table.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>action</td>
+				<td>Define the default action for unknow item (<code>data-wb-fieldflow="something"</code>). Usually use in conjonction with "prop".</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;<em>[Name of the action]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>ajax</dd>
+						<dt>Name of the action</dt>
+						<dd>A valid action, the action build-in are listed in the following section.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>prop</td>
+				<td>Define the default property for unknow item (<code>data-wb-fieldflow="something"</code>). Usually use in conjonction with "action".</td>
+				<td><code>data-wb-fieldflow='{&quot;prop&quot;: &quot;<em>[Name of the property]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>url</dd>
+						<dt>Name of the property</dt>
+						<dd>A property recongnised by the the action where his value will be the set by the value of the unknow item.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>actionData</td>
+				<td>Define a base object for action created from unknow item. Usually use in conjonction with "action" and "prop".</td>
+				<td><code>data-wb-fieldflow='{&quot;actionData&quot;: { [...] }}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Use an empty object <code>{ }</code></dd>
+						<dt>An object</dt>
+						<dd>Will extend the action item, after his creation.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>attributes</td>
+				<td>Add attributes on the form input elements, like select, during their creation.</td>
+				<td><code>data-wb-fieldflow='{ &quot;attributes&quot;: { "attributeName": "value", [...] } }</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>No custom element is added</dd>
+						<dt>An object with key value pair</dt>
+						<dd>The key represent the name of the attribute and the value is the value that would be set on the attribute.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>ext <span class="label label-warning">Experimental</span></td>
+				<td>Specify the name of an fieldflow extension to allow to run his own initialisation.</td>
+				<td><code>data-wb-fieldflow='{&quot;ext&quot;: &quot;<em>[Extended plugin name]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Do nothing</dd>
+						<dt>Name of the extension</dt>
+						<dd>Will trigger the event <code>[Name of the extension].ready.wb-fieldflow</code> where it let extension know that the field flow plugin is ready to operate and require that extension to be fully functional.</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+		<tbody>
+			<tr>
+				<th colspan="4" scope="rowgroup">DOM Manipulation <small>on plugin initialisation</small></th>
+			</tr>
+
+			<tr>
+				<td>unhideelm</td>
+				<td>Remove <code>hidden</code> class</td>
+				<td><code>data-wb-fieldflow='{&quot;unhideelm&quot;: &quot;#myJQuerySelector&quot;}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Do nothing</dd>
+						<dt>jQuery Selector</dt>
+						<dd>A <a href="http://api.jquery.com/category/selectors/">jQuery selector</a> that return result for the current document.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>hideelm</td>
+				<td>Add <code>hidden</code> class</td>
+				<td><code>data-wb-fieldflow='{&quot;hideelm&quot;: &quot;#myJQuerySelector&quot;}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Do nothing</dd>
+						<dt>jQuery Selector</dt>
+						<dd>A <a href="http://api.jquery.com/category/selectors/">jQuery selector</a> that return result for the current document.</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+
+		<tbody>
+			<tr>
+				<th colspan="4" scope="rowgroup">Text and i18n</th>
+			</tr>
+
+			<tr>
+				<td>defaultselectedlabel</td>
+				<td>Text to use for the default selected option.</td>
+				<td><code>data-wb-fieldflow='{ &quot;defaultselectedlabel&quot;: &quot;<em>default selected option text</em>&quot; }'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Use &quot;Make your selection...&quot; in English and &quot;<span lang="fr">Sélectionnez dans la liste...</span>&quot; in French</dd>
+						<dt>Text</dt>
+						<dd>Text only, providing HTML markup may cause unwanted result.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>lblselector</td>
+				<td>Specify how to find the label through a jQuery selector.</td>
+				<td><code>data-wb-fieldflow='{ &quot;lblselector&quot;: &quot;<em>[jQuery selector]</em>&quot; }'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Use the html of the first child element</dd>
+						<dt>jQuery Selector</dt>
+						<dd>A <a href="http://api.jquery.com/category/selectors/">jQuery selector</a> used to select the label.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr class="text-muted">
+				<td>i18n <span class="label label-warning">Deprecated</span></td>
+				<td>Allow to set the internationalisation text to use for this plugin. </td>
+				<td></td>
+				<td>Setting this option could impact default text used for other wb-fieldflow plugin in the same page.</td>
+			</tr>
+			<tr class="text-muted">
+				<td>i18n.btn <span class="label label-warning">Deprecated</span></td>
+				<td>Set the label to use for the submit button when creating the form wrapper</td>
+				<td><code>data-wb-fieldflow='{&quot;i18n&quot;: { &quot;btn&quot;: &quot;Continue&quot; } }'</code></td>
+				<td>
+					<dl>
+						<dt>English default:</dt>
+						<dd>Continue</dd>
+						<dt>French default:</dt>
+						<dd lang="fr">Allez</dd>
+						<dt>Textual value:</dt>
+						<dd>Any text value</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr class="text-muted">
+				<td>i18n.defaultsel <span class="label label-warning">Deprecated</span></td>
+				<td>Set label the default dropdown option to use.</td>
+				<td><code>data-wb-fieldflow='{&quot;i18n&quot;: { &quot;defaultsel&quot;: &quot;Make your selection...&quot; } }'</code></td>
+				<td>
+					<dl>
+						<dt>English default:</dt>
+						<dd>Make your selection...</dd>
+						<dt>French default:</dt>
+						<dd lang="fr">Sélectionnez dans la liste...</dd>
+						<dt>Textual value:</dt>
+						<dd>Any text value</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr class="text-muted">
+				<td>i18n.required <span class="label label-warning">Deprecated</span></td>
+				<td>Set the mendatory text that is added in the select label between parentisis</td>
+				<td><code>data-wb-fieldflow='{&quot;i18n&quot;: { &quot;required&quot;: &quot;required&quot; } }'</code></td>
+				<td>
+					<dl>
+						<dt>English default:</dt>
+						<dd>required</dd>
+						<dt>French default:</dt>
+						<dd lang="fr">obligatoire</dd>
+						<dt>Textual value:</dt>
+						<dd>Any text value</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<h3>Set on list item <code>&lt;li data-wb-fieldflow=&quot;...&quot;&gt;</code></h3>
+
+	<p>Kind of value supported:</p>
+	<dl class="dl-horizontal">
+		<dt>Text</dt>
+		<dd><code>data-wb-fieldflow=&quot;...&quot;</code> URL Location of a file that will inserted (through ajax) in a container that follow the plugin. The <a href="http://wet-boew.github.io/wet-boew/docs/ref/data-ajax/data-ajax-en.html">data-ajax</a> filter selector  are supported. <code>data-wb-fieldflow=&quot;MyFragment.html&quot;</code> is equivalent to <code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;MyFragment.html&quot;, &quot;type&quot;: &quot;replace&quot;}'</code></dd>
+		<dt>Object</dt>
+		<dd><code>&lt;li data-wb-fieldflow=&quot;{...}&quot;&gt;</code> Define how the action should be performed, see bellow for all the options.</dd>
+		<dt>Array</dt>
+		<dd><code>&lt;li data-wb-fieldflow=&quot;[{...}, {...}, {...}]&quot;&gt;</code> Allow to set multiple action to perform when one specific item is selected. Some action are incompatible like it make no sense to inserting content through ajax and redirecting the user somewhere else.</dd>
+	</dl>
+
+	<h4>The <code>&quot;action&quot;</code> option</h4>
+
+	<p>Define the <strong>action</strong> to take upon selection/form submission. Based on the value, some other option could be required, optional or ignored.</p>
+
+	<ul>
+		<li>Option: <strong>action</strong></li>
+		<li>How to configure: <code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, ...}'</code></li>
+	</ul>
+
+	<table class="table">
+		<colgroup>
+			<col />
+			<col />
+			<col />
+		</colgroup>
+		<colgroup>
+			<col />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<th rowspan="2" scope="col">Value</th>
+				<th rowspan="2" scope="col">Description</th>
+				<th rowspan="2" scope="col">How to configure</th>
+				<th colspan="2" scope="colgroup">Options</th>
+			</tr>
+			<tr>
+				<th scope="col">Required</th>
+				<th scope="col">Optional</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ajax (default)</td>
+				<td>Insert live content into the current page. It use the data-ajax plugin.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>url</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>type</li>
+						<li>container</li>
+						<li>clean</li>
+						<li>trigger</li>
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>redir</td>
+				<td>Page redirection. Default when the list item only contain an anchor.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;redir&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>url</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>toggle</td>
+				<td>Toggle (show/hide) an element on the current page. It use the toggle plugin.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>append</td>
+				<td>Append a secondary drop down from an inline template.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;append&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>source</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+						<li>srctype</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>addClass</td>
+				<td>Add a class to the element specified by the source selector.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;addClass&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>source</li>
+						<li>class</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>removeClass</td>
+				<td>Remove a class to the element specified by the source selector.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;addClass&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>source</li>
+						<li>class</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>query</td>
+				<td>Set a custom query parameter for the destination page upon redirection.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>name</li>
+						<li>value</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>tblfilter</td>
+				<td>Apply a filter to a data table created with <code>wb-tables</code> plugin.</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, ...}'</code></td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>source</li>
+						<li>column</li>
+						<li>value</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="mrgn-lft-0">
+						<li>target</li>
+						<li>regex</li>
+						<li>smart</li>
+						<li>caseinsen</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>Note about &quot;Append&quot; required options <code>{&quot;action&quot;: &quot;append&quot;, ...}</code></h4>
+
+	<p>The append action act similar as when you initially configure the field flow. But instead of creating the field flow working environment it will simply add the field flow control next to the current one.</p>
+
+	<p>You can configure a appended control as you will have it setup the configuration option for <code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow=&quot;{...}&quot;&gt;</code>. For example:</p>
+	<pre><code>{
+	"action": "append",
+	"srctype": "tblfilter",
+	"source": "#MyTableID",
+	"csvextract": true,
+	"isoptional": true,
+	"column": 5,
+	"defaultselectedlabel": "View all results",
+	"label": "Choose something:"
+}</code></pre>
+
+	<p>The &quot;append&quot; action will set the <code>srctype</code> to <code>wb-fieldflow</code> by default if not specified and it will throw an error if the source haven't be set.</p>
+
+	<h4>Configuration options for each action.</h4>
+
+	<details>
+		<summary>Source code of how the following table is filtered</summary>
+
+		<pre><code>&lt;form id=&quot;frmActionConfig&quot;&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+		&quot;noForm&quot;: true,
+		&quot;unhideelm&quot;:
+		&quot;#frmActionConfig&quot;,
+		&quot;srctype&quot;:&quot;tblfilter&quot;,
+		&quot;source&quot;:&quot;#actionConfig&quot;,
+		&quot;column&quot;:1,
+		&quot;defaultselectedlabel&quot;: &quot;All the configuration options&quot;,
+		&quot;label&quot;:&quot;Filter by type of action:&quot;,
+		&quot;csvextract&quot;: true
+	}'&gt;&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;table id=&quot;actionConfig&quot; class=&quot;table wb-tables&quot; data-wb-tables='{
+	&quot;ordering&quot; : false,
+	&quot;paging&quot;: false,
+	&quot;columnDefs&quot;: [ { &quot;targets&quot;: [ 1 ], &quot;visible&quot;: false } ] }'&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Option&lt;/th&gt;
+			&lt;th&gt;Available for&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;How to configure&lt;/th&gt;
+			&lt;th&gt;Values&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+
+	[...]
+
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+	</details>
+
+	<form id="frmActionConfig">
+		<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "unhideelm": "#frmActionConfig", "srctype":"tblfilter", "source":"#actionConfig", "column":1, "defaultselectedlabel": "All the configuration options", "label":"Filter by type of action:", "csvextract": true}'></div>
+	</form>
+
+	<table id="actionConfig" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false, "columnDefs": [ { "targets": [ 1 ], "visible": false } ] }'>
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Available for</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>action</td>
+				<td>ajax,redir,toggle,append,query,tblfilter</td>
+				<td><p>Specify what action to take</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+						<li>redir</li>
+						<li>toggle</li>
+						<li>append</li>
+						<li>query</li>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, ...}'</code></td>
+				<td>
+					<dl>
+						<dt>ajax (default):</dt>
+						<dd>Insert content</dd>
+						<dt>redir:</dt>
+						<dd>Redirection</dd>
+						<dt>toggle:</dt>
+						<dd>Toggle (show/hide) content</dd>
+						<dt>append:</dt>
+						<dd>Append a secondary drop down</dd>
+						<dt>query:</dt>
+						<dd>Add a query parameter for the page to be redirected to.</dd>
+						<dt>tblfilter:</dt>
+						<dd>Apply a filter to a data table created with <code>wb-tables</code> plugin.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>ajax,redir</td>
+				<td><p>Address of the hyperlink or the location of the HTML fragment.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+						<li>redir</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;url&quot;: &quot;path/to/my/file.html&quot;}'</code></td>
+				<td>URL</td>
+			</tr>
+			<tr>
+				<td>live</td>
+				<td>ajax,toggle</td>
+				<td><p>Perform the action upon selection change instead of form submission.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;live&quot;: true}'</code></td>
+				<td>URL</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>ajax</td>
+				<td><p>Define how content will be inserted from the container perspective.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;path/to/my/file.html&quot;, &quot;type&quot;: &quot;replace&quot;}'</code></td>
+				<td>
+					<ul>
+						<li>replace(default)</li>
+						<li>after</li>
+						<li>append</li>
+						<li>before</li>
+						<li>prepend</li>
+					</ul>
+					<p>This value map how to call the data-ajax plugin</p>
+				</td>
+			</tr>
+			<tr>
+				<td>container</td>
+				<td>ajax</td>
+				<td><p>Specify the container to use to insert the ajax(ed) content</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;path/to/my/file.html&quot;, &quot;container&quot;: &quot;#jQuerySelector&quot;}'</code></td>
+				<td>jQuery selector
+					<p>(By default the container will be a empty container inserted after the form.)</p>
+				</td>
+			</tr>
+			<tr>
+				<td>clean</td>
+				<td>ajax</td>
+				<td><p>Call <code>empty()</code> jQuery function</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;path/to/my/file.html&quot;, &quot;clean&quot;: &quot;#jQuerySelector&quot;}'</code></td>
+				<td>jQuery selector</td>
+			</tr>
+			<tr>
+				<td>trigger</td>
+				<td>ajax</td>
+				<td><p>Initiate WET features of the inserted content.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;path/to/my/file.html&quot;, &quot;clean&quot;: true}'</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Content is kept as is</dd>
+						<dt>true:</dt>
+						<dd>Will initiate any WET feature that exist in the inserted content</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>target</td>
+				<td>ajax,redir,toggle,append,query,tblfilter</td>
+				<td><p>Specify an action that should be only executed and considered when the targeted "option" is selected, like by a subsequent drop down.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>ajax</li>
+						<li>redir</li>
+						<li>toggle</li>
+						<li>append</li>
+						<li>addClass</li>
+						<li>removeClass</li>
+						<li>query</li>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;path/to/my/file.html&quot;, &quot;target&quot;: &quot;containerID&quot;}'</code></td>
+				<td>ID of a list item that will be transform into a drop down.
+					<p>(By default the target action is to current item)</p>
+				</td>
+			</tr>
+			<tr>
+				<td>toggle</td>
+				<td>toggle</td>
+				<td><p>Selector or a toggle configuration options</p>
+					<p>Available for:</p>
+					<ul>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#jQuerySelector&quot;}'</code> or
+				<code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: { &quot;selector&quot;: &quot;#jQuerySelector&quot;} }'</code></td>
+				<td>
+					<dl>
+						<dt>jQuery selector:</dt>
+						<dd>Selector of an element to toggle</dd>
+						<dt>toggle configuration:</dt>
+						<dd>Any configuration supported as defined in the <a href="http://wet-boew.github.io/wet-boew/docs/ref/toggle/toggle-en.html">toggle documentation</a></dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>toggle.stateOn</td>
+				<td>toggle</td>
+				<td><p>A toggle configuration options. CSS class that's added to elements when they are toggled on.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: { &quot;selector&quot;:&quot;#jQuerySelector&quot;, &quot;stateOn&quot;:&quot;cssClass&quot; } }'</code> or
+				<code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: { &quot;selector&quot;: &quot;#jQuerySelector&quot;} }'</code></td>
+				<td>
+					<dl>
+						<dt>Default:</dt>
+						<dd>Use the class "visible"</dd>
+						<dt>String</dt>
+						<dd>A CSS class or whatever supported by the same property named defined in the <a href="http://wet-boew.github.io/wet-boew/docs/ref/toggle/toggle-en.html">toggle documentation</a></dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>toggle.stateOff</td>
+				<td>toggle</td>
+				<td><p>A toggle configuration options. CSS class that's added to elements when they are toggled off.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: { &quot;selector&quot;:&quot;#jQuerySelector&quot;, &quot;stateOff&quot;:&quot;cssClass&quot; } }'</code> or
+				<code>data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: { &quot;selector&quot;: &quot;#jQuerySelector&quot;} }'</code></td>
+				<td>
+					<dl>
+						<dt>Default:</dt>
+						<dd>Use the class "hidden"</dd>
+						<dt>String</dt>
+						<dd>A CSS class or whatever supported by the same property named defined in the <a href="http://wet-boew.github.io/wet-boew/docs/ref/toggle/toggle-en.html">toggle documentation</a></dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>class</td>
+				<td>addClass,removeClass</td>
+				<td><p>CSS Class name.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>addClass</li>
+						<li>removeClass</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;: "#id", &quot;class&quot;: "myclass" }'</code></td>
+				<td>A CSS class</td>
+			</tr>
+			<tr>
+				<td>source</td>
+				<td>append,addClass,removeClass,tblfilter</td>
+				<td><p>jQuery selector of the sub wb-fieldflow template to be inserted. This configuration option is required for table filtering because it is specify on which data table the filter should be applied.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>append</li>
+						<li>addClass</li>
+						<li>removeClass</li>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td>
+					<p><code>data-wb-fieldflow='{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#jQuerySelector&quot;}'</code></p>
+					<p>Or like:</p>
+					<p><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;source&quot;: &quot;#data-table-id&quot;}</code></p>
+				</td>
+				<td>jQuery selector and when the action is set to <code>tblfilter</code> the source should refer to a data table enhanced with <a href="http://wet-boew.github.io/wet-boew/demos/tables/tables-en.html">tables plugin</a>.</td>
+			</tr>
+
+			<tr>
+				<td>name</td>
+				<td>query</td>
+				<td><p>Name of the query parameter that will be insert in the redirection URL. The other option "value"is required.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>query</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;: &quot;ParameterName&quot;, &quot;value&quot;: &quot;aValue&quot;}'</code></td>
+				<td>Text without containing space that could be a valid name for a hidden field element.</td>
+			</tr>
+			<tr>
+				<td>value</td>
+				<td>query</td>
+				<td><p>Value of the query parameter that will be insert in the redirection URL. The other option "name" is required.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>query</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;: &quot;ParameterName&quot;, &quot;value&quot;: &quot;aValue&quot;}'</code></td>
+				<td>Value that could be valid as being the value of a hidden field element.</td>
+			</tr>
+
+			<tr>
+				<td>renderas</td>
+				<td>append,tblfilter</td>
+				<td><p>Specify what UI to render.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>append</li>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;append&quot;, &quot;renderas&quot;: &quot;<em>[Name of the UI]</em>&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Create a drop down for the field flow UI. Same as if the value was set to <code>select</code>.</dd>
+						<dt>checkbox</dt>
+						<dd>Create a list of checkbox.</dd>
+						<dt>radio</dt>
+						<dd>Create a list of checkbox.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>column</td>
+				<td>tblfilter</td>
+				<td><p>Required for table filtering, this is specify on which column the filter should be applied</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 5}</code></td>
+				<td>
+					<dl>
+						<dt>Number</dt>
+						<dd>Integer representing the column number where the first column of table is the number &quot;0&quot;</dd>
+
+						<dt>Column selector</dt>
+						<dd>A valid <a href="https://datatables.net/reference/type/column-selector">DataTable column selector</a></dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>value</td>
+				<td>tblfilter</td>
+				<td><p>Required for table filtering, this specify on what value the filter should be applied</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;value&quot;: &quot;a value to be filtered about&quot;}</code></td>
+				<td>A value that will be searched agains the specified column in order to filter the rows.</td>
+			</tr>
+			<tr>
+				<td>csvextract</td>
+				<td>tblfilter</td>
+				<td><p>Assume the column value are CSV and then it is use to feed the item of the field flow control from the selected column.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;csvextract&quot;:true}</code></td>
+				<td><dl>
+					<dt>false (default)</dt>
+					<dd>The value will be the content of each list item <code>&lt;li&gt;</code> for the specified column.</dd>
+					<dt>true</dt>
+					<dd>The value will be the <a href="https://tools.ietf.org/html/rfc4180">Comma-Separated Values</a> of each cell for the specified column. It is assumed that column only content CSV data and nothing else.</dd>
+				</dl></td>
+			</tr>
+			<tr>
+				<td>limit</td>
+				<td>tblfilter</td>
+				<td><p>This specify to show a subsequent filter, based on the fltrseq, only if the number of rows displayed is larger than the limit.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;limit&quot;: 5}</code></td>
+				<td>
+					<dl>
+						<dt>false (default)</dt>
+						<dd>The limit is set to 10 items.</dd>
+						<dt>Number</dt>
+						<dd>Integer representing minimum number of rows displayed in order to show the subsequent fltrseq.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>regex</td>
+				<td>tblfilter</td>
+				<td><p>Treat the searched value as a regular expression. Enable regular expressions without desabling smart search, as smart search use regular expressions, both might conflict and cause unexpected results.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;regex&quot;:true, &quot;smart&quot;:false}</code></td>
+				<td>Boolean, default false (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+			</tr>
+			<tr>
+				<td>smart</td>
+				<td>tblfilter</td>
+				<td><p>Perform smart search. Note that to perform a smart search, DataTables uses regular expressions, so if enable regular expressions using the regex parameter to this method, you will likely want to disable smart searching as the two regular expressions might otherwise conflict and cause unexpected results.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;smart&quot;:false}</code></td>
+				<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+			</tr>
+			<tr>
+				<td>caseinsen</td>
+				<td>tblfilter</td>
+				<td><p>Do case-insensitive matching.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;caseinsen&quot;:false}</code></td>
+				<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+			</tr>
+			<tr>
+				<td>defaultselectedlabel</td>
+				<td>tblfilter</td>
+				<td><p>Empty label to use where the filtering is not applied</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;defaultselectedlabel&quot;:&quot;[my default options]&quot;}</code></td>
+				<td>String, as defined by the property of the same name in the <strong>Text and i18n</strong> row group section in configuration option set on the plugin table.</td>
+			</tr>
+			<tr>
+				<td>label</td>
+				<td>tblfilter</td>
+				<td><p>Label to use for the field flow control</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;label&quot;:&quot;[my label]&quot;}</code></td>
+				<td>
+					<dl>
+						<dt>false (default)</dt>
+						<dd>The column title will be use as the label</dd>
+						<dt>String</dt>
+						<dd>Text to use as the label</dd>
+						<dt>jQuery Selector</dt>
+						<dd>Select content on the current page to be use as the label.</dd>
+						<dt>HTML text</dt>
+						<dd>Text representing HTML content that will be used as the label.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>lblselector</td>
+				<td>tblfilter</td>
+				<td><p>Select the label to use. this could be useful when the label configuration option contain html in order to insert additional information sounrounding the label itself.</p>
+					<p>Available for:</p>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td><code>data-wb-fieldflow='{&quot;action&quot;: &quot;tblfilter&quot;, &quot;column&quot;: 0, &quot;lblselector&quot;:&quot;[jQuery selector]&quot;}</code></td>
+				<td>jQuery selector, as defined by the property of the same name in the <strong>Text and i18n</strong> row group section in configuration option set on the plugin table.</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>Document the public events that can be used by implementers or developers.  Event that is specific related to an action is scoped to the field flow control that have initiated the action. By default, field flow control do not conflict with other field flow control or subsequent field flow control.</p>
+
+
+	<details>
+		<summary>Source code of how the following table is filtered</summary>
+
+		<pre><code>&lt;form id=&quot;frmEvents&quot;&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;noForm&quot;: true, &quot;unhideelm&quot;: &quot;#frmEvents&quot;, &quot;srctype&quot;:&quot;tblfilter&quot;, &quot;source&quot;:&quot;#events&quot;, &quot;column&quot;:0, &quot;defaultselectedlabel&quot;: &quot;All the events&quot;, &quot;label&quot;:&quot;Filter by type of action:&quot;}'&gt;&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;table id=&quot;events&quot; class=&quot;table wb-tables&quot; data-wb-tables='{ &quot;ordering&quot; : false, &quot;paging&quot;: false }'&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Event&lt;/th&gt;
+			&lt;th&gt;Trigger&lt;/th&gt;
+			&lt;th&gt;What it does&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+
+	[...]
+
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+	</details>
+
+	<form id="frmEvents">
+		<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "unhideelm": "#frmEvents", "srctype":"tblfilter", "source":"#events", "column":0, "defaultselectedlabel": "All the events", "label":"Filter by type of action:"}'></div>
+	</form>
+
+	<table id="events" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>redir.action.wb-fieldflow</code>
+					<ul>
+						<li>redir</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>The action is delayed to happend on form submission.</td>
+			</tr>
+			<tr>
+				<td><code>redir.submit.wb-fieldflow</code>
+					<ul>
+						<li>redir</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon form submission.</td>
+				<td>Set the redirection url to the form action attribute.</td>
+			</tr>
+			<tr>
+				<td><code>query.action.wb-fieldflow</code>
+					<ul>
+						<li>query</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Save the information for form upon submission</td>
+			</tr>
+			<tr>
+				<td><code>ajax.action.wb-fieldflow</code>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Execute the ajax instruction if <code>live</code> flag is specified otherwise it will postpone the action upon form submission.</td>
+			</tr>
+			<tr>
+				<td><code>ajax.submit.wb-fieldflow</code>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon form submission.</td>
+				<td>Execute the ajax instruction.</td>
+			</tr>
+			<tr>
+				<td><code>toggle.action.wb-fieldflow</code>
+					<ul>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Execute the toggle instruction if <code>live</code> flag is specified otherwise it will postpone the action upon form submission.</td>
+			</tr>
+			<tr>
+				<td><code>toggle.submit.wb-fieldflow</code>
+					<ul>
+						<li>toggle</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon form submission.</td>
+				<td>Execute the toggle instruction.</td>
+			</tr>
+			<tr>
+				<td><code>append.action.wb-fieldflow</code>
+					<ul>
+						<li>append</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Append a field flow control next to current control that have triggered this event.</td>
+			</tr>
+			<tr>
+				<td><code>addClass.action.wb-fieldflow</code>
+					<ul>
+						<li>addClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Will add the specified class if <code>live</code> flag is specified otherwise it will postpone the action upon form submission.</td>
+			</tr>
+			<tr>
+				<td><code>addClass.submit.wb-fieldflow</code>
+					<ul>
+						<li>addClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon form submission.</td>
+				<td>Add the specified class to the DOM elements retreived with the source jQuery selector.</td>
+			</tr>
+			<tr>
+				<td><code>removeClass.action.wb-fieldflow</code>
+					<ul>
+						<li>removeClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Will add the specified class if <code>live</code> flag is specified otherwise it will postpone the action upon form submission.</td>
+			</tr>
+			<tr>
+				<td><code>removeClass.submit.wb-fieldflow</code>
+					<ul>
+						<li>removeClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon form submission.</td>
+				<td>Add the specified class to the DOM elements retreived with the source jQuery selector.</td>
+			</tr>
+			<tr>
+				<td><code>tblfilter.action.wb-fieldflow</code>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon selection change.</td>
+				<td>Filter the data table rows by searching on the specified column.</td>
+			</tr>
+			<tr>
+				<td><code>tblfilter.draw.wb-fieldflow</code>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when the creation of a field flow control is requested.</td>
+				<td>Read the information in the table and standardize the information in order to be processed by the event that create the control (renderas).</td>
+			</tr>
+			<tr>
+				<td><code>wb-fieldflow.draw.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when the creation of a field flow control is requested.</td>
+				<td>Read the information from the standard inline template and standardize the information in order to be processed by the event that create the control (renderas).</td>
+			</tr>
+			<tr>
+				<td><code>select.createctrl.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when a field flow control typed select (drop down) is requested.</td>
+				<td>From a standardized information it generate the html code being the next field flow control.</td>
+			</tr>
+			<tr>
+				<td><code>checkbox.createctrl.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when a field flow control typed checkbox is requested.</td>
+				<td>From a standardized information it generate the html code being the next field flow control.</td>
+			</tr>
+			<tr>
+				<td><code>radio.createctrl.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when a field flow control typed radio is requested.</td>
+				<td>From a standardized information it generate the html code being the next field flow control.</td>
+			</tr>
+			<tr>
+				<td><code>reset.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on field flow control and sub control when they need to be reseted or destroyed.</td>
+				<td>It apply the reset actions set by the configuration of the control.</td>
+			</tr>
+			<tr>
+				<td><code>clean.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically upon when a cleaning task for action need to selection change after a toggle action has been completed.</td>
+				<td>When a completed action need to perform some cleaning task upon value change or when the control that initiated the action are destroyed. For example:
+					<dl>
+						<dt>Toggle</dt>
+						<dd>Perform a toogle action. It will trigger the "off" state.</dd>
+						<dt>ajax</dt>
+						<dd>Execute <code>empty()</code> on the specified element.</dd>
+						<dt>tblfilter</dt>
+						<dd>Remove the search instruction that was set.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>[Name of the extension].ready.wb-fieldflow</code> <span class="label label-warning">Experimental</span>
+					<ul class="mrgn-lft-0">
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when wb-fieldflow has finished is initialization.</td>
+				<td>It let the field flow extension know that the field flow plugin is ready to operate and require that extension to be fully functional.</td>
+			</tr>
+			<tr>
+				<td><code>wb-init.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-fieldflow" ).trigger( "wb-init.wb-fieldflow" );</code>).</td>
+				<td>Used to manually initialize the wb-fieldflow plugin. <strong>Note:</strong> The wb-fieldflow plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically after an wb-fieldflow is initialized.</td>
+				<td>Used to identify when an wb-fieldflow has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-fieldflow", ".wb-fieldflow", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-fieldflow" ).on( "wb-ready.wb-fieldflow", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code>
+					<ul class="mrgn-lft-0">
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+				<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>draw.wb-fieldflow</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Upon creation of a drop down</td>
+				<td>Used to notice the creation of a dropdown
+					<pre><code>$( document ).on( "draw.wb-fieldflow", ".wb-fieldflow", function( event ) {
+});</code></pre></td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/fieldflow">Field flow source code on GitHub</a></p>
+</section>
