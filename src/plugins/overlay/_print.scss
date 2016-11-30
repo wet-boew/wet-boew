@@ -7,6 +7,18 @@
  * Print styles
  */
 
+.wb-overlay {
+
+	&.open {
+		display: block;
+		position: static;
+
+		&.no-print {
+			display: none;
+		}
+	}
+}
+
 .wb-overlay-open {
 
 	main {
@@ -19,8 +31,7 @@
 			display:block;
 		}
 
-		.wb-overlay.open {
-			position: static;
-		}
 	}
 }
+
+
