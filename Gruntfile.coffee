@@ -56,6 +56,7 @@ module.exports = (grunt) ->
 		->
 			if process.env.TRAVIS_PULL_REQUEST is "false" and process.env.DIST_REPO isnt `undefined` and ( process.env.TRAVIS_TAG isnt "" or process.env.TRAVIS_BRANCH is "master" )
 				grunt.task.run [
+                    "sri"
 					"copy:deploy"
 					"gh-pages:travis"
 					"gh-pages:travis_cdn"
@@ -1382,6 +1383,26 @@ module.exports = (grunt) ->
 					branch: process.env.DEMOS_BRANCH
 					message: "<%= grunt.config('gh-pages.travis.options.message') %>"
 					silent: true
+
+		sri:
+            options:
+                pretty: true
+            wet_boew:
+                options:
+                    dest: "<%= coreDist %>/payload.json"
+                cwd: "<%= coreDist %>"
+                src: [
+                    "{js,css}/**/*.{js,css}"
+                ]
+                expand: true
+            theme_wet_boew:
+                options:
+                    dest: "<%= themeDist %>/payload.json"
+                cwd: "<%= themeDist %>"
+                src: [
+                    "{js,css}/*.{js,css}"
+                ]
+                expand: true
 
 		checkDependencies:
 			all:
