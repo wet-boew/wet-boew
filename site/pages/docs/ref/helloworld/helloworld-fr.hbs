@@ -1,0 +1,102 @@
+---
+{
+	"title": "Exemple de plugiciel, Bonjour le monde",
+	"language": "fr",
+	"category": "Autre",
+	"categoryfile": "other",
+	"description": "Un tutoriel rapide sur commment créer votre plugiciel BOEW.",
+	"altLangPrefix": "helloworld",
+	"dateModified": "2016-12-06"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<section>
+	<h2>But</h2>
+	<p>Apprendre à comment créer son propre plugiciel BOEW.</p>
+</section>
+
+<section>
+	<h2>Exemples pratiques</h2>
+	<ul>
+		<li><a href="../../../demos/helloworld/helloworld-fr.html">Exemple français</a></li>
+		<li><a href="../../../demos/helloworld/helloworld-en.html" hreflang="en">Exemple anglais</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Code source de <code>bonjour.js</code></h2>
+<pre><code>/**
+ * @title WET-BOEW Plugiciel bonjour le monde
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp
+ */
+( function( $, window, wb ) {
+&quot;use strict&quot;;
+
+/*
+ * Définition de variable et de fonction.
+ * Ceux-ci sont généraux au plugiciel - cela veux dire qu'ils seront initialisé une fois par page,
+ * et non à chaque fois que le plugiciel sera instancié sur la page. Donc, ici c'est un bon endroit
+ * enfin de définir des variables qui sont communes à toutes les instance du plugiciel sur la page.
+ */
+var nomComposant = &quot;wb-bonjour&quot;,
+	selecteur = &quot;.&quot; + nomComposant,
+	initEvent = &quot;wb-init&quot; + selecteur,
+	$document = wb.doc,
+
+	/**
+	 * @method init
+	 * @param {jQuery Event} event L'object événement lors du déclanchement de la fonction
+	 */
+	init = function( event ) {
+
+		// Début de l'initialisation
+		// retourne un objet DOM = procéder avec l'initialisation
+		// retourne undefined = ne pas procéder avec l'initialisation (ex., il est déjà initialisé)
+		var elm = wb.init( event, nomComposant, selecteur ),
+			$elm,
+			parametres;
+
+		if ( elm ) {
+			$elm = $( elm );
+
+			// ... Faire l'initialisation du plugiciel
+
+			// Obtenir les paramètres JSON du plugiciel tel que définie par l'attribut data-wb-bonjour
+			parametres = wb.getData( $elm, nomComposant );
+
+			// Appel d'un événement personalisé
+			$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );
+
+			// Annonce que l'initialisation de l'instance a été complélté
+			wb.ready( $elm, nomComposant );
+		}
+	};
+
+// Ajouter votre code pour gérer les événement de votre plugiciel
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenenment, donnee ) {
+	var elm = evenenment.currentTarget,
+		$elm = $( elm );
+
+	$elm.append( &quot;Bonjour le monde&quot; );
+
+	if ( donnee &amp;&amp; donnee.surpassetoi ) {
+		$elm.prepend( &quot;Surpasse toi&quot; );
+	}
+} );
+
+// Liaison à l'événement init du plugiciel
+$document.on( &quot;timerpoke.wb &quot; + initEvent, selecteur, init );
+
+// Ajouter notre poke pour que l'initialisation des instances
+wb.add( selecteur );
+
+} )( jQuery, window, wb );</code></pre>
+</section>
+
+<section>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/other/helloworld">Code source pour Bonjour le monde sur GitHub</a></p>
+</section>

@@ -7,7 +7,7 @@
 	"dateModified": "2014-03-31"
 }
 ---
-<p lang="en"><strong>Needs translation</strong> A WET plugin provides various types of functionality useful to a website and provided by calling the function in the class attribute of an HTML tag.</p>
+<p>Les plugiciels BOEW fournis divers fonctionalités utilent pour un site web et l'initialisation de ceux-ci se font l'intermédaire d'une classe CSS défénie à un élément HTML.</p>
 <ul>
 	<li><a href="collapsible-alerts/collapsible-alerts-fr.html">Alertes repliables</a> - Créer des alertes que les utilisateurs peuvent replier.</li>
 	<li><a href="toggle/toggle-fr.html">Basculer</a> - Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.</li>
@@ -19,6 +19,7 @@
 	<li><a href="data-inview/data-inview-fr.html">Data Inview</a> - Affiche de contenu superposé quand une section se déplace hors de la clôture.</li>
 	<li><a href="data-picture/data-picture-fr.html">Data Picture</a> - Conversion de Picturefill guidé par l'événement.</li>
 	<li><a href="equalheight/equalheight-fr.html">Égalisation des hauteurs</a> - Un plugiel d'égalisation des hauteurs réactif.</li>
+	<li><a href="helloworld/helloworld-fr.html">Exemple de plugiciel, Bonjour le monde</a> - Un tutoriel rapide sur commment créer votre plugiciel BOEW.</li>
 	<li><a href="session-timeout/session-timeout-fr.html">Expiration de la session</a> - Ferme la session de l'utilisateur après un certain délai.</li>
 	<li><a href="favicon/favicon-fr.html">Favoricône</a> - Offre la possibilité d'ajouter et de mettre à jour les favoricônes d'une page.</li>
 	<li><a href="feeds/feeds-fr.html">Fils de syndication</a> - Affiche les articles d’un ou plus fils de syndication.</li>
@@ -34,5 +35,16 @@
 	<li><a href="footnotes/footnotes-fr.html">Notes de bas de page</a> - Une méthode cohérente et facile d’accès pour répertorier les notes de bas de page.</li>
 	<li><a href="prettify/prettify-fr.html">Prettify</a> - Affiche de la syntaxe des extraits de code source.</li>
 	<li><a href="tables/tables-fr.html">Tables</a> - Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.</li>
-	<li><a href="formvalid/formvalid-fr.html">Validation de formulaires</a> - Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis.</li>	
+	<li><a href="formvalid/formvalid-fr.html">Validation de formulaires</a> - Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis.</li>
 </ul>
+
+<h2>Utilisation de votre plugiciel</h2>
+
+<p>Pour que vous puissez utiliser votre propre plugiciel dans la BOEW, vous devez:</p>
+<ol>
+	<li>Votre plugiciel doit suivre la procédure d'initialisation de la BOEW.</li>
+	<li>Votre script doit être ajouter après que le script <code>wet-boew.min.js</code> soit inséré dans votre page.</li>
+	<li>Un élément dans votre page doit contenir l'appel de votre plugiciel, tel que le nom du plugiciel soit existant dans l'attribut "class".</li>
+</ol>
+
+<p>Prenez le temps de consulter l'example <a href="../../demos/helloworld/helloworld-fr.html">Bonjour le monde</a>.</p>
