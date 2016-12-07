@@ -620,6 +620,20 @@ fieldset {
 	}
 
 	/*
+	 *  Allows fieldSet/legend to have a bottom border under legend title
+	 *	https://github.com/wet-boew/wet-boew/issues/7766
+	 */
+	&.legend-brdr-bttm {
+		border-top: 0;
+
+		legend {
+			border-bottom: 1px solid $legend-border-color;
+			float: none;
+			margin-bottom: 10px;
+		}
+	}
+
+	/*
 	 *	Fieldset/legend as a label for a group of checkboxes or radio buttons
 	 *	https://github.com/wet-boew/wet-boew/issues/5797
 	 */
