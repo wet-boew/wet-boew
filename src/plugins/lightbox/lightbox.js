@@ -17,9 +17,11 @@ var componentName = "wb-lbx",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
+	globalOverlay = "wb-overlay-open",
 	dependenciesLoadedEvent = "deps-loaded" + selector,
 	modalHideSelector = "#wb-tphp, body > header, body > main, body > footer",
 	$document = wb.doc,
+	$html = wb.html,
 	callbacks, i18n, i18nText,
 
 	/**
@@ -42,7 +44,8 @@ var componentName = "wb-lbx",
 				var elm = document.getElementById( elmId ),
 					$elm = $( elm ),
 					settings = {},
-					firstLink;
+					firstLink,
+					pageHeading1 = document.getElementsByTagName( "H1" )[ 0 ];
 
 				if ( !elm ) {
 					return;
@@ -88,6 +91,12 @@ var componentName = "wb-lbx",
 					}
 					if ( elm.className.indexOf( "lbx-inline" ) !== -1 ) {
 						settings.type = "inline";
+					}
+
+					// Prepend the popup in a container after the h1
+					if ( pageHeading1 ) {
+						$( pageHeading1 ).after( "<div class='wb-popup'></div>" );
+						settings.prependTo = pageHeading1.nextSibling;
 					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
@@ -163,6 +172,10 @@ var componentName = "wb-lbx",
                         .find( ".activate-open" )
                         .trigger( "wb-activate" );
 
+					$html.addClass( globalOverlay );
+				},
+				close: function() {
+					$html.removeClass( globalOverlay );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
