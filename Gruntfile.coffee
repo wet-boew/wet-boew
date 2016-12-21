@@ -25,6 +25,7 @@ module.exports = (grunt) ->
 			"demos-min"
 			"htmllint"
 			"bootlint"
+			"sri"
 		]
 	)
 
@@ -56,7 +57,6 @@ module.exports = (grunt) ->
 		->
 			if process.env.TRAVIS_PULL_REQUEST is "false" and process.env.DIST_REPO isnt `undefined` and ( process.env.TRAVIS_TAG isnt "" or process.env.TRAVIS_BRANCH is "master" )
 				grunt.task.run [
-                    "sri"
 					"copy:deploy"
 					"gh-pages:travis"
 					"gh-pages:travis_cdn"
@@ -1396,7 +1396,7 @@ module.exports = (grunt) ->
                     "{js,css}/**/*.{js,css}"
                 ]
                 expand: true
-            theme_wet_boew:
+            theme:
                 options:
                     dest: "<%= themeDist %>/payload.json"
                 cwd: "<%= themeDist %>"
