@@ -17,6 +17,7 @@
 		<h2>Overview</h2>
 		<p>For YouTube videos, the multimedia player integrates the YouTube chromeless player which leverages the native HTML5 <code>video</code> tag and relies on Flash as a fallback mechanism when the HTML5 <code>video</code> tag is not implemented.</p>
 		<p>The multimedia player's timeline relies on the HTML5 <code>progress</code> element and uses a polyfill when the element is not supported.</p>
+		<p>To enable autoplay on this plug-in, simply add <code>autoplay</code> on the <code>&lt;source ...&gt;</code> tag</p>
 	</section>
 </div>
 
@@ -39,8 +40,9 @@
 				<p>Suspect (<a href="http://healthycanadians.gc.ca/video/suspect-eng.php#trans">Transcript</a>)</p>
 			</figcaption>
 		</figure>
+		<h3>Example with autoplay</h3>
 		<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=9znKJqnFuuY"}'>
-			<video title="Suspect">
+			<video title="Suspect" autoplay>
 				<source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" />
 			</video>
 			<figcaption>
@@ -53,6 +55,18 @@
 			<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=9znKJqnFuuY"}'&gt;
 	&lt;video title=&quot;Suspect&quot;&gt;
 		&lt;source type=&quot;video/youtube&quot; src=&quot;http://www.youtube.com/watch?v=9znKJqnFuuY&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Suspect&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+		</details>
+
+		<details class="mrgn-tp-md">
+			<summary>View code with autoplay</summary>
+			<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=9znKJqnFuuY"}'&gt;
+	&lt;video title=&quot;Suspect&quot;&gt;
+		&lt;source type=&quot;video/youtube&quot; src=&quot;http://www.youtube.com/watch?v=9znKJqnFuuY&quot; autoplay /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Suspect&lt;/p&gt;
