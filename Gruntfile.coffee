@@ -1055,6 +1055,7 @@ module.exports = (grunt) ->
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
+						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					rename: (dest, src) ->

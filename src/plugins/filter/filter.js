@@ -28,6 +28,14 @@ var componentName = "wb-filter",
 				};
 			}
 
+			Modernizr.addTest( "stringnormalize", "normalize" in String );
+			Modernizr.load( {
+				test: Modernizr.stringnormalize,
+				nope: [
+					"site!deps/unorm" + wb.getMode() + ".js"
+				]
+			} );
+
 			$elm.prepend( "<div class=\"input-group\"><label for=\"" + elm.id + "-inpt\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label><input id=\"" + elm.id + "-inpt\" class=\"form-control wb-fltr-inpt\" type=\"search\"></div>" );
 
 			wb.ready( $elm, componentName );
@@ -35,8 +43,6 @@ var componentName = "wb-filter",
 	},
 	filter = function( $field, $elm, settings ) {
 		var unAccent = function( str ) {
-
-				// TODO: Add polyfill for String.prototype.normalize
 				return str.normalize( "NFD" ).replace( /[\u0300-\u036f]/g, "" );
 			},
 			filter = unAccent( $field.val() ),
