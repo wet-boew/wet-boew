@@ -32,19 +32,21 @@
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Add a div element to the Web page with a class attribute containing "wet-boew-calendar-events" and a unique class name (e.g.: <pre><code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code></pre>).<br /><strong>Note:</strong> your unique class must be the last class in the list.</li>
+		<li>Add a div element to the Web page with a <code>class</code> attribute containing "wb-calevt" and a unique name in a <code>data-calevt-src</code> attribute (e.g.: <code>&lt;div class="wb-calevt" data-calevt-src="unique-name"&gt;&lt;/div&gt;</code>).</li>
 		<li>Include in the div element a ordered list of events (ol element) with the following structure for each event:
 			<ol>
-				<li>The list element must start with a heading element (h2 to h6, depending on the context of the page).</li>
+				<li>The list element must start with a heading element (<code>h2</code> to <code>h6</code>, depending on the context of the page).</li>
 				<li>The heading element must include a link to the event description with the event title for the link text.</li>
-				<li>The event date must be provided in an HTML5 time element contained within a paragraph element (following the heading element). The date to be displayed is contained in the time element and an ISO-8601 date (e.g., 2010-03-11) is provided in the datetime attribute.</li>
+				<li>The event date must be provided in an HTML5 <code>time</code> element contained within a paragraph element (following the heading element). The date to be displayed is contained in the <code>time</code> element and an ISO-8601 date (e.g., 2010-03-11) is provided in the <code>datetime</code> attribute.</li>
 			</ol>
 		</li>
-		<li>Add a second div element to the Web page with an id attribute containing your unique class name from above (e.g., <code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code>). This will hold the calendar interface.</li>
+		<li>Add a second <code>div</code> element to the Web page with an <code>id</code> attribute containing your <code>data-calevt-src</code> attribute's unique name from above (e.g., <code>&lt;div id="unique-name"&gt;&lt;/div&gt;</code>). This will hold the calendar interface.</li>
 	</ol>
-	
+
 	<h3>Example Code</h3>
-	<pre><code>&lt;div class="wet-boew-eventscalendar calendar1"&gt;
+	<pre><code>&lt;div id="calendar1"&gt;&lt;/div&gt;
+
+&lt;div class="wb-calevt" data-calevt-src="calendar1"&gt;
 	&lt;ol&gt;
 		&lt;li&gt;
 			&lt;section&gt;
@@ -67,7 +69,8 @@
 		<h3>Details Linking</h3>
 		<p>In this method, the calendar links to the details of the event. This is used when an event has multiple links.</p>
 		<pre><code>&lt;div id="calendar2"&gt;&lt;/div&gt;
-&lt;div class="wet-boew-eventscalendar event-anchoring calendar2"&gt;
+
+&lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar2"&gt;
 	&lt;ol&gt;
 		&lt;li&gt;
 			&lt;section&gt;
@@ -99,26 +102,27 @@
 
 	<section>
 		<h3>List Filtering</h3>
-		<p>This option filters out events from the list that are not for the current month. Enable this option by adding the <code>calendar-display-onshow</code> class to each event that should be filtered by month.</p>
-		<p>Events that do not have the <code>calendar-display-onshow</code> class will always be visible.</p>
+		<p>This option filters out events from the list that are not for the current month. Enable this option by adding the <code>cal-disp-onshow</code> class to each event that should be filtered by month.</p>
+		<p>Events that do not have the <code>cal-disp-onshow</code> class will always be visible.</p>
 		<pre><code>&lt;div id="calendar3"&gt;&lt;/div&gt;
-&lt;div class="wet-boew-eventscalendar event-anchoring calendar3"&gt;
+
+&lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar3"&gt;
 	&lt;section&gt;
 		&lt;h4&gt;Events List 1&lt;/h4&gt;
 		&lt;ol&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://www.ec.gc.ca"&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-03-11"&gt;March 11th 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Event 2&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-03-11"&gt;March 11th 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;World Expo Shanghai (Shanghai, China)&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-03-22"&gt;March 22nd, 2011&lt;/time&gt; to &lt;time datetime="2011-04-26"&gt;April 26th, 2011&lt;/time&gt;&lt;/p&gt;
@@ -126,25 +130,25 @@
 					&lt;p&gt;For more information about Canada at Expo 2010 Shanghai, visit: &lt;a href="http://www.expo2010canada.gc.ca/index-eng.cfm"&gt;www.expo2010canada.gc.ca/index-eng.cfm&lt;/a&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://gcpedia.gc.ca"&gt;Event 4&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-03-24"&gt;March 24th 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://www.ec.gc.ca"&gt;Event 6&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-04-11"&gt;April 11th 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Event 7&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-04-23"&gt;April 23rd 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-			&lt;li class="calendar-display-onshow"&gt;
+			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="http://canada.gc.ca"&gt;Event 17&lt;/a&gt;&lt;/h5&gt;
 					&lt;p&gt;&lt;time datetime="2011-04-23"&gt;April 23rd 2011&lt;/time&gt;&lt;/p&gt;
@@ -195,7 +199,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
