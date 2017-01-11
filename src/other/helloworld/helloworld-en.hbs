@@ -105,7 +105,7 @@ wb.add( selector );
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var componentName = &quot;<strong>wb-helloworld</strong>&quot;,
+<strong>var componentName = &quot;wb-helloworld&quot;,</strong>
 	selector = &quot;.&quot; + componentName,
 	initEvent = &quot;wb-init&quot; + selector,
 	$document = wb.doc,
@@ -120,8 +120,86 @@ var componentName = &quot;<strong>wb-helloworld</strong>&quot;,
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
+			$elm;
+
+		if ( elm ) {
+			$elm = $( elm );
+
+			// ... Do the plugin initialisation
+
+			// Call my custom event
+			<strong>$elm.trigger( &quot;name.of.your.event&quot; );</strong>
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
+		}
+	};
+
+// Add your plugin event handler
+$document.on( &quot;name.of.your.event&quot;, selector, function( event ) {
+	var elm = event.currentTarget,
+		$elm = $( elm );
+
+	<strong>$elm.append( &quot;Hello World&quot; );</strong>
+
+} );
+
+// Bind the init event of the plugin
+$document.on( &quot;timerpoke.wb &quot; + initEvent, selector, init );
+
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+} )( jQuery, window, wb );</code></pre>
+
+<dl>
+	<dt>At line 16 <code>var componentName = &quot;wb-helloworld&quot;,</code></dt>
+	<dd>The plugin is named <strong>wb-helloworld</strong>.</dd>
+
+	<dt>At line 39 <code>$elm.trigger( &quot;name.of.your.event&quot; );</code></dt>
+	<dd>The event &quot;name.of.your.event&quot; is fired on the DOM element that have initiated the plugin</dd>
+
+	<dt>At line 51 <code>$elm.append(&quot;Hello World&quot;);</code></dt>
+	<dd>The words &quot;Hello World&quot; is added at the end of the content inside the elements</dd>
+</dl>
+
+<h2>Step 3 - Make it configurable</h2>
+
+<p>As most plugins needs settings, the following code sample will show you how to support multiple way on how editor and developer will be able to configure your plugin.</p>
+
+<pre><code>/**
+ * @title WET-BOEW Hello world plugin
+ * @overview Plugin contained to show an example of how to create your custom WET plugin
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp
+ */
+( function( $, window, wb ) {
+&quot;use strict&quot;;
+
+/*
+ * Variable and function definitions.
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var componentName = &quot;wb-helloworld&quot;,
+	selector = &quot;.&quot; + componentName,
+	initEvent = &quot;wb-init&quot; + selector,
+	$document = wb.doc,
+	<strong>defaults = {}</strong>,
+
+	/**
+	 * @method init
+	 * @param {jQuery Event} event Event that triggered the function call
+	 */
+	init = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			$elm,
-			settings;
+			<strong>settings;</strong>
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -129,7 +207,13 @@ var componentName = &quot;<strong>wb-helloworld</strong>&quot;,
 			// ... Do the plugin initialisation
 
 			// Get the plugin JSON configuration set on attribute data-wb-helloworld
-			<strong>settings = wb.getData( $elm, componentName );</strong>
+			<strong>settings = $.extend(
+				true,
+				{},
+				defaults,
+				window[ componentName ],
+				wb.getData( $elm, componentName )
+			);</strong>
 
 			// Call my custom event
 			<strong>$elm.trigger( &quot;name.of.your.event&quot;, settings );</strong>
@@ -140,11 +224,11 @@ var componentName = &quot;<strong>wb-helloworld</strong>&quot;,
 	};
 
 // Add your plugin event handler
-$document.on( &quot;name.of.your.event&quot;, selector, function( event, data ) {
+$document.on( &quot;name.of.your.event&quot;, selector, <strong>function( event, data ) {</strong>
 	var elm = event.currentTarget,
 		$elm = $( elm );
 
-	<strong>$elm.append( &quot;Hello World&quot; );</strong>
+	$elm.append( &quot;Hello World&quot; );
 
 	<strong>if ( data &amp;&amp; data.domore ) {</strong>
 		$elm.prepend( &quot;Do more&quot; );
@@ -160,23 +244,41 @@ wb.add( selector );
 } )( jQuery, window, wb );</code></pre>
 
 <dl>
-	<dt>At line 16 <code>var componentName = &quot;wb-helloworld&quot;,</code></dt>
-	<dd>The plugin is named <strong>wb-helloworld</strong>.</dd>
+	<dt>At line 20 <code>defaults = {}</code></dt>
+	<dd>JSON object that define the defaults settings for your plugin.</dd>
 
-	<dt>At line 40 <code>settings = wb.getData( $elm, componentName );</code></dt>
-	<dd>It retreive and parse it into a JSON object the parameter set on the attribute <code>data-wb-helloworld</code></dd>
+	<dt>At line 33 <code>settings;</code></dt>
+	<dd>A local variable to hold the setting for the current instance of the plugin.</dd>
 
-	<dt>At line 43 <code>$elm.trigger( &quot;name.of.your.event&quot;, settings );</code></dt>
-	<dd>The event &quot;name.of.your.event&quot; is fired on the DOM element that have initiated the plugin</dd>
+	<dt>At line 41 <code>settings = $.extend(</code></dt>
+	<dd>The local variable setting will have a cloned copy of all the combined settings.</dd>
 
-	<dt>At line 55 <code>$elm.append(&quot;Hello World&quot;);</code></dt>
-	<dd>The words &quot;Hello World&quot; is added at the end of the content inside the elements</dd>
+	<dt>At line 42 <code>true,</code></dt>
+	<dd>It will perform a deep copy</dd>
 
-	<dt>At line 57-58 <code>if ( data &amp;&amp; data.domore ) {</code></dt>
+	<dt>At line 43 <code>{},</code></dt>
+	<dd>Start extending with an empty new object.</dd>
+
+	<dt>At line 44 <code>defaults,</code></dt>
+	<dd>Apply the defaults settings.</dd>
+
+	<dt>At line 45 <code>window[ componentName ],</code></dt>
+	<dd>Retreive setting directly set via javascript harde coded in the page for example like: <code>window['wb-helloworld'] = {};</code></dd>
+
+	<dt>At line 46 <code>wb.getData( $elm, componentName )</code></dt>
+	<dd>Retreive and parse into a JSON object the setting set through the attribute <code>data-wb-helloworld</code></dd>
+
+	<dt>At line 50 <code>$elm.trigger( &quot;name.of.your.event&quot;, settings );</code></dt>
+	<dd>Now, the second parameter contains the instance settings that will be used by the event.</dd>
+
+	<dt>At line 58 <code>function( event, data ) {</code></dt>
+	<dd>Add a second parameter, <var>data</var>, in order to receive data when the event is trigger.</dd>
+
+	<dt>At line 64-66 <code>if ( data &amp;&amp; data.domore ) {</code></dt>
 	<dd>If a <var>data</var> has been set and the property <var>domore</var> is true or is positive or contain something then prepend the words &quot;Do more&quot; to the element</dd>
 </dl>
 
-<h2>Step 3 - Test it out</h2>
+<h2>Step 4 - Test it out</h2>
 
 <p class="wb-helloworld">Example 1</p>
 
@@ -199,7 +301,6 @@ wb.add( selector );
 <p>Such as the function <code>wb.getId()</code> from which we can get an unique id that are not conflicting with any other elements. Or the array defined at <code>wb.drawColours</code> that is about a color sequence to use in order to maintain a good contrast, as used by the chart and graph and the geomap. Take a look at the <a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code</a> to find others useful function.</p>
 
 <p>The loading of third party plugin is done by using Modernizer. You can explorer other plugin that implement is like the <a href="https://github.com/wet-boew/wet-boew/blob/master/src/plugins/tables/tables.js#L80">tables plugins</a>.</p>
-
 
 <h2>Question or need help?</h2>
 

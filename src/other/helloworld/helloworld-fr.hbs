@@ -37,19 +37,19 @@
  */
 <strong>var nomComposant = &quot;wb-squelette&quot;,</strong>
 	selecteur = &quot;.&quot; + nomComposant,
-	initEvent = &quot;wb-init&quot; + selecteur,
+	initEvenement = &quot;wb-init&quot; + selecteur,
 	$document = wb.doc,
 
 	/**
 	 * @method init
-	 * @param {jQuery Event} event L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
 	 */
-	init = function( event ) {
+	init = function( Evenement ) {
 
 		// Début de l'initialisation
 		// retourne un objet DOM = procéder avec l'initialisation
 		// retourne undefined = ne pas procéder avec l'initialisation (ex., il est déjà initialisé)
-		var elm = wb.init( event, nomComposant, selecteur ),
+		var elm = wb.init( Evenement, nomComposant, selecteur ),
 			$elm;
 
 		if ( elm ) {
@@ -68,7 +68,7 @@ $document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function() {
 } );
 
 // Liaison à l'événement init du plugiciel
-$document.on( &quot;timerpoke.wb &quot; + initEvent, selecteur, init );
+$document.on( &quot;timerpoke.wb &quot; + initEvenement, selecteur, init );
 
 // Ajouter notre poke pour que l'initialisation des instances
 wb.add( selecteur );
@@ -105,34 +105,30 @@ wb.add( selecteur );
  * et non à chaque fois que le plugiciel sera instancié sur la page. Donc, ici c'est un bon endroit
  * enfin de définir des variables qui sont communes à toutes les instance du plugiciel sur la page.
  */
-var nomComposant = &quot;<strong>wb-bonjour</strong>&quot;,
+<strong>var nomComposant = &quot;wb-bonjour&quot;,</strong>
 	selecteur = &quot;.&quot; + nomComposant,
-	initEvent = &quot;wb-init&quot; + selecteur,
+	initEvenement = &quot;wb-init&quot; + selecteur,
 	$document = wb.doc,
 
 	/**
 	 * @method init
-	 * @param {jQuery Event} event L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
 	 */
-	init = function( event ) {
+	init = function( Evenement ) {
 
 		// Début de l'initialisation
 		// retourne un objet DOM = procéder avec l'initialisation
 		// retourne undefined = ne pas procéder avec l'initialisation (ex., il est déjà initialisé)
-		var elm = wb.init( event, nomComposant, selecteur ),
-			$elm,
-			parametres;
+		var elm = wb.init( Evenement, nomComposant, selecteur ),
+			$elm;
 
 		if ( elm ) {
 			$elm = $( elm );
 
 			// ... Faire l'initialisation du plugiciel
 
-			// Obtenir les paramètres JSON du plugiciel tel que définie par l'attribut data-wb-bonjour
-			<strong>parametres = wb.getData( $elm, nomComposant );</strong>
-
 			// Appel d'un événement personalisé
-			<strong>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</strong>
+			<strong>$elm.trigger( &quot;nom.de.votre.evenement&quot; );</strong>
 
 			// Annonce que l'initialisation de l'instance a été complélté
 			wb.ready( $elm, nomComposant );
@@ -140,19 +136,16 @@ var nomComposant = &quot;<strong>wb-bonjour</strong>&quot;,
 	};
 
 // Ajouter votre code pour gérer les événement de votre plugiciel
-$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenenment, donnee ) {
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenenment ) {
 	var elm = evenenment.currentTarget,
 		$elm = $( elm );
 
 	<strong>$elm.append( &quot;Bonjour le monde&quot; );</strong>
 
-	<strong>if ( donnee &amp;&amp; donnee.surpassetoi ) {</strong>
-		$elm.prepend( &quot;Surpasse toi&quot; );
-	}
 } );
 
 // Liaison à l'événement init du plugiciel
-$document.on( &quot;timerpoke.wb &quot; + initEvent, selecteur, init );
+$document.on( &quot;timerpoke.wb &quot; + initEvenement, selecteur, init );
 
 // Ajouter notre poke pour que l'initialisation des instances
 wb.add( selecteur );
@@ -163,20 +156,129 @@ wb.add( selecteur );
 	<dt>À la ligne 16 <code>var nomComposant = &quot;wb-bonjour&quot;,</code></dt>
 	<dd>Le plugiciel est nommé <strong>wb-bonjour</strong>.</dd>
 
-	<dt>À la ligne 40 <code>parametres = wb.getData( $elm, nomComposant );</code></dt>
-	<dd>Cela va lire les paramètres définie par l'attribut <code>data-wb-bonjour</code> et transforme le résultat en un objet JSON.</dd>
-
-	<dt>À la ligne 43 <code>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</code></dt>
+	<dt>À la ligne 39 <code>$elm.trigger( &quot;nom.de.votre.evenement&quot; );</code></dt>
 	<dd>L'événement &quot;nom.de.votre.evenement&quot; est déclanché pour l'élément DOM qui a initialisé cet instance de plugiciel</dd>
 
-	<dt>À la ligne 55 <code>$elm.append(&quot;Bonjour le monde&quot;);</code></dt>
+	<dt>À la ligne 51 <code>$elm.append(&quot;Bonjour le monde&quot;);</code></dt>
 	<dd>Le texte &quot;Bonjour le monde&quot; est ajouté à la fin du contenu intérieur de l'élément.</dd>
+</dl>
 
-	<dt>À la ligne 57-58 <code>if ( donnee &amp;&amp; donnee.surpassetoi ) {</code></dt>
+<h2>Étape 3 - Permettre le paramétrage</h2>
+
+<p>La pluspars des plugiciels ont besoin de paramétrage, l'exemple de code suivant démontre comment supporté plusieurs avenue différente afin de géré des paramètrages définie par l'éditeur et le développeur.</p>
+
+<pre><code>/**
+ * @title WET-BOEW Plugiciel bonjour le monde
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp
+ */
+( function( $, window, wb ) {
+&quot;use strict&quot;;
+
+/*
+ * Définition de variable et de fonction.
+ * Ceux-ci sont généraux au plugiciel - cela veux dire qu'ils seront initialisé une fois par page,
+ * et non à chaque fois que le plugiciel sera instancié sur la page. Donc, ici c'est un bon endroit
+ * enfin de définir des variables qui sont communes à toutes les instance du plugiciel sur la page.
+ */
+var nomComposant = &quot;wb-bonjour&quot;,
+	selecteur = &quot;.&quot; + nomComposant,
+	initEvenement = &quot;wb-init&quot; + selecteur,
+	$document = wb.doc,
+	<strong>defauts = {},</strong>
+
+	/**
+	 * @method init
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
+	 */
+	init = function( Evenement ) {
+
+		// Début de l'initialisation
+		// retourne un objet DOM = procéder avec l'initialisation
+		// retourne undefined = ne pas procéder avec l'initialisation (ex., il est déjà initialisé)
+		var elm = wb.init( Evenement, nomComposant, selecteur ),
+			$elm,
+			<strong>parametres;</strong>
+
+		if ( elm ) {
+			$elm = $( elm );
+
+			// ... Faire l'initialisation du plugiciel
+
+			// Obtenir les paramètres JSON du plugiciel tel que définie par l'attribut data-wb-bonjour
+			<strong>parametres = $.extend(
+				true,
+				{},
+				defauts,
+				window[ nomComposant ],
+				wb.getData( $elm, nomComposant )
+			);</strong>
+
+			// Appel d'un événement personalisé
+			<strong>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</strong>
+
+			// Annonce que l'initialisation de l'instance a été complélté
+			wb.ready( $elm, nomComposant );
+		}
+	};
+
+// Ajouter votre code pour gérer les événement de votre plugiciel
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, <strong>function( evenenment, donnee ) {</strong>
+	var elm = evenenment.currentTarget,
+		$elm = $( elm );
+
+	$elm.append( &quot;Bonjour le monde&quot; );
+
+	<strong>if ( donnee &amp;&amp; donnee.surpassetoi ) {</strong>
+		$elm.prepend( &quot;Surpasse toi&quot; );
+	}
+} );
+
+// Liaison à l'événement init du plugiciel
+$document.on( &quot;timerpoke.wb &quot; + initEvenement, selecteur, init );
+
+// Ajouter notre poke pour que l'initialisation des instances
+wb.add( selecteur );
+
+} )( jQuery, window, wb );</code></pre>
+
+<dl>
+	<dt>À la ligne 20 <code>defauts = {}</code></dt>
+	<dd>Un objet JSON qui définie les paramètres par défaut du plugiciel.</dd>
+
+	<dt>À la ligne 33 <code>parametres;</code></dt>
+	<dd>Une variable local qui contiendra les paramètres de l'instance courrante du plugiciel.</dd>
+
+	<dt>À la ligne 41 <code>parametres = $.extend(</code></dt>
+	<dd>La valeur de la variable local, parametres, sera une copie clonné créé en combinant l'ensemble des paramètres.</dd>
+
+	<dt>À la ligne 42 <code>true,</code></dt>
+	<dd>Cela va faire une copie en profondeur des objects JSON.</dd>
+
+	<dt>À la ligne 43 <code>{},</code></dt>
+	<dd>L'extension débute avec un objet vide.</dd>
+
+	<dt>À la ligne 44 <code>defauts,</code></dt>
+	<dd>Applique les paramètres par défaut.</dd>
+
+	<dt>À la ligne 45 <code>window[ nomComposant ],</code></dt>
+	<dd>Obtient les paramètres définie via javascript qui est souvant directement codé dans la même page qui utilise le plugiciel. Par example : <code>window['wb-bonjour'] = {};</code></dd>
+
+	<dt>À la ligne 46 <code>wb.getData( $elm, nomComposant )</code></dt>
+	<dd>Cela va lire les paramètres définie par l'attribut <code>data-wb-bonjour</code> et transforme le résultat en un objet JSON.</dd>
+
+	<dt>À la ligne 50 <code>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</code></dt>
+	<dd>Ici, le second paramètre est la configuration de l'instance en cours et qui sera utilisé par l'événement.</dd>
+
+	<dt>À la ligne 58 <code>function( evenenment, donnee ) {</code></dt>
+	<dd>Ajoute un second paramètre, <var>donnee</var>, à la fonction afin d'être en mesure de recevoir les données lorsque l'évélement est déclanché.</dd>
+
+	<dt>À la ligne 64-66 <code>if ( donnee &amp;&amp; donnee.surpassetoi ) {</code></dt>
 	<dd>S'il la variable <var>donnee</var> a été initialisé et qu'il contient une propriété nommé <var>surpassetoi</var> avec n'importe lequel valeur qui est vrai, alors les mots &quot;Surpasse toi&quot; sera ajouté au début de l'élément.</dd>
 </dl>
 
-<h2>Étape 3 - Mise à l'essaie</h2>
+<h2>Étape 4 - Mise à l'essaie</h2>
 
 <p class="wb-bonjour">Exemple 1</p>
 
@@ -192,7 +294,6 @@ wb.add( selecteur );
 
 <p>Noter que pour que vous puissez utiliser votre propre plugiciel dans la BOEW, vous devriez ajouter votre script après celui de la BOEW (wet-boew.js) dans le code HTML.</p>
 
-
 <h2>Allez plus loin</h2>
 
 <p>Le coeur non documenté de la BOEW contient plusieurs fonction utilitaire trè utile à plusieurs.</p>
@@ -200,7 +301,6 @@ wb.add( selecteur );
 <p>Tel que la fonction <code>wb.getId()</code> permet d'obtenir un identifiant unique qui n'entrera pas en conflit avec les autres éléments sur la page. Ou le tableau disponible par <code>wb.drawColours</code> définie une séquence de couleur à utiliser afin de maintenir un bon contraste, tel qu'utilisé par les graphiques et le géomap. Explorer le <a href="https://github.com/wet-boew/wet-boew/tree/master/src/core" hreflang="en">code source du coeur de la BOEW</a> afin de découvrir plusieurs autres fonction utilitaire.</p>
 
 <p>Le chargement de plugiciel tierce se fait à l'aide de Modernizer. Vous pouvez explorer des plugiciels qui l'utilise tel que l'<a href="https://github.com/wet-boew/wet-boew/blob/master/src/plugins/tables/tables.js#L80" hreflang="en">amélioration de tableau de donnée</a>.</p>
-
 
 <h2>Question ou besoin d'assistance?</h2>
 
