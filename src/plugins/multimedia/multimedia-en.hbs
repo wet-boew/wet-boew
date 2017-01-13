@@ -15,7 +15,7 @@
 <div class="row">
 	<section class="col-md-12">
 		<h2>Overview</h2>
-		<p>For video, the multimedia player leverages the native HTML5 <code>video</code> tag and relies on Flash as a fallback mechanism when the HTML5 <code>video</code> tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
+		<p>For video, the multimedia player leverages the native HTML5 <code>video</code> tag. The MPEG 4 format (H264 codec) is the minimum requirement for video because it is the standard video format on many browsers. An optional but highly recommended format, Webm (VP8 codec), should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
 		<p>The multimedia player's timeline relies on the HTML5 <code>progress</code> element and uses a polyfill when the element is not supported.</p>
 	</section>
 </div>
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Examples</h2>
-			<p>The first two video examples use native HTML5 video on most modern browsers including Firefox 6+, Google Chrome 3+ and IE9. The third video example works natively in some browsers but relies on the Flash fallback for Firefox. For all examples, the Flash fallback is used for IE8 as well as older versions of Firefox.</p>
+			<p>All video examples use native HTML5 video on most modern browsers including Firefox 6+, Google Chrome 3+ and IE9.</p>
 		</div>
 	</div>
 
