@@ -10,22 +10,28 @@
 	display: none !important;
 }
 
-#wb-srch {
-	@extend %noscript-display-block-important;
-}
-
-#wb-sm {
-	@extend %noscript-display-block-important;
-
-	.nvbar {
-		@extend %noscript-display-block-important;
+@media screen {
+	%menu-noscript-screen-display-block-important {
+		display: block !important;
 	}
-}
 
-#wb-sec {
-	@extend %noscript-display-block-important;
-}
+	#wb-srch {
+		@extend %menu-noscript-screen-display-block-important;
+	}
 
-#wb-info {
-	@extend %noscript-display-block-important;
+	#wb-sm {
+		@extend %menu-noscript-screen-display-block-important;
+
+		.nvbar {
+			@extend %menu-noscript-screen-display-block-important;
+		}
+	}
+
+	#wb-sec {
+		@extend %menu-noscript-screen-display-block-important;
+	}
+
+	#wb-info {
+		@extend %menu-noscript-screen-display-block-important;
+	}
 }
