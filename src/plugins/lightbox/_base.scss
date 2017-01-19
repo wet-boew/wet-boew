@@ -11,6 +11,10 @@
 	outline-offset: -2px;
 }
 
+%lightbox-modal-hide {
+	visibility: hidden !important;
+}
+
 .lbx-hide-gal {
 	li {
 		display: none;
@@ -18,6 +22,30 @@
 
 		&:first-child {
 			display: block;
+		}
+	}
+}
+
+body {
+	&.wb-modal {
+		> {
+			#wb-tphp,
+			header,
+			main,
+			footer
+			{
+				@extend %lightbox-modal-hide;
+			}
+		}
+
+		summary {
+			@extend %lightbox-modal-hide;
+		}
+
+		.modal-dialog {
+			summary {
+				visibility: visible !important;
+			}
 		}
 	}
 }
