@@ -17,6 +17,7 @@ var componentName = "wb-helloworld",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	defaults = {},
 
 	/**
 	 * @method init
@@ -37,7 +38,13 @@ var componentName = "wb-helloworld",
 			// ... Do the plugin initialisation
 
 			// Get the plugin JSON configuration set on attribute data-wb-helloworld
-			settings = wb.getData( $elm, componentName );
+			settings = $.extend(
+				true,
+				{},
+				defaults,
+				window[ componentName ],
+				wb.getData( $elm, componentName )
+			);
 
 			// Call my custom event
 			$elm.trigger( "name.of.your.event", settings );

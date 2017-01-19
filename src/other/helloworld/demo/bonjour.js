@@ -15,19 +15,20 @@
  */
 var nomComposant = "wb-bonjour",
 	selecteur = "." + nomComposant,
-	initEvent = "wb-init" + selecteur,
+	initEvenement = "wb-init" + selecteur,
 	$document = wb.doc,
+	defauts = {},
 
 	/**
 	 * @method init
-	 * @param {jQuery Event} event L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
 	 */
-	init = function( event ) {
+	init = function( Evenement ) {
 
 		// Début de l'initialisation
 		// retourne un objet DOM = procéder avec l'initialisation
 		// retourne undefined = ne pas procéder avec l'initialisation (ex., il est déjà initialisé)
-		var elm = wb.init( event, nomComposant, selecteur ),
+		var elm = wb.init( Evenement, nomComposant, selecteur ),
 			$elm,
 			parametres;
 
@@ -37,7 +38,13 @@ var nomComposant = "wb-bonjour",
 			// ... Faire l'initialisation du plugiciel
 
 			// Obtenir les paramètres JSON du plugiciel tel que définie par l'attribut data-wb-bonjour
-			parametres = wb.getData( $elm, nomComposant );
+			parametres = $.extend(
+				true,
+				{},
+				defauts,
+				window[ nomComposant ],
+				wb.getData( $elm, nomComposant )
+			);
 
 			// Appel d'un événement personalisé
 			$elm.trigger( "nom.de.votre.evenement", parametres );
@@ -60,7 +67,7 @@ $document.on( "nom.de.votre.evenement", selecteur, function( evenenment, donnee 
 } );
 
 // Liaison à l'événement init du plugiciel
-$document.on( "timerpoke.wb " + initEvent, selecteur, init );
+$document.on( "timerpoke.wb " + initEvenement, selecteur, init );
 
 // Ajouter notre poke pour que l'initialisation des instances
 wb.add( selecteur );
