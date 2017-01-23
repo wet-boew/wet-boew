@@ -908,6 +908,18 @@ module.exports = (grunt) ->
 					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
 				]
+			templates:
+				options:
+					ignore: [
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
+						"Element “dl” is missing a required instance of child element “dd”."
+						"Element “dl” is missing a required instance of child element “dt”."
+						"Empty heading."
+					]
+				src: [
+					"dist/unmin/demos/data-json/template-en.html"
+					"dist/unmin/demos/data-json/template-fr.html"
+				]
 			all:
 				options:
 					ignore: [
@@ -922,6 +934,8 @@ module.exports = (grunt) ->
 					"!dist/unmin/assets/**/*.html"
 					"!dist/unmin/demos/menu/demo/*.html"
 					"!dist/unmin/test/**/*.html"
+					"!dist/unmin/demos/data-json/template-en.html"
+					"!dist/unmin/demos/data-json/template-fr.html"
 				]
 
 		bootlint:

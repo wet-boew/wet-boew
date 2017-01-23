@@ -1,6 +1,25 @@
 {
-	"fees": {
+	"frais": {
 		"ABC": "20$"
 	},
-	"produit": "Bonjour le monde"
+	"produit": "Bonjour le monde",
+	"produits": [
+		"Mon nouveau produit",
+		"Mon deuxième produit",
+		"Mon produit numéro 3"
+	],
+	"etats": "text-muted",
+	"jesuisvrai": true,
+	"jesuisfaux": false,
+	"jour":"2016-11-05T01:42:31Z",
+	"unTableau": [
+		{ "nom": "Item 1", "prop": "rouge" },
+		{ "nom": "Item 2", "prop": "bleu" },
+		{ "nom": "Item 3", "prop": "jaune" },
+		{ "nom": "Item 4", "prop": "violet" }
+	],
+	"bureaux": [
+		{ "nom": "Jean Edmonds, Tour nord", "num": 300, "rue": "Slater", "ville": "Ottawa", "css": "bg-success" },
+		{ "nom": "Place du portage, Phase I", "num": 50, "rue": "Victoria", "ville": "Gatineau", "css": "bg-danger" }
+	]
 }
