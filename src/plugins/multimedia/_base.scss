@@ -27,6 +27,7 @@ $mm-volume-thumb-width: 10px;
 @mixin multimedia_overlay_loading {
 	.display {
 		@extend %global-loading;
+		position: relative;
 
 		&:before,
 		&:after {
