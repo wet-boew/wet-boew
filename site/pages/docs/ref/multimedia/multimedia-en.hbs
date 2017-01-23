@@ -131,8 +131,11 @@
 			<h4>Video (YouTube)</h4>
 			<ol>
 				<li>Add a <code>title</code> attribute to the <code>video</code> element with the value being the title of the video.</li>
-				<li>Add a <code>source</code> element to the <code>video</code> element with <code>type="video/youtube"</code> and the <code>src</code> attribute being the URL of the video.
+				<li>
+					<p>Add a <code>source</code> element to the <code>video</code> element with <code>type="video/youtube"</code> and the <code>src</code> attribute being the URL of the video.</p>
 					<pre><code>&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
+					<p>or</p>
+					<pre><code>&lt;source type="video/youtube" src="https://youtu.be/9znKJqnFuuY" /&gt;</code></pre>
 				</li>
 				<li>If captions are not already included for the video, add the captions using the tools provided by YouTube.</li>
 			</ol>
@@ -234,7 +237,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
