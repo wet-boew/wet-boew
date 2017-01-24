@@ -25,8 +25,12 @@ task :test do
 			"dist/demos/data-json/template-en.html",
 			"dist/demos/data-json/template-fr.html",
 			"dist/unmin/demos/data-json/template-en.html",
-			"dist/unmin/demos/data-json/template-fr.html"
-
+			"dist/unmin/demos/data-json/template-fr.html",
+			# Ignore empty href error. Content and inner code inside <template> element should be ignored.
+			"dist/demos/jsonmanager/jsonmanager-en.html",
+			"dist/demos/jsonmanager/jsonmanager-fr.html",
+			"dist/unmin/demos/jsonmanager/jsonmanager-en.html",
+			"dist/unmin/demos/jsonmanager/jsonmanager-fr.html"
 		],
 		:disable_external => true,
 		:empty_alt_ignore => true,

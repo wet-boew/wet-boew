@@ -1056,6 +1056,7 @@ module.exports = (grunt) ->
 						"jsonpointer/src/jsonpointer.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
+						"JSON-Patch/src/json-patch.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
