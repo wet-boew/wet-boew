@@ -39,7 +39,7 @@ var componentName = "wb-navcurr",
 				pageUrlQuery = windowLocation.search,
 				match = false,
 				className = classNameOverride ? classNameOverride : componentName,
-				len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
+				child, len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
 				localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
 				localBreadcrumbQuery, localBreadcrumbLinkUrl;
 
@@ -74,14 +74,15 @@ var componentName = "wb-navcurr",
 						// Pre-process the breadcrumb links
 						localBreadcrumbLinksArray = [];
 						localBreadcrumbLinksUrlArray = [];
-						localBreadcrumbLinks = ( breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "a" );
+						localBreadcrumbLinks = ( breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "li" );
 						len = localBreadcrumbLinks.length;
-						for ( i = 0; i !== len; i += 1 ) {
-							link = localBreadcrumbLinks[ i ];
-							linkHref = link.getAttribute( "href" );
-							if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
-								localBreadcrumbLinksArray.push( link );
-								localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
+						if ( len ) {
+							link = localBreadcrumbLinks[ len - 1 ];
+							child = link.firstChild;
+							linkHref = ( child && child.nodeName === "A" ) ? child.getAttribute( "href" ) : "";
+							if ( linkHref && linkHref.charAt( 0 ) !== "#" ) {
+								localBreadcrumbLinksArray.push( child );
+								localBreadcrumbLinksUrlArray.push( child.hostname + child.pathname.replace( /^([^\/])/, "/$1" ) );
 							}
 						}
 
