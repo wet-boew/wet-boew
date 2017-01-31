@@ -23,13 +23,34 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		fetchOpts = event.fetch,
 		urlParts = fetchOpts.url.split( " " ),
 		url = urlParts[ 0 ],
-		urlHash = url.split( "#" )[ 1 ],
+		urlSubParts = url.split( "#" ),
+		urlHash = urlSubParts[ 1 ],
 		selector = urlParts[ 1 ] || ( urlHash ? "#" + urlHash : false ),
-		fetchData, callerId;
+		fetchData, callerId, fetchNoCacheURL, urlSub,
+		fetchNoCache = fetchOpts.nocache,
+		fetchNoCacheKey = fetchOpts.nocachekey || wb.cacheBustKey || "wbCacheBust";
 
 	// Separate the URL from the filtering criteria
 	if ( selector ) {
 		fetchOpts.url = urlParts[ 0 ];
+	}
+
+	if ( fetchNoCache ) {
+		if ( fetchNoCache === "nocache" ) {
+			fetchNoCacheURL = wb.guid();
+		} else {
+			fetchNoCacheURL = wb.sessionGUID();
+		}
+		fetchNoCacheURL = fetchNoCacheKey + "=" + fetchNoCacheURL;
+
+		urlSub = urlSubParts[ 0 ];
+		if ( urlSub.indexOf( "?" ) !== -1 ) {
+			url = urlSub + "&" + fetchNoCacheURL + ( urlHash ? "#" + urlHash : "" );
+		} else {
+			url = urlSub + "?" + fetchNoCacheURL + ( urlHash ? "#" + urlHash : "" );
+		}
+
+		fetchOpts.url = url;
 	}
 
 	// Filter out any events triggered by descendants
