@@ -1,0 +1,106 @@
+---
+{
+	"title": "URL Mapping - Ajax",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Execute pre-configured ajax action based on url query string.",
+	"tag": "urlmapping",
+	"parentdir": "urlmapping",
+	"altLangPrefix": "ajax",
+	"dateModified": "2017-02-03"
+}
+---
+<p>Execute pre-configured ajax action based on url query string.</p>
+
+<div class="wb-prettify all-pre"></div>
+
+<aside id="asidecontainer" class="col-md-5 pull-right">
+	<h2>Aside container</h2>
+	<p>Empty</p>
+</aside>
+
+<ul>
+	<li><a href="?">Empty <code>?</code></a></li> 
+	<li><a href="?ajxload=1">Ajax 1 <code>?ajxload=1</code></a></li>
+	<li><a href="?ajxload=2">Ajax 2 <code>?ajxload=2</code></a></li>
+	<li><a href="?ajxload=3">Ajax 3 <code>?ajxload=3</code></a></li>
+	<li><a href="?ajxload=4">Ajax 4 <code>?ajxload=4</code></a></li>
+	<li><a href="?ajxload=5">Ajax 5 <code>?ajxload=5</code></a></li>
+	<li><a href="?ajxload=5special">Trigger WET after Ajax 5 is inserted<code>?ajxload=5special</code></a></li>
+	<li><a href="?special">Ajax two files (Ajax 4 and Ajax 2) <code>?special</code></a></li>
+	<li><a href="?mspecial=ul">Ajax <code>ul</code> of two files (Ajax 4 and Ajax 2) <code>?mspecial=ul</code></a></li>
+	<li><a href="?loadme=3">Mapping the query string, load Ajax 3<code>?loadme=3</code></a></li>
+	<li><a href="?loadme=asdf">Mapping the query string, load Ajax asdf<code>?loadme=asdf</code></a> but fallback on default "1"</li>
+</ul>
+
+<div data-wb-urlmapping='{
+		"ajxload=1": { "action": "ajax", "url": "ajax/ajax-1.html" },
+		"ajxload=2": { "action": "ajax", "url": "ajax/ajax-2.html" },
+		"ajxload=3": { "action": "ajax", "url": "ajax/ajax-{qval}.html", "match": "^\\d$", "default": "1" },
+		"ajxload=4": { "action": "ajax", "url": "ajax/ajax-4.html" },
+		"ajxload=5": { "action": "ajax", "url": "ajax/ajax-5.html" },
+		"ajxload=5special": { "action": "ajax", "url": "ajax/ajax-5.html", "trigger": true },
+		"special": [
+			{ "action": "ajax", "url": "ajax/ajax-2.html", "container": "#asidecontainer" },
+			{ "action": "ajax", "url": "ajax/ajax-4.html" }
+		],
+		"mspecial": [
+			{ "action": "ajax", "url": "ajax/ajax-2.html {qval}", "container": "#asidecontainer", "match": "(^ul$)", "default": "p" },
+			{ "action": "ajax", "url": "ajax/ajax-4.html {qval}", "match": "(^ul$)", "default": "p" }			
+		],
+		"loadme": { "action": "ajax", "url": "ajax/ajax-{qval}.html", "match": "^\\d$", "default": "1" }
+	}'></div>
+
+<h2>Source code</h2>
+<details>
+	<summary>HTML</summary>
+	
+<pre><code>&lt;aside id=&quot;asidecontainer&quot; class=&quot;col-md-5 pull-right&quot;&gt;
+	&lt;h2&gt;Aside container&lt;/h2&gt;
+	&lt;p&gt;Empty&lt;/p&gt;
+&lt;/aside&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;?&quot;&gt;Empty &lt;code&gt;?&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+	&lt;li&gt;&lt;a href=&quot;?ajxload=1&quot;&gt;Ajax 1 &lt;code&gt;?ajxload=1&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ajxload=2&quot;&gt;Ajax 2 &lt;code&gt;?ajxload=2&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ajxload=3&quot;&gt;Ajax 3 &lt;code&gt;?ajxload=3&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ajxload=4&quot;&gt;Ajax 4 &lt;code&gt;?ajxload=4&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ajxload=5&quot;&gt;Ajax 5 &lt;code&gt;?ajxload=5&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ajxload=5special&quot;&gt;Trigger WET after Ajax 5 is inserted&lt;code&gt;?ajxload=5special&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?special&quot;&gt;Ajax two files (Ajax 4 and Ajax 2) &lt;code&gt;?special&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?mspecial=ul&quot;&gt;Ajax &lt;code&gt;ul&lt;/code&gt; of two files (Ajax 4 and Ajax 2) &lt;code&gt;?mspecial=ul&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?loadme=3&quot;&gt;Mapping the query string, load Ajax 3&lt;code&gt;?loadme=3&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?loadme=asdf&quot;&gt;Mapping the query string, load Ajax asdf&lt;code&gt;?loadme=asdf&lt;/code&gt;&lt;/a&gt; but fallback on default &quot;1&quot;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div data-wb-urlmapping='{
+		&quot;ajxload=1&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-1.html&quot; },
+		&quot;ajxload=2&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot; },
+		&quot;ajxload=3&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;^\\d$&quot;, &quot;default&quot;: &quot;1&quot; },
+		&quot;ajxload=4&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot; },
+		&quot;ajxload=5&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot; },
+		&quot;ajxload=5special&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;, &quot;trigger&quot;: true },
+		&quot;special&quot;: [
+			{ &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;, &quot;container&quot;: &quot;#asidecontainer&quot; },
+			{ &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot; }
+		],
+		&quot;mspecial&quot;: [
+			{ &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html {qval}&quot;, &quot;container&quot;: &quot;#asidecontainer&quot;, &quot;match&quot;: &quot;(^ul$)&quot;, &quot;default&quot;: &quot;p&quot; },
+			{ &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html {qval}&quot;, &quot;match&quot;: &quot;(^ul$)&quot;, &quot;default&quot;: &quot;p&quot; }
+		],
+		&quot;loadme&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;^\\d$&quot;, &quot;default&quot;: &quot;1&quot; }
+	}'&gt;&lt;/div&gt;</code></pre>
+</details>
+
+<details>
+	<summary>Ajax files</summary>
+	<ul>
+		<li><a href="ajax/ajax-1.html">ajax/ajax-1.html</a></li>
+		<li><a href="ajax/ajax-2.html">ajax/ajax-2.html</a></li>
+		<li><a href="ajax/ajax-3.html">ajax/ajax-3.html</a></li>
+		<li><a href="ajax/ajax-4.html">ajax/ajax-4.html</a></li>
+		<li><a href="ajax/ajax-5.html">ajax/ajax-5.html</a></li>
+		<li><a href="ajax/ajax-5a.html">ajax/ajax-5a.html</a></li>
+	</ul>
+</details>
