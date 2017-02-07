@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Helps with implementing Twitter embedded timelines.",
 	"altLangPrefix": "twitter",
-	"dateModified": "2014-08-04"
+	"dateModified": "2017-02-07"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -26,29 +26,27 @@
 
 <section>
 	<h2>How to implement</h2>
+	<strong>Determine the type of timeline at <a rel="external" href="https://dev.twitter.com/web/overview">Twitter for Websites</a></strong>
+
 	<ol>
-		<li>Create an embedded timeline on Twitter.com according to Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#creating">Creating an Embeddable Timeline</a> documentation.</li>
-		<li>For each area that will display a Twitter embedded timeline, create a <code>div</code> element with <code>class="wb-twitter"</code>.
+		<li>Create you html embedded timline link using <a rel="external" href="https://publish.twitter.com/">Twitter Publish</a> tool or learn more about query generation at <a rel="external" href="https://dev.twitter.com/web/embedded-timelines/search">Embedded Search Timeline</a>.
+			<pre><code>&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/WebExpToolkit&quot; data-tweet-limit=&quot;3&quot; &gt;Tweets by @WebExpToolkit&lt;/a&gt;</code></pre>
+		</li>
+		<li>Wrap the html embedded timline link with a <code>div</code> element with <code>class="wb-twitter"</code>.
 			<pre><code>&lt;div class="wb-twitter"&gt;&lt;/div&gt;</code></pre>
 		</li>
-		<li>Inside the <code>div</code> element add a link with:
-			<ol>
-				<li><code>class="twitter-timeline"</code></li>
-				<li><code>href</code> attribute with the URL for the equivalent query on Twitter.com (e.g., https://twitter.com/search?q=%23WxT)</li>
-				<li><code>widget-id</code> attribute with the id of the embedded timeline (e.g., "329066756620566528")</li>
-				<li>link text that describes timeline (e.g., <code>Tweets about "#WxT"</code>)</li>
-			</ol>
-			<pre><code>&lt;div class="wb-twitter"&gt;
-	&lt;a class="twitter-timeline" href="https://twitter.com/search?q=%23WxT" data-widget-id="329066756620566528"&gt;Tweets about "#WxT"&lt;/a&gt;
+		<li>
+			With this example your final code should be:
+			<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
+&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/WebExpToolkit&quot; data-tweet-limit=&quot;3&quot; &gt;Tweets by @WebExpToolkit&lt;/a&gt;
 &lt;/div&gt;</code></pre>
 		</li>
-		<li>Configure the timeline according to Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#customization">Customization Options</a> documentation.</li>
 	</ol>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>All configuration options are detailed in Twitter's <a rel="external" href="https://dev.twitter.com/docs/embedded-timelines#customization">Customization Options</a> documentation.</p>
+	<p>All configuration options are detailed in <a rel="external" href="https://dev.twitter.com/web/overview">Twitter for Websites</a> documentation.</p>
 </section>
 
 <section>
@@ -80,7 +78,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
