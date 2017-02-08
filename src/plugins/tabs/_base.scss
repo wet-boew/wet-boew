@@ -514,7 +514,7 @@ $tab-margin-width: 10px;
 				&[open] {
 					> {
 						summary {
-							@extend %global-display-block-important;
+							display: list-item !important;
 						}
 					}
 				}
@@ -528,7 +528,7 @@ $tab-margin-width: 10px;
 						&[open] {
 							> {
 								summary {
-									@extend %global-display-block-important;
+									display: list-item !important;
 								}
 							}
 						}

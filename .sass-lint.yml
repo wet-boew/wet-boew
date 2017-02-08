@@ -23,6 +23,7 @@ rules:
         - border-top
         - border-bottom
         - cursor
+        - list-style-type
   no-empty-rulesets: 2
   no-ids: 0
   no-important: 0
