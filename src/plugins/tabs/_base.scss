@@ -233,7 +233,13 @@ $tab-margin-width: 10px;
 				}
 
 				&.active {
-					background: $tablist-active-bg-color;
+					@if $tablist-active-bg-color {
+						background: $tablist-active-bg-color;
+					} @else if $main-bg {
+						background: $main-bg
+					} @else {
+						background: $body-bg;
+					}
 					border-bottom: 0;
 					cursor: default;
 					padding-bottom: 1px;
