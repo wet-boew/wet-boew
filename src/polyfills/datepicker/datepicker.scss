@@ -17,7 +17,7 @@
 .picker-overlay {
 	display: none;
 	position: absolute;
-	z-index: 1000;
+	z-index: 10000;
 
 	&.open {
 		display: block;

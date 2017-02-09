@@ -39,4 +39,5 @@ rules:
   quotes:
     - 2
     - style: double
+  space-before-bang: 2
   variable-name-format: 0
