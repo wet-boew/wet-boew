@@ -1,0 +1,645 @@
+---
+{
+	"title": "Correspondance d'URL",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Exécute des requête pré-établis selon la correspondance des paramètres de l'URL.",
+	"altLangPrefix": "urlmapping",
+	"dateModified": "2017-02-03"
+}
+---
+<div class="wb-prettify all-pre"></div>
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+
+<section>
+	<h2>Purpose</h2>
+	<p>Performing a action base on the url query string after wet-boew is ready.</p>
+</section>
+<section>
+	<h2>Use when</h2>
+	<p>When the page need to be modified <strong>slightly</strong> to improve the content usability. It improve the re-use of fragmented content.</p>
+</section>
+<section>
+	<h2>Do not use when</h2>
+	<p>To fully feed your page content, in such situation use a server side solution instead.</p>
+</section>
+<section>
+	<h2>Working example</h2>
+	<p>English:</p>
+	<ul>
+		<li><a href="../../../demos/urlmapping/ajax-en.html">URL manager - Ajax</a></li>
+		<li><a href="../../../demos/urlmapping/tblfilter-en.html">URL manager - Table filtering</a></li>
+		<li><a href="../../../demos/urlmapping/patches-en.html">URL manager - Patching JSON</a></li>
+	</ul>
+	<p>French:</p>
+	<ul>
+		<li><a href="../../../demos/urlmapping/ajax-fr.html" hreflang="fr" lang="fr">Correspondance d'URL - Ajax</a></li>
+		<li><a href="../../../demos/urlmapping/tblfilter-fr.html" hreflang="fr" lang="fr">Correspondance d'URL - Filtrer un tableau</a></li>
+		<li><a href="../../../demos/urlmapping/patches-fr.html" hreflang="fr" lang="fr">Correspondance d'URL - Appliquer des correctifs JSON</a></li>
+	</ul>
+</section>
+<section>
+	<h2>How to implement</h2>
+	<p>The url mapping support three type of action. It is possible to add support for additional action.</p>
+	
+	<h3>Ajaxing</h3>
+	<p>On an element</p>
+	<pre><code>&lt;div data-wb-urlmapping='{
+		&quot;ajxload=1&quot;:
+			{
+				&quot;action&quot;: &quot;ajax&quot;,
+				&quot;url&quot;: &quot;ajax/ajax-1.html&quot;
+			}
+		}'&gt;&lt;/div&gt;</code></pre>
+	<p>Where:</p>
+	<dl class="dl-horizontal">
+		<dt><code>ajxload=1</code></dt>
+		<dd>Is the query that must match to apply the related action</dd>
+		<dt><code>&quot;action&quot;: &quot;ajax&quot;</code></dt>
+		<dd>Will execute an ajax request with the data-ajax plugin.</dd>
+		<dt><code>&quot;url&quot;: &quot;ajax/ajax-1.html&quot;</code></dt>
+		<dd>URL of the ajax file.</dd>
+	</dl>
+	
+	<h3>Table filtering</h3>
+	<p>On an element with a source refering to a table or directly on a table element</p>
+	<pre><code>&lt;table class=&quot;wb-tables table&quot; data-wb-urlmapping='{
+		&quot;date=jul26&quot;:
+			{
+				&quot;action&quot;: &quot;tblfilter&quot;,
+				&quot;column&quot;: 1,
+				&quot;value&quot;: &quot;2016-07-26&quot;
+			}
+		}' &gt;</code></pre>
+	<p>Where:</p>
+	<dl class="dl-horizontal">
+		<dt><code>date=jul26</code></dt>
+		<dd>Is the query that must match to apply the related action</dd>
+		<dt><code>&quot;action&quot;: &quot;tblfilter&quot;</code></dt>
+		<dd>Will apply a table column filter action by using the data tables plugin.</dd>
+		<dt><code>&quot;column&quot;: 1</code></dt>
+		<dd>The filtering will be applied on the column index 1. That is visually the second column of the table.</dd>
+		<dt><code>&quot;value&quot;: &quot;2016-07-26&quot;</code></dt>
+		<dd>The filter value will be the string &quot;2016-07-26&quot;.</dd>
+	</dl>
+	
+	<h3>Patching</h3>
+	<p>On an element</p>
+	<pre><code>&lt;div data-wb-urlmapping='{
+		&quot;example1a&quot;:
+			{
+				&quot;action&quot;: &quot;patch&quot;,
+				&quot;source&quot;: &quot;#jmexample1&quot;,
+				&quot;patches&quot;:
+					{
+						&quot;op&quot;: &quot;add&quot;,
+						&quot;path&quot;: &quot;/city&quot;,
+						&quot;value&quot;: &quot;Gatineau&quot;
+					}
+				}
+			}
+		}'&gt;&lt;/div&gt;</code></pre>
+	<p>Where:</p>
+	<dl class="dl-horizontal">
+		<dt><code>example1a</code></dt>
+		<dd>Is the query that must match to apply the related action</dd>
+		<dt><code>&quot;action&quot;: &quot;patch&quot;</code></dt>
+		<dd>Will apply the patch action to an existing JSON manager plugin.</dd>
+		<dt><code>&quot;source&quot;: &quot;#jmexample1&quot;</code></dt>
+		<dd>The source represent a pointer to the JSON manager. "<code>#jmexample1</code>" is representing the id of the element containing the JSON manager.</dd>
+		<dt><code>&quot;patches&quot;: { ... }</code></dt>
+		<dd>Contain a patch or an array of patch. See the JSON manager documentation to know how to create JSON patch operation.</dd>
+	</dl>
+</section>
+
+
+<section>
+	<h2>Binding actions to the page query</h2>
+
+	<p>The following variable can be used to map the query information for ajax url, table filter or patches selector.</p>
+	<dl class="dl-horizontal">
+		<dt>{qval} string</dt>
+		<dd>Query value in the url required to match a regular expression with <code>match</code> configuration. It can be specified by setting the parameter <code>qval</code>.</dd>
+
+		<dt>{base} string</dt>
+		<dd>Only for patches. Define the base string of a JSON pointer. Default value is <code>/</code>. It can be specified by setting the parameter <code>base</code>.</dd>
+	</dl>
+	
+	<h3><code>match</code> and <code>default</code> configuration</h3>
+
+	<p>If <code>match</code> is defined in your configuration, then the <code>default</code> configuration <strong>must</strong> be also defined.</p>
+
+	<p>For security reason, any value retreived from the page URL always require to configure <code>match</code> that will contain a regular expresion. If there no match or the matching result is an empty string, the <code>default</code> configuration will be used as the value fallback.</p>
+	
+	<p>When you specify a regular expression, it is recommended to have it prefixed with "<code>^</code>" and suffixed with "<code>$</code>". Be careful to not use regular expression that could compromise the security.</p>
+	
+	<h3>Example 1 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;[A-Z][a-z][A-Z][a-z][A-Z][a-z]&quot;, &quot;default&quot;: &quot;default&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=canada</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-CaNaDa.html</code></dd>
+	</dl>
+
+	<h3>Example 2 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx=2&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;[0-9]&quot;, &quot;default&quot;: &quot;null&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-2.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=5</code></dt>
+		<dd>Do nothing</dd>
+	</dl>
+
+	<h3>Example 3 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;qval&quot;: &quot;TEST&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+	</dl>
+	<p>Note: The result of <code>match</code> configuration is ignored when the query value is set.</p>
+	
+	<h3>Example 4 - Table filtering</h3>
+	<pre><code>data-wb-urlmapping='{
+	&quot;date-search&quot;:
+		{
+			&quot;action&quot;: &quot;tblfilter&quot;,
+			&quot;source&quot;: &quot;#myDataTable&quot;,
+			&quot;column&quot;: 1,
+			&quot;value&quot;: &quot;{qval}&quot;,
+			&quot;match&quot;: &quot;[1-2][0-9][0-9][0-9]-[0,1][0-9]-[0-3][0-9]&quot;,
+			&quot;default&quot;: &quot;2016-07-23&quot;
+		}
+	}'</code></pre>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?</code></dt>
+		<dd>Will show all result</dd>
+		<dt><code>?date-search</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+		<dt><code>?date-search=</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+		<dt><code>?date-search=2016-07-26</code></dt>
+		<dd>Will show result that match the string "2016-07-26" in the second column.</dd>
+		<dt><code>?date-search=YYYY-MM-DD</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+	</dl>
+</section>
+
+
+<h2>Default patch operation</h2>
+<pre><code>{
+	op: "move",
+	path: "{base}",
+	from: "{base}/{qval}"
+}</code></pre>
+
+
+<section>
+	<h2>Configuration options</h2>
+	
+	<p>The <code>data-wb-urlmapping</code> attribute must contain an JSON object where all top level property represent the mapping of the url query. Each of those property will contain an object "<code>{ Mapping object }</code>"defined in the table bellow.</p>
+	
+	<pre><code>data-wb-urlmapping='
+	{
+		"urlQueryMapping" : { Mapping object },
+		"urlQueryMapping" : { Mapping object },
+		"urlQueryMapping" : { Mapping object },
+		"urlQueryMapping" : { Mapping object }
+	}</code></pre>
+	
+	<p>Note that only the first "<code>urlQueryMapping</code>" mapping object found will be executed, that restriction can be removed by adding the configuration <code>"multiplequery": true"</code> along with the other urlQueryMapping mapping object.</p>
+	
+	
+	<form id="frmActionConfig">
+	<div class="wb-fieldflow" data-wb-fieldflow='{
+		"noForm": true, 
+		"unhideelm": 
+		"#frmActionConfig",
+		"srctype":"tblfilter", 
+		"source":"#actionConfig", 
+		"column":1, 
+		"defaultselectedlabel": "All the configuration options", 
+		"label":"Filter by type of action:"
+	}'></div>
+</form>
+	
+	<table id="actionConfig" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+	<thead>
+	<tr>
+		<th>Option</th>
+		<th>Description</th>
+		<th>How to configure</th>
+		<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>action</td>
+		<td><p>Required. Define the action to do.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+				<li>tblfilter</li>
+				<li>patch</li>
+				<li>addClass</li>
+				<li>removeClass</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "<em>[Name of the action]</em>" } }</code></td>
+		<td>
+			<dl>
+				<dt>ajax</dt>
+				<dd>Insert content after the element</dd>
+				<dt>tblfilter</dt>
+				<dd>Will apply a column filter to a data table</dd>
+				<dt>patch</dt>
+				<dd>Will apply a patch by using a JSON manager</dd>
+				<dt>addClass</dt>
+				<dd>Add a class to an element</dd>
+				<dt>removeClass</dt>
+				<dd>Remove a class to an element</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>url</td>
+		<td><p>Specify the url to load. Ajax filtering is supported. The <code>{qval}</code> placeholder can be used to replace it by a value that has match the specified regular expression throug the <code>match</code> configuration.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html" } }</code></td>
+		<td>URL</td>
+	</tr>
+	<tr>
+		<td>trigger</td>
+		<td><p>Initiate WET features of the inserted content.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "trigger": true } }</code></td>
+		<td>
+			<dl>
+				<dt>false (default):</dt>
+				<dd>Content is kept as is</dd>
+				<dt>true:</dt>
+				<dd>Will initiate any WET feature that exist in the inserted content. Note that for security reason only the first urlmapping can trigger WET on ajaxed content.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>container</td>
+		<td><p>Specify the container to use to insert the ajax(ed) content</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "container": "#jQuerySelector" } }</code></td>
+		<td>jQuery selector
+			<p>(By default the container will be a empty container inserted after the form.)</p>
+		</td>
+	</tr>
+	<tr>
+		<td>type</td>
+		<td><p>Define how content will be inserted from the container perspective.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "type": "replace" } }'</code></td>
+		<td>
+			<ul>
+				<li>replace(default)</li>
+				<li>after</li>
+				<li>append</li>
+				<li>before</li>
+				<li>prepend</li>
+			</ul>
+			<p>This value map how to call the data-ajax plugin</p>
+		</td>
+	</tr>
+	<tr>
+		<td>qval</td>
+		<td><p>Define exactly the value of the query parameter to use when replacing with <code>{qval}</code>. When explicitly specified, useful during quick testing, it do not need to match the regular expression set by <code>match</code>.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+				<li>tblfilter</li>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "qval": "<em>[a value]</em>" } }'</code></td>
+		<td>
+			<dl>
+				<dt>false (default):</dt>
+				<dd>Will be set as per the mapped query value</dd>
+				<dt>string:</dt>
+				<dd>Any value that will be recongnized as the query parameter value</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>match</td>
+		<td><p>Regular expression use to extrac the value from the url parameter. Required when "{qval}" is used as a placeholder, otherwise it will be replaced by the required <code>default</code> value.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+				<li>tblfilter</li>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "match": "<em>A regular expression</em>", "default": "DefaultValue" } }'</code></td>
+		<td>A valid regular expression that explicitly must start with something and end must end with something.</td>
+	</tr>
+	<tr>
+		<td>default</td>
+		<td><p>Required when <code>match</code> is defined. Default value to use in the case of there is no match when evaluating the regular expression.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>ajax</li>
+				<li>tblfilter</li>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "ajax", "url": "path/to/my/file.html", "match": "<em>A regular expression</em>", "default": "DefaultValue" } }'</code></td>
+		<td>Any valid string that when used as a fallback would work with your content.</td>
+	</tr>
+	<tr>
+		<td>source</td>
+		<td><p>jQuery selector that refer to an existing element on the page. This configuration option can be omited for a table filtering if the url-mapping is set directly on the table element.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+				<li>patch</li>
+				<li>addClass</li>
+				<li>removeClass</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "source": "#jQuerySelector" } }'</code></td>
+		<td>jQuery selector and when the action is set to <code>tblfilter</code> the source should refer to a data table enhanced with <a href="http://wet-boew.github.io/wet-boew/demos/tables/tables-en.html">tables plugin</a>.</td>
+	</tr>
+	<tr>
+		<td>column</td>
+		<td><p>Required for table filtering, this is specify on which column the filter should be applied</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "column": 5 } }'</code></td>
+		<td>
+			<dl>
+				<dt>Number</dt>
+				<dd>Integer representing the column number where the first column of table is the number &quot;0&quot;</dd>
+				
+				<dt>Column selector</dt>
+				<dd>A valid <a href="https://datatables.net/reference/type/column-selector">DataTable column selector</a></dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>value</td>
+		<td><p>Required for table filtering, this specify on what value the filter should be applied. The <code>{qval}</code> placeholder can be used in the value, but it must match the regular expression set by <code>match</code> config, otherwise it will be replaced by an empty string.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "value": "a value to be filtered about" } }'</code></td>
+		<td>A value that will be searched agains the specified column in order to filter the rows.</td>
+	</tr>
+	<tr>
+		<td>regex</td>
+		<td><p>Treat the searched value as a regular expression. Enable regular expressions without desabling smart search, as smart search use regular expressions, both might conflict and cause unexpected results.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "column": 0, "regex":true, "smart":false } }'</code></td>
+		<td>Boolean, default false (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+	</tr>
+	<tr>
+		<td>smart</td>
+		<td><p>Perform smart search. Note that to perform a smart search, DataTables uses regular expressions, so if enable regular expressions using the regex parameter to this method, you will likely want to disable smart searching as the two regular expressions might otherwise conflict and cause unexpected results.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "column": 0, "smart":false } }'</code></td>
+		<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+	</tr>
+	<tr>
+		<td>caseinsen</td>
+		<td><p>Do case-insensitive matching.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>tblfilter</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "tblfilter", "column": 0, "caseinsen":false } }'</code></td>
+		<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+	</tr>
+	<tr>
+		<td>class</td>
+		<td><p>CSS Class name.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>addClass</li>
+				<li>removeClass</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "addClass", "source": "#id", "class": "myclass" } }'</code></td>
+		<td>A CSS class name</td>
+	</tr>
+	
+	<tr>
+		<td>base</td>
+		<td><p>Define exactly the value of the query parameter to use when replacing with <code>{base}</code>.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "patch", "source": "#myJSONmanager", "base": "<em>/</em>" } }'</code></td>
+		<td>
+			<dl>
+				<dt>"/" (default):</dt>
+				<dd>A slash indicating the root.</dd>
+				<dt>JSON Pointer:</dt>
+				<dd>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a></dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>patches</td>
+		<td><p>Apply patches.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "patch", "source": "#myJSONmanager", "patches": [ Patches object supported by the JSON manager ] } }'</code></td>
+		<td>
+			<dl>
+				<dt>false (default):</dt>
+				<dd>Will use the following patch <code>{ op: "move", path: "{base}", from: "{base}/{qval}" }</code></dd>
+				<dt>Array []:</dt>
+				<dd>The page query placeholder will be replace in each for the property <code>path</code>, <code>value</code>, <code>from</code> then the patch is sent to the JSON manager for processing.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>cumulative</td>
+		<td><p>Apply persistant patches for the current page instance. That means that patches exectued will remain when further patches modification is completed by the JSON manager during the current page load. When WET is re-executed (on page load) then all the permently change are ignored. It do not change the data source, it just apply the change in the dataset.</p>
+			<p>Available for:</p>
+			<ul>
+				<li>patch</li>
+			</ul>
+		</td>
+		<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "patch", "source": "#myJSONmanager", "patches": [ Patches object supported by the JSON manager ], "cumulative": true } }'</code></td>
+		<td>
+			<dl>
+				<dt>false (default):</dt>
+				<dd>The patches will be ignored at the next patches update by the JSON manager.</dd>
+				<dt>true:</dt>
+				<dd>The patches will be cumulative for the next patches updated by the JSON manager, like from instruction received by fieldflow.</dd>
+			</dl>
+		</td>
+	</tr>
+	</tbody>
+</table>
+</section>
+
+	
+<section>
+	<h2>Events</h2>
+		
+	<table id="events" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>patch.action.wb-urlmapping</code>
+					<ul>
+						<li>patch</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on patch action execution.</td>
+				<td>Prepare the patches data to be sent to JSON manager throught the event "<code>patches.wb-jsonmanager</code>".</td>
+			</tr>
+			<tr>
+				<td><code>ajax.action.wb-urlmapping</code>
+					<ul>
+						<li>ajax</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on ajax action execution.</td>
+				<td>Execute the ajax instruction by using the data-ajax plugin.</td>
+			</tr>
+			<tr>
+				<td><code>addClass.action.wb-urlmapping</code>
+					<ul>
+						<li>addClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on addClass action execution.</td>
+				<td>Will add the specified class to the specified source element.</td>
+			</tr>
+			<tr>
+				<td><code>removeClass.action.wb-urlmapping</code>
+					<ul>
+						<li>removeClass</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on addClass action execution.</td>
+				<td>Will removed the specified class to the specified source element.</td>
+			</tr>
+			<tr>
+				<td><code>tblfilter.action.wb-urlmapping</code>
+					<ul>
+						<li>tblfilter</li>
+					</ul>
+				</td>
+				<td>Triggered automatically on tblfilter action execution.</td>
+				<td>Filter the data table rows by searching on the specified column.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-urlmapping</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically after an wb-urlmapping is initialized.</td>
+				<td>Used to identify when an wb-urlmapping has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-urlmapping", ".wb-urlmapping", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-urlmapping" ).on( "wb-ready.wb-urlmapping", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-init.wb-urlmapping</code>
+					<ul>
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-urlmapping" ).trigger( "wb-init.wb-urlmapping" );</code>).</td>
+				<td>Used to manually initialize the wb-urlmapping plugin. <strong>Note:</strong> The wb-urlmapping plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code>
+					<ul class="mrgn-lft-0">
+						<li>Plugin core</li>
+					</ul>
+				</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+				<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/urlmapping">URL mapping manager plugin source code on GitHub</a></p>
+</section>
+</div>

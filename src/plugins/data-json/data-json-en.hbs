@@ -7,140 +7,274 @@
 	"tag": "data-json",
 	"parentdir": "data-json",
 	"altLangPrefix": "data-json",
-	"dateModified": "2016-11-07"
+	"dateModified": "2017-01-31"
 }
 ---
 <p>Insert content extracted from a JSON file.</p>
 
 <div class="wb-prettify all-pre"></div>
 
-<div class="well">
-	<p>Data selection is done by an JSON Pointer URI Fragment as described in <a href="https://tools.ietf.org/html/rfc6901#section-6">section 6 of RFC6901</a></p>
+
+<div class="col-md-5 pull-right">
+<aside class="panel panel-info">
+  <header class="panel-heading">
+   <h2 class="panel-title">Selecting JSON property</h2>
+  </header>
+  <div class="panel-body">
+   <p>Data selection can be completed with a JSON Pointer URI Fragment as described in <a href="https://tools.ietf.org/html/rfc6901#section-6">section 6 of RFC6901</a> and documented in the <a href="../../docs/ref/data-json/data-json-en.html">data-json documentation.</a></p>
+  </div>
+</aside>
 </div>
 
-<p>The following attribute is supported:</p>
-
-<dl class="dl-horizontal">
-	<dt><code>data-json-after</code></dt>
-	<dd>Insert content after an element</dd>
-
-	<dt><code>data-json-append</code></dt>
-	<dd>Insert content at the end of an element</dd>
-
-	<dt><code>data-json-before</code></dt>
-	<dd>Insert content before an element</dd>
-
-	<dt><code>data-json-prepend</code></dt>
-	<dd>Insert content at the start of an element</dd>
-
-	<dt><code>data-json-replace</code></dt>
-	<dd>Replace content inside an element</dd>
-
-	<dt><code>data-json-replacewith</code></dt>
-	<dd>Replace an element by the content</dd>
-</dl>
-
-<h2>Example</h2>
-
-<p>My product ABC cost <a data-json-replacewith="demo/data-en.json#/fees/ABC" href="#">(consult our fees schedule)</a></p>
-
-<pre><code>&lt;p&gt;My product ABC cost &lt;a data-json-replacewith=&quot;demo/data-en.json#/fees/ABC&quot; href=&quot;#&quot;&gt;(consult our fees schedule)&lt;/a&gt;&lt;/p&gt;</code></pre>
-
-
-<p>Your are currently viewing the product &quot;<span data-json-replace="demo/data-en.json#/product">Unknown</span>&quot;</p>
-
-<pre><code>&lt;p&gt;Your are currently viewing the product &amp;quot;&lt;span data-json-replace=&quot;demo/data-en.json#/products/en&quot;&gt;Unknown&lt;/span&gt;&amp;quot;&lt;/p&gt;</code></pre>
-
-<h3>Content of <code>json/data-en.json</code></h3>
-<pre><code>{
+<details>
+	<summary>JSON data used by the following examples</summary>
+	<p>File: <code>demo/data-en.json</code></p>
+	<pre><code>{
 	"fees": {
 		"ABC": "20$"
 	},
-	"products": "Hello world"
+	"product": "Hello world",
+	"products": [
+		"My new product",
+		"My second product",
+		"My product number 3"
+	],
+	"status": "text-muted",
+	"iamtrue": true,
+	"iamfalse": false,
+	"jour":"2016-11-05T01:42:31Z",
+	"anArray": [
+		{ "name": "Item 1", "prop": "red" },
+		{ "name": "Item 2", "prop": "blue" },
+		{ "name": "Item 3", "prop": "yellow" },
+		{ "name": "Item 4", "prop": "purple" }
+	]
 }</code></pre>
+</details>
 
-<h2>Selecting data</h2>
+<h2>Basic example</h2>
+<p>My product ABC cost <a data-json-replacewith="demo/data-en.json#/fees/ABC" href="#">(consult our fees schedule)</a></p>
 
-<p>(Source: <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer, RCF6901</a>)</p>
+<p class="mrgn-tp-md">Your are currently viewing the product &quot;<span data-json-replace="demo/data-en.json#/product">Unknown</span>&quot;</p>
 
-<p>For example, given the JSON document</p>
+<p class="mrgn-tp-md" data-wb-json='[
+		{
+			"url": "demo/data-en.json#/product",
+			"type": "replace"
+		},
+		{
+			"url": "demo/data-en.json#/status",
+			"type": "addclass"
+		}
+	]'>This is a paragraph.</p>
 
-<pre><code>{
-	"foo": ["bar", "baz"],
-	"": 0,
-	"a/b": 1,
-	"c%d": 2,
-	"e^f": 3,
-	"g|h": 4,
-	"i\\j": 5,
-	"k\"l": 6,
-	" ": 7,
-	"m~n": 8
-}</code></pre>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;p&gt;My product ABC cost &lt;a data-json-replacewith=&quot;demo/data-en.json#/fees/ABC&quot; href=&quot;#&quot;&gt;(consult our fees schedule)&lt;/a&gt;&lt;/p&gt;
 
-<p>The following URI fragment identifiers evaluate to the accompanying values:</p>
+&lt;p class=&quot;mrgn-tp-md&quot;&gt;Your are currently viewing the product &amp;quot;&lt;span data-json-replace=&quot;demo/data-en.json#/products/en&quot;&gt;Unknown&lt;/span&gt;&amp;quot;&lt;/p&gt;
 
-<table class="table">
-	<tr>
-		<th>URI fragment</th>
-		<th>Returning value</th>
-	</tr>
-	<tr>
-		<td><code>#</code></td>
-		<td>The whole document</td>
-	</tr>
-	<tr>
-		<td><code>#/foo</code></td>
-		<td><code>["bar", "baz"]</code></td>
-	</tr>
-	<tr>
-		<td><code>#/foo/0</code></td>
-		<td><code>"bar"</code></td>
-	</tr>
-	<tr>
-		<td><code>#/</code></td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td><code>#/a~1b</code></td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td><code>#/c%25d</code></td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td><code>#/e%5Ef</code></td>
-		<td>3</td>
-	</tr>
-	<tr>
-		<td><code>#/g%7Ch</code></td>
-		<td>4</td>
-	</tr>
-	<tr>
-		<td><code>#/i%5Cj</code></td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><code>#/k%22l</code></td>
-		<td>6</td>
-	</tr>
-	<tr>
-		<td><code>#/%20</code></td>
-		<td>7</td>
-	</tr>
-	<tr>
-		<td><code>#/m~0n</code></td>
-		<td>8</td>
-	</tr>
-</table>
+&lt;p class=&quot;mrgn-tp-md&quot; data-wb-json='
+	[
+		{
+			&quot;url&quot;: &quot;demo/data-en.json#/product&quot;,
+			&quot;type&quot;: &quot;replace&quot;
+		},
+		{
+			&quot;url&quot;: &quot;demo/data-en.json#/status&quot;,
+			&quot;type&quot;: &quot;addclass&quot;
+		}
+	]'&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+</details>
 
-<h2>Issue that you may encounter</h2>
 
-<dl>
-	<dt>Display nothing, plugin seems to be broken.</dt>
-	<dd>Ensure that your <a href="https://www.google.ca/search?q=validate+JSON#q=validate+JSON">JSON file is valid</a></dd>
+<h2>Inserting content...</h2>
 
-	<dt>Recently updated data do not display</dt>
-	<dd>Refresh your browser cache by opening a new tab the JSON file and then do a hard refresh <kbd>Ctrl + F5</kbd> or by testing your page from a new private mode session of your browser.</dd>
-</dl>
+<div class="row">
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">After an element (<code>after</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-after="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "after" }'>pharetra.</strong></p>
+	</figure>
+</div>
+
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">At the end of an element (<code>append</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-append="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "append" }'>pharetra.</strong></p>
+	</figure>
+</div>
+
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Before an element (<code>before</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-before="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "before" }'>pharetra.</strong></p>
+	</figure>
+</div>
+
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">At the start of an element (<code>prepend</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-prepend="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "prepend" }'>pharetra.</strong></p>
+	</figure>
+</div>
+</div>
+
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;After an element (&lt;code&gt;after&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-after=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;after&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;At the end of an element (&lt;code&gt;append&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-append=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;append&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Before an element (&lt;code&gt;before&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-before=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;before&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;At the start of an element (&lt;code&gt;prepend&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-prepend=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;prepend&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+
+<h2>Replacing...</h2>
+<div class="row">
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Content inside the element (<code>replace</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-replace="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "replace" }'>pharetra.</strong></p>
+	</figure>
+</div>
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">The element by the content (<code>replacewith</code>)</figcaption>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing <strong data-json-replacewith="demo/data-en.json#/product">elit.</strong></p>
+		<p>Vivamus ut turpis a elit laoreet <strong data-wb-json='{ "url": "demo/data-en.json#/product", "type": "replacewith" }'>pharetra.</strong></p>
+	</figure>
+</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Content inside the element (&lt;code&gt;replace&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-replace=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;replace&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;The element by the content (&lt;code&gt;replacewith&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing &lt;strong data-json-replacewith=&quot;demo/data-en.json#/product&quot;&gt;elit.&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;Vivamus ut turpis a elit laoreet &lt;strong data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/product&quot;, &quot;type&quot;: &quot;replacewith&quot; }'&gt;pharetra.&lt;/strong&gt;&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>CSS class manipulation</h2>
+<div class="row">
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Add a class name (<code>addclass</code>)</figcaption>
+		<p data-wb-json='{ "url": "demo/data-en.json#/status", "type": "addclass" }'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	</figure>
+</div>
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Remove a class name (<code>removeclass</code>)</figcaption>
+		<p class="text-muted" data-wb-json='{ "url": "demo/data-en.json#/status", "type": "removeclass" }'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	</figure>
+</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Add a class name (&lt;code&gt;addclass&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/status&quot;, &quot;type&quot;: &quot;addclass&quot; }'&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Remove a class name (&lt;code&gt;removeclass&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;p class=&quot;text-muted&quot; data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/status&quot;, &quot;type&quot;: &quot;removeclass&quot; }'&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+
+<h2>Update property and value</h2>
+
+<div class="row">
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Property (<code>prop</code>)</figcaption>
+		<div class="checkbox">
+		   <label><input type="checkbox" value="" data-wb-json='{ "url": "demo/data-en.json#/iamtrue", "type": "prop", "prop": "checked" }'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</label>
+			<label><input type="checkbox" value="" checked="checked" data-wb-json='{ "url": "demo/data-en.json#/iamfalse", "type": "prop", "prop": "checked" }'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</label>
+		</div>
+	</figure>
+</div>
+<div class="col-md-6">
+	<figure>
+		<figcaption class="h3">Value (<code>val</code>)</figcaption>
+		<div class="form-group">
+			<label class="col-sm-4 control-label" for="label-3">Lorem ipsum</label>
+			<div class="col-md-8">
+				<input id="label-3" type="text" class="form-control" data-wb-json='{ "url": "demo/data-en.json#/status", "type": "val" }' />
+			</div>
+		</div>
+	</figure>
+</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Property (&lt;code&gt;prop&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;div class=&quot;checkbox&quot;&gt;
+		   &lt;label&gt;&lt;input type=&quot;checkbox&quot; value=&quot;&quot; data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/iamtrue&quot;, &quot;type&quot;: &quot;prop&quot;, &quot;prop&quot;: &quot;checked&quot; }'&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/label&gt;
+			&lt;label&gt;&lt;input type=&quot;checkbox&quot; value=&quot;&quot; checked=&quot;checked&quot; data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/iamfalse&quot;, &quot;type&quot;: &quot;prop&quot;, &quot;prop&quot;: &quot;checked&quot; }'&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/label&gt;
+		&lt;/div&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-md-6&quot;&gt;
+	&lt;figure&gt;
+		&lt;figcaption class=&quot;h3&quot;&gt;Value (&lt;code&gt;val&lt;/code&gt;)&lt;/figcaption&gt;
+		&lt;div class=&quot;form-group&quot;&gt;
+			&lt;label class=&quot;col-sm-4 control-label&quot; for=&quot;label-3&quot;&gt;Lorem ipsum&lt;/label&gt;
+			&lt;div class=&quot;col-md-8&quot;&gt;
+				&lt;input id=&quot;label-3&quot; type=&quot;text&quot; class=&quot;form-control&quot; data-wb-json='{ &quot;url&quot;: &quot;demo/data-en.json#/status&quot;, &quot;type&quot;: &quot;val&quot; }' /&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</details>

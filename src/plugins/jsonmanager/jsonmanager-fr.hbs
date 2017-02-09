@@ -1,0 +1,305 @@
+---
+{
+	"title": "Gestionnaire JSON",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Gérer des jeux de données et applique des correctifs JSON.",
+	"tag": "jsonmanager",
+	"parentdir": "jsonmanager",
+	"altLangPrefix": "jsonmanager",
+	"dateModified": "2017-02-02"
+}
+---
+
+<div class="wb-prettify all-pre"></div>
+
+<p>Gérer des jeux de données et applique des correctifs JSON.</p>
+
+<h2>Appliquer des correctifs</h2>
+
+<div data-wb-jsonmanager='{
+		"url": "demo/data-fr.json",
+		"name": "exemple1",
+		"patches": [
+			{ "op": "wb-count", "path": "/produits", "set": "/nbproduit" },
+			{ "op": "copy", "from": "/produits/0", "path": "/produit"}
+		]
+	}'></div>
+<p>Il y a <span data-json-replace="#[exemple1]/nbproduit">un nombre inconnu de</span> produits.</p>
+<p>Mon premier produit est <span data-json-replace="#[exemple1]/produit">(inconnu)</span> et le produit original était <span data-json-replace="demo/data-fr.json#/produit">(inconnu)</span>.</p>
+
+<div data-wb-jsonmanager='{
+		"url": "demo/data-fr.json#/niveau1/niveau2",
+		"name": "exemple2",
+		"patches": [ 
+			{ "op": "wb-toDateISO", "path": "/itm1" }
+		]
+	}'>
+	<p>Correctif pour un tableau d'objets:</p>
+	<ul data-wb-json='{
+			"url": "#[exemple2]",
+			"mapping": [
+				{ "selector": "li", "value": "/itm1" }
+			]
+		}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+</div>
+
+<details>
+	<summary>Code source</summary>
+
+	<h3>HTML</h3>
+	<pre><code>&lt;div data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/data-fr.json&quot;,
+		&quot;name&quot;: &quot;exemple1&quot;,
+		&quot;patches&quot;: [
+			{ &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/produits&quot;, &quot;set&quot;: &quot;/nbproduit&quot; },
+			{ &quot;op&quot;: &quot;copy&quot;, &quot;from&quot;: &quot;/produits/0&quot;, &quot;path&quot;: &quot;/produit&quot;}
+		]
+	}'&gt;&lt;/div&gt;
+&lt;p&gt;Il y a &lt;span data-json-replace=&quot;#[exemple1]/nbproduit&quot;&gt;un nombre inconnu de&lt;/span&gt; produits.&lt;/p&gt;
+&lt;p&gt;Mon premier produit est &lt;span data-json-replace=&quot;#[exemple1]/produit&quot;&gt;(inconnu)&lt;/span&gt; et le produit original était &lt;span data-json-replace=&quot;demo/data-fr.json#/produit&quot;&gt;(inconnu)&lt;/span&gt;.&lt;/p&gt;
+
+&lt;div data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/niveau1/niveau2&quot;,
+		&quot;name&quot;: &quot;exemple2&quot;,
+		&quot;patches&quot;: [ 
+			{ &quot;op&quot;: &quot;wb-toDateISO&quot;, &quot;path&quot;: &quot;/itm1&quot; }
+		]
+	}'&gt;
+	&lt;p&gt;Correctif pour un tableau d'objets:&lt;/p&gt;
+	&lt;ul data-wb-json='{
+			&quot;url&quot;: &quot;#[exemple2]&quot;,
+			&quot;mapping&quot;: [
+				{ &quot;selector&quot;: &quot;li&quot;, &quot;value&quot;: &quot;/itm1&quot; }
+			]
+		}'&gt;
+		&lt;template&gt;
+			&lt;li&gt;&lt;/li&gt;
+		&lt;/template&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+	<h3>Fichier <code>demo/data-fr.json</code></h3>
+	<pre><code>{
+	"produit": "Bonjour le monde",
+	"produits": [
+		"Mon nouveau produit",
+		"Mon deuxième produit",
+		"Mon produit numéro 3",
+		"Mon produit numéro 4"
+	],
+	"niveau1": {
+		"niveau2": [
+			{
+				"itm1": "2016-11-30T07:53:56Z"
+			},
+			{
+				"itm1": "2017-02-01T16:52:00Z"
+			},
+			{
+				"itm1": "2013-09-08T14:14:14Z"
+			}
+		]
+	}
+}</code></pre>
+</details>
+
+<h2>Afficher des résultats à partir d'un JSON RESTful API</h2>
+
+<details>
+	<summary>Code source</summary>
+
+	<p>Consult the JSON RESTful API github result: <a href="https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility">https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility</a></p>
+
+	<pre><code>&lt;h3&gt;Problèmes généraux d'accessibilité &lt;small&gt;WET-BOEW sur GitHub&lt;/small&gt;&lt;/h3&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+&lt;aside id=&quot;aside&quot; class=&quot;col-md-8 col-md-push-2 well&quot; data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility&quot;,
+		&quot;name&quot;: &quot;github&quot;,
+		&quot;patches&quot;: [
+			{ &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/rootArray&quot;, &quot;set&quot;: &quot;/nbissues&quot; },
+			{ &quot;op&quot;: &quot;wb-last&quot;, &quot;path&quot;: &quot;/rootArray&quot;, &quot;set&quot;: &quot;/last&quot; },
+			{ &quot;op&quot;: &quot;wb-first&quot;, &quot;path&quot;: &quot;/rootArray&quot;, &quot;set&quot;: &quot;/first&quot; },
+			{ &quot;op&quot;: &quot;wb-toDateISO&quot;, &quot;path&quot;: &quot;/last/created_at&quot;, &quot;set&quot;: &quot;/oldest&quot; },
+			{ &quot;op&quot;: &quot;wb-toDateISO&quot;, &quot;path&quot;: &quot;/first/created_at&quot;, &quot;set&quot;: &quot;/recent&quot; },
+			{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/unhideme&quot;, &quot;value&quot;: &quot;hidden&quot; }
+		],
+		&quot;wraproot&quot;: &quot;rootArray&quot;
+	}'&gt;
+
+	&lt;h4 class=&quot;mrgn-tp-sm&quot;&gt;Vue d'ensemble&lt;/h4&gt;
+
+	&lt;ul class=&quot;list-unstyled&quot;&gt;
+		&lt;li&gt;Nombre de problèmes: &lt;span data-json-replace=&quot;#[github]/nbissues&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+		&lt;li&gt;Le plus récent: &lt;a lang=&quot;en&quot; class=&quot;hidden&quot; data-wb-json='[
+				{
+					&quot;url&quot;: &quot;#[github]/first/title&quot;,
+					&quot;type&quot;: &quot;replace&quot;
+				},
+				{
+					&quot;url&quot;: &quot;#[github]/first/html_url&quot;,
+					&quot;type&quot;: &quot;attr&quot;,
+					&quot;attr&quot;: &quot;href&quot;
+				},
+				{
+					&quot;url&quot;: &quot;#[github]/unhideme&quot;,
+					&quot;type&quot;: &quot;removeclass&quot;
+				}
+			]'&gt;&lt;/a&gt; (&lt;span data-json-replace=&quot;#[github]/recent&quot;&gt;inconnu&lt;/span&gt;)&lt;/li&gt;
+		&lt;li&gt;Le plus ancien: &lt;a lang=&quot;en&quot; class=&quot;hidden&quot; data-wb-json='[
+				{
+					&quot;url&quot;: &quot;#[github]/last/title&quot;,
+					&quot;type&quot;: &quot;replace&quot;
+				},
+				{
+					&quot;url&quot;: &quot;#[github]/last/html_url&quot;,
+					&quot;type&quot;: &quot;attr&quot;,
+					&quot;attr&quot;: &quot;href&quot;
+				},
+				{
+					&quot;url&quot;: &quot;#[github]/unhideme&quot;,
+					&quot;type&quot;: &quot;removeclass&quot;
+				}
+			]'&gt;&lt;/a&gt; (&lt;span data-json-replace=&quot;#[github]/oldest&quot;&gt;inconnu&lt;/span&gt;)&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;&lt;a href=&quot;https://github.com/wet-boew/wet-boew/issues?q=is%3Aopen+is%3Aissue+label%3A%22General%3A+Accessibility%22&quot; hreflang=&quot;en&quot;&gt;Consulter les problèms sur GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;/aside&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;Liste des problèmes:&lt;/p&gt;
+
+&lt;div data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility&quot;,
+		&quot;name&quot;: &quot;github-src&quot;,
+		&quot;patches&quot;: [ 
+			
+			{ &quot;op&quot;: &quot;wb-toDateISO&quot;, &quot;path&quot;: &quot;/updated_at&quot; }
+		]
+	}'&gt;&lt;/div&gt;
+
+&lt;ul lang=&quot;en&quot; data-wb-json='{
+		&quot;url&quot;: &quot;#[github-src]&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/title&quot; },
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/html_url&quot;, &quot;attr&quot;: &quot;href&quot; },
+			{ &quot;selector&quot;: &quot;span&quot;, &quot;value&quot;: &quot;/updated_at&quot; }
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;(&lt;span&gt;&lt;/span&gt;) &lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;</code></pre>
+
+</details>
+
+<h3>Problèmes généraux d'accessibilité <small>WET-BOEW sur GitHub</small></h3>
+
+<div class="row">
+<aside id="aside" class="col-md-8 col-md-push-2 well" data-wb-jsonmanager='{
+		"url": "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility",
+		"name": "github",
+		"patches": [
+			{ "op": "wb-count", "path": "/rootArray", "set": "/nbissues" },
+			{ "op": "wb-last", "path": "/rootArray", "set": "/last" },
+			{ "op": "wb-first", "path": "/rootArray", "set": "/first" },
+			{ "op": "wb-toDateISO", "path": "/last/created_at", "set": "/oldest" },
+			{ "op": "wb-toDateISO", "path": "/first/created_at", "set": "/recent" },
+			{ "op": "add", "path": "/unhideme", "value": "hidden" }
+		],
+		"wraproot": "rootArray"
+	}'>
+
+	<h4 class="mrgn-tp-sm">Vue d'ensemble</h4>
+
+	<ul class="list-unstyled">
+		<li>Nombre de problèmes: <span data-json-replace="#[github]/nbissues"></span></li>
+		<li>Le plus récent: <a lang="en" class="hidden" data-wb-json='[
+				{
+					"url": "#[github]/first/title",
+					"type": "replace"
+				},
+				{
+					"url": "#[github]/first/html_url",
+					"type": "attr",
+					"attr": "href"
+				},
+				{
+					"url": "#[github]/unhideme",
+					"type": "removeclass"
+				}
+			]'></a> (<span data-json-replace="#[github]/recent">inconnu</span>)</li>
+		<li>Le plus ancien: <a lang="en" class="hidden" data-wb-json='[
+				{
+					"url": "#[github]/last/title",
+					"type": "replace"
+				},
+				{
+					"url": "#[github]/last/html_url",
+					"type": "attr",
+					"attr": "href"
+				},
+				{
+					"url": "#[github]/unhideme",
+					"type": "removeclass"
+				}
+			]'></a> (<span data-json-replace="#[github]/oldest">inconnu</span>)</li>
+	</ul>
+	<p><a href="https://github.com/wet-boew/wet-boew/issues?q=is%3Aopen+is%3Aissue+label%3A%22General%3A+Accessibility%22" hreflang="en">Consulter les problèms sur GitHub</a></p>
+</aside>
+</div>
+<div class="clearfix"></div>
+
+<p>Liste des problèmes:</p>
+
+<div data-wb-jsonmanager='{
+		"url": "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=General%3A+Accessibility",
+		"name": "github-src",
+		"patches": [ 
+			
+			{ "op": "wb-toDateISO", "path": "/updated_at" }
+		]
+	}'></div>
+
+<ul lang="en" data-wb-json='{
+		"url": "#[github-src]",
+		"mapping": [
+			{ "selector": "a", "value": "/title" },
+			{ "selector": "a", "value": "/html_url", "attr": "href" },
+			{ "selector": "span", "value": "/updated_at" }
+		]
+	}'>
+	<template>
+		<li>(<span></span>) <a href=""></a></li>
+	</template>
+</ul>
+
+<h2>Opération de correctifs JSON</h2>
+
+<p>Les opération de correctifs JSON sont définie par <a href="https://tools.ietf.org/html/rfc6902" lang="en" hreflang="en">RFC6002 - JavaScript Object Notation (JSON) Patch</a> avec quelques ajout d'opération afin de combler les besoins du gestionnaire JSON. Détaillé dans la documentations, les opérations suivant sont supporté par défaut: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>.</p>
+
+<h2>Débogage</h2>
+
+<p>Vous pouvez utiliser le paramètre de configuration <code>&quot;debug&quot;: true</code> afin d'afficher après le gestionnaire json l'objet json modifier ainsi que la liste des correctifs appliqué. Le contenu JSON est affiché sans mise en forme.</p>
+
+<p data-wb-jsonmanager='{
+	"url": "demo/data-fr.json",
+	"name": "exemple3",
+	"patches": { "op": "wb-count", "path": "/produits", "set": "/nbproduit" },
+	"debug": true
+}'>Nombre de produits: <span data-json-replace="#[exemple3]/nbproduit">Non disponible</span></p>
+
+<details>
+	<summary>Code source</summary>
+<pre><code>&lt;p data-wb-jsonmanager='{
+	&quot;url&quot;: &quot;demo/data-fr.json&quot;,
+	&quot;name&quot;: &quot;exemple3&quot;,
+	&quot;patches&quot;: { &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/produits&quot;, &quot;set&quot;: &quot;/nbproduit&quot; },
+	&quot;debug&quot;: true
+}'&gt;Nombre de produits: &lt;span data-json-replace=&quot;#[exemple3]/nbproduit&quot;&gt;Non disponible&lt;/span&gt;&lt;/p&gt;</code></pre>
+</details>

@@ -1,0 +1,523 @@
+---
+{
+	"title": "Template HTML 5",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Leverage HTML 5 template element by using the data json plugin.",
+	"tag": "data-json",
+	"parentdir": "data-json",
+	"altLangPrefix": "template",
+	"dateModified": "2017-01-31"
+}
+---
+<p>Leverage HTML 5 <code>&lt;template&gt;</code> element by using the data json plugin.</p>
+
+<div class="wb-prettify all-pre"></div>
+
+<details>
+	<summary>JSON data used by the following examples</summary>
+	<p>File: <code>demo/data-en.json</code></p>
+	<pre><code>{
+	&quot;fees&quot;: {
+		&quot;ABC&quot;: &quot;20$&quot;
+	},
+	&quot;product&quot;: &quot;Hello world&quot;,
+	&quot;products&quot;: [
+		&quot;My new product&quot;,
+		&quot;My second product&quot;,
+		&quot;My product number 3&quot;
+	],
+	&quot;status&quot;: &quot;text-muted&quot;,
+	&quot;iamtrue&quot;: true,
+	&quot;iamfalse&quot;: false,
+	&quot;jour&quot;:&quot;2016-11-05T01:42:31Z&quot;,
+	&quot;anArray&quot;: [
+		{ &quot;name&quot;: &quot;Item 1&quot;, &quot;prop&quot;: &quot;red&quot; },
+		{ &quot;name&quot;: &quot;Item 2&quot;, &quot;prop&quot;: &quot;blue&quot; },
+		{ &quot;name&quot;: &quot;Item 3&quot;, &quot;prop&quot;: &quot;yellow&quot; },
+		{ &quot;name&quot;: &quot;Item 4&quot;, &quot;prop&quot;: &quot;purple&quot; }
+	],
+	&quot;offices&quot;: [
+		{ &quot;name&quot;: &quot;Jean Edmonds, North Tower&quot;, &quot;num&quot;: 300, &quot;street&quot;: &quot;Slater&quot;, &quot;city&quot;: &quot;Ottawa&quot;, &quot;css&quot;: &quot;bg-success&quot; },
+		{ &quot;name&quot;: &quot;Place du portage, Phase I&quot;, &quot;num&quot;: 50, &quot;street&quot;: &quot;Victoria&quot;, &quot;city&quot;: &quot;Gatineau&quot;, &quot;css&quot;: &quot;bg-danger&quot; },
+	]
+}</code></pre>
+</details>
+
+
+<h2>List</h2>
+
+
+<div class="row">
+<div class="col-md-6">
+
+<p>Definition list:</p>
+<dl class="dl-horizontal" data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"mapping": [
+			{ "selector": "dt", "value": "/name" },
+			{ "selector": "dd", "value": "/prop" }
+		]
+	}'>
+	<template>
+		<dt></dt>
+		<dd></dd>
+	</template>
+</dl>
+
+</div>
+<div class="col-md-3">
+
+<p>Unordered:</p>
+<ul class="lst-spcd" data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"queryall": "li",
+		"mapping": [
+			"/name"
+		]
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+</div>
+<div class="col-md-3">
+
+<p>Ordered:</p>
+<ol class="lst-spcd" data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"queryall": "li",
+		"mapping": [
+			"/name"
+		]
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ol>
+
+</div>
+
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;p&gt;Definition list:&lt;/p&gt;
+&lt;dl class=&quot;dl-horizontal&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;dt&quot;, &quot;value&quot;: &quot;/name&quot; },
+			{ &quot;selector&quot;: &quot;dd&quot;, &quot;value&quot;: &quot;/prop&quot; }
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;dt&gt;&lt;/dt&gt;
+		&lt;dd&gt;&lt;/dd&gt;
+	&lt;/template&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Unordered:&lt;/p&gt;
+&lt;ul class=&quot;lst-spcd&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ordered:&lt;/p&gt;
+&lt;ol class=&quot;lst-spcd&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ol&gt;</code></pre>
+</details>
+
+
+<h2>Filtering</h2>
+
+<div class="row">
+<div class="col-md-3">
+
+<p>If <strong>positive</strong> condition:</p>
+
+<ul data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"queryall": "li",
+		"mapping": [
+			"/name"
+		],
+		"filter": [
+			{ "path": "/prop", "value": "blue" }
+		]
+
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+
+</div>
+
+
+<div class="col-md-3">
+
+<p>If <strong>negative</strong> condition:</p>
+
+<ul data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"queryall": "li",
+		"mapping": [
+			"/name"
+		],
+		"filternot": [
+			{ "path": "/prop", "value": "blue" }
+		]
+
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+
+</div>
+
+
+<div class="col-md-6">
+
+<p>Combinaison of both condition:</p>
+
+<ul data-wb-json='{
+		"url": "demo/data-en.json#/anArray",
+		"queryall": "li",
+		"mapping": [
+			"/name"
+		],
+		"filter": [
+			{ "path": "/prop", "value": "yellow", "optional": true },
+			{ "path": "/prop", "value": "blue", "optional": true }
+		],
+		"filternot": [
+			{ "path": "/prop", "value": "blue" }
+		]
+
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+
+</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;p&gt;If &lt;strong&gt;positive&lt;strong&gt; condition:&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		],
+		&quot;filter&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;blue&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If &lt;strong&gt;negative&lt;/strong&gt; condition:&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		],
+		&quot;filternot&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;blue&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Combinaison of both condition:&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		],
+		&quot;filter&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;yellow&quot;, &quot;optional&quot;: true },
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;blue&quot;, &quot;optional&quot;: true }
+		],
+		&quot;filternot&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;blue&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;</code></pre>
+</details>
+
+
+<h2>Table</h2>
+
+<div class="alert alert-info">
+	<p>Note: When you are using the templating to feed table rows, there is an issue when the <code>&lt;template&gt;</code> element are located inside the table element only when using <abbr title="Internet Explorer">IE</abbr>. The workaround is to move the <code>&lt;template&gt;</code> outside the <code>&lt;table&gt;</code>, ideally next to it, and then to include a <code>&lt;table&gt;</code> inside the <code>&lt;template&gt;</code> followed by your templated row. Then simply configure <code>tobeclone</code> and <code>source</code> to connect data json with the template.</p>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Number</th>
+			<th>Street</th>
+			<th>City</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+			"url": "demo/data-en.json#/offices",
+			"tobeclone": "tr",
+			"queryall": "td",
+			"source": "#tbl1",
+			"mapping": [
+				"/name",
+				"/num",
+				"/street",
+				"/city"
+			]
+		}'>
+	</tbody>
+</table>
+
+<template id="tbl1">
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+<table class="table">
+	<caption>Modifying attribute and place holder</caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Number</th>
+			<th>Street</th>
+			<th>City</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "demo/data-en.json#/offices",
+		"source": "#tbl2",
+		"tobeclone": "tr",
+		"mapping": [
+			{ "selector": "td", "value": "/name", "placeholder": "[[name]]" },
+			{ "selector": "td:nth-child(2)", "value": "/css", "attr": "class" },
+			{ "selector": "td:nth-child(2)", "value": "/num" },
+			{ "selector": "td:nth-last-child(2)", "value": "/street" },
+			{ "selector": "td:last-child", "value": "/city" }
+		]
+	}'>
+		<tr>
+			<td>Place du centre</td>
+			<td>200</td>
+			<td>Promenade du Portage</td>
+			<td>Gatineau</td>
+		</tr>
+		<tr>
+			<td>Jean Edmonds, South Tower</td>
+			<td>365</td>
+			<td>Laurier Ave W</td>
+			<td>Ottawa</td>
+		</tr>
+	</tbody>
+</table>
+
+<template id="tbl2">
+	<table>
+		<tr>
+			<td>Name is: [[name]]</td>
+			<td class=""></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;table class=&quot;table&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Name&lt;/th&gt;
+			&lt;th&gt;Number&lt;/th&gt;
+			&lt;th&gt;Street&lt;/th&gt;
+			&lt;th&gt;City&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+			&quot;url&quot;: &quot;demo/data-en.json#/offices&quot;,
+			&quot;tobeclone&quot;: &quot;tr&quot;,
+			&quot;queryall&quot;: &quot;td&quot;,
+			&quot;source&quot;: &quot;#tbl1&quot;,
+			&quot;mapping&quot;: [
+				&quot;/name&quot;,
+				&quot;/num&quot;,
+				&quot;/street&quot;,
+				&quot;/city&quot;
+			]
+		}'&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tbl1&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+	&lt;caption&gt;Modifying attribute and place holder&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Name&lt;/th&gt;
+			&lt;th&gt;Number&lt;/th&gt;
+			&lt;th&gt;Street&lt;/th&gt;
+			&lt;th&gt;City&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-en.json#/offices&quot;,
+		&quot;source&quot;: &quot;#tbl2&quot;,
+		&quot;tobeclone&quot;: &quot;tr&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;td&quot;, &quot;value&quot;: &quot;/name&quot;, &quot;placeholder&quot;: &quot;[[name]]&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-child(2)&quot;, &quot;value&quot;: &quot;/css&quot;, &quot;attr&quot;: &quot;class&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-child(2)&quot;, &quot;value&quot;: &quot;/num&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-last-child(2)&quot;, &quot;value&quot;: &quot;/street&quot; },
+			{ &quot;selector&quot;: &quot;td:last-child&quot;, &quot;value&quot;: &quot;/city&quot; }
+		]
+	}'&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Place du centre&lt;/td&gt;
+			&lt;td&gt;200&lt;/td&gt;
+			&lt;td&gt;Promenade du Portage&lt;/td&gt;
+			&lt;td&gt;Gatineau&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Jean Edmonds, South Tower&lt;/td&gt;
+			&lt;td&gt;365&lt;/td&gt;
+			&lt;td&gt;Laurier Ave W&lt;/td&gt;
+			&lt;td&gt;Ottawa&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tbl2&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Name is: [[name]]&lt;/td&gt;
+			&lt;td class=&quot;&quot;&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;</code></pre>
+</details>
+
+
+<h2>Use <code>template</code> placeholder for appending to an element</h2>
+
+<template id="metadatacontent"  data-wb-json='{
+		"url": "demo/data-en.json",
+		"appendto": "title",
+		"source": "#metadatacontent",
+		"mapping": [
+			{ "value": "/product", "placeholder": "[[great]]" }
+		]
+	}'> *** [[great]] ***</template>
+
+<p>(To see this working example, take a look at the <code>title</code> element on this page)</p>
+
+<pre><code>&lt;template id=&quot;metadatacontent&quot;  data-wb-json='{
+		&quot;url&quot;: &quot;data-en.json&quot;,
+		&quot;appendto&quot;: &quot;title&quot;,
+		&quot;source&quot;: &quot;#metadatacontent&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;value&quot;: &quot;/product&quot;, &quot;placeholder&quot;: &quot;[[great]]&quot; }
+		]
+	}'&gt; *** [[great]] ***&lt;/template&gt;</code></pre>
+
+
+<h2>Layout a RSS feeds</h2>
+
+<p>The following RSS feeds is provided through the <a href="https://developer.yahoo.com/yql/guide/yql_url.html">Yahoo YQL Web Service URLs</a>. The direct link to the rss feed is: <a href="http://www.tc.gc.ca/mediaroom/rss/road.xml"><code>http://www.tc.gc.ca/mediaroom/rss/road.xml</code></a></p>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div data-wb-json='{
+		&quot;url&quot;: &quot;https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20&amp;#39;http%3A%2F%2Fwww.tc.gc.ca%2Fmediaroom%2Frss%2Froad.xml&amp;#39;%20limit%2019&amp;amp;format=json#/query/results/item&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;h3&quot;, &quot;value&quot;: &quot;/title&quot;, &quot;placeholder&quot;: &quot;&quot; },
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/description&quot; },
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/link&quot;, &quot;attr&quot;: &quot;href&quot; },
+			{ &quot;selector&quot;: &quot;span&quot;, &quot;value&quot;: &quot;/pubDate&quot;, &quot;placeholder&quot;: &quot;[[pubdate]]&quot; }
+		]
+	}'&gt;
+
+	&lt;template&gt;
+		&lt;h3&gt;&lt;/h3&gt;
+		&lt;p&gt;&lt;span&gt;Publish on [[pubdate]]&lt;/span&gt; &lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;/template&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<div data-wb-json='{
+		"url": "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20&#39;http%3A%2F%2Fwww.tc.gc.ca%2Fmediaroom%2Frss%2Froad.xml&#39;%20limit%2019&amp;format=json#/query/results/item",
+		"mapping": [
+			{ "selector": "h3", "value": "/title", "placeholder": "" },
+			{ "selector": "a", "value": "/description" },
+			{ "selector": "a", "value": "/link", "attr": "href" },
+			{ "selector": "span", "value": "/pubDate", "placeholder": "[[pubdate]]" }
+		]
+	}'>
+
+	<template>
+		<h3></h3>
+		<p><span>Publish on [[pubdate]]</span> <a href=""></a></p>
+	</template>
+</div>

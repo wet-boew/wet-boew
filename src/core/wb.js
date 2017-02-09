@@ -255,6 +255,16 @@ var getUrlParts = function( url ) {
 			"#999999"
 		],
 
+		// Get and generate a unique session id
+		sessionGUID: function() {
+			var sessionId = sessionStorage.getItem( "wb-Session-GUID" );
+			if ( !sessionId ) {
+				sessionId = wb.guid();
+				sessionStorage.setItem( "wb-Session-GUID", sessionId );
+			}
+			return sessionId;
+		},
+
 		// Add a selector to be targeted by timerpoke
 		add: function( selector ) {
 			var exists = false,
@@ -535,6 +545,11 @@ Modernizr.load( [
 		nope: [
 			"plyfll!meter.min.js",
 			"plyfll!meter.min.css"
+		]
+	}, {
+		test: ( "content" in document.createElement( "template" ) ),
+		nope: [
+			"plyfll!template.min.js"
 		]
 	}, {
 		test: Modernizr.touch,

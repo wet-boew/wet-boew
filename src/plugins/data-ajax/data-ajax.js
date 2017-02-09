@@ -16,12 +16,21 @@
  * page.
  */
 var componentName = "wb-data-ajax",
+	shortName = "wb-ajax",
 	selectors = [
 		"[data-ajax-after]",
 		"[data-ajax-append]",
 		"[data-ajax-before]",
 		"[data-ajax-prepend]",
-		"[data-ajax-replace]"
+		"[data-ajax-replace]",
+		"[data-" + shortName + "]"
+	],
+	ajaxTypes = [
+		"before",
+		"replace",
+		"after",
+		"append",
+		"prepend"
 	],
 	selectorsLength = selectors.length,
 	selector = selectors.join( "," ),
@@ -36,31 +45,41 @@ var componentName = "wb-data-ajax",
 	 * @param {jQuery Event} event Event that triggered this handler
 	 * @param {string} ajaxType The type of AJAX operation, either after, append, before or replace
 	 */
-	init = function( event, ajaxType ) {
+	init = function( event ) {
 
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName + "-" + ajaxType, selector );
+		var ajxInfo = getAjxInfo( event.target ),
+			ajaxType = ajxInfo.type,
+			elm = wb.init( event, componentName + "-" + ajaxType, selector );
 
 		if ( elm ) {
 
-			ajax.apply( this, arguments );
+			ajax.call( this, event, ajxInfo );
 
 			// Identify that initialization has completed
 			wb.ready( $( elm ), componentName, [ ajaxType ] );
 		}
 	},
 
-	ajax = function( event, ajaxType ) {
+	ajax = function( event, ajxInfo ) {
 		var elm = event.target,
 			$elm = $( elm ),
 			settings = window[ componentName ],
-			url = elm.getAttribute( "data-ajax-" + ajaxType ),
-			fetchObj = {
-				url: url
-			},
+			url,
+			fetchObj,
 			urlParts;
+
+		if ( !ajxInfo ) {
+			ajxInfo = getAjxInfo( elm );
+		}
+		url = ajxInfo.url;
+		fetchObj = {
+			url: url,
+			nocache: ajxInfo.nocache,
+			nocachekey: ajxInfo.nocachekey
+		};
 
 		// Detect CORS requests
 		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
@@ -78,62 +97,86 @@ var componentName = "wb-data-ajax",
 			type: "ajax-fetch.wb",
 			fetch: fetchObj
 		} );
+	},
+
+	// Get Info and return { "url": "the/ajax/URL", "atype" }
+	getAjxInfo = function( elm ) {
+		var ajaxType,
+			len = ajaxTypes.length,
+			i, url, dtAttr, nocache, nocachekey;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			ajaxType = ajaxTypes[ i ];
+			url = elm.getAttribute( "data-ajax-" + ajaxType );
+			if ( url ) {
+				break;
+			}
+		}
+
+		if ( !url ) {
+			dtAttr = wb.getData( $( elm ), shortName );
+			url = dtAttr.url;
+			ajaxType = dtAttr.type;
+			if ( ajaxTypes.indexOf( ajaxType ) === -1 || !url ) {
+				throw "Invalid ajax type or missing url";
+			}
+			nocache = dtAttr.nocache;
+			nocachekey = dtAttr.nocachekey;
+		}
+
+		return {
+			"url": url,
+			"type": ajaxType,
+			"nocache": nocache,
+			"nocachekey": nocachekey
+		};
+	},
+
+	ajxFetched = function( elm, fetchObj ) {
+		var $elm = $( elm ),
+			ajxInfo = getAjxInfo( elm ),
+			ajaxType = ajxInfo.type,
+			content, jQueryCaching;
+
+		// ajax-fetched event
+		content = fetchObj.response;
+		if ( content &&  content.length > 0 ) {
+
+			//Prevents the force caching of nested resources
+			jQueryCaching = jQuery.ajaxSettings.cache;
+			jQuery.ajaxSettings.cache = true;
+
+			// "replace" is the only event that doesn't map to a jQuery function
+			if ( ajaxType === "replace" ) {
+				$elm.html( content );
+			} else {
+				$elm[ ajaxType ]( content );
+			}
+
+			//Resets the initial jQuery caching setting
+			jQuery.ajaxSettings.cache = jQueryCaching;
+
+			$elm.trigger( contentUpdatedEvent, { "ajax-type": ajaxType, "content": content } );
+		}
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.wb", selector, function( event ) {
-	var eventTarget = event.target,
-		ajaxTypes = [
-			"before",
-			"replace",
-			"after",
-			"append",
-			"prepend"
-		],
-		len = ajaxTypes.length,
-		$elm, ajaxType, i, content, jQueryCaching;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		ajaxType = ajaxTypes[ i ];
-		if ( this.getAttribute( "data-ajax-" + ajaxType ) !== null ) {
-			break;
-		}
-	}
+	var eventTarget = event.target;
 
 	switch ( event.type ) {
 
 	case "timerpoke":
 	case "wb-init":
-		init( event, ajaxType );
+		init( event );
 		break;
 	case "wb-update":
-		ajax( event, ajaxType );
+		ajax( event );
 		break;
 	default:
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === eventTarget ) {
-			$elm = $( eventTarget );
-
-			// ajax-fetched event
-			content = event.fetch.response;
-			if ( content &&  content.length > 0 ) {
-
-				//Prevents the force caching of nested resources
-				jQueryCaching = jQuery.ajaxSettings.cache;
-				jQuery.ajaxSettings.cache = true;
-
-				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace" ) {
-					$elm.html( content );
-				} else {
-					$elm[ ajaxType ]( content );
-				}
-
-				//Resets the initial jQuery caching setting
-				jQuery.ajaxSettings.cache = jQueryCaching;
-
-				$elm.trigger( contentUpdatedEvent, { "ajax-type": ajaxType, "content": content } );
-			}
+			ajxFetched( eventTarget, event.fetch );
 		}
 	}
 

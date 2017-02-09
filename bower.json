@@ -34,6 +34,7 @@
     "jquery-oldIE": "jquery#1.11.1",
     "jquery-pjax": "1.9.6",
     "jquery-validation": "1.15.1",
+    "JSON-Patch": "https://github.com/wet-boew/JSON-Patch.git#wb1.0+1.1.4",
     "magnific-popup": "1.0.0",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.3.3",

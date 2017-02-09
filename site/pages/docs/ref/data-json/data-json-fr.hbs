@@ -4,9 +4,9 @@
 	"language": "fr",
 	"category": "Plugiciels",
 	"categoryfile": "plugins",
-	"description": "Insertion de contenu extrait d'un fichier JSON.",
+	"description": "Insertion de contenu extrait d'un fichier JSON et prends avantage de l'élément template du HTML 5.",
 	"altLangPrefix": "data-json",
-	"dateModified": "2016-11-07"
+	"dateModified": "2017-01-31"
 }
 ---
 <div class="wb-prettify all-pre"></div>
@@ -14,26 +14,35 @@
 <div lang="en">
 <p><strong>Needs translation</strong></p>
 
+
 <section>
 	<h2>Purpose</h2>
-	<p>Insert content extracted from a JSON file.</p>
+	<p>Insert content extracted from a JSON file or provided by a dataset.</p>
+	<p>The role of this plugin is to display selected data into HTML elements, if you need to manipulate the data prior it get displayed or you need to interact with, then use this plugin in conjonction with the JSON-manager plugin that support dataset.</p>
 </section>
 <section>
 	<h2>Use when</h2>
 	<p>When you need to display the same atomic information on multiple pages. Like a fee for a services that is re-use across multiple pages.</p>
+	<p>To insert repeatitive content by using HTML5 template element.</p>
 </section>
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>To insert HTML content, use <a href="../data-ajax/data-ajax-en.html">data-ajax</a> instead.</li>
-		<li>For inserting data that only apply for one unique page.</li>
+		<li>To insert block of HTML content, instead use <a href="../data-ajax/data-ajax-en.html">data-ajax</a> with the filtering option if neccessary.</li>
+		<li>For inserting data that only apply to an unique page.</li>
 	</ul>
 </section>
 <section>
 	<h2>Working example</h2>
+	<p>English:</p>
 	<ul>
-		<li><a href="../../../demos/data-json/data-json-en.html">English example</a></li>
-		<li><a href="../../../demos/data-json/data-json-fr.html">French example</a></li>
+		<li><a href="../../../demos/data-json/data-json-en.html">Data JSON</a></li>
+		<li><a href="../../../demos/data-json/template-en.html">HTML 5 template</a></li>
+	</ul>
+	<p>French:</p>
+	<ul>
+		<li><a href="../../../demos/data-json/data-json-fr.html" hreflang="fr">Data JSON</a></li>
+		<li><a href="../../../demos/data-json/template-fr.html" hreflang="fr" lang="fr">Gabarit HTML 5</a></li>
 	</ul>
 </section>
 <section>
@@ -41,55 +50,101 @@
 
 	<ol>
 		<li>Create a <a href="https://www.google.ca/search?q=validate+JSON#q=validate+JSON">valid JSON file</a></li>
-		<li>
-			<p>Add one of the following data-json attributes to an element, with the attribute value being the URL of the JSON file followed by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a> URL hash:</p>
+		<li>The one of the following:
 			<ul>
 				<li>
-				<p><code>data-json-after</code>: Insert content after the element</p>
-				<pre><code>&lt;span data-json-after=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
+					<p>Add one of the following data-json attributes to an element, with the attribute value being the URL of the JSON file followed by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a> URL hash:</p>
+					<ul>
+						<li>
+						<p><code>data-json-after</code>: Insert content after the element</p>
+						<pre><code>&lt;span data-json-after=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+						<li>
+						<p><code>data-json-append</code>: Insert content at the end of the element</p>
+						<pre><code>&lt;span data-json-append=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+						<li>
+						<p><code>data-json-before</code>: Insert content before the element</p>
+						<pre><code>&lt;span data-json-before=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+						<li>
+						<p><code>data-json-prepend</code>: Insert content at the start of the element</p>
+						<pre><code>&lt;span data-json-prepend=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+						<li>
+						<p><code>data-json-replace</code>: Replace content inside the element</p>
+						<pre><code>&lt;span data-json-replace=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+						<li>
+						<p><code>data-json-replacewith</code>: Replace the element by the content</p>
+						<pre><code>&lt;span data-json-replacewith=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
+			...
+		&lt;/span&gt;</code></pre>
+						</li>
+					</ul>
 				</li>
 				<li>
-				<p><code>data-json-append</code>: Insert content at the end of the element</p>
-				<pre><code>&lt;span data-json-append=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
+					<p>For HTML5 templating, add the attribute <code>data-wb-json</code> on the elements you wanted to append items. The following populate a list:</p>
+					<pre><code>&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;data-en.json#/anArray&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/name&quot;
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;</code></pre>
+					<p>Where:</p>
+					<dl class="dl-horizontal">
+						<dt><code>url</code></dt>
+						<dd>JSON file location or dataset name followed by an optional JSON pointer</dd>
+						<dt><code>queryall</code></dt>
+						<dd>Contain a valid <a href="https://www.w3.org/TR/selectors/">CSS selector</a>.</dd>
+						<dt><code>mapping</code></dt>
+						<dd>Array of JSON pointer, as many as the return result of <code>queryall</code> applied on the <code>&lt;template&gt;</code> element.</dd>
+					</dl>
+					<p>Note: When using the template for filling a table, wrap your rows template into a <code>table</code> element in order to avoid a bug in Internet Explorer.</p>
 				</li>
 				<li>
-				<p><code>data-json-before</code>: Insert content before the element</p>
-				<pre><code>&lt;span data-json-before=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
-				</li>
-				<li>
-				<p><code>data-json-prepend</code>: Insert content at the start of the element</p>
-				<pre><code>&lt;span data-json-prepend=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
-				</li>
-				<li>
-				<p><code>data-json-replace</code>: Replace content inside the element</p>
-				<pre><code>&lt;span data-json-replace=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
-				</li>
-				<li>
-				<p><code>data-json-replacewith</code>: Replace the element by the content</p>
-				<pre><code>&lt;span data-json-replacewith=&quot;json/data-en.json#/JSON/Pointer&quot;&gt;
-	...
-&lt;/span&gt;</code></pre>
+					<p>Use the data for shapping multiple area of an HTML element</p>
+					<pre><code>&lt;a href=&quot;generic/location.html&quot; data-wb-json='[
+		{
+			&quot;url&quot;: &quot;mydata.json#/first/title&quot;,
+			&quot;type&quot;: &quot;replace&quot;
+		},
+		{
+			&quot;url&quot;: &quot;mydata.json#/first/html_url&quot;,
+			&quot;type&quot;: &quot;prop&quot;,
+			&quot;prop&quot;: &quot;href&quot;
+		}
+	]'&gt;Generic location&lt;/a&gt;</code></pre>
+
 				</li>
 			</ul>
 		</li>
 	</ol>
 </section>
+</div>
 
 <section>
-<h2>Selecting data</h2>
+<h2>Selection de donnée</h2>
 
-<p>(Source: <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer, RCF6901</a>)</p>
-<p>For example, given the JSON document</p>
+<p>(Source: <a href="https://tools.ietf.org/html/rfc6901" hreflang="en">Pointeur JSON, RCF6901</a>)</p>
+
+<p>Par exemple, prennont ce document JSON</p>
+
 <pre><code>{
 	"foo": ["bar", "baz"],
 	"": 0,
@@ -102,15 +157,17 @@
 	" ": 7,
 	"m~n": 8
 }</code></pre>
-<p>The following URI fragment identifiers evaluate to the accompanying values:</p>
+
+<p>Voici les résultats après que le pointeur JSON aient été évalué à partir du fragments d'URI.</p>
+
 <table class="table">
 	<tr>
-		<th>URI fragment</th>
-		<th>Returning value</th>
+		<th>Fragment d'URI</th>
+		<th>Valeur retourné</th>
 	</tr>
 	<tr>
 		<td><code>#</code></td>
-		<td>The whole document</td>
+		<td>Tout le document</td>
 	</tr>
 	<tr>
 		<td><code>#/foo</code></td>
@@ -160,14 +217,68 @@
 </section>
 
 <section>
-<h2>Issue that you may encounter</h2>
+<h2>Problème potentiel qui peuvent survenir</h2>
 <dl>
-	<dt>Display nothing, plugin seems to be broken.</dt>
-	<dd>Ensure that your <a href="https://www.google.ca/search?q=validate+JSON#q=validate+JSON">JSON file is valid</a></dd>
+	<dt>Aucun affichage, le composant semble disfonctionelle.</dt>
+	<dd>Veuillez vérifier que votre <a href="https://www.google.ca/search?q=validate+JSON#q=validate+JSON" hreflang="en">fichier JSON est valide.</a></dd>
 
-	<dt>Recently updated data do not display</dt>
-	<dd>Refresh your browser cache by opening a new tab the JSON file and then do a hard refresh <kbd>Ctrl + F5</kbd> or by testing your page from a new private mode session of your browser.</dd>
+	<dt>La mise à jour récente des données ne s'affiche pas.</dt>
+	<dd>Mettez à jour le cache de votre furteur en ouvrant un nouvel onglet pour consulter le fichier JSON et forcé la mise à jour en appuyant sur <kbd>Ctrl + F5</kbd> ou bien faite l'essai de page qui utilise ce plugin dans une nouvelle session du mode privé de votre furteur.</dd>
 </dl>
+</section>
+
+<div lang="en">
+
+<section>
+<h2>HTML5 <code>template</code> element in the specification</h2>
+
+<p>Official reference:</p>
+<ul>
+	<li><a href="https://www.w3.org/TR/html52/semantics-scripting.html#the-template-element">HTML5.2 W3C Working Draft - 4.12.3. The <code>template</code> element</a></li>
+	<li><a href="https://www.w3.org/TR/html5/scripting-1.html#the-template-element">HTML5 W3C Recommendation - 4.11.3 The <code>template</code> element</a></li>
+	<li><a href="https://html.spec.whatwg.org/multipage/scripting.html#the-template-element">WHATWG Living standard - 4.12.3 The <code>template</code> element</a></li>
+</ul>
+
+<p>The following was extracted from HTML5.2 spec:</p>
+
+<h3>Contexts in which this element can be used.</h3>
+<p>The following is a <em>non-normative</em> description of where the element can be used. This information is redundant with the content models of elements that allow this one as a child, and is provided only as a convenience.</p>
+<ul>
+	<li>Where <a href="https://www.w3.org/TR/html52/dom.html#metadata-content-2">metadata content</a> is expected.</li>
+	<li>Where <a href="https://www.w3.org/TR/html52/dom.html#phrasing-content-2">phrasing content</a> is expected.</li>
+	<li>Where <a href="https://www.w3.org/TR/html52/dom.html#script-supporting-elements-2">script-supporting</a> elements are expected.</li>
+	<li>As a child of a <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-colgroup">colgroup</a></code> element that doesn’t have a span attribute.</li>
+</ul>
+
+<h3>Content model</h3>
+<p>A normative description of what content must be included as children and descendants of the element.</p>
+
+<ul>
+	<li>Either: <a href="https://www.w3.org/TR/html52/dom.html#metadata-content-2">Metadata content</a>.</li>
+	<li>Or: <a href="https://www.w3.org/TR/html52/dom.html#flow-content-2">Flow content</a>.</li>
+	<li>Or: The content model of <code>&lt;ol&gt;</code> and <code><a href="https://www.w3.org/TR/html52/grouping-content.html#elementdef-ul">&lt;ul&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/grouping-content.html#elementdef-dl">&lt;dl&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/grouping-content.html#elementdef-figure">&lt;figure&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/textlevel-semantics.html#elementdef-ruby">&lt;ruby&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#elementdef-object">&lt;object&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code>&lt;video&gt;</code> and <code><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#elementdef-audio">audio</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-table">&lt;table&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-colgroup">&lt;colgroup&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-thead">&lt;thead&gt;</a></code>, <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-tbody">&lt;tbody&gt;</a></code>, and <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-tfoot">&lt;tfoot&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/tabular-data.html#elementdef-tr">&lt;tr&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/sec-forms.html#elementdef-fieldset">&lt;fieldset&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/sec-forms.html#elementdef-select">&lt;select&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/interactive-elements.html#elementdef-details">&lt;details&gt;</a></code> elements.</li>
+	<li>Or: The content model of <code><a href="https://www.w3.org/TR/html52/interactive-elements.html#elementdef-menu">&lt;menu&gt;</a></code> elements whose <code>type</code> attribute is in the <a href="https://www.w3.org/TR/html52/interactive-elements.html#statedef-menu-popup-menu">popup menu</a> state.</li>
+</ul>
+
+<p>Note that the following elements, incomplete list, have a content model that could expect script-supporting elements: <code>ol</code>, <code>ul</code>, <code>dl</code>, <code>table</code>, <code>thead</code>, <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, <code>select</code>, <code>menu</code></p>
+</section>
+
+<section>
+<h2>Cache busting</h2>
+<p>Before to use the cache busting mechanism with your data json instance, it's highly recommended to configure your server properly instead.</p>
+<p>Various strategy can be set on the server side and those are communicated to the browser through an http header as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>.</p>
 </section>
 
 <section>
@@ -175,33 +286,235 @@
 	<table class="table">
 	<thead>
 	<tr>
-	<th>Option</th>
-	<th>Description</th>
-	<th>How to configure</th>
-	<th>Values</th>
-	</tr>
+		<th>Option</th>
+		<th>Description</th>
+		<th>How to configure</th>
+		<th>Values</th>
+		</tr>
 	</thead>
 	<tbody>
 	<tr>
-	<td>Insertion type</td>
-	<td>Configure the origin and destination of the content to be extracted from a JSON file.</td>
-	<td>Add the configuration attribute to the affected element with the value being the URL followed by a JSON pointer hash of the data to be inserted.</td>
-	<td>
-		<dl>
-			<dt><code>data-json-after</code>:</dt>
-			<dd>Insert content after the element</dd>
-			<dt><code>data-json-append</code>:</dt>
-			<dd>Insert content at the end of the element</dd>
-			<dt><code>data-json-before</code>:</dt>
-			<dd>Insert content before the element</dd>
-			<dt><code>data-json-prepend</code>:</dt>
-			<dd>Insert content at the start of the element</dd>
-			<dt><code>data-json-replace</code>:</dt>
-			<dd>Replace content inside the element</dd>
-			<dt><code>data-json-replacewith</code>:</dt>
-			<dd>Replace the element by the content</dd>
-		</dl>
-	</td>
+		<td>Insertion type</td>
+		<td>Configure the origin and destination of the content to be extracted from a JSON file.</td>
+		<td>Add the configuration attribute to the affected element with the value being the URL followed by a JSON pointer hash of the data to be inserted.</td>
+		<td>
+			<dl>
+				<dt><code>data-json-after</code>:</dt>
+				<dd>Insert content after the element</dd>
+				<dt><code>data-json-append</code>:</dt>
+				<dd>Insert content at the end of the element</dd>
+				<dt><code>data-json-before</code>:</dt>
+				<dd>Insert content before the element</dd>
+				<dt><code>data-json-prepend</code>:</dt>
+				<dd>Insert content at the start of the element</dd>
+				<dt><code>data-json-replace</code>:</dt>
+				<dd>Replace content inside the element</dd>
+				<dt><code>data-json-replacewith</code>:</dt>
+				<dd>Replace the element by the content</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>url</code></td>
+		<td><strong>Required</strong>. Define the url or the dataset name to use. When used in a template mode, the URL should point to an array object.</td>
+		<td>You can follow the url or the dataset name by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a>.</td>
+		<td>
+			<dl>
+				<dt><code>data-wb-json='{ "url": "location/of/json/file.json#/" }'</code></dt>
+				<dd>The url are a json file</dd>
+				<dt><code>data-wb-json='{ "url": "[datasetName]#/" }'</code></dt>
+				<dd>The url is a reference to a dataset managed by a json-manager defined in the page</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>type</code></td>
+		<td>Configure the origin and destination of the content to be extracted from a JSON file. Similar of using the insertion type.</td>
+		<td>Add a value to type that is recongnized, if leaved it it will assume it's means template.</td>
+		<td>
+			<dl>
+				<dt><code>template</code></dt>
+				<dd>(Default) Apply the HTML template by using the json.</dd>
+				<dt><code>addclass</code></dt>
+				<dd>Add a class to the element</dd>
+				<dt><code>after</code></dt>
+				<dd>Insert content after the element</dd>
+				<dt><code>append</code></dt>
+				<dd>Insert content at the end of the element</dd>
+				<dt><code>attr</code></dt>
+				<dd>Change an attribute on the element. It's require also the configuration <code>attr</code> which contain the attribute name.</dd>
+				<dt><code>before</code></dt>
+				<dd>Insert content before the element</dd>
+				<dt><code>removeclass</code></dt>
+				<dd>Remove a class to the element</dd>
+				<dt><code>replace</code></dt>
+				<dd>Replace content inside the element</dd>
+				<dt><code>replacewith</code></dt>
+				<dd>Replace the element by the content</dd>
+				<dt><code>prepend</code></dt>
+				<dd>Insert content at the start of the element</dd>
+				<dt><code>prop</code></dt>
+				<dd>Change a property on the element. It's require also the configuration <code>prop</code> which contain the attribute name.</dd>
+				<dt><code>val</code></dt>
+				<dd>Set a value on an input element.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>attr</code></td>
+		<td>Specify the element attribute name. Only required when <code>type="attr"</code>.</td>
+		<td><code>data-wb-json='{ "url": "", "type": "attr", "attr": "href" }'</code></td>
+		<td>A valid attribute name supported by the element and be one of the following <code>href, src, data-*, aria-*, role, pattern, min, max, step</code>.</td>
+	</tr>
+	<tr>
+		<td><code>prop</code></td>
+		<td>Specify the element attribute name. Only required when <code>type="prop"</code>.</td>
+		<td><code>data-wb-json='{ "url": "", "type": "prop", "prop": "disabled" }'</code></td>
+		<td>A valid attribute considered as a propperty supported by the element and be one of the following <code>checked, selected, disabled, required, readonly, multiple</code>.</td>
+	</tr>
+	<tr>
+		<td><code>queryall</code></td>
+		<td>Template only. Selects elements inside the cloned template. It's assumed the mapping represent the number of returned results of this query.</td>
+		<td><code>data-wb-json='{ "url": "", "queryall": "li" }'</code></td>
+		<td>Contain a valid <a href="https://www.w3.org/TR/selectors/">CSS selector</a>.</td>
+	</tr>
+	<tr>
+		<td><code>tobeclone</code></td>
+		<td>Template only. Selects an elements inside the template that will be cloned for the mapping and the insertion. It's assumed the mapping represent the number of returned results of this query. When it's specified, this returning value is considered as the root of the mapping object selector and for the queryall options.</td>
+		<td><code>data-wb-json='{ "url": "", "queryall": "li" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>All the children elements of the source template</dd>
+				<dt>If defined</dt>
+				<dd>A valid <a href="https://www.w3.org/TR/selectors/">CSS selector</a>.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>filter</code></td>
+		<td>Template only. Validating for truthness to allow array items to be processed by the template. Contains an array of evaluation criteria for array items.</td>
+		<td><code>data-wb-json='{ "url": "", "filter": [ {evaluation object} ] }'</code></td>
+		<td>
+			Evaluation object have the following property
+			<dl>
+				<dt><code>path</code></dt>
+				<dd>Required. JSON pointer to the data being evaluated</dd>
+				<dt><code>value</code></dt>
+				<dd>Required. Value of witch the data would be evaluated</dd>
+				<dt><code>optional</code></dt>
+				<dd>Indicated if the evaluation is optional.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td>Evaluation object <code>path</code></td>
+		<td>Template only, for evaluation object and required. JSON pointer to the data being evaluated. It's must start with an "/". </td>
+		<td><code>data-wb-json='{ "url": "", "filter": [ { "path": "/JSON Pointer" } ] }'</code></td>
+		<td>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a></td>
+	</tr>
+	<tr>
+		<td>Evaluation object <code>value</code></td>
+		<td>Template only, for evaluation object and required. </td>
+		<td><code>data-wb-json='{ "url": "", "filter": [ { "value": "A value" } ] }'</code></td>
+		<td>Any value that could be compared with the information retreived form the path.</td>
+	</tr>
+	<tr>
+		<td>Evaluation object <code>optional</code></td>
+		<td>Template only and for evaluation object.</td>
+		<td><code>data-wb-json='{ "url": "", "filter": [ { "optional": true } ] }'</code></td>
+		<td>True or false. If omited it will be false by default.</td>
+	</tr>
+	<tr>
+		<td><code>filternot</code></td>
+		<td>Template only. Validating for falsness to disallow an array items to be processed by the template. Contains an array of evaluation criteria for array items.</td>
+		<td><code>data-wb-json='{ "url": "", "filternot": [ {evaluation object} ] }'</code></td>
+		<td>
+			Evaluation object have the following property
+			<dl>
+				<dt><code>path</code></dt>
+				<dd>Required. JSON pointer to the data being evaluated</dd>
+				<dt><code>value</code></dt>
+				<dd>Required. Value of witch the data would be evaluated</dd>
+				<dt><code>optional</code></dt>
+				<dd>Indicated if the evaluation is optional.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>source</code></td>
+		<td>Template only. Pointer to the template elements. Not required when the template is the child of the host element.</td>
+		<td><code>data-wb-json='{ "url": "", "source": "#idToMyTemplate" }'</code></td>
+		<td>JQuery selector that represent the template element on the current page.</td>
+	</tr>
+	<tr>
+		<td><code>mapping</code></td>
+		<td>Template only. Array of string represeting a JSON pointer or object where it specify how to bind the data with the template content. If the configuration <code>queryall</code> is used, the number of items in the mapping must match the number of returning result of the queryall. In the other hand, if <code>queryall</code> configuration is not specified, than each mapping object must define a <code>selector</code> configuration.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ "JSON Pointer", "JSON Pointer" ] }'</code> or <code>data-wb-json='{ "url": "", "mapping": [ {mapping object}, {mapping object} ] }'</code></td>
+		<td>When queryall is not specified, it's is an array of string with a the JSON pointer. (Equivalent to the value in the Mapping object)</td>
+	</tr>
+
+
+
+	<tr>
+		<td>Mapping object <code>selector</code></td>
+		<td>Template only, for mapping object and required when <code>queryall</code> is not specified. Should selects one element inside the cloned template.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "selector": "A CSS Selector" } ] }'</code></td>
+		<td>A valid <a href="https://www.w3.org/TR/selectors/">CSS selector</a>.</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>value</code></td>
+		<td>Template only, for mapping object and required when <code>queryall</code> is not specified. JSON Pointer representing the data to be mapped.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "value": "A JSON Pointer" } ] }'</code></td>
+		<td>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a></td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>placeholder</code></td>
+		<td>Template only, for mapping object and optinal when <code>queryall</code> is not specified. String representing the placeholder to replace by the selected data</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "placeholder": "{{name}}" } ] }'</code></td>
+		<td>A findable string in the selected element in the template.</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>attr</code></td>
+		<td>Template only, for mapping object and optional when <code>queryall</code> is not specified. Name of an attribute where the selected data will replace his value.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "attr": "href" } ] }'</code></td>
+		<td>A valid attribute of the selected element.</td>
+	</tr>
+	<tr>
+		<td><code>appendto</code></td>
+		<td>Template only. When the elements are outside the editing area, this specified the element to use to append the template. Specifying the data-json directly of the elements should remain how it is used.</td>
+		<td><code>data-wb-json='{ "url": "", "appendto": "title" }'</code></td>
+		<td>A valid jQuery selector.</td>
+	</tr>
+	<tr>
+		<td><code>nocache</code></td>
+		<td>Prevent caching. Prior using the functionality, use the various caching strategies that can be set and communicated through http header from your server, as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>. Also, please note that some server may not like to have an query appended to his url and you may get an HTTP error like "400 Bad Request" or "404 Not Found". Like a page served by a domino server will return 404 error if the query string do not start with "<code>?open</code>", "<code>?openDocument</code>" or "<code>?readForm</code>".</td>
+		<td><code>data-wb-json='{ "url": "", "nocache": true }'</code> or <code>data-wb-json='{ "url": "", "nocache": "nocache" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>The browser will manage the cache based on how the server has sent the file.</dd>
+				<dt><code>true</code></dt>
+				<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+				<dt><code>nocache</code></dt>
+				<dd>String, A new id is generated everytime the file is fetched</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>nocachekey</code></td>
+		<td>Prevent caching. Optional, it defined what query parameter name to use for the cache busting.</td>
+		<td><code>data-wb-json='{ "url": "", "nocache": true, "nocachekey": "wbCacheBust" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>Will use "<code>wbCacheBust</code>" for the parameter name.</dd>
+				<dt>String</dt>
+				<dd>URL pre-encoded string</dd>
+			</dl>
+		</td>
+	</tr>
+
 	</tbody>
 	</table>
 </section>
@@ -254,7 +567,5 @@
 <section>
 	<h2>Source code</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/data-json">Data JSON plugin source code on GitHub</a></p>
-	<h3>Dependency</h3>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/json-fetch">JSON fetch plugin source code on GitHub</a></p>
 </section>
 </div>

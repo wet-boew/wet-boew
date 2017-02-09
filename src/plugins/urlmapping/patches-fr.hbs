@@ -1,0 +1,216 @@
+---
+{
+	"title": "Correspondance d'URL - Appliquer des correctifs JSON",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Exécute des requête d'application de correctifs JSON pré-établis selon la correspondance des paramètres de l'URL.",
+	"tag": "urlmapping",
+	"parentdir": "urlmapping",
+	"altLangPrefix": "patches",
+	"dateModified": "2017-02-03"
+}
+---
+<p>Exécute des requête d'application de correctifs JSON pré-établis selon la correspondance des paramètres de l'URL.</p>
+
+<div class="wb-prettify all-pre"></div>
+
+<p>Pour le besoin de l'exemple pratique, cette page utilise plusieurs instance du plugiciel <code>wb-urlmapping</code> et il pourrait être tous combiné ensemble. Avoir une seule instance c'est l'approche qui est recommendé.</p>
+
+<h2>Code source des fichiers JSON</h2>
+
+
+<details>
+	<summary><code>empty.json</code></summary>
+	<pre><code>{}</code></pre>
+</details>
+
+<details>
+	<summary><code>data-fr.json</code></summary>
+	<pre><code>{
+	&quot;ville&quot;: {
+		&quot;gat&quot;: &quot;Gatineau&quot;,
+		&quot;ott&quot;: &quot;Ottawa&quot;,
+		&quot;vdm&quot;: &quot;Val-des-monts&quot;
+	},
+	&quot;fruit&quot;: &quot;poire&quot;,
+	&quot;pays&quot;: {
+		&quot;nom&quot;: &quot;Canada&quot;,
+		&quot;province&quot;: {
+			&quot;qc&quot;: &quot;Québec&quot;,
+			&quot;on&quot;: &quot;Ontario&quot;,
+			&quot;ma&quot;: &quot;Manitoba&quot;
+		}
+	}
+}</code></pre>
+</details>
+
+
+<h2 id="ex1">Application de correctifs</h2>
+
+<div data-wb-urlmapping='{
+		"exemple1a": { "action": "patch", "source": "#jmexemple1", "patches": [
+				{ "op": "add", "path": "/ville", "value": "Gatineau" },
+				{ "op": "add", "path": "/fruit", "value": "Pomme" }
+			]
+		},
+		"exemple1b": { "action": "patch", "source": "#jmexemple1", "patches": [
+				{ "op": "add", "path": "/ville", "value": "Ottawa" },
+				{ "op": "add", "path": "/fruit", "value": "Orange" }
+			]
+		},
+		"exemple1c": { "action": "patch", "source": "#jmexemple1", "patches": [
+				{ "op": "add", "path": "/ville", "value": "Hull" }
+			]
+		},
+		"exemple1d": { "action": "patch", "source": "#jmexemple1", "patches": [
+				{ "op": "add", "path": "/fruit", "value": "Kiwi" }
+			]
+		},
+		"multiplequery": true
+	}'></div>
+
+<ul>
+	<li><a href="?#ex1">Vide <code>?</code></a></li> 
+	<li><a href="?exemple1a#ex1">Gatineau et Pomme <code>?exemple1a</code></a></li>
+	<li><a href="?exemple1b#ex1">Ottawa et Orange <code>?exemple1b</code></a></li>
+	<li><a href="?exemple1c&amp;exemple1d#ex1">Hull et Kiwi <code>?exemple1c&amp;exemple1d</code></a></li>
+</ul>
+	
+<section class="well" id="jmexemple1" data-wb-jsonmanager='{
+			"url": "demo/empty.json",
+			"name": "exemple1",
+			"wait": true
+		}'>
+	<h3 class="mrgn-tp-sm">Résultats</h3>
+	<p>Ma ville est: <span data-json-replace="#[exemple1]/ville">quelques part</span></p>
+	<p>Mon fruit est: <span data-json-replace="#[exemple1]/fruit">tous</span></p>
+</section>
+
+<p>La configuration <code>wait</code> permet d'indiquer que le json-manager doit attendre de recevoir des correctifs par un autre plugiciel avant de mettre à jour le contenu affichier par le data-json content.</p>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;div data-wb-urlmapping='{
+		&quot;exemple1a&quot;: { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple1&quot;, &quot;patches&quot;: [
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/ville&quot;, &quot;value&quot;: &quot;Gatineau&quot; },
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/fruit&quot;, &quot;value&quot;: &quot;Pomme&quot; }
+			]
+		},
+		&quot;exemple1b&quot;: { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple1&quot;, &quot;patches&quot;: [
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/ville&quot;, &quot;value&quot;: &quot;Ottawa&quot; },
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/fruit&quot;, &quot;value&quot;: &quot;Orange&quot; }
+			]
+		},
+		&quot;exemple1c&quot;: { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple1&quot;, &quot;patches&quot;: [
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/ville&quot;, &quot;value&quot;: &quot;Hull&quot; }
+			]
+		},
+		&quot;exemple1d&quot;: { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple1&quot;, &quot;patches&quot;: [
+				{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/fruit&quot;, &quot;value&quot;: &quot;Kiwi&quot; }
+			]
+		},
+		&quot;multiplequery&quot;: true
+	}'&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;?#ex1&quot;&gt;Vide &lt;code&gt;?&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+	&lt;li&gt;&lt;a href=&quot;?exemple1a#ex1&quot;&gt;Gatineau et Pomme &lt;code&gt;?exemple1a&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?exemple1b#ex1&quot;&gt;Ottawa et Orange &lt;code&gt;?exemple1b&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?exemple1c&amp;amp;exemple1d#ex1&quot;&gt;Hull et Kiwi &lt;code&gt;?exemple1c&amp;amp;exemple1d&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+	
+&lt;section class=&quot;well&quot; id=&quot;jmexemple1&quot; data-wb-jsonmanager='{
+			&quot;url&quot;: &quot;demo/empty.json&quot;,
+			&quot;name&quot;: &quot;exemple1&quot;,
+			&quot;wait&quot;: true
+		}'&gt;
+	&lt;h3 class=&quot;mrgn-tp-sm&quot;&gt;Résultats&lt;/h3&gt;
+	&lt;p&gt;Ma ville est: &lt;span data-json-replace=&quot;#[exemple1]/ville&quot;&gt;quelques part&lt;/span&gt;&lt;/p&gt;
+	&lt;p&gt;Mon fruit est: &lt;span data-json-replace=&quot;#[exemple1]/fruit&quot;&gt;tous&lt;/span&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+</details>
+
+
+<h2>Utiliser les valeur de la requête de la pages pour appliquer des correctifs</h2>
+
+<h3 id="ex2">Par défauts</h3>
+<p>La valeur du paramètre sera utilisé en tant que clef afin de le l'objet vers l'objet parent.</p>
+
+<ul data-wb-urlmapping='{ "ville" : { "action": "patch", "source": "#jmexemple2", "base": "/ville", "match": "^[a-z][a-z][a-z]$", "default": "gat" } }'>
+	<li><a href="?#ex2">Vide <code>?</code></a></li> 
+	<li><a href="?ville=gat#ex2">Gatineau <code>?ville=gat</code></a></li>
+	<li><a href="?ville=ott#ex2">Ottawa <code>?ville=ott</code></a></li>
+	<li><a href="?ville=vdm#ex2">Val-des-monts <code>?ville=vdm</code></a></li>
+	<li><a href="?ville=hull#ex2">Hull <code>?ville=hull</code></a> (Repli sur la valeur par défaut <code>gat</code>)</li>
+	<li><a href="?ville=hul#ex2">Hull <code>?ville=hul</code></a> (Fait rien)</li>
+</ul>
+
+<p id="jmexemple2" data-wb-jsonmanager='{ "url": "demo/data-fr.json", "name": "exemple2", "wait": true }'>La ville sélectionné est : <span data-json-replace="#[exemple2]/ville">quelques part</span></p>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;ul data-wb-urlmapping='{ &quot;ville&quot; : { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple2&quot;, &quot;base&quot;: &quot;/ville&quot;, &quot;match&quot;: &quot;^[a-z][a-z][a-z]$&quot;, &quot;default&quot;: &quot;gat&quot; } }'&gt;
+	&lt;li&gt;&lt;a href=&quot;?#ex2&quot;&gt;Empty &lt;code&gt;?&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+	&lt;li&gt;&lt;a href=&quot;?ville=gat#ex2&quot;&gt;Gatineau &lt;code&gt;?ville=gat&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ville=ott#ex2&quot;&gt;Ottawa &lt;code&gt;?ville=ott&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ville=vdm#ex2&quot;&gt;Val-des-monts &lt;code&gt;?ville=vdm&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ville=hull#ex2&quot;&gt;Hull &lt;code&gt;?ville=hull&lt;/code&gt;&lt;/a&gt; (Fallback on default &lt;code&gt;gat&lt;/code&gt;)&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ville=hul#ex2&quot;&gt;Hull &lt;code&gt;?ville=hul&lt;/code&gt;&lt;/a&gt; (Do nothing)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p id=&quot;jmexemple2&quot; data-wb-jsonmanager='{ &quot;url&quot;: &quot;demo/data-fr.json&quot;, &quot;name&quot;: &quot;exemple2&quot;, &quot;wait&quot;: true }'&gt;La ville sélectionné est : &lt;span data-json-replace=&quot;#[exemple2]/ville&quot;&gt;quelques part&lt;/span&gt;&lt;/p&gt;</code></pre>
+</details>
+
+<h3 id="ex3">Être précis dans la correspondance</h3>
+
+<p>Les configuration suivante vont écraser/contourner les fonctionalitées par défaut pour l'application des correctifs.</p>
+
+<ul data-wb-urlmapping='{ 
+		"ex3a" : { "action": "patch", "source": "#jmexemple3", "base": "/ville", "match": "^[a-z][a-z][a-z]$", "default": "vdm" },
+		"ex3b" : { "action": "patch", "source": "#jmexemple3", "base": "/ville", "qval": "gat" },
+		"ex3c=exemple" : { "action": "patch", "source": "#jmexemple3", "base": "/ville", "qval": "ott" },
+		"ex3d" : { "action": "patch", "source": "#jmexemple3", "base": "/pays/province", "match": "^[a-z][a-z]$", "default": "ma" }
+	}'>
+	<li><a href="?#ex3">Vide <code>?</code></a></li> 
+	<li><a href="?ex3a#ex3">La base est "/ville", repli sur le défaut <code>?ex3a</code></a></li>
+	<li><a href="?ex3a=gat#ex3">La base est "/ville", affiche Gatineau <code>?ex3a=gat</code></a></li>
+	<li><a href="?ex3a=ott#ex3">La base est "/ville", Affiche Ottawa <code>?ex3a=ott</code></a></li>
+	<li><a href="?ex3b#ex3">La base est "/ville" avec la valeur "gat" défini, affiche Gatineau <code>?ex3b</code></a></li>
+	<li><a href="?ex3c=exemple#ex3">La base est "/ville" avec la valeur "ott" défini, affiche Ottawa <code>?ex3c=exemple</code></a></li>
+	<li><a href="?ex3d#ex3">La base est "/province" avec la racine "/pays/", repli sur le défaut <code>?ex3d</code></a></li>
+	<li><a href="?ex3d=on#ex3">La base est "/province" avec la racine "/pays/", affiche Ontario <code>?ex3d=on</code></a></li>
+	<li><a href="?ex3d=qc#ex3">La base est "/province" avec la racine "/pays/", affiche Québec <code>?ex3d=qc</code></a></li>
+</ul>
+
+<p>Résultat:</p>
+<ul id="jmexemple3" data-wb-jsonmanager='{ "url": "demo/data-fr.json", "name": "exemple4", "wait": true }'>
+	<li>Ville: <span data-json-replace="#[exemple4]/ville">non définie</span></li>
+	<li>Province: <span data-json-replace="#[exemple4]/pays/province">non défini</span></li>
+</ul>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;ul data-wb-urlmapping='{ 
+		&quot;ex3a&quot; : { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple3&quot;, &quot;base&quot;: &quot;/ville&quot;, &quot;match&quot;: &quot;^[a-z][a-z][a-z]$&quot;, &quot;default&quot;: &quot;vdm&quot; },
+		&quot;ex3b&quot; : { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple3&quot;, &quot;base&quot;: &quot;/ville&quot;, &quot;qval&quot;: &quot;gat&quot; },
+		&quot;ex3c=exemple&quot; : { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple3&quot;, &quot;base&quot;: &quot;/ville&quot;, &quot;qval&quot;: &quot;ott&quot; },
+		&quot;ex3d&quot; : { &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexemple3&quot;, &quot;base&quot;: &quot;/pays/province&quot;, &quot;match&quot;: &quot;^[a-z][a-z]$&quot;, &quot;default&quot;: &quot;ma&quot; }
+	}'&gt;
+	&lt;li&gt;&lt;a href=&quot;?#ex3&quot;&gt;Vide &lt;code&gt;?&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+	&lt;li&gt;&lt;a href=&quot;?ex3a#ex3&quot;&gt;La base est &quot;/ville&quot;, repli sur le défaut &lt;code&gt;?ex3a&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3a=gat#ex3&quot;&gt;La base est &quot;/ville&quot;, affiche Gatineau &lt;code&gt;?ex3a=gat&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3a=ott#ex3&quot;&gt;La base est &quot;/ville&quot;, Affiche Ottawa &lt;code&gt;?ex3a=ott&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3b#ex3&quot;&gt;La base est &quot;/ville&quot; avec la valeur &quot;gat&quot; défini, affiche Gatineau &lt;code&gt;?ex3b&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3c=exemple#ex3&quot;&gt;La base est &quot;/ville&quot; avec la valeur &quot;ott&quot; défini, affiche Ottawa &lt;code&gt;?ex3c=exemple&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3d#ex3&quot;&gt;La base est &quot;/province&quot; avec la racine &quot;/pays/&quot;, repli sur le défaut &lt;code&gt;?ex3d&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3d=on#ex3&quot;&gt;La base est &quot;/province&quot; avec la racine &quot;/pays/&quot;, affiche Ontario &lt;code&gt;?ex3d=on&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;?ex3d=qc#ex3&quot;&gt;La base est &quot;/province&quot; avec la racine &quot;/pays/&quot;, affiche Québec &lt;code&gt;?ex3d=qc&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Résultat:&lt;/p&gt;
+&lt;ul id=&quot;jmexemple3&quot; data-wb-jsonmanager='{ &quot;url&quot;: &quot;demo/data-fr.json&quot;, &quot;name&quot;: &quot;exemple4&quot;, &quot;wait&quot;: true }'&gt;
+	&lt;li&gt;Ville: &lt;span data-json-replace=&quot;#[exemple4]/ville&quot;&gt;non définie&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;Province: &lt;span data-json-replace=&quot;#[exemple4]/country/province&quot;&gt;non défini&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</details>
+
