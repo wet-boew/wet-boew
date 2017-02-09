@@ -34,7 +34,7 @@
     "jquery-pjax": "1.9.6",
     "jquery-validation": "1.15.1",
     "magnific-popup": "https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
-    "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
+    "openlayers": "https://github.com/wet-boew/ol3.git#3.17.2",
     "proj4": "2.3.3",
     "respond": "1.4.2",
     "selectivizr": "1.0.2",
