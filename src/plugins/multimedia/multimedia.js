@@ -591,7 +591,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
 
 			// lets set the flag for the call back
-			data.youTubeId = url.params.v;
+			data.youTubeId = url.params.v ? url.params.v : url.pathname.substr( 1 );
 
 			if ( youTube.ready === false ) {
 				$document.one( youtubeReadyEvent, function() {
