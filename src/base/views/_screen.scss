@@ -6,6 +6,12 @@
 	display: none !important;
 }
 
+@if $main-bg {
+	main {
+		background-color: $main-bg;
+	}
+}
+
 /* Hide MathML check */
 .mathml,
 .no-mathml {
