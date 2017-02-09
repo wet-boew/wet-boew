@@ -303,3 +303,42 @@
 		</details>
 	</section>
 </section>
+
+<section>
+	<h2>Alternative syntax</h2>
+	<p>Consult the <a href="../../docs/ref/data-ajax/data-ajax-en.html">documentation</a> for more information regarding the following alternative syntaxt.</p>
+	<h3>Example</h3>
+	<div data-wb-ajax='{
+			"url": "ajax/data-ajax-extra-en.html",
+			"type": "append"
+		}' class="original">
+		<section>
+			<h4>Hello World</h4>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</section>
+	</div>
+	<details>
+			<summary>View code</summary>
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-wb-ajax='{
+		"url": "ajax/data-ajax-extra-en.html",
+		"type": "append"
+	}' class="original"&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Hello World&lt;/h4&gt;
+		&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+		</details>
+</section>
+

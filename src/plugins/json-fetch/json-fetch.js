@@ -5,7 +5,7 @@
  * @author @duboisp
  */
 /*global jsonpointer */
-( function( $, wb, window ) {
+( function( $, wb ) {
 "use strict";
 
 /*
@@ -17,19 +17,27 @@
 var $document = wb.doc,
 	component = "json-fetch",
 	fetchEvent = component + ".wb",
-	jsonCache = component + "cache",
-	jsonCacheBacklog = component + "backlog",
-	completeJsonFetch = function( callerId, response, status, xhr, selector ) {
+	jsonCache = { },
+	jsonCacheBacklog = { },
+	completeJsonFetch = function( callerId, refId, response, status, xhr, selector ) {
+		if ( !window.jsonpointer ) {
+
+			// JSON pointer library is loaded but not executed in memory yet, we need to wait a tick before to continue
+			setTimeout( function() {
+				completeJsonFetch( callerId, refId, response, status, xhr, selector );
+			}, 100 );
+			return false;
+		}
 		if ( selector ) {
 			response = jsonpointer.get( response, selector );
 		}
-
 		$( "#" + callerId ).trigger( {
 			type: "json-fetched.wb",
 			fetch: {
 				response: response,
 				status: status,
-				xhr: xhr
+				xhr: xhr,
+				refId: refId
 			}
 		}, this );
 	};
@@ -37,51 +45,85 @@ var $document = wb.doc,
 // Event binding
 $document.on( fetchEvent, function( event ) {
 
-	// TODO: Remove event.element in future versions
 	var caller = event.element || event.target,
 		fetchOpts = event.fetch,
 		urlParts = fetchOpts.url.split( "#" ),
 		url = urlParts[ 0 ],
+		fetchNoCache = fetchOpts.nocache,
+		fetchNoCacheKey = fetchOpts.nocachekey || wb.cacheBustKey || "wbCacheBust",
+		fetchNoCacheValue,
+		fetchCacheURL,
+		hashPart,
+		datasetName,
 		selector = urlParts[ 1 ] || false,
-		callerId,
-		uri = "json:" + url, cachedResponse;
-
-	// Separate the URL from the filtering criteria
-	if ( selector ) {
-		fetchOpts.url = url;
-	}
+		callerId, refId = fetchOpts.refId,
+		cachedResponse;
 
 	// Filter out any events triggered by descendants
 	if ( caller === event.target || event.currentTarget === event.target ) {
 
+		if ( !caller.id ) {
+			caller.id = wb.getId();
+		}
+		callerId = caller.id;
+
+		if ( selector ) {
+
+			// If a Dataset Name exist let it managed by wb-jsonpatch plugin
+			hashPart = selector.split( "/" );
+			datasetName = hashPart[ 0 ];
+
+			// A dataset name must start with "[" character, if it is a letter, then follow JSON Schema (to be implemented)
+			if ( datasetName.charCodeAt( 0 ) === 91 ) {
+
+				// Let the wb-jsonpatch plugin to manage it
+				$( "#" + callerId ).trigger( {
+					type: "postpone.wb-jsonmanager",
+					postpone: {
+						callerId: callerId,
+						refId: refId,
+						dsname: datasetName,
+						selector: selector.substring( datasetName.length )
+					}
+				} );
+				return;
+			}
+			fetchOpts.url = url;
+		}
+
+		if ( fetchNoCache ) {
+			if ( fetchNoCache === "nocache" ) {
+				fetchNoCacheValue = wb.guid();
+			} else {
+				fetchNoCacheValue = wb.sessionGUID();
+			}
+			fetchCacheURL = fetchNoCacheKey + "=" + fetchNoCacheValue;
+
+			if ( url.indexOf( "?" ) !== -1 ) {
+				url = url + "&" + fetchCacheURL;
+			} else {
+				url = url + "?" + fetchCacheURL;
+			}
+			fetchOpts.url = url;
+		}
+
 		Modernizr.load( {
-
 			load: "site!deps/jsonpointer" + wb.getMode() + ".js",
-
 			complete: function() {
 
-				if ( !caller.id ) {
-					caller.id = wb.getId();
-				}
-				callerId = caller.id;
-
-				if ( !window[ jsonCache ] ) {
-					window[ jsonCache ] = { };
-					window[ jsonCacheBacklog ] = { };
-				}
-
 				if ( !fetchOpts.nocache ) {
-					cachedResponse = window[ jsonCache ][ uri ];
+					cachedResponse = jsonCache[ url ];
 
 					if ( cachedResponse ) {
-						completeJsonFetch( callerId, cachedResponse, "success", undefined, selector );
+						completeJsonFetch( callerId, refId, cachedResponse, "success", undefined, selector );
 						return;
 					} else {
-						if ( !window[ jsonCacheBacklog ][ uri ] ) {
-							window[ jsonCacheBacklog ][ uri ] = [ ];
+						if ( !jsonCacheBacklog[ url ] ) {
+							jsonCacheBacklog[ url ] = [ ];
 						} else {
-							window[ jsonCacheBacklog ][ uri ].push( {
+							jsonCacheBacklog[ url ].push( {
 								"callerId": callerId,
+								"refId": refId,
 								"selector": selector
 							} );
 							return;
@@ -92,24 +134,25 @@ $document.on( fetchEvent, function( event ) {
 				$.ajax( fetchOpts )
 					.done( function( response, status, xhr ) {
 						var i, i_len, i_cache, backlog;
+
 						if ( !fetchOpts.nocache ) {
 							try {
-								window[ jsonCache ][ uri ] = response;
+								jsonCache[ url ] = response;
 							} catch ( error ) {
 								return;
 							}
 						}
 
-						completeJsonFetch( callerId, response, status, xhr, selector );
+						completeJsonFetch( callerId, refId, response, status, xhr, selector );
 
-						if ( window[ jsonCacheBacklog ][ uri ] ) {
-							backlog = window[ jsonCacheBacklog ][ uri ];
+						if ( jsonCacheBacklog[ url ] ) {
+							backlog = jsonCacheBacklog[ url ];
 
 							i_len = backlog.length;
 
 							for ( i = 0; i !== i_len; i += 1 ) {
 								i_cache = backlog[ i ];
-								completeJsonFetch( i_cache.callerId, response, status, xhr, i_cache.selector );
+								completeJsonFetch( i_cache.callerId, i_cache.refId, response, status, xhr, i_cache.selector );
 							}
 						}
 
@@ -120,7 +163,8 @@ $document.on( fetchEvent, function( event ) {
 							fetch: {
 								xhr: xhr,
 								status: status,
-								error: error
+								error: error,
+								refId: refId
 							}
 						}, this );
 					}, this );
@@ -129,4 +173,4 @@ $document.on( fetchEvent, function( event ) {
 	}
 } );
 
-} )( jQuery, wb, window );
+} )( jQuery, wb );

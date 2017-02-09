@@ -2,5 +2,24 @@
 	"fees": {
 		"ABC": "20$"
 	},
-	"product": "Hello world"
+	"product": "Hello world",
+	"products": [
+		"My new product",
+		"My second product",
+		"My product number 3"
+	],
+	"status": "text-muted",
+	"iamtrue": true,
+	"iamfalse": false,
+	"jour":"2016-11-05T01:42:31Z",
+	"anArray": [
+		{ "name": "Item 1", "prop": "red" },
+		{ "name": "Item 2", "prop": "blue" },
+		{ "name": "Item 3", "prop": "yellow" },
+		{ "name": "Item 4", "prop": "purple" }
+	],
+	"offices": [
+		{ "name": "Jean Edmonds, North Tower", "num": 300, "street": "Slater", "city": "Ottawa", "css": "bg-success" },
+		{ "name": "Place du portage, Phase I", "num": 50, "street": "Victoria", "city": "Gatineau", "css": "bg-danger" }
+	]
 }
