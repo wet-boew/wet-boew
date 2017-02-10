@@ -17,11 +17,9 @@ var componentName = "wb-lbx",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
-	globalOverlay = "wb-overlay-open",
 	dependenciesLoadedEvent = "deps-loaded" + selector,
 	modalHideSelector = "#wb-tphp, body > header, body > main, body > footer",
 	$document = wb.doc,
-	$html = wb.html,
 	callbacks, i18n, i18nText,
 
 	/**
@@ -93,9 +91,9 @@ var componentName = "wb-lbx",
 						settings.type = "inline";
 					}
 
-					// Prepend the popup in a container after the h1
+					// Insert the lbx in a container after the h1
 					if ( pageHeading1 ) {
-						$( pageHeading1 ).after( "<div class='wb-popup'></div>" );
+						$( pageHeading1 ).after( "<div class='wb-lbx-container'></div>" );
 						settings.prependTo = pageHeading1.nextSibling;
 					}
 
@@ -172,10 +170,6 @@ var componentName = "wb-lbx",
                         .find( ".activate-open" )
                         .trigger( "wb-activate" );
 
-					$html.addClass( globalOverlay );
-				},
-				close: function() {
-					$html.removeClass( globalOverlay );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );

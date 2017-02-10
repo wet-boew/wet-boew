@@ -19,12 +19,11 @@ var componentName = "wb-overlay",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
-	globalOverlay = "wb-overlay-open",
+	globalOverlay = "wb-overlay-dialog",
 	initialized = false,
 	sourceLinks = {},
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
-	$html = wb.html,
 	i18n, i18nText,
 
 	/**
@@ -84,7 +83,7 @@ var componentName = "wb-overlay",
 			.attr( "aria-hidden", "false" );
 
 		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
-			$html.addClass( globalOverlay );
+			$document.find( "body" ).addClass( globalOverlay );
 		}
 
 		if ( !noFocus ) {
@@ -111,7 +110,7 @@ var componentName = "wb-overlay",
 			.attr( "aria-hidden", "true" );
 
 		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
-			$html.removeClass( globalOverlay );
+			$document.find( "body" ).removeClass( globalOverlay );
 		}
 
 		if ( userClosed ) {

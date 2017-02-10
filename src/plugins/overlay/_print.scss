@@ -19,19 +19,29 @@
 	}
 }
 
-.wb-overlay-open {
-
-	main {
-
-		* {
-			display:none;
+body {
+	&.wb-modal,
+	&.wb-overlay-dialog {
+		> {
+			header,
+			main h1:first-child
+			{
+				visibility: visible !important;
+			}
 		}
 
-		h1, .wb-popup, .wb-popup *, .wb-overlay.open * {
-			display:block;
-		}
+		main {
 
+			// This remove blank space when printing
+			* {
+				display:none;
+			}
+
+			// Show only the dialog
+			h1, .wb-overlay.open *, .wb-lbx-container, .wb-lbx-container * {
+				display:block;
+			}
+
+		}
 	}
 }
-
-

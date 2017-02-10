@@ -15,6 +15,10 @@
 	visibility: hidden !important;
 }
 
+%lightbox-modal-visible {
+	visibility: visible !important;
+}
+
 .lbx-hide-gal {
 	li {
 		display: none;
@@ -44,9 +48,14 @@ body {
 
 		.modal-dialog {
 			summary {
-				visibility: visible !important;
+				@extend %lightbox-modal-visible;
 			}
 		}
+
+		.wb-lbx-container {
+			@extend %lightbox-modal-visible;
+		}
+
 	}
 }
 
