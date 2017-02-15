@@ -42,7 +42,7 @@ details {
 			}
 
 			:first-child {
-				margin-left: .4em;
+				margin-left: .2em;
 
 				&:before {
 					color: #000;
@@ -95,7 +95,7 @@ details {
 			&.alert {
 				> {
 					summary {
-						margin-left: 1.4em;
+						margin-left: 1.2em;
 
 						&:before {
 							content: "\25BA\a0";
@@ -120,7 +120,7 @@ details {
 				&.alert {
 					> {
 						summary {
-							margin-right: 1.4em;
+							margin-right: 1.2em;
 						}
 					}
 				}
