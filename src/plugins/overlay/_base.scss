@@ -126,13 +126,15 @@
 	}
 
 	.overlay-close {
-		background-color: #000;
-		border-radius: 999px;
-		height: 1em;
-		line-height: 1em;
-		margin-right: 20px;
-		margin-top: 10px;
-		width: 1em;
+		&:not(.btn) {
+			background-color: #000;
+			border-radius: 999px;
+			height: 1em;
+			line-height: 1em;
+			margin-right: 20px;
+			margin-top: 10px;
+			width: 1em;
+		}
 	}
 }
 
