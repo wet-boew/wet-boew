@@ -1,0 +1,107 @@
+---
+{
+	"title": "Steps Form",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Automatically converts a form into steps.",
+	"tag": "stepsform",
+	"parentdir": "stepsform",
+	"altLangPrefix": "stepsform",
+	"dateModified": "2017-02-20"
+}
+---
+<section>
+	<h2>Purpose</h2>
+	<p>Provides the ability to split a form into steps (without/with generic validation).</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+
+	<div class="wb-frmvld wb-steps" data-wb-steps='{"submitBtnVal": "Submit", "submitBtnNme": "submit"}'>
+	  <form action="#" method="get" id="steps-example">
+			<fieldset id="client">
+	      <legend>Client Information</legend>
+	      <div>
+	        <div class="form-group">
+	          <label for="firstname" class="required"><span class="field-name">First name</span></label>
+	          <input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required" />
+	        </div>
+	        <div class="form-group">
+	          <label for="lastname" class="required"><span class="field-name">Last name</span></label>
+	          <input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required" />
+	        </div>
+	        <div class="form-group">
+	          <label for="dateOfBirth" class="required"><span class="field-name">Date of Birth</span></label>
+	          <input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required="required" />
+	        </div>
+	      </div>
+	    </fieldset>
+	    <fieldset id="contact">
+	      <legend>Contact Information</legend>
+	      <div>
+	        <div class="form-group">
+	          <label for="preferredNumber" class="required">Preferred: <span class="field-name">Phone Number</span></label>
+	          <input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" required="required" />
+	        </div>
+	        <div class="form-group">
+	          <label for="secondaryNumber">Secondary: <span class="field-name">Phone Number</span></label>
+	          <input class="form-control" id="secondaryNumber" name="secondaryNumber" type="tel" data-rule-phoneUS="true" />
+	        </div>
+	        <div class="form-group">
+	          <label for="email"><span class="field-name">Email Address</span> (test@domain)</label>
+	          <input class="form-control" id="email" name="email" type="email" />
+	        </div>
+	      </div>
+	    </fieldset>
+	    <fieldset id="questionaire">
+	      <legend>Ethics Questionnaire</legend>
+	      <div>
+	        <small>For each of the following examples, indicate whether or not you feel that there is an ethical issue.</small>
+	        <fieldset style="border:0;">
+	          <legend><span class="field-name">Ethics 1</span>: You pay $10.00 bucks for a purchase, but receive change for $20.00 bucks. Would you keep the extra money?</legend>
+	          <div class="radio">
+	            <label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1"/>&#160;Definitely Not</label>&#160;
+	            <label for="probNot-1"><input type="radio" name="ethics1" value="probNot-1" id="probNot-1"/>&#160;Probably Not</label>&#160;
+	            <label for="maybe-1"><input type="radio" name="ethics1" value="maybe-1" id="maybe-1"/>&#160;Maybe (Not Sure)</label>&#160;
+	            <label for="probably-1"><input type="radio" name="ethics1" value="probably-1" id="probably-1"/>&#160;Probably</label>&#160;
+	            <label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1"/>&#160;Definitely</label>
+	          </div>
+	        </fieldset>
+	        <fieldset style="border:0;">
+	          <legend><span class="field-name">Ethics 2</span>: You need a software, but can't wait for office to make a decision. Against license restrictions would you download it?</legend>
+	          <div class="radio">
+	            <label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2"/>&#160;Definitely Not</label>&#160;
+	            <label for="probNot-2"><input type="radio" name="ethics2" value="probNot-2" id="probNot-2"/>&#160;Probably Not</label>&#160;
+	            <label for="maybe-2"><input type="radio" name="ethics2" value="maybe-2" id="maybe-2"/>&#160;Maybe (Not Sure)</label>&#160;
+	            <label for="probably-2"><input type="radio" name="ethics2" value="probably-2" id="probably-2"/>&#160;Probably</label>&#160;
+	            <label for="definitely-2"><input type="radio" name="ethics2" value="definitely-2" id="definitely-2"/>&#160;Definitely</label>
+	          </div>
+	        </fieldset>
+	      </div>
+	    </fieldset>
+	    <input type="submit" name="submit" value="Submit" class="btn btn-primary" />
+	  </form>
+	</div>
+
+	<details class="mrgn-tp-md mrgn-bttm-md">
+		<summary>View code</summary>
+		<ol>
+			<li>Create a <code>&lt;div&gt;</code> element with class <code>wb-steps</code> (you can also add class <code>wb-frmvld</code> for validation).
+				<small>Don't forget to set the button value (see documentation for more examples) using <code>data-wb-steps='{"submitBtnVal": "Submit"}'</code></small>
+				<pre><code>&lt;div class=&quot;wb-frmvld wb-steps&quot; data-wb-steps='{"submitBtnVal": "Submit", "submitBtnNme": "submit"}'&gt;&lt;/div&gt;</code></pre>
+			</li>
+			<li>Within previous the <code>&lt;div&gt;</code> element add a <code>&lt;form&gt;</code> element.
+				<pre><code>&lt;form action="#" method="get" id="steps-example"&gt;&lt;/form&gt;</code></pre>
+			</li>
+			<li>Within previous the <code>&lt;form&gt;</code> element add your <code>&lt;fieldset&gt;</code> element which well need an <code>&lt;legend&gt;</code> and <code>&lt;div&gt;</code>.
+				<small>These well become your steps</small>
+				<pre><code>&lt;fieldset&gt;<br/>&lt;legend&gt;Client Information&lt;/legend&gt;<br/>&lt;div&gt;(Any content in the div well be hidden.)&lt;/div&gt;<br/>&lt;/fieldset&gt;</code></pre>
+			</li>
+		</ol>
+	</details>
+
+	<noscript>
+		<p>Steps form cannot be used without JavaScript. Instead the form well convert back to an normal form and well rely on browser/server validation (not part of WET).</p>
+	</noscript>
+</section>
