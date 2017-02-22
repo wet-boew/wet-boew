@@ -177,9 +177,12 @@ var componentName = "wb-date",
 
 	updateState = function() {
 		var state = this.state,
-			minDate = state.minDate,
-			maxDate = state.maxDate,
+			minDate = fromDateISO( this.getAttribute( "min" ) ) || state.minDate,
+			maxDate = fromDateISO( this.getAttribute( "max" ) ) || state.maxDate,
 			date = fromDateISO( this.value );
+
+		this.state.minDate = minDate;
+		this.state.maxDate = maxDate;
 
 		if ( date && date >= minDate && date <= maxDate ) {
 			state.date = date;
