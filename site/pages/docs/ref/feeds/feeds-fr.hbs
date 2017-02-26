@@ -8,7 +8,7 @@
 	"altLangPrefix": "feeds",
 	"dateModified": "2015-03-19"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div>
@@ -42,12 +42,6 @@
 		<li>Dans l'élément <code>section</code>, ajouter une entête (<code>h1</code> - <code>h6</code>).</li>
 		<li>Ajouter une liste non-ordonnée (<code>ul</code>) après l'entête avec la classe <code>feeds-cont</code>.
 			<ul>
-				<li><strong>Fils de syndication Facebook :</strong>
-					<ol>
-						<li>Ajouter la classe <code>media-list</code> à la liste non-ordonnée.</li>
-						<li>Ajouter <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> après la liste non-ordonnée.</li>
-					</ol>
-				</li>
 				<li><strong>Fils de syndication Flickr et YouTube :</strong>
 					<ol>
 						<li>Ajouter la classe <code>list-inline</code> à la liste non-ordonnée.</li>
@@ -61,25 +55,6 @@
 				<li><strong>Fils de syndication ordinaires :</strong>
 					<pre><code>&lt;li&gt;
 	&lt;a href="http://canada.ca/sample.atom"&gt;Exemple de flux Atom&lt;/a&gt;
-&lt;/li&gt;</code></pre>
-				</li>
-				<li><strong>Fils de syndication Facebook :</strong>
-					<ol>
-						<li>Ajouter la classe <code>media</code> à l'élément liste.</li>
-						<li>Ajouter la classe <code>pull-left</code> au lien.</li>
-						<li>Ajouter une image de profile avec la classe <code>media-object</code> au lien.</li>
-						<li>Ajouter une élément <code>section</code> avec la classe <code>media-body</code> après le lien.</li>
-						<li>À l'intérieur de l'élément <code>section</code>, ajouter une entête (<code>h1</code> - <code>h6</code>) avec la classe <code>media-heading</code>. Ajouter le nom du compte Facebook dans cette entête (e.g., "Parcs Canada - Facebook").</li>
-						<li>Ajouter un élément <code>p</code> contenant la description du compte Facebook après l'entête.</li>
-					</ol>
-					<pre><code>&lt;li class="media"&gt;
-	&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10"&gt;
-		&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
-	&lt;/a&gt;
-	&lt;section class="media-body"&gt;
-		&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10" rel="external"&gt;Parcs Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-		&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
-	&lt;/section&gt;
 &lt;/li&gt;</code></pre>
 				</li>
 				<li><strong>Fils de syndication Flickr :</strong>
@@ -107,17 +82,17 @@
 				<li>Créer un élément <code>div</code> avec la classe <code>class="wb-tabs"</code>.</li>
 				<li>Ajouter un élément <code>div</code>avec <code>class="tabpanels"</code> à l'intérieur de l'élément <code>div</code> précédent.</li>
 				<li>Pour chaque groupe de flux (regrouper les fils par type), ajouter un élément <code>details</code>. Ajouter l'attribut <code>open="open"</code> au groupe de fils qui doit être affiché par défaut.</li>
-				<li>Ajouter un élément <code>summary</code> au début de chaque élément <code>details</code> avec le nom du groupe de fils (e.g., <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
+				<li>Ajouter un élément <code>summary</code> au début de chaque élément <code>details</code> avec le nom du groupe de fils (e.g., <code>&lt;summary&gt;Pinterest&lt;/summary&gt;</code>).</li>
 				<li>Ajouter les zonnes pour afficher les flux Web après chaque élément <code>summary</code> tel que décrit aux étapes 1 à 4, mais avec l'exception d'ajouter la classe <code>wb-inv</code> à l'entête de chaque zone.</li>
 			</ol>
 			<pre><code>&lt;section&gt;
 	&lt;h3&gt;Les comptes des médias sociaux à onglets&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
-			&lt;details id="details-facebook" open="open"&gt;
-				&lt;summary&gt;Facebook&lt;/summary&gt;
+			&lt;details id="details-pinterest" open="open"&gt;
+				&lt;summary&gt;Pinterest&lt;/summary&gt;
 				&lt;section class="wb-feeds limit-5"&gt;
-					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
+					&lt;h4 class="wb-inv"&gt;Pinterest&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						...
 					&lt;/ul&gt;
@@ -171,33 +146,6 @@
 		</section>
 
 		<section>
-			<h4>Fils de syndication Facebook</h4>
-			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
-	&lt;ul class="feeds-cont media-list"&gt;
-		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10"&gt;
-				&lt;img class="media-object" src="http://graph.facebook.com/460123390028/picture?type=large" alt="Logo Environnement Canada" width="64" /&gt;
-			&lt;/a&gt;
-			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external"&gt;Environnement Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens..&lt;/p&gt;
-			&lt;/section&gt;
-		&lt;/li&gt;
-		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10"&gt;
-				&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
-			&lt;/a&gt;
-			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external"&gt;Parcs Canada- Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
-			&lt;/section&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
-	&lt;div class="clearfix"&gt;&lt;/div&gt;
-&lt;/section&gt;</code></pre>
-		</section>
-
-		<section>
 			<h4>Fils de syndication Flickr</h4>
 			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
@@ -230,35 +178,8 @@
 	&lt;h3&gt;Les comptes des médias sociaux à onglets&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
-			&lt;details id="details-facebook" open="open"&gt;
-				&lt;summary&gt;Facebook&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-5"&gt;
-					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
-					&lt;ul class="feeds-cont media-list"&gt;
-						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10"&gt;
-								&lt;img class="media-object" src="http://graph.facebook.com/460123390028/picture?type=large" alt="Logo Environnement Canada" width="64" /&gt;
-							&lt;/a&gt;
-							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external"&gt;Environnement Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens.&lt;/p&gt;
-							&lt;/section&gt;
-						&lt;/li&gt;
-						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10"&gt;
-								&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
-							&lt;/a&gt;
-							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external"&gt;Parcs Canada- Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
-							&lt;/section&gt;
-						&lt;/li&gt;
-					&lt;/ul&gt;
-					&lt;div class="clearfix"&gt;&lt;/div&gt;
-				&lt;/section&gt;
-			&lt;/details&gt;
 
-			&lt;details id="details-flickr"&gt;
+		&lt;details id="details-flickr"&gt;
 				&lt;summary&gt;Flickr&lt;/summary&gt;
 				&lt;section class="wb-feeds limit-10"&gt;
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
@@ -362,7 +283,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Déclenché automatiquement lorsque BOEW a terminé son chargement et son exécution.</td>
-				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les correctifs ont terminé leur chargement et leur exécution. 
+				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les correctifs ont terminé leur chargement et leur exécution.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
