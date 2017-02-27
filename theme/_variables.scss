@@ -7,7 +7,7 @@ $body-bg: #f9f9f9; // Body element's background colour (Bootstrap override).
 $breadcrumb-bg: #fff; // Inner background colour (Bootstrap override).
 
 // Main
-$main-bg: #fff; // Main element's background colour (WET override).
+$main-bg: $breadcrumb-bg; // Main element's background colour (WET override).
 
 // Sign in / off
 $wb-so-background-color: #fff;
