@@ -19,6 +19,50 @@ var componentName = "wb-feeds",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
+	fbinited = false,
+	facebook = function( el, feedurl ) {
+		if ( el.hasClass( "wb-fb-inited" ) ) {
+			return;
+		}
+
+		el.addClass( "wb-fb-inited" );
+
+		var fb = $( "#fb-root" );
+
+		if ( !fb.length ) {
+			$( document.body ).prepend( $( "<div>" ).prop( "id", "fb-root" ) );
+		}
+
+		Modernizr.load(
+			{
+				load: [ "//connect.facebook.net/" + wb.lang + "_CA/sdk.js" ],
+				complete: function() {
+					if ( !fbinited ) {
+						window.FB.init( {
+							xfbml: true,
+							version: "v2.4"
+						} );
+
+						fbinited = true;
+					}
+
+					if ( feedurl.indexOf( "/feeds/page.php?id=" ) !== -1 ) {
+						feedurl = "https://www.facebook.com/" + feedurl.split( "id=" )[ 1 ].split( "&" )[ 0 ];
+					}
+
+					var wrapper = $( "<div>" ).addClass( "fb-wrapper" );
+
+					el.empty().append( wrapper );
+
+					var html = '<div class="fb-page" data-href="' + feedurl + '" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="true"></div>';
+
+					wrapper.html( html );
+
+					window.FB.XFBML.parse( wrapper[ 0 ] );
+				}
+			}
+		);
+	},
 
 	/**
 	 * @object Templates
@@ -27,33 +71,6 @@ var componentName = "wb-feeds",
 	 * @returns {string} modified string with appropiate markup/format for a entry object
 	 */
 	Templates = {
-
-		/**
-		 * [facebook template]
-		 * @param  {entry object} data
-		 * @return {string}	HTML string of formatted using Media Object (twitter bootstrap)
-		 */
-		facebook: function( data ) {
-
-			// Facebook feeds does not really do titles in ATOM RSS. It simply truncates content at 150 characters. We are using a JS based sentence
-			// detection algorithm to better split content and titles
-			var content = fromCharCode( data.content ),
-				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g ),
-				author = data.author.replace( /&amp;/g, "&" );
-
-			// Sanitize the HTML from Facebook - extra 'br' tags
-			content = content.replace( /(<br>\n?)+/gi, "<br />" );
-
-			return "<li class='media'><a class='pull-left' href=''><img src='" +
-				data.fIcon + "' alt='" + author +
-				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
-				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
-				title[ 0 ] + " - </span>" + author + "</a><br />" +
-				( data.publishedDate !== "" ? " <small class='feeds-date text-right'><time>" +
-				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) +
-				"</h4><p>" + content + "</p></div></li>";
-		},
-
 		/**
 		 * [fickr template]
 		 * @param  {entry object} data
@@ -202,6 +219,11 @@ var componentName = "wb-feeds",
 				fElem = feeds.eq( i );
 				fIcon = fElem.find( "> img" );
 
+				if ( fElem.attr( "href" ).indexOf( "facebook.com" ) !== -1 ) {
+					facebook( fElem.parents( "li" ), fElem.attr( "href" ) );
+					continue;
+				}
+
 				fetch = {
 					dataType: "jsonp",
 					timeout: 10000
@@ -242,9 +264,7 @@ var componentName = "wb-feeds",
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
-					if ( url.indexOf( "facebook.com" ) !== -1 ) {
-						fType = "facebook";
-					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
+					if ( url.indexOf( "pinterest.com" ) > -1  ) {
 						fType = "pinterest";
 					} else {
 						fType = "generic";
