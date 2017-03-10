@@ -116,8 +116,8 @@ var componentName = "wb-menu",
 			menuitem = " role='menuitem'",
 			sectionHtml = "<li><details>" + "<summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
-				menuitem +
-				" aria-haspopup='true'>" + $section.text() + "</summary>" +
+				" aria-haspopup='true'> <span" + menuitem + ">" +
+				$section.text() + "</span></summary>" +
 				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
 
 		// Convert each of the list items into WAI-ARIA menuitems
