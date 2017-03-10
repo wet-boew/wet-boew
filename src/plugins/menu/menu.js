@@ -302,11 +302,11 @@ var componentName = "wb-menu",
 				}
 
 				// Let's now populate the DOM since we have done all the work in a documentFragment
-				panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
+				panelDOM.innerHTML = "<div class='modal-header'><div class='modal-title'>" +
 						document.getElementById( "wb-glb-mn" )
 							.getElementsByTagName( "h2" )[ 0 ]
 								.innerHTML +
-						"</div></header><div class='modal-body'>" + panel + "</div>";
+						"</div></div><div class='modal-body'>" + panel + "</div>";
 				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 				$panel
 					.trigger( "wb-init.wb-overlay" )
