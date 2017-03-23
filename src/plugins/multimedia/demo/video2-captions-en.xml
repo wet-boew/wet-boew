@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/10/ttaf1" xmlns:tts="http://www.w3.org/2006/10/ttaf1#style">
+	<head>
+		<styling>
+			<style id="defaultSpeaker" tts:fontSize="12" tts:fontFamily="Arial" tts:fontWeight="normal" tts:fontStyle="normal" tts:textDecoration="none" tts:color="white" tts:backgroundColor="black" tts:textAlign="center"/>
+			<style id="defaultCaption" tts:fontSize="12" tts:fontFamily="Arial" tts:fontWeight="normal" tts:fontStyle="normal" tts:textDecoration="none" tts:color="white" tts:backgroundColor="black" tts:textAlign="center"/>
+		</styling>
+	</head>
+	<body style="defaultCaption" id="thebody" xml:id="b1">
+		<div begin="1.40s" dur="3.33s">Hi, my name is Eric, and I'm a Service Canada employee.</div>
+
+		<div begin="4.73s" dur="2.73s">Each and every day, Canadians are improving their job</div>
+		<div begin="7.46s" dur="2.14s">skills or changing their career paths.</div>
+
+		<div begin="9.60s" dur="1.66s">Are you thinking about taking that step?</div>
+
+		<div begin="11.26s" dur="2.04s">If so, did you know that you can research</div>
+		<div begin="13.30s" dur="2.40s">more than 300 job profiles online?</div>
+
+		<div begin="15.70s" dur="2.30s">Plus, you can find out what skills you'll need</div>
+		<div begin="18.00s" dur="1.70s">to get the job that interests you.</div>
+
+		<div begin="19.70s" dur="2.43s">Job Bank's Training and Careers site lets you explore</div>
+		<div begin="22.13s" dur="3.07s">adult-learning choices and explains the various options</div>
+		<div begin="25.20s" dur="1.93s">that are available to help you pay</div>
+		<div begin="27.13s" dur="1.50s">for the training you need.</div>
+
+		<div begin="28.63s" dur="1.80s">You can even find counsellors, teachers,</div>
+		<div begin="30.43s" dur="2.10s">and other resources near you if you'd like to have</div>
+		<div begin="32.53s" dur="2.13s">more information before you make a decision.</div>
+
+		<div begin="34.66s" dur="1.74s">And the support doesn't end there.</div>
+
+		<div begin="36.40s" dur="2.73s">From the alphabetical index on our Service Canada home page,</div>
+		<div begin="39.13s" dur="2.93s">you can link to the Labour Market Information site.</div>
+
+		<div begin="42.06s" dur="2.10s">There, you'll find out what kinds of jobs are available,</div>
+		<div begin="44.16s" dur="2.50s">by area, across the country, and what skills you'll need</div>
+		<div begin="46.66s" dur="1.74s">to get those jobs.</div>
+
+		<div begin="48.40s" dur="2.23s">But, what if you decide to go for full-time training?</div>
+
+		<div begin="50.63s" dur="2.67s">Well, there are a number of loans and grants available</div>
+		<div begin="53.30s" dur="2.13s">that could help you with the costs.</div>
+
+		<div begin="55.43s" dur="2.33s">For example, there's the Apprenticeship Incentive Grant</div>
+		<div begin="57.76s" dur="2.20s">for those who've completed the first or second level</div>
+		<div begin="59.96s" dur="1.60s">of their apprenticeship.</div>
+
+		<div begin="61.56s" dur="2.54s">And for those who've completed the entire apprenticeship,</div>
+		<div begin="64.10s" dur="1.30s">in a specific trade,</div>
+		<div begin="65.40s" dur="2.06s">there's the Apprenticeship Completion Grant.</div>
+
+		<div begin="67.46s" dur="1.67s">If you have a permanent disability,</div>
+		<div begin="69.13s" dur="2.50s">you may want to look into the Canada Student Loans program,</div>
+		<div begin="71.63s" dur="2.20s">or apply for a study grant.</div>
+
+		<div begin="73.83s" dur="2.70s">Under the Life-Long Learning Plan program,</div>
+		<div begin="76.53s" dur="2.73s">you can find out how to use some of your RRSP funds</div>
+		<div begin="79.26s" dur="2.37s">to pay for your education or training.</div>
+
+		<div begin="81.63s" dur="2.47s">Whatever you see yourself doing,</div>
+		<div begin="84.10s" dur="2.73s">why not take the time to discover all your options?</div>
+
+		<div begin="86.83s" dur="2.73s">Doing your homework now can help you get</div>
+		<div begin="89.56s" dur="2.74s">on the right path to finding the work you want.</div>
+
+		<div begin="92.30s" dur="2.40s">Be sure to check out our Service Canada Web site.</div>
+
+		<div begin="94.70s" dur="1.80s">There you'll find the tools and information</div>
+		<div begin="96.50s" dur="1.80s">you need to continue your education and training.</div>
+
+		<div begin="98.30s" dur="2.53s">It really is time well spent.</div>
+
+		<div begin="100.83s" dur="2.70s">At Service Canada, we're people serving people.</div>
+	</body>
+</tt>
