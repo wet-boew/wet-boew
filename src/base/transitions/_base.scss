@@ -110,6 +110,18 @@
 			max-height: 0;
 		}
 	}
+
+	&.reverse {
+		&.in {
+			@extend %invisible;
+			animation-name: fadeout;
+		}
+
+		&.out {
+			@extend %visible;
+			animation-name: fadein;
+		}
+	}
 }
 
 @keyframes fadein {
