@@ -40,12 +40,6 @@
 		<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>).</li>
 		<li>Add an unordered list (<code>ul</code>) after the heading with the <code>feeds-cont</code> class.
 			<ul>
-				<li><strong>Facebook feeds:</strong>
-					<ol>
-						<li>Add the <code>media-list</code> class to the unordered list.</li>
-						<li>Add <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> after the unordered list.</li>
-					</ol>
-				</li>
 				<li><strong>Flickr and YouTube feeds:</strong>
 					<ol>
 						<li>Add the <code>list-inline</code> class to the unordered list.</li>
@@ -59,25 +53,6 @@
 				<li><strong>Regular feeds:</strong>
 					<pre><code>&lt;li&gt;
 	&lt;a href="http://canada.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;
-&lt;/li&gt;</code></pre>
-				</li>
-				<li><strong>Facebook feeds:</strong>
-					<ol>
-						<li>Add a <code>media</code> class to the list element.</li>
-						<li>Add a <code>pull-left</code> class to the link.</li>
-						<li>Add a profile image with a <code>media-object</code> class to the link.</li>
-						<li>Add a section element with a <code>media-body</code> class after the link.</li>
-						<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>) with a <code>media-heading</code> class. Include the Facebook account name in this heading (e.g., "Parks Canada - Facebook").</li>
-						<li>Add a <code>p</code> element containing the Facebook account description after the heading.</li>
-					</ol>
-					<pre><code>&lt;li class="media"&gt;
-	&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-		&lt;img class="media-object" src="http://graph.facebook.com/137563459593611/picture?type=large" alt="Parks Canada Logo" width="64" /&gt;
-	&lt;/a&gt;
-	&lt;section class="media-body"&gt;
-		&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-		&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
-	&lt;/section&gt;
 &lt;/li&gt;</code></pre>
 				</li>
 				<li><strong>Flickr feeds:</strong>
@@ -105,17 +80,17 @@
 				<li>Create a <code>div</code> element with <code>class="wb-tabs"</code>.</li>
 				<li>Add a <code>div</code> element with <code>class="tabpanels"</code> within the previous <code>div</code> element.</li>
 				<li>For each group of feeds (group feeds by type), add a <code>details</code> element. Add <code>open="open"</code> to the group of feeds that should be displayed by default.</li>
-				<li>Add a <code>summary</code> element at the start of each <code>details</code> element with the name of the group of feeds (e.g., <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
+				<li>Add a <code>summary</code> element at the start of each <code>details</code> element with the name of the group of feeds (e.g., <code>&lt;summary&gt;Pinterest&lt;/summary&gt;</code>).</li>
 				<li>Add the areas to display Web feeds after each <code>summary</code> element as described in steps 1 to 4, except add the <code>wb-inv</code> class to the heading for each area.</li>
 			</ol>
 			<pre><code>&lt;section&gt;
 	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
-			&lt;details id="details-facebook" open="open"&gt;
-				&lt;summary&gt;Facebook&lt;/summary&gt;
+		&lt;details id="details-pinterest" open="open"&gt;
+			&lt;summary&gt;Pinterest&lt;/summary&gt;
 				&lt;section class="wb-feeds limit-5"&gt;
-					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
+					&lt;h4 class="wb-inv"&gt;Pinterestk&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						...
 					&lt;/ul&gt;
@@ -169,33 +144,6 @@
 		</section>
 
 		<section>
-			<h4>Facebook feeds</h4>
-			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
-	&lt;ul class="feeds-cont media-list"&gt;
-		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10"&gt;
-				&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Enviroment Canada Logo" width="64" /&gt;
-			&lt;/a&gt;
-			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10" rel="external"&gt;Enviroment Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;At Environment Canada our business is protecting the environment, conserving the country's natural heritage and providing weather and environmental predictions to keep Canadians informed and safe.&lt;/p&gt;
-			&lt;/section&gt;
-		&lt;/li&gt;
-		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-				&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parks Canada Logo" width="64" /&gt;
-			&lt;/a&gt;
-			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
-			&lt;/section&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
-	&lt;div class="clearfix"&gt;&lt;/div&gt;
-&lt;/section&gt;</code></pre>
-		</section>
-
-		<section>
 			<h4>Flickr feeds</h4>
 			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
@@ -228,35 +176,8 @@
 	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
-			&lt;details id="details-facebook" open="open"&gt;
-				&lt;summary&gt;Facebook&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-5"&gt;
-					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
-					&lt;ul class="feeds-cont media-list"&gt;
-						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10"&gt;
-								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Enviroment Canada Logo" width="64" /&gt;
-							&lt;/a&gt;
-							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10" rel="external"&gt;Enviroment Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;At Environment Canada our business is protecting the environment, conserving the country's natural heritage and providing weather and environmental predictions to keep Canadians informed and safe.&lt;/p&gt;
-							&lt;/section&gt;
-						&lt;/li&gt;
-						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parks Canada Logo" width="64" /&gt;
-							&lt;/a&gt;
-							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
-							&lt;/section&gt;
-						&lt;/li&gt;
-					&lt;/ul&gt;
-					&lt;div class="clearfix"&gt;&lt;/div&gt;
-				&lt;/section&gt;
-			&lt;/details&gt;
 
-			&lt;details id="details-flickr"&gt;
+		&lt;details id="details-flickr"&gt;
 				&lt;summary&gt;Flickr&lt;/summary&gt;
 				&lt;section class="wb-feeds limit-10"&gt;
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
@@ -360,7 +281,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>

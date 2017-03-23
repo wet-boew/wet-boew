@@ -29,32 +29,6 @@ var componentName = "wb-feeds",
 	Templates = {
 
 		/**
-		 * [facebook template]
-		 * @param  {entry object} data
-		 * @return {string}	HTML string of formatted using Media Object (twitter bootstrap)
-		 */
-		facebook: function( data ) {
-
-			// Facebook feeds does not really do titles in ATOM RSS. It simply truncates content at 150 characters. We are using a JS based sentence
-			// detection algorithm to better split content and titles
-			var content = fromCharCode( data.content ),
-				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g ),
-				author = data.author.replace( /&amp;/g, "&" );
-
-			// Sanitize the HTML from Facebook - extra 'br' tags
-			content = content.replace( /(<br>\n?)+/gi, "<br />" );
-
-			return "<li class='media'><a class='pull-left' href=''><img src='" +
-				data.fIcon + "' alt='" + author +
-				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
-				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
-				title[ 0 ] + " - </span>" + author + "</a><br />" +
-				( data.publishedDate !== "" ? " <small class='feeds-date text-right'><time>" +
-				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) +
-				"</h4><p>" + content + "</p></div></li>";
-		},
-
-		/**
 		 * [fickr template]
 		 * @param  {entry object} data
 		 * @return {string}	HTML string for creating a photowall effect
@@ -161,8 +135,8 @@ var componentName = "wb-feeds",
 
 	/**
 	 * Helper function that builds the URL for the JSON request
+	 * Feeds well now use developer.yahoo.com/yql/console/ since ajax.googleapis.com/ajax/services/feed/ was depercated.
 	 * @method jsonRequest
-	 * http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=https%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D318424514044%26format%3Drss20&num=20
 	 * @param {url} url URL of the feed.
 	 * @param {integer} limit Limit on the number of results for the JSON request to return.
 	 * @return {url} The URL for the JSON request
@@ -242,9 +216,7 @@ var componentName = "wb-feeds",
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
-					if ( url.indexOf( "facebook.com" ) !== -1 ) {
-						fType = "facebook";
-					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
+					if ( url.indexOf( "pinterest.com" ) > -1  ) {
 						fType = "pinterest";
 					} else {
 						fType = "generic";
