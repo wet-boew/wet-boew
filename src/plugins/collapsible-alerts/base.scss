@@ -42,7 +42,7 @@ details {
 			}
 
 			:first-child {
-				margin-left: .4em;
+				margin-left: .2em;
 
 				&:before {
 					color: #000;
@@ -89,38 +89,39 @@ details {
 	}
 }
 
-.no-details {
-	details {
-		&.alert,
-		&.alert[open] {
-			> {
-				summary {
-					margin-left: 1.4em;
-
-					&:before {
-						content: "\25BA\a0";
-					}
-				}
-			}
-
-			&[open] {
+.wb-enable {
+	&.no-details {
+		details {
+			&.alert {
 				> {
 					summary {
+						margin-left: 1.2em;
+
 						&:before {
-							content: "\25BC\a0";
+							content: "\25BA\a0";
+						}
+					}
+				}
+
+				&[open] {
+					> {
+						summary {
+							&:before {
+								content: "\25BC\a0";
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
-	&[dir="rtl"] {
-		details {
-			&.alert {
-				> {
-					summary {
-						margin-right: 1.4em;
+		&[dir="rtl"] {
+			details {
+				&.alert {
+					> {
+						summary {
+							margin-right: 1.2em;
+						}
 					}
 				}
 			}

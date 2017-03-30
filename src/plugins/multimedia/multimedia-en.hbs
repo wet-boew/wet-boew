@@ -7,7 +7,7 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2017-01-26"
+	"dateModified": "2017-02-20"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -30,7 +30,7 @@
 
 	<div class="row">
 		<section class="col-md-6">
-			<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM (VP8) source and HTML captions</h3>
+			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with HTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
 				<video poster="demo/video1-en.jpg" title="Looking for a Job">
 					<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" />
@@ -74,12 +74,12 @@
 		</section>
 
 		<section class="col-md-6">
-			<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM (VP8) source and HTML captions</h3>
+			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with TTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
 				<video poster="demo/video2-en.jpg" title="Training and Development">
 					<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.webm" />
 					<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.mp4" />
-					<track src="cpts-lg2-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
+					<track src="demo/video2-captions-en.xml" kind="captions" data-type="application/ttml+xml" srclang="en" label="English" />
 				</video>
 				<figcaption>
 					<p>Training and Development (<a href="cpts-lg2-en.html">Transcript</a>)</p>
@@ -94,7 +94,7 @@
 	&lt;video poster=&quot;demo/video2-en.jpg&quot; title=&quot;Training and Development&quot;&gt;
 		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.webm&quot; /&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.mp4&quot; /&gt;
-		&lt;track src=&quot;cpts-lg2-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+		&lt;track src=&quot;demo/video2-captions-en.xml&quot; kind=&quot;captions&quot; data-type=&quot;application/ttml+xml&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Training and Development (&lt;a href=&quot;cpts-lg2-en.html&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
@@ -103,16 +103,20 @@
 				</section>
 
 				<section>
-					<h4>cpts-lg2-en.html</h4>
-					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
-	&lt;section&gt;
-		&lt;h2&gt;Transcript&lt;/h2&gt;
-		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Training and development.)&lt;/strong&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;1.40s&quot; data-dur=&quot;3.33s&quot; data-load=&quot;tt&quot;&gt;Hi, my name is Eric, and I'm a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
-		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Cut to a close-up of the Host.)&lt;/strong&gt;&lt;/p&gt;
+					<h4>video2-captions-en.xml</h4>
+					<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;tt xml:lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/2006/10/ttaf1&quot; xmlns:tts=&quot;http://www.w3.org/2006/10/ttaf1#style&quot;&gt;
+	&lt;head&gt;
+		&lt;styling&gt;
+			&lt;style id=&quot;defaultSpeaker&quot; tts:fontSize=&quot;12&quot; tts:fontFamily=&quot;Arial&quot; tts:fontWeight=&quot;normal&quot; tts:fontStyle=&quot;normal&quot; tts:textDecoration=&quot;none&quot; tts:color=&quot;white&quot; tts:backgroundColor=&quot;black&quot; tts:textAlign=&quot;center&quot;/&gt;
+			&lt;style id=&quot;defaultCaption&quot; tts:fontSize=&quot;12&quot; tts:fontFamily=&quot;Arial&quot; tts:fontWeight=&quot;normal&quot; tts:fontStyle=&quot;normal&quot; tts:textDecoration=&quot;none&quot; tts:color=&quot;white&quot; tts:backgroundColor=&quot;black&quot; tts:textAlign=&quot;center&quot;/&gt;
+		&lt;/styling&gt;
+	&lt;/head&gt;
+	&lt;body style=&quot;defaultCaption&quot; id=&quot;thebody&quot; xml:id=&quot;b1&quot;&gt;
+		&lt;div begin=&quot;1.40s&quot; dur=&quot;3.33s&quot;&gt;Hi, my name is Eric, and I'm a Service Canada employee.&lt;/div&gt;
 		...
-	&lt;/section&gt;
-&lt;/div&gt;</code></pre>
+	&lt;/body&gt;
+&lt;/tt&gt;</code></pre>
 				</section>
 			</details>
 		</section>
