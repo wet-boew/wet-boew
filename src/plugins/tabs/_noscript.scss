@@ -26,10 +26,18 @@
 .wb-tabs {
 	@extend %tabs-noscript-details-summary-display-block-important; /* Only for backwards compatibility. Should be removed in v4.1. */
 
+	&.carousel-s2 {
+		background: transparent;
+	}
+
 	> {
 		.tabpanels {
 			@extend %tabs-noscript-details-summary-display-block-important;
 		}
+	}
+
+	.out {
+		visibility: visible;
 	}
 
 	[role="tablist"] {
@@ -37,7 +45,10 @@
 	}
 
 	[role="tabpanel"] {
-		display: block;
+		animation: none;
+		display: block !important;
+		margin-bottom: .5em;
 		opacity: 1;
+		transform: none;
 	}
 }

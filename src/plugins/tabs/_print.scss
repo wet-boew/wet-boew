@@ -11,7 +11,29 @@
 	display: none !important;
 }
 
+%carousel-print-panel {
+	[role="tabpanel"] {
+		margin-bottom: .5em;
+	}
+
+	figure {
+		page-break-inside: avoid;
+	}
+
+	figcaption {
+		border: 1px solid #000;
+	}
+}
+
 .wb-tabs {
+	&.carousel-s1 {
+		@extend %carousel-print-panel;
+	}
+
+	&.carousel-s2 {
+		@extend %carousel-print-panel;
+	}
+
 	[role="tablist"] {
 		@extend %tabs-print-display-none-important;
 	}
@@ -21,6 +43,7 @@
 		opacity: 1 !important;
 		overflow: visible !important;
 		position: static !important;
+		transform: none;
 		visibility: visible !important;
 
 		figcaption {

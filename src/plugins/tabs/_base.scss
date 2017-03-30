@@ -379,15 +379,6 @@ $tab-margin-width: 10px;
 		@extend %carousel-tabpanel-video;
 		background: $carousel-s2-tablist-controls-bg-color;
 
-		// Only need to show controls when JS is active and plugin working
-		&.wb-init {
-			padding-bottom: 4.375em;
-		}
-
-		&.exclude-controls {
-			padding-bottom: 0;
-		}
-
 		[role="tablist"] {
 			bottom: 0;
 			position: absolute;
@@ -500,7 +491,7 @@ $tab-margin-width: 10px;
 }
 
 .wb-disable {
-	.csstransitions {
+	&.csstransitions {
 		.wb-tabs {
 			[role="tabpanel"] {
 				&.out {
@@ -512,6 +503,10 @@ $tab-margin-width: 10px;
 	}
 
 	.wb-tabs {
+		&.carousel-s2 {
+			background: transparent;
+		}
+
 		// Only for backwards compatibility. Should be removed in v4.1.
 		> {
 			details {
@@ -543,13 +538,20 @@ $tab-margin-width: 10px;
 			}
 		}
 
+		.out {
+			visibility: visible;
+		}
+
 		[role="tablist"] {
 			display: none;
 		}
 
 		[role="tabpanel"] {
+			animation: none;
 			display: block;
+			margin-bottom: .5em;
 			opacity: 1;
+			transform: none;
 		}
 	}
 }
