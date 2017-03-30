@@ -72,7 +72,7 @@
 			{{#is data.language "fr"}}
 				{{#if data.category}}
 					<tr>
-						<td><a href="{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></td>
+						<td><a href="{{relativeLink}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></td>
 						<td><a href="../docs/ref/{{#is data.category "Plugiciels"}}plugins{{/is}}{{#is data.category "Correctifs"}}polyfills{{/is}}{{#is data.category "Autre"}}other{{/is}}-fr.html">{{data.category}}</a></td>
 						<td>{{data.description}}</td>
 						<td>{{data.tag}}</td>

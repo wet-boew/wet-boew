@@ -1411,7 +1411,7 @@ module.exports = (grunt) ->
 					npmInstall: false
 
 	# These plugins provide necessary tasks.
-	require( "load-grunt-tasks")( grunt, { pattern: [ "grunt-*", "assemble" ] } )
+	require( "load-grunt-tasks" )( grunt )
 
 	require( "time-grunt" )( grunt )
 	@

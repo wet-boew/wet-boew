@@ -30,11 +30,11 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "assemble": "0.4.42",
     "assemble-contrib-i18n": "0.1.*",
     "eslint-config-jquery": "^1.0.0",
     "expect.js": "^0.3.1",
     "grunt": "~0.4.5",
+    "grunt-assemble": "~0.6.3",
     "grunt-autoprefixer": "^3.0.3",
     "grunt-banner": "^0.3.1",
     "grunt-bootlint": "^0.9.1",
