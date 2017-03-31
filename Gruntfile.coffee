@@ -301,10 +301,10 @@ module.exports = (grunt) ->
 
 	grunt.util.linefeed = "\n"
 	# Project configuration.
-	grunt.initConfig
+	@initConfig
 
 		# Metadata.
-		pkg: grunt.file.readJSON("package.json")
+		pkg: @file.readJSON("package.json")
 		coreDist: "dist/wet-boew"
 		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: grunt.file.readJSON("lib/jquery/bower.json")
@@ -333,6 +333,14 @@ module.exports = (grunt) ->
 		)) + "<%= commitMessage %>"
 
 		deployBranch: "v4.0-dist"
+
+		checkDependencies:
+			all:
+				options:
+					npmInstall: false
+
+		clean:
+			dist: ["dist", "src/base/partials/*sprites*"]
 
 		# Task configuration.
 		wget:
@@ -1205,8 +1213,6 @@ module.exports = (grunt) ->
 							return content.replace(/\.\.\/\.\.\/wet-boew\/(assets|fonts)/g, '../$1')
 						content
 
-		clean:
-			dist: ["dist", "src/base/partials/*sprites*"]
 
 		watch:
 			options:
@@ -1405,12 +1411,6 @@ module.exports = (grunt) ->
                 ]
                 expand: true
 
-		checkDependencies:
-			all:
-				options:
-					npmInstall: false
-
-	# These plugins provide necessary tasks.
 	require( "load-grunt-tasks" )( grunt )
 
 	require( "time-grunt" )( grunt )
