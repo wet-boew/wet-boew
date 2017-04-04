@@ -1240,6 +1240,16 @@ module.exports = (grunt) ->
 					"theme/**/*.js"
 					"tasks/*.js"
 				]
+			travis:
+				options:
+					configFile: '.travis.eslintrc.json'
+					quiet: true
+				all:
+					src: [
+						"src/**/*.js"
+						"theme/**/*.js"
+						"tasks/*.js"
+					]
 
 		connect:
 			options:
