@@ -6,9 +6,33 @@
 	display: none !important;
 }
 
+%content-background-color {
+	background-color: $content-bg;
+}
+
+@if $content-bg {
+	body {
+		> {
+			header {
+				+ {
+					div {
+						&.container {
+							@extend %content-background-color;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 @if $main-bg {
 	main {
 		background-color: $main-bg;
+	}
+} @else if $content-bg {
+	main {
+		@extend %content-background-color;
 	}
 }
 

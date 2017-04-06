@@ -237,6 +237,8 @@ $tab-margin-width: 10px;
 						background: $tablist-active-bg-color;
 					} @else if $main-bg {
 						background: $main-bg
+					} @else if $content-bg {
+						background: $content-bg
 					} @else {
 						background: $body-bg;
 					}
