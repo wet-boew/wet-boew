@@ -111,29 +111,6 @@ var componentName = "wb-tables",
 						}
 					} );
 
-					/*
-					 * Extend type detection
-					 */
-
-					// Formatted numbers detection
-					// Based on: http://datatables.net/plug-ins/type-detection#formatted_numbers
-					dataTableExt.aTypes.unshift(
-						function( sData ) {
-
-							// Strip off HTML tags and all non-alpha-numeric characters (except minus sign)
-							var deformatted = sData.replace( /<[^>]*>/g, "" ).replace( /[^\d\-\/a-zA-Z]/g, "" );
-							if ( $.isNumeric( deformatted ) || deformatted === "-" ) {
-								return "formatted-num";
-							}
-							return null;
-						}
-					);
-
-					// Remove HTML tags before doing any filtering for formatted numbers
-					dataTableExt.type.search[ "formatted-num" ] = function( data ) {
-						return data.replace( /<[^>]*>/g, "" );
-					};
-
 					// Add the container or the sorting icons
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
 
