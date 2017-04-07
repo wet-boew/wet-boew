@@ -1238,7 +1238,7 @@ module.exports = (grunt) ->
 
 		eslint:
 			options:
-				configFile: '.eslintrc.json'
+				configFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
 				quiet: true
 			all:
 				src: [
