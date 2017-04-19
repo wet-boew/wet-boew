@@ -8,9 +8,12 @@ env:
   global:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
+before_install:
+  - rvm install 2.2.2
+
 install:
   - ./script/setup
-  - bundle install
+  - gem install rake html-proofer
 
 script:
   - npm run-script travis_script

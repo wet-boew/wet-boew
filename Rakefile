@@ -1,12 +1,12 @@
 # encoding: utf-8
 
-require "html/proofer"
+require "html-proofer"
 
 task :default => [:test]
 
 task :test do
-	HTML::Proofer.new("dist/", {
-		:href_ignore => [
+	HTMLProofer.check_directory("dist/", {
+		:url_ignore => [
 			"#",
 			# The additional anchor link is picked up from the Geomap JSON, but shouldn't be flagged
 			"\\\"#\\\"",
