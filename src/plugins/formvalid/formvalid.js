@@ -138,6 +138,7 @@ var componentName = "wb-frmvld",
 						// In this case we will place them in the associated label element
 						errorPlacement: function( $error, $element ) {
 							var type = $element.attr( "type" ),
+								group = $element.attr( "data-rule-require_from_group" ),
 								$fieldset, $legend;
 
 							$error.data( "element-id", $element.attr( "id" ) );
@@ -154,6 +155,35 @@ var componentName = "wb-frmvld",
 									}
 								}
 							}
+
+							if ( group ) {
+								$fieldset = $element.closest( "fieldset" );
+								if ( $fieldset.length !== 0 ) {
+									$legend = $fieldset.find( "legend" ).first();
+									if ( $legend.length !== 0 && $fieldset.find( "input[name='" + $element.attr( "name" ) + "']" ) !== 1 ) {
+										var $strong = $legend.find( "strong.error" ),
+											id = $legend.attr( "id" );
+
+										if ( $strong.length > 0 ) {
+											$strong.remove();
+										}
+
+										if ( !id ) {
+											id = "required-group-" + idCount;
+											idCount += 1;
+
+											$legend.attr( "id", id );
+										}
+
+										$error.data( "element-id", id );
+										$error.attr( "id", id );
+										$error.appendTo( $legend );
+
+										return;
+									}
+								}
+							}
+
 							$error.appendTo( $form.find( "label[for='" + $element.attr( "id" ) + "']" ) );
 							return;
 						},
