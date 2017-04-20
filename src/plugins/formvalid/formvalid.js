@@ -297,10 +297,22 @@ var componentName = "wb-frmvld",
 							}
 
 						}, /* End of showErrors() */
+
 						invalidHandler: function() {
 							submitted = true;
+						},
+
+						/* adds on tab validation */
+						onfocusout: function( element ) {
+							this.element( element );
 						}
+
 					} ); /* end of validate() */
+
+					/* fixes validation issue (see PR #7913) */
+					$form.on( "change", "input[type=date], input[type=file], select", function() {
+						$form.validate().element( this );
+					} );
 
 					// Clear the form and remove error messages on reset
 					$document.on( "click vclick touchstart", selector + " input[type=reset]", function( event ) {
