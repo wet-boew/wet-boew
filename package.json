@@ -6,7 +6,7 @@
   "scripts": {
     "test": "grunt test",
     "postinstall": "bower update && grunt init",
-    "travis_script": "grunt dist test-mocha && bundle exec rake",
+    "travis_script": "grunt dist test-mocha && rake",
     "travis_after_success": "grunt deploy saucelabs"
   },
   "repository": {
