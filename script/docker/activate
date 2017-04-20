@@ -1,0 +1,42 @@
+#!/bin/bash
+# strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
+IFS=$'\n\t'
+if [ ! -n "${ZSH_VERSION-}" ] ; then
+	dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+else
+	dir="$( cd "$( dirname "${(%):-%N}" )" && pwd )"
+fi
+project="${PWD##*/}"
+bins=("npm" "bower" "grunt")
+
+deactivate () {
+	for bin in "${bins[@]}"
+	do
+		unalias "$bin"
+	done
+
+	if ! [ -z "${_OLD_PS1+_}" ] ; then
+        PS1="$_OLD_PS1"
+        export PS1
+        unset _OLD_PS1
+    fi
+}
+
+if ( [ ! -n "${ZSH_VERSION-}" ] && [ "$(type -t npm)" == "alias" ] ) ||
+	( [ -n "${ZSH_VERSION-}" ] && [ "$(type -w npm)" = "npm: alias" ] ); then
+		echo "Already activated!"
+else
+	for bin in "${bins[@]}"
+	do
+		alias "$bin=$dir/$bin"
+	done
+
+	_OLD_PS1="$PS1"
+	PS1_APPEND="(Docker WET-BOEW $project)"
+	if [ ! -n "${ZSH_VERSION-}" ] ; then
+		PS1="\e[1;35m$PS1_APPEND\e[0m $PS1"
+	else
+		PS1="%F{magenta}$PS1_APPEND%F{white} $PS1"
+	fi
+	export PS1
+fi
