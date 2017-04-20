@@ -126,7 +126,22 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Handle the draw.dt event
 $document.on( "init.dt draw.dt", selector, function( event, settings ) {
-	var $elm = $( event.target );
+	var $elm = $( event.target ),
+		pagination = $elm.next( ".bottom" ).find( "div:first-child" ),
+		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
+		ol = document.createElement( "OL" ),
+		li = document.createElement( "LI" );
+
+	// Update Pagination List
+	for ( var i = 0; i < paginate_buttons.length; i++ ) {
+		var item = li.cloneNode( true );
+		item.appendChild( paginate_buttons[ i ] );
+		ol.appendChild( item );
+	}
+
+	ol.className = "pagination mrgn-tp-0 mrgn-bttm-0";
+	pagination.empty();
+	pagination.append( ol );
 
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables
