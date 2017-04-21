@@ -255,6 +255,16 @@ var getUrlParts = function( url ) {
 			"#999999"
 		],
 
+		// Get and generate a unique session id
+		sessionGUID: function() {
+			var sessionId = sessionStorage.getItem( "wb-session-GUID" );
+			if ( !sessionId ) {
+				sessionId = wb.guid();
+				sessionStorage.setItem( "wb-session-GUID", sessionId );
+			}
+			return sessionId;
+		},
+
 		// Add a selector to be targeted by timerpoke
 		add: function( selector ) {
 			var exists = false,
