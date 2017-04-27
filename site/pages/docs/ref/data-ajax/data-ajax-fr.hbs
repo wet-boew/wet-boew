@@ -152,6 +152,59 @@
 					</dl>
 				</td>
 			</tr>
+			<tr>
+				<td><code>url</code></td>
+				<td>Configure the origin of the content to AJAX in.</td>
+				<td><code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace" }'</code></td>
+				<td>The value being the URL of the content to AJAX in.</td>
+			</tr>
+			<tr>
+				<td><code>type</code></td>
+				<td>Configure how the destination of the content will be inserted.</td>
+				<td><code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace" }'</code></td>
+				<td>Be one of the valid value listed.
+					<dl>
+						<dt><code>after</code></dt>
+						<dd>Insert content after the element</dd>
+						<dt><code>append</code></dt>
+						<dd>Insert content at the end of the element</dd>
+						<dt><code>before</code></dt>
+						<dd>Insert content before the element</dd>
+						<dt><code>replace</code></dt>
+						<dd>Replace content inside the element</dd>
+						<dt><code>prepend</code></dt>
+						<dd>Insert content at the start of the element</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>nocache</code></td>
+				<td>Prevent caching. Prior using the functionality, use the various caching strategies that can be set and communicated through http header from your server, as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>. Also, please note that some server may not like to have an query appended to his url and you may get an HTTP error like "400 Bad Request" or "404 Not Found". Like a page served by a domino server will return 404 error if the query string do not start with "<code>?open</code>", "<code>?openDocument</code>" or "<code>?readForm</code>".</td>
+				<td><code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace", "nocache": true }'</code> or <code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace", "nocache": "nocache" }'</code>
+				<td>
+					<dl>
+						<dt>Default</dt>
+						<dd>The browser will manage the cache based on how the server has sent the file.</dd>
+						<dt><code>true</code></dt>
+						<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+						<dt><code>nocache</code></dt>
+						<dd>String, A new id is generated everytime the file is fetched</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>nocachekey</code></td>
+				<td>Prevent caching. Optional, it defined what query parameter name to use for the cache busting.</td>
+				<td><code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace", "nocache": true, "nocachekey": "wbCacheBust" }'</code></td>
+				<td>
+					<dl>
+						<dt>Default</dt>
+						<dd>Will use "<code>wbCacheBust</code>" for the parameter name.</dd>
+						<dt>String</dt>
+						<dd>URL pre-encoded string</dd>
+					</dl>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </section>
