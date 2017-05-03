@@ -117,9 +117,12 @@ var componentName = "wb-data-ajax",
 			dtAttr = wb.getData( $( elm ), shortName );
 
 			url = getURL( dtAttr.url, dtAttr.httpref );
+			if ( !url ) {
+				return {};
+			}
 			ajaxType = dtAttr.type;
-			if ( ajaxTypes.indexOf( ajaxType ) === -1 || !url ) {
-				throw "Invalid ajax type or missing url";
+			if ( ajaxTypes.indexOf( ajaxType ) === -1 ) {
+				throw "Invalid ajax type";
 			}
 			nocache = dtAttr.nocache;
 			nocachekey = dtAttr.nocachekey;
