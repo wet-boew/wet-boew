@@ -5,7 +5,7 @@
 	"parentdir": "theme-wet-boew",
 	"language": "fr",
 	"altLangPrefix": "index",
-	"dateModified": "2014-08-15"
+	"dateModified": "2017-05-03"
 }
 ---
 <section>
@@ -21,26 +21,26 @@
 <section>
 	<h2 id="{{this}}">{{#with ..}}{{i18n "lang-fr" language=../this}}{{/with}}</h2>
 	<ul>
-		<li><a href="content-{{this}}.html">Page de contenu</a></li>
-		<li><a href="content-secmenu-{{this}}.html">Page de contenu - Menu secondaire</a></li>
-		<li><a href="content-nosearchlang-{{this}}.html">Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
-		<li><a href="content-nositemenubc-{{this}}.html">Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
-		<li><a href="content-nosearchlangsitemenubc-{{this}}.html">Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
-		<li><a href="content-signedoff-{{this}}.html">Page de contenu - Session Fermée</a></li>
-		<li><a href="content-signedon-{{this}}.html">Page de contenu - Session Ouverte</a></li>
+		<li><a href="content-{{this}}.html">Page de contenu<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-secmenu-{{this}}.html">Page de contenu - Menu secondaire<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-nosearchlang-{{this}}.html">Page de contenu - Sans recherche ou lien de sélection de la langue<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-nositemenubc-{{this}}.html">Page de contenu - Sans menu du site ou fil d'Ariane<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-nosearchlangsitemenubc-{{this}}.html">Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-signedoff-{{this}}.html">Page de contenu - Session Fermée<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="content-signedon-{{this}}.html">Page de contenu - Session Ouverte<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
 		{{#is this "en"}}
-		<li><a href="splashpage-en.html">Page d'entrée</a></li>
-		<li><a href="404-en.html">Page d'erreur 404</a></li>
-		<li><a href="404-en-fr.html">Page d'erreur 404 (anglais/français)</a></li>
-		<li><a href="servermessage-en-fr.html">Page de message du serveur (anglais/français)</a></li>
+		<li><a href="splashpage-en.html">Page d'entrée<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="404-en.html">Page d'erreur 404<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="404-en-fr.html">Page d'erreur 404 - anglais/français</a></li>
+		<li><a href="servermessage-en-fr.html">Page de message du serveur - anglais/français</a></li>
 		{{/is}}
 		{{#is this "fr"}}
-		<li><a href="splashpage-fr.html">Page d'entrée</a></li>
-		<li><a href="404-fr.html">Page d'erreur 404</a></li>
-		<li><a href="404-fr-en.html">Page d'erreur 404 (français/anglais)</a></li>
-		<li><a href="servermessage-fr-en.html">Page de message du serveur (français/anglais)</a></li>
+		<li><a href="splashpage-fr.html">Page d'entrée<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="404-fr.html">Page d'erreur 404<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
+		<li><a href="404-fr-en.html">Page d'erreur 404 - français/anglais</a></li>
+		<li><a href="servermessage-fr-en.html">Page de message du serveur - français/anglais</a></li>
 		{{/is}}
-		<li><a href="servermessage-{{this}}.html">Page de message du serveur</a></li>
+		<li><a href="servermessage-{{this}}.html">Page de message du serveur<span class="wb-inv">{{#with ..}} - {{i18n "lang-fr" language=../this}}{{/with}}</span></a></li>
 	</ul>
 </section>
 {{/withSort}}
