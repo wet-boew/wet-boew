@@ -342,3 +342,27 @@
 		</details>
 </section>
 
+<section>
+	<h2>Conditional filtering using HTTP Referrer</h2>
+	<p>AJAX-in content on the condition that the HTTP Referrer matches the <code>httpref</code> value. Use regular expression to refine your HTTP referrer to a broader range of pages.</p>
+	<p>To be used for promotional content that is not pertinent to task completion. If you have multiple httpref, see documentation for advanced usage.</p>
+	<h3>Example</h3>
+	<div data-wb-ajax='{
+					"url": "ajax/httpref.html#enlang",
+					"type": "replace",
+					"httpref": "data-ajax-fr.html"
+					}'>
+		<p>This content will be replaced if you browse to this page from the <a href="data-ajax-fr.html">French version of this page</a></p>
+	</div>
+		<details>
+			<summary>View code</summary>
+<pre><code>
+&lt;div data-wb-ajax='{
+				"url": "ajax/httpref.html#enlang",
+				"type": "replace",
+				"httpref": "data-ajax-fr.html"
+				}'&gt;
+	&lt;p&gt;This content will be replaced if you browse to this page from the &lt;a href="../data-ajax-en.html"&gt;French version of this page&lt;/a&gt; page&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+</section>

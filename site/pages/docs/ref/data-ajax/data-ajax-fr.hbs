@@ -120,7 +120,11 @@
 		<li><strong>Optional (v4.0.12+):</strong> Filter the content using the URL hash (<code>ajax/data-ajax-filter-en.html#filter-id</code>) or a selector (<code>ajax/data-ajax-filter-en.html .filter-selector</code>).</li>
 	</ol>
 </section>
-
+<section>
+	<h2>Cache busting</h2>
+	<p>Before to use the cache busting mechanism with your data json instance, it's highly recommended to configure your server properly instead.</p>
+	<p>Various strategy can be set on the server side and those are communicated to the browser through an http header as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>.</p>
+</section>
 <section>
 	<h2>Configuration options</h2>
 	<table class="table">
@@ -156,7 +160,14 @@
 				<td><code>url</code></td>
 				<td>Configure the origin of the content to AJAX in.</td>
 				<td><code>data-wb-ajax='{ "url": "location/of/ajax/fragment/file.html", "type": "replace" }'</code></td>
-				<td>The value being the URL of the content to AJAX in.</td>
+				<td>
+					<dl>
+						<dt>Default</dt>
+						<dd>The value being the URL of the content to AJAX in.</dd>
+						<dt>Array</dt>
+						<dd>To be used in conjunction with <code>httpref</code> configuration. Array length must match the array length of <code>httpref</code>.</dd>
+					</dl>
+				</td>
 			</tr>
 			<tr>
 				<td><code>type</code></td>
@@ -205,10 +216,62 @@
 					</dl>
 				</td>
 			</tr>
+			<tr>
+				<td><code>httpref</code></td>
+				<td>AJAX-in content on the condition that HTTP Referrer matches <code>httpref</code> value(s). Optional.</td>
+				<td><code>data-wb-ajax='{ "url": "ajax/httpref.html", "type": "replace", "httpref": "data-ajax-en.html" }'</code></td>
+				<td>
+					<dl>
+						<dt>Default</dt>
+						<dd>No impact.</dd>
+						<dt>String</dt>
+						<dd>HTTP Referrer URL or a regular expression matching the referrer URL</dd>
+						<dt>Array</dt>
+						<dd>Array of strings containing target HTTP Referrer URLs</dd>
+					</dl>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </section>
-
+<section>
+	<h2>Using httpref</h2>
+	<p>You can use multiple <code>httpref</code> using an array to action a single <code>url</code> call.</p>
+	<pre><code>
+	&lt;div data-wb-ajax='{
+						"url": "ajx-fragment.html",
+						"type": "replace",
+						"httpref": [
+							"temp/index.html",
+							"temp/example.html",
+							"lorem/ipsum/index.html",
+							"test.html"
+						]
+						}'&gt;
+		&lt;p&gt;Default content&lt;/p&gt;
+	&lt;/div&gt;
+	</code></pre>
+	<p>You can use multiple <code>httpref</code> using an array with a matching length array of <code>url</code> values. Each <code>httpref</code> value will be checked until true and action the <code>url</code> value that has the matching array index.</p>
+	<pre><code>
+	&lt;div data-wb-ajax='{
+						"url": [ 
+							"ajx-content1-en.html",
+							"ajx-content2-en.html",
+							"ajx-example-en.html",
+							"ajx-questionnaire-en.html"
+						],
+						"type": "replace",
+						"httpref": [
+							"temp/index.html",
+							"temp/example.html",
+							"lorem/ipsum/index.html",
+							"test.html"
+						],
+						}'&gt;
+		&lt;p&gt;Default content&lt;/p&gt;
+	&lt;/div&gt;
+</code></pre>
+</section>
 <section>
 	<h2>Events</h2>
 	<table class="table">

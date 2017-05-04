@@ -54,7 +54,7 @@ var componentName = "wb-data-ajax",
 			ajaxType = ajxInfo.type,
 			elm = wb.init( event, componentName + "-" + ajaxType, selector );
 
-		if ( elm ) {
+		if ( elm && ajxInfo.url ) {
 
 			ajax.call( this, event, ajxInfo );
 
@@ -115,10 +115,14 @@ var componentName = "wb-data-ajax",
 
 		if ( !url ) {
 			dtAttr = wb.getData( $( elm ), shortName );
-			url = dtAttr.url;
+
+			url = getURL( dtAttr.url, dtAttr.httpref );
+			if ( !url ) {
+				return {};
+			}
 			ajaxType = dtAttr.type;
-			if ( ajaxTypes.indexOf( ajaxType ) === -1 || !url ) {
-				throw "Invalid ajax type or missing url";
+			if ( ajaxTypes.indexOf( ajaxType ) === -1 ) {
+				throw "Invalid ajax type";
 			}
 			nocache = dtAttr.nocache;
 			nocachekey = dtAttr.nocachekey;
@@ -130,6 +134,37 @@ var componentName = "wb-data-ajax",
 			"nocache": nocache,
 			"nocachekey": nocachekey
 		};
+	},
+
+	// Return url for conditional display if regexp match http refer
+	getURL = function( url, referer ) {
+		var refers, httpRef, regHttpRef,
+			i, i_len;
+
+		if ( referer ) {
+			if ( !$.isArray( referer ) ) {
+				refers = [];
+				refers.push( referer );
+			} else {
+				refers = referer;
+			}
+
+			httpRef = window.document.referrer;
+			i_len = refers.length;
+			for ( i = 0; i !== i_len; i += 1 ) {
+				regHttpRef = new RegExp( refers[ i ] );
+				if ( regHttpRef.test( httpRef ) ) {
+					if ( $.isArray( url ) && url.length === i_len ) {
+						return url[ i ];
+					} else {
+						return url;
+					}
+				}
+			}
+		} else {
+			return url;
+		}
+		return "";
 	},
 
 	ajxFetched = function( elm, fetchObj ) {
