@@ -508,6 +508,13 @@ dd {
 }
 
 /*
+ * Added font-weight 700 to make the table headings to keep a consistent look in all browsers. MS EI and Edge do not put a display their th in bold but the other browsers do.
+ */
+th {
+	font-weight: 700;
+}
+
+/*
  *	Firefox-safe line height on input[type="reset|button|submit"]
  */
 $input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
