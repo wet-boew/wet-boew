@@ -7,10 +7,25 @@
  * Print styles
  */
 
+.wb-overlay-dlg, .wb-modal {
+
+	main {
+
+		// Hide white spaces
+		> * {
+			display: none;
+		}
+
+		// Show only the dialog
+		.wb-overlay.open, .mfp-content {
+			display:block;
+		}
+	}
+}
+
 .wb-overlay {
 
 	&.open {
-		display: block;
 		position: static;
 
 		&.no-print {
@@ -19,19 +34,10 @@
 	}
 }
 
-.wb-overlay-open {
-
-	main {
-
-		* {
-			display:none;
-		}
-
-		h1, .wb-popup, .wb-popup *, .wb-overlay.open * {
-			display:block;
-		}
-
-	}
+// Show the page title
+.mfp-content:before, .wb-overlay.open:before {
+	content: attr(data-pgtitle);
+	display: block;
+	font-size: $font-size-h1;
 }
-
 
