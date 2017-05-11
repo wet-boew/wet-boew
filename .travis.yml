@@ -9,6 +9,7 @@ env:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
 before_install:
+  - echo "machine github.com login $GH_TOKEN" >> ~/.netrc
   - rvm install 2.2.2
 
 install:

@@ -1340,7 +1340,6 @@ module.exports = (grunt) ->
 					repo: process.env.DIST_REPO
 					branch: "<%= deployBranch %>"
 					message: "<%= distDeployMessage %>"
-					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
 					))
@@ -1355,7 +1354,6 @@ module.exports = (grunt) ->
 					clone: "wet-boew-cdn"
 					base: "<%= coreDist %>"
 					message: "<%= cdnDeployMessage %>"
-					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
 					))
@@ -1370,7 +1368,6 @@ module.exports = (grunt) ->
 					clone: "wet-boew-theme-cdn"
 					base: "<%= themeDist %>"
 					message: "<%= cdnDeployMessage %>"
-					silent: true,
 					tag: ((
 						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-theme-wet-boew" else false
 					))
@@ -1389,7 +1386,6 @@ module.exports = (grunt) ->
 					repo: process.env.DEMOS_REPO
 					branch: process.env.DEMOS_BRANCH
 					message: "<%= distDeployMessage %>"
-					silent: true
 
 		sri:
 			options:
