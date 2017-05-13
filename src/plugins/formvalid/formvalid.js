@@ -197,7 +197,8 @@ var componentName = "wb-frmvld",
 								prefixEnd = i18nText.colon + " </span>",
 								separator = i18nText.hyphen,
 								ariaLive = $form.parent().find( ".arialive" )[ 0 ],
-								$summaryContainer, summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
+								summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString,
+								$summaryContainer = $form.find( "#" + errorFormId );
 
 							// Correct the colouring of fields that are no longer invalid
 							$form
