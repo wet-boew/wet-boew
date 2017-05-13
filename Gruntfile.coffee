@@ -10,6 +10,8 @@ module.exports = (grunt) ->
 		[
 			"build"
 			"demos"
+			"theme"
+			"docs"
 		]
 	)
 
