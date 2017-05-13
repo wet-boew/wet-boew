@@ -468,7 +468,7 @@ module.exports = (grunt) ->
 					root: "/v4.0-ci/unmin"
 					jqueryVersion: "<%= jqueryVersion.version %>"
 					jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-				assets: "dist/unmin"
+				assets: "dist"
 
 			theme:
 				options:
