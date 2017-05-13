@@ -80,3 +80,39 @@
 		@extend %display-none-important;
 	}
 }
+
+details {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+
+	&[open] {
+		summary {
+			border: 0;
+			border-bottom: 1px solid #ddd;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+
+			&:after {
+				content: " ";
+			}
+		}
+	}
+}
+
+summary {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	color: $link-color;
+	padding: 5px 15px;
+
+	&:after {
+		content: " ";
+		font-family: "Glyphicons Halflings";
+	}
+
+	&:hover, &:focus {
+		color: $link-hover-color;
+		background-color: transparent;
+		text-decoration: underline;
+	}
+}
