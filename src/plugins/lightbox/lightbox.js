@@ -42,7 +42,8 @@ var componentName = "wb-lbx",
 				var elm = document.getElementById( elmId ),
 					$elm = $( elm ),
 					settings = {},
-					firstLink;
+					firstLink,
+					pageHeading1 = document.getElementsByTagName( "H1" )[ 0 ];
 
 				if ( !elm ) {
 					return;
@@ -88,6 +89,12 @@ var componentName = "wb-lbx",
 					}
 					if ( elm.className.indexOf( "lbx-inline" ) !== -1 ) {
 						settings.type = "inline";
+					}
+
+					// Insert the lbx in a container after the h1
+					if ( pageHeading1 ) {
+						$( pageHeading1 ).after( "<div class='wb-lbx-container'></div>" );
+						settings.prependTo = pageHeading1.nextSibling;
 					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
