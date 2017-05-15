@@ -163,6 +163,7 @@ var componentName = "wb-lbx",
                         .find( ".activate-open" )
                         .trigger( "wb-activate" );
 
+					this.contentContainer.attr( "data-pgtitle", document.getElementsByTagName( "H1" )[ 0 ].textContent );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
