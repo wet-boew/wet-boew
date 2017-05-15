@@ -50,6 +50,47 @@ var componentName = "wb-fnote",
 			// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
 			$elm.find( "dd p.fn-rtn a span span" ).remove();
 
+			// Listen for footnote reference links that get clicked
+			$document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
+				var eventTarget = event.target,
+					which = event.which,
+					refId, $refLinkDest;
+
+				// Ignore middle/right mouse button
+				if ( !which || which === 1 ) {
+					refId = "#" + wb.jqEscape( eventTarget.getAttribute( "href" ).substring( 1 ) );
+					$refLinkDest = $document.find( refId );
+
+					$refLinkDest.find( "p.fn-rtn a" )
+								.attr( "href", "#" + eventTarget.parentNode.id );
+
+					// Assign focus to $refLinkDest
+					$refLinkDest.trigger( setFocusEvent );
+					return false;
+				}
+			} );
+
+			// Listen for footnote return links that get clicked
+			$document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
+				var which = event.which,
+					ref,
+					refId;
+
+				// Ignore middle/right mouse button
+				if ( !which || which === 1 ) {
+					ref = event.target.getAttribute( "href" );
+
+					// Focus on associated referrer link (if the return link points to an ID)
+					if ( ref.charAt( 0 ) === "#" ) {
+						refId = "#" + wb.jqEscape( ref.substring( 1 ) );
+
+						// Assign focus to the link
+						$document.find( refId + " a" ).trigger( setFocusEvent );
+						return false;
+					}
+				}
+			} );
+
 			// Identify that initialization has completed
 			wb.ready( $elm, componentName );
 		}
@@ -57,47 +98,6 @@ var componentName = "wb-fnote",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
-
-// Listen for footnote reference links that get clicked
-$document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
-	var eventTarget = event.target,
-		which = event.which,
-		refId, $refLinkDest;
-
-	// Ignore middle/right mouse button
-	if ( !which || which === 1 ) {
-		refId = "#" + wb.jqEscape( eventTarget.getAttribute( "href" ).substring( 1 ) );
-		$refLinkDest = $document.find( refId );
-
-		$refLinkDest.find( "p.fn-rtn a" )
-					.attr( "href", "#" + eventTarget.parentNode.id );
-
-		// Assign focus to $refLinkDest
-		$refLinkDest.trigger( setFocusEvent );
-		return false;
-	}
-} );
-
-// Listen for footnote return links that get clicked
-$document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
-	var which = event.which,
-		ref,
-		refId;
-
-	// Ignore middle/right mouse button
-	if ( !which || which === 1 ) {
-		ref = event.target.getAttribute( "href" );
-
-		// Focus on associated referrer link (if the return link points to an ID)
-		if ( ref.charAt( 0 ) === "#" ) {
-			refId = "#" + wb.jqEscape( ref.substring( 1 ) );
-
-			// Assign focus to the link
-			$document.find( refId + " a" ).trigger( setFocusEvent );
-			return false;
-		}
-	}
-} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
