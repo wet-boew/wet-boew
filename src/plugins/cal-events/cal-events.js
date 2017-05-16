@@ -81,20 +81,22 @@ var componentName = "wb-calevt",
 
 	processEvents = function( $elm ) {
 		var settings = $.extend( {}, window[ componentName ], $elm.data( dataAttr ) ),
-			year, month, events, minDate, containerId, $container;
+			year, month, events, containerId, $container,
+			currDate = new Date(),
+			currYear = currDate.getFullYear(),
+			currMonth = currDate.getMonth();
 
 		events = getEvents( $elm );
 		containerId = $elm.data( "calevtSrc" );
 		$container = $( "#" + containerId ).addClass( componentName + "-cal" );
 
-		minDate = events.minDate;
-		year = settings.year || minDate.getFullYear();
-		month = settings.month || minDate.getMonth();
+		year = settings.year || currYear;
+		month = settings.month || currMonth;
 
 		wb.calendar.create( $container, {
 			year: year,
 			month: month,
-			minDate: minDate,
+			minDate: events.minDate,
 			maxDate: events.maxDate,
 			daysCallback: addEvents,
 			events: events.list,
@@ -150,7 +152,8 @@ var componentName = "wb-calevt",
 			dateTimeRegExp = /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/,
 			i, $event, event, $objTitle, title, link, href, target,
 			linkId, date, tCollection, tCollectionTemp,	strDate1,
-			strDate2, z, zLen, className, dateClass;
+			strDate2, z, zLen, className, dateClass,
+			currDate = new Date();
 
 		for ( i = 0; i !== iLen; i += 1 ) {
 			$event = objEventsList.eq( i );
@@ -254,6 +257,15 @@ var componentName = "wb-calevt",
 			}
 
 		// End of loop through objects/events
+		}
+
+		// Set the min and max Date according to the current date.
+		if ( events.minDate.getTime() > currDate.getTime() ) {
+			events.minDate = currDate;
+		}
+
+		if ( events.maxDate.getTime() < currDate.getTime() ) {
+			events.maxDate = currDate;
 		}
 
 		//Sort events
