@@ -63,6 +63,13 @@ a {
 
 .dl-horizontal {
 	@media (min-width: $screen-sm-min) {
+		&.brdr-0 { // removes bordered for dl-horizontal
+			dt,
+			dd {
+				border: 0 !important;
+			}
+		}
+
 		dt {
 			border-top: 1px solid $clrMedium;
 			padding: 10px 10px 10px 0;
