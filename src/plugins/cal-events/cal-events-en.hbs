@@ -297,7 +297,7 @@
 
 		<div id="calendar4" class="cal-cnt-fluid"></div>
 
-		<div class="wb-calevt evt-anchor" data-calevt-src="calendar4">
+		<div class="wb-calevt evt-anchor" data-wb-calevt='{"year": 2013, "month": 2}' data-calevt-src="calendar4">
 			<section>
 				<h4>Events List 1</h4>
 				<ol>
@@ -354,7 +354,7 @@
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
 				<pre><code>&lt;div id=&quot;calendar4&quot; class=&quot;cal-cnt-fluid&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar4&quot;&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-wb-calevt='{"year": 2013, "month": 2}' data-calevt-src=&quot;calendar4&quot;&gt;
 	&lt;section&gt;
 		&lt;h4&gt;Events List 1&lt;/h4&gt;
 		&lt;ol&gt;
@@ -374,4 +374,165 @@
 			</details>
 		</section>
 	</section>
+</section>
+
+<section>
+	<h2>Out of range from today</h2>
+
+	<p>The calendar are initiated depending of today date and the date range of events. The starting date can be forced by configuring the plugin like: <code>data-wb-calevt='{"year": 2003, "month": 4}'</code> (See the Fluid-width Calendar example)</p>
+	<div class="row">
+	<section class="col-md-4">
+		<h3>Past events</h3>
+		<p>Start at the oldest date.</p>
+		<div id="calevt-out-1"></div>
+
+		<div class="wb-calevt" data-calevt-src="calevt-out-1">
+			<ol>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Single-Day Event</a></h4>
+						<p><time datetime="2003-03-11">March 11th, 2003</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Multi-Day Event</a></h4>
+						<p><time datetime="2001-03-22">March 22nd, 2001</time> to <time datetime="2003-04-26">April 26th, 2003</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+			</ol>
+		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calevt-out-1&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt&quot; data-calevt-src=&quot;calevt-out-1&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2003-03-11&quot;&gt;March 11th, 2003&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			...
+		&lt;/li&gt;
+		...
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
+	</section>
+
+	<section class="col-md-4">
+		<h3>Past and future events</h3>
+		<p>Start at Today date</p>
+		<div id="calevt-out-3"></div>
+
+		<div class="wb-calevt" data-calevt-src="calevt-out-3">
+			<ol>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Single-Day Event</a></h4>
+						<p><time datetime="2003-03-11">March 11th, 2003</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Single-Day Event</a></h4>
+						<p><time datetime="2026-03-11">March 11th, 2026</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+			</ol>
+		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calevt-out-3&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt&quot; data-calevt-src=&quot;calevt-out-3&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2003-03-11&quot;&gt;March 11th, 2003&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2026-03-11&quot;&gt;March 11th, 2026&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			...
+		&lt;/li&gt;
+		...
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
+	</section>
+
+	<section class="col-md-4">
+		<h3>Future events</h3>
+		<p>Start at the lowest date.</p>
+		<div id="calevt-out-2"></div>
+
+		<div class="wb-calevt" data-calevt-src="calevt-out-2">
+			<ol>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Single-Day Event</a></h4>
+						<p><time datetime="2226-03-11">March 11th, 2226</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+				<li>
+					<section>
+						<h4><a href="http://www.canada.ca" rel="external">Multi-Day Event</a></h4>
+						<p><time datetime="2225-03-22">March 22nd, 2225</time> to <time datetime="2226-04-26">April 26th, 2226</time></p>
+						<p>Event Description</p>
+					</section>
+				</li>
+			</ol>
+		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calevt-out-2&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt&quot; data-calevt-src=&quot;calevt-out-2&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2226-03-11&quot;&gt;March 11th, 2226&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			...
+		&lt;/li&gt;
+		...
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
+	</section>
+	</div>
 </section>
