@@ -4,15 +4,6 @@ if ! type docker > /dev/null; then
   exit 0
 fi
 
-
-docker build \
-   -t wet-boew-build \
-   --build-arg http_proxy="$HTTP_PROXY" \
-   --build-arg HTTP_PROXY="$HTTP_PROXY" \
-   --build-arg https_proxy="$HTTP_PROXY" \
-   --build-arg HTTPS_PROXY="$HTTP_PROXY" \
-   $src
-
 run () {
 	docker run -it \
 	  -v "${PWD}":"/home/node/app" \
@@ -30,5 +21,5 @@ run () {
 	  --pid=host \
 	  --rm \
 	  $extra_params \
-	  wet-boew-build $@
+	  wetboew/wet-boew-build $@
 }
