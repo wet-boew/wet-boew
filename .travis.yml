@@ -19,8 +19,18 @@ install:
 script:
   - npm run-script travis_script
 
-after_success:
-  - npm run-script travis_after_success
+deploy:
+  - provider: script
+    script: npm run-script travis_after_success
+    skip_cleanup: true
+    on:
+      all_branches: true
+      #branch: master
+  - provider: script
+    script: npm run-script travis_after_success
+    skip_cleanup: true
+    on:
+      tags: true
 
 notifications:
   irc:
