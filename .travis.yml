@@ -1,8 +1,6 @@
-language: node_js
-node_js:
-  - "6"
-
-sudo: false
+language: generic
+dist: trusty
+sudo: required
 
 env:
   global:
@@ -10,11 +8,12 @@ env:
 
 before_install:
   - echo "machine github.com login $GH_TOKEN" >> ~/.netrc
-  - rvm install 2.2.2
+  - shopt -s expand_aliases
+  - source script/docker/activate
+  - npm --version
 
 install:
-  - ./script/setup
-  - gem install rake html-proofer
+  - npm install --quiet
 
 script:
   - npm run-script travis_script
