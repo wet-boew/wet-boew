@@ -16,21 +16,22 @@ install:
   - ./script/setup
   - gem install rake html-proofer
 
-script:
-  - npm run-script travis_script
-
-deploy:
-  - provider: script
-    script: npm run-script travis_after_success
-    skip_cleanup: true
-    on:
-      all_branches: true
-      #branch: master
-  - provider: script
-    script: npm run-script travis_after_success
-    skip_cleanup: true
-    on:
-      tags: true
+jobs:
+  include:
+    - script: npm run-script travis_script
+    - stage: Deploy
+      deploy:
+        - provider: script
+          script: npm run-script travis_after_success
+          skip_cleanup: true
+          on:
+            all_branches: true
+            #branch: master
+        - provider: script
+          script: npm run-script travis_after_success
+          skip_cleanup: true
+          on:
+            tags: true
 
 notifications:
   irc:
