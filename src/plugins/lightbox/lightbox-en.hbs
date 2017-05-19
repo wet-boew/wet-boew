@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2015-05-12"
+	"dateModified": "2016-10-14"
 }
 ---
 <section>
@@ -55,6 +55,9 @@
 				</li>
 				<li>
 					<a class="wb-lbx" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Example of Multimedia Player" href="ajax/video-en.html">AJAX - Video</a>
 				</li>
 				<li>
 					AJAX - override default behaviour of image link with lbx-ajax<br />
@@ -133,6 +136,13 @@
 		&lt;a class="wb-lbx" title="AJAX - Example 1 of AJAX content" href="ajax/ajax-en.html"&gt;AJAX - Example 1&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
+		&lt;a class="wb-lbx" title="AJAX - Example of Multimedia Player" href="ajax/video.html"&gt;AJAX - Video&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		AJAX - override default behaviour of image link with lbx-ajax&lt;br /&gt;
+		&lt;a class="wb-lbx lbx-ajax" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html"&gt;&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
 		&lt;a class="wb-lbx" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
 		&lt;section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;header class="modal-header"&gt;
@@ -161,7 +171,15 @@
 		&lt;li&gt;
 			&lt;a class="wb-lbx" title="AJAX - Content filtered by a selector" href="ajax/ajax4-en.html" data-wb-lbx='{"filter": ".filter-selector"}'&gt;AJAX - Content filtered by a selector (v4.0.12+)&lt;/a&gt;
 		&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+&lt;/ul&gt;
+&lt;script&gt;
+// JavaScript code required to initialise multimedia player in lightbox
+$( ".wb-lbx" ).on( "mfpAjaxContentAdded", function() {
+	setTimeout(function() {
+        $( ".mfp-content" ).find( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );
+    }, 0);
+});
+&lt;/script&gt;</code></pre>
 				</details>
 			</section>
 		</section>

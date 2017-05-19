@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2015-03-09"
+	"dateModified": "2016-10-14"
 }
 ---
 <section>
@@ -18,11 +18,11 @@
 		<li><a href="#features">Caractéristiques</a></li>
 		<li><a href="#examples">Exemples</a>
 			<ul>
-				<li><a href="#examples1">Articles seules</a></li>
-				<li><a href="#examples2">Galeries d'articles</a></li>
-				<li><a href="#examples3">Galeries d'articles cachées</a></li>
-				<li><a href="#examples4">Titre de l'image alternative</a></li>
-				<li><a href="#examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</a></li>
+				<li><a href="#examples1">Items individuels</a></li>
+				<li><a href="#examples2">Galerie d'images</a></li>
+				<li><a href="#examples3">Galeries cachées</a></li>
+				<li><a href="#examples4">Titre d'image alternatif</a></li>
+				<li><a href="#examples5">Ouvrir du contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -32,7 +32,7 @@
 	<h2 id="features">Caractéristiques</h2>
 	<ul>
 		<li>Affiche les images dans l'outil <a href="http://dimsemenov.com/plugins/magnific-popup/" lang="en" rel="external">Magnific Popup</a></li>
-		<li>Utilisation d'un souris, écran tactile ou clavier pour une navigation facile.</li>
+		<li>Navigation facile à l'aide d'une souris, d'un écran tactile ou d'un clavier.</li>
 	</ul>
 </section>
 
@@ -41,12 +41,12 @@
 		<h2 id="examples">Exemples</h2>
 
 		<details>
-			<summary>Description longue d'image 2</summary>
-			<p id="image2-desc">Exemple d'une description longue d'image 2 (référencé par <code lang="en">aria-describedby</code>).</p>
+			<summary>Description longue de l'image 2</summary>
+			<p id="image2-desc">Exemple d'une description longue de l'image 2 (référencé par <code lang="en">aria-describedby</code>).</p>
 		</details>
 
 		<section>
-			<h3 id="examples1">Articles seules</h3>
+			<h3 id="examples1">Items individuels</h3>
 			<ul>
 				<li>
 					<a class="wb-lbx" href="demo/1_b.jpg" title="Image 1">
@@ -57,7 +57,10 @@
 					<a class="wb-lbx" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
 				</li>
 				<li>
-					AJAX - remplacer le comportement par defaut d'un lien sur une image avec lbx-ajax<br />
+					<a class="wb-lbx" title="AJAX - Exemple d'un lecteur multimédia" href="ajax/video-fr.html">AJAX - Exemple d'un lecteur multimédia dans un lightbox</a>
+				</li>
+				<li>
+					AJAX - remplacer le comportement par défaut d'un lien sur une image avec lbx-ajax<br />
 					<a class="wb-lbx lbx-ajax" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"><img src="demo/1_s.jpg" alt="Image 1" /></a>
 				</li>
 				<li>
@@ -132,6 +135,13 @@
 		&lt;a class="wb-lbx" title="Exemple de contenu AJAX" href="ajax/ajax-en.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
+		&lt;a class="wb-lbx" title="AJAX - Exemple d'un lecteur multimédia" href="ajax/video.html"&gt;AJAX - Exemple d'un lecteur multimédia dans un lightbox&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		AJAX - remplacer le comportement par defaut d'un lien sur une image avec lbx-ajax&lt;br /&gt;
+		&lt;a class="wb-lbx lbx-ajax" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-en.html"&gt;&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
 		&lt;a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
 
 		&lt;div id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
@@ -166,13 +176,21 @@
 	&lt;li&gt;
 		&lt;a class="wb-lbx" title="AJAX - Contenu filtrer par un sélecteur" href="ajax/ajax4-fr.html" data-wb-lbx='{"filter": ".filter-selector"}'&gt;AJAX - Contenu filtrer par un sélecteur (v4.0.12+)&lt;/a&gt;
 	&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+&lt;/ul&gt;
+&lt;script&gt;
+// Code JavaScript requis pour initialiser un lecteur multimédia dans un lightbox
+$( ".wb-lbx" ).on( "mfpAjaxContentAdded", function() {
+	setTimeout(function() {
+		$( ".mfp-content" ).find( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );
+	}, 0);
+});
+&lt;/script&gt;</code></pre>
 				</details>
 			</section>
 		</section>
 
 		<section>
-			<h3 id="examples2">Galeries</h3>
+			<h3 id="examples2">Galeries d'images</h3>
 			<section class="wb-lbx lbx-gal">
 				<h4>Galerie d'images</h4>
 				<ul class="list-inline">
@@ -232,7 +250,7 @@
 			</section>
 
 			<section class="wb-lbx lbx-gal">
-				<h4>Galerie d'AJAX</h4>
+				<h4>Galerie AJAX</h4>
 				<ul>
 					<li>
 						<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
@@ -269,7 +287,7 @@
 		</section>
 
 		<section>
-			<h3 id="examples3">Galeries cachés</h3>
+			<h3 id="examples3">Galeries cachées</h3>
 			<section class="wb-lbx lbx-hide-gal">
 				<h4>Galerie d'images</h4>
 				<ul class="list-inline">
@@ -366,7 +384,7 @@
 		</section>
 
 		<section>
-			<h3 id="examples4">Titre de l'image alternative</h3>
+			<h3 id="examples4">Titre d'image alternatif</h3>
 			<div class="wb-lbx lbx-gal inline-lst">
 				<ul>
 					<li>
@@ -410,8 +428,8 @@
 		</section>
 
 		<section>
-			<h3 id="examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</h3>
-			<p>Le contenu surperposé &#171;&#160;Lightbox&#160;&#187; peut être ouverte via JavaScript avec&#160;:</p>
+			<h3 id="examples5">Ouvrir du contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</h3>
+			<p>Le contenu surperposé &#171;&#160;Lightbox&#160;&#187; peut être affiché via JavaScript avec&#160;:</p>
 			<pre><code>$( document ).trigger( "open.wb-lbx", [
 	[
 		{
@@ -441,7 +459,7 @@
 					<summary>Visualiser le code</summary>
 					<section>
 						<h5>HTML</h5>
-						<pre><code>&lt;label for=&quot;lbx-select&quot;&gt;Contenu superposé &#171;&#160;Lightbox&#160;&#187; à ouvrir&lt;/label&gt;
+						<pre><code>&lt;label for=&quot;lbx-select&quot;&gt;Contenu superposé &#171;&#160;Lightbox&#160;&#187; à afficher&lt;/label&gt;
 &lt;select id=&quot;lbx-select&quot;&gt;
 	&lt;option value=&quot;1&quot;&gt;Image&lt;/option&gt;
 	&lt;option value=&quot;2&quot;&gt;AJAX&lt;/option&gt;
