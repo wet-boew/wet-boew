@@ -32,11 +32,11 @@ var componentName = "wb-geomap",
 			// Initialize the map height for the loader
 			$map.height( $map.width() * 0.8 );
 			$map.append( "<div class='geomap-progress'><span class='wb-inv'>" + wb.i18n( "load" ) + "</span></div>" );
-			$leg.append( "<div style='background-color:#f5f5f5;width:100%;height:25px;margin-top:10px;'><span style='display:block;background-color:#fff;margin-left:25px;width:15px;height:25px;'></span></div>" +
-					"<div style='background-color:#f5f5f5;width:100%;height:25px;margin:20px 0 20px 0'><span style='display:block;background-color:#fff;margin-left:25px;width:15px;height:25px;'></span></div>" +
-					"<div style='background-color:#f5f5f5;width:100%;height:25px;margin:20px 0 20px 0'><span style='display:block;background-color:#fff;margin-left:25px;width:15px;height:25px;'></span></div>" +
-					"<div style='background-color:#f5f5f5;width:100%;height:25px;margin:20px 0 20px 0'><span style='display:block;background-color:#fff;margin-left:25px;width:15px;height:25px;'></span></div>" +
-					"<div style='background-color:#f5f5f5;width:100%;height:25px;margin-bottom:10px;'><span style='display:block;background-color:#fff;margin-left:25px;width:15px;height:25px;'></span></div>" );
+			$leg.append( "<div class='skeleton-lgnd-1'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div  class='skeleton-lgnd-1'><span class='skeleton-lgnd-3'></span></div>" );
 
 			modeJS = wb.getMode() + ".js";
 
