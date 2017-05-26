@@ -6,17 +6,18 @@ fi
 
 run () {
 	docker run -it \
-	  -v "${PWD}":"/home/node/app" \
 	  -w "/home/node/app" \
 	  -u node \
-	  -v /tmp/:/tmp/ \
+	  -v "${PWD}":"/home/node/app" \
 	  -v $HOME/.gitconfig:/home/node/.gitconfig \
-      -v $HOME/.npmrc:/home/node/.npmrc \
+	  -v $HOME/.npmrc:/home/node/.npmrc \
 	  -v $HOME/.netrc:/home/node/.netrc \
+	  -v /tmp/:/tmp/ \
 	  -e HTTP_PROXY=$HTTP_PROXY \
 	  -e HTTPS_PROXY=$HTTP_PROXY \
 	  -e http_proxy=$HTTP_PROXY \
 	  -e https_proxy=$HTTP_PROXY \
+	  --env-file "${PWD}/script/docker/env" \
 	  --sig-proxy=true \
 	  --pid=host \
 	  --rm \

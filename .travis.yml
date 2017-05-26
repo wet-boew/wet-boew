@@ -8,6 +8,8 @@ env:
 
 before_install:
   - echo "machine github.com login $GH_TOKEN" >> ~/.netrc
+  - env | grep  'TRAVIS\|CI\|SAUCE\|GIT\|REPO\|BRANCH' >> script/docker/env >> script/docker/env
+  - cat script/docker/env
   - shopt -s expand_aliases
   - source script/docker/activate
   - npm --version
