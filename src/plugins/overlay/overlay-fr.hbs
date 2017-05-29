@@ -110,7 +110,6 @@
 	&lt;/header&gt;
 	&lt;div class=&quot;modal-body&quot;&gt;
 		...
-		&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot;&gt;Fermer le contenu superposé modal&lt;/button&gt;
 	&lt;/div&gt;
 &lt;/section&gt;</code></pre>
 			</details>
@@ -222,6 +221,19 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 			</details>
 		</section>
 	</section>
+
+<div lang="en">
+	<p><strong>Needs translation</strong></p>
+	<section>
+		<h3>Adding custom close buttons to overlays/modals</h3>
+		<p>Overlays/Modals through JavaScript are automatically updated with a close overlay/modal button. This button can be changed with the following code:</p>
+		<pre><code>&lt;div class=&quot;modal-footer&quot;&gt;
+...
+&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+		<p><strong>Side Note:</strong> Close buttons must be inside the modal footer (a div with the class <code>modal-footer</code>).</p>
+	</section>
+</div>
 </section>
 
 <section id="panneau-gauche" class="wb-overlay modal-content overlay-def wb-panel-l">
@@ -357,7 +369,6 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 			</li>
 		</ol>
 		<p><a href="#">Lien - apparence par défaut</a></p>
-		<button class="btn btn-primary popup-modal-dismiss" type="button">Fermer le contenu superposé modal</button>
 	</div>
 </section>
 

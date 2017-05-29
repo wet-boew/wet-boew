@@ -78,7 +78,7 @@ var componentName = "wb-overlay",
 					footer.style.border = "0";
 				}
 
-				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-default " + closeClassFtr +
+				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-primary " + closeClassFtr +
 					"' style='" + buttonStyle +
 					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
 					closeTextFtr +
