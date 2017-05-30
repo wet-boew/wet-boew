@@ -36,15 +36,6 @@
 	}
 
 	&.carousel-s2 {
-		// Only need to show controls when JS is active and plugin working
-		&.wb-init {
-			padding-bottom: 4.375em;
-		}
-
-		&.exclude-controls {
-			padding-bottom: 0;
-		}
-
 		&.show-thumbs {
 			[role="tablist"] {
 				li {

@@ -1,0 +1,21 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/**
+ * Screen-only styles
+ */
+
+.wb-tabs {
+	&.carousel-s2 {
+		// Only need to show controls when JS is active and plugin working
+		&.wb-init {
+			padding-bottom: 4.375em;
+		}
+
+		&.exclude-controls {
+			padding-bottom: 0;
+		}
+	}
+}
