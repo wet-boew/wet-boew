@@ -306,6 +306,15 @@ $tab-margin-width: 10px;
 		z-index: 1;
 	}
 
+	.tgl-panel {
+		> {
+			.row {
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+	}
+
 	/**
 	 * Style 1 - Basic carousel style
 	 */
