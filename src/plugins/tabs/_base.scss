@@ -381,6 +381,15 @@ $tab-margin-width: 10px;
 		@extend %carousel-tabpanel-video;
 		background: $carousel-s2-tablist-controls-bg-color;
 
+		// Only need to show controls when JS is active and plugin working
+		&.wb-init {
+			padding-bottom: 4.375em;
+		}
+
+		&.exclude-controls {
+			padding-bottom: 0;
+		}
+
 		[role="tablist"] {
 			bottom: 0;
 			position: absolute;
