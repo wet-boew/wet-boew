@@ -75,7 +75,17 @@ var componentName = "wb-mltmd",
 				};
 			}
 
-			if ( template === undef ) {
+			// if YouTube on iOS, don't load controls.
+			// Due to restrictions by Apple
+			// and Youtube, videos cannot be played with
+			// external controls ( i.e. playVideo )
+			var $yT = ( $( this ).find( "[type='video/youtube']" ).length > 0 );
+			var $iOS = ( /iPad|iPhone|iPod/.test( navigator.userAgent ) && !window.MSStream );
+			if ( $yT && $iOS ) {
+				$( this ).addClass( "yt-ios" );
+				template = "";
+				$( eventTarget ).trigger( templateLoadedEvent );
+			} else if ( template === undef ) {
 				template = "";
 				$( eventTarget ).trigger( {
 					type: "ajax-fetch.wb",
@@ -628,11 +638,19 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			$this = $( event.currentTarget ),
 			$media, ytPlayer;
 
+		// if YouTube on iOS, load YouTube's controls.  Due to restrictions by Apple
+		// and Youtube, videos cannot be played with external controls ( i.e. playVideo() )
+		var $iOS = ( /iPad|iPhone|iPod/.test( navigator.userAgent ) && !window.MSStream );
+		var $showControls = 0;
+		if ( $iOS ) {
+			$showControls = 1;
+		}
+			
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
 				autoplay: 0,
-				controls: 0,
+				controls: $showControls,
 				origin: wb.pageUrlParts.host,
 				modestbranding: 1,
 				rel: 0,

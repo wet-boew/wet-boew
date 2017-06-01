@@ -85,7 +85,7 @@ $mm-volume-thumb-width: 10px;
 
 	&.video {
 
-		&:not(.playing):not(.waiting) {
+		&:not(.playing):not(.waiting):not(.yt-ios) {
 			@include multimedia_overlay_base;
 			@include multimedia_overlay_play;
 		}
