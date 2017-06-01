@@ -1,0 +1,12 @@
+/*
+  WET-BOEW
+  @title: Bootstrap print overrides for WET-BOEW
+ */
+
+abbr {
+	&[title] {
+		&:after {
+			content: none;
+		}
+	}
+}
