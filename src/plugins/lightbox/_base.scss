@@ -89,14 +89,26 @@ body {
 
 /* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-bottom-bar {
+	background-color: $clrMedium;
+	margin-bottom: 5px;
+	padding: 10px;
+
+
 	.mfp-title {
+		color: $clrDarkBlue;
+		display: inline-block;
 		padding-right: 5px;
 		width: 75%;
+
 	}
 
 	.mfp-counter {
+		color: $clrDarkBlue;
+		display: inline-block;
 		font-size: 1em;
+		position: static;
 		text-align: right;
+		vertical-align: top;
 		width: 25%;
 	}
 }
