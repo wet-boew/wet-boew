@@ -64,9 +64,12 @@ var componentName = "wb-tables",
 						previous: i18n( "prv" ),
 						page: i18n( "page" )
 					},
+					print: i18n( "print" ),
 					processing: i18n( "process" ),
 					search: i18n( "filter" ),
+					title: i18n( "table_title" ),
 					thousands: i18n( "info1000" ),
+					open_window: i18n( "open_window" ),
 					zeroRecords: i18n( "infoEmpty" )
 				};
 			}
@@ -82,6 +85,39 @@ var componentName = "wb-tables",
 				complete: function() {
 					var $elm = $( "#" + elmId ),
 						dataTableExt = $.fn.dataTableExt;
+
+					/*
+					* Add printing support
+					*/
+					if ( $elm.hasClass( "wb-tables-print" ) ) {
+						var $btn = $( "<button class='btn btn-default mrgn-tp-md mrgn-bttm-md'>" +
+						i18nText.print + "<span class='wb-inv'>" +
+						i18nText.open_window + "</span></button>" );
+						$elm.before( $btn );
+						$btn.click( function() {
+							var css = "<link href='" +
+								wb[ "/" ].replace( "js", "css" ) + "/theme" +
+								wb.getMode() + ".css' rel='stylesheet' />",
+								table = $( "<div>" ).append(
+									$elm.clone()
+								).html(),
+								printWin = window.open( "", "" );
+							printWin.document.close();
+
+							var title = ( $elm.find( "caption" ) ) ? $elm.find( "caption" ).html() : i18nText.title;
+							try {
+								printWin.document.head.innerHTML = "<title>" + title + "</title>" + css;
+							} catch ( e ) {
+								$( printWin.document.head ).html( "<title>" + title + "</title>" + css );
+							}
+							printWin.document.body.innerHTML = table;
+
+							setTimeout( function() {
+								printWin.print();
+								printWin.close();
+							}, 250 );
+						} );
+					}
 
 					/*
 					 * Extend sorting support
