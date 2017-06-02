@@ -17,9 +17,16 @@
 var componentName = "wb-tables",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
+	updateEvent = "wb-update" + selector,
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText, defaults,
+
+	createTable = function( $elm ) {
+
+		// Create the DataTable object
+		$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
+	},
 
 	/**
 	 * @method init
@@ -114,8 +121,7 @@ var componentName = "wb-tables",
 					// Add the container or the sorting icons
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
 
-					// Create the DataTable object
-					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
+					createTable( $elm );
 				}
 			} );
 		}
@@ -123,6 +129,19 @@ var componentName = "wb-tables",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
+
+// Bind the update event of the plugin
+$document.on( updateEvent, selector, function( event ) {
+	var $elm = $( event.currentTarget );
+
+	$elm.DataTable().destroy();
+
+	if ( event.newData ) {
+		$elm.empty();
+	}
+
+	createTable( $elm );
+} );
 
 // Handle the draw.dt event
 $document.on( "init.dt draw.dt", selector, function( event, settings ) {
