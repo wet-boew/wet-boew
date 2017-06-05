@@ -1,0 +1,222 @@
+---
+{
+	"title": "Déroulement de champs",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Transforme une simple liste en un liste de choix.",
+	"tag": "fieldflow",
+	"parentdir": "fieldflow",
+	"altLangPrefix": "fieldflow",
+	"dateModified": "2016-11-30"
+}
+---
+<p>Transforme une simple liste en un liste de choix.</p>
+
+<ul>
+	<li>Déroulement de champs (actuelle)</li>
+	<li><a href="basic-fr.html">Déroulement de champs avec des configurations de base</a></li>
+	<li><a href="advanced-fr.html">Déroulement de champs avancé</a></li>
+</ul>
+
+<hr />
+
+<div class="wb-prettify all-pre"></div>
+
+<p>Sur cette page:</p>
+
+<ul>
+	<li><a href="#redirect">Redirection</a></li>
+	<li><a href="#ajax">Ajax</a></li>
+	<li><a href="#regroupement">Regroupement</a></li>
+	<li><a href="#imbrication">Imbrication</a></li>
+</ul>
+
+
+<h2 id="redirect" class="page-header">Redirection</h2>
+
+<div class="wb-fieldflow">
+	<p>Trouvez le plugiciel qui répond à vos besoin:</p>
+
+	<ul>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html">Insertion de contenu</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html">Galerie photos</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html">Dessiner des graphiques</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html">Contenu affichable/masquable</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html">Uniformisation de la hauteur</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html">Afficher un contenu superposé</a></li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Trouvez le plugiciel qui répond à vos besoin:&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html&quot;&gt;Insertion de contenu&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html&quot;&gt;Galerie photos&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html&quot;&gt;Dessiner des graphiques&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html&quot;&gt;Contenu affichable/masquable&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html&quot;&gt;Uniformisation de la hauteur&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html&quot;&gt;Afficher un contenu superposé&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+
+<h2 id="ajax" class="page-header">Ajax</h2>
+
+<div class="well">
+	<p>Cette fonctionalité dépend du <a href="http://wet-boew.github.io/wet-boew/docs/ref/data-ajax/data-ajax-fr.html">plugiciel Data ajax</a>.</p>
+</div>
+
+<div class="wb-fieldflow">
+	<p>Choisissez du contenu à insérer:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Ensemble 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Ensemble 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Ensemble 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Ensemble 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Ensemble 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<!-- Fournir des alternative et/ou des façons multiple à accéder au contenu pourrait être requis afin d'être conforme à la norme WCAG et/ou afin de respecter l'approche de l'amélioration progressive -->
+<p><em><a rel="alternate" href="#">Consulter la liste entière des options disponible</a> (Lien bidon)</em></p>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choisissez du contenu à insérer:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Ensemble 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Ensemble 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Ensemble 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Ensemble 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Ensemble 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- Fournir des alternative et/ou des façons multiple à accéder au contenu pourrait être requis afin d'être conforme à la norme WCAG et/ou afin de respecter l'approche de l'amélioration progressive --&gt;
+&lt;p&gt;&lt;em&gt;&lt;a rel=&quot;alternate&quot; href=&quot;#&quot;&gt;Consulter la liste entière des options disponible&lt;/a&gt; (Lien bidon)&lt;/em&gt;&lt;/p&gt;</code></pre>
+
+
+
+
+<h2 id="regroupement">Regroupement</h2>
+
+<div class="wb-fieldflow">
+	<p>Trouvez le plugiciel qui répond à vos besoin:</p>
+
+	<ul>
+		<li>Mise en page et présentation
+			<ul>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html">Insertion de contenu</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html">Dessiner des graphiques</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html">Uniformisation de la hauteur</a></li>
+			</ul>
+		</li>
+		<li>Intéraction
+			<ul>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html">Contenu affichable/masquable</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html">Galerie photos</a></li>
+				<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html">Afficher un contenu superposé</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Trouvez le plugiciel qui répond à vos besoin:&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;Mise en page et présentation
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html&quot;&gt;Insertion de contenu&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html&quot;&gt;Dessiner des graphiques&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html&quot;&gt;Uniformisation de la hauteur&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Intéraction
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html&quot;&gt;Contenu affichable/masquable&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html&quot;&gt;Galerie photos&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html&quot;&gt;Afficher un contenu superposé&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+<h2 id="imbrication" class="page-header">Imbrication <small>Ajout d'un contrôle subséquant</small></h2>
+
+<div class="well">
+	<p>Considerez d'inclure un indice textuel dans chaque items qui affichera une second liste déroulante. Par example, ceci peut ce faire en ajoutant le signe "+" au début de l'étiquette. Veuillez remarquer que les liste déroulante sont identifié par la présence de: <code>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</code>.</p>
+</div>
+
+<div class="wb-fieldflow">
+	<p>Trouvez le plugiciel qui répond à vos besoin:</p>
+	<ul>
+		<li>+ Mise en page et présentation
+			<div class="wb-fieldflow-sub">
+				<p>Et c'est pour?</p>
+				<ul>
+					<li>+ L'apparance
+						<div class="wb-fieldflow-sub">
+							<p>Quel sorte de transformation?</p>
+							<ul>
+								<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html">Uniformisation de la hauteur</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html">Insertion de contenu</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html">Dessiner des graphiques</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>+ Intéraction
+			<div class="wb-fieldflow-sub">
+				<p class="wb-fieldflow-label">Quel type d'intéraction?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html">Contenu affichable/masquable</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html">Galerie photos</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html">Afficher un contenu superposé</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Trouvez le plugiciel qui répond à vos besoin:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;+ Mise en page et présentation
+			<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+				&lt;p&gt;Et c'est pour?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;+ L'apparance
+						<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+							&lt;p&gt;Quel sorte de transformation?&lt;/p&gt;
+							&lt;ul&gt;
+								&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html&quot;&gt;Uniformisation de la hauteur&lt;/a&gt;&lt;/li&gt;
+							&lt;/ul&gt;
+						<strong>&lt;/div&gt;</strong>
+					&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html&quot;&gt;Insertion de contenu&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html&quot;&gt;Dessiner des graphiques&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			<strong>&lt;/div&gt;</strong>
+		&lt;/li&gt;
+		&lt;li&gt;+ Intéraction
+			<strong>&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;</strong>
+				&lt;p class=&quot;wb-fieldflow-label&quot;&gt;Quel type d'intéraction?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html&quot;&gt;Contenu affichable/masquable&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html&quot;&gt;Galerie photos&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html&quot;&gt;Afficher un contenu superposé&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			<strong>&lt;/div&gt;</strong>
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>

@@ -1,0 +1,1626 @@
+---
+{
+	"title": "Field flow advanced",
+	"language": "en",
+	"category": "Plugins",
+	"description": "How to go beyond with field flow.",
+	"tag": "fieldflow",
+	"parentdir": "fieldflow",
+	"altLangPrefix": "advanced",
+	"dateModified": "2016-11-30"
+}
+---
+<p>How to go beyond with field flow.</p>
+
+
+
+<ul>
+	<li><a href="fieldflow-en.html">Field flow</a></li>
+	<li><a href="basic-en.html">Field flow basic configuration</a></li>
+	<li>Field flow advanced (current)</li>
+</ul>
+
+<hr />
+
+<div class="wb-prettify all-pre"></div>
+
+<p>On this page:</p>
+
+<ul>
+	<li><a href="#customajax">Custom ajax</a></li>
+	<li><a href="#append">Append</a></li>
+	<li><a href="#cssclass">Add and remove CSS class</a></li>
+	<li><a href="#defaultreset">Applying a set of default and reset action</a></li>
+	<li><a href="#baseAction">Define a base action object</a></li>
+	<li><a href="#redefineDefaultBehavior">Redefine defaults behaviour of simple call</a></li>
+	<li><a href="#querying">Querying and form integration</a></li>
+	<li><a href="#toggle">Toggle</a></li>
+	<li><a href="#tblfilter">Table filtering</a></li>
+</ul>
+
+
+<h2 id="customajax">Custom ajax</h2>
+
+
+	<div class="well">
+
+		<p>The content is insert by using the data-ajax plugin. It is possible to target specific container, by using different method (append, prepend, after, before, replace) and to benefit of the ajax filtering fonctionality provided by the ajax fetch plugin.</p>
+
+		<p>A simple use is set the url of the file that need to be ajaxed in the attribute <code>data-wb-fieldflow=&quot;URL/of/the/file&quot;</code>.</p>
+
+		<p>The content set by the attribute <code>data-wb-fieldflow</code> may are not be accessible to search engine and to the user if javascript is disabled. So, it's recommended to provide an alternative representation where the user will be able to get equivalent information.</p>
+
+		<p>Using <code>data-wb-fieldflow=&quot;URL/of/the/file&quot;</code> is the same as:</p>
+		<ul>
+			<li><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;URL/of/the/file&quot;}'</code></li>
+			<li><code>data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;URL/of/the/file&quot;, &quot;type&quot;: &quot;replace&quot;}'</code></li>
+		</ul>
+		<p>The following configuration option are available:</p>
+
+		<dl class="dl-horizontal">
+			<dt><code>type</code></dt>
+			<dd>Define how the content will be inserted. The available options are: after, append, before, prepend, replace. Default value is "replace"</dd>
+
+			<dt><code>container</code></dt>
+			<dd>A jquery selector of where the data ajax will be initialised. If not specified, an empty container will be created after Fieldflow control.</dd>
+
+			<dt><code>clean</code></dt>
+			<dd>A jquery selector of where the jquery <code>empty()</code> will be called.</dd>
+
+			<dt><code>trigger</code></dt>
+			<dd>Allow to initiate WET features included in the content to be inserted through ajax.</dd>
+		</dl>
+	</div>
+
+
+	<section id="ajaxPanel" class="panel panel-primary">
+		<header class="panel-heading">
+			<h3 class="panel-title"><code>id="ajaxPanel"</code> Aside panel, for example</h3>
+		</header>
+		<div class="panel-body">
+			<p>(To illustrate <code>container</code> and <code>clean</code> options)</p>
+		</div>
+	</section>
+
+	<div class="wb-fieldflow">
+		<p>Choose content to be ajaxed?</p>
+		<ul>
+			<li data-wb-fieldflow="ajax/ajax-1.html">Set 1</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-1.html", "live": true}'>Set 1 - Do it live</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-3.html", "live": true}'>Set 3 - Do it live</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-4.html", "live": true}'>Set 4 - Do it live</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-2.html"}'>Set 2 - Alternative call within object defined in data-wb-fieldflow</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-2.html", "type": "replace"}'>Set 2 - Alternative call with specifying how to ajax content</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-3.html", "container": "#ajaxPanel .panel-body"}'>Set 3 - Use container: $("#ajaxPanel .panel-body")</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-4.html", "container": "#ajaxPanel .panel-body"}'>Set 4 - Use container: $("#ajaxPanel .panel-body")</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-4.html", "container": "#ajaxPanel .panel-body", "type": "append"}'>Set 4 - Append content to the container: $("#ajaxPanel .panel-body")</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-3.html", "container": "#ajaxPanel .panel-body", "type": "prepend", "clean": "#ajaxPanel .panel-body"}'>Set 3 - Prepend content to the contenainer $("#ajaxPanel .panel-body") and clean it on change</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-5.html"}'>Set 5</li>
+			<li data-wb-fieldflow='{"action": "ajax", "url": "ajax/ajax-5.html", "trigger": true}'>Set 5 - with Trigger WET plugin</li>
+		</ul>
+	</div>
+
+
+<pre><code>&lt;section id=&quot;ajaxPanel&quot; class=&quot;panel panel-primary&quot;&gt;
+	&lt;header class=&quot;panel-heading&quot;&gt;
+		&lt;h3 class=&quot;panel-title&quot;&gt;&lt;code&gt;id=&quot;ajaxPanel&quot;&lt;/code&gt; Aside panel, for example&lt;/h3&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;panel-body&quot;&gt;
+		&lt;p&gt;(To illustrate &lt;code&gt;container&lt;/code&gt; and &lt;code&gt;clean&lt;/code&gt; options)&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be ajaxed?&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;Set 1&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-1.html&quot;, &quot;live&quot;: true}'&gt;Set 1 - Do it live&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;, &quot;live&quot;: true}'&gt;Set 3 - Do it live&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;, &quot;live&quot;: true}'&gt;Set 4 - Do it live&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;}'&gt;Set 2 - with action defined&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;, &quot;type&quot;: &quot;replace&quot;}'&gt;Set 2 - with action and type defined&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;, &quot;container&quot;: &quot;#ajaxPanel .panel-body&quot;}'&gt;Set 3 - Use container: $(&quot;#ajaxPanel .panel-body&quot;)&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;, &quot;container&quot;: &quot;#ajaxPanel .panel-body&quot;}'&gt;Set 4 - Use container: $(&quot;#ajaxPanel .panel-body&quot;)&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;, &quot;container&quot;: &quot;#ajaxPanel .panel-body&quot;, &quot;type&quot;: &quot;append&quot;}'&gt;Set 4 - Append content to the container: $(&quot;#ajaxPanel .panel-body&quot;)&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;, &quot;container&quot;: &quot;#ajaxPanel .panel-body&quot;, &quot;type&quot;: &quot;prepend&quot;, &quot;clean&quot;: &quot;#ajaxPanel .panel-body&quot;}'&gt;Set 3 - Prepend content to the contenainer $(&quot;#ajaxPanel .panel-body&quot;) and clean it on change&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;}'&gt;Set 5&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;, &quot;trigger&quot;: true}'&gt;Set 5 - with Trigger WET plugin&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+
+<h2 id="append">Append</h2>
+	<div class="well">
+		<p>The append action required the configuration option <code>source</code> that contain a jQuery selector representing the element to be used as a sub-plugin and be appended to the control. Similar behaviour can be acheived by duplicating the content of the appended element in each list item.</p>
+
+		<p>The configuration option <code>target</code> contain an <code>id</code> of what subsequent selected element that action is targeted to.</p>
+
+		<p>This feature became useful when the same field is re-used again and again by a lot of items.</p>
+	</div>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need.</p>
+	<ul>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Inserting content</li>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Photo galery</li>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Draw charts</li>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Expand and collapse content</li>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Set a consistant height</li>
+		<li data-wb-fieldflow='[
+			{"action": "redir", "target": "append-ex-en", "url": "http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html"},
+			{"action": "redir", "target": "append-ex-fr", "url": "http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html"},
+			{"action": "append", "source": "#language-question"}
+		]'>Popup content</li>
+
+	</ul>
+</div>
+
+<div id="language-question" class="hidden">
+	<p>What language?</p>
+	<ul>
+		<li id="append-ex-en">English</li>
+		<li id="append-ex-fr">French</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Inserting content&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Photo galery&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Draw charts&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Expand and collapse content&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Set a consistant height&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-en&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;},
+			{&quot;action&quot;: &quot;redir&quot;, &quot;target&quot;: &quot;append-ex-fr&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html&quot;},
+			{&quot;action&quot;: &quot;append&quot;, &quot;source&quot;: &quot;#language-question&quot;}
+		]'&gt;Popup content&lt;/li&gt;
+
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;language-question&quot; class=&quot;hidden&quot;&gt;
+	&lt;p&gt;What language?&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li id=&quot;append-ex-en&quot;&gt;English&lt;/li&gt;
+		&lt;li id=&quot;append-ex-fr&quot;&gt;French&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Are equivalent to:</h3>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need.</p>
+	<ul>
+		<li>Inserting content
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>Photo galery
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>Draw charts
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>Expand and collapse content
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>Set a consistant height
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+		<li>Popup content
+			<div class="wb-fieldflow-sub">
+				<p>What language?</p>
+				<ul>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">English</a></li>
+					<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html">French</a></li>
+				</ul>
+			</div>
+		</li>
+
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need.&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Inserting content
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Photo galery
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Draw charts
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Expand and collapse content
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Set a consistant height
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Popup content
+			&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+				&lt;p&gt;What language?&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-fr.html&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/li&gt;
+
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h2 id="cssclass">Add and remove CSS class</h2>
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+		"reset": { "action": "removeClass", "source":"#addremoveCSSexample", "class": "text-muted text-primary text-success text-info text-warning text-danger" }
+	}'>
+	<p>Change the color of the following paragraph:</p>
+	<ul>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-muted" }'>Muted</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-primary" }'>Primary</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-success" }'>Sucess</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-info" }'>Info</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-warning" }'>Warning</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#addremoveCSSexample", "class": "text-danger" }'>Danger</li>
+	</ul>
+</div>
+
+<p id="addremoveCSSexample">Example of paragraph where the preceding field flow component could change my color.</p>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+		&quot;reset&quot;: { &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-muted text-primary text-success text-info text-warning text-danger&quot; }
+	}'&gt;
+	&lt;p&gt;Change the color of the following paragraph:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-muted&quot; }'&gt;Muted&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-primary&quot; }'&gt;Primary&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-success&quot; }'&gt;Sucess&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-info&quot; }'&gt;Info&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-warning&quot; }'&gt;Warning&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#addremoveCSSexample&quot;, &quot;class&quot;: &quot;text-danger&quot; }'&gt;Danger&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p id=&quot;addremoveCSSexample&quot;&gt;Example of paragraph where the preceding field flow component could change my color.&lt;/p&gt;</code></pre>
+
+<h2 id="defaultreset">Applying a set of default and reset action</h2>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+		"reset": { "action": "removeClass", "source":"#resetdefaultExample-en", "class": "text-muted text-primary text-success text-info text-warning text-danger" },
+		"default": { "action": "ajax", "url":"ajax/paragraph.html#paragraph1-en", "live": true }
+	}'>
+	<p>Change the color of the following paragraph:</p>
+	<ul>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-muted" }'>Muted</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-primary" }'>Primary</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-success" }'>Sucess</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-info" }'>Info</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-warning" }'>Warning</li>
+		<li data-wb-fieldflow='{ "action": "addClass", "source":"#resetdefaultExample-en", "class": "text-danger" }'>Danger</li>
+	</ul>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+		&quot;reset&quot;: { &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-muted text-primary text-success text-info text-warning text-danger&quot; },
+		&quot;default&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;:&quot;<a href="ajax/paragraph.html">ajax/paragraph.html</a>#paragraph1-en&quot;, &quot;live&quot;: true }
+	}'&gt;
+	&lt;p&gt;Change the color of the following paragraph:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-muted&quot; }'&gt;Muted&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-primary&quot; }'&gt;Primary&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-success&quot; }'&gt;Sucess&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-info&quot; }'&gt;Info&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-warning&quot; }'&gt;Warning&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#resetdefaultExample-en&quot;, &quot;class&quot;: &quot;text-danger&quot; }'&gt;Danger&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>File <code>ajax/paragraph.html</code></h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;!-- DataAjaxFragmentStart --&gt;
+
+&lt;div lang=&quot;en&quot;&gt;
+	&lt;div id=&quot;paragraph1-en&quot;&gt;
+		&lt;p id=&quot;resetdefaultExample-en&quot;&gt;Example of paragraph where the preceding field flow component could change my color.&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;paragraph2-en&quot;&gt;
+		&lt;p id=&quot;definebaseExample-en&quot;&gt;Example of paragraph where the preceding field flow component could change my color.&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;paragraph3-en&quot;&gt;
+		&lt;p id=&quot;defineDefaultExample-en&quot;&gt;Example of paragraph where the preceding field flow component could change my color.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div lang=&quot;fr&quot;&gt;
+	&lt;div id=&quot;paragraph1-fr&quot;&gt;
+		&lt;p id=&quot;resetdefaultExample-fr&quot;&gt;Example d'un paragraphe qui change de couleur dépendant du choix du composant de déroulement de contenu précédent.&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;paragraph2-fr&quot;&gt;
+		&lt;p id=&quot;definebaseExample-fr&quot;&gt;Example d'un paragraphe qui change de couleur dépendant du choix du composant de déroulement de contenu précédent.&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;paragraph3-fr&quot;&gt;
+		&lt;p id=&quot;defineDefaultExample-fr&quot;&gt;Example d'un paragraphe qui change de couleur dépendant du choix du composant de déroulement de contenu précédent.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- DataAjaxFragmentEnd --&gt;
+&lt;/html&gt;</code></pre>
+
+
+
+<h2 id="baseAction">Define a base action object</h2>
+
+<p>This example is the same as applying a set of default, reset action but it set a base action object and executed action inherit from the base action.</p>
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+		"reset": { "action": "removeClass", "source":"#definebaseExample-en", "class": "text-muted text-primary text-success text-info text-warning text-danger" },
+		"default": { "action": "ajax", "url":"ajax/paragraph.html#paragraph2-en", "live": true },
+		"base" : { "action": "addClass", "source":"#definebaseExample-en" }
+	}'>
+	<p>Change the color of the following paragraph:</p>
+	<ul>
+		<li data-wb-fieldflow='{ "class": "text-muted" }'>Muted</li>
+		<li data-wb-fieldflow='{ "class": "text-primary" }'>Primary</li>
+		<li data-wb-fieldflow='{ "class": "text-success" }'>Sucess</li>
+		<li data-wb-fieldflow='{ "class": "text-info" }'>Info</li>
+		<li data-wb-fieldflow='{ "class": "text-warning" }'>Warning</li>
+		<li data-wb-fieldflow='{ "class": "text-danger" }'>Danger</li>
+	</ul>
+</div>
+
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+		&quot;reset&quot;: { &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#definebaseExample-en&quot;, &quot;class&quot;: &quot;text-muted text-primary text-success text-info text-warning text-danger&quot; },
+		&quot;default&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;:&quot;<a href="ajax/paragraph.html">ajax/paragraph.html</a>#paragraph2-en&quot;, &quot;live&quot;: true },
+		&quot;base&quot; : { &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#definebaseExample-en&quot; }
+	}'&gt;
+	&lt;p&gt;Change the color of the following paragraph:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-muted&quot; }'&gt;Muted&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-primary&quot; }'&gt;Primary&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-success&quot; }'&gt;Sucess&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-info&quot; }'&gt;Info&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-warning&quot; }'&gt;Warning&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;class&quot;: &quot;text-danger&quot; }'&gt;Danger&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h2 id="redefineDefaultBehavior">Redefine defaults behaviour of simple call</h2>
+
+<p>Change the default behaviour when each items are configured.</p>
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+		"reset": { "action": "removeClass", "source":"#definebaseExample-en", "class": "text-muted text-primary text-success text-info text-warning text-danger" },
+		"default": { "action": "ajax", "url":"ajax/paragraph.html#paragraph3-en", "live": true },
+		"actionData" : { "source":"#defineDefaultExample-en" },
+		"action": "addClass",
+		"prop": "class"
+	}'>
+	<p>Change the color of the following paragran</p>
+	<ul>
+		<li data-wb-fieldflow="text-muted">Muted</li>
+		<li data-wb-fieldflow="text-primary">Primary</li>
+		<li data-wb-fieldflow="text-success">Sucess</li>
+		<li data-wb-fieldflow="text-info">Info</li>
+		<li data-wb-fieldflow="text-warning">Warning</li>
+		<li data-wb-fieldflow="text-danger">Danger</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+		&quot;reset&quot;: { &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#definebaseExample-en&quot;, &quot;class&quot;: &quot;text-muted text-primary text-success text-info text-warning text-danger&quot; },
+		&quot;default&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;:&quot;<a href="ajax/paragraph.html">ajax/paragraph.html</a>#paragraph3-en&quot;, &quot;live&quot;: true },
+		&quot;actionData&quot; : { &quot;source&quot;:&quot;#defineDefaultExample-en&quot; },
+		&quot;action&quot;: &quot;addClass&quot;,
+		&quot;prop&quot;: &quot;class&quot;
+	}'&gt;
+	&lt;p&gt;Change the color of the following paragran&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;text-muted&quot;&gt;Muted&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;text-primary&quot;&gt;Primary&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;text-success&quot;&gt;Sucess&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;text-info&quot;&gt;Info&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;text-warning&quot;&gt;Warning&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;text-danger&quot;&gt;Danger&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h2 id="querying">Querying and form integration</h2>
+
+<div class="well">
+	<p>Allow to set a name and value to the URL on which the user will be usually redirected to.</p>
+
+	<p>This show how to use the <code>query</code> action. The following configuration option must be present:</p>
+
+	<dl class="dl-horizontal">
+		<dt><code>name</code></dt>
+		<dd>Define the query parameter name to use.</dd>
+		<dt><code>value</code></dt>
+		<dd>Define the query value to set for the specified parameter name.</dd>
+	</dl>
+
+	<p>The configuration option <code>noForm</code> set on the <code>&lt;div class=&quot;wb-fieldflow&quot;&gt;&lt;/div&gt;</code> tell the plugin to not create a form wrapper but instead to bind with the existing one. The submit button need to be supplied in that mode. It is assumed the form is also wrapped with <code>wb-frmvld</code></p>
+
+</div>
+
+<section class="panel panel-info">
+  <header class="panel-heading">
+   <h3 class="panel-title">A few remark regarding the following example</h3>
+  </header>
+  <div class="panel-body">
+	<ul>
+		<li>It is itself submiting. Once submited, the additional query parameter, <code>animal</code> that will be present in the result page URL.</li>
+		<li>As is, that form are unusable if javascript are disabled, so:
+			<ul>
+				<li>That is why a static alternative example follow the form.</li>
+				<li>It is hidden by default</li>
+				<li>It get unhide by the field flow plugin initialization, as specified by the configuration option <code>unhideelm</code> (containing a jQuery selector value).</li>
+			</ul>
+		</li>
+	</ul>
+  </div>
+</section>
+
+<div id="myformid" class="wb-frmvld hidden">
+<form action="advanced-en.html" class="col-md-12">
+
+	<fieldset>
+		<legend><span class="field-name">Favourite pets</span></legend>
+		<div class="checkbox">
+			<label for="animal5"><input type="checkbox" name="animal" value="Dog" id="animal5" /> Dog</label>
+		</div>
+		<div class="checkbox">
+			<label for="animal6"><input type="checkbox" name="animal" value="Cat" id="animal6" /> Cat</label>
+		</div>
+		<div class="checkbox">
+			<label for="animal7"><input type="checkbox" name="animal" value="Fish" id="animal7" /> Fish</label>
+		</div>
+		<div class="checkbox">
+			<label for="animal8"><input type="checkbox" name="animal" value="Snake" id="animal8" /> Snake</label>
+		</div>
+	</fieldset>
+
+
+	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true, "unhideelm": "#myformid"}'>
+		<p>You want to get more information about?</p>
+		<ul>
+			<li>Habitation
+				<div class="wb-fieldflow-sub">
+					<p>What kind of habitation are looking for?</p>
+					<ul>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"wild"}'>Wild</li>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"recomhab"}'>Recommended</li>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"inside"}'>Inside</li>
+						<li data-wb-fieldflow='[
+							{"action": "query", "name":"moreinfo", "value":"outside"},
+							{"action": "redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html"}
+						]'>Outside</li>
+					</ul>
+				</div>
+			</li>
+			<li>Food
+				<div class="wb-fieldflow-sub">
+					<p>What kind of nutrition your are seeking?</p>
+					<ul>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"healty"}'>Healty</li>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"nutrition"}'>Recommended</li>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"avoid"}'>To avoid</li>
+						<li data-wb-fieldflow='{"action": "query", "name":"moreinfo", "value":"trending"}'>Trending</li>
+					</ul>
+				</div>
+			</li>
+
+		</ul>
+	</div>
+
+
+	<input class="mrgn-bttm-lg" type="submit" value="Submit and look at the resulting URL" />
+</form></div>
+
+<details id="myformidAlternate">
+	<summary>Alternative representation alloweing to get equivalent information.</summary>
+
+	<p>Dog:</p>
+	<ul>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=wild">Wild habitation</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=recomhab">Recommended habitation</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=inside">Inside leaving</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Dog&amp;moreinfo=outside">Outside leaving</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=healty">Healty food</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=nutrition">Recommended nutrition</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=avoid">Meat toavoid</a></li>
+		<li><a href="advanced-en.html?animal=Dog&amp;moreinfo=trending">Trending meal</a></li>
+	</ul>
+	<p>Cat:</p>
+	<ul>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=wild">Wild habitation</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=recomhab">Recommended habitation</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=inside">Inside leaving</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Cat&amp;moreinfo=outside">Outside leaving</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=healty">Healty food</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=nutrition">Recommended nutrition</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=avoid">Meat toavoid</a></li>
+		<li><a href="advanced-en.html?animal=Cat&amp;moreinfo=trending">Trending meal</a></li>
+	</ul>
+	<p>Fish:</p>
+	<ul>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=wild">Wild habitation</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=recomhab">Recommended habitation</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=inside">Inside leaving</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Fish&amp;moreinfo=outside">Outside leaving</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=healty">Healty food</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=nutrition">Recommended nutrition</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=avoid">Meat toavoid</a></li>
+		<li><a href="advanced-en.html?animal=Fish&amp;moreinfo=trending">Trending meal</a></li>
+	</ul>
+	<p>Snake:</p>
+	<ul>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=wild">Wild habitation</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=recomhab">Recommended habitation</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=inside">Inside leaving</a></li>
+		<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Snake&amp;moreinfo=outside">Outside leaving</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=healty">Healty food</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=nutrition">Recommended nutrition</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=avoid">Meat toavoid</a></li>
+		<li><a href="advanced-en.html?animal=Snake&amp;moreinfo=trending">Trending meal</a></li>
+	</ul>
+</details>
+
+
+
+<pre><code>&lt;div id=&quot;myformid&quot; class=&quot;wb-frmvld hidden&quot;&gt;
+&lt;form action=&quot;advanced-en.html&quot; class=&quot;col-md-12&quot;&gt;
+
+	&lt;fieldset&gt;
+		&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Favourite pets&lt;/span&gt;&lt;/legend&gt;
+		&lt;div class=&quot;checkbox&quot;&gt;
+			&lt;label for=&quot;animal5&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;animal&quot; value=&quot;Dog&quot; id=&quot;animal5&quot; /&gt; Dog&lt;/label&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;checkbox&quot;&gt;
+			&lt;label for=&quot;animal6&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;animal&quot; value=&quot;Cat&quot; id=&quot;animal6&quot; /&gt; Cat&lt;/label&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;checkbox&quot;&gt;
+			&lt;label for=&quot;animal7&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;animal&quot; value=&quot;Fish&quot; id=&quot;animal7&quot; /&gt; Fish&lt;/label&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;checkbox&quot;&gt;
+			&lt;label for=&quot;animal8&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;animal&quot; value=&quot;Snake&quot; id=&quot;animal8&quot; /&gt; Snake&lt;/label&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+
+
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;noForm&quot;: true, &quot;unhideelm&quot;: &quot;#myformid&quot;}'&gt;
+		&lt;p&gt;You want to get more information about?&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Habitation
+				&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+					&lt;p&gt;What kind of habitation are looking for?&lt;/p&gt;
+					&lt;ul&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;wild&quot;}'&gt;Wild&lt;/li&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;recomhab&quot;}'&gt;Recommended&lt;/li&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;inside&quot;}'&gt;Inside&lt;/li&gt;
+						&lt;li data-wb-fieldflow='[
+							{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;outside&quot;},
+							{&quot;action&quot;: &quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;}
+						]'&gt;Outside&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+			&lt;li&gt;Food
+				&lt;div class=&quot;wb-fieldflow-sub&quot;&gt;
+					&lt;p&gt;What kind of nutrition your are seeking?&lt;/p&gt;
+					&lt;ul&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;healty&quot;}'&gt;Healty&lt;/li&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;nutrition&quot;}'&gt;Recommended&lt;/li&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;avoid&quot;}'&gt;To avoid&lt;/li&gt;
+						&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;query&quot;, &quot;name&quot;:&quot;moreinfo&quot;, &quot;value&quot;:&quot;trending&quot;}'&gt;Trending&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+
+		&lt;/ul&gt;
+	&lt;/div&gt;
+
+
+	&lt;input class=&quot;mrgn-bttm-lg&quot; type=&quot;submit&quot; value=&quot;Submit and look at the resulting URL&quot; /&gt;
+&lt;/form&gt;&lt;/div&gt;
+
+&lt;details id=&quot;myformidAlternate&quot;&gt;
+	&lt;summary&gt;Alternative representation alloweing to get equivalent information.&lt;/summary&gt;
+
+	&lt;p&gt;Dog:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=wild&quot;&gt;Wild habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=recomhab&quot;&gt;Recommended habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=inside&quot;&gt;Inside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Dog&amp;amp;moreinfo=outside&quot;&gt;Outside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=healty&quot;&gt;Healty food&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=nutrition&quot;&gt;Recommended nutrition&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=avoid&quot;&gt;Meat toavoid&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Dog&amp;amp;moreinfo=trending&quot;&gt;Trending meal&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;Cat:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=wild&quot;&gt;Wild habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=recomhab&quot;&gt;Recommended habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=inside&quot;&gt;Inside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Cat&amp;amp;moreinfo=outside&quot;&gt;Outside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=healty&quot;&gt;Healty food&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=nutrition&quot;&gt;Recommended nutrition&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=avoid&quot;&gt;Meat toavoid&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Cat&amp;amp;moreinfo=trending&quot;&gt;Trending meal&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;Fish:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=wild&quot;&gt;Wild habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=recomhab&quot;&gt;Recommended habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=inside&quot;&gt;Inside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Fish&amp;amp;moreinfo=outside&quot;&gt;Outside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=healty&quot;&gt;Healty food&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=nutrition&quot;&gt;Recommended nutrition&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=avoid&quot;&gt;Meat toavoid&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Fish&amp;amp;moreinfo=trending&quot;&gt;Trending meal&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;Snake:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=wild&quot;&gt;Wild habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=recomhab&quot;&gt;Recommended habitation&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=inside&quot;&gt;Inside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html?animal=Snake&amp;amp;moreinfo=outside&quot;&gt;Outside leaving&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=healty&quot;&gt;Healty food&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=nutrition&quot;&gt;Recommended nutrition&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=avoid&quot;&gt;Meat toavoid&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;advanced-en.html?animal=Snake&amp;amp;moreinfo=trending&quot;&gt;Trending meal&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/details&gt;</code></pre>
+
+
+
+<h2 id="toggle">Toggle</h2>
+
+
+
+	<div class="well">
+		<p>All the option defined for the <a href="http://wet-boew.github.io/wet-boew/demos/toggle/toggle-en.html">toggle plugin</a> can be set in the <code>toggle</code> parameter in the <code>data-wb-fieldflow</code>.</p>
+
+		<p>The following are equivalent
+		<ul>
+			<li><code>&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#myblockid&quot;}'&gt;My block of content&lt;/li&gt;</code></li>
+			<li><code>&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: {&quot;selector&quot;:&quot;#myblockid&quot;}}'&gt;My block of content&lt;/li&gt;</code></li>
+		</ul>
+
+		<p>If no option specified for the toggle plugin, the following options will be set</p>
+
+<pre><code>toggle: {
+	stateOn: "visible",
+	stateOff: "hidden"
+}</code></pre>
+	</div>
+
+
+	<div class="wb-fieldflow">
+		<p>Choose content to be toggle?</p>
+		<ul>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-first"}'>Toggle first</li>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-second"}'>Toggle second</li>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-first, #toggle-second"}'>Toggle both</li>
+		</ul>
+	</div>
+
+	<div id="toggle-first" class="well hidden">
+		<p>This is first <code>@id=toggle-first</code></p>
+	</div>
+
+	<div id="toggle-second" class="jumbotron hidden">
+		<p>This is second <code>@id=toggle-second</code></p>
+	</div>
+
+	<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be toggle?&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-first&quot;}'&gt;Toggle first&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-second&quot;}'&gt;Toggle second&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-first, #toggle-second&quot;}'&gt;Toggle both&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;toggle-first&quot; class=&quot;well hidden&quot;&gt;
+	&lt;p&gt;This is first &lt;code&gt;@id=toggle-first&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;toggle-second&quot; class=&quot;jumbotron hidden&quot;&gt;
+	&lt;p&gt;This is second &lt;code&gt;@id=toggle-second&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+
+	<h3>Without a submit button</h3>
+
+<div class="wb-frmvld"><form method="get">
+	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true}'>
+		<p>Choose content to be toggle?</p>
+		<ul>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-third", "live": true}' data-wb-toggle='{"stateOn": "visible", "stateOff":"hidden"}'>Toggle third</li>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-forth", "live": true}'>Toggle forth</li>
+			<li data-wb-fieldflow='{"action": "toggle", "toggle": "#toggle-third, #toggle-forth", "live": true}'>Toggle both</li>
+		</ul>
+	</div>
+
+	<div id="toggle-third" class="well hidden">
+		<p>This is third <code>@id=toggle-third</code></p>
+	</div>
+
+	<div id="toggle-forth" class="jumbotron hidden">
+		<p>This is forth <code>@id=toggle-forth</code></p>
+	</div>
+
+</form></div>
+
+<pre><code>&lt;div class=&quot;wb-frmvld&quot;&gt;&lt;form method=&quot;get&quot;&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;noForm&quot;: true}'&gt;
+		&lt;p&gt;Choose content to be toggle?&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-third&quot;, &quot;live&quot;: true}'&gt;Toggle third&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-forth&quot;, &quot;live&quot;: true}'&gt;Toggle forth&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;: &quot;toggle&quot;, &quot;toggle&quot;: &quot;#toggle-third, #toggle-forth&quot;, &quot;live&quot;: true}'&gt;Toggle both&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;toggle-third&quot; class=&quot;well hidden&quot;&gt;
+		&lt;p&gt;This is third &lt;code&gt;@id=toggle-third&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;toggle-forth&quot; class=&quot;jumbotron hidden&quot;&gt;
+		&lt;p&gt;This is forth &lt;code&gt;@id=toggle-forth&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+
+&lt;/form&gt;&lt;/div&gt;</code></pre>
+
+
+
+<h2 id="tblfilter">Table filtering</h2>
+
+
+<div class="wb-frmvld"><form method="get">
+<div class="wb-fieldflow" data-wb-fieldflow='
+		{
+			"srctype": "tblfilter",
+			"noForm": true,
+			"source": "#table-filtering-example",
+			"fltrseq": [
+				{"column": 2},
+				{"column": 3}
+			],
+			"limit": 3
+		}'></div>
+</form></div>
+
+
+<table id="table-filtering-example" class="wb-tables table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Publication date</th>
+			<th>Summary</th>
+			<th>Subject</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Biomass Program Continues to Support Transition to Renewable Energy in Manitoba</a></th>
+			<td>2016-07-29 12:07:00</td>
+			<td>
+				<p>The governments of Canada and Manitoba are supporting a greener, more sustainable economy through the $1 million Biomass Energy Support Program, Federal Agriculture Minister Lawrence MacAulay and Manitoba Agriculture Minister Ralph Eichler announced today.</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>Farmers</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Agriculture</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">MP Rodger Cuzner to make announcement in Broad Cove</a></th>
+			<td>2016-07-29 12:07:00</td>
+			<td>
+				<p>Rodger Cuzner, Member of Parliament for Cape Breton – Canso, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency, will make a funding announcement at the Broad Cove Scottish Concert..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>Rural Community</li>
+					<li>Travellers</li>
+					<li>Visitors</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Society and Culture</li>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">An Exhibition Dedicated to the Caribou and Other Animals Like It</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>The Government of Canada supports the Musée du Fjord.</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Backgrounder: Government of Canada delivers $109 million to Alberta for community infrastructure projects</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>The Government of Canada delivered the first of two federal Gas Tax Fund installments for 2016-17 to all the provinces and territories benefitting 364 municipalities in Alberta..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Transport</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Government of Canada delivers $109 million to Alberta for community infrastructure projects</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>Modern and up-to-date community infrastructure helps ensure that Canadians live the quality of life that they want and expect. Community infrastructure helps connect people to jobs and provides access to better community services, attracts new businesses and creates economic growth opportunities..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Transport</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Minister Carr to Make an Announcement About the Winnipeg Art Gallery</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>WINNIPEG – The Honourable Jim Carr, Minister of Natural Resources....</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Post-Secondary Institutions Strategic Investment Fund Announcement at the University of Toronto</a></th>
+			<td>2016-07-29 10:07:00</td>
+			<td>
+				<p>What an honour to be at the University of Toronto-my alma mater-for this tremendous announcement..</p>
+				<p>For:</p>
+				<ul>
+					<li>Business</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Economics and Industry</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Post-Secondary Institutions Strategic Investment Fund Announcement at the University of Toronto</a></th>
+			<td>2016-07-29 10:07:00</td>
+			<td>
+				<p>Thank you, Meric [Meric S. Gertler, President, University of Toronto]. And thank you to the University of Toronto for being such great hosts today. I'm delighted to be here with my friend and colleague Kirsty Duncan, Minister of Science..</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Economics and Industry</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<pre><code>&lt;div class=&quot;wb-frmvld&quot;&gt;
+	&lt;form method=&quot;get&quot;&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='
+			{
+				&quot;srctype&quot;: &quot;tblfilter&quot;,
+				&quot;noForm&quot;: true,
+				&quot;source&quot;: &quot;#table-filtering-example&quot;,
+				&quot;fltrseq&quot;: [
+					{&quot;column&quot;: 2},
+					{&quot;column&quot;: 3}
+				],
+				&quot;limit&quot;: 3
+			}'&gt;&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+
+&lt;table id=&quot;table-filtering-example&quot; class=&quot;wb-tables table table-striped table-hover&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Title&lt;/th&gt;
+			&lt;th&gt;Publication date&lt;/th&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;th&gt;Subject&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;a href=&quot;http://news.gc.ca/web/index-en.do&quot;&gt;Biomass Program Continues to Support Transition to Renewable Energy in Manitoba&lt;/a&gt;&lt;/th&gt;
+			&lt;td&gt;2016-07-29 12:07:00&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;The governments of Canada and Manitoba are supporting a greener, more sustainable economy through the $1 million Biomass Energy Support Program, Federal Agriculture Minister Lawrence MacAulay and Manitoba Agriculture Minister Ralph Eichler announced today.&lt;/p&gt;
+				&lt;p&gt;For:&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Media&lt;/li&gt;
+					&lt;li&gt;Farmers&lt;/li&gt;
+					&lt;li&gt;General Public&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Agriculture&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		[...]
+
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+
+
+
+<h3>Custom filtering interface <small>Table filtering</small></h3>
+
+<div id="table-filtering-example2-form" class="wb-frmvld hidden">
+	<form>
+		<div class="wb-fieldflow" data-wb-fieldflow='{ "noForm": true, "isoptional": true, "unhideelm": "#table-filtering-example2-form" }'>
+			<p>Filter by subject:</p>
+			<ul>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Agriculture"
+				}'>Agriculture</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Society"
+				}'>Society and Culture</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "table#-filtering-example2",
+					"column": 3,
+					"value": "Arts"
+				}'>Arts</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Music"
+				}'>Music</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Literature"
+				}'>Literature</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Transport"
+				}'>Transport</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 3,
+					"value": "Economics"
+				}'>Economics and Industry</li>
+			</ul>
+		</div>
+		<div class="wb-fieldflow" data-wb-fieldflow='{ "noForm": true, "isoptional": true }'>
+			<p>Filter by audience:</p>
+			<ul>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Business"
+				}'>Business</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Farmers"
+				}'>Farmers</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Public"
+				}'>General Public</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Media"
+				}'>Media</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2
+					"value": "Rural"
+				}'>Rural Community</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Travellers"
+				}'>Travellers</li>
+				<li data-wb-fieldflow='{
+					"action": "tblfilter",
+					"source": "#table-filtering-example2",
+					"column": 2,
+					"value": "Visitors"
+				}'>Visitors</li>
+			</ul>
+		</div>
+	</form>
+</div>
+
+<table id="table-filtering-example2" class="wb-tables table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Publication date</th>
+			<th>Summary</th>
+			<th>Subject</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Biomass Program Continues to Support Transition to Renewable Energy in Manitoba</a></th>
+			<td>2016-07-29 12:07:00</td>
+			<td>
+				<p>The governments of Canada and Manitoba are supporting a greener, more sustainable economy through the $1 million Biomass Energy Support Program, Federal Agriculture Minister Lawrence MacAulay and Manitoba Agriculture Minister Ralph Eichler announced today.</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>Farmers</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Agriculture</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">MP Rodger Cuzner to make announcement in Broad Cove</a></th>
+			<td>2016-07-29 12:07:00</td>
+			<td>
+				<p>Rodger Cuzner, Member of Parliament for Cape Breton – Canso, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency, will make a funding announcement at the Broad Cove Scottish Concert..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>Rural Community</li>
+					<li>Travellers</li>
+					<li>Visitors</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Society and Culture</li>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">An Exhibition Dedicated to the Caribou and Other Animals Like It</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>The Government of Canada supports the Musée du Fjord.</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Backgrounder: Government of Canada delivers $109 million to Alberta for community infrastructure projects</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>The Government of Canada delivered the first of two federal Gas Tax Fund installments for 2016-17 to all the provinces and territories benefitting 364 municipalities in Alberta..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Transport</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Government of Canada delivers $109 million to Alberta for community infrastructure projects</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>Modern and up-to-date community infrastructure helps ensure that Canadians live the quality of life that they want and expect. Community infrastructure helps connect people to jobs and provides access to better community services, attracts new businesses and creates economic growth opportunities..</p>
+				<p>For:</p>
+				<ul>
+					<li>Media</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Transport</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Minister Carr to Make an Announcement About the Winnipeg Art Gallery</a></th>
+			<td>2016-07-29 11:07:00</td>
+			<td>
+				<p>WINNIPEG – The Honourable Jim Carr, Minister of Natural Resources....</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Arts</li>
+					<li>Music</li>
+					<li>Literature</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Post-Secondary Institutions Strategic Investment Fund Announcement at the University of Toronto</a></th>
+			<td>2016-07-29 10:07:00</td>
+			<td>
+				<p>What an honour to be at the University of Toronto-my alma mater-for this tremendous announcement..</p>
+				<p>For:</p>
+				<ul>
+					<li>Business</li>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Economics and Industry</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><a href="http://news.gc.ca/web/index-en.do">Post-Secondary Institutions Strategic Investment Fund Announcement at the University of Toronto</a></th>
+			<td>2016-07-29 10:07:00</td>
+			<td>
+				<p>Thank you, Meric [Meric S. Gertler, President, University of Toronto]. And thank you to the University of Toronto for being such great hosts today. I'm delighted to be here with my friend and colleague Kirsty Duncan, Minister of Science..</p>
+				<p>For:</p>
+				<ul>
+					<li>General Public</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>Economics and Industry</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<pre><code>&lt;div id=&quot;table-filtering-example2-form&quot; class=&quot;wb-frmvld hidden&quot;&gt;
+	&lt;form&gt;
+		&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{ &quot;noForm&quot;: true, &quot;isoptional&quot;: true, &quot;unhideelm&quot;: &quot;#table-filtering-example2-form&quot; }'&gt;
+			&lt;p&gt;Filter by subject:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Agriculture&quot;
+				}'&gt;Agriculture&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Society&quot;
+				}'&gt;Society and Culture&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Arts&quot;
+				}'&gt;Arts&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Music&quot;
+				}'&gt;Music&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Literature&quot;
+				}'&gt;Literature&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Transport&quot;
+				}'&gt;Transport&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 3,
+					&quot;value&quot;: &quot;Economics&quot;
+				}'&gt;Economics and Industry&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{ &quot;noForm&quot;: true, &quot;isoptional&quot;: true }'&gt;
+			&lt;p&gt;Filter by audience:&lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Business&quot;
+				}'&gt;Business&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Farmers&quot;
+				}'&gt;Farmers&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Public&quot;
+				}'&gt;General Public&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Media&quot;
+				}'&gt;Media&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2
+					&quot;value&quot;: &quot;Rural&quot;
+				}'&gt;Rural Community&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Travellers&quot;
+				}'&gt;Travellers&lt;/li&gt;
+				&lt;li data-wb-fieldflow='{
+					&quot;action&quot;: &quot;tblfilter&quot;,
+					&quot;source&quot;: &quot;#table-filtering-example2&quot;,
+					&quot;column&quot;: 2,
+					&quot;value&quot;: &quot;Visitors&quot;
+				}'&gt;Visitors&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+
+&lt;table id=&quot;table-filtering-example2&quot; class=&quot;wb-tables table table-striped table-hover&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Title&lt;/th&gt;
+			&lt;th&gt;Publication date&lt;/th&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;th&gt;Subject&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;a href=&quot;http://news.gc.ca/web/index-en.do&quot;&gt;Biomass Program Continues to Support Transition to Renewable Energy in Manitoba&lt;/a&gt;&lt;/th&gt;
+			&lt;td&gt;2016-07-29 12:07:00&lt;/td&gt;
+			&lt;td&gt;
+				&lt;p&gt;The governments of Canada and Manitoba are supporting a greener, more sustainable economy through the $1 million Biomass Energy Support Program, Federal Agriculture Minister Lawrence MacAulay and Manitoba Agriculture Minister Ralph Eichler announced today.&lt;/p&gt;
+				&lt;p&gt;For:&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Media&lt;/li&gt;
+					&lt;li&gt;Farmers&lt;/li&gt;
+					&lt;li&gt;General Public&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Agriculture&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		[...]
+
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+
+<h3>Another table filtering example</h3>
+
+
+
+<div class="row">
+	<div class="col-md-3">
+		<section>
+			<h4 class="wb-inv">Filtering Options</h4>
+			<div class="wb-frmvld"><form>
+					<div class="wb-fieldflow" data-wb-fieldflow='
+							{
+								"srctype": "tblfilter",
+								"noForm": true,
+								"source": "#dataset-filter",
+								"fltrseq": [
+									{"column": 3, "csvextract": true, "defaultselectedlabel": "All news types", "label":"Data Type"},
+									{"column": 2, "csvextract": true, "defaultselectedlabel": "From any department", "label":"Department"},
+									{"column": 8, "csvextract": true, "defaultselectedlabel": "Related to any minister", "label":"Minister"},
+									{"column": 6, "csvextract": true, "defaultselectedlabel": "Everyone", "label":"For"},
+									{"column": 5, "csvextract": true, "defaultselectedlabel": "Anywhere", "label":"Location"}
+								]
+							}'></div>
+			</form></div>
+		</section>
+	</div>
+	<div class="col-md-9">
+		<table class="wb-tables table table-striped table-hover" id="dataset-filter" aria-live="polite" data-wb-tables='{
+					"bDeferRender": true,
+					"ajaxSource": "http://wet-boew.github.io/wet-boew/demos/tables/ajax/datasource.json",
+					"order": [5, "desc"],
+					 "columns": [
+						{ "data": "TITLE", "className": "nws-tbl-ttl h4" },
+						{ "data": "PUBDATE", "className": "nws-tbl-date" },
+						{ "data": "DEPT", "className": "nws-tbl-dept" },
+						{ "data": "TYPE", "className": "nws-tbl-type" },
+						{ "data": "TEASER",  "className": "nws-tbl-desc" },
+						{ "data": "LOCATION",  "visible": false },
+						{ "data": "AUDIENCE",  "visible": false },
+						{ "data": "SUBJECT", "visible": false },
+						{ "data": "MINISTER", "visible": false }
+					  ]}'>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Publication date</th>
+					<th>Department</th>
+					<th>News Type</th>
+					<th>Summary</th>
+					<th>Location</th>
+					<th>For</th>
+					<th>Subject</th>
+					<th>Minister</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+
+<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;col-md-3&quot;&gt;
+		&lt;section&gt;
+			&lt;h4 class=&quot;wb-inv&quot;&gt;Filtering Options&lt;/h4&gt;
+			&lt;div class=&quot;wb-frmvld&quot;&gt;&lt;form&gt;
+					&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='
+							{
+								&quot;srctype&quot;: &quot;tblfilter&quot;,
+								&quot;noForm&quot;: true,
+								&quot;source&quot;: &quot;#dataset-filter&quot;,
+								&quot;fltrseq&quot;: [
+									{&quot;column&quot;: 3, &quot;csvextract&quot;: true, &quot;defaultselectedlabel&quot;: &quot;All news types&quot;, &quot;label&quot;:&quot;Data Type&quot;},
+									{&quot;column&quot;: 2, &quot;csvextract&quot;: true, &quot;defaultselectedlabel&quot;: &quot;From any department&quot;, &quot;label&quot;:&quot;Department&quot;},
+									{&quot;column&quot;: 8, &quot;csvextract&quot;: true, &quot;defaultselectedlabel&quot;: &quot;Related to any minister&quot;, &quot;label&quot;:&quot;Minister&quot;},
+									{&quot;column&quot;: 6, &quot;csvextract&quot;: true, &quot;defaultselectedlabel&quot;: &quot;Everyone&quot;, &quot;label&quot;:&quot;For&quot;},
+									{&quot;column&quot;: 5, &quot;csvextract&quot;: true, &quot;defaultselectedlabel&quot;: &quot;Anywhere&quot;, &quot;label&quot;:&quot;Location&quot;}
+								]
+							}'&gt;&lt;/div&gt;
+			&lt;/form&gt;&lt;/div&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-md-9&quot;&gt;
+		&lt;table class=&quot;wb-tables table table-striped table-hover&quot; id=&quot;dataset-filter&quot; aria-live=&quot;polite&quot; data-wb-tables='{
+					&quot;bDeferRender&quot;: true,
+					&quot;ajaxSource&quot;: &quot;http://wet-boew.github.io/wet-boew/demos/tables/ajax/datasource.json&quot;,
+					&quot;order&quot;: [5, &quot;desc&quot;],
+					 &quot;columns&quot;: [
+						{ &quot;data&quot;: &quot;TITLE&quot;, &quot;className&quot;: &quot;nws-tbl-ttl h4&quot; },
+						{ &quot;data&quot;: &quot;PUBDATE&quot;, &quot;className&quot;: &quot;nws-tbl-date&quot; },
+						{ &quot;data&quot;: &quot;DEPT&quot;, &quot;className&quot;: &quot;nws-tbl-dept&quot; },
+						{ &quot;data&quot;: &quot;TYPE&quot;, &quot;className&quot;: &quot;nws-tbl-type&quot; },
+						{ &quot;data&quot;: &quot;TEASER&quot;,  &quot;className&quot;: &quot;nws-tbl-desc&quot; },
+						{ &quot;data&quot;: &quot;LOCATION&quot;,  &quot;visible&quot;: false },
+						{ &quot;data&quot;: &quot;AUDIENCE&quot;,  &quot;visible&quot;: false },
+						{ &quot;data&quot;: &quot;SUBJECT&quot;, &quot;visible&quot;: false },
+						{ &quot;data&quot;: &quot;MINISTER&quot;, &quot;visible&quot;: false }
+					  ]}'&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Title&lt;/th&gt;
+					&lt;th&gt;Publication date&lt;/th&gt;
+					&lt;th&gt;Department&lt;/th&gt;
+					&lt;th&gt;News Type&lt;/th&gt;
+					&lt;th&gt;Summary&lt;/th&gt;
+					&lt;th&gt;Location&lt;/th&gt;
+					&lt;th&gt;For&lt;/th&gt;
+					&lt;th&gt;Subject&lt;/th&gt;
+					&lt;th&gt;Minister&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>

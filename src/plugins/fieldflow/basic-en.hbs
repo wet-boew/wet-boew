@@ -1,0 +1,581 @@
+---
+{
+	"title": "Field flow basic configuration",
+	"language": "en",
+	"category": "Plugins",
+	"description": "How to use field flow to create small scale user interaction.",
+	"tag": "fieldflow",
+	"parentdir": "fieldflow",
+	"altLangPrefix": "basic",
+	"dateModified": "2016-11-30"
+}
+---
+<p>How to use field flow to create small scale user interaction.</p>
+
+
+<ul>
+	<li><a href="fieldflow-en.html">Field flow</a></li>
+	<li>Field flow basic configuration (current)</li>
+	<li><a href="advanced-en.html">Field flow advanced</a></li>
+</ul>
+
+<hr />
+
+<div class="wb-prettify all-pre"></div>
+
+<p>On this page:</p>
+
+<ul>
+	<li><a href="#filetering">Ajax filtering</a></li>
+	<li><a href="#renderas">Specifying what UI to render</a></li>
+	<li><a href="#setaction">Specifying the action</a></li>
+	<li><a href="#immediate">Make immediate action upon selection</a></li>
+	<li><a href="#multiple">Make multiple actions</a></li>
+	<li><a href="#optional">Making the field optional</a></li>
+	<li><a href="#labeling">Custom labeling</a></li>
+</ul>
+
+
+
+<h2 id="filetering">Ajax filtering</h2>
+
+<div class="well">
+	<p>This functionality is provided by the <a href="http://wet-boew.github.io/wet-boew/demos/data-ajax/data-ajax-en.html">data ajax plugin</a></p>
+</div>
+
+<p>It load the following file: <a href="ajax/filtering-hash.html">../ajax/filtering-hash.html</a></p>
+
+<div class="wb-fieldflow">
+	<p>Choose content to be ajaxed?</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/filtering-hash.html#part1">Part 1 (hash)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html#part2">Part 2 (hash)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html#part3">Part 3 (hash)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html#part4">Part 4 (hash)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html#part5">Part 5 (hash)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html ul">ul (selector)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html .filter-selector">.filter-selector (selector)</li>
+		<li data-wb-fieldflow="ajax/filtering-hash.html .section1,.section2,.section3">Multi hash [.section1,.section2,.section3] (selector)</li>
+	</ul>
+</div>
+
+<pre><code>&lt;p&gt;It load the following file: &lt;a href=&quot;ajax/filtering-hash.html&quot;&gt;../ajax/filtering-hash.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be ajaxed?&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html#part1&quot;&gt;Part 1 (hash)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html#part2&quot;&gt;Part 2 (hash)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html#part3&quot;&gt;Part 3 (hash)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html#part4&quot;&gt;Part 4 (hash)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html#part5&quot;&gt;Part 5 (hash)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html ul&quot;&gt;ul (selector)&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/filtering-hash.html .filter-selector&quot;&gt;.filter-selector (selector)&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h2 id="renderas">Specifying what UI to render</h2>
+
+<dl class="dl-horizontal">
+	<dt><code>select</code></dt>
+	<dd>Default, single selection from a dropdown (<code>select</code>,<code>option</code>,<code>optgroup</code> elements)</dd>
+
+	<dt><code>checkbox</code>
+	<dd>List of checkboxes (<code>input[type=checkbox]</code> elements).</dd>
+
+	<dt><code>radio</code>
+	<dd>List of options (<code>input[type=radio]</code> elements).</dd>
+
+</dl>
+
+<p>When using the render as "checkbox" or "radio", you could use the additional configuration option <code>inline</code> that could be set to true in order to indicate to render an inline interface.</p>
+
+<p><strong>Note</strong>: Using an interface that allow multiple choice is like executing multiple action.</p>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{"renderas":"checkbox"}'>
+	<p>Choose content to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;renderas&quot;:&quot;checkbox&quot;}'&gt;
+	&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-1.html">ajax/ajax-1.html</a>&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-2.html">ajax/ajax-2.html</a>&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-3.html">ajax/ajax-3.html</a>&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-4.html">ajax/ajax-4.html</a>&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;<a href="ajax/ajax-5.html">ajax/ajax-5.html</a>&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="setaction">Specifying the action</h2>
+
+<p>List of built-in action.</p>
+<dl class="dl-horizontal">
+	<dt><code>redir</code></dt>
+	<dd>Perform a redirection</dd>
+	<dt><code>ajax</code></dt>
+	<dd>Ajax-in content</dd>
+	<dt><code>query</code></dt>
+	<dd>Set a value and a name for an input element. Could be useful when used with subsequent dropdown.</dd>
+	<dt><code>append</code></dt>
+	<dd>Append a second field, like a second dropdown</dd>
+	<dt><code>addClass</code></dt>
+	<dd>Add CSS class to an element</dd>
+	<dt><code>removeClass</code></dt>
+	<dd>Remove CSS class to an element</dd>
+	<dt><code>toggle</code></dt>
+	<dd>Toggle an element on the page</dd>
+	<dt><code>tblfilter</code></dt>
+	<dd>Apply filter to a data table (<code>wb-tables</code>).</dd>
+</dl>
+
+<h3>Redirection example</h3>
+
+<div class="wb-fieldflow">
+	<p>Find the plugin for the action you need:</p>
+
+	<ul>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html"}'>Inserting content</li>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html"}'>Photo galery</li>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html"}'>Draw charts</li>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html"}'>Expand and collapse content</li>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html"}'>Set a consistant height</li>
+		<li data-wb-fieldflow='{"action":"redir", "url": "http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html"}'>Popup content</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Find the plugin for the action you need:&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html&quot;}'&gt;Inserting content&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html&quot;}'&gt;Photo galery&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/charts/charts-en.html&quot;}'&gt;Draw charts&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html&quot;}'&gt;Expand and collapse content&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html&quot;}'&gt;Set a consistant height&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;redir&quot;, &quot;url&quot;: &quot;http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html&quot;}'&gt;Popup content&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Ajax example</h3>
+
+<div class="wb-fieldflow">
+	<p>Choose content to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-1.html"}'>(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-2.html"}'>(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-3.html"}'>(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-4.html"}'>(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-5.html"}'>(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+		<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/filtering-hash.html ul"}'>Ajax filtering, ul (selector)</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-1.html&quot;}'&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;}'&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;}'&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;}'&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;}'&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html ul&quot;}'&gt;Ajax filtering, ul (selector)&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="immediate">Make immediate action upon selection</h2>
+
+<p>First you need to deactivate the form creation and create manually that form environment. Then you can specify <code>"live":true</code> in the configuration of the list item.</p>
+
+<div class="wb-frmvld"><form>
+	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true}'>
+		<p>Choose content to be ajaxed:</p>
+		<ul>
+			<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-1.html", "live":true}'>(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+			<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-2.html", "live":true}'>(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+			<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-3.html", "live":true}'>(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+			<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-4.html", "live":true}'>(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+			<li data-wb-fieldflow='{"action":"ajax", "url": "ajax/ajax-5.html", "live":true}'>(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+		</ul>
+	</div>
+</form></div>
+
+<pre><code>&lt;div class=&quot;wb-frmvld&quot;&gt;&lt;form&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;noForm&quot;: true}'&gt;
+		&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-1.html&quot;, &quot;live&quot;:true}'&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;, &quot;live&quot;:true}'&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;, &quot;live&quot;:true}'&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;, &quot;live&quot;:true}'&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+			&lt;li data-wb-fieldflow='{&quot;action&quot;:&quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;, &quot;live&quot;:true}'&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/form&gt;&lt;/div&gt;</code></pre>
+
+<h2 id="multiple">Make multiple actions</h2>
+
+<p>Multiple action can be set by providing an JSON array for the item configuration. Althrough the plugin will not check for potential incompatibility between any action being set. It's the responsability of the interaction designer too choose wisely compatible action. Like making a redirection within an ajax are incompatible action.</p>
+
+<p>In the following example it use the option <code>container</code> to specify where to insert the content, where it doen't clean automatically and his value is an valid jquery selector.</p>
+
+<div class="wb-fieldflow">
+	<p>Choose content to be ajaxed?</p>
+	<ul>
+		<li data-wb-fieldflow='[
+				{"action":"ajax", "container":"#ajaxOutA", "url": "ajax/ajax-1.html"},
+				{"action":"ajax", "container":"#ajaxOutB", "url": "ajax/filtering-hash.html#part1"}
+			]'>Set 1 [A] - Part 1 [B]</li>
+		<li data-wb-fieldflow='[
+				{"action":"ajax", "container":"#ajaxOutA", "url": "ajax/ajax-2.html"},
+				{"action":"ajax", "container":"#ajaxOutB", "url": "ajax/filtering-hash.html#part2"}
+			]'>Set 2 [A] - Part 2 [B]</li>
+		<li data-wb-fieldflow='[
+				{"action":"ajax", "container":"#ajaxOutA", "url": "ajax/ajax-3.html"},
+				{"action":"ajax", "container":"#ajaxOutB", "url": "ajax/filtering-hash.html#part3"}
+			]'>Set 3 [A] - Part 3 [B]</li>
+		<li data-wb-fieldflow='[
+				{"action":"ajax", "container":"#ajaxOutA", "url": "ajax/ajax-4.html"},
+				{"action":"ajax", "container":"#ajaxOutB", "url": "ajax/filtering-hash.html#part4"}
+			]'>Set 4 [A] - Part 4 [B]</li>
+		<li data-wb-fieldflow='[
+				{"action":"ajax", "container":"#ajaxOutA", "url": "ajax/ajax-5.html"},
+				{"action":"ajax", "container":"#ajaxOutB", "url": "ajax/filtering-hash.html#part5"}
+			]'>Set 5 [A] - Part 5 [B]</li>
+	</ul>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<section class="panel panel-default">
+			<header class="panel-heading">
+				<h5 class="panel-title">Ajax Output A (<code>id="ajaxOutA"</code>)</h5>
+			</header>
+		<div id="ajaxOutA" class="panel-body">
+		</div>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="panel panel-default">
+			<header class="panel-heading">
+				<h5 class="panel-title">Ajax Output B (<code>id="ajaxOutB"</code>)</h5>
+			</header>
+		<div id="ajaxOutB" class="panel-body">
+		</div>
+		</section>
+	</div>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;Choose content to be ajaxed?&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='[
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutA&quot;, &quot;url&quot;: &quot;ajax/ajax-1.html&quot;},
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutB&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html#part1&quot;}
+			]'&gt;Set 1 [A] - Part 1 [B]&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutA&quot;, &quot;url&quot;: &quot;ajax/ajax-2.html&quot;},
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutB&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html#part2&quot;}
+			]'&gt;Set 2 [A] - Part 2 [B]&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutA&quot;, &quot;url&quot;: &quot;ajax/ajax-3.html&quot;},
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutB&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html#part3&quot;}
+			]'&gt;Set 3 [A] - Part 3 [B]&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutA&quot;, &quot;url&quot;: &quot;ajax/ajax-4.html&quot;},
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutB&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html#part4&quot;}
+			]'&gt;Set 4 [A] - Part 4 [B]&lt;/li&gt;
+		&lt;li data-wb-fieldflow='[
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutA&quot;, &quot;url&quot;: &quot;ajax/ajax-5.html&quot;},
+				{&quot;action&quot;:&quot;ajax&quot;, &quot;container&quot;:&quot;#ajaxOutB&quot;, &quot;url&quot;: &quot;ajax/filtering-hash.html#part5&quot;}
+			]'&gt;Set 5 [A] - Part 5 [B]&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;col-md-6&quot;&gt;
+		&lt;section class=&quot;panel panel-default&quot;&gt;
+			&lt;header class=&quot;panel-heading&quot;&gt;
+				&lt;h5 class=&quot;panel-title&quot;&gt;Ajax Output A (&lt;code&gt;id=&quot;ajaxOutA&quot;&lt;/code&gt;)&lt;/h5&gt;
+			&lt;/header&gt;
+		&lt;div id=&quot;ajaxOutA&quot; class=&quot;panel-body&quot;&gt;
+		&lt;/div&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-md-6&quot;&gt;
+		&lt;section class=&quot;panel panel-default&quot;&gt;
+			&lt;header class=&quot;panel-heading&quot;&gt;
+				&lt;h5 class=&quot;panel-title&quot;&gt;Ajax Output B (&lt;code&gt;id=&quot;ajaxOutB&quot;&lt;/code&gt;)&lt;/h5&gt;
+			&lt;/header&gt;
+		&lt;div id=&quot;ajaxOutB&quot; class=&quot;panel-body&quot;&gt;
+		&lt;/div&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="optional">Making the field optional</h2>
+
+<p>By default, all field flow control are required and they are validated by the form validator plugin, exception of the table filtering action. When needed, like when you are doing live action only, it could be useful to make the field control optional.</p>
+
+<div class="wb-frmvld"><form method="get">
+	<div class="wb-fieldflow" data-wb-fieldflow='{ "noForm": true, "base": { "live": true }, "isoptional": true }'>
+		<p>Choose content to be ajaxed:</p>
+		<ul>
+			<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+			<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+			<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+			<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+			<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+		</ul>
+	</div>
+</form></div>
+
+<pre><code>&lt;div class=&quot;wb-frmvld&quot;&gt;&lt;form method=&quot;get&quot;&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{ &quot;noForm&quot;: true, &quot;base&quot;: { &quot;live&quot;: true }, <strong>&quot;isoptional&quot;: true</strong> }'&gt;
+		&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/form&gt;&lt;/div&gt;</code></pre>
+
+<h2 id="labeling">Custom labeling</h2>
+
+<p>Field flow plugin allow you several way to customize and specify how you want setup label of the generated control.</p>
+
+<h3>Specify a quick label</h3>
+
+<p>By default Field flow will take all the content of the first element, usually a paragraph, but you can specify what text to use by wrapping content with <code>&lt;span class=&quot;wb-fieldflow-label&quot;&gt;...&lt;/span&gt;</code>. This should allow a better progressive enhencement integration by the interaction designer.</p>
+
+
+<div class="wb-fieldflow">
+	<p><span class="wb-fieldflow-label">Choose content</span> to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot;&gt;
+	&lt;p&gt;<strong>&lt;span class=&quot;wb-fieldflow-label&quot;&gt;</strong>Choose content<strong>&lt;/span&gt;</strong> to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h3>Sophisticated labeling</h3>
+
+<p>Field flow allow you to have content before and after the label. Doing that allow the interaction designer to insert precision and/or instruction regarding of the content of the list item. To do so, the first child must have the class <code>wb-fieldflow-header</code>. If there is no sub-element that contain the class <code>wb-fieldflow-label</code>, the first paragraph will be used as the label.</p>
+
+<div class="wb-fieldflow" >
+	<div class="wb-fieldflow-header">
+		<p>Some text before the label.</p>
+		<p class="wb-fieldflow-label">The label</p>
+		<p>Some text after the label.</p>
+	</div>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; &gt;
+	&lt;div class=&quot;wb-fieldflow-header&quot;&gt;
+		&lt;p&gt;Some text before the label.&lt;/p&gt;
+		&lt;p class=&quot;wb-fieldflow-label&quot;&gt;The label&lt;/p&gt;
+		&lt;p&gt;Some text after the label.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Specifying what to use as being the label</h3>
+
+<p>It possible to overwrite the default label class selector by setting the option <code>lblselector</code> to Field flow.</p>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{"lblselector":"#myHiddenLabel"}'>
+	<p>Choose content to be ajaxed: <span id="myHiddenLabel" class="hidden">My hidden label.</span></p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;lblselector&quot;:&quot;#myHiddenLabel&quot;}'&gt;
+	&lt;p&gt;Choose content to be ajaxed: &lt;span id=&quot;myHiddenLabel&quot; class=&quot;hidden&quot;&gt;My hidden label.&lt;/span&gt;&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h3>Customize the default selected label</h3>
+
+
+<p>It possible to overwrite the default selected label by setting the option <code>defaultselectedlabel</code> to Field flow.</p>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{"defaultselectedlabel":"I am an default selected label (default)"}'>
+	<p>Choose content to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;defaultselectedlabel&quot;:&quot;I am an empty option (default)&quot;}'&gt;
+	&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+
+<h3>Customize the submit button</h3>
+
+<p>The best way to customize the submit button is by coding the form wrapper and letting Field flow know that he should not render the form contained by setting the option <code>noForm</code> to <code>true</code></p>
+
+<div class="wb-frmvld"><form>
+	<div class="wb-fieldflow" data-wb-fieldflow='{"noForm": true}'>
+		<p>Choose content to be ajaxed:</p>
+		<ul>
+			<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+			<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+			<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+			<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+			<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+		</ul>
+	</div>
+	<input class="btn btn-default btn-lg mrgn-bttm-md" type="submit" value="My custom submit button" />
+</form></div>
+
+<pre><code>&lt;div class=&quot;wb-frmvld&quot;&gt;&lt;form&gt;
+	&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{&quot;noForm&quot;: true}'&gt;
+		&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+			&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	&lt;input class=&quot;btn btn-default btn-lg mrgn-bttm-md&quot; type=&quot;submit&quot; value=&quot;My custom submit button&quot; /&gt;
+&lt;/form&gt;&lt;/div&gt;</code></pre>
+
+<h3>The <code>i18n</code> configuration option <small>Deprecated</small></h3>
+
+<div class="well">
+		<p><strong>Deprecated</strong>: That options is a work around until the text used in the plugin get translated all every languages supported by WET and be integrated in the i18n cvs file. This is provided as informational purpose and work well when there is only one field flow feature, but it could be not working as specified when interacting with multiple field flow plugin on the same page. This configuration options are planned to be removed once the text will use the i18n WET core component.</p>
+
+		<p><code>i18n</code>:</p>
+		<dl class="dl-horizontal">
+
+			<dt><code>btn</code></dt>
+			<dd>Text for the submit button
+				<ul>
+					<li>English default: "Continue"</li>
+					<li>French default: "<span lang="fr">Allez</span>"</li>
+				</ul>
+			</dd>
+
+			<dt><code>defaultsel</code></dt>
+			<dd>Text for the first default drop down option
+				<ul>
+					<li>English default: "Make your selection..."</li>
+					<li>French default: "<span lang="fr">Sélectionnez dans la liste...</span>"</li>
+				</ul>
+			</dd>
+
+			<dt><code>required</code></dt>
+			<dd>Text for the required label
+				<ul>
+					<li>English default: "required"</li>
+					<li>French default: "<span lang="fr">obligatoire</span>"</li>
+				</ul>
+			</dd>
+		</dl>
+
+		<p>Setting those options could impact all the other dropdown.</p>
+	</div>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+	"i18n": {
+		"btn": "Do the action",
+		"defaultsel": "Humm, pick an item you like",
+		"required": "You need to choose something"
+	}
+}'>
+	<p>Choose content to be ajaxed:</p>
+	<ul>
+		<li data-wb-fieldflow="ajax/ajax-1.html">(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.</li>
+		<li data-wb-fieldflow="ajax/ajax-2.html">(Set 2) Vestibulum pretium tortor vel facilisis sodales.</li>
+		<li data-wb-fieldflow="ajax/ajax-3.html">(Set 3) Nunc sit amet dui ut justo efficitur dapibus.</li>
+		<li data-wb-fieldflow="ajax/ajax-4.html">(Set 4) Praesent at purus ut turpis sollicitudin aliquam.</li>
+		<li data-wb-fieldflow="ajax/ajax-5.html">(Set 5) Sed eget dui ac nunc mattis consequat in a ex.</li>
+	</ul>
+</div>
+
+<pre><code>&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+	&quot;i18n&quot;: {
+		&quot;btn&quot;: &quot;Do the action&quot;,
+		&quot;defaultsel&quot;: &quot;Humm, pick an item you like&quot;,
+		&quot;required&quot;: &quot;You need to choose something&quot;
+	}
+}'&gt;
+	&lt;p&gt;Choose content to be ajaxed:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-1.html&quot;&gt;(Set 1) Nunc sed mauris id nisi molestie porta at quis erat.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-2.html&quot;&gt;(Set 2) Vestibulum pretium tortor vel facilisis sodales.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-3.html&quot;&gt;(Set 3) Nunc sit amet dui ut justo efficitur dapibus.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-4.html&quot;&gt;(Set 4) Praesent at purus ut turpis sollicitudin aliquam.&lt;/li&gt;
+		&lt;li data-wb-fieldflow=&quot;ajax/ajax-5.html&quot;&gt;(Set 5) Sed eget dui ac nunc mattis consequat in a ex.&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
