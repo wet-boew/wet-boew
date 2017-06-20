@@ -6,16 +6,3 @@
 		display: inline-block;
 	}
 }
-
-#wb-srch-sub {
-	float: right;
-	margin-left: 5px;
-}
-
-[dir=rtl] {
-	#wb-srch-sub {
-		float: left;
-		margin-left: 0;
-		margin-right: 5px;
-	}
-}
