@@ -116,6 +116,11 @@ var componentName = "wb-data-ajax",
 		if ( !url ) {
 			dtAttr = wb.getData( $( elm ), shortName );
 
+			// Abort the init when called on an invalid element (related to #8058)
+			if ( !dtAttr ) {
+				return {};
+			}
+
 			url = getURL( dtAttr.url, dtAttr.httpref );
 			if ( !url ) {
 				return {};
