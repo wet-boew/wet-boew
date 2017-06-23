@@ -1,3 +1,4 @@
+
 /**
  * @title WET-BOEW Calc [ calc ]
  * @overview A basic calculate library for WET-BOEW
@@ -25,25 +26,6 @@ var $document = wb.doc,
 	var round = function()
 	{
 
-	};
-
-	//TODO: create casting function
-
-	var parser = function( sEquation )
-	{
-		var statement = sEquation.split(" ");
-		for (var i = 0; i < statement.length; i++) {
-			var element = statement[i];
-			if ( element.startsWith("#") || element.startsWith(".") )
-			{
-				var $elm = $( element );
-				console.log("^^^in parser element is : " + element);
-				statement[i] = (!$elm.is('select')) ? $( element ).val() : $( element + " option:selected" ).attr("data-wb-calc-value");
-				console.log("^^^in parser statement is : " + statement[i]);
-			}
-		};
-
-		return statement;
 	};
 	
 	var tokenize = function ( sCalc )
@@ -171,24 +153,20 @@ var $document = wb.doc,
 				return retVal;
 		}
 	}
-	
-	var getEquation = function ( elm )
-	{
-		var eqNum = elm.attr('data-wb-calc-eqnum');
-		
-		var equation = elm.attr('data-wb-calc-equation');
+
+	var getEquation = function ( jsonData )
+	{	
+		var equation = jsonData.equation;
+		var eqNum = jsonData.eqnum;
 		if (typeof eqNum != "undefined")
-		{
-			var radioObj = $("input:radio[name=" + eqNum + "]");
-			//console.log("^^^ in getEquation eqation number is : " + $("input:radio[name=" + eqNum + "]:checked").val());
-				
-			eqNum = $("input:radio[name=" + eqNum + "]:checked").val();
-			var equation = elm.attr('data-wb-calc-equation' + eqNum);
+		{				
+			var idxVal = $("input:radio[name=" + eqNum + "]:checked").val();
+			equation = jsonData.equation[ idxVal - 1 ];
 		}
 
 		return equation;
 	}
-
+	
 
 // Event binding
 $(".wb-calc").submit(function( event ) {
@@ -201,9 +179,10 @@ $(".wb-calc").submit(function( event ) {
 	var $calculations = $(bind);
 
 	$calculations.each(function(){
-		var elm = $(this),	
-			equation  = getEquation( elm ),
-			roundDigits = elm.attr('data-wb-calc-rounded'),
+		var $calcelm = $(this),	
+			jsonData = JSON.parse($calcelm.attr('data-wb-calc')),
+			equation = getEquation( jsonData ),
+			roundDigits = jsonData.rounded,
 			value = compute (parse (equation));
 			//console.log( "tokens : " + tokens );
 			//console.log("roundDigits :" + roundDigits );	
@@ -211,8 +190,8 @@ $(".wb-calc").submit(function( event ) {
 		if (typeof roundDigits != 'undefined') {
 			value = value.toFixed(parseInt(roundDigits));
 		}
-		elm.text( value );
-		console.log("my calculation is :" + elm.attr('data-wb-calc-equation') );
+		$calcelm.text( value );
+		//console.log("my calculation is :" + $calcelm.attr('data-wb-calc-equation') );
 	});
 
 	//console.log( "my bind is " + bind);
