@@ -49,10 +49,10 @@
 </form>
 <section>
 <br/>
-	<p><strong>GST (5%)</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * 0.05" data-wb-calc-equation2="(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05"></span></p>
- 	<p><strong>PST (<span class="answer" data-wb-calc-rounded="0" data-wb-calc-equation="#ProvOrTerr * 100"></span>%)</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * #ProvOrTerr" data-wb-calc-equation2="(#priceinput / (1 + 0.05 + #ProvOrTerr)) * #ProvOrTerr"></span></p>
+	<p><strong>GST (5%)</strong>: <span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * 0.05", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05" ]}'></span></p>
+ 	<p><strong>PST (<span class="answer" data-wb-calc='{"rounded": "0", "equation": "#ProvOrTerr * 100"}'></span>%)</strong>: <span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * #ProvOrTerr", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * #ProvOrTerr" ]}'></span></p>
+	<p><strong>Total</strong>: <span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * 0.05 + #priceinput * #ProvOrTerr + #priceinput", "#priceinput / (1 + 0.05 + #ProvOrTerr)" ]}'></span></p>
 
-	<p><strong>Total</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * 0.05 + #priceinput * #ProvOrTerr + #priceinput" data-wb-calc-equation2="#priceinput / (1 + 0.05 + #ProvOrTerr)"></span></p>
 <!-- 	<p><strong>TEST</strong>: <span class="answer" data-wb-calc-equation="10 * ( 25 - 5 ) + #priceinput * #ProvOrTerr +" ></span></p> -->
 	
 	</section>
