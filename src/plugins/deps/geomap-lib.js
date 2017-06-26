@@ -39,10 +39,10 @@ var componentName = "wb-geomap",
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( evt ) {
+	init = function( event ) {
 
-		var elm = evt.target,
-			className = elm.className,
+		var elm = event.target,
+			className = elm.className.split( /\s+/ ),
 			settings = {},
 			$elm, overrides;
 
@@ -51,7 +51,7 @@ var componentName = "wb-geomap",
 		}
 
 		// Filter out any events triggered by descendants
-		if ( evt.currentTarget === elm ) {
+		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
 
 			// Only initialize the i18nText once
@@ -72,6 +72,7 @@ var componentName = "wb-geomap",
 					zoomworld: i18n( "geo-zmwrld" ),
 					baseMapTitle: i18n( "geo-bmapttl" ),
 					baseMapURL: i18n( "geo-bmap-url" ),
+					baseMapMatrixSet: i18n( "geo-bmap-matrix-set" ),
 					scaleline: i18n( "geo-sclln" ),
 					mouseposition: i18n( "geo-msepos" ),
 					access: i18n( "geo-ally" ),
@@ -100,13 +101,13 @@ var componentName = "wb-geomap",
 
 			// Class-based overrides - use undefined where no override should occur
 			overrides = {
-				useScaleLine: className.indexOf( " scaleline " ) !== -1 ? true : undefined,
-				useMousePosition: className.indexOf( " position " ) !== -1 ? true : undefined,
-				useLegend: className.indexOf( " legend " ) !== -1,
-				useMapControls: className.indexOf( " static " ) !== -1 ? false : true,
-				useGeocoder: className.indexOf( " geocoder " ) !== -1 ? true : false,
-				useGeolocation: className.indexOf( " geolocation " ) !== -1 ? true : false,
-				useAOI: className.indexOf( " aoi " ) !== -1 ? true : false
+				useScaleLine: className.indexOf( "scaleline" ) !== -1 ? true : undefined,
+				useMousePosition: className.indexOf( "position" ) !== -1 ? true : undefined,
+				useLegend: className.indexOf( "legend" ) !== -1,
+				useMapControls: className.indexOf( "static" ) !== -1 ? false : true,
+				useGeocoder: className.indexOf( "geocoder" ) !== -1 ? true : false,
+				useGeolocation: className.indexOf( "geolocation" ) !== -1 ? true : false,
+				useAOI: className.indexOf( "aoi" ) !== -1 ? true : false
 			};
 
 			// Merge default settings with overrides from the selected plugin element.
@@ -808,7 +809,7 @@ var componentName = "wb-geomap",
 
 		if ( feature && feature.attributes ) {
 			var geometry = feature.getGeometry(),
-				coord = geometry.getType() === "Point" ? geometry.getCoordinates() : evt.mapBrowserEvent.coordinate,
+				coord = geometry.getType() === "Point" ? geometry.getCoordinates() : event.mapBrowserEvent.coordinate,
 				obj = feature.attributes,
 				key, regex;
 
@@ -967,15 +968,15 @@ var componentName = "wb-geomap",
 			}
 		};
 
-		map.on( "pointermove", function( evt ) {
+		map.on( "pointermove", function( event ) {
 
 			tooltip = $( "#tooltip_" + geomap.id );
 
-			if ( evt.dragging ) {
+			if ( event.dragging ) {
 				tooltip.hide();
 				return;
 			}
-			displayFeatureInfo( map.getEventPixel( evt.originalEvent ) );
+			displayFeatureInfo( map.getEventPixel( event.originalEvent ) );
 
 			return;
 		} );
@@ -1092,9 +1093,9 @@ var componentName = "wb-geomap",
 				i18nText.aoiBtnDraw + "</button>" );
 
 		// toggle draw mode
-		$document.on( "click", "#geomap-aoi-toggle-mode-draw-" + geomap.id, function( evt ) {
+		$document.on( "click", "#geomap-aoi-toggle-mode-draw-" + geomap.id, function( event ) {
 
-			evt.preventDefault();
+			event.preventDefault();
 
 			var drawInteraction = getMapInteraction( geomap.map, ol.interaction.DragBox ),
 				selectInteraction = getMapInteraction( geomap.map, ol.interaction.Select ),
@@ -1113,9 +1114,9 @@ var componentName = "wb-geomap",
 		} );
 
 		// clear drawn features
-		$document.on( "click", "#geomap-aoi-btn-clear-" + geomap.id, function( evt ) {
+		$document.on( "click", "#geomap-aoi-btn-clear-" + geomap.id, function( event ) {
 
-			evt.preventDefault();
+			event.preventDefault();
 
 			$( "#geomap-aoi-extent-" + geomap.id ).val( "" );
 			$( "#geomap-aoi-extent-lonlat-" + geomap.id ).val( "" );
@@ -1129,9 +1130,9 @@ var componentName = "wb-geomap",
 		} );
 
 		// draw feature from input coordinates
-		$document.on( "click", "#geomap-aoi-btn-draw-" + geomap.id, function( evt ) {
+		$document.on( "click", "#geomap-aoi-btn-draw-" + geomap.id, function( event ) {
 
-			evt.preventDefault();
+			event.preventDefault();
 
 			$( "#geomap-aoi-extent-" + geomap.id ).val( "" );
 			$( "#geomap-aoi-extent-lonlat-" + geomap.id ).val( "" );
@@ -1283,11 +1284,11 @@ var componentName = "wb-geomap",
 			var myControl = new ol.control.Control( { element: dialog } );
 
 			// Handle the close button event
-			closeButton.addEventListener( "click", function( evt ) {
+			closeButton.addEventListener( "click", function( event ) {
 
-				evt.preventDefault();
+				event.preventDefault();
 
-				$( evt.target ).closest( ".geomap-help-dialog" ).fadeOut( function() {
+				$( event.target ).closest( ".geomap-help-dialog" ).fadeOut( function() {
 					geomap.map.removeControl( myControl );
 				} );
 
@@ -1956,14 +1957,14 @@ var componentName = "wb-geomap",
 	};
 
 // Handle the Zoom to button events
-$document.on( "click", ".geomap-zoomto", function( evt ) {
-	var which = evt.which,
-		target = ( evt.target.tagName === "A" ) ? evt.target : $( evt.target ).closest( "a" )[ 0 ],
+$document.on( "click", ".geomap-zoomto", function( event ) {
+	var which = event.which,
+		target = ( event.target.tagName === "A" ) ? event.target : $( event.target ).closest( "a" )[ 0 ],
 		mapId, mapLayerFeature, geometry, extent, view;
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		evt.preventDefault();
+		event.preventDefault();
 		mapId = target.getAttribute( "data-map" );
 		mapLayerFeature = getMapLayerFeature( target );
 		geometry = mapLayerFeature[ 2 ].getGeometry();
@@ -1986,7 +1987,7 @@ $document.on( "click", ".geomap-zoomto", function( evt ) {
 $document.on( "geomap.wb", selector, init );
 
 // Update the map when the window is resized
-$document.on( wb.resizeEvents, function( evt ) {
+$document.on( wb.resizeEvents, function( event ) {
 
 	mapArray.forEach( function( geomap ) {
 
@@ -1999,7 +2000,7 @@ $document.on( wb.resizeEvents, function( evt ) {
 		geomap.map.updateSize();
 
 		if ( $myDiv ) {
-			if ( evt.type === "mediumview" || evt.type === "largeview" || evt.type === "xlargeview" ) {
+			if ( event.type === "mediumview" || event.type === "largeview" || event.type === "xlargeview" ) {
 				$myDiv.css( { "width": "60%" } );
 			} else {
 				$myDiv.css( { "width": "80%" } );
@@ -2011,9 +2012,9 @@ $document.on( wb.resizeEvents, function( evt ) {
 } );
 
 // Handle clicking of checkboxes within the tables
-$document.on( "change", ".geomap-cbx", function( evt ) {
+$document.on( "change", ".geomap-cbx", function( event ) {
 
-	var target = evt.target,
+	var target = event.target,
 		feature = getMapLayerFeature( target )[ 2 ],
 		map = getMapLayerFeature( target )[ 0 ],
 		selectInteraction = getMapInteraction( map, ol.interaction.Select ),
@@ -2030,10 +2031,10 @@ $document.on( "change", ".geomap-cbx", function( evt ) {
 /**
  * Add/remove map border based on mouse pointer location
  */
-$document.on( "focusin focusout mouseover mouseout", ".wb-geomap-map", function( evt ) {
+$document.on( "focusin focusout mouseover mouseout", ".wb-geomap-map", function( event ) {
 
-	var target = evt.currentTarget,
-		type = evt.type,
+	var target = event.currentTarget,
+		type = event.type,
 		isActive = target.className.indexOf( "active" ),
 		geomap = getMapById( target.getAttribute( "data-map" ) ),
 		mouseWheelZoom = getMapInteraction( geomap.map, ol.interaction.MouseWheelZoom );
@@ -2216,7 +2217,7 @@ Geomap.prototype.addBasemap = function() {
 				} ) ],
 				url: i18nText.baseMapURL,
 				layer: i18nText.baseMapTitle,
-				matrixSet: "nativeTileMatrixSet",
+				matrixSet: i18nText.baseMapMatrixSet,
 				projection: projection,
 				tileGrid: new ol.tilegrid.WMTS( {
 					extent: [ -2750000.0, -900000.0, 3600000.0, 4630000.0 ],
@@ -2660,8 +2661,8 @@ MapLayer.prototype.createOLLayer = function() {
 		}
 
 		// Set the style
-		olLayer.getSource().once( "addfeature", function( evt ) {
-			featureGeometry = evt.feature.getGeometry().getType();
+		olLayer.getSource().once( "addfeature", function( event ) {
+			featureGeometry = event.feature.getGeometry().getType();
 
 			if ( !extractStyles ) {
 				var style = styleFactory.createStyleFunction(
@@ -2921,8 +2922,8 @@ MapLayer.prototype.createOLLayer = function() {
 		}
 
 		// Set the style
-		olLayer.getSource().once( "addfeature", function( evt ) {
-			featureGeometry = evt.feature.getGeometry().getType();
+		olLayer.getSource().once( "addfeature", function( event ) {
+			featureGeometry = event.feature.getGeometry().getType();
 			var style = styleFactory.createStyleFunction(
 					_this.settings.style,
 					featureGeometry
@@ -2986,8 +2987,8 @@ MapLayer.prototype.createOLLayer = function() {
 
 		// Listen for visiblilty change in case devs hook into ol directly
 		// in which case we manage the UI changes for them
-		// olLayer.on( "change:visible", function( evt ) {
-		// 	_this.toggleVisibility( !evt.oldValue );
+		// olLayer.on( "change:visible", function( event ) {
+		// 	_this.toggleVisibility( !event.oldValue );
 		// } );
 
 		return olLayer;
@@ -3039,14 +3040,14 @@ Geomap.prototype.loadControls = function() {
 		layers: _this.layers
 	} );
 
-	selectInteraction.getFeatures().on( "remove", function( evt ) {
-		var feature = evt.element;
+	selectInteraction.getFeatures().on( "remove", function( event ) {
+		var feature = event.element;
 		feature.setStyle( null );
 		$( "#cb_" + feature.getId() ).prop( "checked", false ).closest( "tr" ).removeClass( "active" );
 	} );
 
-	selectInteraction.getFeatures().on( "add", function( evt ) {
-		var feature = evt.element;
+	selectInteraction.getFeatures().on( "add", function( event ) {
+		var feature = event.element;
 		if ( feature.selectStyle ) {
 			feature.setStyle( feature.selectStyle );
 		}
@@ -3054,24 +3055,24 @@ Geomap.prototype.loadControls = function() {
 	} );
 
 	// Add select event handler
-	selectInteraction.on( "select", function( evt ) {
+	selectInteraction.on( "select", function( event ) {
 
 		var _this = this,
-			selected = evt.selected ? evt.selected : _this.getFeatures();
+			selected = event.selected ? event.selected : _this.getFeatures();
 
 		if ( selected && selected.length > 0 && typeof selected[ 0 ].layerTitle !== "undefined" ) {
 			popups = getLayerById( _this.getMap(), selected[ 0 ].layerId ).popups;
 
-			selected[ 0 ].layerTitle = _this.getLayer( evt.selected[ 0 ] ).title;
+			selected[ 0 ].layerTitle = _this.getLayer( event.selected[ 0 ] ).title;
 
 			if ( popups ) {
-				showPopup( evt, selected[ 0 ], map );
+				showPopup( event, selected[ 0 ], map );
 			}
 		}
 
 		// if there are no selected features then hide the popup
 		if ( selected && selected.length === 0 ) {
-			showPopup( evt, null, map );
+			showPopup( event, null, map );
 		}
 
 	}, selectInteraction );
@@ -3156,8 +3157,8 @@ Geomap.prototype.createPopup = function() {
 	} );
 
 	// Add a click handler to hide the popup
-	$closer.on( "click", function( evt ) {
-		evt.preventDefault();
+	$closer.on( "click", function( event ) {
+		event.preventDefault();
 		overlay.setPosition( undefined );
 		this.blur();
 		return false;

@@ -196,10 +196,8 @@ wb.i18nDict = {
 	"geo-allyttl": "@geo-allyttl@",
 	"geo-tgllyr": "@geo-tgllyr@",
 	"geo-hdnlyr": "@geo-hdnlyr@",
-
-	/* geo-bmapurl to be deprecated - do not use */
-	"geo-bmapurl": "@geo-bmapurl@",
 	"geo-bmap-url": "@geo-bmap-url@",
+	"geo-bmap-matrix-set": "@geo-bmap-matrix-set@",
 	"geo-bmapttl": "@geo-bmapttl@",
 	"geo-bmapurltxt": "@geo-bmapurltxt@",
 	"geo-attrlnk": "@geo-attrlnk@",

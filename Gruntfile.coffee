@@ -1088,6 +1088,14 @@ module.exports = (grunt) ->
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
 					flatten: true
+				,
+					cwd: "node_modules"
+					src: [
+						"openlayers/dist/ol.js"
+					]
+					dest: "<%= coreDist %>/js/deps"
+					expand: true
+					flatten: true
 				]
 
 			demos:
