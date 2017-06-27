@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Une barre de menu interactive comprenant des sous-menus optionnels.",
 	"altLangPrefix": "menu",
-	"dateModified": "2014-08-06"
+	"dateModified": "2017-06-12"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -152,8 +152,8 @@
 	...
 &lt;/ul&gt;</code></pre>
 		</li>
-		<li><strong>Optional:</strong> Add <code>data-ajax-fetch="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.
-			<pre><code>&lt;nav role="navigation" id="wb-sm" data-ajax-fetch="ajax/menu-include-en.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;</code></pre>
+		<li><strong>Optional:</strong> Add <code>data-ajax-replace="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.
+			<pre><code>&lt;nav role="navigation" id="wb-sm" data-ajax-replace="ajax/menu-include-en.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> Update <code>data-trgt</code> with the <code>id</code> of the target element for the mobile panel (in most cases this should not change).</li>
 	</ol>
@@ -172,9 +172,9 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>data-ajax-fetch</code></td>
+				<td><code>data-ajax-replace</code></td>
 				<td>Used to AJAX in a full menu.</td>
-				<td>Add <code>data-ajax-fetch="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.</td>
+				<td>Add <code>data-ajax-replace="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
