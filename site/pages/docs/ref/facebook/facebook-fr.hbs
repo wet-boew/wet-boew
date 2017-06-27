@@ -1,0 +1,79 @@
+---
+{
+	"title": "Facebook embedded pages (TODO FR)",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Helps with implementing Facebook embedded pages.",
+	"altLangPrefix": "facebook",
+	"dateModified": "2015-08-03"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>Helps with implementing Facebook embedded pages.</p>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/facebook/facebook-en.html">English example</a></li>
+		<li><a href="../../../demos/facebook/facebook-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Create an embedded page on the <a rel="external" href="https://developers.facebook.com/docs/plugins/page-plugin">Facebook Page Plugin</a> documentation.</li>
+		<li>Press the "Get Code" button and copy only the HTML portion in the second section of the popup</li>
+		<li>For each area that will display a Facebook embedded page, create a <code>div</code> element with <code>class="wb-facebook"</code>.
+			<pre><code>&lt;div class="wb-facebook"&gt;&lt;/div&gt;</code></pre>
+		</li>
+		<li>Inside the div paste the HTML code from the "Get Code" button in the earlier step</li></ol>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-facebook</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-facebook" ).trigger( "wb-init.wb-facebook" );</code>).</td>
+				<td>Used to manually initialize the Facebook embedded pages. <strong>Note:</strong> The Facebook embedded page will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-facebook</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Facebook embedded page initializes.</td>
+				<td>Used to identify where the Facebook embedded page was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-facebook", ".wb-facebook", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-facebook" ).on( "wb-ready.wb-facebook", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/facebook">Facebook embedded pages plugin source code on GitHub</a></p>
+</section>

@@ -1,16 +1,22 @@
-language: node_js
-node_js:
-  - "6"
-
-sudo: false
+language: generic
+dist: trusty
+sudo: required
 
 env:
   global:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
+group: deprecated-2017Q2
+
+before_install:
+  - echo "machine github.com login $GH_TOKEN" >> ~/.netrc
+  - env -0 | while IFS='=' read -r -d '' n v; do echo "$n"="$(echo $v)";done | grep  'TRAVIS\|CI\|SAUCE\|GIT\|REPO\|BRANCH' >> script/docker/env
+  - shopt -s expand_aliases
+  - source script/docker/activate
+  - npm --version
+
 install:
-  - ./script/setup
-  - bundle install
+  - npm install --quiet
 
 script:
   - npm run-script travis_script

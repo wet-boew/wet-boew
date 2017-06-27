@@ -14,11 +14,18 @@
 <p>A basic library for Calculating things</p>
 
 <section>
+<<<<<<< HEAD
 <form action="#" id="form" method="get" class="wb-calc" data-wb-calc-bind=".answer">
    
    <label for="ProvOrTerr" id="labelProv">Province or territory</label>
 
    <select class="form-control" id="ProvOrTerr" name="Province">
+=======
+<h2>Calculate</h2>
+<form action="#" id="form" method="get" class="wb-calc" data-wb-calc-bind=".answer">
+	<label for="ProvOrTerr" id="labelProv">Province or territory</label> 
+	<select class="form-control" id="ProvOrTerr" name="Province">
+>>>>>>> origin/master
       <option selected="selected" value="">Select</option>
       <option value="ab" data-wb-calc-value="0.0">Alberta</option>
       <option value="bc" data-wb-calc-value="0.07">British Columbia</option>
@@ -33,11 +40,19 @@
       <option value="qc" data-wb-calc-value="0.09975">Quebec</option>
       <option value="sk" data-wb-calc-value="0.05">Saskatchewan</option>
       <option value="yk" data-wb-calc-value="0.0">Yukon</option>
+<<<<<<< HEAD
    </select>
    <br>
    <label for="priceinput" id="pricelabel">Amount</label>
    	<input class="form-control" id="priceinput" placeholder="$" type="number">
    	<br>
+=======
+	</select>
+	<br>
+	<label for="priceinput" id="pricelabel">Amount</label>
+	<input class="form-control" id="priceinput" placeholder="$" type="number">
+	<br>
+>>>>>>> origin/master
 	<label for="BefOrAft" id="SwitchLabel">Amount entered is:</label>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="BefOrAft" type="radio" title="Before taxes" value="1">
@@ -45,6 +60,7 @@
 	<input name="BefOrAft" type="radio" title="After taxes" value="2">
 	<label for="BefOrAft" id="SwitchLabel">After taxes</label><br>
    	<button class="btn btn-default mrgn-tp-sm" id="calculate" type="submit">Calculate</button>
+<<<<<<< HEAD
 	<input class="form-control hidden" id="GSTRate" data-wb-calc-value="0.05"></input>
 </form>
 <section>
@@ -56,4 +72,14 @@
 <!-- 	<p><strong>TEST</strong>: <span class="answer" data-wb-calc-equation="10 * ( 25 - 5 ) + #priceinput * #ProvOrTerr +" ></span></p> -->
 	
 	</section>
+=======
+</form>
+</section>
+<section>
+<br/>
+	<p><strong>GST (5%)</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * 0.05" data-wb-calc-equation2="(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05"></span></p>
+ 	<p><strong>PST (<span class="answer" data-wb-calc-rounded="0" data-wb-calc-equation="#ProvOrTerr * 100"></span>%)</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * #ProvOrTerr" data-wb-calc-equation2="(#priceinput / (1 + 0.05 + #ProvOrTerr)) * #ProvOrTerr"></span></p>
+	<p><strong>Total</strong>: <span class="answer" data-wb-calc-rounded="2" data-wb-calc-eqnum="BefOrAft" data-wb-calc-equation1="#priceinput * 0.05 + #priceinput * #ProvOrTerr + #priceinput" data-wb-calc-equation2="#priceinput / (1 + 0.05 + #ProvOrTerr)"></span></p>
+	<p><strong>TEST</strong>: <span class="answer" data-wb-calc-equation="10 * ( 25 - 5 ) + #priceinput * #ProvOrTerr +" ></span></p>	
+>>>>>>> origin/master
 </section>

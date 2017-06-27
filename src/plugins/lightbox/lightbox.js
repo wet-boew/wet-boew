@@ -120,6 +120,7 @@ var componentName = "wb-lbx",
 		if ( !i18nText ) {
 			i18n = wb.i18n;
 			i18nText = {
+				fClose: i18n( "close" ),
 				tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
 				tLoading: i18n( "load" ),
 				gallery: {
@@ -142,9 +143,12 @@ var componentName = "wb-lbx",
 					var $item = this.currItem,
 						$content = this.contentContainer,
 						$wrap = this.wrap,
+						$modal = $wrap.find( ".modal-dialog" ),
 						$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
 						len = $buttons.length,
 						i, button;
+
+					createCloseButton( $modal );
 
 					$document.find( "body" ).addClass( "wb-modal" );
 					$document.find( modalHideSelector ).attr( "aria-hidden", "true" );
@@ -163,6 +167,7 @@ var componentName = "wb-lbx",
                         .find( ".activate-open" )
                         .trigger( "wb-activate" );
 
+					this.contentContainer.attr( "data-pgtitle", document.getElementsByTagName( "H1" )[ 0 ].textContent );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
@@ -231,6 +236,7 @@ var componentName = "wb-lbx",
 					} else {
 						$response = $( mfpResponse.data );
 					}
+					createCloseButton( $response );
 
 					$response
 						.find( ".modal-title, h1" )
@@ -253,6 +259,38 @@ var componentName = "wb-lbx",
 				$document.trigger( dependenciesLoadedEvent );
 			}
 		} );
+	},
+	createCloseButton = function( $modal ) {
+		if ( $modal !== null && $modal.hasClass( "modal-dialog" ) ) {
+			var footer = $modal.find( ".modal-footer" ).first(),
+				hasFooter = footer.length,
+				hasButton = hasFooter && $( footer ).find( ".popup-modal-dismiss" ).length !== 0,
+				closeClassFtr = "popup-modal-dismiss",
+				closeTextFtr = i18nText.fClose,
+				spanTextFtr, overlayCloseFtr;
+
+			if ( !hasButton ) {
+				if ( hasFooter ) {
+					spanTextFtr = footer.innerHTML + i18nText.tClose;
+				} else {
+					footer = document.createElement( "div" );
+					footer.setAttribute( "class", "modal-footer" );
+					footer.style.background = "#fff";
+					spanTextFtr = i18nText.tClose;
+				}
+				spanTextFtr = spanTextFtr.replace( "'", "&#39;" );
+
+				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-primary pull-left " + closeClassFtr +
+					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
+					closeTextFtr +
+					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
+
+				$( footer ).append( overlayCloseFtr );
+				if ( !hasFooter ) {
+					$modal.append( footer );
+				}
+			}
+		}
 	};
 
 // Bind the init event of the plugin

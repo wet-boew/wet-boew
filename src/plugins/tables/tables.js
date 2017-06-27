@@ -111,29 +111,6 @@ var componentName = "wb-tables",
 						}
 					} );
 
-					/*
-					 * Extend type detection
-					 */
-
-					// Formatted numbers detection
-					// Based on: http://datatables.net/plug-ins/type-detection#formatted_numbers
-					dataTableExt.aTypes.unshift(
-						function( sData ) {
-
-							// Strip off HTML tags and all non-alpha-numeric characters (except minus sign)
-							var deformatted = sData.replace( /<[^>]*>/g, "" ).replace( /[^\d\-\/a-zA-Z]/g, "" );
-							if ( $.isNumeric( deformatted ) || deformatted === "-" ) {
-								return "formatted-num";
-							}
-							return null;
-						}
-					);
-
-					// Remove HTML tags before doing any filtering for formatted numbers
-					dataTableExt.type.search[ "formatted-num" ] = function( data ) {
-						return data.replace( /<[^>]*>/g, "" );
-					};
-
 					// Add the container or the sorting icons
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
 
@@ -149,7 +126,22 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Handle the draw.dt event
 $document.on( "init.dt draw.dt", selector, function( event, settings ) {
-	var $elm = $( event.target );
+	var $elm = $( event.target ),
+		pagination = $elm.next( ".bottom" ).find( "div:first-child" ),
+		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
+		ol = document.createElement( "OL" ),
+		li = document.createElement( "LI" );
+
+	// Update Pagination List
+	for ( var i = 0; i < paginate_buttons.length; i++ ) {
+		var item = li.cloneNode( true );
+		item.appendChild( paginate_buttons[ i ] );
+		ol.appendChild( item );
+	}
+
+	ol.className = "pagination mrgn-tp-0 mrgn-bttm-0";
+	pagination.empty();
+	pagination.append( ol );
 
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables

@@ -19,6 +19,7 @@ var componentName = "wb-overlay",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
+	OverlayOpenFlag = "wb-overlay-dlg",
 	initialized = false,
 	sourceLinks = {},
 	setFocusEvent = "setfocus.wb",
@@ -35,7 +36,7 @@ var componentName = "wb-overlay",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, $header, closeText, overlayClose;
+			$elm, footer, closeTextFtr, overlayCloseFtr, $header, closeText, overlayClose;
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -52,6 +53,43 @@ var componentName = "wb-overlay",
 				};
 			}
 
+			// One left and right panels add close button
+			var isPanel = ( $elm.attr( "class" ).indexOf( "wb-panel" ) > -1 ) ? true : false,
+				isPopup = ( $elm.attr( "class" ).indexOf( "wb-popup" ) > -1 ) ? true : false;
+			if ( isPanel || isPopup ) {
+				var hasFooter, closeClassFtr, spanTextFtr, buttonStyle = "";
+
+				footer = $elm.find( ".modal-footer" )[ 0 ];
+				hasFooter = ( footer && footer.length !== 0 ) ? true : false;
+				closeClassFtr = ( $elm.hasClass( "wb-panel-l" ) ? "pull-right " : "pull-left " )  + closeClass;
+
+				if ( hasFooter ) {
+					spanTextFtr = footer.innerHTML + i18nText.space + i18nText.esc;
+				} else {
+					footer = document.createElement( "div" );
+					footer.setAttribute( "class", "modal-footer" );
+					spanTextFtr = i18nText.esc;
+				}
+
+				closeTextFtr = i18nText.close;
+				spanTextFtr = spanTextFtr.replace( "'", "&#39;" );
+
+				if ( isPopup ) {
+					footer.style.border = "0";
+				}
+
+				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-primary " + closeClassFtr +
+					"' style='" + buttonStyle +
+					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
+					closeTextFtr +
+					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
+
+				$( footer ).append( overlayCloseFtr );
+				if ( !hasFooter ) {
+					$elm.append( footer );
+				}
+			}
+
 			// Add close button
 			$header = $elm.find( ".modal-title" );
 			if ( $header.length !== 0 ) {
@@ -61,7 +99,7 @@ var componentName = "wb-overlay",
 				closeText = i18nText.closeOverlay;
 			}
 			closeText = closeText.replace( "'", "&#39;" );
-			overlayClose = "<button type='button' class='mfp-close " + closeClass +
+			overlayClose = "<button type='button' id='hdrClose' class='mfp-close " + closeClass +
 				"' title='" + closeText + "'>&#xd7;<span class='wb-inv'> " +
 				closeText + "</span></button>";
 
@@ -80,6 +118,11 @@ var componentName = "wb-overlay",
 		$overlay
 			.addClass( "open" )
 			.attr( "aria-hidden", "false" );
+
+		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
+			$overlay.attr( "data-pgtitle", document.getElementsByTagName( "H1" )[ 0 ].textContent );
+			$document.find( "body" ).addClass( OverlayOpenFlag );
+		}
 
 		if ( !noFocus ) {
 			$overlay
@@ -103,6 +146,10 @@ var componentName = "wb-overlay",
 		$overlay
 			.removeClass( "open" )
 			.attr( "aria-hidden", "true" );
+
+		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
+			$document.find( "body" ).removeClass( OverlayOpenFlag );
+		}
 
 		if ( userClosed ) {
 			$overlay.addClass( "user-closed" );

@@ -30,7 +30,11 @@ var componentName = "wb-disable",
 			$html = wb.html,
 			i18n = wb.i18n,
 			pageUrl = wb.pageUrlParts,
-			li, param;
+			li, param,
+			noticeHeader = i18n( "disable-notice-h" ),
+			noticeBody = i18n( "disable-notice" ),
+			noticehtml = "<section",
+			noticehtmlend = "</a>.</p></section>";
 
 		if ( elm ) {
 			li = document.createElement( "li" );
@@ -38,7 +42,7 @@ var componentName = "wb-disable",
 
 			// Rebuild the query string
 			for ( param in pageUrl.params ) {
-				if ( pageUrl.params.hasOwnProperty( param ) && param !== "wbdisable" ) {
+				if ( param && pageUrl.params.hasOwnProperty( param ) && param !== "wbdisable" ) {
 					nQuery += param + "=" + pageUrl.params[ param ] + "&#38;";
 				}
 			}
@@ -53,11 +57,9 @@ var componentName = "wb-disable",
 						localStorage.setItem( "wbdisable", "true" );
 					} catch ( e ) {}
 
-					// Append the Standard version link
-					li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + "</a>";
-
-					// Add link to re-enable WET plugins and polyfills
-					elm.appendChild( li );
+					// Add notice and link to re-enable WET plugins and polyfills
+					noticehtml = noticehtml + " class='alert alert-warning text-center'><h2>" + noticeHeader + "</h2><p>" + noticeBody + "</p><p><a rel='alternate' property='significantLink' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + noticehtmlend;
+					$( elm ).after( noticehtml );
 					return true;
 				} else {
 					$html.addClass( "wb-enable" );
@@ -67,12 +69,19 @@ var componentName = "wb-disable",
 						// Store preference for WET plugins and polyfills to be enabled in localStorage
 						localStorage.setItem( "wbdisable", "false" );
 					}
+
+					// Remove variable from URL
+					var lc = window.location.href.replace( "wbdisable=false", "" ).replace( "?#", "#" );
+					if ( lc.indexOf( "?" ) === ( lc.length - 1 ) ) {
+						lc = lc.replace( "?", "" );
+					}
+					window.history.replaceState( "", "", lc );
 				}
 			} catch ( error ) {
 			}
 
 			// Append the Basic HTML version link version
-			li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=true'>" + i18n( "wb-disable" ) + "</a>";
+			li.innerHTML = "<a class='wb-sl' rel='alternate' href='" + nQuery + "wbdisable=true'>" + i18n( "wb-disable" ) + "</a>";
 
 			// Add link to disable WET plugins and polyfills
 			elm.appendChild( li );

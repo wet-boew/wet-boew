@@ -1,11 +1,11 @@
 /**
  * @title WET-BOEW Prettify Plugin
- * @overview Wrapper for Google Code Prettify library: https://code.google.com/p/google-code-prettify/
+ * @overview Wrapper for Google Code Prettify library: https://github.com/google/code-prettify
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
 /*
- * Syntax highlighting of source code snippets in an html page using [google-code-prettify](http://code.google.com/p/google-code-prettify/).
+ * Syntax highlighting of source code snippets in an html page using [google-code-prettify](https://github.com/google/code-prettify).
  *
  * 1. Apply `class="prettyprint"` to a `pre` or `code` element to apply syntax highlighting. Alternatively use `class="all-pre"` to apply syntax highlighting to all `pre` elements on the page.
  * 2. Apply `class="linenums"` to a `pre` or `code` element to add line numbers. Alternatively use `class="all-linenums"` to all applicable `pre` elements. Specify the starting number by adding `linenums:#` before `linenums`.

@@ -81,21 +81,44 @@ var componentName = "wb-calevt",
 
 	processEvents = function( $elm ) {
 		var settings = $.extend( {}, window[ componentName ], $elm.data( dataAttr ) ),
-			year, month, events, minDate, containerId, $container;
+			year, month, events, containerId, $container,
+			minDate, maxDate, minDateTime, maxDateTime,
+			currDate = new Date(),
+			currDateTime = currDate.getTime();
 
 		events = getEvents( $elm );
 		containerId = $elm.data( "calevtSrc" );
 		$container = $( "#" + containerId ).addClass( componentName + "-cal" );
 
+		year = settings.year;
+		month = settings.month;
+
 		minDate = events.minDate;
-		year = settings.year || minDate.getFullYear();
-		month = settings.month || minDate.getMonth();
+		maxDate = events.maxDate;
+		minDateTime = minDate.getTime();
+		maxDateTime = maxDate.getTime();
+
+		if ( !year && minDateTime < currDateTime && currDateTime < maxDateTime ) {
+			year = currDate.getFullYear();
+		} else if ( !year && currDateTime < minDateTime ) {
+			year = minDate.getFullYear();
+		} else if ( !year && maxDateTime < currDateTime ) {
+			year = maxDate.getFullYear();
+		}
+
+		if ( !month && minDateTime < currDateTime && currDate.getTime() < maxDateTime ) {
+			month = currDate.getMonth();
+		} else if ( !month && currDateTime < minDateTime ) {
+			month = minDate.getMonth();
+		} else if ( !month && maxDateTime < currDateTime ) {
+			month = maxDate.getMonth();
+		}
 
 		wb.calendar.create( $container, {
 			year: year,
 			month: month,
 			minDate: minDate,
-			maxDate: events.maxDate,
+			maxDate: maxDate,
 			daysCallback: addEvents,
 			events: events.list,
 			$events: $elm

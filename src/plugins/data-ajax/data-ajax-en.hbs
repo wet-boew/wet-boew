@@ -303,3 +303,66 @@
 		</details>
 	</section>
 </section>
+
+<section>
+	<h2>Alternative syntax</h2>
+	<p>Consult the <a href="../../docs/ref/data-ajax/data-ajax-en.html">documentation</a> for more information regarding the following alternative syntaxt.</p>
+	<h3>Example</h3>
+	<div data-wb-ajax='{
+			"url": "ajax/data-ajax-extra-en.html",
+			"type": "append"
+		}' class="original">
+		<section>
+			<h4>Hello World</h4>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</section>
+	</div>
+	<details>
+			<summary>View code</summary>
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-wb-ajax='{
+		"url": "ajax/data-ajax-extra-en.html",
+		"type": "append"
+	}' class="original"&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Hello World&lt;/h4&gt;
+		&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+		</details>
+</section>
+
+<section>
+	<h2>Conditional filtering using HTTP Referrer</h2>
+	<p>AJAX-in content on the condition that the HTTP Referrer matches the <code>httpref</code> value. Use regular expression to refine your HTTP referrer to a broader range of pages.</p>
+	<p>To be used for promotional content that is not pertinent to task completion. If you have multiple httpref, see documentation for advanced usage.</p>
+	<h3>Example</h3>
+	<div data-wb-ajax='{
+					"url": "ajax/httpref.html#enlang",
+					"type": "replace",
+					"httpref": "data-ajax-fr.html"
+					}'>
+		<p>This content will be replaced if you browse to this page from the <a href="data-ajax-fr.html">French version of this page</a></p>
+	</div>
+		<details>
+			<summary>View code</summary>
+<pre><code>
+&lt;div data-wb-ajax='{
+				"url": "ajax/httpref.html#enlang",
+				"type": "replace",
+				"httpref": "data-ajax-fr.html"
+				}'&gt;
+	&lt;p&gt;This content will be replaced if you browse to this page from the &lt;a href="../data-ajax-en.html"&gt;French version of this page&lt;/a&gt; page&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+</section>

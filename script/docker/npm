@@ -1,0 +1,5 @@
+#!/bin/bash
+src="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $src/base.sh
+
+run $(basename $0) $@

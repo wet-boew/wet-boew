@@ -1,0 +1,9 @@
+#!/bin/bash
+src="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $src/base.sh
+
+args=${@:-default}
+
+extra_params="-p 8000:8000"
+
+run $(basename $0) $args

@@ -7,7 +7,7 @@
 	"tag": "twitter",
 	"parentdir": "twitter",
 	"altLangPrefix": "twitter",
-	"dateModified": "2014-08-01"
+	"dateModified": "2017-02-07"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -18,7 +18,24 @@
 </section>
 
 <section>
-	<h2>Example</h2>
+	<h2>Example: Embedded User Timeline</h2>
+	<div class="wb-twitter">
+		<a class="twitter-timeline" href="https://twitter.com/WebExpToolkit" data-tweet-limit="3">Tweets by @WebExpToolkit</a>
+	</div>
+
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
+&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/WebExpToolkit&quot; data-tweet-limit=&quot;3&quot; &gt;Tweets by @WebExpToolkit&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+	</section>
+
+	<p>Twitter Developer Documentation: <a href="https://dev.twitter.com/web/embedded-timelines/user">Embedded User Timeline</a></p>
+</section>
+
+<section>
+	<h2>Example: Embedded Search Timeline</h2>
+	<strong>An embedded search timeline requires a twitter account to generate the query and widget id.</strong>
 
 	<div class="wb-twitter">
 		<a class="twitter-timeline" href="https://twitter.com/search?q=%23WxT" data-widget-id="329066756620566528">Tweets about "#WxT"</a>
@@ -27,9 +44,9 @@
 	<section>
 		<h3>Code</h3>
 		<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
-	&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/search?q=%23WxT&quot; data-widget-id=&quot;329066756620566528&quot;&gt;Tweets about &quot;#WxT&quot;&lt;/a&gt;
+&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/search?q=%23WxT&quot; data-widget-id=&quot;329066756620566528&quot;&gt;Tweets about &quot;#WxT&quot;&lt;/a&gt;
 &lt;/div&gt;</code></pre>
 	</section>
 
-	<p><a href="https://dev.twitter.com/docs/embedded-timelines#customization">Twitter Embedded Timeline configuration options</a></p>
+	<p>Twitter Developer Documentation: <a href="https://dev.twitter.com/web/embedded-timelines/search">Embedded Search Timeline</a></p>
 </section>

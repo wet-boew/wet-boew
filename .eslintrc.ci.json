@@ -1,0 +1,6 @@
+{
+  "extends": ".eslintrc.json",
+  "rules": {
+    "linebreak-style": 2
+  }
+}

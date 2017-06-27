@@ -221,6 +221,8 @@ wb.i18nDict = {
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
+	"disable-notice-h": "@disable-notice-h@",
+	"disable-notice": "@disable-notice@",
 
 	/* Dismissable content */
 	"dismiss": "@dismiss@",

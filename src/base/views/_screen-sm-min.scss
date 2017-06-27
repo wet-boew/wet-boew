@@ -2,3 +2,12 @@
   WET-BOEW
   @title: Small view and over (screen only)
  */
+
+// col-auto extension to Bootstrap grid
+.col-sm-auto {
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+	position: relative;
+	width: auto;
+}

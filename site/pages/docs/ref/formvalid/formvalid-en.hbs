@@ -243,6 +243,12 @@
 					<td><code>data-rule-vinUS="true"</code></td>
 					<td>Vehice Identification Number (VIN, US)</td>
 				</tr>
+				<tr>
+					<td><code>data-rule-require_from_group='[1,".group"]'</code></td>
+					<td>Validates the minimum number of fields within an group (each input requires the validation rule).
+						<br/>The minium and group is defined by the options passed (number being the minium and a common class for each input).
+					</td>
+				</tr>
 			</tbody>
 		</table>
 		<p>See <a href="http://jqueryvalidation.org/documentation/">jQuery Validation Plugin - Documentation</a> for more details.</p>
@@ -279,7 +285,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
