@@ -541,40 +541,6 @@ input {
 	}
 }
 
-/**
- *	Disable pull-right/left on grid columns that do not match the current
- *	breakpoint
- */
-@media (max-width: $screen-xs-max) {
-	.pull-left,
-	.pull-right {
-		&[class*=col-sm],
-		&[class*=col-md],
-		&[class*=col-lg] {
-			float: none !important;
-		}
-	}
-}
-
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-	.pull-left,
-	.pull-right {
-		&[class*=col-md],
-		&[class*=col-lg] {
-			float: none !important;
-		}
-	}
-}
-
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-	.pull-left,
-	.pull-right {
-		&[class*=col-lg] {
-			float: none !important;
-		}
-	}
-}
-
 /*
  *	Blockquote font size
  */
