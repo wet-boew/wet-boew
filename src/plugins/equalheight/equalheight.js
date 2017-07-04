@@ -67,7 +67,10 @@ var componentName = "wb-eqht",
 
 		for ( i = $elms.length - 1; i !== -1; i -= 1 ) {
 			$elm = $elms.eq( i );
-			$children = $elm.children();
+			$children = $elm.find( ".eqht-trgt" );
+			if ( !$children.length ) {
+				$children = $elm.children();
+			}
 
 			// Reinitialize the row at the beginning of each section of equal height
 			row = [];
