@@ -279,3 +279,116 @@
 &lt;/section&gt;</code></pre>
 	</section>
 </section>
+
+
+<section>
+	<h2>Exemple ciblé à un élément imbriqué plus profondément</h2>
+	<p>l'exemple suivant fait la même chose que si la classe <code>hght-inhrt</code> serais utilisé à partir de l'élément à égaliser jusqu'à l'enfant immédiat de wb-eqht. Utiliser la classe <code>eqht-trgt</code> seulement sur l'élément à égaliser évite ces duplicatas.</p>
+	<div class="row wb-eqht">
+		<div class="col-sm-6 col-md-4">
+			<div class="well well-lg">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Colonne 1</h3>
+					</div>
+					<div class="panel-body">
+						<p>Colonne 1</p>
+						<ul>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<div class="col-sm-6 col-md-4">
+			<div class="well well-lg">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Colonne 2</h3>
+					</div>
+					<div class="panel-body">
+						<p>Colonne 2</p>
+						<ul>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+							<li>test</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-md-4">
+			<div class="well well-lg">
+				<section class="panel panel-default eqht-trgt">
+					<div class="panel-heading">
+						<h3 class="panel-title">Colonne 3</h3>
+					</div>
+					<div class="panel-body">
+						<p>Colonne 3</p>
+						<ul>
+							<li>test</li>
+							<li>test</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;div class="row wb-eqht"&gt;
+		&lt;div class="col-sm-6 col-md-4"&gt;
+			&lt;div class=&quot;well well-lg&quot;&gt;
+				&lt;section class=&quot;panel panel-default eqht-trgt&quot;&gt;
+					&lt;div class="panel-heading"&gt;
+						&lt;h3 class="panel-title"&gt;Colonne 1&lt;/h3&gt;
+					&lt;/div&gt;
+					&lt;div class="panel-body"&gt;
+						&lt;p&gt;Colonne 1&lt;/p&gt;
+						...
+					&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;div class="col-sm-6 col-md-4"&gt;
+			&lt;div class=&quot;well well-lg&quot;&gt;
+				&lt;section class=&quot;panel panel-default eqht-trgt&quot;&gt;
+					&lt;div class="panel-heading"&gt;
+						&lt;h3 class="panel-title"&gt;Colonne 2&lt;/h3&gt;
+					&lt;/div&gt;
+					&lt;div class="panel-body"&gt;
+						&lt;p&gt;Colonne 2&lt;/p&gt;
+						...
+					&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;div class="col-sm-12 col-md-4"&gt;
+			&lt;div class=&quot;well well-lg&quot;&gt;
+				&lt;section class=&quot;panel panel-default eqht-trgt&quot;&gt;
+					&lt;div class="panel-heading"&gt;
+						&lt;h3 class="panel-title"&gt;Colonne 3&lt;/h3&gt;
+					&lt;/div&gt;
+					&lt;div class="panel-body"&gt;
+						&lt;p&gt;Colonne 3&lt;/p&gt;
+						...
+					&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;</code></pre>
+	</section>
+</section>
