@@ -116,7 +116,7 @@ var componentName = "wb-menu",
 			menuitem = " role='menuitem'",
 			sectionHtml = "<li><details>" + "<summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
-				" aria-haspopup='true'> <span" + menuitem + ">" +
+				" aria-haspopup='true'><span" + menuitem + ">" +
 				$section.text() + "</span></summary>" +
 				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
 
