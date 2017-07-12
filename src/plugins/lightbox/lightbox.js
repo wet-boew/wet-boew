@@ -275,7 +275,6 @@ var componentName = "wb-lbx",
 				} else {
 					footer = document.createElement( "div" );
 					footer.setAttribute( "class", "modal-footer" );
-					footer.style.background = "#fff";
 					spanTextFtr = i18nText.tClose;
 				}
 				spanTextFtr = spanTextFtr.replace( "'", "&#39;" );
