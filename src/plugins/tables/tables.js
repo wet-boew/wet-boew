@@ -79,6 +79,9 @@ var componentName = "wb-tables",
 
 			Modernizr.load( {
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
+				testReady: function() {
+					return ( $.fn.dataTable && $.fn.dataTable.version );
+				},
 				complete: function() {
 					var $elm = $( "#" + elmId ),
 						dataTableExt = $.fn.dataTableExt;
