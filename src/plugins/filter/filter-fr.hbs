@@ -2,15 +2,22 @@
 {
 	"title": "Filtre",
 	"language": "fr",
-	"category": "Plugins",
+	"category": "Plugiciels",
 	"description": "Filtre du contenu et n'affiche que le contenu ayant un certain mot-clé.",
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"js": ["demo/post-filter"],
-	"dateModified": "2016-12-21"
+	"dateModified": "2017-07-22"
 }
 ---
+<div class="wb-prettify all-pre hide"></div>
+<ul>
+	<li><a href="#flt-section">Filtrer des items par section</a></li>
+	<li><a href="#flt-list">Filtrer une liste</a></li>
+	<li><a href="#flt-table">Filtrer un tableau</a></li>
+</ul>
+
+<h2 id="flt-section">Filtrer des items par section</h2>
 <div class="wb-filter">
 	<section id="enquete-a">
 		<h2><span class="wb-inv">Enquêtes débutant par la lettre </span>A</h2>
@@ -263,3 +270,394 @@
 		</ul>
 	</section>
 </div>
+
+
+<h3>Code source</h3>
+<pre><code>&lt;div class=&quot;wb-filter&quot;&gt;
+	&lt;section id=&quot;enquete-a&quot;&gt;
+		&lt;h2&gt;&lt;span class=&quot;wb-inv&quot;&gt;Enquêtes débutant par la lettre &lt;/span&gt;A&lt;/h2&gt;
+
+		&lt;ul class=&quot;list-unstyled&quot;&gt;
+			&lt;li&gt;Achats de grains fourragers&lt;/li&gt;
+			&lt;li&gt;Activité aéroportuaire, Enquête sur l&amp;#39;&lt;/li&gt;
+			&lt;li&gt;Activités pétrolières et gazières, Relevé trimestriel des dépenses en immobilisations&lt;/li&gt;
+			&lt;li&gt;Approvisionnement et l&amp;#39;écoulement du charbon, Enquête mensuelle sur l&amp;#39;&lt;/li&gt;
+			&lt;li&gt;Approvisionnement et l&amp;#39;écoulement de l&amp;#39;électricité, Enquête mensuelle sur l&amp;#39;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+
+	&lt;section id=&quot;enquete-b&quot;&gt;
+		&lt;h2&gt;&lt;span class=&quot;wb-inv&quot;&gt;Enquêtes débutant par la lettre &lt;/span&gt;B&lt;/h2&gt;
+
+		&lt;ul class=&quot;list-unstyled&quot;&gt;
+			&lt;li&gt;Balance des paiements internationaux du Canada&lt;/li&gt;
+			&lt;li&gt;Base tarifaire, Enquête sur la&lt;/li&gt;
+			&lt;li&gt;Biens et services environnementaux, Enquête sur les&lt;/li&gt;
+			&lt;li&gt;Bilan des investissements internationaux du Canada&lt;/li&gt;
+			&lt;li&gt;Brevets, licences et redevances fédérales, Enquête sur les&lt;/li&gt;
+			&lt;li&gt;Bureaux d&amp;#39;agents, de courtiers en immeuble, et d&amp;#39;évaluateurs de biens immobiliers et des activités liées à l&amp;#39;immobilier, Enquête annuelle sur les industries de services&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+	...
+&lt;/div&gt;</code></pre>
+
+<h2 id="flt-list">Filtrer une liste</h2>
+<ul class="wb-filter">
+	<li>Alberta</li>
+	<li>Colombie-Britannique</li>
+	<li>Île-du-Prince-Édouard</li>
+	<li>Manitoba</li>
+	<li>Nouveau-Brunswick</li>
+	<li>Nouvelle-Écosse</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Québec</li>
+	<li>Saskatchewan</li>
+	<li>Terre-Neuve-et-Labrador</li>
+	<li>Territoires du Nord-Ouest</li>
+	<li>Yukon</li>
+</ul>
+
+<h3>Source code</h3>
+<pre><code>&lt;ul class=&quot;wb-filter&quot;&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	&lt;li&gt;Colombie-Britannique&lt;/li&gt;
+	&lt;li&gt;Île-du-Prince-Édouard&lt;/li&gt;
+	&lt;li&gt;Manitoba&lt;/li&gt;
+	&lt;li&gt;Nouveau-Brunswick&lt;/li&gt;
+	&lt;li&gt;Nouvelle-Écosse&lt;/li&gt;
+	&lt;li&gt;Nunavut&lt;/li&gt;
+	&lt;li&gt;Ontario&lt;/li&gt;
+	&lt;li&gt;Québec&lt;/li&gt;
+	&lt;li&gt;Saskatchewan&lt;/li&gt;
+	&lt;li&gt;Terre-Neuve-et-Labrador&lt;/li&gt;
+	&lt;li&gt;Territoires du Nord-Ouest&lt;/li&gt;
+	&lt;li&gt;Yukon&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<h2 id="flt-table">Filtrer un tableau</h2>
+
+<table class="wb-filter table">
+	<caption>Population de grande municipalité par provinces</caption>
+	<thead>
+		<tr>
+			<th>Municipalité</th>
+			<th>Population (2016)</th>
+			<th>Population (2011)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Alberta</th>
+		</tr>
+		<tr>
+			<th>Calgary</th>
+			<td>1,239,220</td>
+			<td>1,096,833</td>
+		</tr>
+		<tr>
+			<th>Edmonton</th>
+			<td>932,546</td>
+			<td>812,201</td>
+		</tr>
+		<tr>
+			<th>Red Deer</th>
+			<td>100,418</td>
+			<td>90,564</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Colombie-Britannique</th>
+		</tr>
+		<tr>
+			<th>Vancouver</th>
+			<td>631,486</td>
+			<td>603,502</td>
+		</tr>
+		<tr>
+			<th>Surrey</th>
+			<td>517,887</td>
+			<td>468,251</td>
+		</tr>
+		<tr>
+			<th>Burnaby</th>
+			<td>232,755</td>
+			<td>233,218</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Île-du-Prince-Édouard</th>
+		</tr>
+		<tr>
+			<th>Charlottetown</th>
+			<td>N/A</td>
+			<td>34,562</td>
+		</tr>
+		<tr>
+			<th>Summerside</th>
+			<td>N/A</td>
+			<td>14,751</td>
+		</tr>
+		<tr>
+			<th>Stratford</th>
+			<td>N/A</td>
+			<td>8,574</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Manitoba</th>
+		</tr>
+		<tr>
+			<th>Winnipeg</th>
+			<td>705,224</td>
+			<td>663,617</td>
+		</tr>
+		<tr>
+			<th>Brandon</th>
+			<td>48,859</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Springfield</th>
+			<td>N/A</td>
+			<td>14,069</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Nouveau-Brunswick</th>
+		</tr>
+		<tr>
+			<th>Moncton</th>
+			<td>71,889</td>
+			<td>69,074</td>
+		</tr>
+		<tr>
+			<th>Saint John</th>
+			<td>67,575</td>
+			<td>70,063</td>
+		</tr>
+		<tr>
+			<th>Fredericton</th>
+			<td>58,220</td>
+			<td>56,224</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Nouvelle-Écosse</th>
+		</tr>
+		<tr>
+			<th>Halifax</th>
+			<td>403,131</td>
+			<td>390,096</td>
+		</tr>
+		<tr>
+			<th>Cape Breton</th>
+			<td>94,285</td>
+			<td>97,398</td>
+		</tr>
+		<tr>
+			<th>Sydney</th>
+			<td>N/A</td>
+			<td>31,597</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Nunavut</th>
+		</tr>
+		<tr>
+			<th>Iqaluit</th>
+			<td>7,740</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Arviat</th>
+			<td>2,657</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Rankin Inlet</th>
+			<td>2,842</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Ontario</th>
+		</tr>
+		<tr>
+			<th>Toronto</th>
+			<td>2,731,579</td>
+			<td>2,615,060</td>
+		</tr>
+		<tr>
+			<th>Ottawa</th>
+			<td>934,243</td>
+			<td>883,391</td>
+		</tr>
+		<tr>
+			<th>Mississauga</th>
+			<td>721,599</td>
+			<td>713,443</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Québec</th>
+		</tr>
+		<tr>
+			<th>Montréal</th>
+			<td>1,704,694</td>
+			<td>1,649,519</td>
+		</tr>
+		<tr>
+			<th>Québec</th>
+			<td>531,902</td>
+			<td>516,622</td>
+		</tr>
+		<tr>
+			<th>Laval</th>
+			<td>422,993</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Saskatchewan</th>
+		</tr>
+		<tr>
+			<th>Saskatoon</th>
+			<td>246,376</td>
+			<td>222,189</td>
+		</tr>
+		<tr>
+			<th>Regina</th>
+			<td>215,106</td>
+			<td>193,100</td>
+		</tr>
+		<tr>
+			<th>Prince Albert</th>
+			<td>35,926</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Terre-Neuve-et-Labrador</th>
+		</tr>
+		<tr>
+			<th>St. John's</th>
+			<td>108,860</td>
+			<td>106,172</td>
+		</tr>
+		<tr>
+			<th>Conception Bay South</th>
+			<td>26,199</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Mount Pearl</th>
+			<td>22,957</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Territoires du Nord-Ouest</th>
+		</tr>
+		<tr>
+			<th>Yellowknife</th>
+			<td>19,569</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Hay River</th>
+			<td>N/A</td>
+			<td>3,606</td>
+		</tr>
+		<tr>
+			<th>Inuvik</th>
+			<td>3,140</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" class="h4" colspan="3">Yukon</th>
+		</tr>
+		<tr>
+			<th>Whitehorse</th>
+			<td>25,085</td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<th>Dawson City</th>
+			<td>1,375</td>
+			<td>M/A</td>
+		</tr>
+		<tr>
+			<th>Faro</th>
+			<td>344</td>
+			<td>N/A</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h3>Source code</h3>
+<pre><code>&lt;table class=&quot;wb-filter table&quot;&gt;
+	&lt;caption&gt;Population de grande municipalité par provinces&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Municipalité&lt;/th&gt;
+			&lt;th&gt;Population (2016)&lt;/th&gt;
+			&lt;th&gt;Population (2011)&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;rowgroup&quot; class=&quot;h4&quot; colspan=&quot;3&quot;&gt;Alberta&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Calgary&lt;/th&gt;
+			&lt;td&gt;1,239,220&lt;/td&gt;
+			&lt;td&gt;1,096,833&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Edmonton&lt;/th&gt;
+			&lt;td&gt;932,546&lt;/td&gt;
+			&lt;td&gt;812,201&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Red Deer&lt;/th&gt;
+			&lt;td&gt;100,418&lt;/td&gt;
+			&lt;td&gt;90,564&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;rowgroup&quot; class=&quot;h4&quot; colspan=&quot;3&quot;&gt;Colombie-Britannique&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Vancouver&lt;/th&gt;
+			&lt;td&gt;631,486&lt;/td&gt;
+			&lt;td&gt;603,502&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Surrey&lt;/th&gt;
+			&lt;td&gt;517,887&lt;/td&gt;
+			&lt;td&gt;468,251&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Burnaby&lt;/th&gt;
+			&lt;td&gt;232,755&lt;/td&gt;
+			&lt;td&gt;233,218&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	...
+&lt;/table&gt;</code></pre>
