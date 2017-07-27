@@ -228,7 +228,11 @@ wb.i18nDict = {
 	"dismiss": "@dismiss@",
 
 	/* Template */
-	"tmpl-signin": "@tmpl-signin@"
+	"tmpl-signin": "@tmpl-signin@",
+
+	/* Filter */
+	"fltr-lbl": "@fltr-lbl@",
+	"fltr-info": "@fltr-info@"
 };
 
 } )( wb );
