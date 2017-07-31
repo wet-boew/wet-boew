@@ -39,6 +39,7 @@ module.exports = (grunt) ->
 			"sprites"
 			"css"
 			"js"
+			"string-replace"
 		]
 	)
 
@@ -309,6 +310,7 @@ module.exports = (grunt) ->
 		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: @file.readJSON "lib/jquery/bower.json"
 		jqueryOldIEVersion: @file.readJSON "lib/jquery-oldIE/bower.json"
+		MathJaxVersion: @file.readJSON "lib/MathJax/.bower.json"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -1062,6 +1064,20 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
+					cwd: "lib/MathJax"
+					src: [
+						"MathJax.js"
+						"config/**"
+						"docs/**"
+						"extensions/**"
+						"jax/**"
+						"localization/**"
+						"fonts/HTML-CSS/TeX/woff/**"
+						"fonts/HTML-CSS/TeX/otf/**"
+					]
+					dest: "<%= coreDist %>/js/MathJax/"
+					expand: true
+				,
 					cwd: "lib/jquery/dist"
 					src: "*.*"
 					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion.version %>"
@@ -1219,7 +1235,10 @@ module.exports = (grunt) ->
 				livereload: true
 			js:
 				files: "<%= eslint.all.src %>"
-				tasks: "js"
+				tasks: [
+					  "js"
+					  "string-replace"
+				]
 			css:
 				files: [
 					"src/**/*.scss"
@@ -1329,6 +1348,15 @@ module.exports = (grunt) ->
 				options:
 					testname: "Local Test - <%= grunt.template.today('yyyy-mm-dd hh:MM') %>"
 
+		"string-replace":
+			inline:
+				files:
+					'dist/wet-boew/js/': 'dist/wet-boew/js/*.js'
+				options:
+					replacements: [
+						pattern: 'BOWER_VERSION_MATHJAX'
+						replacement: '<%= MathJaxVersion.version %>'
+	        ]
 
 		"gh-pages":
 			options:
