@@ -1,0 +1,124 @@
+---
+{
+	"title": "Meter circular",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Render a meter into a circular meter styled in CSS.",
+	"altLangPrefix": "meter-circular",
+	"dateModified": "2017-08-03"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Render a meter into a circular meter styled in CSS.</p>
+
+<h2>Purpose</h2>
+<p>Circular meter are not supported yet by browser and seems to not be explicitly defined in the <a href="https://www.w3.org/TR/html52/rendering.html#the-meter-element-rendering">HTML5.2 spec</a> yet. However, the HTML5 spec provide some indication on how to <a href="https://www.w3.org/TR/html5/rendering.html#the-progress-element-0">render a circular progress ring</a> when the progress element is square.</p>
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/meter-circular/circular-en.html">English examples</a></li>
+	<li><a href="../../../demos/meter-circular/circular-fr.html">French examples</a></li>
+</ul>
+
+
+<h2>How to implement</h2>
+<p>Add the class <code>wb-meter-circular</code> to a meter element</p>
+
+<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;10&quot; max=&quot;100&quot;&gt;10 percent&lt;/meter&gt;</code></pre>
+
+<p>If the meter get updated later on through the jQuery function <code>.val()</code>, this circular meter would be immediately refreshed to represent the latest value. Changing the attribute <code>min, max, low, high, optimum</code> would not initiate a refresh, however it will be taken in consideration when a new value is set to the meter element through jQuery.</p>
+
+
+<h3>Showing the value</h3>
+<p>By default the meter value will be displayed in the center of the circular meter.<p>
+<p>Potential issue: A value number with 4 digit or more may not fully pass the <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html">WCAG success criteria 1.4.4</a> (Level AA).</p>
+
+<h3>Add a short descriptive label</h3>
+<p>A short label can be added underneath the actual meter value. What you need to do is to add an <code>aria-label</code> to the meter element.</p>
+<p>Potential issue: A long label may not fully pass the <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html">WCAG success criteria 1.4.4</a> (Level AA).</p>
+
+
+<h3>Modify the appearance</h3>
+
+<p>Built-in personalization for the circular meter is done by applying CSS class at the parent container of the meter element.</p>
+
+<dl>
+	<dt><code>mtr-grayscale</code></dt>
+	<dd>Will render the meter in gray scale</dd>
+
+	<dt><code>mtr-larger</code></dt>
+	<dd>Will enlarge the circular meter to increase the number of digit supported when displaying the value and the available space for the short label</dd>
+
+	<dt><code>mtr-smaller</code></dt>
+	<dd>Will reduce the circular meter to decrease the number of digit supported when displaying the value. Label is not recommended in this mode.</dd>
+
+</dl>
+
+<p>The meter color is set base on the attribute <code>min, max, low, high, optimum</code> defined on the meter element.</p>
+<p>A meter with a value that are in the:</p>
+<ul>
+	<li><strong>optimum region</strong> will be render in green (black for gray scale)</li>
+	<li><strong>sub-optimum region</strong> will be render in yellow (dark gray for gray scale)</li>
+	<li><strong>less good region</strong> will be render in red (light gray for gray scale)</li>
+</ul>
+
+<h2>Configuration options</h2>
+<p>Same as the configuration available for the meter element as per the HTML spec.</p>
+
+<p>Additionaly, you can modify the appereance of the circle meter by inserting the meter inside a container that have the following class</p>
+<dl>
+	<dt><code>mtr-grayscale</code></dt>
+	<dd>Will render the meter in gray scale</dd>
+
+	<dt><code>mtr-larger</code></dt>
+	<dd>Will enlarge the circular meter to increase the number of digit supported when displaying the value and the available space for the short label</dd>
+
+	<dt><code>mtr-smaller</code></dt>
+	<dd>Will reduce the circular meter to decrease the number of digit supported when displaying the value. Label is not recommended in this mode.</dd>
+</dl>
+
+<h3>Changing the circular meter value after initialization</h3>
+<p>The circular meter is bind to the meter source element. Upon value updated through the jQuery function <code>val()</code>, the circular meter will be updated and would read fresh information about the other attribute for the meter element.</p>
+
+<p>For exampple: If you run in the console, for the demo,  a command like: <code>$("meter:eq(1)").attr( "high", "80").attr( "low", "40").attr( "optimum", "85").val( 65 );</code> then that will update the second meter element with the value.</p>
+
+<h2>Events</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Event</th>
+			<th>Trigger</th>
+			<th>What it does</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>wb-init.wb-meter-circular</td>
+			<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-meter-circular" );</code>).</td>
+			<td>Used to manually initialize the circular meter on a meter element.</td>
+		</tr>
+		<tr>
+			<td><code>wb-ready.wb-meter-circular</code></td>
+			<td>Triggered automatically after the circular meter initializes.</td>
+			<td>Used to identify when the meter circular initialization is completed (target of the event)
+				<pre><code>$( document ).on( "wb-ready.wb-meter-circular", "meter", function( event ) {
+});</code></pre>
+				<pre><code>$( "meter" ).on( "wb-ready.wb-meter-circular", function( event ) {
+});</code></pre>
+			</td>
+		</tr>
+		<tr>
+			<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+			<td>Triggered automatically when WET has finished loading and executing.</td>
+			<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+				<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/meter-circular">Meter circular source code on GitHub</a></p>
