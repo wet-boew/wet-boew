@@ -32,7 +32,7 @@ var wet_boew_geomap = {
 			title: "WMS",
 			caption: "This is a sample WMS service loaded by Geomap.",
 			type: "wms",
-			url: "http://geo.weather.gc.ca/geomet/?Lang=E",
+			url: "//geo.weather.gc.ca/geomet/?Lang=E",
 			visible: false,
 			version: "1.1.1",
 			format: "image/png",
@@ -41,7 +41,7 @@ var wet_boew_geomap = {
 			options: {
 				opacity: 0.5,
 
-				//legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
+				//legendGraphicUrl: "//geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
 				legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
 						"<ul class='list-unstyled'>" +
 						"<li><span style='background-color:#800000;display:inline-block;height:20px;width:20px'/> <small>100.0</small></li>" +

@@ -18,21 +18,12 @@
 var wet_boew_geomap = {
 
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
-		/*basemap: {
-		title: "WMS-Toporama",
-		type: "wms",
-		url: "http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en",
-		version: "1.1.1",
-		format: "image/jpeg",
-		layers: "WMS-Toporama",
+	/*basemap: {
+		title:"OSM Map",
+		type:"osm",
 		mapOptions: {
-			maxExtent: "-2650000.0, -900000.0, 3600000.0, 4630000.0",
-			restrictedExtent: "-2750000.0, -1000000.0, 3700000.0, 4730000.0",
-			maxResolution: "auto",
-			projection: "EPSG:3978",
-			units: "m",
-			displayProjection: "EPSG:4269",
-			aspectRatio: 0.8
+			center: [ -123, 49 ],
+			zoomLevel: 5
 		}
 	},*/
 	overlays: [
