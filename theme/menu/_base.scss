@@ -140,6 +140,10 @@
 		}
 	}
 
+	.modal-footer {
+		background: $mb-pnl-background;
+	}
+
 	.lng-ofr {
 		@extend %wet-theme-site-menu-mb-pnl-bg;
 	}
