@@ -14,7 +14,6 @@ before_install:
   - npm --version
 
 install:
-  - cat /etc/passwd
   - npm install --quiet
 
 script:
