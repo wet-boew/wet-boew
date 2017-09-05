@@ -7,7 +7,7 @@ fi
 run () {
 	docker run -it \
 	  -w "/home/node/app" \
-	  -u node \
+	  -u `id -u $USER` \
 	  -v "${PWD}":"/home/node/app" \
 	  -v $HOME/.gitconfig:/home/node/.gitconfig \
 	  -v $HOME/.npmrc:/home/node/.npmrc \
