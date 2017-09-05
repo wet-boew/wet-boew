@@ -14,7 +14,7 @@ before_install:
   - npm --version
 
 install:
-  - cat script/docker/env
+  - id -u ${whomai}
   - npm install --quiet
 
 script:
