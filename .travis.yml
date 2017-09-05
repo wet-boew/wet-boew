@@ -14,6 +14,7 @@ before_install:
   - npm --version
 
 install:
+  - echo "${PWD}"
   - npm install --quiet
 
 script:
