@@ -15,6 +15,9 @@
     "platform": "Mac 10.9"
 },{
     "browserName": "chrome",
+    "platform": "windows 8.1"
+},{
+    "browserName": "chrome",
     "platform": "Windows 7"
 },{
     "browserName": "safari",
@@ -31,4 +34,5 @@
     "browserName": "internet explorer",
     "platform": "Windows 8.1",
     "version": "11"
+
 }]
