@@ -4,7 +4,7 @@
 mocha.setup( "bdd" );
 wb.doc.on( "wb-ready.wb", function() {
 
-	var runner = mocha.run(),
+	//var runner = mocha.run(),
 		failedTests = [];
 
 	runner.on( "end", function() {
