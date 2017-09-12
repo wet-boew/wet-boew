@@ -1,3 +1,14 @@
+/*colour 
+(the lowest number is very dark in the same colour's name 
+Ex darkBlue-1:#114f7a and darkBlue-2:#176ca7)*/
+
+$darkBlue-1:     #114f7a;
+$darkBlue-2:     #176ca7;
+$veryDarkGray-1:   #333;
+$veryDarkGray-2:   #474747;
+$white:          #fff;
+$darkGray:       #777;
+
 /*
  Banner
  */
@@ -8,14 +19,14 @@
 }
 
 #wb-bnr {
-	background: #114f7a;
-	background: linear-gradient(#176ca7, #114f7a);
+	background: $darkBlue-1;
+	background: linear-gradient(#176ca7, $darkBlue-1);
 }
 
 #wb-bar {
-	background: #474747;
-	border-bottom: 1px solid #fff;
-	color: #fff;
+	background: $veryDarkGray-2;
+	border-bottom: 1px solid $white;
+	color: $white;
 	min-height: 2.2em;
 	z-index: 1;
 }
@@ -26,7 +37,7 @@
 	margin: 0;
 
 	li {
-		border-left: 1px solid #777;
+		border-left: 1px solid $darkGray;
 		float: left;
 		list-style-type: none;
 		padding: 6px 15px;
@@ -37,7 +48,7 @@
 	}
 
 	a {
-		color: #fff;
+		color: $white;
 		text-decoration: none;
 	}
 }
@@ -53,7 +64,7 @@
 		}
 
 		a {
-			color: #474747;
+			color: $veryDarkGray-2;
 			display: block;
 			font-size: 1.5em;
 			line-height: 1em;
@@ -71,11 +82,11 @@
 
 #wb-sttl {
 	a {
-		color: #fff;
+		color: $white;
 		font-size: 1.9em;
 		line-height: normal;
 		text-decoration: none;
-		text-shadow: 1px 1px 1px #333;
+		text-shadow: 1px 1px 1px $veryDarkGray-1;
 	}
 
 	small {
