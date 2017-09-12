@@ -8,7 +8,7 @@
   "description": "Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)",
   "keywords": [
     "i18n",
-    "a11y",
+    //"a11y",
     "wet-boew",
     "bootstrap"
   ],
