@@ -428,7 +428,7 @@ module.exports = (grunt) ->
 						lang = filepath.replace grunt.config( "coreDist" ) + "/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
-						validationPath = "lib/jquery-validation/src/localization/"
+						validationPath = "node_modules/jquery-validation/dist/localization/"
 
 						# Check and append message file
 						messagesPath = validationPath + "messages_" + lang
@@ -1059,14 +1059,23 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"jquery-validation/dist/jquery.validate.js"
-						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
 						"unorm/lib/unorm.js"
+					]
+					dest: "<%= coreDist %>/js/deps"
+					rename: (dest, src) ->
+						return dest + "/" + src.replace ".debug", ""
+					expand: true
+					flatten: true
+				,
+					cwd: "node_modules"
+					src: [
+						"jquery-validation/dist/jquery.validate.js"
+						"jquery-validation/dist/additional-methods.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					rename: (dest, src) ->
