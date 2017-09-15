@@ -22,7 +22,6 @@
     "lib"
   ],
   "dependencies": {
-    "DataTables": "1.10.13",
     "excanvas": "*",
     "flot": "0.8.3",
     "magnific-popup": "https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
