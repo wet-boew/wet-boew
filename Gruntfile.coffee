@@ -1054,7 +1054,6 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib"
 					src: [
-						"jquery-pjax/jquery.pjax.js"
 						"flot/jquery.flot.js"
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
