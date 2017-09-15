@@ -93,6 +93,7 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 #			"modernizr"
+			"wget:jqueryOldIE"
 		]
 	)
 
@@ -308,8 +309,8 @@ module.exports = (grunt) ->
 		pkg: @file.readJSON "package.json"
 		coreDist: "dist/wet-boew"
 		themeDist: "dist/theme-wet-boew"
-		jqueryVersion: @file.readJSON "lib/jquery/bower.json"
-		jqueryOldIEVersion: @file.readJSON "lib/jquery-oldIE/bower.json"
+		jqueryVersion: "<%= pkg.devDependencies.jquery %>"
+		jqueryOldIEVersion: "1.11.1"
 		MathJaxVersion: @file.readJSON "lib/MathJax/.bower.json"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
@@ -351,6 +352,17 @@ module.exports = (grunt) ->
 					overwrite: true
 				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
 				dest: "src/i18n/i18n.csv"
+
+			jqueryOldIE:
+				options:
+					baseUrl: "https://ajax.googleapis.com/ajax/libs/jquery/<%= jqueryOldIEVersion %>/"
+					overwrite: true
+				src: [
+					"jquery.js"
+					"jquery.min.js"
+					"jquery.min.map"
+				]
+				dest: "lib/jquery-oldIE"
 
 		concat:
 			options:
@@ -468,8 +480,8 @@ module.exports = (grunt) ->
 				layout: "default.hbs"
 				environment:
 					root: "/v4.0-ci/unmin"
-					jqueryVersion: "<%= jqueryVersion.version %>"
-					jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					jqueryVersion: "<%= jqueryVersion %>"
+					jqueryOldIEVersion: "<%= jqueryOldIEVersion %>"
 				assets: "dist/unmin"
 
 			theme:
@@ -1076,14 +1088,14 @@ module.exports = (grunt) ->
 					dest: "<%= coreDist %>/js/MathJax/"
 					expand: true
 				,
-					cwd: "lib/jquery/dist"
+					cwd: "node_modules/jquery/dist"
 					src: "*.*"
-					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion.version %>"
+					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion %>"
 					expand: true
 				,
 					cwd: "lib/jquery-oldIE/dist"
 					src: "*.*"
-					dest: "<%= coreDist %>/js/jquery/<%= jqueryOldIEVersion.version %>"
+					dest: "<%= coreDist %>/js/jquery/<%= jqueryOldIEVersion %>"
 					expand: true
 				,
 					cwd: "src"
@@ -1234,8 +1246,8 @@ module.exports = (grunt) ->
 			js:
 				files: "<%= eslint.all.src %>"
 				tasks: [
-					  "js"
-					  "string-replace"
+					"js"
+					"string-replace"
 				]
 			css:
 				files: [
@@ -1354,7 +1366,7 @@ module.exports = (grunt) ->
 					replacements: [
 						pattern: 'BOWER_VERSION_MATHJAX'
 						replacement: '<%= MathJaxVersion.version %>'
-	        ]
+					]
 
 		"gh-pages":
 			options:
