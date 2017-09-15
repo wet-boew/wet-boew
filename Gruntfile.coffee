@@ -1002,7 +1002,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
+				cwd: "node_modules/bootstrap-sass/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "<%= coreDist %>/fonts"
 				expand: true
