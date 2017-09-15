@@ -1060,7 +1060,6 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
-						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
 						"unorm/lib/unorm.js"
 					]
@@ -1074,6 +1073,7 @@ module.exports = (grunt) ->
 					src: [
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
+						"proj4/dist/proj4.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					rename: (dest, src) ->
