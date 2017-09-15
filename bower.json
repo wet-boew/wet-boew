@@ -31,7 +31,6 @@
     "components/MathJax": "2.7.1",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.3.3",
-    "selectivizr": "1.0.2",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git",
     "unorm": "^1.4.1"
   },
