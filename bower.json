@@ -27,7 +27,6 @@
     "excanvas": "*",
     "flot": "0.8.3",
     "google-code-prettify": "1.0.4",
-    "html5shiv": "3.7.2",
     "jquery-pjax": "1.9.6",
     "magnific-popup": "https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
     "components/MathJax": "2.7.1",
