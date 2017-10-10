@@ -260,6 +260,7 @@ $mm-volume-thumb-width: 10px;
 		/* Important Thing */
 		-webkit-appearance: none;
 		background: $mm-progress-bg-color;
+		background-clip: padding-box;
 		border: 7px solid #3e3e3e;
 		border-radius: 14px;
 		color: $mm-progress-fg-color;
@@ -326,6 +327,8 @@ $mm-volume-thumb-width: 10px;
 			}
 
 			&::-ms-track {
+				border: 0;
+				color: transparent;
 				height: 4px;
 			}
 
