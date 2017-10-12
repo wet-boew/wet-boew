@@ -56,7 +56,7 @@ $tab-margin-width: 10px;
 					@extend %carousel-tabpanel-link-outline-common;
 					height: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
 					margin: 2px;
-					outline-color: #FFF;
+					outline-color: $carousel-tabpanel-outline-color-inner;
 					width: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
 				}
 
@@ -84,6 +84,13 @@ $tab-margin-width: 10px;
 }
 
 %carousel-tabpanel-video {
+	.display {
+		&:focus-within {
+			outline: 1px dotted $carousel-tabpanel-outline-color-inner;
+			outline-offset: -2px;
+		}
+	}
+
 	video {
 		&:focus {
 			outline-offset: -1px;
