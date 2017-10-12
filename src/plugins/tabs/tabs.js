@@ -549,9 +549,11 @@ var componentName = "wb-tabs",
 	onShift = function( event, $elm ) {
 		var data = $elm.data( componentName ),
 			$panels = data.panels,
+			// event.changeFocus=false avoids to change the focus even if event.shiftto is set
+			changeFocus = ( event.changeFocus === undefined )?true:event.changeFocus,
 			len = $panels.length,
 			current = $elm.find( "> .tabpanels > .in" ).prevAll( "[role=tabpanel]" ).length,
-			autoCycle = !event.shiftto,
+			autoCycle = !event.shiftto || !changeFocus,
 			next = current > len ? 0 : current + ( autoCycle ? 1 : event.shiftto );
 
 		onSelect( $panels[ ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id, autoCycle );
