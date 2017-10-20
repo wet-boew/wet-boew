@@ -321,7 +321,7 @@ $document.on( "click vclick touchstart", ".cal-month-prev, .cal-month-next", fun
 		type: navigateEvent,
 		year: date.getFullYear(),
 		month: date.getMonth()
-	} );
+	} ).trigger("focusin");
 } );
 
 $document.on( "keydown", selector, function( event ) {
