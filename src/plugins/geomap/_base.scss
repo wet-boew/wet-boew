@@ -279,7 +279,7 @@
 }
 
 .ol-viewport .ol-unselectable {
-	-khtml-user-select: none;
+	/* -khtml-user-select: none; sasslint doesn't like this */
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-webkit-tap-highlight-color: transparent;
