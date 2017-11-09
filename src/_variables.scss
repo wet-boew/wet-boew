@@ -21,7 +21,7 @@ $wb-assets-path: "#{$wb-core-path}/assets" !default;
 //## Gray and brand colors for use across the application.
 
 // Bootstrap Overrides
-$gray-light: #767676;
+$gray-light: #767676 !default;
 
 $brand-primary: #2572b4 !default;
 $brand-success: #1b6c1c !default;
@@ -30,11 +30,11 @@ $brand-warning: #f2d40d !default;
 $brand-danger: #bc3331 !default;
 
 // WET Custom
-$clrWhite: #fff;
-$clrLight: #eee;
-$clrMedium: #ccc;
-$clrDark: #555;
-$clrDarkBlue: #243850;
+$clrWhite: #fff !default;
+$clrLight: #eee !default;
+$clrMedium: #ccc !default;
+$clrDark: #555 !default;
+$clrDarkBlue: #243850 !default;
 
 
 //== Scaffolding
@@ -64,7 +64,7 @@ $font-scale-lg: 1.125 !default;
 $font-scale-sm: .875 !default;
 
 // Bootstrap Overrides
-$font-size-base: 16px;
+$font-size-base: 16px !default;
 $font-size-large: ceil($font-size-base * $font-scale-lg) !default;
 $font-size-small: ceil($font-size-base * $font-scale-sm) !default;
 
@@ -186,7 +186,7 @@ $cal-mnth-arrows-color: $clrWhite !default;
 $cal-mnth-arrows-disabled-color: $clrMedium !default;
 $cal-dow-bg: $clrDark !default;
 $cal-dow-color: $clrWhite !default;
-$cal-dow-border: 1px solid #333;
+$cal-dow-border: 1px solid #333 !default;
 $cal-day-bg: $clrWhite !default;
 $cal-day-color: #000 !default;
 $cal-day-hover-bg: #333 !default;
@@ -252,7 +252,7 @@ $tablist-active-link-border-width: 4px 0 0 0 !default;
 $tablist-screen-sm-border-color: $tablist-border-color !default;
 $tablist-screen-sm-border-style: solid !default;
 $tablist-screen-sm-border-width: 1px !default;
-$tablist-screen-sm-border-radius: 4px;
+$tablist-screen-sm-border-radius: 4px !default;
 $tablist-screen-sm-seperator-border-color: $tablist-screen-sm-border-color !default;
 $tablist-screen-sm-seperator-border-style: $tablist-screen-sm-border-style !default;
 $tablist-screen-sm-seperator-border-width: $tablist-screen-sm-border-width !default;
@@ -292,10 +292,10 @@ $txthl-font-weight: 700 !default;
 //== Overlay
 //
 //##
-$overlay-background-color: #fff;
-$overlay-header-background-color: #2e5274;
-$overlay-header-color: #fff;
-$overlay-bar-background-color: #000;
+$overlay-background-color: #fff !default;
+$overlay-header-background-color: #2e5274 !default;
+$overlay-header-color: #fff !default;
+$overlay-bar-background-color: #000 !default;
 
 
 //
@@ -305,9 +305,9 @@ $overlay-bar-background-color: #000;
 //== Mobile menu
 //
 //##
-$mb-pnl-background: #193451;
-$mb-pnl-header-background: $overlay-header-background-color;
-$mb-pnl-header-color: $overlay-header-color;
-$mb-pnl-body-background: #0e4164;
-$mb-pnl-body-color: #fff;
-$mb-pnl-body-link-color: #fff;
+$mb-pnl-background: #193451 !default;
+$mb-pnl-header-background: $overlay-header-background-color !default;
+$mb-pnl-header-color: $overlay-header-color !default;
+$mb-pnl-body-background: #0e4164 !default;
+$mb-pnl-body-color: #fff !default;
+$mb-pnl-body-link-color: #fff !default;
