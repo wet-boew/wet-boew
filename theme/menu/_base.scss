@@ -1,15 +1,16 @@
 /*
  * Site menu
  */
+
 %wet-theme-wb-sm-wb-navcurr {
-	background: #0b3048;
-	color: #fff;
+	background: $wet-theme-wb-sm-wb-navcurr-background;
+	color: $wet-theme-wb-sm-wb-navcurr-color;
 }
 
 %wet-theme-wb-menu-hover-active {
-	background: #ccc;
-	border-color: #ccc;
-	color: #000;
+	background: $wet-theme-wb-menu-hover-active-background;
+	border-color: $wet-theme-wb-menu-hover-active-border-color;
+	color: $wet-theme-wb-menu-hover-active-color;
 }
 
 #wb-sm {
@@ -18,13 +19,13 @@
 
 	.menu {
 		margin-bottom: 0;
-		text-shadow: 1px 1px 1px #666;
+		text-shadow: 1px 1px 1px $wb-sm-menu-text-shadow;
 
 		> {
 			li {
 				> {
 					a {
-						border-left: 1px solid #999;
+						border-left: 1px solid $wb-sm-menu-li-a-border-left;
 						color: $mb-pnl-body-link-color;
 
 						&.wb-navcurr {
@@ -41,7 +42,7 @@
 				&:last-child {
 					> {
 						a {
-							border-right: 1px solid #999;
+							border-right: 1px solid $wb-sm-menu-li-last-child-border-right;
 						}
 					}
 				}
@@ -59,8 +60,8 @@
 
 	.sm {
 		&.open {
-			background: #ccc;
-			border-bottom: 5px solid #243850;
+			background: $wb-sm-sm-open-background;
+			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
 			border-left: 0;
 			border-right: 0;
 			padding: 0;
@@ -70,7 +71,7 @@
 				summary {
 					border-left: 0;
 					border-right: 0;
-					color: #444;
+					color: $wb-sm-sm-open-li-summary-color;
 					padding: 5px 10px;
 					text-decoration: none;
 					text-shadow: none;
@@ -88,7 +89,7 @@
 
 			.slflnk {
 				a {
-					background: #bbb;
+					background: $wb-sm-sm-open-slflnk-a;
 				}
 			}
 		}
@@ -97,7 +98,7 @@
 			background: transparent;
 
 			a {
-				color: #6e6e6e;
+				color: $wb-sm-sm-row-a-color;
 			}
 		}
 	}
@@ -120,7 +121,7 @@
 	.modal-header {
 		background: $mb-pnl-header-background;
 		border: 0;
-		border-bottom: 1px solid #072337;
+		border-bottom: 1px solid $mb-pnl-modal-header-border-bottom;
 		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, .3), 3px 3px 3px -2px rgba(0, 0, 0, .3), -3px 3px 3px -2px rgba(0, 0, 0, .3);
 		color: $mb-pnl-header-color;
 	}
@@ -152,7 +153,7 @@
 		&:hover,
 		&:focus {
 			background: transparent;
-			color: #fff;
+			color: $mb-pnl-summary-focus-color;
 		}
 	}
 
@@ -172,11 +173,11 @@
 	}
 
 	.sec-pnl {
-		background: #cdd4da;
+		background: $mb-pnl-sec-pnl-background;
 
 		a,
 		summary {
-			color: #2e5576;
+			color: $mb-pnl-sec-pnl-summary-color;
 		}
 	}
 
@@ -185,7 +186,7 @@
 	}
 
 	.info-pnl {
-		border-top: 2px solid #061e38;
+		border-top: 2px solid $mb-pnl-info-pnl-border-top;
 	}
 }
 
