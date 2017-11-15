@@ -1,0 +1,208 @@
+---
+{
+	"title": "Filter",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Filters through content and only show content that match a certain keyword.",
+	"altLangPrefix": "filter",
+	"dateModified": "2017-07-21"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<section>
+	<h2>Purpose</h2>
+	<p>Filters through content and only show content that match a certain keyword.</p>
+</section>
+
+<section>
+	<h2>Use when</h2>
+	<ul>
+		<li>Filter an exhaustive list
+		<li>Filter items structured uniformly in several sub-sections</li>
+		<li>Filter a datatable or a row grouped datatable.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<p><a href="../../../demos/filter/filter-en.html">English example</a></p>
+	<p><a href="../../../demos/filter/filter-fr.html">French example</a></p>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+
+	<ol>
+		<li>
+			<p>Add a <code>class="wb-filter"</code> to an element or a grouped of elements to be filter.</p>
+			<dl>
+				<dt>If set on a <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> or <code>&lt;div&gt;</code> element</dt>
+				<dd>Otherwise specified, it will filter and search for content in <code>&lt;li&gt;</code> then hide the group, default sub <code>&lt;section&gt;</code>, if there is not more list item</dd>
+
+				<dt>If set on a <code>&lt;table&gt;</code> with multiple <code>&lt;tbody&gt;</code></dt>
+				<dd>Otherwise specified, it will filter rows and search for content in <code>&lt;th&gt;</code> contained in <code>&lt;tbody&gt;</code> except the row containing <code>&lt;th& scope="rowgroup|row"gt;</code>. It is assumed those row is used to identify the row group header as the default scope for a row is "row".</dd>
+
+				<dt>If set on any other element, like <code>&lt;ul&gt;</code> or <code>&lt;table&gt;</code> with one or zero <code>&lt;tbody&gt;</code></dt>
+				<dd>Otherwise specified, it will filter and search on <code>&lt;li&gt;</code> or on <code>&lt;tr&gt;</code> in <code>&lt;tbody&gt;</code> for tables</dd>
+			</dl>
+		</li>
+		<li>Test the feature to see if it is properly configured and show correctly the number of total entries and the same upon filtering. If the number match, you are done.</li>
+		<li>In the scenario of those number don't match or you want to filter in a complex design, see the feature configuration below and make your own adjustment.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Use a Callback to filter items</h2>
+	<pre><code>( function() {
+
+	window[ &quot;wb-filter&quot; ] = {
+
+		/*
+		 * Filter Callback, called after items are filtered
+		 *
+		 * @$field: jQuery object of the search input field
+		 * @elm: jQuery object of the element where the filter is applied
+		 * @settings: JSON object of the user setting set on plugin initialisation
+		 */
+		filterCallback: function( $field, $elm, settings ) {
+			var $sections =	$elm.find( &quot;section&quot; ),
+				sectionsLength = $sections.length,
+				s, $section;
+
+			for ( s = 0; s &lt; sectionsLength; s += 1 ) {
+				$section = $sections.eq( s );
+
+				if ( $section.find( settings.selector + &quot;:visible&quot; ).length === 0 ) {
+					$section.addClass( &quot;wb-fltr-out&quot; );
+				}
+			}
+		}
+	};
+} )();</code></pre>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>All configuration options of the plugin are controlled by the <code>data-wb-filter</code> attribute or <code>window[ "wb-filter" ]</code>. Multiple jQuery selection "," are not supported by this feature and may produce unexpected result.</p>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>selector</code></td>
+				<td>Sets the item selector that it will search in and hidden if not found.</td>
+				<td>Provide a valid jQuery selector.</td>
+				<td>
+					<dl>
+						<dt>None (default for list, section, div, article):</dt>
+						<dd><code>li</code></dd>
+						<dt>None (default for table with one tbody):</dt>
+						<dd><code>tr</code></dd>
+						<dt>None (default for table with tbodies):</dt>
+						<dd><code>tr:not(:has(th[scope]))</code></dd>
+						<dt>jQuery selector:</dt>
+						<dd>Any valid jQuery selector relative to where the plugin is initialized or the section selector.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>section</code></td>
+				<td>Sets the selector for the grouping of items. When defined, the "selector" will be relatively to that group. When no filter callback is defined, it identify the group to hide if all sub-items are not visible.</td>
+				<td>Provide a valid jQuery selector.</td>
+				<td>
+					<dl>
+						<dt>None (default for list):</dt>
+						<dd>Undefined</dd>
+						<dt>None (default for section, div, article):</dt>
+						<dd><code>&gt;section</code></dd>
+						<dt>None (default for table):</dt>
+						<dd><code>&gt;tbody</code></dd>
+						<dt>jQuery selector:</dt>
+						<dd>Any valid jQuery selector relative to where the plugin is initialized.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>hdnparentuntil</code></td>
+				<td>A selector used to hide the parent, when an items need to be filtered out, until it reaches the matched element by the selector excluding the matching selector.</td>
+				<td>Provide a valid jQuery selector.</td>
+				<td>
+					<dl>
+						<dt>None:</dt>
+						<dd>Undefined</dd>
+						<dt>None (default for table with tbodies):</dt>
+						<dd><code>tbody</code></dd>
+						<dt>jQuery selector:</dt>
+						<dd>Any valid jQuery selector relative to the selected items when it need to be hidden.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>filterCallback</code></td>
+				<td>Sets the a callback function called after the filtering. See the above code sample.</td>
+				<td>Provide a javascript function.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Will use the default callback</dd>
+						<dt>function:</dt>
+						<dd>Will be call on each time a filter is applied.</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>Document the public events that can be used by implementers or developers.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-filter</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-filter" ).trigger( "wb-init.wb-filter" );</code>).</td>
+				<td>Initializes the plugin the filter and create the user interface (UI). <strong>Note:</strong> the filter plugin will be initialized automatically unless the <code>.wb-filter</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-filter</code></td>
+				<td>Triggered automatically after the filter plugin initializes.</td>
+				<td>Used to identify when and where the filter plugin initializes (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-filter", ".wb-filter", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-filter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code></td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/filter">Filter source code on GitHub</a></p>
+</section>

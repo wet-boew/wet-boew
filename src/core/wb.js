@@ -24,7 +24,7 @@ var getUrlParts = function( url ) {
 			host: a.host,
 			hostname: a.hostname,
 			port: a.port,
-			pathname: a.pathname,
+			pathname: a.pathname.replace( /^([^\/])/, "/$1" ), // Prefix pathname with a slash in browsers that don't natively do it (i.e. all versions of IE and possibly early versions of Edge). See pull request #8110.
 			protocol: a.protocol,
 			hash: a.hash,
 			search: a.search,
@@ -403,6 +403,18 @@ var getUrlParts = function( url ) {
 
 		stripWhitespace: function( str ) {
 			return str.replace( /\s+/g, "" );
+		},
+
+		// Core function to deal with the dependency racing issue
+		whenLibReady: function( testCallback, readyCallback ) {
+			if ( testCallback() ) {
+				readyCallback();
+			} else {
+				setTimeout( function() {
+					wb.whenLibReady( testCallback, readyCallback );
+				}, 50 );
+			}
+
 		}
 	};
 
@@ -460,6 +472,28 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
 	resourceObj.url = paths.js + "/" + resourceObj.url + lang + paths.mode + ".js";
 	return resourceObj;
 } );
+
+/*-----------------------------
+ * Deps loading, call "complete" callback when the deps is ready if a testReady is defined
+ *-----------------------------*/
+wb.modernizrLoad = Modernizr.load;
+Modernizr.load = function( options ) {
+	var i, i_len, i_cache,
+		testReady, complete;
+	if ( !$.isArray( options ) ) {
+		options = [ options ];
+	}
+	i_len = options.length;
+	for ( i = 0; i !== i_len; i += 1 ) {
+		i_cache = options[ i ];
+		testReady = i_cache.testReady;
+		complete = i_cache.complete;
+		if ( testReady && complete ) {
+			i_cache.complete = wb.whenLibReady( testReady, complete );
+		}
+	}
+	wb.modernizrLoad( options );
+};
 
 /*-----------------------------
  * Modernizr Polyfill Loading
@@ -529,6 +563,9 @@ Modernizr.load( [
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( {
 						load: "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible",
+						testReady: function() {
+							return ( window.MathJax && window.MathJax.isReady );
+						},
 						complete: function() {
 
 							// Identify that initialization has completed
@@ -554,6 +591,9 @@ Modernizr.load( [
 		nope: "plyfll!svg.min.js"
 	}, {
 		load: "i18n!i18n/",
+		testReady: function() {
+			return wb.i18nDict.tphp;
+		},
 		complete: function() {
 			wb.start();
 		}

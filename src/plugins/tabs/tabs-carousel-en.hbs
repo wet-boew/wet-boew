@@ -7,7 +7,7 @@
 	"tag": "tabs, carousel",
 	"parentdir": "tabs",
 	"altLangPrefix": "tabs-carousel",
-	"dateModified": "2014-08-01"
+	"dateModified": "2017-10-02"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -591,44 +591,42 @@
 	<h2>CSS Transitions</h2>
 	<section>
 		<h3 id="fade">Fade example (<code>fade</code>)</h3>
-		<div class="row">
-			<div class="wb-tabs carousel-s2 fast">
-				<ul role="tablist">
-					<li class="active"><a href="#panel21">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
-					<li><a href="#panel22">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
-					<li><a href="#panel23">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
-				</ul>
-				<div class="tabpanels">
-					<div role="tabpanel" id="panel21" class="in fade">
-						<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
-							<figure>
-								<img src="img/protect-environment.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Renewal of the Aviation Document Booklet.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel22" class="out fade">
-						<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
-							<figure>
-								<img src="img/banff.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel23" class="out fade">
-						<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
-							<figure>
-								<img src="img/investinourfuture.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Tanker Safety Expert Panel.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
+		<div class="wb-tabs carousel-s2 fast">
+			<ul role="tablist">
+				<li class="active"><a href="#panel21">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
+				<li><a href="#panel22">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
+				<li><a href="#panel23">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
+			</ul>
+			<div class="tabpanels">
+				<div role="tabpanel" id="panel21" class="in fade">
+					<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
+						<figure>
+							<img src="img/protect-environment.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Renewal of the Aviation Document Booklet.</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel22" class="out fade">
+					<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
+						<figure>
+							<img src="img/banff.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel23" class="out fade">
+					<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
+						<figure>
+							<img src="img/investinourfuture.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Tanker Safety Expert Panel.</p>
+							</figcaption>
+						</figure>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -637,22 +635,20 @@
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;div class=&quot;row&quot;&gt;
-	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
-		&lt;ul role=&quot;tablist&quot;&gt;
-			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel21&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href=&quot;#panel22&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
-			...
-		&lt;/ul&gt;
-		&lt;div class=&quot;tabpanels&quot;&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel21&quot; class=&quot;in fade&quot;&gt;
-				...
-			&lt;/div&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel22&quot; class=&quot;out fade&quot;&gt;
-				...
-			&lt;/div&gt;
+				<pre><code>&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel21&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#panel22&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel21&quot; class=&quot;in fade&quot;&gt;
 			...
 		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel22&quot; class=&quot;out fade&quot;&gt;
+			...
+		&lt;/div&gt;
+		...
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 			</details>
@@ -661,44 +657,42 @@
 
 	<section>
 		<h3 id="slide">Slide - Horizontal example (<code>slide</code>)</h3>
-		<div class="row">
-			<div class="wb-tabs carousel-s2 fast">
-				<ul role="tablist">
-					<li class="active"><a href="#panel24">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
-					<li><a href="#panel25">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
-					<li><a href="#panel26">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
-				</ul>
-				<div class="tabpanels">
-					<div role="tabpanel" id="panel24" class="slide in">
-						<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
-							<figure>
-								<img src="img/protect-environment.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Renewal of the Aviation Document Booklet.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel25" class="slide out">
-						<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
-							<figure>
-								<img src="img/banff.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel26" class="slide out">
-						<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
-							<figure>
-								<img src="img/investinourfuture.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Tanker Safety Expert Panel.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
+		<div class="wb-tabs carousel-s2 fast">
+			<ul role="tablist">
+				<li class="active"><a href="#panel24">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
+				<li><a href="#panel25">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
+				<li><a href="#panel26">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
+			</ul>
+			<div class="tabpanels">
+				<div role="tabpanel" id="panel24" class="slide in">
+					<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
+						<figure>
+							<img src="img/protect-environment.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Renewal of the Aviation Document Booklet.</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel25" class="slide out">
+					<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
+						<figure>
+							<img src="img/banff.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel26" class="slide out">
+					<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
+						<figure>
+							<img src="img/investinourfuture.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Tanker Safety Expert Panel.</p>
+							</figcaption>
+						</figure>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -707,22 +701,20 @@
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;div class=&quot;row&quot;&gt;
-	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
-		&lt;ul role=&quot;tablist&quot;&gt;
-			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel24&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href=&quot;#panel25&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
-			...
-		&lt;/ul&gt;
-		&lt;div class=&quot;tabpanels&quot;&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel24&quot; class=&quot;slide in&quot;&gt;
-				...
-			&lt;/div&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel25&quot; class=&quot;slide out&quot;&gt;
-				...
-			&lt;/div&gt;
+				<pre><code>&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel24&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#panel25&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel24&quot; class=&quot;slide in&quot;&gt;
 			...
 		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel25&quot; class=&quot;slide out&quot;&gt;
+			...
+		&lt;/div&gt;
+		...
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 			</details>
@@ -731,44 +723,42 @@
 
 	<section>
 		<h3 id="slidevert">Slide - Vertical example (<code>slidevert</code>)</h3>
-		<div class="row">
-			<div class="wb-tabs carousel-s2 fast">
-				<ul role="tablist">
-					<li class="active"><a href="#panel27">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
-					<li><a href="#panel28">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
-					<li><a href="#panel29">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
-				</ul>
-				<div class="tabpanels">
-					<div role="tabpanel" id="panel27" class="slidevert in">
-						<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
-							<figure>
-								<img src="img/protect-environment.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Renewal of the Aviation Document Booklet.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel28" class="slidevert out">
-						<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
-							<figure>
-								<img src="img/banff.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-					<div role="tabpanel" id="panel29" class="slidevert out">
-						<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
-							<figure>
-								<img src="img/investinourfuture.jpg" alt="" />
-								<figcaption>
-									<p>Take Note: Tanker Safety Expert Panel.</p>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
+		<div class="wb-tabs carousel-s2 fast">
+			<ul role="tablist">
+				<li class="active"><a href="#panel27">Tab 1: Take Note: Renewal of the Aviation Document Booklet.</a></li>
+				<li><a href="#panel28">Tab 2: Take Note: Grade Crossing Improvement Program (GCIP).</a></li>
+				<li><a href="#panel29">Tab 3: Take Note: Tanker Safety Expert Panel.</a></li>
+			</ul>
+			<div class="tabpanels">
+				<div role="tabpanel" id="panel27" class="slidevert in">
+					<a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm">
+						<figure>
+							<img src="img/protect-environment.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Renewal of the Aviation Document Booklet.</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel28" class="slidevert out">
+					<a href="http://www.tc.gc.ca/eng/railsafety/publications-46.htm">
+						<figure>
+							<img src="img/banff.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Grade Crossing Improvement Program (GCIP).</p>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+				<div role="tabpanel" id="panel29" class="slidevert out">
+					<a href="http://www.tc.gc.ca/eng/tankersafetyexpertpanel/menu.htm">
+						<figure>
+							<img src="img/investinourfuture.jpg" alt="" />
+							<figcaption>
+								<p>Take Note: Tanker Safety Expert Panel.</p>
+							</figcaption>
+						</figure>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -777,22 +767,20 @@
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;div class=&quot;row&quot;&gt;
-	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
-		&lt;ul role=&quot;tablist&quot;&gt;
-			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel27&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href=&quot;#panel28&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
-			...
-		&lt;/ul&gt;
-		&lt;div class=&quot;tabpanels&quot;&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel27&quot; class=&quot;slidevert in&quot;&gt;
-				...
-			&lt;/div&gt;
-			&lt;div role=&quot;tabpanel&quot; id=&quot;panel28&quot; class=&quot;slidevert out&quot;&gt;
-				...
-			&lt;/div&gt;
+				<pre><code>&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel27&quot;&gt;Tab 1: ...&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#panel28&quot;&gt;Tab 2: ...&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel27&quot; class=&quot;slidevert in&quot;&gt;
 			...
 		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel28&quot; class=&quot;slidevert out&quot;&gt;
+			...
+		&lt;/div&gt;
+		...
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 			</details>

@@ -3,6 +3,7 @@ options:
   merge-default-rules: false
 rules:
   class-name-format: 0
+  final-newline: 2
   function-name-format: 0
   id-name-format: 0
   indentation:
