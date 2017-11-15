@@ -580,11 +580,9 @@ module.exports = (grunt) ->
 			all:
 				expand: true
 				src: [
-						"**/*.scss"
-						"!lib/**"
-						"!node_modules/**"
-						"!dist/**"
-						"!wet-boew-dist/**"
+						"site/**/*.scss"
+						"src/**/*.scss"
+						"theme/**/*.scss"
 						"!src/**/sprites/**"
 					]
 
