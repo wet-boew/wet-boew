@@ -12,4 +12,58 @@ $main-bg: $breadcrumb-bg; // Main element's background colour (WET override).
 // Sign in / off
 $wb-so-background-color: #fff;
 
+/*Banner*/
+$wb-bnr-background-color: #114f7a; /*Dark Cerulean*/
+$wb-bnr-background-linear-gradient: linear-gradient(#176ca7, #114f7a); /*Lochmara, Dark Cerulean*/
+$wb-bar-background: #474747; /*Charcoal*/
+$wb-bnr-border-bottom: #fff; /*White*/
+$wb-bnr-color: #fff; /*White*/
+
+$wb-lng-glb-mn-pnl-btn-border-left: #777; /*Gray*/
+$wb-lng-glb-mn-pnl-btn-a-color: #fff; /*White*/
+
+$wb-glb-mn-pnl-btn-a: #474747; /*Charcoal*/
+$wb-sttl-a-color: #fff; /*White*/
+$wb-sttl-a-text-shadow: #333; /*Night Rider*/
+
+/*Language-bar*/
+$wb-lng-curr-color: #ccc; /*Very Light Grey*/
+
+/*Main Element*/
+$wb-cont-border-bottom: #eee; /*Whisper*/
+
+/*Site menu*/
+$wet-theme-wb-sm-wb-navcurr-background: #0b3048; /*Blue Whale*/
+$wet-theme-wb-sm-wb-navcurr-color: #fff; /*White*/
+
+$wet-theme-wb-menu-hover-active-background: #ccc; /*Very Light Grey*/
+$wet-theme-wb-menu-hover-active-border-color: #ccc; /*Very Light Grey*/
+$wet-theme-wb-menu-hover-active-color: #000; /*Black*/
+
+$wb-sm-menu-text-shadow: #666; /*Dim Gray*/
+
+$wb-sm-menu-li-a-border-left: #999; /*Nobel*/
+$wb-sm-menu-li-last-child-border-right: #999; /*Nobel*/
+$wb-sm-sm-open-background: #ccc; /*Very Light Grey*/
+$wb-sm-sm-open-border-bottom: #243850; /*Catalina Blue*/
+$wb-sm-sm-open-li-summary-color: #444; /*Charcoal*/
+$wb-sm-sm-open-slflnk-a: #bbb; /*Silver*/
+$wb-sm-sm-row-a-color: #6e6e6e; /*Dim Gray*/
+
+$mb-pnl-modal-header-border-bottom: #072337; /*Black Pearl*/
+$mb-pnl-summary-focus-color: #fff; /*White*/
+$mb-pnl-sec-pnl-background: #cdd4da; /*Link Water*/
+$mb-pnl-sec-pnl-summary-color: #2e5576; /*Venice Blue*/
+$mb-pnl-info-pnl-border-top: #061e38; /*Tangaroa*/
+
+/*Secondary menu*/
+$wb-sec-h3-border: #ddd; /*Gainsboro*/
+$wb-sec-h3-border-bottom: #666; /*Dim Gray*/
+$wb-sec-h3-a-color: #333; /*Night Rider*/
+
+/*Skip-links*/
+$wb-sl-background-color: #000; /*Black*/
+$wb-sl-color: #fff; /*White*/
+$wb-sl-focus: #fff; /*White*/
+
 @import "../src/variables";

@@ -1,3 +1,6 @@
+/*
+language-bar
+*/
 #wb-lng {
 	.btn-group {
 		float: right;
@@ -7,7 +10,7 @@
 
 	.curr {
 		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB90RVh0U29mdHdhcmUATWFjcm9tZWRpYSBGaXJld29ya3MgOLVo0ngAAAA6SURBVAiZY/z//z8DMvj14+s+BgYGBjYObicUif///8Pxz+9f9v2HAigbLodVETbFOBWhK8arCFkxABifl5syjffvAAAAAElFTkSuQmCC") no-repeat scroll center bottom;
-		color: #ccc;
+		color: $wb-lng-curr-color;
 		display: block;
 
 		span {

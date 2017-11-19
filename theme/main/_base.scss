@@ -7,7 +7,7 @@ main {
 }
 
 #wb-cont {
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid $wb-cont-border-bottom;
 	margin-top: .45em;
 	padding-bottom: 5px;
 }
