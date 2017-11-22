@@ -2413,6 +2413,12 @@ Geomap.prototype.addTabularData = function() {
 
 				} else if ( geomType === "wkt" ) {
 					wktFeature = trElmsInd.getAttribute( "data-geometry" );
+
+					// Backward compatibility fix
+					// REMOVE in next major version of WET
+					if ( wktFeature.indexOf( "POINT" ) !== -1 ) {
+						wktFeature = wktFeature.replace( ",", "" );
+					}
 				}
 
 				vectorFeature = wktParser.readFeature( wktFeature, {
