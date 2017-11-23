@@ -1,0 +1,113 @@
+---
+{
+	"title": "Calculate",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "A calculator helper library for Web Experience Toolkit.",
+	"altLangPrefix": "calc",
+	"dateModified": "2015-04-22"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+<section>
+<h2>Purpose</h2>
+<p>To provide a basic math calculation (addition, subtraction, multiplication, division) engine.</p>
+</section>
+<section>
+<h2>Use when</h2>
+<ul>
+<li>Simple interactive calculations are required.</li>
+<li>Javascript is not an option for implementation.</li>
+<li>HTML-only solution is required.</li>
+</ul>
+</section>
+<section>
+<h2>Do not use when</h2>
+<ul>
+<li>Complex calculations are required.</li>
+
+</ul>
+</section>
+<section>
+<h2>Working example</h2>
+<p><a href="../../../demos/calc/calc-en.html">English example</a></p>
+<p><a href="../../../demos/calc/calc-fr.html">French example</a></p>
+</section>
+<section>
+<h2>How to implement</h2>
+</section>
+<section>
+<h3>Calc form element</h3>
+<p>Declare the wb-calc class and data-wb-calc-bind attribute in the form element.</p>
+<pre><code>&lt;form action="#" id="form" method="get" class="wb-calc" data-wb-calc-bind=".answer"&gt;</code></pre>
+<p>The <code>answer</code> class will be applied to a display element later.</p>
+</section>
+<section>
+<h3 id="calc-other">Calc data declarations</h3>
+<p>A calc element can be setup to control the on/off calc state of other elements. Any elements that match the CSS selector specified by the data-calc attribute will have their on/off state changed when the calc element is clicked.</p>
+<ol>
+<li>Add the <code>wb-calc</code> CSS class to the calc element.</li>
+<li>Using the <code>data-calc</code> attribute, specify the CSS selector of the elements that will have their states calcd.</li>
+</ol>
+<pre><code>&lt;button type="button" class="wb-calc" data-calc="{'selector': '.otherElements'}"&gt;Calc&lt;/button&gt;</code></pre>
+</section>
+<section>
+<h3>Calc calculation configuration</h3>
+<p>This example shows how a calculation can be configured using the <code>answer</code> calse and the <code> wb-calc-data</code> attribute.</p>
+<pre><code>&lt;span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * 0.05", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05" ]}'&gt;&lt;/span&gt;</code></pre>
+<p>The <code>wb-calc-data</code> attribute is a JSON string with the following name-value pairs:</p>
+
+<table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>How to configure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rounded</code></td>
+<td>If present, indicates the number of fractional digits the calculation should be rounded to.</td>
+<td>
+For example, to round the calculation to 2 decimal places add the following to the <code>wb-calc-data</code> JASON string:
+<code>"rounded": "2"</code>
+</td>
+</tr>
+<tr>
+<td><code>eqnum</code></td>
+<td>Multiple <code>equation</code> attributes are allowed for a given <code>wb-calc-data</code>. So, if present, <code>eqnum</code> specifies an element whose numeric value indicates which equation to use.</td>
+<td>
+For example, a page could have a radio input element "BefOrAft" which allows the user to indicate if a "before tax" or "after tax" calculation is required:
+<pre><code>&lt;input name="BefOrAft" type="radio" title="Before taxes" value="1"&gt;
+&lt;input name="BefOrAft" type="radio" title="After taxes" value="2"&gt;</code></pre>
+<p>Then, <code>"eqnum": "BefOrAft"</code> is added to the <code>wb-calc-data</code> attributes to indicate to the parser which equation to use.</p>
+</td>
+</tr>
+<tr>
+<td><code>equation</code></td>
+<td>The mathematical expression to be applied to the <code>answer</code> in context. Multiple equations are permitted per <code>wb-calc-data</code>.
+<p>Allowed elements are:
+<ul>
+<li>Numeric literals</li>
+<li>Arithmetic operators limited to +, -, *, /</li>
+<li>Brackets (, )</li>
+<li>Input element selectors</li>
+</ul>
+<p></p>
+</td>
+<td>
+For example, the following shows an array of 2 expressions defined for <code>equation</code>. 
+<p><code>"equation": [ "#priceinput * 0.05", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05" ]</code></p>
+<p>The <code>eqnum</code> element would be used to select the required expression.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/blob/master/src/plugins/calc">Calc plugin source code on GitHub.</a></p>
+</section>
