@@ -17,11 +17,22 @@ before_install:
 install:
   - npm install --quiet
 
-script:
-  - npm run-script travis_script
-
-after_success:
-  - npm run-script travis_after_success
+jobs:
+  include:
+    - script: npm run-script travis_script
+    - stage: Deploy
+      deploy:
+        - provider: script
+          script: npm run-script travis_after_success
+          skip_cleanup: true
+          on:
+            all_branches: true
+            #branch: master
+        - provider: script
+          script: npm run-script travis_after_success
+          skip_cleanup: true
+          on:
+            tags: true
 
 notifications:
   irc:
