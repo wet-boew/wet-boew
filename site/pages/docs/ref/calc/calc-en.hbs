@@ -45,12 +45,12 @@
 </section>
 <section>
 <h3 id="calc-other">Calc data declarations</h3>
-<p>A calc element can be setup to control the on/off calc state of other elements. Any elements that match the CSS selector specified by the data-calc attribute will have their on/off state changed when the calc element is clicked.</p>
-<ol>
-<li>Add the <code>wb-calc</code> CSS class to the calc element.</li>
-<li>Using the <code>data-calc</code> attribute, specify the CSS selector of the elements that will have their states calcd.</li>
-</ol>
-<pre><code>&lt;button type="button" class="wb-calc" data-calc="{'selector': '.otherElements'}"&gt;Calc&lt;/button&gt;</code></pre>
+<p>The <code>wb-calc-value</code> attribute is applied to input elements to specify a value to be subsequently used in an <code>equation</code>.</p>
+<p>For example the following snippet shows values applied to select options.</p>
+<pre><code>&lt;select class="form-control" id="ProvOrTerr" name="Province"&gt;
+      &lt;option value="bc" data-wb-calc-value="0.07"&gt;British Columbia&lt;/option&gt;
+	  &lt;option value="mb" data-wb-calc-value="0.08"&gt;Manitoba&lt;/option&gt;
+	  </code></pre>
 </section>
 <section>
 <h3>Calc calculation configuration</h3>
