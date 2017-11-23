@@ -11,9 +11,10 @@
 	"dateModified": "2017-06-09"
 }
 ---
-<p>A basic library for Calculating things</p>
+
 
 <section>
+<h3>GST\HST Calculator</h3>
 <form action="#" id="form" method="get" class="wb-calc" data-wb-calc-bind=".answer">
    
    <label for="ProvOrTerr" id="labelProv">Province or territory</label>
@@ -38,16 +39,17 @@
    <label for="priceinput" id="pricelabel">Amount</label>
    	<input class="form-control" id="priceinput" placeholder="$" type="number">
    	<br>
-	<label for="BefOrAft" id="SwitchLabel">Amount entered is:</label>
+	<label id="SwitchLabel">Amount entered is:</label>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="BefOrAft" type="radio" title="Before taxes" value="1">
-	<label for="BefOrAft" id="SwitchLabel">Before taxes</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="BefOrAft" type="radio" title="After taxes" value="2">
-	<label for="BefOrAft" id="SwitchLabel">After taxes</label><br>
+	<input name="BefOrAft" id="BefOrAftBefore" type="radio" title="Before taxes" value="1">
+	<label for="BefOrAftBefore" id="BeforeLabel">Before taxes</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input name="BefOrAft" id="BefOrAftAfter" type="radio" title="After taxes" value="2">
+	<label for="BefOrAftAfter" id="AfterLabel">After taxes</label><br>
    	<button class="btn btn-default mrgn-tp-sm" id="calculate" type="submit">Calculate</button>
-	<input class="form-control hidden" id="GSTRate" data-wb-calc-value="0.05"></input>
+	<input class="form-control hidden" id="GSTRate" data-wb-calc-value="0.05">
 </form>
 <section>
+<h3>-----------------</h3>
 <br/>
 	<p><strong>GST (5%)</strong>: <span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * 0.05", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * 0.05" ]}'></span></p>
  	<p><strong>PST (<span class="answer" data-wb-calc='{"rounded": "0", "equation": "#ProvOrTerr * 100"}'></span>%)</strong>: <span class="answer" data-wb-calc='{"rounded": "2", "eqnum": "BefOrAft", "equation": [ "#priceinput * #ProvOrTerr", "(#priceinput / (1 + 0.05 + #ProvOrTerr)) * #ProvOrTerr" ]}'></span></p>
