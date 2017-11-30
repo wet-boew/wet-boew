@@ -25,7 +25,6 @@
     "excanvas": "*",
     "flot": "0.8.3",
     "magnific-popup": "https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
-    "components/MathJax": "2.7.1",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },

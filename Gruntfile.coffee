@@ -311,7 +311,7 @@ module.exports = (grunt) ->
 		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: "<%= pkg.devDependencies.jquery %>"
 		jqueryOldIEVersion: "1.11.1"
-		MathJaxVersion: @file.readJSON "lib/MathJax/.bower.json"
+		MathJaxVersion: "<%= pkg.devDependencies.mathjax %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -1081,7 +1081,7 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "lib/MathJax"
+					cwd: "node_modules/mathjax"
 					src: [
 						"MathJax.js"
 						"config/**"
@@ -1368,11 +1368,11 @@ module.exports = (grunt) ->
 		"string-replace":
 			inline:
 				files:
-					'dist/wet-boew/js/': 'dist/wet-boew/js/*.js'
+					"dist/wet-boew/js/": "dist/wet-boew/js/*.js"
 				options:
 					replacements: [
-						pattern: 'BOWER_VERSION_MATHJAX'
-						replacement: '<%= MathJaxVersion.version %>'
+						pattern: "WET_BOEW_VERSION_MATHJAX"
+						replacement: "<%= MathJaxVersion %>"
 					]
 
 		"gh-pages":

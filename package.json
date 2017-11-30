@@ -70,6 +70,7 @@
     "jquery": "2.1.4",
     "jquery-validation": "1.15.1",
     "load-grunt-tasks": "^3.2.0",
+    "mathjax": "2.7.1",
     "mocha": "^1.21.5",
     "proj4": "2.3.3",
     "sinon": "~1.12.2",
