@@ -20,6 +20,10 @@
 
 <section>
 	<h2>Dynamic map example</h2>
+	<section class="alert alert-warning">
+		<h3>Upgrade Notice</h3>
+		<p>Since WET 4.0.27 we updated geomap to use to OpenLayers 3, as a result RSS and ATOM feeds are no longer supported. Many of the services that were used for this working example no longer exist and were removed. Please update the <code>config-en.js</code> as per provided <a href="./demo/config-en.js">example</a>.</p>
+	</section>
 
 	<!-- GeomapStart -->
 	<div id="sample_map"
@@ -423,6 +427,10 @@
 <section>
 	<h2>Static Map example</h2>
 	<p>Geomap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
+	<section class="alert alert-warning">
+		<h3>Upgrade Notice</h3>
+		<p>Since WET 4.0.27 we updated geomap to use to OpenLayers 3 and code in the <code>client_functions.js</code> has been changed. Please update the <code>client_functions.js</code> as per provided <a href="./demo/client_functions.js">example</a>.</p>
+	</section>
 
 	<!-- GeomapStart -->
 	<div id="location_map"
@@ -572,27 +580,27 @@
 		<details class="mrgn-tp-lg">
 			<summary>View config file</summary>
 			<pre><code>
-			var wet_boew_geomap = {
-				// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
-				basemap : {
-					title: &quot;WMS-Toporama&quot;,
-					type: &quot;wms&quot;,
-					url: &quot;http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en&quot;,
-					version: &quot;1.1.1&quot;,
-					format: &quot;image/jpeg&quot;,
-					layers: &quot;WMS-Toporama&quot;,
-					mapOptions: {
-						maxExtent: &quot;-141, 41, -52, 84&quot;,
-						restrictedExtent: &quot;-141, 41, -52, 84&quot;,
-						maxResolution: &quot;auto&quot;,
-						projection: &quot;EPSG:4269&quot;,
-						units: &quot;m&quot;,
-						displayProjection: &quot;EPSG:4269&quot;,
-						aspectRatio: 0.8
-					}
-				},
-				overlays: []
-			};
+var wet_boew_geomap = {
+    // OPTIONAL: note that Geomap will provide a default basemap if not specified here.
+    basemap : {
+        title: &quot;WMS-Toporama&quot;,
+        type: &quot;wms&quot;,
+        url: &quot;http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en&quot;,
+        version: &quot;1.1.1&quot;,
+        format: &quot;image/jpeg&quot;,
+        layers: &quot;WMS-Toporama&quot;,
+        mapOptions: {
+            maxExtent: &quot;-141, 41, -52, 84&quot;,
+            restrictedExtent: &quot;-141, 41, -52, 84&quot;,
+            maxResolution: &quot;auto&quot;,
+            projection: &quot;EPSG:4269&quot;,
+            units: &quot;m&quot;,
+            displayProjection: &quot;EPSG:4269&quot;,
+            aspectRatio: 0.8
+        }
+    },
+    overlays: []
+};
 		</code></pre>
 		</details>
 	</section>
@@ -648,23 +656,23 @@
 		<details class="mrgn-tp-lg">
 			<summary>View config file</summary>
 			<pre><code>
-			var wet_boew_geomap = {
-				basemap : {
-					title: &quot;Basic Map&quot;,
-					type: &quot;esri&quot;,
-					url: &quot;http://geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/provinces1c/MapServer/export&quot;,
-					options: { singleTile: false, ratio: 1.0, projection: &quot;EPSG:3978&quot;, fractionalZoom: true },
-					mapOptions: {
-						maxExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
-						maxResolution: &quot;auto&quot;,
-						projection: &quot;EPSG:3978&quot;,
-						restrictedExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
-						units: &quot;m&quot;,
-						displayProjection: &quot;EPSG:4269&quot;,
-						numZoomLevels: 2
-					}
-				}
-			};
+var wet_boew_geomap = {
+    basemap : {
+        title: &quot;Basic Map&quot;,
+        type: &quot;esri&quot;,
+        url: &quot;http://geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/provinces1c/MapServer/export&quot;,
+        options: { singleTile: false, ratio: 1.0, projection: &quot;EPSG:3978&quot;, fractionalZoom: true },
+        mapOptions: {
+            maxExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
+            maxResolution: &quot;auto&quot;,
+            projection: &quot;EPSG:3978&quot;,
+            restrictedExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
+            units: &quot;m&quot;,
+            displayProjection: &quot;EPSG:4269&quot;,
+            numZoomLevels: 2
+        }
+    }
+};
 		</code></pre>
 		</details>
 	</section>
@@ -720,14 +728,14 @@
 		<details class="mrgn-tp-lg">
 			<summary>View config file</summary>
 			<pre><code>
-			var wet_boew_geomap = {
-				title:"OSM Map",
-				type:"osm",
-				mapOptions: {
-					center: [ -123,49 ],
-					zoomLevel: 5
-				}
-			};
+var wet_boew_geomap = {
+    title: "OSM Map",
+    type: "osm",
+    mapOptions: {
+        center: [ -52.7222765, 47.5410882 ],
+        zoomLevel: 11
+    }
+};
 		</code></pre>
 		</details>
 	</section>
@@ -736,7 +744,10 @@
 <section>
 	<h2>Tile Source (XYZ) basemap example</h2>
 	<p>Geomap can be configured to use an Tile Source (XYZ) basemap. Configuration can be made in the config file in basemap property.</p>
-
+	<section class="alert alert-warning">
+		<h3>Upgrade Notice</h3>
+		<p>Prior to WET 4.0.27 the service that was used to create this working example has been retired. Please see the revised configuration below.</p>
+	</section>
 	<!-- GeomapStart -->
 	<div id="xyz_map"
 		class="wb-geomap"
@@ -784,21 +795,21 @@
 		<details class="mrgn-tp-lg">
 			<summary>View config file</summary>
 			<pre><code>
-			var wet_boew_geomap = {
-				title:"Tile (XYZ) Source Map",
-				type:"xyz",
-				url:[
-					"http://otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-					"http://otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-					"http://otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-					"http://otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
-				],
-				mapOptions: {
-					projection: "EPSG:900913",
-					center: [ -123,49 ],
-					zoomLevel: 5
-				}
-			};
+var wet_boew_geomap = {
+    title: "Tile (XYZ) Source Map",
+    type: "osm",
+    url: [
+        "//otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+        "//otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+        "//otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+        "//otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
+    ],
+    mapOptions: {
+        projection: "EPSG:900913",
+        center: [ -123, 49 ],
+        zoomLevel: 5
+    }
+};
 		</code></pre>
 		</details>
 	</section>
