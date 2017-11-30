@@ -1057,7 +1057,6 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"magnific-popup/dist/jquery.magnific-popup.js"
 						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
@@ -1072,6 +1071,7 @@ module.exports = (grunt) ->
 						"datatables/media/js/jquery.dataTables.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
+						"magnific-popup/dist/jquery.magnific-popup.js"
 						"proj4/dist/proj4.js"
 						"unorm/lib/unorm.js"
 					]
