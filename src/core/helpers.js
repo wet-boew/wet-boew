@@ -11,7 +11,7 @@ wb.getData = function( element, dataName ) {
 	var elm = !element.jquery ? element : element[ 0 ],
 		dataAttr = elm.getAttribute( "data-" + dataName ),
 		dataObj;
-
+//if data error//
 	if ( dataAttr ) {
 		try {
 			dataObj = JSON.parse( dataAttr );
