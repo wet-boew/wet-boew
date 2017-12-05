@@ -571,7 +571,7 @@ Modernizr.load( [
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
 					Modernizr.load( [ {
-						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@BOWER_VERSION_MATHJAX/MathJax.js?config=Accessible",
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@WET_BOEW_VERSION_MATHJAX/MathJax.js?config=Accessible",
 						complete: function() {
 							Modernizr.load( [ {
 								test: window.MathJax === undefined,
