@@ -22,10 +22,25 @@
     "lib"
   ],
   "dependencies": {
+    "bootstrap-sass-official": "3.3.1",
+    "DataTables": "1.10.13",
+    "es5-shim": "2.3.0",
     "excanvas": "*",
     "flot": "0.8.3",
+    "google-code-prettify": "1.0.4",
+    "html5shiv": "3.7.2",
+    "jquery": "2.1.4",
+    "jquery-oldIE": "jquery#1.11.1",
+    "jquery-pjax": "1.9.6",
+    "jquery-validation": "1.15.1",
+    "magnific-popup": "https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
+    "components/MathJax": "2.7.1",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
-    "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
+    "proj4": "2.3.3",
+    "respond": "1.4.2",
+    "selectivizr": "1.0.2",
+    "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git",
+    "unorm": "^1.4.1"
   },
   "moduleType": [
     "globals"
