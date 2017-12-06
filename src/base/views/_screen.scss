@@ -81,11 +81,15 @@
 	}
 }
 
-// col-auto extension to Bootstrap grid
+// Column auto (col-auto) extension for Bootstrap grid
+// Baseline style for column auto - same style as defined in: assets/stylesheets/bootstrap/mixins/_grid-framework.scss
 .col-xs-auto, .col-sm-auto, .col-md-auto, .col-lg-auto {
 	min-height: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
-	width: auto;
+	padding-left:  ($grid-gutter-width / 2);
+	padding-right: ($grid-gutter-width / 2);
+	position: relative;
 }
 
+.col-xs-auto {
+	width: auto;
+}
