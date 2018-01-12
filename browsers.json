@@ -3,7 +3,7 @@
     "platform": "Linux"
 },{
     "browserName": "firefox",
-    "platform": "OS X 10.9"
+    "platform": "OS X 10.13"
 },{
     "browserName": "firefox",
     "platform": "Windows 7"
@@ -12,23 +12,19 @@
     "platform": "Linux"
 },{
     "browserName": "chrome",
-    "platform": "Mac 10.9"
+    "platform": "Mac 10.13"
 },{
     "browserName": "chrome",
     "platform": "Windows 7"
 },{
     "browserName": "safari",
-    "platform": "OS X 10.9"
+    "platform": "OS X 10.13"
+},{
+    "browserName": "MicrosoftEdge",
+    "platform": "Windows 10",
+    "version": "16.16299"
 },{
     "browserName": "internet explorer",
     "platform": "Windows 7",
-    "version": "9"
-},{
-    "browserName": "internet explorer",
-    "platform": "Windows 7",
-    "version": "10"
-},{
-    "browserName": "internet explorer",
-    "platform": "Windows 8.1",
     "version": "11"
 }]
