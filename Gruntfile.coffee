@@ -93,6 +93,7 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 #			"modernizr"
+			"wget:jqueryOldIE"
 		]
 	)
 
@@ -308,9 +309,9 @@ module.exports = (grunt) ->
 		pkg: @file.readJSON "package.json"
 		coreDist: "dist/wet-boew"
 		themeDist: "dist/theme-wet-boew"
-		jqueryVersion: @file.readJSON "lib/jquery/bower.json"
-		jqueryOldIEVersion: @file.readJSON "lib/jquery-oldIE/bower.json"
-		MathJaxVersion: @file.readJSON "lib/MathJax/.bower.json"
+		jqueryVersion: "<%= pkg.devDependencies.jquery %>"
+		jqueryOldIEVersion: "1.11.1"
+		MathJaxVersion: "<%= pkg.devDependencies.mathjax %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -352,6 +353,17 @@ module.exports = (grunt) ->
 				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
 				dest: "src/i18n/i18n.csv"
 
+			jqueryOldIE:
+				options:
+					baseUrl: "https://ajax.googleapis.com/ajax/libs/jquery/<%= jqueryOldIEVersion %>/"
+					overwrite: true
+				src: [
+					"jquery.js"
+					"jquery.min.js"
+					"jquery.min.map"
+				]
+				dest: "lib/jquery-oldIE"
+
 		concat:
 			options:
 				banner: "<%= banner %><%= modernizrBanner %>"
@@ -376,10 +388,9 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"dep/modernizr-custom.js"
-					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
-					"lib/html5shiv/dist/html5shiv-printshiv.js"
-					"lib/es5-shim/es5-shim.js"
+					"node_modules/html5shiv/dist/html5shiv-printshiv.js"
+					"node_modules/es5-shim/es5-shim.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
@@ -416,7 +427,7 @@ module.exports = (grunt) ->
 						lang = filepath.replace grunt.config( "coreDist" ) + "/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
-						validationPath = "lib/jquery-validation/src/localization/"
+						validationPath = "node_modules/jquery-validation/dist/localization/"
 
 						# Check and append message file
 						messagesPath = validationPath + "messages_" + lang
@@ -468,8 +479,8 @@ module.exports = (grunt) ->
 				layout: "default.hbs"
 				environment:
 					root: "/v4.0-ci/unmin"
-					jqueryVersion: "<%= jqueryVersion.version %>"
-					jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					jqueryVersion: "<%= jqueryVersion %>"
+					jqueryOldIEVersion: "<%= jqueryOldIEVersion %>"
 				assets: "dist/unmin"
 
 			theme:
@@ -1002,7 +1013,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
+				cwd: "node_modules/bootstrap-sass/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "<%= coreDist %>/fonts"
 				expand: true
@@ -1042,18 +1053,26 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib"
 					src: [
-						"jquery-pjax/jquery.pjax.js"
 						"flot/jquery.flot.js"
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
+						"openlayers/OpenLayers.debug.js"
+					]
+					dest: "<%= coreDist %>/js/deps"
+					rename: (dest, src) ->
+						return dest + "/" + src.replace ".debug", ""
+					expand: true
+					flatten: true
+				,
+					cwd: "node_modules"
+					src: [
+						"code-prettify/src/*.js"
+						"datatables/media/js/jquery.dataTables.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
-						"google-code-prettify/src/*.js"
-						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
-						"openlayers/OpenLayers.debug.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
@@ -1062,7 +1081,7 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "lib/MathJax"
+					cwd: "node_modules/mathjax"
 					src: [
 						"MathJax.js"
 						"config/**"
@@ -1076,14 +1095,14 @@ module.exports = (grunt) ->
 					dest: "<%= coreDist %>/js/MathJax/"
 					expand: true
 				,
-					cwd: "lib/jquery/dist"
+					cwd: "node_modules/jquery/dist"
 					src: "*.*"
-					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion.version %>"
+					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion %>"
 					expand: true
 				,
 					cwd: "lib/jquery-oldIE/dist"
 					src: "*.*"
-					dest: "<%= coreDist %>/js/jquery/<%= jqueryOldIEVersion.version %>"
+					dest: "<%= coreDist %>/js/jquery/<%= jqueryOldIEVersion %>"
 					expand: true
 				,
 					cwd: "src"
@@ -1234,8 +1253,8 @@ module.exports = (grunt) ->
 			js:
 				files: "<%= eslint.all.src %>"
 				tasks: [
-					  "js"
-					  "string-replace"
+					"js"
+					"string-replace"
 				]
 			css:
 				files: [
@@ -1349,12 +1368,12 @@ module.exports = (grunt) ->
 		"string-replace":
 			inline:
 				files:
-					'dist/wet-boew/js/': 'dist/wet-boew/js/*.js'
+					"dist/wet-boew/js/": "dist/wet-boew/js/*.js"
 				options:
 					replacements: [
-						pattern: 'BOWER_VERSION_MATHJAX'
-						replacement: '<%= MathJaxVersion.version %>'
-	        ]
+						pattern: "WET_BOEW_VERSION_MATHJAX"
+						replacement: "<%= MathJaxVersion %>"
+					]
 
 		"gh-pages":
 			options:
