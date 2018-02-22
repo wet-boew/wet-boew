@@ -119,6 +119,8 @@ var componentName = "wb-date",
 
 			if ( today >= state.minDate && today <= state.maxDate ) {
 				initDate = today;
+			} else if ( state.minDate > today ) {
+				initDate = state.minDate;
 			} else {
 				initDate = state.maxDate;
 			}
