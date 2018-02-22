@@ -2,7 +2,10 @@
  Banner
  */
 
+// Needed for backwards compatibility with WET 4.0.27 and below's HTML markup.
+// Remove object references from all of this theme's logo selectors in WET 4.1+.
 .wb-sppe {
+	img,
 	object {
 		width: 100%;
 	}

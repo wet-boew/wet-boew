@@ -1,11 +1,25 @@
 /*
  Banner (print view)
  */
+%theme-wet-boew-banner-img-print-brightness-0 {
+	img {
+		filter: brightness(0);
+	}
+}
+
 #wb-bar {
 	@extend %theme-wet-boew-print-display-none-important;
 }
 
+.wb-sppe {
+	header {
+		@extend %theme-wet-boew-banner-img-print-brightness-0;
+	}
+}
+
 #wb-sttl {
+	@extend %theme-wet-boew-banner-img-print-brightness-0;
+
 	a {
 		&:after {
 			@extend %theme-wet-boew-print-display-none-important;
