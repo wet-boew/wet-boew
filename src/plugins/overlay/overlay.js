@@ -78,7 +78,7 @@ var componentName = "wb-overlay",
 					footer.style.border = "0";
 				}
 
-				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-primary " + closeClassFtr +
+				overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary " + closeClassFtr +
 					"' style='" + buttonStyle +
 					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
 					closeTextFtr +
@@ -99,7 +99,7 @@ var componentName = "wb-overlay",
 				closeText = i18nText.closeOverlay;
 			}
 			closeText = closeText.replace( "'", "&#39;" );
-			overlayClose = "<button type='button' id='hdrClose' class='mfp-close " + closeClass +
+			overlayClose = "<button type='button' class='mfp-close " + closeClass +
 				"' title='" + closeText + "'>&#xd7;<span class='wb-inv'> " +
 				closeText + "</span></button>";
 

@@ -279,7 +279,7 @@ var componentName = "wb-lbx",
 				}
 				spanTextFtr = spanTextFtr.replace( "'", "&#39;" );
 
-				overlayCloseFtr = "<button type='button' id='ftrClose' class='btn btn-sm btn-primary pull-left " + closeClassFtr +
+				overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary pull-left " + closeClassFtr +
 					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
 					closeTextFtr +
 					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
