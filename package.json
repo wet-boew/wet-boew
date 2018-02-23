@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt test",
+    "prepare": "npm install",
     "postinstall": "bower update && grunt init",
     "travis_script": "grunt dist test-mocha && rake",
     "travis_after_success": "grunt deploy"
