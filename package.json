@@ -3,10 +3,12 @@
   "version": "4.0.28-development",
   "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
   "main": "index.html",
+  "engines" : { 
+    "npm" : "~4.0.0" 
+  },
   "scripts": {
     "test": "grunt test",
-    "prepare": "npm --version",
-    "postinstall": "bower update && grunt init",
+    "prepare": "bower update && grunt init",
     "travis_script": "grunt dist test-mocha && rake",
     "travis_after_success": "grunt deploy"
   },
