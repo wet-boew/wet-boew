@@ -16,7 +16,7 @@ var componentName = "wb-collapsible",
 	selector = "details.alert",
 	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
-	details, key,
+	key,
 
 	/**
 	 * @method init
@@ -27,9 +27,11 @@ var componentName = "wb-collapsible",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		details = wb.init( event, componentName, selector );
+		var details = wb.init( event, componentName, selector ),
+			$details;
 
 		if ( details ) {
+			$details = $( details );
 
 			key = "alert-collapsible-state-" + details.getAttribute( "id" );
 
@@ -58,7 +60,7 @@ var componentName = "wb-collapsible",
 			} catch ( e ) {}
 
 			// Identify that initialization has completed
-			wb.ready( $document, componentName );
+			wb.ready( $details, componentName );
 		}
 	};
 
@@ -72,7 +74,8 @@ if ( Modernizr.details ) {
 	$document.on( "click keydown toggle." + componentName, selector + " summary", function( event ) {
 		var which = event.which,
 			currentTarget = event.currentTarget,
-			isClosed;
+			isClosed,
+			details;
 
 		// Ignore middle/right mouse buttons and wb-toggle enhanced summary elements (except for toggle)
 		if ( ( !which || which === 1 ) &&
