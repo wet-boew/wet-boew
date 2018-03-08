@@ -343,7 +343,7 @@ module.exports = (grunt) ->
 					npmInstall: false
 
 		clean:
-			dist: ["dist", "src/base/partials/*sprites*"]
+			dist: ["dist"]
 
 		# Task configuration.
 		wget:
@@ -601,6 +601,10 @@ module.exports = (grunt) ->
 
 		# Compiles the Sass files
 		sass:
+			options:
+				includePaths: [
+					"node_modules"
+				]
 			all:
 				files: [
 					expand: true
