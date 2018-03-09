@@ -309,9 +309,9 @@ module.exports = (grunt) ->
 		pkg: @file.readJSON "package.json"
 		coreDist: "dist/wet-boew"
 		themeDist: "dist/theme-wet-boew"
-		jqueryVersion: "<%= pkg.devDependencies.jquery %>"
+		jqueryVersion: "<%= pkg.dependencies.jquery %>"
 		jqueryOldIEVersion: "1.11.1"
-		MathJaxVersion: "<%= pkg.devDependencies.mathjax %>"
+		MathJaxVersion: "<%= pkg.dependencies.mathjax %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
