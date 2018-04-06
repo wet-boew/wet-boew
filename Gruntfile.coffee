@@ -670,12 +670,9 @@ module.exports = (grunt) ->
 						require("autoprefixer")(
 							browsers: [
 								"last 2 versions"
-								"android >= 2.3"
-								"bb >= 7"
+								"bb >= 10"
 								"Firefox ESR"
-								"ie > 8"
-								"ios 5"
-								"opera 12.1"
+								"ie > 10"
 							]
 						)
 					]
@@ -708,12 +705,9 @@ module.exports = (grunt) ->
 						require("autoprefixer")(
 							browsers: [
 								"last 2 versions"
-								"android >= 2.3"
-								"bb >= 7"
+								"bb >= 10"
 								"Firefox ESR"
-								"ie >= 8"
-								"ios 5"
-								"opera 12.1"
+								"ie > 10"
 							]
 						)
 					]
