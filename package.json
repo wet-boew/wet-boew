@@ -71,7 +71,7 @@
     "grunt-i18n-csv": "^0.1.0",
     "grunt-imagine": "^0.3.6",
     "grunt-mocha": "~0.4.12",
-    "grunt-sass": "^2.0.0",
+    "grunt-sass": "^2.1.0",
     "grunt-sass-lint": "^0.2.0",
     "grunt-saucelabs": "^9.0.0",
     "grunt-sri": "^0.2.0",
