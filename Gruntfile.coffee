@@ -145,7 +145,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sass"
-			"autoprefixer"
+			"postcss"
 			"csslint:unmin"
 			"usebanner:css"
 		]
@@ -662,18 +662,22 @@ module.exports = (grunt) ->
 					ext: ".css"
 				]
 
-		autoprefixer:
+		postcss:
 			# Only vendor prefixing and no IE8
 			modern:
 				options:
-					browsers: [
-						"last 2 versions"
-						"android >= 2.3"
-						"bb >= 7"
-						"ff >= 17"
-						"ie > 8"
-						"ios 5"
-						"opera 12.1"
+					processors: [
+						require("autoprefixer")(
+							browsers: [
+								"last 2 versions"
+								"android >= 2.3"
+								"bb >= 7"
+								"ff >= 17"
+								"ie > 8"
+								"ios 5"
+								"opera 12.1"
+							]
+						)
 					]
 				files: [
 					{
@@ -700,14 +704,18 @@ module.exports = (grunt) ->
 			# Needs both IE8 and vendor prefixing
 			mixed:
 				options:
-					browsers: [
-						"last 2 versions"
-						"android >= 2.3"
-						"bb >= 7"
-						"ff >= 17"
-						"ie >= 8"
-						"ios 5"
-						"opera 12.1"
+					processors: [
+						require("autoprefixer")(
+							browsers: [
+								"last 2 versions"
+								"android >= 2.3"
+								"bb >= 7"
+								"ff >= 17"
+								"ie >= 8"
+								"ios 5"
+								"opera 12.1"
+							]
+						)
 					]
 				files: [
 					cwd: "<%= coreDist %>/css/polyfills"
