@@ -77,6 +77,34 @@
 
 <section>
 	<h2>Tips and trick</h2>
+	<section>
+	<h3>Add floating labels to pie charts</h3>
+	
+	<ol>
+	<li>Add the <code>wb-charts-slicelegend</code> class to the chart table
+		<pre><code>&lt;table class=&quot;wb-charts wb-charts-slicelegend table&quot;&gt;</code></pre>
+	</li>
+	<li><strong>Optional:</strong> Add <code>data-flot</code> to customize label positioning and label for combined slices.<br> 
+	<ul>
+		<li><code>"label": { "threshold" }</code> defines the percentage share of pie slices that will be hidden (ranging 0 to 1) i.e. '0.3' will hide all slices 3% or less of the total. Default is '0.05' (5%).</li>
+		<li><code>"combine": { "threshold" }</code> defines the percentage of pie slices that are combined to a single slice (ranging 0 to 1) i.e. a value of '0.03' will combine all slices 3% or less into one slice. Default is '0.05' (5%).</li>
+		<li><code>"combine": { "label" }</code> defines the label text of the combined slice. Default is "Combined slice" and "<span lang="fr">Quartier regroupé</span>".</li>
+	</ul>
+	<pre class="mrgn-tp-md"><code>&lt;table class=&quot;wb-charts wb-charts-slicelegend table&quot; data-flot='{
+	"series": { 
+		"pie": { 
+			"label": { 
+				"threshold": 0.05
+			}, 
+			"combine": { 
+				"threshold": 0.05,
+				"label": "Combined slice"
+			}
+		}
+	}
+}'&gt;</code></pre>
+	</ol>
+	</section>
 	
 	<section>
 	<h3>Increase white space between series</h3>
