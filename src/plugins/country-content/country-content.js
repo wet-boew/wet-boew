@@ -65,7 +65,7 @@ var componentName = "wb-ctrycnt",
 
 			// From https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js#L89-L127
 			$.ajax( {
-				url: "http://freegeoip.net/json/",
+				url: "https://freegeoip.net/json/",
 				dataType: "jsonp",
 				cache: true,
 				jsonp: "callback",
