@@ -59,7 +59,7 @@ describe( "Country Content test suite", function() {
 
 			for ( ; i !== len && !isLookup; i += 1 ) {
 				if ( args[ i ] instanceof Array ) {
-					isLookup = args[ i ].length && args[ i ][ 0 ].url === "http://freegeoip.net/json/";
+					isLookup = args[ i ].length && args[ i ][ 0 ].url === "https://freegeoip.net/json/";
 				}
 			}
 			expect( isLookup ).to.equal( true );
