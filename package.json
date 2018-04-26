@@ -70,6 +70,7 @@
     "grunt-html": "^5.0.0",
     "grunt-i18n-csv": "^0.1.0",
     "grunt-imagine": "^0.3.6",
+    "grunt-markdownlint": "^1.1.3",
     "grunt-mocha": "~0.4.12",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^2.1.0",
