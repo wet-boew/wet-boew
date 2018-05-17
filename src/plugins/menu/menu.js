@@ -178,7 +178,7 @@ var componentName = "wb-menu",
 					if ( parent.nodeName.toLowerCase() === "li" ) {
 						linkHtml = parent.innerHTML;
 
-					// Non-list menu item without a section		
+					// Non-list menu item without a section
 					} else {
 						linkHtml = "<a href='" +
 							parent.getElementsByTagName( "a" )[ 0 ].href + "'>" +
