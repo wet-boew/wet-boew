@@ -34,6 +34,11 @@ details {
 			color: #0535d2;
 			text-decoration: underline;
 		}
+
+		&:focus {
+			outline-style: dotted;
+			outline-width: 1px;
+		}
 	}
 
 	&[open] {

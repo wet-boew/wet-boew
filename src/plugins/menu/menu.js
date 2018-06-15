@@ -747,7 +747,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 				// If the parent menu is a menubar
 				if ( $parentMenu.attr( "role" ) === "menubar" ) {
-					$menuLink = $parent.children( "[href=#" + $menu.attr( "id" ) + "]" );
+					$menuLink = $menu.siblings( "a" );
 
 					// Escape key = Close menu and return to menu bar item
 					if ( which === 27 ) {
