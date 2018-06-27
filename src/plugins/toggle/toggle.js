@@ -235,7 +235,6 @@ var componentName = "wb-toggle",
 			if ( isGroup ) {
 
 				// Get the grouped elements using data.group as the CSS selector
-				// and filter to only retrieve currently open grouped elements
 				dataGroup = $.extend( {}, data, { selector: data.group } );
 				$elmsGroup = getElements( link, dataGroup );
 
