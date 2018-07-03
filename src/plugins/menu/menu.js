@@ -421,7 +421,9 @@ var componentName = "wb-menu",
 				.attr( {
 					"aria-hidden": "true",
 					"aria-expanded": "false"
-				} );
+				} )
+				.find( "details" )
+					.removeAttr( "open" );
 
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
