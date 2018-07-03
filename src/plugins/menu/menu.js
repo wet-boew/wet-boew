@@ -634,13 +634,13 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 	// Define keycodes. (Make const when WET supports ES6)
 	var TAB_KC = 9,
-			ENTER_KC = 13,
-			ESC_KC = 27,
-			LEFT_KC = 37,
-			UP_KC = 38,
-			RIGHT_KC = 39,
-			DOWN_KC = 40,
-			SPACE_KC = 32;
+		ENTER_KC = 13,
+		ESC_KC = 27,
+		LEFT_KC = 37,
+		UP_KC = 38,
+		RIGHT_KC = 39,
+		DOWN_KC = 40,
+		SPACE_KC = 32;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
