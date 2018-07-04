@@ -235,9 +235,8 @@ var componentName = "wb-toggle",
 			if ( isGroup ) {
 
 				// Get the grouped elements using data.group as the CSS selector
-				// and filter to only retrieve currently open grouped elements
 				dataGroup = $.extend( {}, data, { selector: data.group } );
-				$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
+				$elmsGroup = getElements( link, dataGroup );
 
 				// Set the toggle state to "off".  For tab lists, this is stored on the tab element
 				setState( isTablist ? $( data.parent ).find( selectorTab ) : $elmsGroup,
@@ -271,6 +270,12 @@ var componentName = "wb-toggle",
 				isTablist: isTablist,
 				elms: $elms
 			} );
+
+			// Ensure that last focused element in the accordion remains keyboard focusable
+			// whether it is collapsed or not
+			if ( isGroup ) {
+				$elms.find( "summary" ).attr( { "tabindex": "0" } );
+			}
 
 			// Store the toggle link's current state if persistence is turned on.
 			// Try/catch is required to address exceptions thrown when using BB10 or
