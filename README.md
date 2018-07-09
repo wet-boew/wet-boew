@@ -88,7 +88,7 @@
 ### Themeable and reusable
 
 * Flexible framework that supports custom themes
-* Includes support for [5 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html) including a [“Base” theme](http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-en.html) to use as a template
+* Includes support for [2 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html) 
 * Reusable templates, [plugins](http://wet-boew.github.io/wet-boew/docs/ref/plugins-en.html) and widgets
 * [Adapted to various CMS and programming frameworks](http://wet-boew.github.io/wet-boew/docs/ref/variants-en.html) (Drupal, WordPress, SharePoint (in development), DotNetNuke (in development), PHP, SSI, Java/Maven)
 
@@ -197,7 +197,7 @@
 ### Personnalisable et réutilisable
 
 * Cadre flexible qui supporte des thèmes personnalisés
-* Soutien [5 thèmes différents](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-fr.html), y compris un [thème de base](http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-fr.html) servant comme modèle
+* Soutien [2 thèmes différents](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-fr.html)
 * Modèles, [plugiciels](http://wet-boew.github.io/wet-boew/docs/ref/plugins-fr.html) et gadgets réutilisables
 * [Adapté aux différents systèmes de gestion de contenu et cadres de programmation](http://wet-boew.github.io/wet-boew/docs/ref/variants-fr.html) (Drupal, WordPress, SharePoint (en développement), DotNetNuke (en développement), PHP, SSI, Java/Maven)
 
