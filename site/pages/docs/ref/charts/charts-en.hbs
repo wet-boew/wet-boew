@@ -104,6 +104,14 @@
 	</section>
 	
 	<section>
+	<h3>Bypass the data cell value on table parsing</h3>
+	<p>This method should be only used as a last resort when the text Content of the data cell can't be parsed as a numerical value which would be understood when drawing the charts.</p>
+	<p>Add on a table cell the attribute <code>data-wb-charts-value</code> and its value would get parsed by the regular expression to extract the value and the unit.</p>
+	<pre><code>
+&lt;td data-wb-charts-value="200$"&gt;two hundred dollars&lt;/td&gt;</code></pre>
+	</section>
+
+	<section>
 	<h3>Increase white space between series</h3>
 	<p>The following data-flot option can be use to simulate more spacing between each series.</p>
 	
