@@ -43,8 +43,6 @@
 
 	<fieldset>
 		<legend>Accessibility</legend>
-
-
 		<div class="col-xs-6">
 			<div>
 				<label class="radio-inline" for="access-1">
@@ -75,18 +73,17 @@
 			</div>
 		</div>
 	</fieldset>
-
+	
 	<fieldset>
-		<legend>Add table markup below</legend>
-
+		<legend>Validation tool</legend>
+		<label for="inputsourcecode">Add table markup below</label>
 		<p><code>&lt;table&gt;</code></p>
 		<textarea id="inputsourcecode" class="col-xs-12" rows="15" placeholder="Paste the source code for your HTML table"></textarea>
 		<p><code>&lt;/table&gt;</code></p>
+		<input id="validatetable" type="submit" value="Validate" />
+		<input type="reset" value="Reset" />
 	</fieldset>
 
-
-	<input id="validatetable" type="submit" value="Validate" />
-	<input type="reset" value="Reset" />
 
 	<fieldset>
 		<legend>Validation results</legend>
