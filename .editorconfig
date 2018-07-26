@@ -10,6 +10,9 @@ insert_final_newline = true
 indent_style = tab
 indent_size = 4
 
-[{package.json,bower.json,*.md}]
+[{*.json,*kml,*.md}]
 indent_style = space
 indent_size = 2
+
+[*.csv]
+trim_trailing_whitespace = false
