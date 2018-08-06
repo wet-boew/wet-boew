@@ -676,7 +676,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				);
 
 			// Enter sub-menu
-			} else if ( hasPopup && ( which === ENTER_KC || which === UP_KC || which === DOWN_KC ) ) {
+			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === UP_KC || which === DOWN_KC ) ) {
 				event.preventDefault();
 				$parent = $menuItem.parent();
 				$subMenu = $parent.find( ".sm" );
@@ -716,8 +716,8 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					which === UP_KC ? -1 : 1
 				);
 
-			// Enter or right arrow with a submenu
-			} else if ( hasPopup && ( which === ENTER_KC || which === RIGHT_KC ) ) {
+			// Enter, space, or right arrow with a submenu
+			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === RIGHT_KC ) ) {
 				$parent = $menuItem.parent();
 
 				if ( which === RIGHT_KC ) {
