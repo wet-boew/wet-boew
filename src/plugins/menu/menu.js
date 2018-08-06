@@ -655,6 +655,14 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		if ( which === TAB_KC ) {
 			menuClose( $( selector + " .active" ), true );
 
+		//Enter or spacebar on a link = follow the link and close menus
+		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
+			( which === ENTER_KC || which === SPACE_KC ) ) {
+
+			event.preventDefault();
+			menuItem.click();
+			menuClose( $( selector + " .active" ), true );
+
 		// Menu item is within a menu bar
 		} else if ( inMenuBar ) {
 
