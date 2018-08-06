@@ -720,9 +720,9 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === RIGHT_KC ) ) {
 				$parent = $menuItem.parent();
 
-				if ( which === RIGHT_KC ) {
-					event.preventDefault();
-				}
+				// Prevent handling by details.js polyfill
+				event.stopImmediatePropagation();
+				event.preventDefault();
 
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
