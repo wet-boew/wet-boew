@@ -838,6 +838,12 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 	}
 } );
 
+// Prevent Firefox from double-triggering menu behaviour
+$document.on( "keyup", selector + " [role=menuitem]", function( event ) {
+	event.preventDefault();
+	return false;
+} );
+
 // Close the mobile panel if switching to medium, large or extra large view
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
