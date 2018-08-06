@@ -746,10 +746,8 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 							menuContainer.scrollTop = menuItemOffsetTop;
 						}
-					}
 
-					// Ensure the menu is opened or stays open
-					if ( ( !isOpen && which === RIGHT_KC ) || ( isOpen && which === ENTER_KC ) ) {
+						// Ensure the menu is opened or stays open
 						$menuItem.trigger( "click" );
 					}
 
