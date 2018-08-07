@@ -20,6 +20,7 @@
     "qualified-headings": false,
     "regex-selectors": false,
     "selector-max-approaching": false,
+	"selector-max": false,
     // Some Bootstrap mixins end up listing all the longhand properties
     "shorthand": false,
     "text-indent": false,

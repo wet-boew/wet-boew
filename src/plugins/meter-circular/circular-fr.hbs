@@ -1,0 +1,266 @@
+---
+{
+	"title": "Mesure circulaire",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Change un meter (mesure) horizontal en une mesure circulaire décoré avec du CSS.",
+	"tag": "meterrounded",
+	"parentdir": "meter-circular",
+	"altLangPrefix": "circular",
+	"dateModified": "2017-08-03"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Change un meter (mesure) horizontal en une mesure circulaire décoré avec du CSS</p>
+
+<div class="row text-center">
+	<div class="col-md-3">
+		<meter class="wb-meter-circular" value="10" max="100">10 pourcent</meter>
+	</div>
+	<div class="col-md-3">
+		<meter class="wb-meter-circular" value="30" max="100" aria-label="Pomme">30 pourcent</meter>
+	</div>
+	<div class="col-md-3">
+		<meter class="wb-meter-circular" value="50" max="100">50 pourcent</meter>
+	</div>
+	<div class="col-md-3">
+		<meter class="wb-meter-circular" value="88" max="100" aria-label="Étiquette">88 pourcent</meter>
+	</div>
+</div>
+
+<div class="row mtr-smaller">
+	<div class="col-md-6">
+		<p class="mrgn-tp-lg">Mesure sous-optimal</p>
+		<div class="row text-center">
+			<div class="col-md-6">
+				<meter class="wb-meter-circular" value="30" max="100" low="40" high="80">30 pourcent</meter>
+			</div>
+			<div class="col-md-6">
+				<meter class="wb-meter-circular" value="90" max="100" low="40" high="80">90 pourcent</meter>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<p class="mrgn-tp-lg">Mesure moins bonne</p>
+		<div class="row text-center">
+			<div class="col-md-6">
+				<meter class="wb-meter-circular" value="30" max="100" low="40" high="80" optimum="90">30 pourcent</meter>
+			</div>
+			<div class="col-md-6">
+				<meter class="wb-meter-circular" value="90" max="100" low="40" high="80" optimum="30">90 pourcent</meter>
+			</div>
+		</div>
+	</div>
+</div>
+
+<details class="mrgn-tp-lg">
+	<summary>Code source</summary>
+	<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;10&quot; max=&quot;100&quot;&gt;10 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;30&quot; max=&quot;100&quot; aria-label=&quot;Pomme&quot;&gt;30 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;50&quot; max=&quot;100&quot;&gt;50 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;88&quot; max=&quot;100&quot; aria-label=&quot;Étiquette&quot;&gt;88 pourcent&lt;/meter&gt;
+
+&lt;div class=&quot;mtr-smaller&quot;&gt;
+	&lt;p&gt;Sub-optimal meter&lt;/p&gt;
+	&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;30&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot;&gt;30 pourcent&lt;/meter&gt;
+	&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;90&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot;&gt;90 pourcent&lt;/meter&gt;
+
+	&lt;p&gt;Less good meter&lt;/p&gt;
+	&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;30&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot; optimum=&quot;90&quot;&gt;30 pourcent&lt;/meter&gt;
+	&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;90&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot; optimum=&quot;30&quot;&gt;90 pourcent&lt;/meter&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+
+
+
+<h2>Tous les type d'animation de mesure circulaire</h2>
+
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="1" max="60">1 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;1&quot; max=&quot;60&quot;&gt;1 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="5" max="60">5 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;5&quot; max=&quot;60&quot;&gt;5 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="10" max="60">10 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;10&quot; max=&quot;60&quot;&gt;10 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="15" max="60">15 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;15&quot; max=&quot;60&quot;&gt;15 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="20" max="60">20 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;20&quot; max=&quot;60&quot;&gt;20 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="25" max="60">25 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;25&quot; max=&quot;60&quot;&gt;25 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="28" max="60">28 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;28&quot; max=&quot;60&quot;&gt;28 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="30" max="60">30 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;30&quot; max=&quot;60&quot;&gt;30 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="32" max="60">32 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;32&quot; max=&quot;60&quot;&gt;32 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="35" max="60">35 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;35&quot; max=&quot;60&quot;&gt;35 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="40" max="60">40 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;40&quot; max=&quot;60&quot;&gt;40 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="45" max="60">45 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;45&quot; max=&quot;60&quot;&gt;45 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="50" max="60">50 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;50&quot; max=&quot;60&quot;&gt;50 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="55" max="60">55 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;55&quot; max=&quot;60&quot;&gt;55 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="58" max="60">58 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;58&quot; max=&quot;60&quot;&gt;58 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 text-center">
+		<meter class="wb-meter-circular" value="60" max="60">60 minutes</meter>
+	</div>
+	<div class="col-md-9">
+		<pre><code>&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;60&quot; max=&quot;60&quot;&gt;60 minutes&lt;/meter&gt;</code></pre>
+	</div>
+</div>
+
+
+<h2>Personalisation d'une mesure</h2>
+
+<p>Échelle de gris:</p>
+<div class="mtr-grayscale">
+	<div class="row text-center">
+		<div class="col-md-4">
+			<meter class="wb-meter-circular" value="49" max="100">49 pourcent</meter>
+		</div>
+		<div class="col-md-4">
+			<meter class="wb-meter-circular" value="30" max="100" low="40" high="80">30 pourcent</meter>
+		</div>
+		<div class="col-md-4">
+			<meter class="wb-meter-circular" value="90" max="100" low="40" high="80" optimum="30">90 pourcent</meter>
+		</div>
+	</div>
+</div>
+
+
+<p class="mrgn-tp-lg">Gros:</p>
+<div class="mtr-larger">
+	<div class="row text-center">
+		<div class="col-md-6">
+			<meter class="wb-meter-circular" value="49" max="100">49 pourcent</meter>
+		</div>
+		<div class="col-md-6">
+			<meter class="wb-meter-circular" value="49" max="100" aria-label="Ceci est une étiquette">49 pourcent</meter>
+		</div>
+	</div>
+</div>
+
+<p class="mrgn-tp-lg">Petit: Veuillez consultez l'exemple ci-dessus concernant des mesures sous-optimal et moins bonne.</p>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;p&gt;Échelle de gris:&lt;/p&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;49&quot; max=&quot;100&quot;&gt;49 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;30&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot;&gt;30 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;90&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot; optimum=&quot;30&quot;&gt;90 pourcent&lt;/meter&gt;
+
+&lt;p&gt;Gros:&lt;/p&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;49&quot; max=&quot;100&quot;&gt;49 pourcent&lt;/meter&gt;
+&lt;meter class=&quot;wb-meter-circular&quot; value=&quot;49&quot; max=&quot;100&quot; aria-label=&quot;Ceci est une étiquette&quot;&gt;49 pourcent&lt;/meter&gt;
+
+&lt;p&gt;Petit: Veuillez consultez l'exemple ci-dessus concernant des mesures sous-optimal et moins bonne.&lt;/p&gt;</code></pre>
+</details>
+
+<h2>Mesure par default</h2>
+
+<meter value="10" max="100">10 pourcent</meter>
+<meter value="49" max="100">49 pourcent</meter>
+<meter value="30" max="100" low="40" high="80">30 pourcent</meter>
+<meter value="90" max="100" low="40" high="80" optimum="30">90 pourcent</meter>
+
+<pre><code>&lt;meter value=&quot;10&quot; max=&quot;100&quot;&gt;10 pourcent&lt;/meter&gt;
+&lt;meter value=&quot;49&quot; max=&quot;100&quot;&gt;49 pourcent&lt;/meter&gt;
+&lt;meter value=&quot;30&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot;&gt;30 pourcent&lt;/meter&gt;
+&lt;meter value=&quot;90&quot; max=&quot;100&quot; low=&quot;40&quot; high=&quot;80&quot; optimum=&quot;30&quot;&gt;90 pourcent&lt;/meter&gt;</code></pre>
