@@ -273,7 +273,7 @@ var getUrlParts = function( url ) {
 				i;
 
 			// Lets ensure we are not running if things are disabled
-			if ( wb.isDisabled && selector !== "#wb-tphp" ) {
+			if ( wb.isDisabled && ( selector !== "#wb-tphp" && $.inArray( selector, [ "[data-ajax-after]", "[data-ajax-append]", "[data-ajax-before]", "[data-ajax-prepend]", "[data-ajax-replace]", "[data-wb-ajax]" ] ) === -1 ) ) {
 				return 0;
 			}
 
