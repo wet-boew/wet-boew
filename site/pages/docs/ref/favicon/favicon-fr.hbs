@@ -8,7 +8,7 @@
 	"altLangPrefix": "favicon",
 	"dateModified": "2014-08-04"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
@@ -17,7 +17,7 @@
 		<h2>Purpose</h2>
 		<p>This plugin provides the ability to add and update a web page's favicon.</p>
 	</section>
-	
+
 	<section>
 		<h2>Use when</h2>
 		<ul>
@@ -25,50 +25,50 @@
 			<li>Dynamically updating the favicon of a web page.</li>
 		</ul>
 	</section>
-	
+
 	<section>
 		<h2>Working example</h2>
 		<p><a href="../../../demos/favicon/favicon-en.html">English example</a></p>
 		<p><a href="../../../demos/favicon/favicon-fr.html">French example</a></p>
 	</section>
-	
+
 	<section>
 		<h2>How to implement</h2>
-		
+
 		<section>
 			<h3>Add a mobile favicon:</h3>
 			<ol>
-				<li>Add a favicon to the web page using a link element: 
+				<li>Add a favicon to the web page using a link element:
 					<pre><code>&lt;link href="favion.ico" rel="icon" type="image/x-icon"&gt;</code></pre>
 				</li>
 				<li>Optionally specify the mobile favion's filename, path, rel attribute and sizes attribute:
 					<pre><code>&lt;link href="favion.ico" rel="icon" type="image/x-icon"
-		data-filename="my-mobile-favicon.ico" 
+		data-filename="my-mobile-favicon.ico"
 		data-path="/path/to/favicon/"
 		data-rel="apple-touch-icon-precomposed"
 		data-sizes="57x57"&gt;</code></pre>
 				</li>
 			</ol>
 		</section>
-		
+
 		<section>
 			<h3>Update an existing favicon's href attribute:</h3>
 			<ol>
-				<li>Using JavaScript, get a reference to the favicon's link element: 
+				<li>Using JavaScript, get a reference to the favicon's link element:
 					<pre><code>var $favicon = $( "link[rel='icon']" );</code></pre>
 				</li>
 				<li>Trigger the <code>icon.wb-favicon</code> event on the favicon element:
 					<pre><code>$favicon.trigger( "icon.wb-favicon" );</code></pre>
-					<strong>Note:</strong> the update of the favicon's href attribute will be based on its data-path and data-filename attributes. 
+					<strong>Note:</strong> the update of the favicon's href attribute will be based on its data-path and data-filename attributes.
 				</li>
-			</ol>		
+			</ol>
 		</section>
 	</section>
-	
+
 	<section>
 		<h2>Configuration options</h2>
 		<p>All configuration options of the plugin are controlled with data attributes:</p>
-	
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -134,7 +134,7 @@
 			</tbody>
 		</table>
 	</section>
-	
+
 	<section>
 		<h2>Events</h2>
 		<p>Document the public events that can be used by implementers or developers.</p>
@@ -185,7 +185,7 @@
 				<tr>
 					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 					<td>Triggered automatically when WET has finished loading and executing.</td>
-					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 					</td>
@@ -193,7 +193,7 @@
 			</tbody>
 		</table>
 	</section>
-	
+
 	<section>
 		<h2>Source code</h2>
 		<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/favicon">Favicon source code on GitHub</a></p>

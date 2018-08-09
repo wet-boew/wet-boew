@@ -16,9 +16,9 @@
 
 describe( "Twitter test suite", function() {
 
-  /*
-   * Test the initialization and default behaviour of the plugin
-   */
+	/*
+	 * Test the initialization and default behaviour of the plugin
+	 */
 	var $elm,
 		$document = wb.doc,
 		$body = $document.find( "body" );

@@ -15,7 +15,7 @@
 	<h2>Purpose</h2>
 	<p>Create a session inactivity timeout that warns users when their session is about to expire.</p>
 	<p>This plugin helps web page owners by providing session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "Continue session", or signing out by clicking "End session now".</p>
-	<p>At any time during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>	
+	<p>At any time during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>
 </section>
 
 <section>
@@ -37,14 +37,14 @@
 	<ol>
 		<li>
 			Add a <code>class="wb-sessto"</code> element to the web page (only required once). You must set the <code>logouturl</code>, which controls where the user is redirected if their session expires:
-			<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
-		</li>		
+			<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>
+		</li>
 		<li>Configure the plugin using the <code>data-wb-sessto</code> attribute of the element:
 			<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{
-	"inactivity": 1200000, 
-	"reactionTime": 30000, 
-	"sessionalive": 1200000, 
-	"logouturl": "./", 
+	"inactivity": 1200000,
+	"reactionTime": 30000,
+	"sessionalive": 1200000,
+	"logouturl": "./",
 	"refreshCallbackUrl": "./"
 	"refreshOnClick": true,
 	"refreshLimit": 200000,
@@ -66,7 +66,7 @@
 		<li><code>das</code>: dekasecond (10 seconds)</li>
 		<li><code>hs</code>: hectosecond (100 seconds)</li>
 		<li><code>ks</code>: kilosecond (1,000 seconds)</li>
-	</ul>	
+	</ul>
 	<table class="table">
 		<thead>
 			<tr>
@@ -252,7 +252,7 @@
 				<td><code>inactivity.wb-sessto</code></td>
 				<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "inactivity.wb-sessto" );</code>).</td>
 				<td>Causes the modal dialog to appear and prompt the user to continue or end their session. This event is triggered automatically when the <code>inactivity</code> timeout expires.</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><code>keepalive.wb-sessto</code></td>
 				<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "keepalive.wb-sessto" );</code>).</td>
@@ -266,7 +266,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -274,10 +274,10 @@
 		</tbody>
 	</table>
 	<p><strong>Note:</strong> when manually triggering the <code>inactivity</code>, <code>keepalive</code> and <code>reset</code> events, you must pass the <code>data-wb-sessto</code> attribute as a second argument:</p>
-	<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute	
+	<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute
 var $element = $( ".wb-sessto" ),
 	settings = $element.data( "wb-sessto" );
-	
+
 // Trigger the event on the element
 $element.trigger( "reset.wb-sessto", settings );</code></pre>
 </section>
