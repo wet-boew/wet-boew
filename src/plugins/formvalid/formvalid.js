@@ -84,7 +84,7 @@ var componentName = "wb-frmvld",
 						$inputs = $formElms.filter( "input" ),
 						$pattern = $inputs.filter( "[pattern]" ),
 						submitted = false,
-						$required = $formElms.filter( "[required], [data-rule-required], .required" ),
+						$required = $formElms.filter( "[required], [data-rule-required]" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
 						settings = $.extend(
 							true,
