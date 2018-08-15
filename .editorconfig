@@ -10,9 +10,20 @@ insert_final_newline = true
 indent_style = tab
 indent_size = 4
 
-[{*.json,*kml,*.md}]
+[{.*,*.json,*.md}]
 indent_style = space
 indent_size = 2
 
+[site/includes/sitemenureplace.hbs]
+insert_final_newline = false
+
 [*.csv]
 trim_trailing_whitespace = false
+
+# Tracked third party files
+[{dep/modernizr-custom.js,src/polyfills/events/mobile.js,src/polyfills/slider/slider.js}]
+charset = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+indent_style = unset
+indent_size = unset
