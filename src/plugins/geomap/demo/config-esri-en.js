@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @title WET-BOEW Geomap English config file
  * @overview Example English configuration file for Geomap with ESRI REST basemap
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html

@@ -13,11 +13,11 @@
 
 <section>
 	<h2>Synthèse</h2>
-	<p>L'optimisation de la programmation est une tâche importante de la Boîte à outils de l'expérience Web maintenant qu'elle adopte une approche mobilité d'abord dans la version 4.0. 
-	Là où la programmation molle pourrait avoir un impact minimal sur les performances dans un fureteur d'ordinateur de bureau, 
-	elle peut résulter en des délais vraiment significatifs sur les appreils mobiles. 
+	<p>L'optimisation de la programmation est une tâche importante de la Boîte à outils de l'expérience Web maintenant qu'elle adopte une approche mobilité d'abord dans la version 4.0.
+	Là où la programmation molle pourrait avoir un impact minimal sur les performances dans un fureteur d'ordinateur de bureau,
+	elle peut résulter en des délais vraiment significatifs sur les appreils mobiles.
 	C'est pourquoi une des priorités de la BOEW v4.x est l'optimisation de la performance.</p>
-	<p>Le cadre de la BOEW v4.x est déjà fortement optimisé en utilisant la minification de code, la consolidation, le scriptage CSS et l'encodage Base64. 
+	<p>Le cadre de la BOEW v4.x est déjà fortement optimisé en utilisant la minification de code, la consolidation, le scriptage CSS et l'encodage Base64.
 	Tout ca résulte dans une augmentation de la performance significative mais peut encore s'enliser par du code gonflé et mou.
 	Cette page fournie plusieurs conseils pour vous assurer que votre programmation est aussi efficace que possible.</p>
 </section>
@@ -25,15 +25,15 @@
 <section>
 	<h2>Optimisation du code JavaScript</h2>
 	<ul>
-		<li><strong>Minimiser l'utilisation du jQuery :</strong> jQuery peut être d'un grand aide avec la traversée DOM 
-		et les scénarios complexes de scrptage mais peut ralentir lorsqu'on travaille avec des scénarios de code simple et direct. 
-		Il y a un coût a la performance pour chaque objet jQuery créé et méthode d'emballage jQuery 
-		pour les opérations JavaScript de base. Évitez de créer des objets jQuery chaque fois que possible, 
+		<li><strong>Minimiser l'utilisation du jQuery :</strong> jQuery peut être d'un grand aide avec la traversée DOM
+		et les scénarios complexes de scrptage mais peut ralentir lorsqu'on travaille avec des scénarios de code simple et direct.
+		Il y a un coût a la performance pour chaque objet jQuery créé et méthode d'emballage jQuery
+		pour les opérations JavaScript de base. Évitez de créer des objets jQuery chaque fois que possible,
 		spécialement dans les boucles.</li>
 		<li>
 			<strong>Optimiser vos boucles :</strong> La boucle la plus rapide en JavaScript est en mémoire tampon pour boucles
-			 (longueur en mémoire tampon en dehors de la boucle). Évitez d'utiliser des boucles jQuery (p.e., <code>each()</code>) 
-			 lorsque possible car il y a beaucoup de frais système. Dans le cas d'objets jQuery, utilisez <code>.get()</code> pour 
+			(longueur en mémoire tampon en dehors de la boucle). Évitez d'utiliser des boucles jQuery (p.e., <code>each()</code>)
+			lorsque possible car il y a beaucoup de frais système. Dans le cas d'objets jQuery, utilisez <code>.get()</code> pour
 			accéder à une collection d'objets DOM pour lesquels une condition « while » renversée et mémoire tampon pour boucles peuvent être utilisés.
 			'''En mémoire tampon pour boucle (longueur en mémoire tampon en dehors de la boucle):'''
 <pre><code>var i,
@@ -45,18 +45,18 @@ for ( i = 0; i !== len; i += 1 ) {
 }</code></pre>
 		</li>
 		<li><strong>« if/else » versus déclarations « switch » :</strong> Lorsque vous décidez comment contrôler le flot de votre programmation,
-		il est important de considérer le nombre de conditions à comparer. Si il n'y a qu'une ou deux conditions, les déclarations « if/else » sont généralement plus rapides. 
-		Cependant, lorsque vous avez 3 conditions ou plus à comparer, une déclaration « switch » est l'option la plus rapide. 
+		il est important de considérer le nombre de conditions à comparer. Si il n'y a qu'une ou deux conditions, les déclarations « if/else » sont généralement plus rapides.
+		Cependant, lorsque vous avez 3 conditions ou plus à comparer, une déclaration « switch » est l'option la plus rapide.
 		Vos déclarations « if/else » et « switch » devraient aussi être organisées pour que les conditions les plus communes
 		apparaissent au haut du bloc de déclaration « if/else » ou « switch » (Voir jsPerf <a rel="external" href="http://jsperf.com/program-flow-statements" lang="en">if/else versus switch test case</a>).</li>
-		<li><strong>Éléments DOM en mémoire tampon, objets jQuery et valeurs objet/collection :</strong> 
-		Il y a beaucoup de frais système à faire des recherches DOM, créer des objets jQuery, et retrouver des valeurs objet/collection. 
-		Minimisez l'impact en ajoutant à la mémoire tampon les résultats où ces résultats seront utilisés plus d'une fois. 
+		<li><strong>Éléments DOM en mémoire tampon, objets jQuery et valeurs objet/collection :</strong>
+		Il y a beaucoup de frais système à faire des recherches DOM, créer des objets jQuery, et retrouver des valeurs objet/collection.
+		Minimisez l'impact en ajoutant à la mémoire tampon les résultats où ces résultats seront utilisés plus d'une fois.
 		Il est préférable d'emmagasiner ces résultats dans des variables locales et de réutiliser ces variables.</li>
 		<li>
-			<strong>Minimiser le refoulement :</strong> Chaque modification apportée au DOM a un coût significatif à la performace car elle 
-			le refoulement de page. Minimisez ce coût en effectuant tout les changements dans une seule opération 
-			pour actionner le refoulement qu'une seule fois plutôt que plusieurs opérations qui activent le refoulement plusieurs fois. 
+			<strong>Minimiser le refoulement :</strong> Chaque modification apportée au DOM a un coût significatif à la performace car elle
+			le refoulement de page. Minimisez ce coût en effectuant tout les changements dans une seule opération
+			pour actionner le refoulement qu'une seule fois plutôt que plusieurs opérations qui activent le refoulement plusieurs fois.
 			Ca peut être effectuer de la manière suivante :
 			<ul>
 				<li>Mettre tout les changements dans une chaîne de caractères ou objet et ensuite le joindre
@@ -65,19 +65,19 @@ for ( i = 0; i !== len; i += 1 ) {
 			</ul>
 		</li>
 		<li><strong>Éviter les recherches DOM globales :</strong> Le coût à la performance est beaucoup plus grand
-		lorsqu'on recherche le DOM au complet plutôt que de rechercher seulement une partie de celui-ci. 
+		lorsqu'on recherche le DOM au complet plutôt que de rechercher seulement une partie de celui-ci.
 		Si vous avez déjà une recherche en mémoire tampon, veuillez en prendre avantage et recherchez de ce point
 		plutôt que de rechercher le DOM au complet à nouveau. Par exemple si vous avez déjà la recherche pour la classe <code>.button</code> en mémoire tampon
-		dans la variable $buttons, faites alors <code>$buttons.find( "a.mybutton" )</code> pour trouver les éléments 
+		dans la variable $buttons, faites alors <code>$buttons.find( "a.mybutton" )</code> pour trouver les éléments
 		a plutôt que <code>$( "a.mybutton" )</code>. Lorsque possible, utilisez du JavaScript natif pour rechercher
 		tel que <code>getElementById</code> et <code>getElementsByTagName</code>.</li>
 		<li><strong>Recherches DOM optimisées tout d'adord, filtrage ensuite:</strong> Les recherches DOM les plus rapides
-		en JavaScript sont par id et nom de balise à cause des fonctions JavaScript natives <code>getElementById</code> 
+		en JavaScript sont par id et nom de balise à cause des fonctions JavaScript natives <code>getElementById</code>
 		et <code>getElementsByTagName</code>. Prenez avantage de cette performance en exécutant d'abord des recherches optimisées
 		et filtrez ensuite. Par exemple, au lieu de <code>.find( "a[href=*'url_fragment']" )</code> effectuez <code>.find( "a" ).filter( "[href=*'url_fragment']" )</code>.</li>
 		<li>
-			<strong>Combiner de multiples événements à un élément :</strong> Lorsque vous combinez de multiples événements à un élément, 
-			il est plus rapide de combiner tous les événements a un seul gestionnaire d'événement. 
+			<strong>Combiner de multiples événements à un élément :</strong> Lorsque vous combinez de multiples événements à un élément,
+			il est plus rapide de combiner tous les événements a un seul gestionnaire d'événement.
 			Vous pouvez utiliser la propriété type de l'événement pour déterminer quel événement a été activé
 			(see the jsPerf <a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers" lang="en">handling multiple events test case</a>).
 <pre><code>// Plus rapide : un seul gestionnaire d'événement pour les deux événements
@@ -140,9 +140,9 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 <section>
 	<h2>Optimisation de code CSS</h2>
 	<ul>
-		<li><strong>Minimiser les noms de classe CSS :</strong> les noms de classe CSS sont souvent réutilisées de 
-		multiple fois à l'intérieur des fichiers CSS et HTML pour pouvoir ajouter rapidement en vrac aux fichiers si ils sont longs are inutilement long. 
-		Gardez les noms de classe aussi courts que possible tout en s'assurant qu'ils restent unique. 
+		<li><strong>Minimiser les noms de classe CSS :</strong> les noms de classe CSS sont souvent réutilisées de
+		multiple fois à l'intérieur des fichiers CSS et HTML pour pouvoir ajouter rapidement en vrac aux fichiers si ils sont longs are inutilement long.
+		Gardez les noms de classe aussi courts que possible tout en s'assurant qu'ils restent unique.
 		Un exercice de réduction des noms de classe d'un cadre de la BOEW récent a permis de réduire la taille de fichier de 		10% à 30%.</li>
 	</ul>
 
@@ -159,7 +159,7 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 <section>
 	<h2>Optimisation du code HTML</h2>
 	<ul>
-		<li><strong>Minimiser l'utilisation de commentaires HTML :</strong> chaque kilooctet compte lorsqu'il est question d'appareils mobiles, alors évitez de gonfler inutilement votre code avec des commentaires HTML. Gardez les commentaires à un strict minimum en éliminant les commentaires inutiles et réduisant le reste.</li>		
+		<li><strong>Minimiser l'utilisation de commentaires HTML :</strong> chaque kilooctet compte lorsqu'il est question d'appareils mobiles, alors évitez de gonfler inutilement votre code avec des commentaires HTML. Gardez les commentaires à un strict minimum en éliminant les commentaires inutiles et réduisant le reste.</li>
 		<li><strong>Retirer le code marquer en commentaire :</strong> Le code marquer en commentaire ne devrait pas être laissé dans les pages Web en production. Le code marqué en commentaire peut facilement ajouter plusieurs kilooctets inutiles aux téléchargements. Gardez le code inutilisé séparé des pages Web en production.</li>
 		<li><strong>Utiliser la tabulation plutôt que la barre d'espacement pour espacer votre code :</strong> 		Il faut en général 5 caractères d'espacement pour égaler l'espacement d'une tabulation. 		Une réduction significative de taille de fichier peut être accomplie en utilisant la tabulation plutôt que la barre d'espacement. 		Plusieurs outils d'édition permettent de facilement passé à l'espacement par tabulation.</li>
 		<li><strong>Minimiser l'espacement:</strong> L'espacement est pratique pour la clarté du code 		mais peut rapidement ajouter à la taille du fichier HTML. Trouvez un bon équilibre entre la clarté de code 		et la taille de fichier pour minimiser l'impact sur l'utilisateur final.</li>
@@ -171,7 +171,7 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 <section>
 	<h2>Optimisation de serveur Web</h2>
 	<ul>
-		<li>Autoriser la compression Gzip sur votre serveur Web. La compression Gzip peut réduire la taille de transfert 
+		<li>Autoriser la compression Gzip sur votre serveur Web. La compression Gzip peut réduire la taille de transfert
 		jusqu'à 70%. ''Note :''' La compression Gzip ne réduit pas l'impact sur la taille de la mémoire tampon de l'utilisateur final (mémoire tampon non-comprimée) alors la taille des fichiers devrait être réduite autant que possible avant la compression Gzip.</li>
 	</ul>
 </section>

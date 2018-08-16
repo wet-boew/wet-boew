@@ -1,10 +1,10 @@
 ---
 {
-	"title": "GÃ©ocarte",
+	"title": "Géocarte",
 	"language": "fr",
 	"category": "Plugiciels",
 	"categoryfile": "plugins",
-	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplÃ©mentaires peuvent Ãªtre superposÃ©es.",
+	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
 	"altLangPrefix": "geomap",
 	"dateModified": "2014-10-28"
 }
@@ -74,26 +74,26 @@
 	<section>
 		<h3>File based (e.g. "config-en.js") configuration example</h3>
 		<pre><code>var wet_boew_geomap = {
-    basemap : {
-        title: 'CBMT',
-        type: 'wms',
-	url: 'http://geogratis.gc.ca/maps/CBMT',
-	layers: 'CBMT',
-	format: 'image/png',
-	version: '1.1.1'
-    },
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-        type: 'kml',
-        url: 'data/sample.kml',
-        visible: true
-        },
-        {
-            ...
-        }
-    ]
+	basemap : {
+		title: 'CBMT',
+		type: 'wms',
+		url: 'http://geogratis.gc.ca/maps/CBMT',
+		layers: 'CBMT',
+		format: 'image/png',
+		version: '1.1.1'
+	},
+	overlays : [
+		{
+			title: 'KML Demo EN',
+			caption: 'This is a sample KML file loaded locally by Geomap.',
+			type: 'kml',
+			url: 'data/sample.kml',
+			visible: true
+		},
+		{
+			...
+		}
+	]
 };</code></pre>
 	</section>
 -->
@@ -184,24 +184,24 @@
 							<p>Access the values of the hidden fields by attaching a listener to the "change" event.</p>
 							<pre><code>wb.doc.on( "geomap.ready", function( event, maps ) {
 
-  var myMap = maps.mygeomap,
-    $aoiExtent = $( "#geomap-aoi-extent-" + myMap.uniqueId ),
-    $aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + myMap.uniqueId ), bbox, bboxProj;
+	var myMap = maps.mygeomap,
+		$aoiExtent = $( "#geomap-aoi-extent-" + myMap.uniqueId ),
+		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + myMap.uniqueId ), bbox, bboxProj;
 
-  $aoiExtent.on( "change", function() {
-    bbox = $( this ).val() ); // in map projection
-    // do something
-  } );
+	$aoiExtent.on( "change", function() {
+		bbox = $( this ).val() ); // in map projection
+		// do something
+	} );
 
-  $aoiExtentLonLat.on("change", function() {
-    bboxLonLat = $( this ).val() ); // in longitude/latitude
-    // do something
-  } );
+	$aoiExtentLonLat.on("change", function() {
+		bboxLonLat = $( this ).val() ); // in longitude/latitude
+		// do something
+	} );
 
 });
-							</code></pre><p>Le widget "zone d'intÃ©rÃªt" peut Ãªtre configurÃ© de sorte qu'il est activÃ© par dÃ©faut en dÃ©finissant, dans le module d'extension, la propriÃ©tÃ© <code>data-wb-geomap</code> Ã  "false"</p>
+							</code></pre><p>Le widget "zone d'intérêt" peut être configuré de sorte qu'il est activé par défaut en définissant, dans le module d'extension, la propriété <code>data-wb-geomap</code> à "false"</p>
 							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false } ... }'&gt; ... &lt;/div&gt;</code></pre>
-							<p>Le widget "zone d'intÃ©rÃªt" peut Ãªtre configurÃ© avec une Ã©tendue initiale en dÃ©finissant, dans le module d'extension, la propriÃ©tÃ© <code>extent</code> de l'attribut <code>data-wb-geomap</code>.</p>
+							<p>Le widget "zone d'intérêt" peut être configuré avec une étendue initiale en définissant, dans le module d'extension, la propriété <code>extent</code> de l'attribut <code>data-wb-geomap</code>.</p>
 							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false, , "extent": "-57, 46, -51, 50" } ... }'&gt; ... &lt;/div&gt;</code></pre></td>
 					</tr>
 					<tr>
@@ -312,22 +312,22 @@
 		<section>
 			<h4>Basemap configuration example</h4>
 			<pre><code>basemap : {
-    title: 'CBMT',
-    type: 'wms',
-    url: 'http://geogratis.gc.ca/maps/CBMT',
-    layers: 'CBMT',
-    format: 'image/png',
-    version: '1.1.1',
-    options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
-    mapOptions: {
-        maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
-        maxResolution: 'auto',
-        projection: 'EPSG:3978',
-        restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
-        units: 'm',
-        displayProjection: 'EPSG:4269',
-        numZoomLevels: 12
-    }
+	title: 'CBMT',
+	type: 'wms',
+	url: 'http://geogratis.gc.ca/maps/CBMT',
+	layers: 'CBMT',
+	format: 'image/png',
+	version: '1.1.1',
+	options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
+	mapOptions: {
+		maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+		maxResolution: 'auto',
+		projection: 'EPSG:3978',
+		restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+		units: 'm',
+		displayProjection: 'EPSG:4269',
+		numZoomLevels: 12
+	}
 }</code></pre>
 		</section>
 	</section>
@@ -406,16 +406,16 @@
 				<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
 				<pre><code>// Configuration file ("data/config-en.js")
 var wet_boew_geomap = {
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-        type: 'kml',
-        url: 'data/sample.kml',
-        visible: true
-        },
-        { ... }
-    ]
+	overlays : [
+		{
+			title: 'KML Demo EN',
+			caption: 'This is a sample KML file loaded locally by Geomap.',
+			type: 'kml',
+			url: 'data/sample.kml',
+			visible: true
+		},
+		{ ... }
+	]
 };</code></pre></li>
 				<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
 				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
@@ -539,25 +539,25 @@ var wet_boew_geomap = {
 			<section>
 				<h4>Overylay configuration example</h4>
 				<pre><code>{
-  attributes: {
-    location_desc: 'Location',
-    longitude: 'Latitude',
-    latitude: 'Longitude',
-    updated_at: 'Last updated'
-  },
-  caption: 'Traffic cameras in the city of Ottawa.',
-  datatable: true,
-  params: {
-    'format': 'GeoJSON',
-    'q': 'SELECT * FROM traffic_cameras LIMIT 25'
-  },
-  style: { ... },
-  tab: true,
-  title: 'Traffic Cameras',
-  type: 'geojson',
-  url: 'http://stephenott.cartodb.com/api/v2/sql',
+	attributes: {
+		location_desc: 'Location',
+		longitude: 'Latitude',
+		latitude: 'Longitude',
+		updated_at: 'Last updated'
+	},
+	caption: 'Traffic cameras in the city of Ottawa.',
+	datatable: true,
+	params: {
+		'format': 'GeoJSON',
+		'q': 'SELECT * FROM traffic_cameras LIMIT 25'
+	},
+	style: { ... },
+	tab: true,
+	title: 'Traffic Cameras',
+	type: 'geojson',
+	url: 'http://stephenott.cartodb.com/api/v2/sql',
 	visible: true,
-  zoom:  true
+	zoom:  true
 }</code></pre>
 			</section>
 
@@ -566,61 +566,61 @@ var wet_boew_geomap = {
 			<section>
 				<h5>Basic style example - all features using the same style</h5>
 				<pre><code>style: {
-  'strokeColor': '#ff0000',
-  'fillColor': '#ff0000',
-  'fillOpacity': '0.4'
+	'strokeColor': '#ff0000',
+	'fillColor': '#ff0000',
+	'fillOpacity': '0.4'
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Style example with override for selected feature</h5>
 				<pre><code>style: {
-  type: 'symbol',
-  init: { 'pointRadius': '15', 'externalGraphic': '../icon.png' },
-  select: { 'pointRadius': '15', 'externalGraphic': '../icon_selected.png' }
+	type: 'symbol',
+	init: { 'pointRadius': '15', 'externalGraphic': '../icon.png' },
+	select: { 'pointRadius': '15', 'externalGraphic': '../icon_selected.png' }
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Rule based example - features are styled according to specified rules</h5>
 				<pre><code>style: {
-  type: 'rule',
-  rule: [
-    {
-      field: 'Population2011',
-      value: [ 1000000 ],
-      filter: 'LESS_THAN',
-      init: { strokeColor: '#0083f5', fillColor: '#57a8f0', pointRadius: '6' }
-    },
-    {
-      field: 'Population2011',
-      value: [ 1000000, 2000000 ],
-      filter: 'BETWEEN',
-      init: { strokeColor: '#F90', fillColor: '#F90', pointRadius: '8' }
-    },
-    {
-      field: 'Population2011',
-      value: [ 2000000 ],
-      filter: 'GREATER_THAN',
-      init: { strokeColor: '#F00', fillColor: '#F00', pointRadius: '10' }
-     }
-  ]
+	type: 'rule',
+	rule: [
+		{
+			field: 'Population2011',
+			value: [ 1000000 ],
+			filter: 'LESS_THAN',
+			init: { strokeColor: '#0083f5', fillColor: '#57a8f0', pointRadius: '6' }
+		},
+		{
+			field: 'Population2011',
+			value: [ 1000000, 2000000 ],
+			filter: 'BETWEEN',
+			init: { strokeColor: '#F90', fillColor: '#F90', pointRadius: '8' }
+		},
+		{
+			field: 'Population2011',
+			value: [ 2000000 ],
+			filter: 'GREATER_THAN',
+			init: { strokeColor: '#F00', fillColor: '#F00', pointRadius: '10' }
+		}
+	]
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Unique style example - features have unique style based on an attribute</h5>
 				<pre><code>style: {
-  type: 'unique',
-  field: 'Location',
-  init: {
-    // using the value from the 'Location' attribute, create a unique style for each feature
-    'Bayshore & Richmond': { 'fillColor': '#000099' },
-    'Baseline & Greenbank': { 'fillColor': '#009900' }
-  },
-  // specify a style for selected features (optional). Note here we are adding a label when
-  // a feature is selected.
-  select: { 'fillColor': '#990000', 'label': '${ Location }' }
+	type: 'unique',
+	field: 'Location',
+	init: {
+		// using the value from the 'Location' attribute, create a unique style for each feature
+		'Bayshore & Richmond': { 'fillColor': '#000099' },
+		'Baseline & Greenbank': { 'fillColor': '#009900' }
+	},
+	// specify a style for selected features (optional). Note here we are adding a label when
+	// a feature is selected.
+	select: { 'fillColor': '#990000', 'label': '${ Location }' }
 }</code></pre>
 			</section>
 		</section>
@@ -633,11 +633,11 @@ var wet_boew_geomap = {
 			<pre><code>...
 "popups": true,
 "popupsInfo": {
-  "id": "citiesPopup",
-  "height": 200,
-  "width": 300,
-  "close": true,
-  "content": "&lt;h4&gt;_Census subdivision&lt;/h4&gt;&lt;p&gt;_Population 2011&lt;/p&gt;"
+	"id": "citiesPopup",
+	"height": 200,
+	"width": 300,
+	"close": true,
+	"content": "&lt;h4&gt;_Census subdivision&lt;/h4&gt;&lt;p&gt;_Population 2011&lt;/p&gt;"
 },
 ...</code></pre>
 		</section>
@@ -651,33 +651,33 @@ var wet_boew_geomap = {
 			<h4>Pre v4.0.5</h4>
 			<pre><code>// return an array of OpenLayers maps in the page
 wb.doc.on( "geomap.ready", function( event, maps ) {
-  var myMap = maps.mygeomap; // return map with specfic id
-  // do something
+	var myMap = maps.mygeomap; // return map with specfic id
+	// do something
 });</code></pre>
 			<p>Note that the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing is used as the key in the maps array.</p>
 			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
 			<pre><code>&lt;script&gt;
-  wb.doc.on( "geomap.ready", function( event, maps ) {
-    var myMap = maps.mygeomap;
-    myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
-  });
+	wb.doc.on( "geomap.ready", function( event, maps ) {
+		var myMap = maps.mygeomap;
+		myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
+	});
 &lt;/script&gt;</code></pre>
 		</section>
 		<section>
 			<h4>v4.0.5+</h4>
 			<pre><code>// get the map object with id "mygeomap"
 $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-  var myMap = map; // return OpenLayers map object
-  // do something
+	var myMap = map; // return OpenLayers map object
+	// do something
 });</code></pre>
 			<p>Note the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing.</p>
 			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
 			<pre><code>&lt;script&gt;
-  $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-    // Get the map to use in zoomFeature function
-    var myMap = map;
-    myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
-  });
+	$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+		// Get the map to use in zoomFeature function
+		var myMap = map;
+		myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
+	});
 &lt;/script&gt;</code></pre>
 		</section>
 	</section>

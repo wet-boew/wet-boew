@@ -88,7 +88,7 @@
 ### Themeable and reusable
 
 * Flexible framework that supports custom themes
-* Includes support for [2 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html) 
+* Includes support for [2 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html)
 * Reusable templates, [plugins](http://wet-boew.github.io/wet-boew/docs/ref/plugins-en.html) and widgets
 * [Adapted to various CMS and programming frameworks](http://wet-boew.github.io/wet-boew/docs/ref/variants-en.html) (Drupal, WordPress, SharePoint (in development), DotNetNuke (in development), PHP, SSI, Java/Maven)
 

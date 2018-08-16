@@ -164,8 +164,8 @@ var componentName = "wb-lbx",
 					}
 
 					$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" )
-                        .find( ".activate-open" )
-                        .trigger( "wb-activate" );
+						.find( ".activate-open" )
+						.trigger( "wb-activate" );
 
 					this.contentContainer.attr( "data-pgtitle", document.getElementsByTagName( "H1" )[ 0 ].textContent );
 				},

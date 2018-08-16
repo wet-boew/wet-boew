@@ -30,7 +30,7 @@
 	<SimpleField name="ProvCode" type="int"></SimpleField>
 	<SimpleField name="OverlapWit" type="string"></SimpleField>
 </Schema>
-  <Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">2</SimpleData>
 		<SimpleData name="Count_">2.00000000000</SimpleData>
@@ -56,9 +56,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">1</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-55.7753,49.845</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-55.7753,49.845</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">3</SimpleData>
 		<SimpleData name="Count_">3.00000000000</SimpleData>
@@ -84,9 +84,9 @@
 		<SimpleData name="ProvCode">1</SimpleData>
 		<SimpleData name="OverlapWit">Ming</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-56.1295,49.9597</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-56.1295,49.9597</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">4</SimpleData>
 		<SimpleData name="Count_">4.00000000000</SimpleData>
@@ -111,9 +111,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">1</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-56.5006,48.6309</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-56.5006,48.6309</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">5</SimpleData>
 		<SimpleData name="Count_">5.00000000000</SimpleData>
@@ -138,9 +138,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">1</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-62.093,56.32</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-62.093,56.32</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">6</SimpleData>
 		<SimpleData name="Count_">6.00000000000</SimpleData>
@@ -166,9 +166,9 @@
 		<SimpleData name="ProvCode">1</SimpleData>
 		<SimpleData name="OverlapWit">Carol Lake</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-66.91,52.92</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-66.91,52.92</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">7</SimpleData>
 		<SimpleData name="Count_">7.00000000000</SimpleData>
@@ -194,9 +194,9 @@
 		<SimpleData name="ProvCode">1</SimpleData>
 		<SimpleData name="OverlapWit">Wabush</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-67.068997799018121,53.113253255076415</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-67.068997799018121,53.113253255076415</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">10</SimpleData>
 		<SimpleData name="Count_">10.00000000000</SimpleData>
@@ -221,9 +221,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">1</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-59.03,48.53</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-59.03,48.53</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">11</SimpleData>
 		<SimpleData name="Count_">11.00000000000</SimpleData>
@@ -248,9 +248,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">1</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-66.786295333013285,52.978198476087201</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-66.786295333013285,52.978198476087201</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">14</SimpleData>
 		<SimpleData name="Count_">14.00000000000</SimpleData>
@@ -275,9 +275,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-60.318324459751352,46.000759099056239</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-60.318324459751352,46.000759099056239</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">15</SimpleData>
 		<SimpleData name="Count_">15.00000000000</SimpleData>
@@ -302,9 +302,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-61.902273859552324,45.657079905425739</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-61.902273859552324,45.657079905425739</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">17</SimpleData>
 		<SimpleData name="Count_">17.00000000000</SimpleData>
@@ -329,9 +329,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-60.950291546121214,46.002722775481288</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-60.950291546121214,46.002722775481288</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">18</SimpleData>
 		<SimpleData name="Count_">18.00000000000</SimpleData>
@@ -356,9 +356,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-62.938704601638129,45.133145573655689</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-62.938704601638129,45.133145573655689</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">20</SimpleData>
 		<SimpleData name="Count_">20.00000000000</SimpleData>
@@ -383,9 +383,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-63.321099489288564,45.242845267749551</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-63.321099489288564,45.242845267749551</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">21</SimpleData>
 		<SimpleData name="Count_">21.00000000000</SimpleData>
@@ -410,9 +410,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-63.655814194812642,45.843963886731622</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-63.655814194812642,45.843963886731622</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">22</SimpleData>
 		<SimpleData name="Count_">22.00000000000</SimpleData>
@@ -438,9 +438,9 @@
 		<SimpleData name="ProvCode">2</SimpleData>
 		<SimpleData name="OverlapWit">&lt;Null&gt;</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-63.4224,45.0116</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-63.4224,45.0116</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">25</SimpleData>
 		<SimpleData name="Count_">25.00000000000</SimpleData>
@@ -465,9 +465,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-64.2339,45.7829</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-64.2339,45.7829</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">29</SimpleData>
 		<SimpleData name="Count_">29.00000000000</SimpleData>
@@ -492,9 +492,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">2</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-62.6831,45.5673</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-62.6831,45.5673</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">34</SimpleData>
 		<SimpleData name="Count_">34.00000000000</SimpleData>
@@ -519,9 +519,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">3</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-65.391368628759309,45.779306893518083</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-65.391368628759309,45.779306893518083</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">35</SimpleData>
 		<SimpleData name="Count_">35.00000000000</SimpleData>
@@ -546,9 +546,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">3</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-65.311598620671901,45.998669912755979</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-65.311598620671901,45.998669912755979</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">36</SimpleData>
 		<SimpleData name="Count_">36.00000000000</SimpleData>
@@ -573,9 +573,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">3</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-66.0218,45.3384</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-66.0218,45.3384</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">37</SimpleData>
 		<SimpleData name="Count_">37.00000000000</SimpleData>
@@ -600,9 +600,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">3</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-66.014469573521154,47.686719194287036</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-66.014469573521154,47.686719194287036</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">40</SimpleData>
 		<SimpleData name="Count_">40.00000000000</SimpleData>
@@ -628,9 +628,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Bloom Lake</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-67.3258,52.788</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-67.3258,52.788</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">41</SimpleData>
 		<SimpleData name="Count_">41.00000000000</SimpleData>
@@ -655,9 +655,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-71.15,48.533</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-71.15,48.533</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">42</SimpleData>
 		<SimpleData name="Count_">42.00000000000</SimpleData>
@@ -682,9 +682,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-73.6713,61.6813</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-73.6713,61.6813</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">47</SimpleData>
 		<SimpleData name="Count_">47.00000000000</SimpleData>
@@ -709,9 +709,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-76.143,49.4958</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-76.143,49.4958</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">49</SimpleData>
 		<SimpleData name="Count_">49.00000000000</SimpleData>
@@ -737,9 +737,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Lac Herbin, Monique</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.5558,48.1613</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.5558,48.1613</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">50</SimpleData>
 		<SimpleData name="Count_">50.00000000000</SimpleData>
@@ -765,9 +765,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Beaufor</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.6539,48.1361</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.6539,48.1361</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">53</SimpleData>
 		<SimpleData name="Count_">53.00000000000</SimpleData>
@@ -793,9 +793,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-76.674983704482216,49.248854776388832</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-76.674983704482216,49.248854776388832</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">55</SimpleData>
 		<SimpleData name="Count_">55.00000000000</SimpleData>
@@ -820,9 +820,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.978224468780155,49.13385730199208</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.978224468780155,49.13385730199208</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">56</SimpleData>
 		<SimpleData name="Count_">56.00000000000</SimpleData>
@@ -848,9 +848,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Canadian Malartic</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.062482864031423,48.185921512621945</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.062482864031423,48.185921512621945</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">57</SimpleData>
 		<SimpleData name="Count_">57.00000000000</SimpleData>
@@ -876,9 +876,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Lapa, Mouska, Westwood</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.428516747906002,48.251643996898345</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.428516747906002,48.251643996898345</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">59</SimpleData>
 		<SimpleData name="Count_">59.00000000000</SimpleData>
@@ -904,9 +904,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">LaRonde</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.571784409340779,48.277603297035128</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.571784409340779,48.277603297035128</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">60</SimpleData>
 		<SimpleData name="Count_">60.00000000000</SimpleData>
@@ -931,9 +931,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-79.2794,49.5655</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-79.2794,49.5655</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">62</SimpleData>
 		<SimpleData name="Count_">62.00000000000</SimpleData>
@@ -958,9 +958,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-61.5608,47.6122</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-61.5608,47.6122</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">63</SimpleData>
 		<SimpleData name="Count_">63.00000000000</SimpleData>
@@ -985,9 +985,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-63.416,50.5541</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-63.416,50.5541</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">64</SimpleData>
 		<SimpleData name="Count_">64.00000000000</SimpleData>
@@ -1012,9 +1012,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-69.3925,47.836</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-69.3925,47.836</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">68</SimpleData>
 		<SimpleData name="Count_">68.00000000000</SimpleData>
@@ -1039,9 +1039,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-71.6075,45.6193</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-71.6075,45.6193</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">71</SimpleData>
 		<SimpleData name="Count_">71.00000000000</SimpleData>
@@ -1067,9 +1067,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Saint-Armand</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-73.0118,45.1127</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-73.0118,45.1127</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">72</SimpleData>
 		<SimpleData name="Count_">72.00000000000</SimpleData>
@@ -1095,9 +1095,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Bedford</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-73.0452,45.0762</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-73.0452,45.0762</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">73</SimpleData>
 		<SimpleData name="Count_">73.00000000000</SimpleData>
@@ -1123,9 +1123,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Joliette</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-73.4027,46.0345</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-73.4027,46.0345</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">74</SimpleData>
 		<SimpleData name="Count_">74.00000000000</SimpleData>
@@ -1151,9 +1151,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Joliette</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-73.4781,45.9983</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-73.4781,45.9983</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">80</SimpleData>
 		<SimpleData name="Count_">80.00000000000</SimpleData>
@@ -1178,9 +1178,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-74.339006458394394,47.952867079744664</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-74.339006458394394,47.952867079744664</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">81</SimpleData>
 		<SimpleData name="Count_">81.00000000000</SimpleData>
@@ -1205,9 +1205,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-75.5357,46.3753</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-75.5357,46.3753</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">83</SimpleData>
 		<SimpleData name="Count_">83.00000000000</SimpleData>
@@ -1232,9 +1232,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.0697,48.1416</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.0697,48.1416</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">84</SimpleData>
 		<SimpleData name="Count_">84.00000000000</SimpleData>
@@ -1260,9 +1260,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Nickel Rim South</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.793041088661766,46.571314164167632</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.793041088661766,46.571314164167632</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">87</SimpleData>
 		<SimpleData name="Count_">87.00000000000</SimpleData>
@@ -1288,9 +1288,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Clarabelle</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.9933,46.5402</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.9933,46.5402</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">88</SimpleData>
 		<SimpleData name="Count_">88.00000000000</SimpleData>
@@ -1316,9 +1316,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Stobie, Creighton, Copper Cliff North</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.062314294301601,46.490707165779845</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.062314294301601,46.490707165779845</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">89</SimpleData>
 		<SimpleData name="Count_">89.00000000000</SimpleData>
@@ -1344,9 +1344,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Clarabelle</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.073,46.4927</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.073,46.4927</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">91</SimpleData>
 		<SimpleData name="Count_">91.00000000000</SimpleData>
@@ -1372,9 +1372,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Dome, Bell Creek</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.1083,48.5519</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.1083,48.5519</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">94</SimpleData>
 		<SimpleData name="Count_">94.00000000000</SimpleData>
@@ -1400,9 +1400,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Clarabelle</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.1861,46.474</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.1861,46.474</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">95</SimpleData>
 		<SimpleData name="Count_">95.00000000000</SimpleData>
@@ -1428,9 +1428,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Hoyle Pond</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.2275,48.4594</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.2275,48.4594</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">97</SimpleData>
 		<SimpleData name="Count_">97.00000000000</SimpleData>
@@ -1456,9 +1456,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Fraser, Strathcona, Levack/Morrison, McCreedy West</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.3397,46.6771</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.3397,46.6771</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">98</SimpleData>
 		<SimpleData name="Count_">98.00000000000</SimpleData>
@@ -1485,9 +1485,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Coleman/McCreedy East</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.3404,46.6633</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.3404,46.6633</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">99</SimpleData>
 		<SimpleData name="Count_">99.00000000000</SimpleData>
@@ -1513,9 +1513,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Coleman/McCreedy East</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.3427,46.6734</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.3427,46.6734</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">101</SimpleData>
 		<SimpleData name="Count_">101.00000000000</SimpleData>
@@ -1540,9 +1540,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.37,48.6894</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.37,48.6894</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">102</SimpleData>
 		<SimpleData name="Count_">102.00000000000</SimpleData>
@@ -1569,9 +1569,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Coleman/McCreedy East</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.3779,46.6607</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.3779,46.6607</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">103</SimpleData>
 		<SimpleData name="Count_">103.00000000000</SimpleData>
@@ -1597,9 +1597,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Coleman/McCreedy East</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.4,46.6361</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.4,46.6361</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">105</SimpleData>
 		<SimpleData name="Count_">105.00000000000</SimpleData>
@@ -1624,9 +1624,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-84.4429,48.297</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-84.4429,48.297</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">106</SimpleData>
 		<SimpleData name="Count_">106.00000000000</SimpleData>
@@ -1651,9 +1651,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-85.4619,47.9861</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-85.4619,47.9861</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">107</SimpleData>
 		<SimpleData name="Count_">107.00000000000</SimpleData>
@@ -1679,9 +1679,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Williams</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-85.893,48.693</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-85.893,48.693</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">108</SimpleData>
 		<SimpleData name="Count_">108.00000000000</SimpleData>
@@ -1707,9 +1707,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">David Bell</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-85.9108,48.6944</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-85.9108,48.6944</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">110</SimpleData>
 		<SimpleData name="Count_">110.00000000000</SimpleData>
@@ -1734,9 +1734,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-90.3636,52.6127</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-90.3636,52.6127</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">111</SimpleData>
 		<SimpleData name="Count_">111.00000000000</SimpleData>
@@ -1761,9 +1761,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-93.732964127407982,51.050556715207968</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-93.732964127407982,51.050556715207968</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">112</SimpleData>
 		<SimpleData name="Count_">112.00000000000</SimpleData>
@@ -1788,9 +1788,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-76.4957,45.151</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-76.4957,45.151</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">113</SimpleData>
 		<SimpleData name="Count_">113.00000000000</SimpleData>
@@ -1815,9 +1815,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.1225,44.0479</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.1225,44.0479</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">115</SimpleData>
 		<SimpleData name="Count_">115.00000000000</SimpleData>
@@ -1842,9 +1842,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.8806,43.9831</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.8806,43.9831</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">116</SimpleData>
 		<SimpleData name="Count_">116.00000000000</SimpleData>
@@ -1870,9 +1870,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Blue Mountain</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.9491,44.6775</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.9491,44.6775</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">118</SimpleData>
 		<SimpleData name="Count_">118.00000000000</SimpleData>
@@ -1897,9 +1897,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.6946,43.8845</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.6946,43.8845</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">121</SimpleData>
 		<SimpleData name="Count_">121.00000000000</SimpleData>
@@ -1924,9 +1924,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.0384,42.9657</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.0384,42.9657</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">122</SimpleData>
 		<SimpleData name="Count_">122.00000000000</SimpleData>
@@ -1951,9 +1951,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.8607,44.5669</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.8607,44.5669</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">124</SimpleData>
 		<SimpleData name="Count_">124.00000000000</SimpleData>
@@ -1978,9 +1978,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.024229711998601,47.41622871628995</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.024229711998601,47.41622871628995</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">125</SimpleData>
 		<SimpleData name="Count_">125.00000000000</SimpleData>
@@ -2005,9 +2005,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.1588,43.2483</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.1588,43.2483</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">129</SimpleData>
 		<SimpleData name="Count_">129.00000000000</SimpleData>
@@ -2032,9 +2032,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.6985,43.741</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.6985,43.741</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">130</SimpleData>
 		<SimpleData name="Count_">130.00000000000</SimpleData>
@@ -2059,9 +2059,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-82.0969,48.1895</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-82.0969,48.1895</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">132</SimpleData>
 		<SimpleData name="Count_">132.00000000000</SimpleData>
@@ -2087,9 +2087,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Ojibway</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-83.092291456338671,42.2870643479622</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-83.092291456338671,42.2870643479622</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">133</SimpleData>
 		<SimpleData name="Count_">133.00000000000</SimpleData>
@@ -2115,9 +2115,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Windsor</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-83.1033,42.2558</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-83.1033,42.2558</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">134</SimpleData>
 		<SimpleData name="Count_">134.00000000000</SimpleData>
@@ -2142,9 +2142,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-83.8817,52.8206</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-83.8817,52.8206</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">135</SimpleData>
 		<SimpleData name="Count_">135.00000000000</SimpleData>
@@ -2169,9 +2169,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-95.4502,50.4291</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-95.4502,50.4291</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">136</SimpleData>
 		<SimpleData name="Count_">136.00000000000</SimpleData>
@@ -2197,9 +2197,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Rice Lake, 007</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-95.6216,51.0258</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-95.6216,51.0258</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">137</SimpleData>
 		<SimpleData name="Count_">137.00000000000</SimpleData>
@@ -2225,9 +2225,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Hinge</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-95.6752,51.023</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-95.6752,51.023</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">138</SimpleData>
 		<SimpleData name="Count_">138.00000000000</SimpleData>
@@ -2253,9 +2253,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Birchtree</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-97.8444,55.7152</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-97.8444,55.7152</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">139</SimpleData>
 		<SimpleData name="Count_">139.00000000000</SimpleData>
@@ -2281,9 +2281,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Thompson</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-97.9261,55.7005</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-97.9261,55.7005</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">141</SimpleData>
 		<SimpleData name="Count_">141.00000000000</SimpleData>
@@ -2309,9 +2309,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Lalor Lake</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-100.11628987584932,54.833371551542584</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-100.11628987584932,54.833371551542584</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">142</SimpleData>
 		<SimpleData name="Count_">142.00000000000</SimpleData>
@@ -2337,9 +2337,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Flin Flon</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-101.87868537732261,54.774385535968172</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-101.87868537732261,54.774385535968172</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">145</SimpleData>
 		<SimpleData name="Count_">145.00000000000</SimpleData>
@@ -2364,9 +2364,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-98.7622,51.4166</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-98.7622,51.4166</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">146</SimpleData>
 		<SimpleData name="Count_">146.00000000000</SimpleData>
@@ -2391,9 +2391,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-98.7692,50.7296</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-98.7692,50.7296</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">147</SimpleData>
 		<SimpleData name="Count_">147.00000000000</SimpleData>
@@ -2418,9 +2418,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-101.13350437070697,52.700692955961273</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-101.13350437070697,52.700692955961273</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">148</SimpleData>
 		<SimpleData name="Count_">148.00000000000</SimpleData>
@@ -2446,9 +2446,9 @@
 		<SimpleData name="ProvCode">7</SimpleData>
 		<SimpleData name="OverlapWit">Santoy</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-103.6136,55.6852</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-103.6136,55.6852</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">149</SimpleData>
 		<SimpleData name="Count_">149.00000000000</SimpleData>
@@ -2473,9 +2473,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-103.7108,58.1961</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-103.7108,58.1961</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">151</SimpleData>
 		<SimpleData name="Count_">151.00000000000</SimpleData>
@@ -2500,9 +2500,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.053,57.7637</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.053,57.7637</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">152</SimpleData>
 		<SimpleData name="Count_">152.00000000000</SimpleData>
@@ -2527,9 +2527,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.647,57.207</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.647,57.207</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">153</SimpleData>
 		<SimpleData name="Count_">153.00000000000</SimpleData>
@@ -2554,9 +2554,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-101.531,50.4538</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-101.531,50.4538</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">154</SimpleData>
 		<SimpleData name="Count_">154.00000000000</SimpleData>
@@ -2581,9 +2581,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-101.862,50.6591</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-101.862,50.6591</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">156</SimpleData>
 		<SimpleData name="Count_">156.00000000000</SimpleData>
@@ -2608,9 +2608,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-104.31960042119955,51.780636710353129</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-104.31960042119955,51.780636710353129</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">157</SimpleData>
 		<SimpleData name="Count_">157.00000000000</SimpleData>
@@ -2635,9 +2635,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-104.718,50.0917</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-104.718,50.0917</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">158</SimpleData>
 		<SimpleData name="Count_">158.00000000000</SimpleData>
@@ -2662,9 +2662,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.179,50.4356</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.179,50.4356</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">159</SimpleData>
 		<SimpleData name="Count_">159.00000000000</SimpleData>
@@ -2689,9 +2689,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.196,51.8478</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.196,51.8478</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">161</SimpleData>
 		<SimpleData name="Count_">161.00000000000</SimpleData>
@@ -2716,9 +2716,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.775,51.9207</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.775,51.9207</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">162</SimpleData>
 		<SimpleData name="Count_">162.00000000000</SimpleData>
@@ -2743,9 +2743,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-106.11831388090695,51.931751029818322</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-106.11831388090695,51.931751029818322</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">163</SimpleData>
 		<SimpleData name="Count_">163.00000000000</SimpleData>
@@ -2770,9 +2770,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-106.304,52.1159</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-106.304,52.1159</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">164</SimpleData>
 		<SimpleData name="Count_">164.00000000000</SimpleData>
@@ -2797,9 +2797,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-106.67,50.4573</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-106.67,50.4573</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">165</SimpleData>
 		<SimpleData name="Count_">165.00000000000</SimpleData>
@@ -2824,9 +2824,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-106.84885881426159,52.108369545857713</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-106.84885881426159,52.108369545857713</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">166</SimpleData>
 		<SimpleData name="Count_">166.00000000000</SimpleData>
@@ -2851,9 +2851,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-107.14600443254898,51.98709302742607</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-107.14600443254898,51.98709302742607</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">167</SimpleData>
 		<SimpleData name="Count_">167.00000000000</SimpleData>
@@ -2878,9 +2878,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-109.11,52.4233</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-109.11,52.4233</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">168</SimpleData>
 		<SimpleData name="Count_">168.00000000000</SimpleData>
@@ -2905,9 +2905,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-102.68616855107182,49.10596711413001</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-102.68616855107182,49.10596711413001</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">169</SimpleData>
 		<SimpleData name="Count_">169.00000000000</SimpleData>
@@ -2932,9 +2932,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-103.00681159905352,49.099826089653789</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-103.00681159905352,49.099826089653789</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">170</SimpleData>
 		<SimpleData name="Count_">170.00000000000</SimpleData>
@@ -2959,9 +2959,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-105.489,49.223</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-105.489,49.223</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">171</SimpleData>
 		<SimpleData name="Count_">171.00000000000</SimpleData>
@@ -2986,9 +2986,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-110.63843920996879,53.862707760262424</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-110.63843920996879,53.862707760262424</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">172</SimpleData>
 		<SimpleData name="Count_">172.00000000000</SimpleData>
@@ -3014,9 +3014,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Fort McMurray West</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.5186251395408,56.971664911446496</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.5186251395408,56.971664911446496</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">173</SimpleData>
 		<SimpleData name="Count_">173.00000000000</SimpleData>
@@ -3041,9 +3041,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.63198896836627,51.049307677092912</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.63198896836627,51.049307677092912</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">174</SimpleData>
 		<SimpleData name="Count_">174.00000000000</SimpleData>
@@ -3069,9 +3069,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Aurora</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.58555698940606,57.202269377482445</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.58555698940606,57.202269377482445</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">175</SimpleData>
 		<SimpleData name="Count_">175.00000000000</SimpleData>
@@ -3096,9 +3096,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-112.92755585973471,53.781525754359372</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-112.92755585973471,53.781525754359372</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">176</SimpleData>
 		<SimpleData name="Count_">176.00000000000</SimpleData>
@@ -3123,9 +3123,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-113.22818472445937,55.165847636772945</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-113.22818472445937,55.165847636772945</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">177</SimpleData>
 		<SimpleData name="Count_">177.00000000000</SimpleData>
@@ -3150,9 +3150,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.59789400894034,55.272995005147642</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.59789400894034,55.272995005147642</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">178</SimpleData>
 		<SimpleData name="Count_">178.00000000000</SimpleData>
@@ -3177,9 +3177,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.5523769793575,49.639123760034231</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.5523769793575,49.639123760034231</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">180</SimpleData>
 		<SimpleData name="Count_">180.00000000000</SimpleData>
@@ -3205,9 +3205,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Exshaw</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.132,51.0714</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.132,51.0714</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">181</SimpleData>
 		<SimpleData name="Count_">181.00000000000</SimpleData>
@@ -3233,9 +3233,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Exshaw</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.178,51.0657</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.178,51.0657</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">182</SimpleData>
 		<SimpleData name="Count_">182.00000000000</SimpleData>
@@ -3260,9 +3260,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.56419924529918,52.177361647929281</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.56419924529918,52.177361647929281</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">183</SimpleData>
 		<SimpleData name="Count_">183.00000000000</SimpleData>
@@ -3287,9 +3287,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-116.0912,52.4521</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-116.0912,52.4521</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">184</SimpleData>
 		<SimpleData name="Count_">184.00000000000</SimpleData>
@@ -3314,9 +3314,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-117.22461191302418,52.946267280060745</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-117.22461191302418,52.946267280060745</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">185</SimpleData>
 		<SimpleData name="Count_">185.00000000000</SimpleData>
@@ -3341,9 +3341,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.7339,51.4508</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.7339,51.4508</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">186</SimpleData>
 		<SimpleData name="Count_">186.00000000000</SimpleData>
@@ -3368,9 +3368,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-112.13590832343658,52.454736295181725</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-112.13590832343658,52.454736295181725</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">187</SimpleData>
 		<SimpleData name="Count_">187.00000000000</SimpleData>
@@ -3396,9 +3396,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Burtonsville</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.2665623795321,53.323922489751652</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.2665623795321,53.323922489751652</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">188</SimpleData>
 		<SimpleData name="Count_">188.00000000000</SimpleData>
@@ -3423,9 +3423,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.55,53.5</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.55,53.5</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">190</SimpleData>
 		<SimpleData name="Count_">190.00000000000</SimpleData>
@@ -3450,9 +3450,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-116.7833,53.0667</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-116.7833,53.0667</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">191</SimpleData>
 		<SimpleData name="Count_">191.00000000000</SimpleData>
@@ -3477,9 +3477,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-117.47599808639788,53.105154267671807</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-117.47599808639788,53.105154267671807</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">192</SimpleData>
 		<SimpleData name="Count_">192.00000000000</SimpleData>
@@ -3504,9 +3504,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-119.1667,54.0333</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-119.1667,54.0333</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">193</SimpleData>
 		<SimpleData name="Count_">193.00000000000</SimpleData>
@@ -3532,9 +3532,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Mildred Lake</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.20103347205945,56.826346684743065</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.20103347205945,56.826346684743065</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">194</SimpleData>
 		<SimpleData name="Count_">194.00000000000</SimpleData>
@@ -3560,9 +3560,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Jackpine, Horizon, Muskeg River</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.57103265973876,57.422778925211659</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.57103265973876,57.422778925211659</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">195</SimpleData>
 		<SimpleData name="Count_">195.00000000000</SimpleData>
@@ -3588,9 +3588,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Millennium and Steepbank</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.4667,57.0</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.4667,57.0</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">196</SimpleData>
 		<SimpleData name="Count_">196.00000000000</SimpleData>
@@ -3616,9 +3616,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Aurora North and South</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.512,57.2465</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.512,57.2465</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">197</SimpleData>
 		<SimpleData name="Count_">197.00000000000</SimpleData>
@@ -3644,9 +3644,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.51316964531695,50.661102617872949</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.51316964531695,50.661102617872949</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">200</SimpleData>
 		<SimpleData name="Count_">200.00000000000</SimpleData>
@@ -3671,9 +3671,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-121.0483,50.4855</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-121.0483,50.4855</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">201</SimpleData>
 		<SimpleData name="Count_">201.00000000000</SimpleData>
@@ -3698,9 +3698,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-121.60181101968521,52.513009451360048</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-121.60181101968521,52.513009451360048</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">203</SimpleData>
 		<SimpleData name="Count_">203.00000000000</SimpleData>
@@ -3725,9 +3725,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-122.2875,52.518</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-122.2875,52.518</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">204</SimpleData>
 		<SimpleData name="Count_">204.00000000000</SimpleData>
@@ -3752,9 +3752,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-125.11,54.0361</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-125.11,54.0361</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">206</SimpleData>
 		<SimpleData name="Count_">206.00000000000</SimpleData>
@@ -3779,9 +3779,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-122.82049720077228,50.778022193652539</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-122.82049720077228,50.778022193652539</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">207</SimpleData>
 		<SimpleData name="Count_">207.00000000000</SimpleData>
@@ -3806,9 +3806,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-127.178,53.6811</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-127.178,53.6811</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">209</SimpleData>
 		<SimpleData name="Count_">209.00000000000</SimpleData>
@@ -3833,9 +3833,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.521,50.0975</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.521,50.0975</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">210</SimpleData>
 		<SimpleData name="Count_">210.00000000000</SimpleData>
@@ -3860,9 +3860,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.683,50.7887</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.683,50.7887</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">211</SimpleData>
 		<SimpleData name="Count_">211.00000000000</SimpleData>
@@ -3887,9 +3887,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.905,50.4972</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.905,50.4972</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">212</SimpleData>
 		<SimpleData name="Count_">212.00000000000</SimpleData>
@@ -3914,9 +3914,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-116.803,49.6925</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-116.803,49.6925</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">215</SimpleData>
 		<SimpleData name="Count_">215.00000000000</SimpleData>
@@ -3941,9 +3941,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-117.242,49.0817</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-117.242,49.0817</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">216</SimpleData>
 		<SimpleData name="Count_">216.00000000000</SimpleData>
@@ -3968,9 +3968,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.065,50.6684</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.065,50.6684</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">217</SimpleData>
 		<SimpleData name="Count_">217.00000000000</SimpleData>
@@ -3996,9 +3996,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Bromley Creek/Zeo</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.52631390452223,49.495660961622036</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.52631390452223,49.495660961622036</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">218</SimpleData>
 		<SimpleData name="Count_">218.00000000000</SimpleData>
@@ -4024,9 +4024,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Bud</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.59835900663019,49.464431033545992</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.59835900663019,49.464431033545992</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">219</SimpleData>
 		<SimpleData name="Count_">219.00000000000</SimpleData>
@@ -4051,9 +4051,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.815,50.9387</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.815,50.9387</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">221</SimpleData>
 		<SimpleData name="Count_">221.00000000000</SimpleData>
@@ -4078,9 +4078,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-121.654,50.8178</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-121.654,50.8178</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">223</SimpleData>
 		<SimpleData name="Count_">223.00000000000</SimpleData>
@@ -4106,9 +4106,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Gillies Bay, Blubber Bay</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-124.528,49.7405</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-124.528,49.7405</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">224</SimpleData>
 		<SimpleData name="Count_">224.00000000000</SimpleData>
@@ -4134,9 +4134,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Van Anda</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-124.56,49.7165</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-124.56,49.7165</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">225</SimpleData>
 		<SimpleData name="Count_">225.00000000000</SimpleData>
@@ -4162,9 +4162,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Van Anda</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-124.62,49.7861</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-124.62,49.7861</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">226</SimpleData>
 		<SimpleData name="Count_">226.00000000000</SimpleData>
@@ -4189,9 +4189,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-127.208,59.7717</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-127.208,59.7717</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">227</SimpleData>
 		<SimpleData name="Count_">227.00000000000</SimpleData>
@@ -4216,9 +4216,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-127.254,50.3831</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-127.254,50.3831</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">228</SimpleData>
 		<SimpleData name="Count_">228.00000000000</SimpleData>
@@ -4243,9 +4243,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.7312535919711,49.435503680801638</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.7312535919711,49.435503680801638</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">229</SimpleData>
 		<SimpleData name="Count_">229.00000000000</SimpleData>
@@ -4270,9 +4270,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.7833,49.95</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.7833,49.95</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">230</SimpleData>
 		<SimpleData name="Count_">230.00000000000</SimpleData>
@@ -4297,9 +4297,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.8407952092724,49.743334292390195</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.8407952092724,49.743334292390195</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">231</SimpleData>
 		<SimpleData name="Count_">231.00000000000</SimpleData>
@@ -4325,9 +4325,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Fording River</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.8667,50.0833</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.8667,50.0833</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">232</SimpleData>
 		<SimpleData name="Count_">232.00000000000</SimpleData>
@@ -4353,9 +4353,9 @@
 		<SimpleData name="ProvCode">9</SimpleData>
 		<SimpleData name="OverlapWit">Greenhills</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.881,50.1431</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.881,50.1431</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">233</SimpleData>
 		<SimpleData name="Count_">233.00000000000</SimpleData>
@@ -4380,9 +4380,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.94420065404542,54.993341922046945</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.94420065404542,54.993341922046945</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">234</SimpleData>
 		<SimpleData name="Count_">234.00000000000</SimpleData>
@@ -4407,9 +4407,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-121.10163746734506,55.221959415837787</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-121.10163746734506,55.221959415837787</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">235</SimpleData>
 		<SimpleData name="Count_">235.00000000000</SimpleData>
@@ -4434,9 +4434,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-121.80565692966667,55.408136118944249</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-121.80565692966667,55.408136118944249</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">236</SimpleData>
 		<SimpleData name="Count_">236.00000000000</SimpleData>
@@ -4461,9 +4461,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-125.477,49.9055</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-125.477,49.9055</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">237</SimpleData>
 		<SimpleData name="Count_">237.00000000000</SimpleData>
@@ -4488,9 +4488,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">10</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-137.249,62.6167</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-137.249,62.6167</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">238</SimpleData>
 		<SimpleData name="Count_">238.00000000000</SimpleData>
@@ -4516,9 +4516,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">11</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-128.2625,61.9527</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-128.2625,61.9527</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">239</SimpleData>
 		<SimpleData name="Count_">239.00000000000</SimpleData>
@@ -4543,9 +4543,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">11</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-110.272,64.495</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-110.272,64.495</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">240</SimpleData>
 		<SimpleData name="Count_">240.00000000000</SimpleData>
@@ -4570,9 +4570,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">11</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-110.618,64.715</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-110.618,64.715</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">241</SimpleData>
 		<SimpleData name="Count_">241.00000000000</SimpleData>
@@ -4597,9 +4597,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">11</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-110.869,63.6027</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-110.869,63.6027</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">247</SimpleData>
 		<SimpleData name="Count_">40.00000000000</SimpleData>
@@ -4626,9 +4626,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Mont-Wright</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-67.277247649307867,52.838610390290206</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-67.277247649307867,52.838610390290206</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">248</SimpleData>
 		<SimpleData name="Count_">58.00000000000</SimpleData>
@@ -4654,9 +4654,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">LaRonde</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.288621821415859,48.229614665110141</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.288621821415859,48.229614665110141</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">249</SimpleData>
 		<SimpleData name="Count_">86.00000000000</SimpleData>
@@ -4682,9 +4682,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Hislop</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.341261810717384,48.534394287192754</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.341261810717384,48.534394287192754</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">250</SimpleData>
 		<SimpleData name="Count_">116.00000000000</SimpleData>
@@ -4709,9 +4709,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-76.809617532561887,44.170887515358686</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-76.809617532561887,44.170887515358686</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">252</SimpleData>
 		<SimpleData name="Count_">174.00000000000</SimpleData>
@@ -4737,9 +4737,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Muskeg Valley</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.45335229106885,57.302878110770273</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.45335229106885,57.302878110770273</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">253</SimpleData>
 		<SimpleData name="Count_">178.00000000000</SimpleData>
@@ -4765,9 +4765,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Steepbank</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.57135333670162,57.021782701189089</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.57135333670162,57.021782701189089</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">254</SimpleData>
 		<SimpleData name="Count_">185.00000000000</SimpleData>
@@ -4792,9 +4792,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">8</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-115.29853456242357,51.940201160030789</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-115.29853456242357,51.940201160030789</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">257</SimpleData>
 		<SimpleData name="Count_">194.00000000000</SimpleData>
@@ -4820,9 +4820,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Genesee</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-114.53031268170682,53.327944862041463</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-114.53031268170682,53.327944862041463</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">261</SimpleData>
 		<SimpleData name="Count_">83.00000000000</SimpleData>
@@ -4849,9 +4849,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Holt</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-79.747980293287554,48.521737285058229</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-79.747980293287554,48.521737285058229</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">262</SimpleData>
 		<SimpleData name="Count_">83.00000000000</SimpleData>
@@ -4878,9 +4878,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Black Fox</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.286762483378524,48.494834368425224</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.286762483378524,48.494834368425224</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">263</SimpleData>
 		<SimpleData name="Count_">85.00000000000</SimpleData>
@@ -4906,9 +4906,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Garson</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.797221284356766,46.658006391454066</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.797221284356766,46.658006391454066</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">266</SimpleData>
 		<SimpleData name="Count_">110.00000000000</SimpleData>
@@ -4934,9 +4934,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-89.610673842574514,49.16910503638951</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-89.610673842574514,49.16910503638951</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">267</SimpleData>
 		<SimpleData name="Count_">119.00000000000</SimpleData>
@@ -4962,9 +4962,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.658445160016868,47.924031822411123</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.658445160016868,47.924031822411123</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">268</SimpleData>
 		<SimpleData name="Count_">194.00000000000</SimpleData>
@@ -4990,9 +4990,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Aurora North and South</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.37921142303405,57.249014121579492</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.37921142303405,57.249014121579492</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">269</SimpleData>
 		<SimpleData name="Count_">194.00000000000</SimpleData>
@@ -5018,9 +5018,9 @@
 		<SimpleData name="ProvCode">8</SimpleData>
 		<SimpleData name="OverlapWit">Aurora North and South</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-111.77428556088469,57.338212030234374</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-111.77428556088469,57.338212030234374</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">270</SimpleData>
 		<SimpleData name="Count_">235.00000000000</SimpleData>
@@ -5046,9 +5046,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-122.28199554966234,55.600079690245288</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-122.28199554966234,55.600079690245288</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">271</SimpleData>
 		<SimpleData name="Count_">241.00000000000</SimpleData>
@@ -5074,9 +5074,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">12</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-96.0488363706244,65.024758302987095</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-96.0488363706244,65.024758302987095</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">273</SimpleData>
 		<SimpleData name="Count_">3.00000000000</SimpleData>
@@ -5103,9 +5103,9 @@
 		<SimpleData name="ProvCode">1</SimpleData>
 		<SimpleData name="OverlapWit">Pine Cove</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-56.088200428917858,49.915239358892443</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-56.088200428917858,49.915239358892443</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">275</SimpleData>
 		<SimpleData name="Count_">40.00000000000</SimpleData>
@@ -5130,9 +5130,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-67.367589111561927,52.350163044725818</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-67.367589111561927,52.350163044725818</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">276</SimpleData>
 		<SimpleData name="Count_">56.00000000000</SimpleData>
@@ -5159,9 +5159,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Camflo</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.100826088475316,48.12994566359253</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.100826088475316,48.12994566359253</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">277</SimpleData>
 		<SimpleData name="Count_">83.00000000000</SimpleData>
@@ -5188,9 +5188,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Holloway</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-79.740480186028165,48.513037784848301</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-79.740480186028165,48.513037784848301</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">278</SimpleData>
 		<SimpleData name="Count_">91.00000000000</SimpleData>
@@ -5216,9 +5216,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Hoyle Pond</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.178435866079809,48.553030443162903</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.178435866079809,48.553030443162903</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">279</SimpleData>
 		<SimpleData name="Count_">97.00000000000</SimpleData>
@@ -5245,9 +5245,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Ellen, Gertrude, Totten</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.324211525448561,46.433023170328603</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.324211525448561,46.433023170328603</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">280</SimpleData>
 		<SimpleData name="Count_">95.00000000000</SimpleData>
@@ -5273,9 +5273,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.550248366982899,48.383308498998566</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.550248366982899,48.383308498998566</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">281</SimpleData>
 		<SimpleData name="Count_">122.00000000000</SimpleData>
@@ -5300,9 +5300,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-80.903393854726417,43.098694435536004</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-80.903393854726417,43.098694435536004</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">282</SimpleData>
 		<SimpleData name="Count_">147.00000000000</SimpleData>
@@ -5327,9 +5327,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-100.97489684815231,49.925492187943561</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-100.97489684815231,49.925492187943561</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">283</SimpleData>
 		<SimpleData name="Count_">148.00000000000</SimpleData>
@@ -5356,9 +5356,9 @@
 		<SimpleData name="ProvCode">7</SimpleData>
 		<SimpleData name="OverlapWit">Seabee</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-103.4142511160631,55.667748241503951</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-103.4142511160631,55.667748241503951</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">284</SimpleData>
 		<SimpleData name="Count_">152.00000000000</SimpleData>
@@ -5384,9 +5384,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-104.28121467184059,56.000587011118292</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-104.28121467184059,56.000587011118292</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">285</SimpleData>
 		<SimpleData name="Count_">152.00000000000</SimpleData>
@@ -5412,9 +5412,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">7</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-104.7332406005321,55.701642261754294</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-104.7332406005321,55.701642261754294</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">286</SimpleData>
 		<SimpleData name="Count_">206.00000000000</SimpleData>
@@ -5440,9 +5440,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-120.47868296318609,49.260418570449886</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-120.47868296318609,49.260418570449886</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">287</SimpleData>
 		<SimpleData name="Count_">206.00000000000</SimpleData>
@@ -5467,9 +5467,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-125.59064168340119,49.573149572143414</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-125.59064168340119,49.573149572143414</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">288</SimpleData>
 		<SimpleData name="Count_">237.00000000000</SimpleData>
@@ -5495,9 +5495,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">10</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-130.09849486082885,61.416723489737869</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-130.09849486082885,61.416723489737869</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">290</SimpleData>
 		<SimpleData name="Count_">118.00000000000</SimpleData>
@@ -5523,9 +5523,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Nephton</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.99985684097382,44.624375634831416</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.99985684097382,44.624375634831416</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">291</SimpleData>
 		<SimpleData name="Count_">143.00000000000</SimpleData>
@@ -5551,9 +5551,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Snow Lake</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-100.15480763919565,54.861970535092894</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-100.15480763919565,54.861970535092894</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">292</SimpleData>
 		<SimpleData name="Count_">216.00000000000</SimpleData>
@@ -5578,9 +5578,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-119.55167201886678,50.510485641415606</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-119.55167201886678,50.510485641415606</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">296</SimpleData>
 		<SimpleData name="Count_">63.00000000000</SimpleData>
@@ -5605,9 +5605,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">3</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-64.864411104262018,47.023269380375929</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-64.864411104262018,47.023269380375929</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">297</SimpleData>
 		<SimpleData name="Count_">54.00000000000</SimpleData>
@@ -5633,9 +5633,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.873832232949724,48.092646355006018</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.873832232949724,48.092646355006018</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">298</SimpleData>
 		<SimpleData name="Count_">51.00000000000</SimpleData>
@@ -5661,9 +5661,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">4</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.666558821565445,49.67904812788889</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.666558821565445,49.67904812788889</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">299</SimpleData>
 		<SimpleData name="Count_">49.00000000000</SimpleData>
@@ -5690,9 +5690,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">Beaufor</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-77.445546483521511,48.188048788520121</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-77.445546483521511,48.188048788520121</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">300</SimpleData>
 		<SimpleData name="Count_">83.00000000000</SimpleData>
@@ -5718,9 +5718,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-79.710498640197912,50.014037327169191</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-79.710498640197912,50.014037327169191</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">301</SimpleData>
 		<SimpleData name="Count_">94.00000000000</SimpleData>
@@ -5746,9 +5746,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Lockerby</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.323410868078724,46.430022526705258</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.323410868078724,46.430022526705258</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">302</SimpleData>
 		<SimpleData name="Count_">59.00000000000</SimpleData>
@@ -5774,9 +5774,9 @@
 		<SimpleData name="ProvCode">4</SimpleData>
 		<SimpleData name="OverlapWit">LaRonde</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-78.502515483367134,48.256043180618171</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-78.502515483367134,48.256043180618171</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">303</SimpleData>
 		<SimpleData name="Count_">89.00000000000</SimpleData>
@@ -5801,9 +5801,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.034822496963372,46.76462606764224</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.034822496963372,46.76462606764224</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">304</SimpleData>
 		<SimpleData name="Count_">91.00000000000</SimpleData>
@@ -5828,9 +5828,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.158534067293232,48.317530174723252</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.158534067293232,48.317530174723252</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">305</SimpleData>
 		<SimpleData name="Count_">95.00000000000</SimpleData>
@@ -5856,9 +5856,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Lockerby</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.212614419427112,46.459223205810282</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.212614419427112,46.459223205810282</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">306</SimpleData>
 		<SimpleData name="Count_">95.00000000000</SimpleData>
@@ -5884,9 +5884,9 @@
 		<SimpleData name="ProvCode">5</SimpleData>
 		<SimpleData name="OverlapWit">Lockerby</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-81.455206736487781,46.381222257586344</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-81.455206736487781,46.381222257586344</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">307</SimpleData>
 		<SimpleData name="Count_">116.00000000000</SimpleData>
@@ -5911,9 +5911,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">5</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-76.250936196241526,44.460433767150484</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-76.250936196241526,44.460433767150484</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">308</SimpleData>
 		<SimpleData name="Count_">136.00000000000</SimpleData>
@@ -5939,9 +5939,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">Hinge</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-95.667577347956879,51.020196548899563</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-95.667577347956879,51.020196548899563</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">309</SimpleData>
 		<SimpleData name="Count_">143.00000000000</SimpleData>
@@ -5966,9 +5966,9 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">6</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-100.66879127360815,54.568974735416816</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-100.66879127360815,54.568974735416816</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">310</SimpleData>
 		<SimpleData name="Count_">142.00000000000</SimpleData>
@@ -5994,9 +5994,9 @@
 		<SimpleData name="ProvCode">6</SimpleData>
 		<SimpleData name="OverlapWit">777</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-101.88374489693958,54.771975558255349</coordinates></Point>
-  </Placemark>
-  <Placemark>
+	<Point><coordinates>-101.88374489693958,54.771975558255349</coordinates></Point>
+</Placemark>
+<Placemark>
 	<ExtendedData><SchemaData schemaUrl="#900A_64th_ProducingMines">
 		<SimpleData name="OBJECTID">311</SimpleData>
 		<SimpleData name="Count_">204.00000000000</SimpleData>
@@ -6021,8 +6021,6 @@
 		<SimpleData name="Overlap">N</SimpleData>
 		<SimpleData name="ProvCode">9</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>-124.02994994335273,55.118101102243152</coordinates></Point>
-  </Placemark>
+	<Point><coordinates>-124.02994994335273,55.118101102243152</coordinates></Point>
+</Placemark>
 </Folder></Document></kml>
-
-
