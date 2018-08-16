@@ -1,5 +1,2 @@
 src/polyfills/slider/slider.js
 src/polyfills/events/mobile.js
-src/plugins/deps/tableparser.js
-src/plugins/geomap/data/config-en.js
-src/plugins/geomap/data/config-fr.js
