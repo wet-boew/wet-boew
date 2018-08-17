@@ -1,3 +1,17 @@
+/**
+ * @title Filter CSS
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp, @LaurentGoderre
+ *
+ * Note: This CSS is also used by the contentfilter WET plugin
+ */
+
 .wb-fltr-out {
+	opacity: .5;
+}
+.wb-fltr-out .wb-fltr-fade {
+	font-size: 1em;
+}
+.wb-fltr-out :not( .wb-fltr-fade ) {
 	display: none !important;
 }
