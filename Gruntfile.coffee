@@ -234,6 +234,7 @@ module.exports = (grunt) ->
 		[
 			"eslint"
 			"sasslint"
+			"lintspaces"
 		]
 	)
 
@@ -585,6 +586,53 @@ module.exports = (grunt) ->
 				map: "src/plugins/geomap/assets/sprites_geomap.png"
 				staticImagePath: '#{$wb-assets-path}'
 				output: "scss"
+
+		lintspaces:
+			all:
+				src: [
+						# Root files
+						".*rc"
+						".editorconfig"
+						".eslint*"
+						".git*"
+						".*.{json,yml}"
+						".npmignore"
+						"*.{json,md}"
+						"Gruntfile.coffee"
+						"Licen?e-*.txt"
+						"Rakefile"
+
+						# Folders
+						"dep/**"
+						"script/**"
+						"site/**"
+						"src/**"
+						"theme/**"
+
+						# Exemptions...
+
+						# Images
+						"!site/pages/docs/img/*.{jpg,png}"
+						"!src/plugins/**/*.{jpg,png}"
+						"!src/polyfills/**/*.{jpg,png}"
+						"!theme/assets/*.{ico,jpg,png}"
+
+						# Tracked third party files
+						# Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
+						"!dep/modernizr-custom.js"
+						"!src/polyfills/events/mobile.js"
+						"!src/polyfills/slider/slider.js"
+
+						# Untracked generated files
+						"!site/data/i18n/*.json"
+						"!src/plugins/*/sprites/_sprites_*.scss"
+					],
+				options:
+					editorconfig: ".editorconfig",
+					ignores: [
+						"js-comments"
+					],
+					showCodes: true
 
 		sasslint:
 			options:
