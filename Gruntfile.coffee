@@ -617,6 +617,10 @@ module.exports = (grunt) ->
 						"!src/polyfills/**/*.{jpg,png}"
 						"!theme/assets/*.{ico,jpg,png}"
 
+						# Docker environment file
+						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+						"!script/docker/env"
+
 						# Tracked third party files
 						# Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
 						"!dep/modernizr-custom.js"
