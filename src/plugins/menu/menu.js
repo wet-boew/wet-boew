@@ -313,15 +313,19 @@ var componentName = "wb-menu",
 								.innerHTML +
 						"</div></header><div class='modal-body'>" + panel + "</div>";
 				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
-				$panel
+
+				// fix #8241
+				$( document ).ajaxStop( function() {
+					$panel
 					.trigger( "wb-init.wb-overlay" )
 					.find( "summary" )
 						.attr( "tabindex", "-1" )
 						.trigger( detailsInitEvent );
-				$panel
+					$panel
 					.find( ".mb-menu > li:first-child" )
-						.find( ".mb-item" )
-							.attr( "tabindex", "0" );
+					.find( ".mb-item" )
+						.attr( "tabindex", "0" );
+				} );
 
 				/*
 				 * Build the regular mega menu
