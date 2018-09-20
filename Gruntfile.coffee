@@ -976,10 +976,10 @@ module.exports = (grunt) ->
 					ignore: [
 						"Element “head” is missing a required instance of child element “title”."
 						"Element “li” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)"
-						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
 						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections."
 					]
+					noLangDetect: true
 				src: [
 					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
@@ -987,10 +987,14 @@ module.exports = (grunt) ->
 			all:
 				options:
 					ignore: [
-						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 						"The “date” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
 						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
 						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
+						# TODO: Should be removed and fixed now that HTML5 specs updated
+						"The “main” role is unnecessary for element “main”."
+						"The “contentinfo” role is unnecessary for element “footer”."
+						"The “navigation” role is unnecessary for element “nav”."
+						"The “banner” role is unnecessary for element “header”."
 					]
 				src: [
 					"dist/unmin/**/*.html"
@@ -1008,7 +1012,7 @@ module.exports = (grunt) ->
 						"W002" # `<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes
 						"W005" # Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work; however, you might not be using Bootstrap's JavaScript
 						# TODO: The rules below should be resolved
-						"W009" # Using empty spacer columns isn't necessary with Bootstrap's grid. So instead of having an empty grid column with `class="col-xs-12"` , just add `class="col-xs-offset-12"` to the next grid column.
+						"W009" # Using empty spacer columns isn't necessary with Bootstrap's grid. So instead of having an empty grid column with `class=\"col-xs-12"` , just add `class=\"col-xs-offset-12"` to the next grid column.
 						"W010" # Using `.pull-left` or `.pull-right` as part of the media object component is deprecated as of Bootstrap v3.3.0. Use `.media-left` or `.media-right` instead.
 						"E013" # Only columns (`.col-*-*`) may be children of `.row`s
 						"E014" # Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s
