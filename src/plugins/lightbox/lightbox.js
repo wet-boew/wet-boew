@@ -309,23 +309,19 @@ $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
 		$lightbox = $( eventTarget ).closest( ".mfp-wrap" );
 		linkTarget = document.getElementById( eventTarget.getAttribute( "href" ).substring( 1 ) );
 
-		// Ignore same page links to within the overlay and modal popups
+		// Ignore same page links to within the overlay
 		if ( linkTarget && !$.contains( $lightbox[ 0 ], linkTarget ) ) {
-			if ( $lightbox.find( ".popup-modal-dismiss" ).length === 0 ) {
 
-				// Stop propagation of the click event
-				if ( event.stopPropagation ) {
-					event.stopImmediatePropagation();
-				} else {
-					event.cancelBubble = true;
-				}
-
-				// Close the overlay and set focus to the same page link
-				$.magnificPopup.close();
-				$( linkTarget ).trigger( setFocusEvent );
+			// Stop propagation of the click event
+			if ( event.stopPropagation ) {
+				event.stopImmediatePropagation();
 			} else {
-				return false;
+				event.cancelBubble = true;
 			}
+
+			// Close the overlay and set focus to the same page link
+			$.magnificPopup.close();
+			$( linkTarget ).trigger( setFocusEvent );
 		}
 	}
 } );
