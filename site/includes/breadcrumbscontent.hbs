@@ -39,6 +39,11 @@
 	</li>
 {{/contains}}
 {{/is}}
+{{#if parentPage}}
+	<li>
+		<a href="{{assets}}/demos/{{tag}}/{{parentPageURL}}-{{language}}.html">{{parentPage}}</a>
+	</li>
+{{/if}}
 {{/contains}}
 {{/contains}}
 <li>{{title}}</li>
