@@ -1,7 +1,10 @@
-
 {{#contains page.src "src/"}}
 <ul class="list-inline">
-	<li><a class="btn btn-primary" href="../../docs/ref/{{parentdir}}/{{parentdir}}-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a></li>
+	{{#if parentPage}}
+		<li><a class="btn btn-primary" href="../../../docs/ref/{{parentdir}}/{{parentdir}}-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a></li>
+	{{else}}
+		<li><a class="btn btn-primary" href="../../docs/ref/{{parentdir}}/{{parentdir}}-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a></li>
+	{{/if}}
 	<li><a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title={{encodeURI title}}:%20">{{{i18n "tmpl-questions-comments"}}}</a></li>
 </ul>
 {{/contains}}
