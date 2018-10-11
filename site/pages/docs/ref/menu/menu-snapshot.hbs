@@ -1,0 +1,120 @@
+<h1>Snapshot of menu</h1>
+
+<h2>Purpose</h2>
+
+<p>Provides an interactive menu with optional sub-menus.</p>
+
+<h2>Example</h2>
+
+<ul>
+	<li><strong>Large Screens:</strong> The menu is rendered in the header as a menu bar.</li>
+	<li><strong>Small and Medium Screens:</strong> The menu is rendered as a side panel, triggered by a menu button in the header, and includes the secondary menu and the footer.</li>
+</ul>
+
+<h2>Code</h2>
+
+<pre class="prettyprint prettyprinted" style="">
+<code>
+
+&lt;nav role=&quot;navigation&quot; id=&quot;wb-sm&quot; data-ajax-replace=&quot;ajax/menu-include-en.html&quot; data-trgt=&quot;mb-pnl&quot; class=&quot;wb-menu visible-md visible-lg wb-init wb-data-ajax-replace-inited wb-menu-inited wb-navcurr-inited&quot; typeof=&quot;SiteNavigationElement&quot;&gt;&lt;div class=&quot;pnl-strt container visible-md visible-lg nvbar&quot;&gt;
+&lt;h2&gt;Topics menu&lt;/h2&gt;
+&lt;div class=&quot;row&quot;&gt;
+&lt;ul class=&quot;list-inline menu&quot; role=&quot;menubar&quot;&gt;
+&lt;li class=&quot;&quot;&gt;&lt;a href=&quot;#lore&quot; class=&quot;item&quot; tabindex=&quot;0&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 1&lt;span class=&quot;expicon glyphicon glyphicon-chevron-down&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lore&quot; role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;5&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;6&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 1.6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#lor&quot; class=&quot;item&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 2&lt;span class=&quot;expicon glyphicon glyphicon-chevron-down&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lor&quot; role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 2.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 2.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 2.3&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;slflnk&quot;&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Section 2 - More&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#lorm&quot; class=&quot;item&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 3&lt;span class=&quot;expicon glyphicon glyphicon-chevron-down&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lorm&quot; role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;
+&lt;details&gt;
+&lt;summary aria-posinset=&quot;1&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 3.1&lt;/summary&gt;
+&lt;ul role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;5&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;6&quot; aria-setsize=&quot;6&quot; role=&quot;menuitem&quot;&gt;Item 3.1.6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;details&gt;
+&lt;summary aria-posinset=&quot;2&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 3.2&lt;/summary&gt;
+&lt;ul role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 3.2.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 3.2.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 3.2.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;Item 3.2.4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;details&gt;
+&lt;summary aria-posinset=&quot;3&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 3.3&lt;/summary&gt;
+&lt;ul role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;5&quot; role=&quot;menuitem&quot;&gt;Item 3.3.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;5&quot; role=&quot;menuitem&quot;&gt;Item 3.3.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;5&quot; role=&quot;menuitem&quot;&gt;Item 3.3.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;5&quot; role=&quot;menuitem&quot;&gt;Item 3.3.4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;5&quot; aria-setsize=&quot;5&quot; role=&quot;menuitem&quot;&gt;Item 3.3.5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;details&gt;
+&lt;summary aria-posinset=&quot;4&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot; aria-haspopup=&quot;true&quot;&gt;Section 3.4&lt;/summary&gt;
+&lt;ul role=&quot;menu&quot; aria-expanded=&quot;false&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;1&quot; aria-setsize=&quot;3&quot; role=&quot;menuitem&quot;&gt;Item 3.4.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;2&quot; aria-setsize=&quot;3&quot; role=&quot;menuitem&quot;&gt;Item 3.4.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;3&quot; aria-setsize=&quot;3&quot; role=&quot;menuitem&quot;&gt;Item 3.4.3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li class=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;item&quot; tabindex=&quot;-1&quot; aria-posinset=&quot;4&quot; aria-setsize=&quot;4&quot; role=&quot;menuitem&quot;&gt;No Submenu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/nav&gt;
+
+</code>
+</pre>
+
+<h2>Changed States</h2>
+
+<ul>
+	<li>
+	When a sub-section is selected:
+	<ul>
+		<li>The active class gets added to it.</li>
+		<li>The unordered list that is a part of it gets a class of open</li>
+		<li>Expanded gets set to True</li>
+		<li>Aria-hidden gets set to False</li>
+	</ul>
+	</li>
+	<li>
+	When a sub-section is un-selected:
+	<ul>
+		<li>The active class gets removed from it.</li>
+		<li>The unordered list that is a part of it has the open class removed</li>
+		<li>Expanded gets set to False</li>
+		<li>Aria-hidden gets set to True</li>
+	</ul>
+	</li>
+</ul>

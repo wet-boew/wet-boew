@@ -1,0 +1,185 @@
+<h1>Multimedia Player Snapshot</h1>
+
+<!----------------------------------------------------------------------------------------------------------------->
+
+<!-- This is an example with a specific song being played -->
+
+<h2>Audio only</h2>
+
+<h3>Code</h3>
+
+<pre>
+<code>
+
+&lt;div class=&quot;wb-mm-ctrls&quot;&gt;
+	&lt;div class=&quot;frstpnl&quot;&gt;
+		&lt;div class=&quot;btn-group&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default playpause&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Play&quot; data-state-on=&quot;Play&quot; data-state-off=&quot;Pause&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-play&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Play&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default mute&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Mute&quot; data-state-on=&quot;Mute&quot; data-state-off=&quot;Unmute&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-volume-up&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Mute&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+			&lt;input class=&quot;volume&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Volume&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;100&quot; step=&quot;5&quot; type=&quot;range&quot;&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;tline&quot;&gt;
+		&lt;div class=&quot;wb-mm-txtonly&quot;&gt;
+			&lt;p class=&quot;wb-mm-tmln-crrnt&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Current position:&lt;/span&gt;&lt;span&gt;00:00:00&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wb-mm-tmln-ttl&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Total time:&lt;/span&gt;&lt;span&gt;00:04:06&lt;/span&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;wb-mm-prgrss&quot;&gt;
+			&lt;progress tabindex=&quot;0&quot; aria-live=&quot;off&quot; max=&quot;100&quot; value=&quot;0&quot;&gt;&lt;/progress&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;lastpnl&quot;&gt;
+		&lt;div class=&quot;btn-group&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default cc&quot; aria-labelledby=&quot;wb-auto-2-md&quot; aria-controls=&quot;wb-auto-2-md&quot; title=&quot;Show closed captioning&quot; data-state-on=&quot;Show closed captioning&quot; data-state-off=&quot;Hide closed captioning&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-subtitles&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Show closed captioning&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+</code>
+</pre>
+<h3>Changed States</h3>
+	<ul>
+	<li>When the play/pause button is toggled: </li>
+			<ol>
+			
+				<!-- Explain what actually changes in the code -->
+				<li>The title is toggled between "Play" and "Pause"</li>
+				<li>The progress bars value starts/stops increasing</li>
+				<li>The current position starts/stops increasing</li>
+			
+			</ol>
+	<li>When the mute button is toggled:</li>
+		<ol>
+			
+			<!-- Explain what actually changes in the code -->
+			<li>The title is toggled between "Mute" and "Unmute"</li>
+			<li>The aria-pressed attribute is toggled between false and true</li>
+			<li>There is no change in the HTML for the volume bar but it does move to its 0 position</li>
+		
+		</ol>
+		
+	<li>When the progress bar is clicked at any point:</li>
+		<ol>
+			
+			<!-- Explain what actually changes in the code -->
+			<li>The value of the progress bar is set to the corresponding value of where the user clicked</li>
+			<li>The current time is updated to reflect the new value of the progress bar</li>
+		
+		</ol>
+	</ul>
+	
+<!----------------------------------------------------------------------------------------------------------------->
+
+<!-- This is an example with a specific video being played -->
+
+<h2>Youtube</h2>
+
+<h3>Code</h3>
+
+<pre>
+<code>
+
+&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://www.youtube.com/watch?v=9znKJqnFuuY&quot;}'&gt;
+	&lt;video title=&quot;Suspect&quot;&gt;
+		&lt;source type=&quot;video/youtube&quot; src=&quot;http://www.youtube.com/watch?v=9znKJqnFuuY&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Suspect&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</code>
+</pre>
+
+<h3>Changed States</h3>
+	<ul>
+	
+		<li>When you toggle the play/pause button: </li>
+
+			<ul>
+				
+				<li>Button title is toggled between play/pause</li>
+				<li>The player has its class toggled from paused-mode to playing-mode</li>
+				<li>Figure has the playing class toggled</li>
+				<li>Figure has a waiting class when loading</li>
+				<li>yt-cued-thumbnail-overlay display gets set from block to none when video is loaded or un-paused</li>
+				<li>*All the same changes for the progress bar/current time/volume/play-pause icon as the audio only example above</li>
+				<li>When the progress bar is clicked, the video jumps to that part in the video</li>
+				
+				
+			</ul>
+
+	</ul>
+<!----------------------------------------------------------------------------------------------------------------->
+
+<!-- This is an example with a specific video being played -->
+
+<h2>Custom video</h2>
+
+<h3>Code</h3>
+
+<pre>
+<code>
+
+&lt;figure class=&quot;wb-mltmd wb-init wb-mltmd-inited video&quot; data-wb-mltmd=&quot;{&quot;shareUrl&quot;: &quot;https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html&quot;}&quot; id=&quot;wb-auto-2&quot;&gt;
+&lt;div class=&quot;wb-share wb-share-inited wb-init&quot; data-wb-share=&quot;{&quot;type&quot;: &quot;video&quot;, &quot;title&quot;: &quot;Looking for a Job&quot;, &quot;url&quot;: &quot;https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html&quot;, &quot;pnlId&quot;: &quot;wb-auto-2-shr&quot;}&quot; id=&quot;wb-auto-8&quot;&gt;&lt;section id=&quot;shr-pg-wb-auto-2-shr&quot; class=&quot;shr-pg mfp-hide modal-dialog modal-content overlay-def&quot;&gt;&lt;header class=&quot;modal-header&quot;&gt;&lt;h2 class=&quot;modal-title&quot;&gt;Share this video&lt;/h2&gt;&lt;/header&gt;&lt;div class=&quot;modal-body&quot;&gt;&lt;ul class=&quot;list-unstyled colcount-xs-2&quot;&gt;&lt;li&gt;&lt;a href=&quot;https://bitly.com/a/bitmarklet?u=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&quot; class=&quot;shr-lnk bitly btn btn-default&quot; target=&quot;_blank&quot;&gt;bitly&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.blogger.com/blog_this.pyra?t=&amp;u=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;n=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk blogger btn btn-default&quot; target=&quot;_blank&quot;&gt;Blogger&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://delicious.com/post?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk delicious btn btn-default&quot; target=&quot;_blank&quot;&gt;Delicious&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://digg.com/submit?phase=2&amp;url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk digg btn btn-default&quot; target=&quot;_blank&quot;&gt;Digg&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.diigo.com/post?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk diigo btn btn-default&quot; target=&quot;_blank&quot;&gt;Diigo&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;mailto:?to=&amp;subject=Looking%20for%20a%20Job&amp;body=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html%0A&quot; class=&quot;shr-lnk email btn btn-default&quot; target=&quot;_blank&quot;&gt;Email&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.facebook.com/sharer.php?u=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;t=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk facebook btn btn-default&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=&amp;su=Looking%20for%20a%20Job&amp;body=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html%0A&quot; class=&quot;shr-lnk gmail btn btn-default&quot; target=&quot;_blank&quot;&gt;Gmail&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://plus.google.com/share?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;hl=en&quot; class=&quot;shr-lnk googleplus btn btn-default&quot; target=&quot;_blank&quot;&gt;Google+&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&amp;ro=false&amp;summary=&amp;source=&quot; class=&quot;shr-lnk linkedin btn btn-default&quot; target=&quot;_blank&quot;&gt;LinkedIn®&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.myspace.com/Modules/PostTo/Pages/?u=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;t=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk myspace btn btn-default&quot; target=&quot;_blank&quot;&gt;MySpace&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;media=&amp;description=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk pinterest btn btn-default&quot; target=&quot;_blank&quot;&gt;Pinterest&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://reddit.com/submit?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk reddit btn btn-default&quot; target=&quot;_blank&quot;&gt;reddit&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.stumbleupon.com/submit?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;title=Looking%20for%20a%20Job&quot; class=&quot;shr-lnk stumbleupon btn btn-default&quot; target=&quot;_blank&quot;&gt;StumbleUpon&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.tumblr.com/share/link?url=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&amp;name=Looking%20for%20a%20Job&amp;description=&quot; class=&quot;shr-lnk tumblr btn btn-default&quot; target=&quot;_blank&quot;&gt;tumblr&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://twitter.com/home?status=Looking%20for%20a%20Job%20https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html&quot; class=&quot;shr-lnk twitter btn btn-default&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://compose.mail.yahoo.com/?to=&amp;subject=Looking%20for%20a%20Job&amp;body=https%3A%2F%2Fwet-boew.github.io%2Fv4.0-ci%2Fdemos%2Fmultimedia%2Fmultimedia-en.html%0A&quot; class=&quot;shr-lnk yahoomail btn btn-default&quot; target=&quot;_blank&quot;&gt;Yahoo! Mail&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p class=&quot;col-sm-12 shr-dscl&quot;&gt;No endorsement of any products or services is expressed or implied.&lt;/p&gt;&lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;a href=&quot;#shr-pg-wb-auto-2-shr&quot; aria-controls=&quot;shr-pg-wb-auto-2-shr&quot; class=&quot;shr-opn wb-lbx  wb-lbx-inited wb-init&quot; id=&quot;wb-auto-9&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-share&quot;&gt;&lt;/span&gt;Share this video&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;display&quot;&gt;&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot; id=&quot;wb-auto-2-md&quot;&gt;
+&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm&quot;&gt;
+&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot;&gt;
+&lt;track src=&quot;cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot;&gt;
+&lt;/video&gt;&lt;/div&gt;
+
+&lt;!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html --&gt;
+&lt;!-- DataAjaxFragmentStart --&gt;
+&lt;div class=&quot;wb-mm-cc&quot;&gt;&nbsp;&lt;/div&gt;
+&lt;div class=&quot;wb-mm-ctrls&quot;&gt;
+	&lt;div class=&quot;frstpnl&quot;&gt;
+		&lt;div class=&quot;btn-group&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default playpause&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Play&quot; data-state-on=&quot;Play&quot; data-state-off=&quot;Pause&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-play&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Play&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default mute&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Mute&quot; data-state-on=&quot;Mute&quot; data-state-off=&quot;Unmute&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-volume-up&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Mute&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+			&lt;input class=&quot;volume&quot; aria-controls=&quot;wb-auto-2-md&quot; aria-labelledby=&quot;wb-auto-2-md&quot; title=&quot;Volume&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;100&quot; step=&quot;5&quot; type=&quot;range&quot;&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;tline&quot;&gt;
+		&lt;div class=&quot;wb-mm-txtonly&quot;&gt;
+			&lt;p class=&quot;wb-mm-tmln-crrnt&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Current position:&lt;/span&gt;&lt;span&gt;00:00:00&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wb-mm-tmln-ttl&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Total time:&lt;/span&gt;&lt;span&gt;--:--:--&lt;/span&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;wb-mm-prgrss&quot;&gt;
+			&lt;progress tabindex=&quot;0&quot; aria-live=&quot;off&quot; max=&quot;100&quot; value=&quot;0&quot;&gt;&lt;/progress&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;lastpnl&quot;&gt;
+		&lt;div class=&quot;btn-group&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default cc&quot; aria-labelledby=&quot;wb-auto-2-md&quot; aria-controls=&quot;wb-auto-2-md&quot; title=&quot;Show closed captioning&quot; data-state-on=&quot;Show closed captioning&quot; data-state-off=&quot;Hide closed captioning&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-subtitles&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;Show closed captioning&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- DataAjaxFragmentEnd --&gt;
+
+
+&lt;figcaption&gt;
+&lt;p&gt;Looking for a Job (&lt;a href=&quot;cpts-lg-en.html&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code>
+</pre>
+
+<h3>Changed States</h3>
+	<ul>
+	
+		<li>When you toggle the play/pause button: </li>
+
+			<ul>
+				
+				<li>Different src for source</li>
+				<li>No YouTube sepcific tags</li>
+				<li>Figure has a waiting class when loading</li>
+				<li>Figure has the playing class toggled</li>
+				<li>*All the same changes for the progress bar/current time/volume/play-pause icon as the audio only example above</li>
+
+			</ul>
+			
+		<li>When the progress bar is clicked, the video jumps to that part in the video</li>
+
+	</ul>
