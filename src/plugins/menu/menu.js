@@ -319,17 +319,13 @@ var componentName = "wb-menu",
 				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 
 				// fix #8241
-				$( document ).ajaxStop( function() {
-					$panel
-					.trigger( "wb-init.wb-overlay" )
-					.find( "summary" )
-						.attr( "tabindex", "-1" )
-						.trigger( detailsInitEvent );
-					$panel
-					.find( ".mb-menu > li:first-child" )
-					.find( ".mb-item" )
-						.attr( "tabindex", "0" );
-				} );
+				if ( $.active > 0 ) {
+					$( document ).ajaxStop( function() {
+						initOverlay( $panel );
+					} );
+				} else {
+					initOverlay( $panel );
+				}
 
 				/*
 				 * Build the regular mega menu
@@ -397,6 +393,23 @@ var componentName = "wb-menu",
 				}
 			} );
 		}
+	},
+
+	// fix #8517
+	/**
+	 * @method initOverlay
+	 * @param {jQuery object} $panel Current panel
+	 */
+	initOverlay = function( $panel ) {
+		$panel
+			.trigger( "wb-init.wb-overlay" )
+			.find( "summary" )
+			.attr( "tabindex", "-1" )
+			.trigger( detailsInitEvent );
+		$panel
+			.find( ".mb-menu > li:first-child" )
+			.find( ".mb-item" )
+			.attr( "tabindex", "0" );
 	},
 
 	/**
