@@ -29,6 +29,7 @@ nbproject/*
 .idea/
 /.project
 .settings
+.vscode/*
 
 # Logs
 .sass-cache/
