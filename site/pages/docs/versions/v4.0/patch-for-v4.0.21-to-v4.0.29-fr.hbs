@@ -1,22 +1,22 @@
 ---
 {
-	"title": "Appliquer le correctif du fil de syndication pour wet-boew et ses thèmes reliés",
+	"title": "Directives sur l'application du correctif du fil de syndication pour la WET-BOEW et ses thèmes connexes",
 	"language": "fr",
-	"description": "Ce correctif met à jour le plugiciel du fil de syndication de la BOEW afin de lire un flux JSON avec une structure similaire à ATOM",
+	"description": "Ce correctif met à jour le plugiciel du fil de syndication de la WET-BOEW afin de lire un flux JSON avec une structure similaire à ATOM",
 	"altLangPrefix": "patch-for-v4.0.21-to-v4.0.29",
 	"dateModified": "2019-01-15"
 }
 ---
 
-<p>Ce correctif met à jour le plugiciel du fil de syndication de la BOEW afin de lire un flux JSON avec une structure similaire à ATOM.</p>
+<p>Ce correctif met à jour le plugiciel du fil de syndication de la WET-BOEW afin de lire un flux JSON avec une structure similaire à ATOM.</p>
 
-<p><a href="#instruction">Allez directement au instruction pour appliquer ce correctif.</a></p>
+<p><a href="#instruction">Allez directement aux directives pour appliquer ce correctif.</a></p>
 
-<p>Après que ce correctif soit appliqué selon les instructions ci-dessous, il est possible que cela brise les implémentation existante avec jsonp car le format par défaut sera changé à JSON. Nous avons estimé qu'il y avait très peu ou d'implémentation inexistante de ce type de flux/fil de syndication. Par ailleur, cette méthode était seulement documenté en fesant de l'ingénierie inverse du code javascript du plugificiel du fil de syndication de la BOEW</p>
+<p>Après que ce correctif soit appliqué selon les directives ci-dessous, il est possible que cela brise les implémentations existantes avec jsonp car le format par défaut a été changé à JSON. Nous avons estimé qu'il y avait très peu ou pas d'implémentation de ce type de flux/fil de syndication. Par ailleur, cette méthode était seulement documentée en fesant de l'ingénierie inverse du code Javascript du plugificiel du fil de syndication de la WET-BOEW.</p>
 
-<p>Ceci s'applique à toute les implémentations de WET-BOEW, incluant ses thèmes, entre la version 4.0.21 et 4.0.29. <a href="#wet-boew-version">Consulter la liste complète.</a></p>
+<p>Ceci s'applique à toute les implémentations de WET-BOEW, y compris les thèmes lancés entre les versions 4.0.21 et 4.0.29. <a href="#wet-boew-version">Consultez la liste complète.</a></p>
 
-<h2>Ce correctif officialise les versions suivantes:</h2>
+<h2>Ce correctif officialise les versions suivantes&nbsp;:</h2>
 <ul>
 	<li>v4.0.29.1 - Boîte à outils de l'expérience Web (BOEW)</li>
 	<li>v4.0.29.1 - Canada.ca (GCWeb)</li>
@@ -66,7 +66,7 @@
 	<li>v4.0.21.1 - Plate-forme de gouvernement ouvert (PGO)</li>
 </ul>
 
-<h2 id="instruction">Instruction du correctif</h2>
+<h2 id="instruction">Directives du correctif</h2>
 
 <p>Pour appliquer ce correctif, vous devez mettre à jour les fichiers suivants:</p>
 <ul>
@@ -75,50 +75,48 @@
 	<li>js/wet-boew.js</li>
 	<li>js/wet-boew.min.js</li>
 </ul>
-<p>Notez: Dépendant de votre implémentation, vous aurez peut-être seulement à modifier deux fichier. Pour des raison historique, la compilation de wet-boew est doublé dans deux dossier différent.</p>
+<p>Remarque&nbsp;: En fonction votre implémentation, vous aurez peut-être seulement deux fichiers à modifier. Pour des raisons techniques, la compilation de WET-BOEW contient des fichiers reproduits dans deux emplacements différents.</p>
 
-<h3>Étape</h3>
-
-<ol>
-	<li>Télécharger le fichier zip avec les versions de wet-boew corrigé</li>
-	<li>Extraire le contenu du zip</li>
-	<li>Choisissez la version wet-boew applicable à votre implémentation</li>
-	<li>Remplacer les fichiers <code>wet-boew.js</code> et <code>wet-boew.min.js</code></li>
-	<li>Modifier votre balisage afin d'utiliser le fil de syndication JSON similaire à ATOM</li>
-</ol>
-
-
-<h3>Changement de balisage</h3>
-<p>Afin d'utiliser le fil de syndication JSON similaire à ATOM, vous devriez spécifier un lien (URL) vers la version JSON de ce fil de syndication.</p>
+<h3>Étapes</h3>
 
 <ol>
-	<li>Ajouter l'attribut= <code>data-ajax</code> au lien de votre fil de syndication</li>
-	<li>Définiser la valeur de ce dernier par un lien (URL) où que vous puissier obtenir la version JSON du fil de syndication en format similar à ATOM</li>
-	<li>Metter à l'essaie votre page</li>
+	<li><a href="https://github.com/wet-boew/wet-boew/releases/download/patch-v4.0.21-to-v4.0.29/patch-for-v4.0.21-to-v4.0.29.zip">Téléchargez le fichier .zip</a> avec les versions de WET-BOEW corrigées.</li>
+	<li>Extrayez le contenu du .zip.</li>
+	<li>Choisissez la <a href="https://github.com/wet-boew/wet-boew/releases/tag/patch-v4.0.21-to-v4.0.29">version WET-BOEW applicable à votre implémentation</a>.</li>
+	<li>Remplacez les fichiers <code>wet-boew.js</code> et <code>wet-boew.min.js</code> correspondants.</li>
+	<li>Modifiez votre balisage afin d'utiliser la version du fil de syndication JSON similaire à ATOM.</li>
 </ol>
 
-<p>Le flux/fil de syndication JSON spécifié par l'attribut <code>data-ajax</code> sera utilisé à la place de l'URL définie par l'attribut <code>href</code>.</p>
+<h3>Modifications au balisage</h3>
+<p>Afin d'utiliser le fil de syndication JSON similaire à ATOM, vous devriez préciser l'URL vers la version JSON de ce fil de syndication.</p>
 
-<h4>Le code avant</h4>
+<ol>
+	<li>Ajouter un attribut <code>data-ajax</code> à votre lien de fil de syndication.</li>
+	<li>Fixez la valeur à une URL où vous pouvez récupérer la version JSON du fil de syndication en format similar à ATOM.</li>
+	<li>Testez votre page.</li>
+</ol>
+
+<p>Le fil de syndication JSON spécifié par l'attribut <code>data-ajax</code> serait utilisé avant l'URL définie dans l'attribut <code>href</code>.</p>
+
+<h4>Code d'avant</h4>
 <pre><code>&lt;li&gt;
 	&lt;a href="demo/manitoba-fr.atom.xml"&gt;Centre des nouvelles du Canada - Manitoba&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 
-
-<h4>Le code après</h4>
+<h4>Code d'après</h4>
 <pre><code>&lt;li&gt;
 	&lt;a <strong>data-ajax="demo/manitoba-fr.atom.json"</strong> href="demo/manitoba-fr.atom.xml"&gt;Centre des nouvelles du Canada - Manitoba&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 
 <h3>Comment appliquer le correctif manuellement</h3>
 <ol>
-	<li>Modifier le fichier <code>wet-boew.js</code></li>
-	<li>Appliquer les changements tel que décris pour le fichier <code>feed.js</code> dans ce <a href="https://github.com/wet-boew/wet-boew/commit/8eb8c25d02cbdfeedb753ed0ce0008802f7bb5f5">commit 8eb8c25d</a></li>
-	<li>Compresser le fichier <code>wet-boew.js</code> et remplacer le fichier <code>wet-boew.min.js</code>
-	<li>Changer le balisage dans vos page pour utiliser une flux JSON structuré similaire à ATOM</li>
+	<li>Modifiez le fichier <code>wet-boew.js</code>.</li>
+	<li>Appliquez les modifications telles que décrites pour le fichier <code>feed.js</code> dans le <a href="https://github.com/wet-boew/wet-boew/commit/8eb8c25d02cbdfeedb753ed0ce0008802f7bb5f5">commit 8eb8c25d</a>.</li>
+	<li>Compressez le fichier <code>wet-boew.js</code> et remplacez le fichier <code>wet-boew.min.js</code>.</li>
+	<li>Modifiez le balisage de votre page afin d'utiliser la version du fil de syndication JSON similaire à ATOM.</li>
 </ol>
 
-<h2 id="wet-boew-version">Correctif applicable pour les version suivantes:</h2>
+<h2 id="wet-boew-version">Correctif applicable pour les versions suivantes&nbsp;:</h2>
 <ul>
 	<li>v4.0.29 - Boîte à outils de l'expérience Web (BOEW)</li>
 	<li>v4.0.29 - Canada.ca (GCWeb)</li>
