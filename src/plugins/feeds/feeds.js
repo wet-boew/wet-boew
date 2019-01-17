@@ -454,23 +454,21 @@ $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSe
 		switch ( event.type ) {
 		case "ajax-fetched":
 			response = event.fetch.response;
-			if ( !response.items ) {
+			if ( response.documentElement ) {
 				limit = getLimit( $emlRss[ Object.keys( $emlRss )[ 0 ] ] );
 				data = corsEntry( response, limit );
-			} else {
-				if ( response.query ) {
-					results = response.query.results;
-					if ( !results ) {
-						data = results.item; // Flicker feeds
-						if ( !Array.isArray( data ) ) {
-							data = [ data ];
-						}
-					} else {
-						data = [];
+			} else if ( response.query ) {
+				results = response.query.results;
+				if ( !results ) {
+					data = results.item; // Flicker feeds
+					if ( !Array.isArray( data ) ) {
+						data = [ data ];
 					}
 				} else {
-					data = response.items;
+					data = [];
 				}
+			} else {
+				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
 			}
 			break;
 		default:
