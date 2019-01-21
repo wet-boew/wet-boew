@@ -6,14 +6,14 @@
 	"categoryfile": "plugins",
 	"description": "Une méthode cohérente et facile d’accès pour répertorier les notes de bas de page.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2016-06-10"
+	"dateModified": "2019-01-21"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>But</h2>
-	<p>Ce plugiciel permet aux développeurs d’intégrer facilement des notes de bas de page dans leurs pages Web et facilite la conformité à WCAG 2.0 lors de l’intégration de ces notes de bas de page.</p>
+	<p>Ce plugiciel permet aux développeurs d’intégrer facilement des notes de bas de page dans leurs pages Web et facilite la conformité à WCAG 2.1 lors de l’intégration de ces notes de bas de page.</p>
 </section>
 
 <div lang="en">
@@ -68,7 +68,7 @@
 	<section>
 		<h4>Lien vers une note de bas de page</h4>
 		<p>Utiliser le code suivant pour rechercher le lien vers une note de bas de page particulière.</p>
-		<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
+		<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;1&lt;span class="wb-inv"&gt;, note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
 		<p><strong>Remarque&#160;:</strong> Les attributs ID des liens vers une note de bas de page multiréférentielle devraient contenir un trait d'union et un numéro placée juste après l’indicateur (par exemple&#160;: <code>id="fn2-1-rf"</code>, <code>id="fn2-2-rf"</code>, <code>id="fn2-3-rf"</code>, etc.) afin de pouvoir faire, à l’aide d’un programme, la distinction entre les liens de référence.</p>
 	</section>
@@ -78,7 +78,7 @@
 		<p><strong>Needs translation</strong></p>
 		<h4>Link to Multiple Footnotes</h4>
 		<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
-		<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
+		<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;2&lt;span class="wb-inv"&gt;, note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;3&lt;span class="wb-inv"&gt;, note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
 		<p><strong>Note:</strong> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 	</section>
@@ -107,7 +107,7 @@
 			<pre><code>&lt;dt&gt;Note de bas de page 1&lt;/dt&gt;
 &lt;dd id="fn1"&gt;
 	&lt;p&gt;Exemple de note de bas de page standard.&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;&lt;span class="wb-inv"&gt;Retour à la référence de la note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;1&lt;span class="wb-inv"&gt;, retour à la référence de la note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 		</section>
 
@@ -118,7 +118,7 @@
 			<pre><code>&lt;dt&gt;Note de bas de page 2&lt;/dt&gt;
 &lt;dd id="fn2"&gt;
 	&lt;p&gt;Exemple de note de bas de page qui comporte de nombreux liens.&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;&lt;span class="wb-inv"&gt;Retour à la &lt;span&gt;première&lt;/span&gt; référence de la note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;2&lt;span class="wb-inv"&gt;, retour à la &lt;span&gt;première&lt;/span&gt; référence de la note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 
 			<p><strong>Remarque&#160;:</strong> Les attributs <code>href</code> des liens retour dans des notes de bas de page multiréférentielles devraient toujours contenir «&#160;-1&#160;» après l’indicateur de la note de bas de page (p. ex. <code>href="#fn2-1-rf"</code>).</p>
@@ -134,7 +134,7 @@
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (premier paragraphe).&lt;/p&gt;
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (deuxième paragraphe).&lt;/p&gt;
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (troisième paragraphe).&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn3-rf"&gt;&lt;span class="wb-inv"&gt;Retour à la référence de la note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn3-rf"&gt;3&lt;span class="wb-inv"&gt;, retour à la référence de la note de bas de page&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 		</section>
 	</section>
