@@ -18,65 +18,30 @@
 	<p>See the JSON feed example bellow as an alternative solution. A patch is going to be released for older version of wet-boew to fully enable this feature.</p>
 	<p>Note: The upcoming release of WET-BOEW v4.0.30 (scheduled for the end of January) would read by default the XML feed directly without using any third party services. Although this imply your CORS would be properly configured on your server.</p>
 </section>
-
 <p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
-
 <section>
 	<h2>Examples</h2>
-	<section class="wb-feeds limit-5">
-		<h3>Road News Releases and Safety Recalls</h3>
-		<ul class="feeds-cont">
-			<li>
-				<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
-			</li>
-			<li>
-				<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external">Road Safety Recalls</a>
-			</li>
+	<section class="wb-feeds limit-4">
+		<h3>CORS enabled pulling - Canada News Centre - Manitoba</h3>
+		<p>This method fetch the ATOM feed directly and don't use a third party service.</p>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
 		</ul>
-
 		<section>
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;section class="wb-feeds limit-5"&gt;
-	&lt;h3&gt;Road News Releases and Safety Recalls&lt;/h3&gt;
-	&lt;ul class="feeds-cont"&gt;
-		&lt;li&gt;
-			&lt;a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external"&gt;Road News Releases (All)&lt;/a&gt;
-		&lt;/li&gt;
-		&lt;li&gt;
-			&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external"&gt;Road Safety Recalls&lt;/a&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
-&lt;/section&gt;</code></pre>
+				<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
+			&lt;h3&gt;Canada News Centre - Manitoba&lt;/h3&gt;
+			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
+				&lt;li&gt;
+					&lt;a href="demo/manitoba-en.atom.xml"&gt;Government of Canada News Releases&lt;/a&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;/section&gt;</code></pre>
 			</details>
 		</section>
 	</section>
-
-	<section class="wb-feeds limit-1">
-		<h3>Ottawa Weather</h3>
-		<ul class="feeds-cont">
-			<li>
-				<a href="http://weather.gc.ca/rss/city/on-118_e.xml" rel="external">Ottawa Ontario</a>
-			</li>
-		</ul>
-
-		<section>
-			<h4>Code</h4>
-			<details>
-				<summary>View code</summary>
-				<pre><code>&lt;section class="wb-feeds limit-1"&gt;
-	&lt;h3&gt;Ottawa Weather&lt;/h3&gt;
-	&lt;ul class="feeds-cont"&gt;
-		&lt;li&gt;
-			&lt;a href="http://weather.gc.ca/rss/city/on-118_e.xml" rel="external"&gt;Ottawa Ontario&lt;/a&gt;
-		&lt;/li&gt;
-	&lt;/ul&gt;
-&lt;/section&gt;</code></pre>
-			</details>
-		</section>
-	</section>
-
 	<section>
 		<h3>Tabbed feeds</h3>
 		<div class="wb-tabs col-md-5 wb-eqht">
@@ -86,27 +51,22 @@
 					<section class="wb-feeds limit-10">
 						<h4 class="wb-inv">Flickr</h4>
 						<ul class="feeds-cont list-inline">
-							<li>
-								<a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;format=json">Environment Canada Flickr</a>
-							</li>
+							<li> <a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;format=json">Environment Canada Flickr</a> </li>
 						</ul>
 						<div class="clearfix"></div>
 					</section>
 				</details>
-
 				<details id="details-youtube">
 					<summary>YouTube</summary>
 					<section class="wb-feeds limit-10">
 						<h4 class="wb-inv">YouTube</h4>
 						<ul class="feeds-cont list-inline">
-							<li>
-								<a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-youtube='{"playlist":[
+							<li> <a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-youtube='{"playlist":[
 									{"id":"ZwgEH-Szk0k", "title": "Learn to Set up a Tent"},
 									{"id":"w5gpKajD8E0", "title": "Camping with Wildlife"},
 									{"id":"_E_9te0nq3A", "title": "Learn to Start a Campfire"},
 									{"id":"WrtZjBTkQbw", "title": "Planning your trip"}
-								]}'>Parks Canada Youtube</a>
-							</li>
+								]}'>Parks Canada Youtube</a> </li>
 						</ul>
 						<div class="clearfix"></div>
 					</section>
@@ -114,7 +74,6 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-
 		<section>
 			<h4>Code</h4>
 			<details>
@@ -158,46 +117,19 @@
 			</details>
 		</section>
 	</section>
-
-	<section class="wb-feeds limit-3" data-cors="true">
-		<h3>CORS enabled pulling - Canada News Centre - Manitoba</h3>
-		<p>This method fetch the ATOM feed directly and don't use a third party service.</p>
-		<ul class="feeds-cont list-unstyled lst-spcd">
-			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
-		</ul>
-		<section>
-			<h4>Code</h4>
-			<details>
-			<summary>View code</summary>
-			<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
-			&lt;h3&gt;Canada News Centre - Manitoba&lt;/h3&gt;
-			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
-				&lt;li&gt;
-					&lt;a href="demo/manitoba-en.atom.xml"&gt;Government of Canada News Releases&lt;/a&gt;
-				&lt;/li&gt;
-			&lt;/ul&gt;
-			&lt;/section&gt;</code></pre>
-			</details>
-		</section>
-	</section>
-
-	<section class="wb-feeds limit-3">
+	<section class="wb-feeds limit-4">
 		<h3>JSON feed</h3>
 		<p>Use attribute <code>data-ajax</code> to read a <a href="../../docs/ref/feeds/feeds-en.html#json-atom-like-feed">JSON ATOM like feed</a>.</p>
 		<p>A patch is going to be released for the older version of wet-boew to fully enable this feature.</p>
-
 		<p><strong>How:</strong> Add the attribute <code>data-ajax</code> with an URL to the JSON format of your feed. The <code>href</code> value would be ignored.</p>
-
 		<ul class="feeds-cont list-unstyled lst-spcd">
-			<li>
-				<a data-ajax="demo/manitoba-en.atom.json" href="https://www.canada.ca/en/news/web-feeds/manitoba" rel="external">Canada News Centre - Manitoba</a>
-			</li>
+			<li> <a data-ajax="demo/manitoba-en.atom.json" href="https://www.canada.ca/en/news/web-feeds/manitoba" rel="external">Canada News Centre - Manitoba</a> </li>
 		</ul>
 		<section>
 			<h4>Code</h4>
 			<details>
-			<summary>View code</summary>
-			<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
+				<summary>View code</summary>
+				<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
 			&lt;h3&gt;JSON feed&lt;/h3&gt;
 			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
 				&lt;li&gt;
@@ -209,7 +141,6 @@
 		</section>
 	</section>
 </section>
-
 <section>
 	<h2>Parameters</h2>
 	<table class="table">

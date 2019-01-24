@@ -138,21 +138,6 @@ var componentName = "wb-feeds",
 	},
 
 	/**
-	 * Helper function that builds the URL for the JSON request
-	 * Feeds well now use developer.yahoo.com/yql/console/ since ajax.googleapis.com/ajax/services/feed/ was depercated.
-	 * @method jsonRequest
-	 * @param {url} url URL of the feed.
-	 * @param {integer} limit Limit on the number of results for the JSON request to return.
-	 * @return {url} The URL for the JSON request
-	 */
-	jsonRequest = function( url, limit ) {
-
-		var requestURL = wb.pageUrlParts.protocol + "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20'" + encodeURIComponent( decodeURIComponent( url ) ) + "'%20limit%20" + ( limit ? limit : 4 ) + "&format=json";
-
-		return requestURL;
-	},
-
-	/**
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered the function call
 	 */
@@ -163,7 +148,6 @@ var componentName = "wb-feeds",
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
 			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon, youtubeData, $elm;
-
 		if ( elm ) {
 			$elm = $( elm );
 			$content = $elm.find( ".feeds-cont" );
@@ -219,13 +203,8 @@ var componentName = "wb-feeds",
 
 				} else {
 
-					// Detect if CORS request
-					if ( $elm.data( "cors" ) === true ) {
-						url = fElem.attr( "href" );
-						fetch.dataType = "xml";
-					} else {
-						url = jsonRequest( fElem.attr( "href" ), limit );
-					}
+					url = fElem.attr( "href" );
+					fetch.dataType = "xml";
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
@@ -475,27 +454,21 @@ $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSe
 		switch ( event.type ) {
 		case "ajax-fetched":
 			response = event.fetch.response;
-
-			// if CORS -> transform the xml response into a JSON
-			if ( $emlRss.data( "cors" ) === true ) {
-				limit = $emlRss.attr( "class" ).match( /\blimit-\d+/ );
-				limit = Number( limit[ 0 ].replace( /limit-/i, "" ) );
+			if ( response.documentElement ) {
+				limit = getLimit( $emlRss[ Object.keys( $emlRss )[ 0 ] ] );
 				data = corsEntry( response, limit );
-
-			} else {
-				if ( response.query ) {
-					results = response.query.results;
-					if ( results ) {
-						data = results.entry ? results.entry : results.item;
-						if ( !Array.isArray( data ) ) {
-							data = [ data ];
-						}
-					} else {
-						data = [];
+			} else if ( response.query ) {
+				results = response.query.results;
+				if ( !results ) {
+					data = results.item; // Flicker feeds
+					if ( !Array.isArray( data ) ) {
+						data = [ data ];
 					}
 				} else {
-					data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+					data = [];
 				}
+			} else {
+				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
 			}
 			break;
 		default:
