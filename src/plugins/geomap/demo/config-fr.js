@@ -168,16 +168,16 @@ var wet_boew_geomap = {
 			title: "EsriJSON",
 			caption: "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote Esri JSON resource.",
 			type: "esrijson",
-			url: "//geoappext.nrcan.gc.ca/arcgis/rest/services/NEB/Pipeline/MapServer/0/query?where=OBJECTID>0&f=pjson",
+			url: "//geoappext.nrcan.gc.ca/arcgis/rest/services/MMS/T100EP_F/MapServer/0/query?where=OBJECTID>0&f=pjson",
 			attributes: {
-				OPERATOR: "Opérateur"
+				Property_Name: "Property Name"
 			},
 			visible: false,
+			popups: true,
 			zoom: true,
 			style: {
-				strokeColor: "#FF0000",
-				strokeWidth: 2.0,
-				strokeDash: [ 6, 4 ]
+				strokeColor: "#581b59",
+				fillColor: "#a333a5"
 			}
 		},
 		{

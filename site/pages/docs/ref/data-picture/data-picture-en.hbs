@@ -52,21 +52,21 @@
 			</ol>
 		</li>
 	</ol>
-	
+
 	<p>When you're finished, you should have an element that looks like the following:</p>
 	<pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;
-	&lt;!-- Default image --&gt;	
+	&lt;!-- Default image --&gt;
 	&lt;span data-src="img/default.jpg"&gt;&lt;/span&gt;
-	
-	&lt;!-- Images for browsers with CSS media query support --&gt;	
+
+	&lt;!-- Images for browsers with CSS media query support --&gt;
 	&lt;span data-src="img/small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
 	&lt;span data-src="img/medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
 	&lt;span data-src="img/large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
-	
-	&lt;!-- Fallback content for non-JS browsers. --&gt;	
-	&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;	
+
+	&lt;!-- Fallback content for non-JS browsers. --&gt;
+	&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;
 &lt;/span&gt;</code></pre>
-	
+
 </section>
 
 <section>
@@ -118,7 +118,7 @@
 						<dd>The string will be used as the image element's class attribute.</dd>
 					</dl>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><code>data-src</code></td>
 				<td>Image source that will be used if this element's media query (specified by data-media) matches.</td>
@@ -144,7 +144,7 @@
 						<dd>The media query to match and determine if the element's image (specified by data-src) should be displayed.</dd>
 					</dl>
 				</td>
-			</tr>						
+			</tr>
 		</tbody>
 	</table>
 </section>
@@ -194,7 +194,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>

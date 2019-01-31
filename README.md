@@ -51,44 +51,44 @@
 ### Multilingual
 
 * Currently supports 33 languages (including right-to-left languages)
- * English
- * French
- * Afrikaans
- * Albanian
- * Arabic
- * Armenian
- * Bulgarian
- * Chinese
- * Chinese (Simplified)
- * Czech
- * Dutch
- * Estonian
- * German
- * Greek
- * Hindi
- * Hungarian
- * Icelandic
- * Indonesian
- * Italian
- * Japanese
- * Korean
- * Latvian
- * Lithuanian
- * Polish
- * Portuguese
- * Portuguese (Brazilian)
- * Russian
- * Slovak
- * Spanish
- * Thai
- * Turkish
- * Ukranian
- * Vietnamese
+  * English
+  * French
+  * Afrikaans
+  * Albanian
+  * Arabic
+  * Armenian
+  * Bulgarian
+  * Chinese
+  * Chinese (Simplified)
+  * Czech
+  * Dutch
+  * Estonian
+  * German
+  * Greek
+  * Hindi
+  * Hungarian
+  * Icelandic
+  * Indonesian
+  * Italian
+  * Japanese
+  * Korean
+  * Latvian
+  * Lithuanian
+  * Polish
+  * Portuguese
+  * Portuguese (Brazilian)
+  * Russian
+  * Slovak
+  * Spanish
+  * Thai
+  * Turkish
+  * Ukranian
+  * Vietnamese
 
 ### Themeable and reusable
 
 * Flexible framework that supports custom themes
-* Includes support for [5 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html) including a [“Base” theme](http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-en.html) to use as a template
+* Includes support for [2 different themes](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-en.html)
 * Reusable templates, [plugins](http://wet-boew.github.io/wet-boew/docs/ref/plugins-en.html) and widgets
 * [Adapted to various CMS and programming frameworks](http://wet-boew.github.io/wet-boew/docs/ref/variants-en.html) (Drupal, WordPress, SharePoint (in development), DotNetNuke (in development), PHP, SSI, Java/Maven)
 
@@ -103,11 +103,11 @@
 * Project managed openly on GitHub, including discussion through the issues tracker
 * Encouraging a free flow of ideas, dialogue and innovation including sharing of challenges and ideas
 * External contributions welcome
- * Pull requests
- * Design patterns
- * Issues and suggestions
- * Documentation
- * Testing
+  * Pull requests
+  * Design patterns
+  * Issues and suggestions
+  * Documentation
+  * Testing
 * Multi-level review process for contributions to ensure code integrity (combination of automated and manual reviews)
 
 -------------------------------------------------------------------
@@ -135,7 +135,7 @@
 
 ### Accessibilité
 
-* •	Conforme aux [Règles pour l'accessibilité des contenus Web (WCAG) 2.0](http://www.w3.org/Translations/WCAG20-fr/) niveau AA
+* Conforme aux [Règles pour l'accessibilité des contenus Web (WCAG) 2.0](http://www.w3.org/Translations/WCAG20-fr/) niveau AA
 * S'appuie sur [WAI-ARIA](http://www.w3.org/TR/wai-aria/) pour améliorer l'accessibilité
 * Vérification avec les technologies d'assistance (Groupe de travail sur l'accessibilité)
 
@@ -160,44 +160,44 @@
 ### Multilingue
 
 * Soutien actuellement 33 langues (y compris les langues droite-à-gauche)
- * Anglais
- * Français
- * Afrikaans
- * Albanais
- * Allemand
- * Arabe
- * Arménien
- * Bulgare
- * Chinois
- * Chinois (simplifiée)
- * Coréen
- * Espagnol
- * Estonien
- * Grec
- * Hindi
- * Hongrois
- * Indonésien
- * Islandais
- * Italien
- * Japonais
- * Letton
- * Lituanien
- * Néerlandais
- * Polonais
- * Portugais
- * Portugais (brésilien)
- * Russe
- * Slovaque
- * Tchèque
- * Thaï
- * Turc
- * Ukrainien
- * Vietnamien
+  * Anglais
+  * Français
+  * Afrikaans
+  * Albanais
+  * Allemand
+  * Arabe
+  * Arménien
+  * Bulgare
+  * Chinois
+  * Chinois (simplifiée)
+  * Coréen
+  * Espagnol
+  * Estonien
+  * Grec
+  * Hindi
+  * Hongrois
+  * Indonésien
+  * Islandais
+  * Italien
+  * Japonais
+  * Letton
+  * Lituanien
+  * Néerlandais
+  * Polonais
+  * Portugais
+  * Portugais (brésilien)
+  * Russe
+  * Slovaque
+  * Tchèque
+  * Thaï
+  * Turc
+  * Ukrainien
+  * Vietnamien
 
 ### Personnalisable et réutilisable
 
 * Cadre flexible qui supporte des thèmes personnalisés
-* Soutien [5 thèmes différents](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-fr.html), y compris un [thème de base](http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-fr.html) servant comme modèle
+* Soutien [2 thèmes différents](http://wet-boew.github.io/wet-boew/docs/ref/themesstyle-fr.html)
 * Modèles, [plugiciels](http://wet-boew.github.io/wet-boew/docs/ref/plugins-fr.html) et gadgets réutilisables
 * [Adapté aux différents systèmes de gestion de contenu et cadres de programmation](http://wet-boew.github.io/wet-boew/docs/ref/variants-fr.html) (Drupal, WordPress, SharePoint (en développement), DotNetNuke (en développement), PHP, SSI, Java/Maven)
 
@@ -212,9 +212,9 @@
 * Projet géré ouvertement sur GitHub, y compris les discussions à travers le système de suivi des questions
 * Encourage la libre circulation des idées, du dialogue et de l'innovation, y compris le partage des défis et des idées
 * Les contributions externes sont invités
- * Soumissions de code
- * Patrons de conception
- * Problèmes et suggestions
- * Documentation
- * Évaluations
+  * Soumissions de code
+  * Patrons de conception
+  * Problèmes et suggestions
+  * Documentation
+  * Évaluations
 * Processus d'examen sur plusieurs niveaux pour les contributions pour assurer l'intégrité du code (combinaison d'évaluations automatisées et manuelles)

@@ -8,7 +8,7 @@
 	"altLangPrefix": "lightbox",
 	"dateModified": "2015-07-09"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="fr">
@@ -163,11 +163,11 @@
 	{
 		settings: {
 			type: 'POST',
-			data: { 
+			data: {
 				foo: 'bar'
 			}
 		}
-    }
+	}
 ]);</code></pre>
 				</td>
 				<td>Utilisé pour ouvrir un Lightbox manuellement. Peut être utilisé pour afficher des boîtes individuelles, des galeries et des boîtes modales. Voir <a href="../../../demos/lightbox/lightbox-fr.html#examples5">Ouvrir des popups par JavaScript</a> pour des exemples d'application.</td>
@@ -175,7 +175,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Déclenché automatiquement quand BOEW a terminé le chargement et l'exécution.</td>
-				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les polyfills ont terminé leur chargement et leur exécution. 
+				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les polyfills ont terminé leur chargement et leur exécution.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -188,7 +188,7 @@
 						<li><strong>Ouvert avec <code>.wb-lbx</code></strong>:
 							<pre><code>$( ".wb-lbx" ).on( "mfpClose", function( event ) {
 	var src = $.magnificPopup.instance.items[ 0 ].src;
-	
+
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
 	}
@@ -197,7 +197,7 @@
 						<li><strong>Ouvert avec JavaScript</strong>:
 							<pre><code>$( document ).on( "mfpClose", function( event ) {
 	var src = $.magnificPopup.instance.items[ 0 ].src;
-	
+
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
 	}
@@ -208,6 +208,15 @@
 			</tr>
 		</tbody>
 	</table>
+</section>
+
+<section>
+	<h2>Cas de mise à l'essai</h2>
+	<p>Les cas de mise à l'essai suivant sont seulement disponible en anglais.</p>
+	<dl lang="en">
+		<dt><a href="test/click-on-same-page-link.html">Click on the same page link</a></dt>
+		<dd>Ensuring the dialog close when clicking on a link inside the opened dialog that are pointing to a location outside the dialog context, like futher down in the page.</dd>
+	</dl>
 </section>
 
 <section>

@@ -1,21 +1,25 @@
 /*
  Banner
  */
+
+// Needed for backwards compatibility with WET 4.0.27 and below's HTML markup.
+// Remove object references from all of this theme's logo selectors in WET 4.1+.
 .wb-sppe {
+	img,
 	object {
 		width: 100%;
 	}
 }
 
 #wb-bnr {
-	background: #114f7a;
-	background: linear-gradient(#176ca7, #114f7a);
+	background: $wb-bnr-background-color;
+	background: $wb-bnr-background-linear-gradient;
 }
 
 #wb-bar {
-	background: #474747;
-	border-bottom: 1px solid #fff;
-	color: #fff;
+	background: $wb-bar-background;
+	border-bottom: 1px solid $wb-bnr-border-bottom;
+	color: $wb-bnr-color;
 	min-height: 2.2em;
 	z-index: 1;
 }
@@ -26,7 +30,7 @@
 	margin: 0;
 
 	li {
-		border-left: 1px solid #777;
+		border-left: 1px solid $wb-lng-glb-mn-pnl-btn-border-left;
 		float: left;
 		list-style-type: none;
 		padding: 6px 15px;
@@ -37,7 +41,7 @@
 	}
 
 	a {
-		color: #fff;
+		color: $wb-lng-glb-mn-pnl-btn-a-color;
 		text-decoration: none;
 	}
 }
@@ -53,7 +57,7 @@
 		}
 
 		a {
-			color: #474747;
+			color: $wb-glb-mn-pnl-btn-a;
 			display: block;
 			font-size: 1.5em;
 			line-height: 1em;
@@ -71,11 +75,11 @@
 
 #wb-sttl {
 	a {
-		color: #fff;
+		color: $wb-sttl-a-color;
 		font-size: 1.9em;
 		line-height: normal;
 		text-decoration: none;
-		text-shadow: 1px 1px 1px #333;
+		text-shadow: 1px 1px 1px $wb-sttl-a-text-shadow;
 	}
 
 	small {

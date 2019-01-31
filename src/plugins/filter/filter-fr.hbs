@@ -7,7 +7,7 @@
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"dateModified": "2017-07-22"
+	"dateModified": "2018-05-23"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -15,6 +15,7 @@
 	<li><a href="#flt-section">Filtrer des items par section</a></li>
 	<li><a href="#flt-list">Filtrer une liste</a></li>
 	<li><a href="#flt-table">Filtrer un tableau</a></li>
+	<li lang="en"><strong>Needs translation: </strong><a href="#flt-search">Applying additional search filters</a></li>
 </ul>
 
 <h2 id="flt-section">Filtrer des items par section</h2>
@@ -608,7 +609,6 @@
 	</tbody>
 </table>
 
-
 <h3>Source code</h3>
 <pre><code>&lt;table class=&quot;wb-filter table&quot;&gt;
 	&lt;caption&gt;Population de grande municipalité par provinces&lt;/caption&gt;
@@ -661,3 +661,96 @@
 	&lt;/tbody&gt;
 	...
 &lt;/table&gt;</code></pre>
+
+<div lang="en">
+	<h2 id="flt-search">Applying additional search filters</h2>
+
+	<p>The filter plugin has three types of search methods available: exact pattern match (default), AND operator, and OR operator.</p>
+
+	<h3>Exact pattern match (default)</h3>
+
+	<p>Finds items that contain exactly what the user has specified.</p>
+
+	<p>Not setting the <code>filterType</code> will tell the filter plugin to apply the default search pattern which is an exact pattern match to the search terms. Only items that contain the full and exact pattern that the user enters will be shown.</p>
+
+	<ul class="wb-filter">
+		<li>Alberta</li>
+		<li>British Columbia</li>
+		<li>Manitoba</li>
+		<li>New Brunswick</li>
+		<li>Newfoundland &amp; Labrador</li>
+		<li>Northwest Territories</li>
+		<li>Nova Scotia</li>
+		<li>Nunavut</li>
+		<li>Ontario</li>
+		<li>Prince Edward Island</li>
+		<li>Quebec</li>
+		<li>Saskatchewan</li>
+		<li>Yukon</li>
+	</ul>
+
+	<h4>Source code</h4>
+
+	<pre><code>&lt;ul class=&quot;wb-filter&quot;&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+
+	<h3>AND operator</h3>
+
+	<p>Finds items that contain all of the specified words.</p>
+
+	<p>Setting the <code>filterType</code> to the <code>and</code> option will tell the filter plugin to apply an AND operator between search terms. Only items that contain all search terms will be shown.</p>
+
+	<ul class="wb-filter" data-wb-filter='{ "filterType": "and" }'>
+		<li>Alberta</li>
+		<li>British Columbia</li>
+		<li>Manitoba</li>
+		<li>New Brunswick</li>
+		<li>Newfoundland &amp; Labrador</li>
+		<li>Northwest Territories</li>
+		<li>Nova Scotia</li>
+		<li>Nunavut</li>
+		<li>Ontario</li>
+		<li>Prince Edward Island</li>
+		<li>Quebec</li>
+		<li>Saskatchewan</li>
+		<li>Yukon</li>
+	</ul>
+
+	<h4>Source code</h4>
+
+	<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "and" }'&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+
+	<h3>OR operator</h3>
+
+	<p>Finds items that contain at least one of the specified words.</p>
+
+	<p>Setting the <code>filterType</code> to the <code>or</code> option will tell the filter plugin to apply an OR operator between search terms. All items that contain any of the supplied search terms will be shown.</p>
+
+	<ul class="wb-filter" data-wb-filter='{ "filterType": "or" }'>
+		<li>Alberta</li>
+		<li>British Columbia</li>
+		<li>Manitoba</li>
+		<li>New Brunswick</li>
+		<li>Newfoundland &amp; Labrador</li>
+		<li>Northwest Territories</li>
+		<li>Nova Scotia</li>
+		<li>Nunavut</li>
+		<li>Ontario</li>
+		<li>Prince Edward Island</li>
+		<li>Quebec</li>
+		<li>Saskatchewan</li>
+		<li>Yukon</li>
+	</ul>
+
+	<h4>Source code</h4>
+
+	<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "or" }'&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+</div>

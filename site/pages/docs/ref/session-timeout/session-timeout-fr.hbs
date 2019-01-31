@@ -8,19 +8,19 @@
 	"altLangPrefix": "session-timeout",
 	"dateModified": "2015-07-21"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>But</h2>
-	<p>Créer un délai d'inactivité qui avertit les utilisateurs lorsque leur session est sur le point d'expirer.</p>	
+	<p>Créer un délai d'inactivité qui avertit les utilisateurs lorsque leur session est sur le point d'expirer.</p>
 	<p>Ce plugiciel aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction « Expiration de la session ». Celle-ci sera activée en deux circonstances : après une période de temps spécifique ou lors d'inactivité.</p>
-	<p>Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner « Continuer la session » et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir « Mettre fin à la session ». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>	
+	<p>Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner « Continuer la session » et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir « Mettre fin à la session ». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
 </section>
 
-	
+
 <div lang="en">
-	<p><strong>Needs translation</strong></p>	
+	<p><strong>Needs translation</strong></p>
 	<section>
 		<h2>Use when</h2>
 		<ul>
@@ -29,35 +29,35 @@
 		</ul>
 	</section>
 </div>
-	
+
 <section>
 	<h2>Exemple pratique</h2>
 	<p><a href="../../../demos/session-timeout/session-timeout-en.html">Exemple en anglais</a></p>
 	<p><a href="../../../demos/session-timeout/session-timeout-fr.html">Exemple en français</a></p>
-</section>	
-	
+</section>
+
 <div lang="en">
-	<p><strong>Needs translation</strong></p>	
+	<p><strong>Needs translation</strong></p>
 	<section>
 		<h2>How to implement</h2>
 		<ol>
 			<li>
 				Add a <code>class="wb-sessto"</code> element to the web page (only required once). You must set the <code>logouturl</code>, which controls where the user is redirected if their session expires:
-				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
-			</li>		
+				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>
+			</li>
 			<li>Configure the plugin using the <code>data-wb-sessto</code> attribute of the element:
 				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{
-		"inactivity": 1200000, 
-		"reactionTime": 30000, 
-		"sessionalive": 1200000, 
-		"logouturl": "./", 
+		"inactivity": 1200000,
+		"reactionTime": 30000,
+		"sessionalive": 1200000,
+		"logouturl": "./",
 		"refreshCallbackUrl": "./"
 		"refreshOnClick": true,
 		"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
 			</li>
 		</ol>
 	</section>
-	
+
 	<section>
 		<h2>Configuration options</h2>
 		<p>All configuration options of the plugin are controlled by the <code>data-wb-sessto</code> attribute or <code>window[ "wb-sessto" ]</code>. Any configuration parameter that accepts a time value, can optionally have the time unit specified (e.g. "100 ms").</p>
@@ -70,7 +70,7 @@
 			<li><code>das</code>: dekasecond (10 seconds)</li>
 			<li><code>hs</code>: hectosecond (100 seconds)</li>
 			<li><code>ks</code>: kilosecond (1,000 seconds)</li>
-		</ul>	
+		</ul>
 		<table class="table">
 			<thead>
 				<tr>
@@ -224,7 +224,7 @@
 			</tbody>
 		</table>
 	</section>
-	
+
 	<section>
 		<h2>Events</h2>
 		<p>Document the public events that can be used by implementers or developers.</p>
@@ -256,7 +256,7 @@
 					<td><code>inactivity.wb-sessto</code></td>
 					<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "inactivity.wb-sessto" );</code>).</td>
 					<td>Causes the modal dialog to appear and prompt the user to continue or end their session. This event is triggered automatically when the <code>inactivity</code> timeout expires.</td>
-				</tr>			
+				</tr>
 				<tr>
 					<td><code>keepalive.wb-sessto</code></td>
 					<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "keepalive.wb-sessto" );</code>).</td>
@@ -270,7 +270,7 @@
 				<tr>
 					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 					<td>Triggered automatically when WET has finished loading and executing.</td>
-					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 					</td>
@@ -278,14 +278,14 @@
 			</tbody>
 		</table>
 		<p><strong>Note:</strong> when manually triggering the <code>inactivity</code>, <code>keepalive</code> and <code>reset</code> events, you must pass the <code>data-wb-sessto</code> attribute as a second argument:</p>
-		<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute	
+		<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute
 	var $element = $( ".wb-sessto" ),
 		settings = $element.data( "wb-sessto" );
-		
+
 	// Trigger the event on the element
 	$element.trigger( "reset.wb-sessto", settings );</code></pre>
 	</section>
-	
+
 	<section>
 		<h2>Source code</h2>
 		<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/session-timeout">Session timeout source code on GitHub</a></p>

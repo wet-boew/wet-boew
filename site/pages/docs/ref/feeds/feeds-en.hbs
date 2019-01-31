@@ -214,8 +214,45 @@
 </section>
 
 <section>
+	<h3 id="json-atom-like-feed">Converting ATOM XML feed into JSON ATOM like format</h3>
+	<p>Here is the skeleton structure for the feed:</p>
+
+	<pre><code>{
+	"feed": {
+		"entry": [
+			{
+				"title": "[Title of the entry]",
+				"updated": "[UTC date format]",
+				"link": "[URL]"
+			},
+
+			...
+		]
+	}
+}</code></pre>
+	<p>Notes:</p>
+	<ul>
+		<li>Replace <code>...</code> in each entry and remove the ending comas for the least entry.</li>
+		<li>The Feed plugin would ignore any meta information added to describe the feed. However we recommend that your feed contains self-describing information.</li>
+	</ul>
+
+	<p>Alias for "Publication date" of each entry:</p>
+	<ul>
+		<li><code>publishedDate</code></li>
+		<li><code>published</code></li>
+		<li><code>pubDate</code></li>
+		<li><code>updated</code></li>
+	</ul>
+	<p>Alias for "Link" of each entry:</p>
+	<ul>
+		<li><code>link</code></li>
+		<li><code>href</code></li>
+	</ul>
+</section>
+
+<section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<p>These are the configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -232,8 +269,22 @@
 				<td>Add the <code>limit-x</code> class after the <code>wb-feeds</code> class and replace <code>x</code> with an integer.</td>
 				<td>
 					<dl>
-						<dt><code>limit-4</code> (default):</dt>
+						<dt>default (not specified)</dt>
+						<dd>Display all the entries of the feeds</dd>
+						<dt><code>limit-4</code>:</dt>
 						<dd>Limits display to four items.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>data-cors="true"</code></td>
+				<td>Allows cross-site requests to fetch ATOM  feed without using the Yahoo API services</td>
+				<td>Add the attribute <code>data-cors="true"</code></td>
+				<td>
+					<dl>
+						<dt>undefined (default)</dt>
+						<dd>Use the Yahoo API service</dd>
+						<dt><code>true</code></dt><dd>Retreive directly the ATOM feed</dd>
 					</dl>
 				</td>
 			</tr>
@@ -243,7 +294,7 @@
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
+	<p>These are the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>

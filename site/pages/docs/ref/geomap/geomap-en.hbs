@@ -72,26 +72,26 @@
 	<section>
 		<h3>File based (e.g. "config-en.js") configuration example</h3>
 		<pre><code>var wet_boew_geomap = {
-    basemap : {
-        title: 'CBMT',
-        type: 'wms',
-	url: 'http://geogratis.gc.ca/maps/CBMT',
-	layers: 'CBMT',
-	format: 'image/png',
-	version: '1.1.1'
-    },
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-        type: 'kml',
-        url: 'data/sample.kml',
-        visible: true
-        },
-        {
-            ...
-        }
-    ]
+	basemap : {
+		title: 'CBMT',
+		type: 'wms',
+		url: 'http://geogratis.gc.ca/maps/CBMT',
+		layers: 'CBMT',
+		format: 'image/png',
+		version: '1.1.1'
+	},
+	overlays : [
+		{
+			title: 'KML Demo EN',
+			caption: 'This is a sample KML file loaded locally by Geomap.',
+			type: 'kml',
+			url: 'data/sample.kml',
+			visible: true
+		},
+		{
+			...
+		}
+	]
 };</code></pre>
 	</section>
 -->
@@ -309,22 +309,22 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 		<section>
 			<h4>Basemap configuration example</h4>
 			<pre><code>basemap : {
-    title: 'CBMT',
-    type: 'wms',
-    url: 'http://geogratis.gc.ca/maps/CBMT',
-    layers: 'CBMT',
-    format: 'image/png',
-    version: '1.1.1',
-    options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
-    mapOptions: {
-        maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
-        maxResolution: 'auto',
-        projection: 'EPSG:3978',
-        restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
-        units: 'm',
-        displayProjection: 'EPSG:4269',
-        numZoomLevels: 12
-    }
+	title: 'CBMT',
+	type: 'wms',
+	url: 'http://geogratis.gc.ca/maps/CBMT',
+	layers: 'CBMT',
+	format: 'image/png',
+	version: '1.1.1',
+	options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
+	mapOptions: {
+		maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+		maxResolution: 'auto',
+		projection: 'EPSG:3978',
+		restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+		units: 'm',
+		displayProjection: 'EPSG:4269',
+		numZoomLevels: 12
+	}
 }</code></pre>
 		</section>
 	</section>
@@ -403,16 +403,16 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 				<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
 				<pre><code>// Configuration file ("data/config-en.js")
 var wet_boew_geomap = {
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-        type: 'kml',
-        url: 'data/sample.kml',
-        visible: true
-        },
-        { ... }
-    ]
+	overlays : [
+		{
+			title: 'KML Demo EN',
+			caption: 'This is a sample KML file loaded locally by Geomap.',
+			type: 'kml',
+			url: 'data/sample.kml',
+			visible: true
+		},
+		{ ... }
+	]
 };</code></pre></li>
 				<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
 				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
@@ -543,25 +543,25 @@ var wet_boew_geomap = {
 			<section>
 				<h4>Feature overylay configuration example</h4>
 				<pre><code>{
-  attributes: {
-    location_desc: 'Location',
-    longitude: 'Latitude',
-    latitude: 'Longitude',
-    updated_at: 'Last updated'
-  },
-  caption: 'Traffic cameras in the city of Ottawa.',
-  datatable: true,
-  params: {
-    'format': 'GeoJSON',
-    'q': 'SELECT * FROM traffic_cameras LIMIT 25'
-  },
-  style: { ... },
-  tab: true,
-  title: 'Traffic Cameras',
-  type: 'geojson',
-  url: 'http://stephenott.cartodb.com/api/v2/sql',
+	attributes: {
+		location_desc: 'Location',
+		longitude: 'Latitude',
+		latitude: 'Longitude',
+		updated_at: 'Last updated'
+	},
+	caption: 'Traffic cameras in the city of Ottawa.',
+	datatable: true,
+	params: {
+		'format': 'GeoJSON',
+		'q': 'SELECT * FROM traffic_cameras LIMIT 25'
+	},
+	style: { ... },
+	tab: true,
+	title: 'Traffic Cameras',
+	type: 'geojson',
+	url: 'http://stephenott.cartodb.com/api/v2/sql',
 	visible: true,
-  zoom:  true
+	zoom:  true
 }</code></pre>
 			</section>
 
@@ -572,61 +572,61 @@ var wet_boew_geomap = {
 			<section>
 				<h5>Basic style example - all features using the same style</h5>
 				<pre><code>style: {
-  'strokeColor': '#ff0000',
-  'fillColor': '#ff0000',
-  'fillOpacity': '0.4'
+	'strokeColor': '#ff0000',
+	'fillColor': '#ff0000',
+	'fillOpacity': '0.4'
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Style example with override for selected feature</h5>
 				<pre><code>style: {
-  type: 'symbol',
-  init: { 'pointRadius': '15', 'externalGraphic': '../icon.png' },
-  select: { 'pointRadius': '15', 'externalGraphic': '../icon_selected.png' }
+	type: 'symbol',
+	init: { 'pointRadius': '15', 'externalGraphic': '../icon.png' },
+	select: { 'pointRadius': '15', 'externalGraphic': '../icon_selected.png' }
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Rule based example - features are styled according to specified rules</h5>
 				<pre><code>style: {
-  type: 'rule',
-  rule: [
-    {
-      field: 'Population2011',
-      value: [ 1000000 ],
-      filter: 'LESS_THAN',
-      init: { strokeColor: '#0083f5', fillColor: '#57a8f0', pointRadius: '6' }
-    },
-    {
-      field: 'Population2011',
-      value: [ 1000000, 2000000 ],
-      filter: 'BETWEEN',
-      init: { strokeColor: '#F90', fillColor: '#F90', pointRadius: '8' }
-    },
-    {
-      field: 'Population2011',
-      value: [ 2000000 ],
-      filter: 'GREATER_THAN',
-      init: { strokeColor: '#F00', fillColor: '#F00', pointRadius: '10' }
-     }
-  ]
+	type: 'rule',
+	rule: [
+		{
+			field: 'Population2011',
+			value: [ 1000000 ],
+			filter: 'LESS_THAN',
+			init: { strokeColor: '#0083f5', fillColor: '#57a8f0', pointRadius: '6' }
+		},
+		{
+			field: 'Population2011',
+			value: [ 1000000, 2000000 ],
+			filter: 'BETWEEN',
+			init: { strokeColor: '#F90', fillColor: '#F90', pointRadius: '8' }
+		},
+		{
+			field: 'Population2011',
+			value: [ 2000000 ],
+			filter: 'GREATER_THAN',
+			init: { strokeColor: '#F00', fillColor: '#F00', pointRadius: '10' }
+		}
+	]
 }</code></pre>
 			</section>
 
 			<section>
 				<h5>Unique style example - features have unique style based on an attribute</h5>
 				<pre><code>style: {
-  type: 'unique',
-  field: 'Location',
-  init: {
-    // using the value from the 'Location' attribute, create a unique style for each feature
-    'Bayshore & Richmond': { 'fillColor': '#000099' },
-    'Baseline & Greenbank': { 'fillColor': '#009900' }
-  },
-  // specify a style for selected features (optional). Note here we are adding a label when
-  // a feature is selected.
-  select: { 'fillColor': '#990000', 'label': '${ Location }' }
+	type: 'unique',
+	field: 'Location',
+	init: {
+		// using the value from the 'Location' attribute, create a unique style for each feature
+		'Bayshore & Richmond': { 'fillColor': '#000099' },
+		'Baseline & Greenbank': { 'fillColor': '#009900' }
+	},
+	// specify a style for selected features (optional). Note here we are adding a label when
+	// a feature is selected.
+	select: { 'fillColor': '#990000', 'label': '${ Location }' }
 }</code></pre>
 			</section>
 		</section>
@@ -639,11 +639,11 @@ var wet_boew_geomap = {
 			<pre><code>...
 "popups": true,
 "popupsInfo": {
-  "id": "citiesPopup",
-  "height": 200,
-  "width": 300,
-  "close": true,
-  "content": "&lt;h4&gt;_Census subdivision&lt;/h4&gt;&lt;p&gt;_Population 2011&lt;/p&gt;"
+	"id": "citiesPopup",
+	"height": 200,
+	"width": 300,
+	"close": true,
+	"content": "&lt;h4&gt;_Census subdivision&lt;/h4&gt;&lt;p&gt;_Population 2011&lt;/p&gt;"
 },
 ...</code></pre>
 		</section>
@@ -654,18 +654,18 @@ var wet_boew_geomap = {
 		<p>Geomap will not generate an HTML table of map features for WMS overlays. Consequently WMS overlays should only be used when feature based alternatives are not available as accessibility is severly compromised.</p>
 	<pre><code>
 {
-  title: "WMS Demo",
-  caption: "This is a sample WMS service loaded by Geomap.",
-  type: "wms",
-  url: "http://geo.weather.gc.ca/geomet/?Lang=E",
-  visible: false,
-  version: "1.1.1",
-  format: "image/png",
-  layers: "GDPS.ETA_PR",
-  transparent: true,
-  options: {
-  opacity: 0.5
-  }
+	title: "WMS Demo",
+	caption: "This is a sample WMS service loaded by Geomap.",
+	type: "wms",
+	url: "http://geo.weather.gc.ca/geomet/?Lang=E",
+	visible: false,
+	version: "1.1.1",
+	format: "image/png",
+	layers: "GDPS.ETA_PR",
+	transparent: true,
+	options: {
+		opacity: 0.5
+	}
 }
 	</code></pre>
 
@@ -675,24 +675,24 @@ var wet_boew_geomap = {
 		<section><h5>Graphic legend example:</h5>
 		<pre><code>...
 options: {
-  ...
-  legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&amp;LAYERS=GDPS.ETA_PR&amp;VERSION=1.1.1&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;REQUEST=GetLegendGraphic&amp;STYLE=PRECIPMM"
-   ...
+	...
+	legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&amp;LAYERS=GDPS.ETA_PR&amp;VERSION=1.1.1&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;REQUEST=GetLegendGraphic&amp;STYLE=PRECIPMM"
+	...
 }
 ...</code></pre>
 		</section>
 		<section><h5>HTML legend example:</h5>
 		<pre><code>...
 options: {
-  ...
-  legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
-    "&lt;ul class='list-unstyled'&gt;" +
-    "&lt;li&gt;&lt;span style='background-color:#800000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;100.0&lt;/small&gt;&lt;/li&gt;" +
-    "&lt;li&gt;&lt;span style='background-color:#FF0000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;50.0&lt;/small&gt;&lt;/li&gt;" +
-    "&lt;li&gt;&lt;span style='background-color:#FFA500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;20.0&lt;/small&gt;&lt;/li&gt;" +
-    "&lt;li&gt;&lt;span style='background-color:#E5E500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;10.0&lt;/small&gt;&lt;/li&gt;" +
-    "&lt;/ul&gt;"
-  ...
+	...
+	legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
+		"&lt;ul class='list-unstyled'&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#800000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;100.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#FF0000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;50.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#FFA500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;20.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#E5E500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;10.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;/ul&gt;"
+	...
 }
 ...</code></pre>
 		</section>
@@ -706,55 +706,55 @@ options: {
 			<h4>Pre v4.0.5</h4>
 			<pre><code>// return an array of OpenLayers maps in the page
 wb.doc.on( "geomap.ready", function( event, maps ) {
-  var myMap = maps.mygeomap; // return map with specfic id
-  // do something
+	var myMap = maps.mygeomap; // return map with specfic id
+	// do something
 });</code></pre>
 			<p>Note that the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing is used as the key in the maps array.</p>
 			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
 			<pre><code>&lt;script&gt;
-  wb.doc.on( "geomap.ready", function( event, maps ) {
-    var myMap = maps.mygeomap;
-    myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
-  });
+	wb.doc.on( "geomap.ready", function( event, maps ) {
+		var myMap = maps.mygeomap;
+		myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
+	});
 &lt;/script&gt;</code></pre>
 		</section>
 		<section>
 			<h4>v4.0.5+</h4>
 			<pre><code>// get the map object with id "mygeomap"
 $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-  var myMap = map; // return OpenLayers map object
-  // do something
+	var myMap = map; // return OpenLayers map object
+	// do something
 });</code></pre>
 			<p>Note the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing.</p>
 			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
 			<pre><code>&lt;script&gt;
-  $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-    // Get the map to use in zoomFeature function
-    var myMap = map;
-    myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
-  });
+	$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+		// Get the map to use in zoomFeature function
+		var myMap = map;
+		myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
+	});
 &lt;/script&gt;</code></pre>
 		</section>
 		<section>
 			<h4>v4.0.27+</h4>
 			<pre><code>// get the map object with id "mygeomap"
 $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-  var myMap = map; // return OpenLayers map object
-  // do something
+	var myMap = map; // return OpenLayers map object
+	// do something
 });</code></pre>
 			<p>Note the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing.</p>
 			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
 			<pre><code>&lt;script&gt;
-  $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
-    // Get the map to use in zoomFeature function
-    var myMap = map;
-    myMap.getView().setCenter( -75.70535, 45.3995 );
+$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+	// Get the map to use in zoomFeature function
+	var myMap = map;
+	myMap.getView().setCenter( -75.70535, 45.3995 );
 
-    // if reprojection is needed
-    // myMap.getView().setCenter( ol.proj.transform( [ -75.70535, 45.3995 ], "EPSG:4326", "EPSG:3978" ) );
+	// if reprojection is needed
+	// myMap.getView().setCenter( ol.proj.transform( [ -75.70535, 45.3995 ], "EPSG:4326", "EPSG:3978" ) );
 
-    myMap.getView().setZoom( 5 );
-  });
+	myMap.getView().setZoom( 5 );
+});
 &lt;/script&gt;</code></pre>
 		</section>
 	</section>

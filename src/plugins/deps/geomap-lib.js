@@ -2217,6 +2217,7 @@ Geomap.prototype.addBasemap = function() {
 				url: i18nText.baseMapURL,
 				layer: i18nText.baseMapTitle,
 				matrixSet: i18nText.baseMapMatrixSet,
+				format: "jpgpng",
 				projection: projection,
 				tileGrid: new ol.tilegrid.WMTS( {
 					extent: [ -2750000.0, -900000.0, 3600000.0, 4630000.0 ],
@@ -2610,6 +2611,13 @@ MapLayer.prototype.createOLLayer = function() {
 
 		var keys = getLayerKeys( _this.settings ),
 			opacity = keys.options.opacity ? keys.options.opacity : 1;
+
+		// TODO check why the projection isn't set all the time
+		try {
+			keys.srs = _this.map.getView.getView().getProjection();
+		} catch ( err ) {
+			keys.srs = null;
+		}
 
 		olLayer = new ol.layer.Image( {
 			opacity: opacity,

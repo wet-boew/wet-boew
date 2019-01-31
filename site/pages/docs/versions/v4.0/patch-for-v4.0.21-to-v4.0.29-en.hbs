@@ -1,0 +1,167 @@
+---
+{
+	"title": "Instructions on applying the feed patch for WET-BOEW and related themes",
+	"language": "en",
+	"description": "This patch updates the WET feed plugin to read JSON ATOM like feed instead of reading jsonp by default",
+	"altLangPrefix": "patch-for-v4.0.21-to-v4.0.29",
+	"dateModified": "2019-01-15"
+}
+---
+
+<p>This patch updates the WET feed plugin to read JSON ATOM like feed instead of reading jsonp by default.</p>
+
+<p><a href="#instruction">Skip to the instructions on how to apply this fix/patch</a></p>
+
+<p>After this patch is applied following the instructions bellow, it might break existing jsonp WET feed implementations, since it's been changed to JSON format by default. We have estimated that there is only a few or no existing implementation of WET feed plugin that are using jsonp format. Also, it was only documented if someone has reverse engineered the WET feed plugin Javascript code.</p>
+
+<p>This applies for all WET-BOEW implementations, including released themes between version 4.0.21 and 4.0.29. <a href="#wet-boew-version">Consult the full list.</a></p>
+
+<h2>This fix formalizes the following versions:</h2>
+<ul class="colcount-md-2">
+	<li>v4.0.29.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.29.1 - Canada.ca (GCWeb)</li>
+	<li>v4.0.28.2 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.28.2 - Canada.ca (GCWeb)</li>
+	<li>v4.0.27.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.27.1 - Base</li>
+	<li>v4.0.27.1 - Canada.ca</li>
+	<li>v4.0.27.1 - Government of Canada Web Usability</li>
+	<li>v4.0.27.1 - Government of Canada Intranet</li>
+	<li>v4.0.27.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.26.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.26.1 - Base</li>
+	<li>v4.0.26.1 - Canada.ca</li>
+	<li>v4.0.26.1 - Government of Canada Web Usability</li>
+	<li>v4.0.26.1 - Government of Canada Intranet</li>
+	<li>v4.0.26.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.25.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.25.1 - Base</li>
+	<li>v4.0.25.1 - Canada.ca</li>
+	<li>v4.0.25.1 - Government of Canada Web Usability</li>
+	<li>v4.0.25.1 - Government of Canada Intranet</li>
+	<li>v4.0.25.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.24.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.24.1 - Base</li>
+	<li>v4.0.24.1 - Canada.ca</li>
+	<li>v4.0.24.1 - Government of Canada Web Usability</li>
+	<li>v4.0.24.1 - Government of Canada Intranet</li>
+	<li>v4.0.24.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.23.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.23.1 - Base</li>
+	<li>v4.0.23.1 - Canada.ca</li>
+	<li>v4.0.23.1 - Government of Canada Web Usability</li>
+	<li>v4.0.23.1 - Government of Canada Intranet</li>
+	<li>v4.0.23.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.22.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.22.1 - Base</li>
+	<li>v4.0.22.1 - Canada.ca</li>
+	<li>v4.0.22.1 - Government of Canada Web Usability</li>
+	<li>v4.0.22.1 - Government of Canada Intranet</li>
+	<li>v4.0.22.1 - Open Government Platform (OGPL)</li>
+	<li>v4.0.21.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.21.1 - Base</li>
+	<li>v4.0.21.1 - Canada.ca</li>
+	<li>v4.0.21.1 - Government of Canada Web Usability</li>
+	<li>v4.0.21.1 - Government of Canada Intranet</li>
+	<li>v4.0.21.1 - Open Government Platform (OGPL)</li>
+</ul>
+
+<h2 id="instruction">Patch instructions</h2>
+
+<p>To apply the patch, you need to update the following files:</p>
+<ul>
+	<li>wet-boew/js/wet-boew.js</li>
+	<li>wet-boew/js/wet-boew.min.js</li>
+	<li>js/wet-boew.js</li>
+	<li>js/wet-boew.min.js</li>
+</ul>
+<p>Note: Depending on your implementation, you may only have two files to change. For technical reasons, the build of WET-BOEW contains duplicate build files in two different locations.</p>
+
+<h3>Steps</h3>
+
+<ol>
+	<li><a href="https://github.com/wet-boew/wet-boew/releases/download/patch-v4.0.21-to-v4.0.29/patch-for-v4.0.21-to-v4.0.29.zip">Download the .zip file</a> with all the patched WET-BOEW versions.</li>
+	<li>Extract the .zip file.</li>
+	<li>Choose the <a href="https://github.com/wet-boew/wet-boew/releases/tag/patch-v4.0.21-to-v4.0.29">WET-BOEW version applicable to your implementation</a>.</li>
+	<li>Replace the corresponding <code>wet-boew.js</code> and <code>wet-boew.min.js</code> files.</li>
+	<li>Modify your page's code to use the JSON Atom-like feed version.</li>
+</ol>
+
+<h3>Markup changes</h3>
+<p>In order to use the JSON Atom-like feeds, you need to specify the URL of the JSON Atom-like feeds.</p>
+
+<ol>
+	<li>Add an attribute <code>data-ajax</code> to your feed link.</li>
+	<li>Set the value to an URL where you can retrieve the JSON Atom-like feed.</li>
+	<li>Test your page.</li>
+</ol>
+
+<p>The JSON feed specified by the attribute <code>data-ajax</code> would be used before the URL specified in the <code>href</code> attribute.</p>
+
+<h4>Code before</h4>
+<pre><code>&lt;li&gt;
+	&lt;a href="demo/manitoba-en.atom.xml"&gt;Canada News Centre - Manitoba&lt;/a&gt;
+&lt;/li&gt;</code></pre>
+
+<h4>Code after</h4>
+<pre><code>&lt;li&gt;
+	&lt;a <strong>data-ajax="demo/manitoba-en.atom.json"</strong> href="demo/manitoba-en.atom.xml"&gt;Canada News Centre - Manitoba&lt;/a&gt;
+&lt;/li&gt;</code></pre>
+
+<h3>Apply the patch manually</h3>
+<ol>
+	<li>Edit the <code>wet-boew.js</code>.</li>
+	<li>Apply changes as described for <code>feed.js</code> file in the <a href="https://github.com/wet-boew/wet-boew/commit/8eb8c25d02cbdfeedb753ed0ce0008802f7bb5f5">commit 8eb8c25d</a>.</li>
+	<li>Minify the <code>wet-boew.js</code> and replace the file <code>wet-boew.min.js</code>.</li>
+	<li>Modify your page's code to use the JSON Atom-like feed version.</li>
+</ol>
+
+<h2 id="wet-boew-version">Patch the following release:</h2>
+<ul>
+	<li>v4.0.29 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.29 - Canada.ca (GCWeb)</li>
+	<li>v4.0.28.1 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.28.1 - Canada.ca (GCWeb)</li>
+	<li>v4.0.27 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.27 - Base</li>
+	<li>v4.0.27 - Canada.ca</li>
+	<li>v4.0.27 - Government of Canada Web Usability</li>
+	<li>v4.0.27 - Government of Canada Intranet</li>
+	<li>v4.0.27 - Open Government Platform (OGPL)</li>
+	<li>v4.0.26 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.26 - Base</li>
+	<li>v4.0.26 - Canada.ca</li>
+	<li>v4.0.26 - Government of Canada Web Usability</li>
+	<li>v4.0.26 - Government of Canada Intranet</li>
+	<li>v4.0.26 - Open Government Platform (OGPL)</li>
+	<li>v4.0.25 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.25 - Base</li>
+	<li>v4.0.25 - Canada.ca</li>
+	<li>v4.0.25 - Government of Canada Web Usability</li>
+	<li>v4.0.25 - Government of Canada Intranet</li>
+	<li>v4.0.25 - Open Government Platform (OGPL)</li>
+	<li>v4.0.24 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.24 - Base</li>
+	<li>v4.0.24 - Canada.ca</li>
+	<li>v4.0.24 - Government of Canada Web Usability</li>
+	<li>v4.0.24 - Government of Canada Intranet</li>
+	<li>v4.0.24 - Open Government Platform (OGPL)</li>
+	<li>v4.0.23 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.23 - Base</li>
+	<li>v4.0.23 - Canada.ca</li>
+	<li>v4.0.23 - Government of Canada Web Usability</li>
+	<li>v4.0.23 - Government of Canada Intranet</li>
+	<li>v4.0.23 - Open Government Platform (OGPL)</li>
+	<li>v4.0.22 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.22 - Base</li>
+	<li>v4.0.22 - Canada.ca</li>
+	<li>v4.0.22 - Government of Canada Web Usability</li>
+	<li>v4.0.22 - Government of Canada Intranet</li>
+	<li>v4.0.22 - Open Government Platform (OGPL)</li>
+	<li>v4.0.21 - Web Experience Toolkit (WET)</li>
+	<li>v4.0.21 - Base</li>
+	<li>v4.0.21 - Canada.ca</li>
+	<li>v4.0.21 - Government of Canada Web Usability</li>
+	<li>v4.0.21 - Government of Canada Intranet</li>
+	<li>v4.0.21 - Open Government Platform (OGPL)</li>
+</ul>

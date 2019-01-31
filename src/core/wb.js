@@ -233,6 +233,7 @@ var getUrlParts = function( url ) {
 		ielt8: ( oldie < 8 ),
 		ielt9: ( oldie < 9 ),
 		ielt10: ( oldie < 10 ),
+		ie11: ( !!navigator.userAgent.match( /Trident\/7\./ ) ),
 
 		selectors: [],
 
@@ -473,6 +474,14 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
 	return resourceObj;
 } );
 
+/**
+ * @prefix: mthjx! - adds the root directory of MathJax resources
+ */
+yepnope.addPrefix( "mthjx", function( resourceObj ) {
+	resourceObj.url = paths.js + "/MathJax/" + resourceObj.url;
+	return resourceObj;
+} );
+
 /*-----------------------------
  * Deps loading, call "complete" callback when the deps is ready if a testReady is defined
  *-----------------------------*/
@@ -561,17 +570,18 @@ Modernizr.load( [
 
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
-					Modernizr.load( {
-						load: "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible",
-						testReady: function() {
-							return ( window.MathJax && window.MathJax.isReady );
-						},
+					Modernizr.load( [ {
+						load: "timeout=500!https://cdn.jsdelivr.net/npm/mathjax@WET_BOEW_VERSION_MATHJAX/MathJax.js?config=Accessible",
 						complete: function() {
+							Modernizr.load( [ {
+								test: window.MathJax === undefined,
+								yep: "mthjx!MathJax.js?config=Accessible"
+							} ] );
 
 							// Identify that initialization has completed
 							wb.ready( $document, componentName );
 						}
-					} );
+					} ] );
 				} );
 
 				wb.add( selector );

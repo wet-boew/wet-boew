@@ -44,9 +44,9 @@ var componentName = "wb-feeds",
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li><a class='feed-flickr' href='javascript:;' data-flickr='" +
-                wb.escapeAttribute( JSON.stringify( flickrData ) ) + "'><img src='" + flickrData.thumbnail + "' alt='" +
-                wb.escapeAttribute( flickrData.title ) + "' title='" + wb.escapeAttribute( flickrData.title ) +
-                "' class='img-responsive'/></a></li>";
+				wb.escapeAttribute( JSON.stringify( flickrData ) ) + "'><img src='" + flickrData.thumbnail + "' alt='" +
+				wb.escapeAttribute( flickrData.title ) + "' title='" + wb.escapeAttribute( flickrData.title ) +
+				"' class='img-responsive'/></a></li>";
 		},
 
 		/**
@@ -62,10 +62,10 @@ var componentName = "wb-feeds",
 
 			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" +
-                wb.escapeAttribute( JSON.stringify( youtubeDate ) ) + "'><a href='javascript:;'><img src='" +
-                wb.pageUrlParts.protocol + "//img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" +
-                wb.escapeAttribute( youtubeDate.title ) + "' title='" + wb.escapeAttribute( youtubeDate.title ) +
-                "' class='img-responsive' /></a></li>";
+				wb.escapeAttribute( JSON.stringify( youtubeDate ) ) + "'><a href='javascript:;'><img src='" +
+				wb.pageUrlParts.protocol + "//img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" +
+				wb.escapeAttribute( youtubeDate.title ) + "' title='" + wb.escapeAttribute( youtubeDate.title ) +
+				"' class='img-responsive' /></a></li>";
 		},
 
 		/**
@@ -75,7 +75,7 @@ var componentName = "wb-feeds",
 		 */
 		pinterest: function( data ) {
 			var content = fromCharCode( data.description ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" +
-                data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
+				data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
 			return "<li class='media'>" + content +
 			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
 			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
@@ -89,8 +89,12 @@ var componentName = "wb-feeds",
 		generic: function( data ) {
 			var title = data.title;
 
-			if ( typeof( title ) === "object" && title.content ) {
-				title = title.content;
+			if ( typeof( title ) === "object" ) {
+				if ( title.content ) {
+					title = title.content;
+				} else if ( title.type === "xhtml" && title.div ) {
+					title = title.div.content;
+				}
 			}
 			return "<li><a href='" + data.link + "'>" + title + "</a><br />" +
 				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
@@ -134,21 +138,6 @@ var componentName = "wb-feeds",
 	},
 
 	/**
-	 * Helper function that builds the URL for the JSON request
-	 * Feeds well now use developer.yahoo.com/yql/console/ since ajax.googleapis.com/ajax/services/feed/ was depercated.
-	 * @method jsonRequest
-	 * @param {url} url URL of the feed.
-	 * @param {integer} limit Limit on the number of results for the JSON request to return.
-	 * @return {url} The URL for the JSON request
-	 */
-	jsonRequest = function( url, limit ) {
-
-		var requestURL = wb.pageUrlParts.protocol + "//query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20'" + encodeURIComponent( decodeURIComponent( url ) ) + "'%20limit%20" + ( limit ? limit : 4 ) + "&format=json";
-
-		return requestURL;
-	},
-
-	/**
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered the function call
 	 */
@@ -158,10 +147,10 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon, youtubeData;
-
+			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon, youtubeData, $elm;
 		if ( elm ) {
-			$content = $( elm ).find( ".feeds-cont" );
+			$elm = $( elm );
+			$content = $elm.find( ".feeds-cont" );
 			limit = getLimit( elm );
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
@@ -189,7 +178,8 @@ var componentName = "wb-feeds",
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
 					} else {
 						fType = "generic";
-						callback = "callback";
+						callback = false;
+						fetch.dataType = "json";
 					}
 
 					// We need a Gallery so lets add another plugin
@@ -212,7 +202,9 @@ var componentName = "wb-feeds",
 					}
 
 				} else {
-					url = jsonRequest( fElem.attr( "href" ), limit );
+
+					url = fElem.attr( "href" );
+					fetch.dataType = "xml";
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
@@ -240,10 +232,78 @@ var componentName = "wb-feeds",
 	},
 
 	/**
+	 * Process Feed/JSON Entries for CORS Enabled
+	 * @method corsEntry
+	 */
+	corsEntry = function( xmlDoc, limit ) {
+		var arr_entry = [],
+			corsObj = {},
+			limit = limit,
+			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
+			jsonObj = JSON.parse( jsonString ),
+			i, iCache;
+		for ( i = 0; i < limit; i++ ) {
+			iCache = jsonObj.feed.entry[ i ];
+			corsObj = {
+				title: iCache.title[ "#text" ],
+				link: iCache.id[ "#text" ],
+				updated: iCache.updated[ "#text" ]
+			};
+			arr_entry.push( corsObj );
+		}
+		return arr_entry;
+	},
+
+	/**
+	 * Process XML to JSON
+	 * @method xmlToJson
+	 * @param  {xml}
+	 */
+	xmlToJson = function( xml ) {
+
+		var obj = {},
+			i, iCache, nodeName, old,
+			xmlAttributes, xmlChildNodes,
+			xmlNodeType = xml.nodeType;
+
+		if ( xmlNodeType === 1 ) {
+			xmlAttributes = xml.attributes;
+			if ( xmlAttributes.length ) {
+				obj[ "@attributes" ] = {};
+				for ( i = 0; i < xmlAttributes.length; i++ ) {
+					iCache = xmlAttributes.item( i );
+					obj[ "@attributes" ][ iCache.nodeName ] = iCache.nodeValue;
+				}
+			}
+		} else if ( xmlNodeType === 3 ) {
+			obj = xml.nodeValue;
+		}
+
+		if ( xml.hasChildNodes() ) {
+			xmlChildNodes = xml.childNodes;
+			for ( i = 0; i < xmlChildNodes.length; i++ ) {
+				iCache = xmlChildNodes.item( i );
+				nodeName = iCache.nodeName;
+				if ( typeof( obj[ nodeName ] ) === "undefined" ) {
+					obj[ nodeName ] = xmlToJson( iCache );
+				} else {
+					if ( typeof( obj[ nodeName ].push ) === "undefined" ) {
+						old = obj[ nodeName ];
+						obj[ nodeName ] = [];
+						obj[ nodeName ].push( old );
+					}
+					obj[ nodeName ].push( xmlToJson( iCache ) );
+				}
+			}
+		}
+		return obj;
+	},
+
+	/**
 	 * Process Feed/JSON Entries
 	 * @method processEntries
 	 * @param  {data} JSON formatted data to process
-	 * @return {string}	of HTML output
+	 * @return {string} of HTML output
 	 */
 	processEntries = function( data ) {
 		var items = data,
@@ -386,20 +446,21 @@ var componentName = "wb-feeds",
 
 $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSelector, function( event, context ) {
 	var eventTarget = event.target,
-		data, response;
+		data, response, $emlRss, limit, results;
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
+		$emlRss = $( eventTarget ).parentsUntil( selector ).parent();
 		switch ( event.type ) {
 		case "ajax-fetched":
 			response = event.fetch.response;
-
-			if ( response.query ) {
-				var results = response.query.results;
-
-				if ( results ) {
-					data = results.entry ? results.entry : results.item;
-
+			if ( response.documentElement ) {
+				limit = getLimit( $emlRss[ Object.keys( $emlRss )[ 0 ] ] );
+				data = corsEntry( response, limit );
+			} else if ( response.query ) {
+				results = response.query.results;
+				if ( !results ) {
+					data = results.item; // Flicker feeds
 					if ( !Array.isArray( data ) ) {
 						data = [ data ];
 					}
@@ -409,7 +470,6 @@ $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSe
 			} else {
 				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
 			}
-
 			break;
 		default:
 			data = event.feedsData;

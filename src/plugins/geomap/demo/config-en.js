@@ -32,9 +32,9 @@ var wet_boew_geomap = {
 			title: "WMS",
 			caption: "This is a sample WMS service loaded by Geomap.",
 			type: "wms",
-			url: "//geo.weather.gc.ca/geomet/?Lang=E",
+			url: "//geo.weather.gc.ca/geomet/",
 			visible: false,
-			version: "1.1.1",
+			version: "1.3.0",
 			format: "image/png",
 			layers: "GDPS.ETA_PR",
 			transparent: true,
@@ -169,16 +169,16 @@ var wet_boew_geomap = {
 			title: "EsriJSON",
 			caption: "This is a sample dataset loaded from a remote Esri JSON resource.",
 			type: "esrijson",
-			url: "//geoappext.nrcan.gc.ca/arcgis/rest/services/NEB/Pipeline/MapServer/0/query?where=OBJECTID>0&f=pjson",
+			url: "//geoappext.nrcan.gc.ca/arcgis/rest/services/MMS/T100EP_E/MapServer/0/query?where=OBJECTID>0&f=pjson",
 			attributes: {
-				OPERATOR: "Operator"
+				Property_Name: "Property Name"
 			},
 			visible: false,
+			popups: true,
 			zoom: true,
 			style: {
-				strokeColor: "#FF0000",
-				strokeWidth: 2.0,
-				strokeDash: [ 6, 6 ]
+				strokeColor: "#581b59",
+				fillColor: "#a333a5"
 			}
 		},
 		{

@@ -162,11 +162,11 @@
 	{
 		settings: {
 			type: 'POST',
-			data: { 
+			data: {
 				foo: 'bar'
 			}
 		}
-    }
+	}
 ]);</code></pre>
 				</td>
 				<td>Used to manually open a Lightbox popup. Can be used to load single popups, galleries and modal popups. See <a href="../../../demos/lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a> for working examples.</td>
@@ -174,7 +174,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -187,7 +187,7 @@
 						<li><strong>Opened with <code>.wb-lbx</code></strong>:
 							<pre><code>$( ".wb-lbx" ).on( "mfpClose", function( event ) {
 	var src = $.magnificPopup.instance.items[ 0 ].src;
-	
+
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
 	}
@@ -196,7 +196,7 @@
 						<li><strong>Opened with JavaScript</strong>:
 							<pre><code>$( document ).on( "mfpClose", function( event ) {
 	var src = $.magnificPopup.instance.items[ 0 ].src;
-	
+
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
 	}
@@ -207,6 +207,14 @@
 			</tr>
 		</tbody>
 	</table>
+</section>
+
+<section>
+	<h2>Test case</h2>
+	<dl>
+		<dt><a href="test/click-on-same-page-link.html">Click on the same page link</a></dt>
+		<dd>Ensuring the dialog close when clicking on a link inside the opened dialog that are pointing to a location outside the dialog context, like futher down in the page.</dd>
+	</dl>
 </section>
 
 <section>

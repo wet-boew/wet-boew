@@ -16,10 +16,10 @@ deactivate () {
 	done
 
 	if ! [ -z "${_OLD_PS1+_}" ] ; then
-        PS1="$_OLD_PS1"
-        export PS1
-        unset _OLD_PS1
-    fi
+		PS1="$_OLD_PS1"
+		export PS1
+		unset _OLD_PS1
+	fi
 }
 
 if ( [ ! -n "${ZSH_VERSION-}" ] && [ "$(type -t npm)" == "alias" ] ) ||

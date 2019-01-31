@@ -9,24 +9,24 @@
 var helpers = {
 
 
-  /**
-   * {{striphtml}}
-   * @author: Laurent Goderre <https://github.com/LaurentGoderrre>
-   * @param  {Object} options
-   * @return {String}
-   */
-  striptags: function (options) {
-    return options.fn(this).replace(/<[^>]*?>/g, "");
-  }
+	/**
+	 * {{striphtml}}
+	 * @author: Laurent Goderre <https://github.com/LaurentGoderrre>
+	 * @param  {Object} options
+	 * @return {String}
+	 */
+	striptags: function (options) {
+		return options.fn(this).replace(/<[^>]*?>/g, "");
+	}
 };
 
 
 // Export helpers
 module.exports.register = function (Handlebars, options) {
-  options = options || {};
-  for (var helper in helpers) {
-    if (helpers.hasOwnProperty(helper)) {
-      Handlebars.registerHelper(helper, helpers[helper]);
-    }
-  }
+	options = options || {};
+	for (var helper in helpers) {
+		if (helpers.hasOwnProperty(helper)) {
+			Handlebars.registerHelper(helper, helpers[helper]);
+		}
+	}
 };

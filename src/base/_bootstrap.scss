@@ -3,14 +3,8 @@
 $icon-font-path: "#{$wb-core-path}/fonts/";
 
 
-/* TODO: Remove this block when including bootstrap 3.3.5 */
-/*!
- * Bootstrap v3.3.1 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 /*!
  * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
  */
-@import "../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
 @import "bootstrap-overrides/base";

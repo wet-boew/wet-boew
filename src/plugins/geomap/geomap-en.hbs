@@ -581,25 +581,25 @@
 			<summary>View config file</summary>
 			<pre><code>
 var wet_boew_geomap = {
-    // OPTIONAL: note that Geomap will provide a default basemap if not specified here.
-    basemap : {
-        title: &quot;WMS-Toporama&quot;,
-        type: &quot;wms&quot;,
-        url: &quot;http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en&quot;,
-        version: &quot;1.1.1&quot;,
-        format: &quot;image/jpeg&quot;,
-        layers: &quot;WMS-Toporama&quot;,
-        mapOptions: {
-            maxExtent: &quot;-141, 41, -52, 84&quot;,
-            restrictedExtent: &quot;-141, 41, -52, 84&quot;,
-            maxResolution: &quot;auto&quot;,
-            projection: &quot;EPSG:4269&quot;,
-            units: &quot;m&quot;,
-            displayProjection: &quot;EPSG:4269&quot;,
-            aspectRatio: 0.8
-        }
-    },
-    overlays: []
+	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
+	basemap : {
+		title: &quot;WMS-Toporama&quot;,
+		type: &quot;wms&quot;,
+		url: &quot;http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en&quot;,
+		version: &quot;1.1.1&quot;,
+		format: &quot;image/jpeg&quot;,
+		layers: &quot;WMS-Toporama&quot;,
+		mapOptions: {
+			maxExtent: &quot;-141, 41, -52, 84&quot;,
+			restrictedExtent: &quot;-141, 41, -52, 84&quot;,
+			maxResolution: &quot;auto&quot;,
+			projection: &quot;EPSG:4269&quot;,
+			units: &quot;m&quot;,
+			displayProjection: &quot;EPSG:4269&quot;,
+			aspectRatio: 0.8
+		}
+	},
+	overlays: []
 };
 		</code></pre>
 		</details>
@@ -657,21 +657,21 @@ var wet_boew_geomap = {
 			<summary>View config file</summary>
 			<pre><code>
 var wet_boew_geomap = {
-    basemap : {
-        title: &quot;Basic Map&quot;,
-        type: &quot;esri&quot;,
-        url: &quot;http://geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/provinces1c/MapServer/export&quot;,
-        options: { singleTile: false, ratio: 1.0, projection: &quot;EPSG:3978&quot;, fractionalZoom: true },
-        mapOptions: {
-            maxExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
-            maxResolution: &quot;auto&quot;,
-            projection: &quot;EPSG:3978&quot;,
-            restrictedExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
-            units: &quot;m&quot;,
-            displayProjection: &quot;EPSG:4269&quot;,
-            numZoomLevels: 2
-        }
-    }
+	basemap : {
+		title: &quot;Basic Map&quot;,
+		type: &quot;esri&quot;,
+		url: &quot;http://geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/provinces1c/MapServer/export&quot;,
+		options: { singleTile: false, ratio: 1.0, projection: &quot;EPSG:3978&quot;, fractionalZoom: true },
+		mapOptions: {
+			maxExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
+			maxResolution: &quot;auto&quot;,
+			projection: &quot;EPSG:3978&quot;,
+			restrictedExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
+			units: &quot;m&quot;,
+			displayProjection: &quot;EPSG:4269&quot;,
+			numZoomLevels: 2
+		}
+	}
 };
 		</code></pre>
 		</details>
@@ -729,12 +729,12 @@ var wet_boew_geomap = {
 			<summary>View config file</summary>
 			<pre><code>
 var wet_boew_geomap = {
-    title: "OSM Map",
-    type: "osm",
-    mapOptions: {
-        center: [ -52.7222765, 47.5410882 ],
-        zoomLevel: 11
-    }
+	title: "OSM Map",
+	type: "osm",
+	mapOptions: {
+		center: [ -52.7222765, 47.5410882 ],
+		zoomLevel: 11
+	}
 };
 		</code></pre>
 		</details>
@@ -796,19 +796,19 @@ var wet_boew_geomap = {
 			<summary>View config file</summary>
 			<pre><code>
 var wet_boew_geomap = {
-    title: "Tile (XYZ) Source Map",
-    type: "osm",
-    url: [
-        "//otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-        "//otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-        "//otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
-        "//otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
-    ],
-    mapOptions: {
-        projection: "EPSG:900913",
-        center: [ -123, 49 ],
-        zoomLevel: 5
-    }
+	title: "Tile (XYZ) Source Map",
+	type: "osm",
+	url: [
+		"//otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+		"//otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+		"//otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+		"//otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
+	],
+	mapOptions: {
+		projection: "EPSG:900913",
+		center: [ -123, 49 ],
+		zoomLevel: 5
+	}
 };
 		</code></pre>
 		</details>

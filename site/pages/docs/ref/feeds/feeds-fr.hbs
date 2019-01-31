@@ -215,6 +215,43 @@
 	</section>
 </section>
 
+<section lang="en">
+	<h3 id="json-atom-like-feed">Converting ATOM XML feed into JSON ATOM like format</h3>
+	<p>Here is the skeleton structure for the feed:</p>
+
+	<pre><code>{
+	"feed": {
+		"entry": [
+			{
+				"title": "[Title of the entry]",
+				"updated": "[UTC date format]",
+				"link": "[URL]"
+			},
+
+			...
+		]
+	}
+}</code></pre>
+	<p>Notes:</p>
+	<ul>
+		<li>Replace <code>...</code> in each entry and remove the ending comas for the least entry.</li>
+		<li>The Feed plugin would ignore any meta information added to describe the feed. However we recommend that your feed contains self-describing information.</li>
+	</ul>
+
+	<p>Alias for "Publication date" of each entry:</p>
+	<ul>
+		<li><code>publishedDate</code></li>
+		<li><code>published</code></li>
+		<li><code>pubDate</code></li>
+		<li><code>updated</code></li>
+	</ul>
+	<p>Alias for "Link" of each entry:</p>
+	<ul>
+		<li><code>link</code></li>
+		<li><code>href</code></li>
+	</ul>
+</section>
+
 <section>
 	<h2>Options de configuration</h2>
 	<p>Documente les options de configuration publiques qui peuvent être utilisées par les intégrateurs ou les développeurs.</p>
@@ -234,9 +271,24 @@
 				<td>Ajouter la classe <code>limit-x</code> après la classe <code>wb-feeds</code> et remplacer <code>x</code> avec nombre entier.</td>
 				<td>
 					<dl>
-						<dt><code>limit-4</code> (défaut):</dt>
+						<dt>défault (non spécifié)</dt>
+						<dd>Affiche toutes les entrées du fil de syndication</dd>
+						<dt><code>limit-4</code>:</dt>
 						<dd>Limite l'affichage à quatre items.</dd>
 					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>data-cors="true"</code></td>
+				<td>Permet des requêtes inter-sites (CORS) afin d’obtenir le fil de syndication ATOM sans à devoir utiliser le service web de Yahoo.</td>
+				<td>Ajouter l’attribut <code>data-cors="true"</code></td>
+				<td>
+					<dl>
+						<dt>non-définie (défaut)</dt>
+						<dd>Utilise le service web de Yahoo </dd>
+						<dt><code>true</code></dt>
+						<dd>Obtient directement le fil de syndication ATOM </dd>
+						</dl>
 				</td>
 			</tr>
 		</tbody>

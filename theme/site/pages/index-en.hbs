@@ -8,14 +8,14 @@
 	"dateModified": "2017-05-03",
 }
 ---
-<section>
+<nav role="navigation">
 	<h2>Table of contents</h2>
 	<ul>
 {{#withSort languages}}
 		<li><a href="#{{this}}">{{#with ..}}{{i18n "lang-en" language=../this}}{{/with}}</a></li>
 {{/withSort}}
 	</ul>
-</section>
+</nav>
 
 {{#withSort languages}}
 <section>

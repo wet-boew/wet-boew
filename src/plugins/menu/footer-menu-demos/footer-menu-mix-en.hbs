@@ -1,0 +1,43 @@
+---
+{
+	"title": "Mixed Structures",
+	"language": "en",
+	"tag": "menu",
+	"parentdir": "menu",
+	"parentPage": "Footer Menu Integration",
+	"parentPageURL": "footer-menu",
+	"altLangPrefix": "footer-menu-mix",
+	"altFooter": "../ajax/footer-menu-mix",
+	"dateModified": "2018-08-06"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+		<section>
+			<h2>Purpose</h2>
+				<p>A single footer can contain sections that use different patterns. This will work, but it is not officially supported. Consider using the same pattern for all sections instead.</p>
+		</section>
+
+		<section>
+			<h2>Code</h2>
+				<pre><code>&lt;footer role="contentinfo" id="wb-info" class="visible-sm visible-md visible-lg wb-navcurr"&gt;
+	&lt;div class="container"&gt;
+		&lt;nav role="navigation" class="row"&gt;
+			&lt;h2&gt;Example Footer&lt;/h2&gt;
+			&lt;section class="col-sm-4"&gt;
+				&lt;h3&gt;Heading 1&lt;/h3&gt;
+				&lt;ul class="list-unstyled"&gt;
+					&lt;li&gt;&lt;a href="#"&gt;List Element 1.1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;List Element 1.2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/section&gt;
+			&lt;section class="col-sm-4"&gt;
+				&lt;h3&gt;Heading 2&lt;/h3&gt;
+				&lt;p&gt;&lt;a href="#"&gt;Link 2.1&lt;/a&gt;&lt;/p&gt;
+			&lt;/section&gt;
+			&lt;section class="col-sm-4"&gt;
+				&lt;h3&gt;&lt;a href="#"&gt;Heading 3&lt;/a&gt;&lt;/h3&gt;
+			&lt;/section&gt;
+		&lt;/nav&gt;
+	&lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+		</section>

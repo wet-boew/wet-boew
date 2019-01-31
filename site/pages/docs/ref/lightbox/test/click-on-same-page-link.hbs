@@ -1,0 +1,72 @@
+---
+{
+	"title": "Lightbox",
+	"language": "en",
+	"category": "Test",
+	"description": "Test case to close the lightbox overlay when clicking on a same page link.",
+	"tag": "lightbox",
+	"parentdir": "lightbox/test",
+	"altLangPrefix": "../lightbox",
+	"dateModified": "2018-09-05"
+}
+---
+
+<p>Test case to close the lightbox overlay when clicking on a same page link.</p>
+
+<h2>Test steps</h2>
+
+<ol>
+	<li>Click on the following link
+		<ul>
+			<li>An overlay open in the middle of the page</li>
+		</ul>
+	</li>
+	<li>In the overlay, click on inner link.
+		<ul>
+			<li>The overlay close</li>
+			<li>The focus are moved to the referencied anchor</li>
+		</ul>
+	</li>
+	<li>The user are now focusing content outside the overlay scope</li>
+</ol>
+
+<h2>Test</h2>
+
+<p><a href="#centred-popup-id" aria-controls="centred-popup-id" class="wb-lbx" role="button">Centred popup (Lightbox)</a></p>
+
+<div class="text-muted">
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	<p role="img" aria-label="">Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p role="img" aria-label="">Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+</div>
+
+<h3 id="my-in-popup-goto-section">My in popup goto section</h3>
+
+<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+
+<section id="centred-popup-id" class="mfp-hide modal-dialog modal-content overlay-def">
+	<header class="modal-header">
+		<h3 class="modal-title">Centred popup (Lightbox)</h3>
+	</header>
+	<div class="modal-body">
+		<p role="img" aria-label="">Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+		<p><a href="#my-in-popup-goto-section">Link to: My in popup goto section</a></p>
+	</div>
+</section>

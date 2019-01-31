@@ -1,0 +1,301 @@
+---
+{
+	"title": "v4.0.29.x - Notes de version",
+	"language": "fr",
+	"description": "v4.0.29.x - Notes de version - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+	"altLangPrefix": "v4.0.29",
+	"dateModified": "2019-01-11"
+}
+---
+<p>Version 4.0.29.1</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2019-01-11</time></li>
+	<li><a href="../dwnld-fr.html#v4029.1">Téléchargements</a></li>
+</ul>
+<p>Version 4.0.29</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2018-09-19</time></li>
+	<li><a href="../dwnld-fr.html#v4029">Téléchargements</a></li>
+</ul>
+
+<div class="wb-prettify all-pre"></div>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+
+	<section>
+		<h3 id="v4.0.29.1">Version 4.0.29.1</h3>
+		<ul>
+			<li>Correctif pour le fil de syndication afin de pouvoir lire un flux JSON dans un format similaire à ATOM.</li>
+		</ul>
+		<p>Veuillez lire les <a href="patch-for-v4.0.21-to-v4.0.29-fr.html">Directives sur l'application du correctif du fil de syndication pour la WET-BOEW et ses thèmes connexes</a>.</p>
+	</section>
+
+	<section>
+		<h3>Version 4.0.29</h3>
+
+		<ul>
+			<li>Mineur - Filtre - Ajout de l'interprétation des espaces comme un opérateur booléan (et, ou)</li>
+			<li>Mineur - Graphique - Ajout d'une configuration possible pour contourner la valeur de la cellule de donnée</li>
+			<li>Mineur - Ajout d'une liste de vérification pour l'accessibilité sur des appareils mobile</li>
+			<li>Information gababrit - Mineur - Changement dans le balisage du gabarit pour le gabarit de connexion, voir <a href="https://github.com/wet-boew/wet-boew/pull/8382" hreflang="en">PR 8382</a>.
+				<ul>
+					<li>L'élément <code>&lt;p class="btn"&gt;</code> a été modifié par <code>&lt;span class="mrgn-rght-tp"&gt;</code></li>
+				</ul>
+			</li>
+			<li>Mineur  (Majeur pour IE &lt; 9) - Mise à jour vers la dernière version de jQuery 1.x et 2.x
+				<ul>
+					<li>Des changements dans le balisage est requis pour ceux qui doivent supporter IE &lt; 9, voir <a hreflang="en" href="https://github.com/wet-boew/wet-boew/pull/8371">PR 8371</a>. IE 10 ainsi que les versions précédentes ne sont pas supportées par cette version de la BOEW.</li>
+				</ul>
+			</li>
+			<li>Mineur - Flux - Ajout du support pour des titre en format XHTML definie dans un flux Atom</li>
+
+			<li>Développeur BOEW - Majeur - Modification du script de compilation
+				<ul>
+					<li>Introduction d'une vérification automatisé des espaces, l'indentation doit être maintenant faire à l'aide de charactère de tabulation.</li>
+					<li>Mise à jour de quelques version pour les dépendances de nodeJS.</li>
+					<li>Les développeur de la BOEW devrons peut-être supprimer le cache de npm ainsi que les répertoires "node_modules" et "lib" avant d'exécuter "script/setup" pour être capable de compiler avec succès.</li>
+				</ul>
+			</li>
+
+			<li>Correctif d'accessibilité:
+				<ul>
+					<li>Menu mobile - Cas d'utilisation d'où qu'il n'y a aucun bouton de fermeture</li>
+					<li>Menu - Navigation par clavier pour les sous-sous-menus</li>
+					<li>Expiration de session - Texte de lien vide</li>
+					<li>Menu - Style pour la cible sur un item de menu qui n'a pas de sous menu</li>
+					<li>Menu - Couleur d'arrière plan en mode HTML simplifié</li>
+					<li>Accordéon (Basculer) - Navigation par clavier</li>
+					<li>Onglet - Navigation par clavier</li>
+					<li>Détails - Ajout d'un contour lors du ciblage</li>
+					<li>Mega menu - Navigation par clavier (<a hreflang="en" href="https://github.com/wet-boew/wet-boew/issues/8361">#8382</a>, <a href="https://github.com/wet-boew/gcweb/issues/1335" hreflang="en">GCWeb #1335</a>)</li>
+				</ul>
+			</li>
+		</ul>
+
+		<p>Recommendation de mise à jour de balisage (Mineur)</p>
+		<ul>
+			<li>Gabarit de page - Mise à jour de la version de jQuery
+				<ul>
+					<li>En bas de la page: <code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"&gt;&lt;/script&gt;</code></li>
+					<li>En haut de la page à l'intérieur des balises conditionnel IE 9: <code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"&gt;&lt;/script&gt;</code></li>
+				</ul>
+			</li>
+		</ul>
+
+		<p>Canada.ca (GCWeb):</p>
+
+		<ul>
+			<li>Mineur - Retrait des préfix CSS IE &lt; 11</li>
+			<li>Mineur (Majeur pour IE &lt; 9) - Mise à jour vers la dernière version de jQuery 1.x et 2.x</li>
+			<li>Mineur - Prévention de l'impression du bouton "Signaler un problème sur cette page"</li>
+			<li>Mineur - Revision du balisage pour le profile ministériel - voir <a hreflang="en" href="https://github.com/wet-boew/GCWeb/pull/1365">#1365</a>
+				<ul>
+					<li>Retrait des classes CSS <code>.h5</code> pour la section titré "Coordonnées" - <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-fr.hbs#L29">Ligne 29</a></li>
+					<li>Utilisation de l'élément <code>&lt;strong&gt;</code> pour mettre en évidence les mots "Téléphone" et "Courriel" dans la section coordonnées. <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-fr.hbs#L32-L33">Ligne 32 à 33</a>.</li>
+					<li>Les dernières nouvelles, le balisage utilisé pour la description associé utilise une meilleur sémentique - <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-fr.hbs#L52-L53">Ligne 52 à 53</a></li>
+					<li>Le balisage pour les items de la galleries a été revues. Tel que définie par bootlint: <a hreflang="en" href="https://github.com/twbs/bootlint/wiki/E013">E013 (Les enfants des lignes doivent être des colonnes)</a>; <a hreflang="en" lang="en" href="https://github.com/twbs/bootlint/wiki/E014">E014 (Le parent d'une colonne doit être une ligne)</a>.</li>
+				</ul>
+			</li>
+			<li>Mineur - Revision du balisage pour l'index de navigation locale - Voir <a hreflang="en" href="https://github.com/wet-boew/GCWeb/pull/1365">#1365</a>
+				<ul>
+					<li>Retrait du <span lang="en">clearfix</span> après la section "Services et information". Juste avant <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/localnav/index-fr.hbs#L51">Ligne 51</a></li>
+					<li>Ajout de la classe CSS <code>whtwedo</code> pour la section "En demande". <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/localnav/index-fr.hbs#L56">Ligne 56</a></li>
+				</ul>
+			</li>
+			<li>Mineur - Déroulement de champs - Ajout d'une action configurable si aucun <code>ifNone</code> choix n'est fait.</li>
+			<li>Mineur - Corespondance d'URL - Conversion du symbole "+" en un caractère d'espacement</li>
+			<li>Majeur - Mise à jour du contenu pour le mega menu</li>
+			<li>Mineur - Correctif de l'espacement en haut (<span lang="en">top margin</span>) pour la page des sujets</li>
+			<li>Mineur - Ajout partiel de la page de long index</li>
+			<li>Majeur - Revision considérable de la page d'accueil de GCWeb</li>
+			<li>Mineur - Retrait de la classe CSS <code>pagetag</code>. Ceci à un effet pour les gabarits suivant:
+				<ul>
+					<li>Département et agence</li>
+					<li>Sujet</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Fureteur supporté</h3>
+		<p>Tel que défini par la <a hreflang="en" href="http://wet-boew.github.io/wet-boew-documentation/decision/2.html">Décision de conception 2: Fureteur supporté</a> (en anglais)</p>
+		<ul>
+			<li>Chrome 69</li>
+			<li>Chrome 68</li>
+			<li>Safari 11.2</li>
+			<li>Firefox 62</li>
+			<li>Firefox 61</li>
+			<li>Firefox ESR - 52.8.0</li>
+			<li>Firefox ESR - 6052.7.3</li>
+			<li>IE 11</li>
+			<li>Edge 17</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Details</h2>
+	<p><strong>Nombre de contributions:</strong> 52</p>
+	<ul>
+		<li><a href="https://github.com/juleskuehn">Jules Kuehn (juleskuehn)</a>: 13 contributions</li>
+		<li><a href="https://github.com/nschonni">Nick Schonning (@nschonni)</a>: 10 contributions</li>
+		<li><a href="https://github.com/duboisp">Pierre Dubois (@duboisp)</a>: 10 contributions</li>
+		<li><a href="https://github.com/EricDunsworth">Eric Dunsworth (EricDunsworth)</a>: 8 contributions</li>
+		<li><a href="https://github.com/grifare">Armagan Tekdoner (@grifare)</a>: 3 contributions</li>
+		<li><a href="https://github.com/zzucco">Zachary Zucco (@zzucco)</a>: 3 contributions</li>
+		<li><a href="https://github.com/StdGit">Stéphane Ducharme (@StdGit)</a>: 2 contributions</li>
+		<li><a href="https://github.com/ptsimard">Philippe T. Simard (@ptsimard)</a> 1 contribution</li>
+		<li><a href="https://github.com/neil.mispelaar">Neil Mispelaar (@neil.mispelaar)</a>: 1 contribution</li>
+		<li><a href="https://github.com/waterandsewerbill2">waterandsewerbill2</a>: 1 contribution</li>
+	</ul>
+
+	<section>
+		<h3>Liste des contributions</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fdb02f0">Updated the build version to v4.0.29-development and minor fix to v4.0.28 release notes.</a> - Pierre Dubois, <time>2018-04-23</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3eae25c">feat(form-valid): Bump jQuery Validation to 1.17.0</a> - Nick Schonning, <time>2018-04-26</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/01c0ab0">build(markdownlint): Add grunt-markdownlint</a> - Nick Schonning, <time>2018-04-26</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/38c3c32">feat(bootstrap): Bump Bootstrap to 3.3.7</a> - Nick Schonning, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/86932bb">chore: Fix Glyphicons copyright banner</a> - Nick Schonning, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b10e1e1">build: Bump grunt-sass-lint</a> - Nick Schonning, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9093ab4">Form validation - Fix testReady major issue</a> - Pierre Dubois, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6c641ed">4.0.28.1 release notes</a> - Pierre Dubois, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4c7627c">Feeds: Allows correct xhtml feeds title parsing</a> - Philippe T. Simard, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/eb6b5d1">Release v4.0.28.1 - Update change log and SRI hash for GCWeb theme</a> - Pierre Dubois, <time>2018-04-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/537b186">build(bootlint): Bump grunt-bootlinto to 0.10.2 and fix errors</a> - Nick Schonning, <time>2018-04-30</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e82880d">feat(jquery): Bump jQuery to 2.2.4</a> - Nick Schonning, <time>2018-05-03</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dc1f19f">feat(jQuery): Bump old IE jQuery to 1.12.4</a> - Nick Schonning, <time>2018-05-03</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3723cfe">Site: Removed metadata comments from page templates.</a> - Eric Dunsworth, <time>2018-05-15</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f5854da">build: Update node-sass dep for Node 10 support</a> - Nick Schonning, <time>2018-05-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/704e626">Theme: Restored "signed in as" text's original visual layout in a bootlint-friendly manner.</a> - Eric Dunsworth, <time>2018-05-17</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b96b0c8">menu - Fix for GCweb issue #1335 (#8395)</a> - Zachary Zucco, <time>2018-05-23</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1ea01b9">Grid - col-XX-auto - Fix an overflow issue</a> - Pierre Dubois, <time>2018-05-24</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/77a90b4">Details Polyfill - Added Outline on Focus (#8403)</a> - Zachary Zucco, <time>2018-06-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c11cc7e">Tabbed Interface: Remove tabindex attr on details</a> - Jules Kuehn, <time>2018-06-19</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3b3c080">Toggle accordion remains keyboard focusable after collapsing all items</a> - Jules Kuehn, <time>2018-06-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/42d0b2a">Toggle accordion: Removed (now) misleading comment</a> - Jules Kuehn, <time>2018-06-27</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/702eadd">Editorial - Update info on WET themes that is currently supported</a> - Pierre Dubois, <time>2018-07-09</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/77f72ce">table validator - added label to textarea</a> - Armagan Tekdoner, <time>2018-07-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cb45a30">table validator - radio button group missing labels and layout improvements</a> - Armagan Tekdoner, <time>2018-07-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4e477c4">Checklist for mobile accessibility tests</a> - Armagan Tekdoner, <time>2018-07-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e2eefbe">Charts - Bypass the data cell value on table parsing</a> - Pierre Dubois, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2ec3222">menu - Added background colour to menubar in Basic HTML mode (#8410)</a> - Zachary Zucco, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9fb6aed">Menu: Focus styling on menu items with no submenu (#8417)</a> - Jules Kuehn, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/16c108e">Table validator - Fix bootlint error E019 and E020</a> - Pierre Dubois, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2d51939">Docs: Double and single quotes</a> - Jules Kuehn, <time>2018-07-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/143e720">chore: EditorConfig tabs -> tab (#8446)</a> - Nick Schonning, <time>2018-07-24</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a4d242d">EditorConfig: Added global JSON/KML/CSV overrides.</a> - Eric Dunsworth, <time>2018-07-26</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a3a0fd9">Session Timeout: Empty link with no text  Issue #7945</a> - Ducharme, <time>2018-07-26</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/be71815">Menu: Close nested submenus on menuClose</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/801dbf0">Menu: Define keycodes as 'constant' variables</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/efb03ba">Menu: Enter or spacebar follow link and close menu (including for in-page links)</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/35ce1cd">Menu: Spacebar opens or closes menu; behaves same as enter key</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d9a805e">Menu: Prevent double handling of enter or spacebar by details.js polyfill</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/75b9e8e">Menu: Also select nested submenu items by letter</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/29eb9d6">Menu: Remove unneeded conditional</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7386eb2">Menu: Prevent handling of keyup events (Firefox)</a> - Jules Kuehn, <time>2018-08-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/758dcdc">EditorConfig: Added .*/sitemenureplace/unset overrides and removed KML one.</a> - Eric Dunsworth, <time>2018-08-07</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/787ff30">Build: Added lintspaces task to check for .editorconfig compliance.</a> - Eric Dunsworth, <time>2018-08-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/49cc3d7">Filter: Add additional functionality to search (AND and OR)</a> - Neil Mispelaar, <time>2018-08-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/71bbe6e">Repo: Corrected files to comply with .editorconfig rules.</a> - Eric Dunsworth, <time>2018-08-15</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/54dd690">Table parser: Removed unused variables.</a> - Eric Dunsworth, <time>2018-08-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a490b30">Build: Exempted docker env from lintspaces task.</a> - Eric Dunsworth, <time>2018-08-17</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8de4859">Fix #8241 Data Ajax: data-wb-ajax: cdn menu</a> - Stéphane Ducharme, <time>2018-08-20</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/31135cd">Documentation: Typos in Charts</a> - waterandsewerbill2, <time>2018-09-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ffa59c0">Charts doc - Replicated updates to French and fix the merge conflit</a> - Pierre Dubois, <time>2018-09-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e79729c">WET v4.0.29 - Release notes</a> - Pierre Dubois, <time>2018-09-17</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Canada.ca - Détails</h2>
+	<p><strong>Nombre de contributions:</strong> 26</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">Pierre Dubois (@duboisp)</a>: 7 contributions</li>
+		<li><a href="https://github.com/EricDunsworth">Eric Dunsworth (@EricDunsworth)</a>: 6 contributions</li>
+		<li><a href="https://github.com/thangle2013">Thang Le (@thangle2013)</a>: 4 contributions</li>
+		<li><a href="https://github.com/nschonni">Nick Schonning (@nschonni)</a>: 3 contributions</li>
+		<li><a href="https://github.com/ipaksc">Ilya Pak (@ipaksc)</a>: 2 contributions</li>
+		<li><a href="https://github.com/neil.mispelaar">Neil Mispelaar (@neil.mispelaar)</a>: 2 contributions</li>
+		<li><a href="https://github.com/therealolivergross">Oliver Gross (@therealolivergross)</a>: 1 contribution</li>
+		<li><a href="https://github.com/steve-h">Steve Hume (@steve-h)</a>: 1 contribution</li>
+	</ul>
+	<section>
+		<h3>Liste des contributionss</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/7de5a26">chore: Add missing lock file updates</a> - Nick Schonning, <time>2018-04-23</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/26f6ed3">Updated the build version to v4.0.29-development</a> - Pierre Dubois, <time>2018-04-23</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/74c09e7">Build: Updated version to 4.0.29-development in package-lock.json.</a> - Eric Dunsworth, <time>2018-05-03</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/bd35d9d">Build: Autoprefix to PostCSS conversion</a> - Eric Dunsworth, <time>2018-05-04</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/ed579b2">Site: Removed metadata comments from server message page templates.</a> - Eric Dunsworth, <time>2018-05-15</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/58c950a">Theme: Removed orphaned images.</a> - Eric Dunsworth, <time>2018-05-15</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/f5bbbdf">build: Update hardcoded oldIE jQuery version</a> - Nick Schonning, <time>2018-05-16</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/5d4947e">Theme: Hid expanded report a problem dropdowns when printing.</a> - Eric Dunsworth, <time>2018-05-22</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/f849528">Fix part of #1305: addresses the pull right classes</a> - Neil Mispelaar, <time>2018-06-05</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/3628cd0">Fix part of #1305: address items on the Ministerial page template</a> - Neil Mispelaar, <time>2018-06-05</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/2eff1a3">Fieldflow - Add ifNone default action</a> - Pierre Dubois, <time>2018-06-07</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/17d13b3">Fieldflow - Add "query" action on form submission</a> - Pierre Dubois, <time>2018-06-07</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/45d709a">URL mapping - Convert "+" symbol in space</a> - Pierre Dubois, <time>2018-06-07</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/3b098bc">Add link to GCWU institution template</a> - Pierre Dubois, <time>2018-06-08</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/973454c">update-megamenu-health</a> - Thang Le, <time>2018-06-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/e491bef">Topic tmpl - Fix top margin for the decorative image</a> - Pierre Dubois, <time>2018-06-15</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/8502083">Add long index template</a> - Ilya Pak, <time>2018-06-28</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/85de2c4">update links to https to sites with https</a> - steve-h, <time>2018-06-29</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/2cccecf">mega-menu-update-bsd-4675</a> - Oliver Gross, <time>2018-07-04</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/527c9dd">updated 11-07-2018</a> - Ilya Pak, <time>2018-07-11 09:57:33</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/e646379">Redesing of GCWeb home page</a> - Pierre Dubois, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/f19242e">Theme: Removed leftover references to to the "pagetag" class/property.</a> - Eric Dunsworth, <time>2018-07-12</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/a80443a">chore: EditorConfig tabs -> tab</a> - Nick Schonning, <time>2018-07-23</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/0db5fd5">update-megamenu-text-BSD4949</a> - Thang Le, <time>2018-08-09</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/b357315">megamenu-update-BSD-5062</a> - Thang Le, <time>2018-08-09</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/ce90c33">BSD-5217-updateText</a> - Thang Le, <time>2018-08-17</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>v4.0.29.1 - Détails</h2>
+	<p><strong>Nombre de contribution:</strong> 1</p>
+
+	<h3>Liste des contributions</h3>
+	<ul lang="en">
+		<li><a href="https://github.com/wet-boew/wet-boew/commit/8eb8c25d02cbdfeedb753ed0ce0008802f7bb5f5">Feeds - Read JSON ATOM like feed</a> - @duboisp, <time>2019-01-10</time></li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="sri">Intégrité des sous-ressource (SRI)</h2>
+	<p>Le <a href="https://www.w3.org/TR/SRI/" hreflang="en">SRI</a> (en anglais) est une méthode qui permet de protéger le transfère des resources d'un site web. Ci-dessous vous avez les condensés numériques pour les ressource clef de la BOEW et de GCWeb.</p>
+
+	<section>
+		<h3>v4.0.29.1</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>sha256-npjkmHRk1s6WOioM8EEvYssRrCy2Os77x4TxZsTe2VI= sha512-1Vdf9fDWebnQxtPWreBlJtNEQGsV4cGzjrMzMf4wQE9wrC13V6kqOv4MVvsQFIyYnLwcDqKaPrcGLAgl7UuQAw==</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.29.1/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.29.1/theme-wet-boew/payload.json">Thème WET-BOEW</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>v4.0.29</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>sha256-XCV8JwSxVtIYcrO3tgo95hPBkZwMZQimvalfBfN0ya4= sha512-wfEtVBdJzQLLxzuBa+GbI5gck/7UM0YeRFWMFJNNSYf9Cw4sg9TDCM6PEpCvIxMBXrcADCpyES4ofkeTDtWK5g==</dd>
+			<dt><code>GCWeb/css/theme.min.css</code></dt>
+			<dd>sha256-AGYfOGvA2TR53g8OJQWEHip5R1swHSkE8Ue6HTabfGM= sha512-kt+KBWqeRxOcQWlOGymUeGEbzL5raaHmVVWDDr3icSldNEivIhRHLfuOSRLIfJ/QT1dPfdTIuDOc0l89f9oBag==</dd>
+			<dt><code>GCWeb/js/theme.min.js</code></dt>
+			<dd>sha256-iDg0VG7uKTKMi4Ux5pzT9RmgtslErUVGvNNalnE8UQI= sha512-2cAoesVhTuii2q5jGh+7scPBec+Yln7O4pctgEV+rrzolITIr4GHI5ksq697PGe/k+MMQaeoVitSho8vK/KzRA==</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.29/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/themes-dist/blob/v4.0.29-gcweb/GCWeb/payload.json">Thème GCWeb</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.29/theme-wet-boew/payload.json">Thème WET-BOEW</a></li>
+		</ul>
+	</section>
+</section>

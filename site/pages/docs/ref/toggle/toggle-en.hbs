@@ -40,16 +40,16 @@
 
 <section>
 	<h2>How to implement</h2>
-	
+
 	<section>
 		<h3>Toggle self</h3>
 		<p>This is the most basic use of the plugin. It allows an element to toggle itself on and off when clicked.</p>
 		<ol>
 			<li>Add the <code>wb-toggle</code> CSS class to an element.</li>
-		</ol>	
+		</ol>
 		<pre><code>&lt;button type="button" class="wb-toggle"&gt;Toggle&lt;/button&gt;</code></pre>
 	</section>
-	
+
 	<section>
 		<h3 id="toggle-other">Toggle other elements</h3>
 		<p>A toggle element can be setup to control the on/off toggle state of other elements. Any elements that match the CSS selector specified by the data-toggle attribute will have their on/off state changed when the toggle element is clicked.</p>
@@ -59,20 +59,20 @@
 		</ol>
 		<pre><code>&lt;button type="button" class="wb-toggle" data-toggle="{'selector': '.otherElements'}"&gt;Toggle&lt;/button&gt;</code></pre>
 	</section>
-	
+
 	<section>
 		<h3>Toggle configuration</h3>
 		<p>This example expands on <a href="#toggle-other">Toggle other elements</a> by using the plugin's <a href="#config">configuration options</a>.</p>
 		<ol>
 			<li>Add the <code>wb-toggle</code> CSS class to the toggle element.</li>
 			<li>Using the <code>data-toggle</code> data attribute, specify
-				<ul> 
+				<ul>
 					<li>the CSS selector of the elements that will have their states toggled,</li>
 					<li>the CSS selector of the parent these elements must exist in,</li>
 					<li>that toggle is "on" only,</li>
 					<li>that elements should be toggled "on" when the page is printed, and</li>
 					<li>that the toggle state should be saved between page loads using sessionStorage.</li>
-				</ul>				
+				</ul>
 			</li>
 		</ol>
 		<pre class="linenums"><code>&lt;button type="button" class="wb-toggle" data-toggle="{
@@ -80,9 +80,9 @@
 	'parent': '#parentElement',
 	'type': 'on',
 	'print': 'on',
-	'persist': 'session'}"&gt;Toggle&lt;/button&gt;</code></pre>		
-	</section>		
-	
+	'persist': 'session'}"&gt;Toggle&lt;/button&gt;</code></pre>
+	</section>
+
 	<section>
 		<h3>Grouped Toggle</h3>
 		<p>This option causes a group of elements to only allow one of the elements to be active ("on") at a time, much like a tabbed interface.</p>
@@ -99,9 +99,9 @@
 &lt;/details&gt;
 &lt;details id="toggle2" class="grouped"&gt;
 	&lt;!-- content --&gt;
-&lt;/details&gt;</code></pre>		
+&lt;/details&gt;</code></pre>
 	</section>
-	
+
 	<section>
 		<h3>Accordion</h3>
 		<p>The group toggle feature of the plugin can also be used to create an accordion.</p>
@@ -134,7 +134,7 @@
 		&lt;/div&gt;
 	&lt;/details&gt;
 
-&lt;/div&gt;</code></pre>		
+&lt;/div&gt;</code></pre>
 	</section>
 </section>
 
@@ -150,7 +150,7 @@
 				<th>Values</th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 			<tr>
 				<td><code>selector</code></td>
@@ -164,10 +164,10 @@
 						<dt>None (default):</dt>
 						<dd>Toggle element toggles itself.</dd>
 						<dt>String:</dt>
-						<dd>CSS selector. All elements that match this selector will be toggled when the toggle element is clicked.</dd>			
+						<dd>CSS selector. All elements that match this selector will be toggled when the toggle element is clicked.</dd>
 					</dl>
 				</td>
-			</tr>		
+			</tr>
 			<tr>
 				<td><code>parent</code></td>
 				<td>CSS selector that causes the toggle element to only control elements within a given parent element.</td>
@@ -180,10 +180,10 @@
 						<dt>None (default):</dt>
 						<dd>No parent element restriction.</dd>
 						<dt>String:</dt>
-						<dd>CSS selector. When a toggle element is clicked, it will only toggle the elements that are children of this selector.</dd>			
+						<dd>CSS selector. When a toggle element is clicked, it will only toggle the elements that are children of this selector.</dd>
 					</dl>
 				</td>
-			</tr>		
+			</tr>
 			<tr>
 				<td><code>group</code></td>
 				<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
@@ -196,10 +196,10 @@
 						<dt>None (default):</dt>
 						<dd>No grouping behaviour.</dd>
 						<dt>String:</dt>
-						<dd>CSS selector. When a toggle element is clicked, all other elements that match this selector will be closed.</dd>			
+						<dd>CSS selector. When a toggle element is clicked, all other elements that match this selector will be closed.</dd>
 					</dl>
 				</td>
-			</tr>		
+			</tr>
 			<tr>
 				<td><code>persist</code></td>
 				<td>Causes a toggle element to remember its current state and re-apply it when the page reloads.</td>
@@ -214,10 +214,10 @@
 						<dt>"session":</dt>
 						<dd>Toggle state will persist until the user closes their browser window or tab.</dd>
 						<dt>"local":</dt>
-						<dd>Toggle state will persist even after the browser window or tab is closed.</dd>						
+						<dd>Toggle state will persist even after the browser window or tab is closed.</dd>
 					</dl>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><code>print</code></td>
 				<td>Causes a toggle element to turn the elements it controls on or off when the page is printed.</td>
@@ -232,10 +232,10 @@
 						<dt>"on":</dt>
 						<dd>Elements will be set to "on" toggle state for printing.</dd>
 						<dt>"off":</dt>
-						<dd>Elements will be set to "off" toggle state for printing.</dd>						
+						<dd>Elements will be set to "off" toggle state for printing.</dd>
 					</dl>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><code>type</code></td>
 				<td>Causes a toggle element to only turn the elements it controls on or off.</td>
@@ -250,7 +250,7 @@
 						<dt>"on":</dt>
 						<dd>Toggle element will only turn elements it controls on.</dd>
 						<dt>"off":</dt>
-						<dd>Toggle element will only turn elements it controls off.</dd>						
+						<dd>Toggle element will only turn elements it controls off.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -285,7 +285,7 @@
 						<dd>CSS class name</dd>
 					</dl>
 				</td>
-			</tr>		
+			</tr>
 			<tr>
 				<td><code>stateOff</code></td>
 				<td>CSS class that's added to elements when they are toggled off.</td>
@@ -340,16 +340,16 @@
 					Causes a toggle element to change the toggle state of the elements it controls. Normally triggered by clicking on the toggle element. When triggering this event manually, the data-toggle attribute must be passed as the second argument:
 					<pre><code>// Get a reference to the toggle element and its settings
 var $toggler = $( ".wb-toggle" );
-	 settings = $toggler.data( "toggle" );
+	settings = $toggler.data( "toggle" );
 
 // Trigger the toggle event
-$toggler.trigger( "toggle.wb-toggle", settings );</code></pre>				
+$toggler.trigger( "toggle.wb-toggle", settings );</code></pre>
 				</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>

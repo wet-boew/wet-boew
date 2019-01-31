@@ -94,18 +94,7 @@ describe( "Feeds test suite", function() {
 			expect( $elm.hasClass( "wb-feeds-inited" ) ).to.equal( true );
 		} );
 
-		it( "should have made an ajax call to load the feed entries", function() {
-			var i = 0,
-				len = ajaxCalls.length,
-				isLookup = false,
-				feedurl = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20'" +
-					encodeURIComponent( decodeURIComponent( "http://foobar.com/" ) ) + "'%20limit%204&format=json";
-
-			for ( ; i !== len && !isLookup; i += 1 ) {
-				isLookup = ajaxCalls.length && ajaxCalls[ i ].url === feedurl;
-			}
-			expect( isLookup ).to.equal( true );
-		} );
+		// Todo: test "should have made an ajax call to load the feed entries"
 
 		it( "should have populated .feeds-cont with 3 feed links", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 3 );
@@ -162,23 +151,7 @@ describe( "Feeds test suite", function() {
 			$elm.remove();
 		} );
 
-		it( "should have made two ajax calls to load the feed entries", function() {
-			var i = 0,
-				len = ajaxCalls.length,
-				isLookup1 = false,
-				isLookup2 = false,
-				feedurl1 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20'" +
-					encodeURIComponent( decodeURIComponent( "http://foobar.com/" ) ) + "'%20limit%204&format=json",
-				feedurl2 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20'" +
-						encodeURIComponent( decodeURIComponent( "http://bazbam.com/" ) ) + "'%20limit%204&format=json";
-
-			for ( ; i !== len; i += 1 ) {
-				isLookup1 = isLookup1 || ( ajaxCalls.length && ajaxCalls[ i ].url === feedurl1 );
-				isLookup2 = isLookup2 || ( ajaxCalls.length && ajaxCalls[ i ].url === feedurl2 );
-			}
-			expect( isLookup1 ).to.equal( true );
-			expect( isLookup2 ).to.equal( true );
-		} );
+		// Todo: test "should have made two ajax calls to load the feed entries"
 
 		it( "should have populated .feeds-cont with 6 feed links", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 6 );

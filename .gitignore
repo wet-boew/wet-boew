@@ -1,19 +1,15 @@
-nbproject/*
-.sass-cache/
-.c9revisions/*
-.DS_Store
-jruby*.jar
+# Artifacts
+node_modules/
+lib/
+site/data/i18n/
 dist/*
-build/lib/vendors*
-build/lib/jruby-compiled
-_notes/
-.settings
-*.sublime-project
-*.sublime-workspace
-sftp.json
-src/plugins/**/*.coffee
-.pydevproject
-.idea/
+?sprite*.*css
+sprite*.png
+
+# gh-pages
+wet-boew-cdn/
+wet-boew-theme-cdn/
+wet-boew-dist/
 
 # OS generated files #
 .DS_Store
@@ -23,19 +19,22 @@ src/plugins/**/*.coffee
 .Trashes
 ethumbs.db
 Thumbs.db
+
+# IDEs
+nbproject/*
+.c9revisions/*
+*.sublime-project
+*.sublime-workspace
+.pydevproject
+.idea/
 /.project
+.settings
+.vscode/*
+
+# Logs
+.sass-cache/
 jshint.out.xml
 csslint.out.xml
-?sprite*.*css
-sprite*.png
 *.orig
 *.tmp
 *.log
-node_modules/
-lib/
-site/data/i18n/
-
-#gh-pages
-wet-boew-cdn/
-wet-boew-theme-cdn/
-wet-boew-dist/

@@ -1,0 +1,255 @@
+---
+{
+	"title": "v4.0.28.x - Notes de version",
+	"language": "fr",
+	"description": "v4.0.28.x - Notes de version - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+	"altLangPrefix": "v4.0.28",
+	"dateModified": "2018-10-30"
+}
+---
+<p>Version 4.0.28.2</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2019-01-15</time></li>
+	<li><a href="../dwnld-fr.html#v4028.2">Téléchargements</a></li>
+</ul>
+<p>Version 4.0.28.1</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2018-04-27</time></li>
+	<li><a href="../dwnld-fr.html#v4028.1">Téléchargements</a></li>
+</ul>
+<p>Version 4.0.28</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2018-04-23</time></li>
+	<li><a href="../dwnld-fr.html#v4028">Téléchargements</a></li>
+</ul>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+
+	<section>
+		<h3 id="v4.0.28.2">Version 4.0.28.2</h3>
+		<ul>
+			<li>Correctif pour le fil de syndication afin de pouvoir lire un flux JSON dans un format similaire à ATOM.</li>
+		</ul>
+		<p>Veuillez lire les <a href="patch-for-v4.0.21-to-v4.0.29-fr.html">Directives sur l'application du correctif du fil de syndication pour la WET-BOEW et ses thèmes connexes</a>.</p>
+	</section>
+
+	<section>
+		<h3 id="v4.0.28.1">Version 4.0.28.1</h3>
+		<ul>
+			<li>Réparation d'un problème qui empêchait la fonctionnalité BOEW pour effectuer la validation de formulaire de démarrer.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Version 4.0.28</h3>
+		<ul>
+			<li>Mineur - Changement dans le balisage des images SVG
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew-documentation/decision/1.html" hreflang="en">Décision de conception 1 - Utilidation des SVG avec l'élément <code>img</code> plutôt que l'élément <code>object</code></a> (en anglais)</li>
+				</ul>
+			</li>
+			<li>Mineur - Datepicker polyfill - La date d'initialisation a été ajusté lorsque la date minimale est plus grande que la date actuelle</li>
+			<li>Mineur - Graphique - Ajout d'étiquettes pour les graphiques sectoriel</li>
+			<li>Développeur de la BOEW - Majeur - Changement dans le script de compilation
+				<ul>
+					<li>Les développeur de la BOEW devrons peut-être supprimer le cache de npm ainsi que les répertoires "node_modules" et "lib" avant d'exécuter "script/setup" pour être capable de compiler avec succès.</li>
+				</ul>
+			</li>
+		</ul>
+		<p>Canada.ca (GCWeb):</p>
+		<ul>
+			<li>Mineur - Changement dans le balisage des images SVG
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew-documentation/decision/1.html" hreflang="en">Décision de conception 1 - Utilidation des SVG avec l'élément <code>img</code> plutôt que l'élément <code>object</code></a> (en anglais)</li>
+				</ul>
+			</li>
+			<li>Mineur - Section en vedette - Ajout d'un exemple avec un item</li>
+			<li>Mineur - Section en vedette - Changement de balisage</li>
+			<li>Mineur - Les priorités du GC a été enlevé</li>
+			<li>Mineur - Amélioration du balisage pour l'image de marque d'oganisme indépendant</li>
+			<li>Mineur - Mise à jour du méga menu</li>
+			<li>Information - Ajout d'un page pour la mise à l'essaie de balisage maintenant déconseillé</li>
+			<li>Développeur de la BOEW - Majeur - Changement dans le script de compilation
+				<ul>
+					<li>Les développeur de la BOEW devrons peut-être supprimer le cache de npm ainsi que les répertoires "node_modules" et "lib" avant d'exécuter "script/setup" pour être capable de compiler avec succès.</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Les thèmes suivant ont été abandonné:</h3>
+		<ul>
+			<li>Base</li>
+			<li>Facilité d’emploi Web du gouvernement du Canada</li>
+			<li>Gouvernement du Canada pour les sites intranet</li>
+			<li>Plate-forme de gouvernement ouvert (PGO)</li>
+		</ul>
+		<p>Si vous estes intéressé d'avoir un de ces thèmes ci-dessus publié avec la version 4.0.28 de la BOEW, veuillez joindre la discussion sur Github via le <a href="https://github.com/wet-boew/wet-boew/issues/8366">billet #8366</a>.</p>
+	</section>
+	<section>
+		<h3>Fureteur supporté:</h3>
+		<ul>
+			<li>Chrome 65</li>
+			<li>Chrome 66</li>
+			<li>Safari 11.1</li>
+			<li>Firefox 59</li>
+			<li>Firefox 58</li>
+			<li>Firefox ESR - 52.7.3</li>
+			<li>IE 11</li>
+			<li>Edge 16</li>
+		</ul>
+		<p class="mrgn-bttm-xl">Tel que défini par la <a href="http://wet-boew.github.io/wet-boew-documentation/decision/2.html" hreflang="en">Décision de conception 2: Fureteur supporté</a> (en anglais)</p>
+	</section>
+</section>
+
+<section>
+	<h2>Détails</h2>
+	<p><strong>Nombre de contributions:</strong> 39</p>
+	<ul>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 9 contributions</li>
+		<li><a href="https://github.com/nschonni">@nschonni</a>: 7 contributions</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>: 6 contributions</li>
+		<li><a href="https://github.com/duboisp">@duboisp</a>: 5 contributions</li>
+		<li><a href="https://github.com/lucas-hay">@lucas-hay</a>: 3 contributions</li>
+		<li><a href="https://github.com/Pacoup">@Pacoup</a>: 2 contributions</li>
+		<li><a href="https://github.com/peterparkers">@peterparkers</a>: 2 contributions</li>
+		<li><a href="https://github.com/thekodester">@thekodester</a>: 1 contribution</li>
+		<li><a href="https://github.com/jkshapiro">@jkshapiro</a>: 1 contribution</li>
+		<li><a href="https://github.com/StdGit">@StdGit</a>: 1 contribution</li>
+		<li><a href="https://github.com/phurinaix">@phurinaix</a>: 1 contribution</li>
+		<li><a href="https://github.com/bsouster">@bsouster</a>: 1 contribution</li>
+	</ul>
+
+	<section>
+		<h3>Liste des contributions</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/40277dc7fa42d5872b118070df9950496a0ccaea">4.0.27 release notes</a> - <span>@lucas-hay</span>, <time>2017-12-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d48d117e6596708d84b31ef74f11145671535828">Updated files for the v4.0.27 maintenance release</a> - <span>@lucas-hay</span>, <time>2017-12-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ffdc0263ee0c941dffc4f1aa0e81f6ade0139e15">Updated the build version to v4.0.28-development</a> - <span>@lucas-hay</span>, <time>2017-12-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/991663878fde50b95a6c632f579ae61c7a253a3f">build: Update Selenium browsers for vendor support</a> - <span>@nschonni</span>, <time>2018-01-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fdbc8ef5fc5fda0d1e42ad293617367856e059c9">Revert "Revert "Bower to npm""</a> - <span>@nschonni</span>, <time>2018-01-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5182d363fd3f3428259476b410f9d84056c439fb">Remove unnecessary timer event</a> - <span>@Pacoup</span>, <time>2018-01-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/26d20f55e2225af547358858327ba91d0290ab62">Date init patch</a> - <span>@thekodester</span>, <time>2018-01-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e29270ba7d0c9ef95edf6e8cf5e1b5b285fe0ee6">Do not block collapsible component init on whole document</a> - <span>@Pacoup</span>, <time>2018-01-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ccecec09a62f683e4a977fb8683e8452a8209fed">Fix typo</a> - <span>@jkshapiro</span>, <time>2018-01-19</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4709d0e4a335428464dcf387c76df538cbf74b4f">Build - Remove copying docs folder for MathJax</a> - <span>@duboisp</span>, <time>2018-02-08</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f3e19b4f7fc77098d39cb8dd38916c58ac6aa54d">Splash page: Fixed SVG logo's relative path.</a> - <span>@EricDunsworth</span>, <time>2018-02-12</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1136cdb0261b204c973d24d8647eb5620fb92357">Overlay/Lightbox: Removed unused "hdrClose" and "ftrClose" IDs.</a> - <span>@EricDunsworth</span>, <time>2018-02-13</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2a0ce56783a33c7c6776109c1f6f17f3754a43d7">Theme: Reference SVG logos with img element instead of object.</a> - <span>@EricDunsworth</span>, <time>2018-02-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2ef8f6633f367c4c50bcd20110980b040a8d48c2">Multimedia player: Replace all single quotes in video titles that get re-used for the share widget.</a> - <span>@EricDunsworth</span>, <time>2018-02-15</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/63124df8dc438933be56f20eb0ec1da765eb2706">LightBox / dependency loading/executing racing issue</a> - <span>@StdGit</span>, <time>2018-02-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/442202ca3c7008550aea9e5c53c9974e54f52d08">Added prepare script to allow themes to use WET core via npm</a> - <span>@LaurentGoderre</span>, <time>2018-02-22</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/915b5ecff76e063df8cba626f0d275d3d7339b69">Typo - wetsites-fr.hbs - Change http to https in some links</a> - <span>@peterparkers</span>, <time>2018-02-22</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/edb66b82631aa901bafc682673dcb82f8b21403c">Typo - wetsites-en.hbs - Change http to https in some links</a> - <span>@peterparkers</span>, <time>2018-02-22</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6b0f86beb810c355dd790c80e4166da70232ffcd">Fixed tasks not loading when installed in a theme</a> - <span>@LaurentGoderre</span>, <time>2018-02-28</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d58a14050556b3b5282360533a9bd56e05d27cb8">Fixed tasks not loading when installed in a theme</a> - <span>@LaurentGoderre</span>, <time>2018-02-28</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/01258d38064f62cbca7b0e71768ce59ef203da12">Update package.json</a> - <span>@LaurentGoderre</span>, <time>2018-02-28</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1d364271d0cd573cf1964711e37b5e32edc235d3">Updated the prepare script to avoid a double installation of dependencies</a> - <span>@LaurentGoderre</span>, <time>2018-02-28</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1dd35f21ea6f5c3fe3bbce613997e761e2fde65d">Fixed the WET npm as a package installed in themes</a> - <span>@LaurentGoderre</span>, <time>2018-03-01</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/354ee44dc914fca2ca27ffafe32ade0b0fe7091a">Cleanup the gitignore and add an npmignore</a> - <span>@LaurentGoderre</span>, <time>2018-03-07</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0a87c82faaa833992a7f722488d28c6d00f6e3b9">Added SASS includePath to resolve npm dependencies</a> - <span>@LaurentGoderre</span>, <time>2018-03-07</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6474f34ac9ef8d85bab6e9dbefd40a6d3620d407">Fix jQuery and MathJax version references</a> - <span>@LaurentGoderre</span>, <time>2018-03-09</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ff8c1c5e916712542a57037215f2d51b44befff6">Site - Add wet-boew-documentation to home page, move the release notice and add link to a developer build</a> - <span>@duboisp</span>, <time>2018-03-13</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5fe83b74fcd56e92a494c41426dc294638d96623">Edit http link in CONTRIBUTING.md (#8233)</a> - <span>@phurinaix</span>, <time>2018-03-14</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4d24da7c04d33a4d47e8623f123a19a2b86d50f9">build: bump grunt-sass for latest build</a> - <span>@nschonni</span>, <time>2018-04-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/aba47c2b1587439947b31b8c7905036f1fbdee17">css: Remove IE &lt; 11 and Android 2</a> - <span>@nschonni</span>, <time>2018-04-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/eead92e746c757325803d0a71440ba3f0d5890f3">css: Move min Firefox to ESR</a> - <span>@nschonni</span>, <time>2018-04-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1be1a52ff08d9727cbcc901dab3f90d466fe3841">build: convert grunt-autoprefixer to grunt-postcss</a> - <span>@nschonni</span>, <time>2018-04-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d3b3b7bb42f95c5ba68d51ff0848ef2413c7a836">chore: Fix NPM files</a> - <span>@nschonni</span>, <time>2018-04-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/73fcc3e11a432cb878aedccf1a9ebf283aea4156">Charts - Improving pie charts labels</a> - <span>@bsouster</span>, <time>2018-04-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ace2903e72395404028032ee8daa6837cae7de45">Update i18n.csv</a> - <span>@duboisp</span>, <time>2018-04-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a15195e8098aff580ab8f6d4f386a5be4a74edbb">Build: Updated grunt-contrib-clean to version ~1.1.0.</a> - <span>@EricDunsworth</span>, <time>2018-04-18</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e4e2e03325aec435cf2be4f4eda7f36a2ef253cf">Multimedia player/Carousel: Fixed broken links/captions in media player samples.</a> - <span>@EricDunsworth</span>, <time>2018-04-18</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/255560b1bf442300ac41ee8e2693b9a94ee72003">Form validation - Add test ready</a> - @duboisp, <time>2018-04-20</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/58eb144bb0bc32b47e7776df0388c7051bccbccd">Country content - Fix geolocation request url</a> - @duboisp, <time>2018-04-22</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Canada.ca - Détails</h2>
+	<p><strong>Nombre de contributions:</strong> 16</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">@duboisp</a>: 6 contributions</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>: 4 contributions</li>
+		<li><a href="https://github.com/thangle2013">@thangle2013</a>: 2 contributions</li>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 2 contributions</li>
+		<li><a href="https://github.com/lucas-hay">@lucas-hay</a>: 2 contributions</li>
+	</ul>
+
+	<section>
+		<h3>Liste des contributions</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/af7bc1ac3977fdd7badd2bace7f0d3a5274239ca">Updated files for the v4.0.27 maintenance release</a> - <span>@lucas-hay</span>, <time>2017-12-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/50b438ba0011c901064f7e89bac28eddc5769b7d">Updated the build version to v4.0.28-development</a> - <span>@lucas-hay</span>, <time>2017-12-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/2f0ad4c055c171d4403b8d6a2a869bbd58a7826f">Theme: Reference SVG logos with img element instead of object.</a> - <span>@EricDunsworth</span>, <time>2018-02-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/2f0ad4c055c171d4403b8d6a2a869bbd58a7826f">Theme: Reference SVG logos with img element instead of object.</a> - <span>@EricDunsworth</span>, <time>2018-02-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/2f0ad4c055c171d4403b8d6a2a869bbd58a7826f">Theme: Reference SVG logos with img element instead of object.</a> - <span>@EricDunsworth</span>, <time>2018-02-14</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/59e0c1c8be0d51740667efe1bff565dd7d2f358e">Replace bower with npm</a> - <span>@LaurentGoderre</span>, <time>2018-02-28</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/0a0ce03afa2ec0f0482f02f6b830378290b0179c">Departement features - Add one tile example and markup improvement</a> - <span>@duboisp</span>, <time>2018-03-02</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/6415befd2d1a91050ff84309741b86a026f9bbdd">Fixed the jQuery version references</a> - <span>@LaurentGoderre</span>, <time>2018-03-07</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/05274ec69cbfd64a856e2e0e0139c45c67d2ce39">Report a problem - Remove privacy statement and enforce the new markup</a> - <span>@duboisp</span>, <time>2018-03-21</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/1e4dd1c14ac5bbb512641dbe99770f1bd9e4b03a">Remove GC priorities and improved arms length footer</a> - <span>@duboisp</span>, <time>2018-03-21</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/ff8dc73eab75335b9b9d9bf998b87782c979d9d4">update - mega-menu item</a> - <span>@thangle2013</span>, <time>2018-03-28</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/6a56f078d18ae124501bbec10c51efb197b8ad7d">megamenu-benefits-finder-update</a> - <span>@thangle2013</span>, <time>2018-04-05</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/eb0e603fa55eec923575c578d7ea62b205a30a74">Build - fix dependencies for data-JSON</a> - <span>@duboisp</span>, <time>2018-04-10</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/cd1ae832b82c307de6abcc2827d7b6a978844543">Revert "Datalist JSON suggestion - initial commit"</a> - <span>@duboisp</span>, <time>2018-04-18</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/a3e6b59d860bcf11efbdbc7a0f922eaf57fd53a6">Build: Updated grunt-contrib-clean to version ~1.1.0.</a> - <span>@EricDunsworth</span>, <time>2018-04-18</time></li>
+			<li><a href="https://github.com/wet-boew/GCWeb/commit/d17bf110cee9a9e616e24153cf1794f74ac62b7a">Build - Added Sub-resource basic integrity generation</a> - <span>@duboisp</span>, <time>2018-04-23</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>v4.0.28.1 - Détails</h2>
+	<p><strong>Nombre de contributionss:</strong> 1</p>
+
+	<section>
+		<h3>Liste des contributions</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9093ab44ad2d66b4d4eeda699a616a0c37b762b7">Form validation - Fix testReady major issue</a> - <span>@duboisp</span>, <time>2018-04-27</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2 id="sri">Intégrité des sous-ressource (SRI)</h2>
+	<p>Le <a href="https://www.w3.org/TR/SRI/" hreflang="en">SRI</a> (en anglais) est une méthode qui permet de protéger le transfère des resources d'un site web. Ci-dessous vous avez les condensés numériques pour les ressource clef de la BOEW et de GCWeb.</p>
+
+	<section>
+		<h3>v4.0.28.1</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>sha256-W6CzUu6JitSJY/awKY6lyauDQa0IWXBTVjtxq3SpctA= sha512-oNEAH27TChN3HFV2ni+Xt2ZdS7NANHvMRFNky1lUqPsgYNBmC8wi2QaFIKlRKcp+6hPQKDNKix8umA2OfIRoxA==</dd>
+			<dt><code>GCWeb/css/theme.min.css</code></dt>
+			<dd>sha256-pQ+6VomndRUojeRLzarl8eU/m/UahNwxikiY4kZi07I= sha512-Ew4mh/42v30LSF6Ukwct4IdsgzQy692g8rZVKOnnVfSAKKnUMa+K+8DDO2gOVZ43jeizI5niztMcX7frC3hI7A==</dd>
+			<dt><code>GCWeb/js/theme.min.js</code></dt>
+			<dd>sha256-e/lB+Xz0k6XYvac+g+u3l2FbsvoaLIYdCo7l9jFDF+g= sha512-Iff1dyKW1izYivZIiJYY2pccIsDvlrPuulsuq4tONeiWltc3N+VJ4PR/95lZ3f660xF4QqAPdovVexJVnYG68A==</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.28.1/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/themes-dist/blob/v4.0.28.1-gcweb/GCWeb/payload.json">Thème GCWeb</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.28.1/theme-wet-boew/payload.json">Thème WET-BOEW</a></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>v4.0.28</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>sha256-Sv7zmMeu3pyom8vBljYLKbIT0mPtH938C9aiY+vM270= sha512-/uqNTSqhBGKI/4O+iEfvhj/HmDC7sKx7Ui91HYes3u/mOhlA1bCzu6UgBStXDLvzTEbvLEMsEWcwQscZ1LIXUA==</dd>
+			<dt><code>GCWeb/css/theme.min.css</code></dt>
+			<dd>sha256-avMS175xBhGsJPv3ovrFldfgmkV9xiKtXb3AREeAs88= sha512-IUpmszkQ0oasj2i2KDf/Gl8eoLxwXhRfGmmz1O5Ve8IaCiKaTt+/Nfe/5Up988lvoorIIduGtQt2tuyxWebxhA==</dd>
+			<dt><code>GCWeb/js/theme.min.js</code></dt>
+			<dd>sha256-Uv0fzXl0qj6+VTKtU/o9XtyFDtJoSjv0zY4ocGRVRoI= sha512-gAsn3Dq/oOR7zwfnmwqml008xlE++XGmV5WT75u/xOY9YckZjXC1cOSKNdbdjMxa6isiJQmz3ZdLpUMQNi+DAA==</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.28/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/themes-dist/blob/v4.0.28-gcweb/GCWeb/payload.json">Thème GCWeb</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.28/theme-wet-boew/payload.json">Thème WET-BOEW</a></li>
+		</ul>
+	</section>
+</section>

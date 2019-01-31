@@ -4,11 +4,205 @@
 	"language": "en",
 	"description": "v4.0 changelog - Version history - Web Experience Toolkit (WET)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2017-08-15"
+	"dateModified": "2018-09-19"
 }
 ---
 <p>See <a href="../version-info-en.html">Versioning</a> for the meaning of each version number.</p>
 <span class="wb-prettify all-pre"></span>
+<section>
+	<h2>v4.0.21 to v4.0.29</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2019-01-15</time></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/releases/download/patch-v4.0.21-to-v4.0.29/patch-for-v4.0.21-to-v4.0.29.zip">Download files<span class="wb-inv"> - v4.0.21 to v4.0.29</span></a></li>
+	</ul>
+	<h3>What's New</h3>
+	<ul>
+		<li>Fix the Feeds to be able to read JSON ATOM like feed</li>
+	</ul>
+	<p>Read the <a href="patch-for-v4.0.21-to-v4.0.29-en.html">Instructions on applying the feed patch for WET-BOEW and related themes</a>.</p>
+</section>
+<section>
+	<h2>v4.0.29.1</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2019-01-11</time></li>
+		<li><a href="v4.0.29-en.html#v4.0.29.1">Release notes<span class="wb-inv"> - v4.0.29.1</span></a></li>
+		<li><a href="../dwnld-en.html#v4029.1">Downloads<span class="wb-inv"> - v4.0.29.1</span></a></li>
+	</ul>
+	<h3>What's New</h3>
+	<ul>
+		<li>Fix the Feeds to be able to read JSON ATOM like feed</li>
+	</ul>
+</section>
+<section>
+	<h2>v4.0.29</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2018-09-19</time></li>
+		<li><a href="v4.0.29-en.html">Release notes<span class="wb-inv"> - v4.0.29</span></a></li>
+		<li><a href="../dwnld-en.html#v4029">Downloads<span class="wb-inv"> - v4.0.29</span></a></li>
+	</ul>
+	<h3>What's New</h3>
+	<ul>
+		<li>Minor - Filter - Add support to interpret spaces as boolean operator (and, or)</li>
+		<li>Minor - Charts - Add a possiblity to bypass the data cell value</li>
+		<li>Minor - Add checklist for mobile accessbility tests</li>
+		<li>Informational template - Minor - markup change for sign on off template, see <a href="https://github.com/wet-boew/wet-boew/pull/8382">PR 8382</a>.
+			<ul>
+				<li>The <code>&lt;p class="btn"&gt;</code> was changed by <code>&lt;span class="mrgn-rght-tp"&gt;</code></li>
+			</ul>
+		</li>
+		<li>Minor (Major for IE &lt; 9) - Bump jQuery to final 1.x and 2.x release
+			<ul>
+				<li>A markup change is required for those still supporting IE &lt; 9, see <a href="https://github.com/wet-boew/wet-boew/pull/8371">PR 8371</a>. IE 10 and bellow are not supported by this release of WET.</li>
+			</ul>
+		</li>
+		<li>Minor - Feeds - Add support for xhtml title in an Atom feed</li>
+
+		<li>WET developer - Major - Build script update
+			<ul>
+				<li>Introduction of lint spacing checker, indentation must be done through tabs spacing character.</li>
+				<li>Version bump for various nodeJS dependency.</li>
+				<li>WET developer may need to delete npm caching with the local "node_modules" and "lib" folder before to run "script/setup" in order to sucessfully build.</li>
+			</ul>
+		</li>
+
+		<li>Accessiblity patch fixes:
+			<ul>
+				<li>Mobile menu - Use case where there is no close button</li>
+				<li>Menu - Keyboard navigation for sub-submenus</li>
+				<li>Session timeout - Empty text link</li>
+				<li>Menu - Focus styling on menu items with no submenu</li>
+				<li>Menu - Background color issue in Basic HTML mode</li>
+				<li>Accordion (Toggle) - Keyboard navigation</li>
+				<li>Tabs - Keyboard navigation</li>
+				<li>Details - Added outline on focus</li>
+				<li>Mega menu - Keyboard navigation (<a href="https://github.com/wet-boew/wet-boew/issues/8361">#8382</a>, <a href="https://github.com/wet-boew/gcweb/issues/1335">GCWeb #1335</a>)</li>
+			</ul>
+		</li>
+	</ul>
+
+	<p>Recommended markup change (Minor)</p>
+	<ul>
+		<li>Page template - Update jQuery library version
+			<ul>
+				<li>In the bottom of the page: <code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"&gt;&lt;/script&gt;</code></li>
+				<li>In the top of the page in the IE 9 conditional: <code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"&gt;&lt;/script&gt;</code></li>
+			</ul>
+		</li>
+	</ul>
+
+	<p>Canada.ca (GCWeb):</p>
+
+	<ul>
+		<li>Minor - Removed IE &lt; 11 CSS prefix</li>
+		<li>Minor (Major for IE &lt; 9) - Bump jQuery to final 1.x and 2.x release</li>
+		<li>Minor - Prevent the impression of "Report a problem" button</li>
+		<li>Minor - Reviewed the markup for the minister page - See <a href="https://github.com/wet-boew/GCWeb/pull/1365">#1365</a>
+			<ul>
+				<li>Removed the CSS class <code>.h5</code> for the "Contact information" title - <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-en.hbs#L29">Line 29</a></li>
+				<li>Use of <code>&lt;strong&gt;</code> element to emphasis the word "Telephone" and "Email" in the contact information section. <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-en.hbs#L32-L33">Line 32 to 33</a>.</li>
+				<li>Latest news items, the item description have better semantic markup - <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/ministerial-en.hbs#L52-L53">Line 52-53</a></li>
+				<li>Markup for items in the gallery was reviewed. As per bootlint: <a href="https://github.com/twbs/bootlint/wiki/E013">E013 (row children must be columns)</a>; <a href="https://github.com/twbs/bootlint/wiki/E014">E014 (column parent must be a row)</a>.</li>
+			</ul>
+		</li>
+		<li>Minor - Reviewed the markup for the local navigation index - See <a href="https://github.com/wet-boew/GCWeb/pull/1365">#1365</a>
+			<ul>
+				<li>Removed the clearfix after the section "Services and information". Right before <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/localnav/index-en.hbs#L51">Line 51</a></li>
+				<li>Added the CSS class <code>whtwedo</code> for the section "What we are doing". <a href="https://github.com/wet-boew/GCWeb/blob/master/site/pages/localnav/index-en.hbs#L56">Line 56</a></li>
+			</ul>
+		</li>
+		<li>Minor - Field flow - Add ifNone action configuration</li>
+		<li>Minor - Url mapping - Convert "+" symbol in space character</li>
+		<li>Major - Mega menu content update</li>
+		<li>Minor - Fixed top margin for topic page</li>
+		<li>Minor - Add partial long index page</li>
+		<li>Major - Redesign on GCWeb main page</li>
+		<li>Minor - Remove of <code>pagetag</code> CSS class. It impact the following template:
+			<ul>
+				<li>Departments and agencies</li>
+				<li>Topic</li>
+			</ul>
+		</li>
+	</ul>
+</section>
+<section>
+	<h2>v4.0.28.1</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2018-04-27</time></li>
+		<li><a href="v4.0.28-en.html#v4.0.28.1">Release notes<span class="wb-inv"> - v4.0.28.1</span></a></li>
+		<li><a href="../dwnld-en.html#v4028.1">Downloads<span class="wb-inv"> - v4.0.28.1</span></a></li>
+	</ul>
+	<h3>What's New</h3>
+	<ul>
+		<li>Fix an issue that was preventing the form validation WET feature to initiate</li>
+	</ul>
+</section>
+<section>
+	<h2>v4.0.28</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2018-04-23</time></li>
+		<li><a href="v4.0.28-en.html">Release notes<span class="wb-inv"> - v4.0.28</span></a></li>
+		<li><a href="../dwnld-en.html#v4028">Downloads<span class="wb-inv"> - v4.0.28</span></a></li>
+	</ul>
+
+	<section>
+		<h3>What's New</h3>
+		<ul>
+			<li>Minor - markup change for SVGs images
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew-documentation/decision/1.html">Design decision 1 - Use SVG with <code>img</code> element instead of <code>object</code></a></li>
+				</ul>
+			</li>
+			<li>Minor - Datepicker polyfill - Date initialisation patch when minimal date are larger than today date</li>
+			<li>Minor - Charts - Added floating label to pie charts</li>
+			<li>WET developer - Major - Build script update
+				<ul>
+					<li>WET developer may need to delete npm caching with the local "node_modules" and "lib" folder before to run "script/setup" in order to sucessfully build.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<p>Canada.ca (GCWeb):</p>
+		<ul>
+			<li>Minor - markup change for SVGs images
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew-documentation/decision/1.html">Design decision 1 - Use SVG with <code>img</code> element instead of <code>object</code></a></li>
+				</ul>
+			</li>
+			<li>Minor - Departement features - Add one titles example</li>
+			<li>Minor - Departement features - Markup change</li>
+			<li>Minor - Removed GC priorities</li>
+			<li>Minor - Improved markup for arms length footer</li>
+			<li>Minor - Mega menu content update</li>
+			<li>Information - Added a deprecated testing page</li>
+			<li>WET developer - Major - Build script update
+				<ul>
+					<li>WET developer may need to delete npm caching with the local "node_modules" and "lib" folder before to run "script/setup" in order to sucessfully build.</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2>v4.0.27</h2>
+	<ul>
+		<li><strong>Release date:</strong> <time>2017-12-14</time></li>
+		<li><a href="v4.0.27-en.html">Release notes<span class="wb-inv"> - v4.0.27</span></a></li>
+		<li><a href="../dwnld-en.html#v4027">Downloads<span class="wb-inv"> - v4.0.27</span></a></li>
+	</ul>
+
+	<section>
+		<h3>What's New</h3>
+		<ul>
+			<li>Mathjax - fix use of CDN and allow for fail-over if there is no connectivity</li>
+			<li>Tabbed Interface: Removal of equal height js on tabs.</li>
+			<li>Overlay plugin: Added space key support for overlay links.</li>
+			<li>Multimedia player: Fixed timeline/volume bar layout issues in IE10+/Edge.</li>
+			<li>Carousel: Improved video outlines in Firefox.</li>
+			<li>Multimedia player: Made volume slider's layout more consistent across browsers.</li>
+			<li>Fix datepicker closing prematurely on IE11</li>
+		</ul>
+	</section>
+</section>
 <section>
 	<h2>v4.0.26</h2>
 	<ul>

@@ -22,83 +22,65 @@
 
 	<p>Le code HTML produit par cet outils peut varié dépendant du fureteur utilisé. Par example, il se peut que tous les éléments HTML soit en majuscule avec Internet Explorer mais pas avec Chrome et Firefox</p>
 
-	<p>L'analyse est basé sur la structure du tableau fourni en entré. Le contenu des cellules aura aucune influence sur le résultat obtenu. Il est assumé que le tableau fourni en entré illustre correctement les relations d'un point de vue visuelle et aussi que les éléments tabulaires approprié ont été utilisé. Pour de plus ample renseigment, vous pouvez consultez les régles du WCAG et aussi les 12 techniques pour les tableaux.</p>
+	<p>L'analyse est basé sur la structure du tableau fourni en entré. Le contenu des cellules aura aucune influence sur le résultat obtenu. Il est assumé que le tableau fourni en entré illustre correctement les relations d'un point de vue visuelle et aussi que les éléments tabulaires approprié ont été utilisé. Pour de plus ample renseigment, vous pouvez consultez les régles du WCAG et aussi les <a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/tableparser/index-en.html" hreflang="en">12 techniques pour les tableaux</a>.</p>
 </details>
 
 <form id="formtablevalidator" class="form-inline col-xs-12">
 	<fieldset>
-		<legend>Options</legend>
+	<legend>Options</legend>
+		<label class="checkbox-inline" for="chkHassum">
+			<input type="checkbox" value="chkHassum" id="chkHassum" /> Contient des groupes sommaire
+		</label>
+		<label class="checkbox-inline" for="chkCleanMarkup">
+			<input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup" /> Ne pas nettoyer l'HTML
+		</label>
+	</fieldset>
 
-		<div>
-			<label class="checkbox-inline" for="chkHassum">
-				<input type="checkbox" value="chkHassum" id="chkHassum" /> Contient des groupes sommaire
-			</label>
+	<fieldset>
+	<legend>Accessibilité</legend>
+		<label class="radio-inline" for="access-1">
+			<input type="radio" name="access" checked="checked" id="access-1" /> Automatique <em>(par défaut)</em>
+		</label>
+		<label class="radio-inline" for="access-2">
+			<input type="radio" name="access" id="access-2" /> Scope
+		</label>
+		<label class="radio-inline" for="access-3">
+			<input type="radio" name="access" id="access-3" /> Ids/Headers
+		</label>
+	</fieldset>
+
+	<fieldset>
+	<legend>Ids/headers paramètres</legend>
+		<div class="form-group">
+			<label for="idprefix">Préfixe d'Ids:</label>
+			<input type="text" id="idprefix" value="tbl" />
 		</div>
-		<div>
-			<label class="checkbox-inline" for="chkCleanMarkup">
-				<input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup" /> Ne pas nettoyer l'HTML
+		<div class="form-group">
+			<label for="uniqueprefix">
+				<input type="checkbox" value="uniqueprefix" id="uniqueprefix" /> Auto généré le préfixe
 			</label>
 		</div>
 	</fieldset>
 
 	<fieldset>
-		<legend>Accessibilité</legend>
-
-		<div class="col-xs-6">
-			<div>
-				<label class="radio-inline" for="access-1">
-					<input type="radio" name="access" checked="checked" id="access-1" /> Automatique <em>(par défaut)</em>
-				</label>
-			</div>
-			<div>
-				<label class="radio-inline" for="access-2">
-					<input type="radio" name="access" id="access-2" /> Scope
-				</label>
-			</div>
-			<div>
-				<label class="radio-inline" for="access-3">
-					<input type="radio" name="access" id="access-3" /> Ids/Headers
-				</label>
-			</div>
-		</div>
-
-		<div class="col-xs-4 col-xs-push-2">
-			<div class="form-group">
-				<label for="idprefix">Préfixe d'Ids:</label>
-				<input type="text" id="idprefix" value="tbl" />
-			</div>
-			<div class="form-group">
-				<label for="uniqueprefix">
-					<input type="checkbox" value="uniqueprefix" id="uniqueprefix" /> Auto généré le préfixe
-				</label>
-			</div>
-		</div>
-	</fieldset>
-
-	<fieldset>
-		<legend>Ajoutez votre contenu ci-dessous</legend>
-
-		<p><code>&lt;table&gt;</code></p>
+		<legend>Outil de validation</legend>
+		<label for="inputsourcecode">Ajoutez votre contenu ci-dessous, en incluant l'élément <code>&lt;table&gt;&lt;/table&gt;</code></label>
 		<textarea id="inputsourcecode" class="col-xs-12" rows="15" placeholder="Collez votre code HTML du tableau"></textarea>
-		<p><code>&lt;/table&gt;</code></p>
+		<br />
+		<input id="validatetable" type="submit" value="Validez" />
+		<input type="reset" value="Réinitializer" />
 	</fieldset>
-
-	<input id="validatetable" type="submit" value="Validez" />
-	<input type="reset" value="Réinitializer" />
 
 	<fieldset>
 		<legend>Résultats</legend>
-
 		<p id="lblerrors"><strong>Erreur\Avertissement:</strong></p>
 		<div id="errors" lang="en">
 			<p lang="fr">Aucun résultats</p>
 		</div>
-
 		<p id="lblresults"><strong>Code HTML résultant:</strong></p>
 		<div id="results">
 			<p>Aucun résultats</p>
 		</div>
-
 		<p id="lblvisualoutput"><strong>Visuel:</strong></p>
 		<div id="visualoutput">
 			<p>Aucun résultats</p>

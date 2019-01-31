@@ -8,7 +8,7 @@
 	"altLangPrefix": "menu",
 	"dateModified": "2017-06-12"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
@@ -23,6 +23,8 @@
 	<ul>
 		<li><a href="../../../demos/menu/menu-en.html">English example</a></li>
 		<li><a href="../../../demos/menu/menu-fr.html">French example</a></li>
+		<li><a href="../../../demos/menu/footer-menu-en.html">Footer Menu Integration - English</a></li>
+		<li><a href="../../../demos/menu/footer-menu-fr.html">Footer Menu Integration - Français</a></li>
 	</ul>
 </section>
 
@@ -159,6 +161,131 @@
 	</ol>
 </section>
 
+<section id="footer-doc">
+	<h2>Footer Integration in Mobile Menu</h2>
+	<p>For small and medium sized screens, the menu is rendered as a side panel, triggered by a menu button in the header, and includes the secondary menu and the footer. Footer sections must follow supported design patterns to be rendered in the menu without issue.</p>
+	<section>
+		<h2 class="mrgn-tp-0 text-success h4">Supported <span class="glyphicon glyphicon-ok-circle"></span></h2>
+		<div class="accordion">
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Heading followed by a list of links</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+						<p>Use a heading followed by a list when multiple links need to be displayed. In the menu panel, this is rendered as a <code>&lt;details&gt;</code> element, with the heading as a summary.</p>
+					</section>
+					<section>
+						<h3>Code</h3>
+						<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;Heading 1&lt;/h3&gt;
+	&lt;ul class="list-unstyled"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;List Element 1.1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;List Element 1.2&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Heading followed by a single link</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+						<p>A heading followed by a single link, either on its own or in a paragraph. In the menu panel, this is rendered as a single menu item, with the heading as the text.</p>
+					</section>
+
+					<section>
+						<h3>Code</h3>
+					<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;Heading 1&lt;/h3&gt;
+	&lt;p&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Linked heading</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+							<p>A heading on its own, containing a link. In the menu panel, this is rendered as a single menu item.</p>
+					</section>
+
+					<section>
+						<h3>Code</h3>
+							<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;&lt;a href="#"&gt;Heading 1&lt;/a&gt;&lt;/h3&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+		</div>
+
+		<h2 class="text-danger h4">Not Supported <span class="glyphicon glyphicon-remove-circle"></span></h2>
+		<div class="accordion">
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Linked heading followed by a list of links</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+							<p>A combination of the list and lone heading pattern. This will not render properly in the menu panel, as the heading link will not be clickable.</p>
+					</section>
+					<section>
+						<h3>Code</h3>
+						<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;&lt;a href="#"&gt;Heading 1&lt;/a&gt;&lt;/h3&gt;
+	&lt;ul class="list-unstyled"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;List Element 1.1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;List Element 1.2&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Heading followed by multiple links without using a list</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+							<p>A heading followed by a multiple links, either on their own, in paragraphs, or in smaller headings. Only the first link will be clickable in the menu panel.</p>
+					</section>
+
+					<section>
+						<h3>Code</h3>
+						<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;Heading 1&lt;/h3&gt;
+	&lt;p&gt;&lt;a href="#"&gt;Link 1.1&lt;/a&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;a href="#"&gt;Link 1.2&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+
+			<details class="acc-group">
+				<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Multiple linked headings</summary>
+				<div class="tgl-panel">
+					<section>
+						<h3>Purpose</h3>
+							<p>Multiple headings of the same size, each containing links. These will cause unwanted gaps in the menu panel. Additionally, this structure is not compliant to the HTML5 specification.</p>
+					</section>
+					<section>
+						<h3>Code</h3>
+						<pre><code>&lt;section class="col-sm-4"&gt;
+	&lt;h3&gt;&lt;a href="#"&gt;Heading 1&lt;/a&gt;&lt;/h3&gt;
+	&lt;h3&gt;&lt;a href="#"&gt;Heading 2&lt;/a&gt;&lt;/h3&gt;
+&lt;/section&gt;</code></pre>
+					</section>
+				</div>
+			</details>
+		</div>
+		<h2 class="text-warning h4">Be Cautious <span class="glyphicon glyphicon-exclamation-sign"></span></h2>
+		<p>Mixing different supported structures will work, but it is better to be consistent and only use one.</p>
+	</section>
+</section>
+
 <section>
 	<h2>Configuration options</h2>
 	<table class="table">
@@ -228,7 +355,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
