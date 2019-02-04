@@ -1,0 +1,150 @@
+---
+{
+	"title": "Merge Server-Client Errors",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Merge server errors with client errors",
+	"tag": "formvalid-server",
+	"parentdir": "formvalid",
+	"altLangPrefix": "formvalid-server",
+	"dateModified": "2018-06-28"
+}
+---
+
+<ul>
+	<li><a href="formvalid-en.html">Form Validation</a></li>
+	<li><a href="formvalid-server-en.html">Merge Server-Client Errors</a></li>
+</ul>
+
+<hr />
+
+<section>
+	<h2>Purpose</h2>
+	<p>This component merges Server and Client errors together.</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+
+	<p>After submitting your page, the server returned 4 server errors. Now if you try to resubmit your form with some
+		client errors, the component will add these errors to the existing server errors.</p>
+	<p>To test: Try clearing a field or enter 201 as the Beneficiary's age or uncheck all checkboxes.</p>
+
+	<h2>
+		<span id="lblTitle" property="name">Demo Asp.Net Web Form</span>
+	</h2>
+
+	<div class="wb-frmvld">
+		<form id="frmMain" action="#" method="get">
+
+			<section tabindex="-1" class="alert alert-danger" id="errors-frmMain">
+				<h2>The form could not be submitted because 4 errors were found.</h2>
+				<ul>
+					<li><a href="#MainContent_BeneficiaryName"><span class="prefix">Error&nbsp;1: </span>Beneficiary name - The name
+							should begin with "Super" - (Correct and resubmit) </a></li>
+					<li><a href="#MainContent_BeneficiaryAge"><span class="prefix">Error&nbsp;2: </span>Beneficiary age - Age should
+							be between 64 and 200 for a Retirement benefit - (Correct and resubmit) </a></li>
+					<li><a href="#MainContent_wbCheckBoxList0_checkBoxList0_0"><span class="prefix">Error&nbsp;3: </span>Contact
+							Information - You can't choose more than 2 checkboxes - (Correct and resubmit) </a></li>
+					<li><a href="#MainContent_wbCheckBoxList1_checkBoxList1_2"><span class="prefix">Error&nbsp;4: </span>I agree with
+							the directives - This field is mandatory - (Correct and resubmit) </a></li>
+				</ul>
+			</section>
+
+			<noscript>
+				&lt;section class="alert alert-danger" &gt;
+				&lt;h2&gt;This is user control wbDisplayErrors (It appears when JavaScript is disabled)&lt;/h2&gt;
+				&lt;ul&gt;
+				&lt;li&gt;&lt;a href="#MainContent_BeneficiaryName"&gt;&lt;span class='prefix'&gt;Error&amp;nbsp;1:
+				&lt;/span&gt;Beneficiary name - The name should begin with "Super" - (Correct and resubmit)&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#MainContent_BeneficiaryAge"&gt;&lt;span class='prefix'&gt;Error&amp;nbsp;2:
+				&lt;/span&gt;Beneficiary age is mandatory - Age should be between 64 and 200 for a Retirement benefit - (Correct
+				and resubmit)&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#MainContent_wbCheckBoxList0_checkBoxList0_0"&gt;&lt;span class='prefix'&gt;Error&amp;nbsp;3:
+				&lt;/span&gt;Contact Information - You can't choose more than 2 checkboxes - (Correct and
+				resubmit)&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#MainContent_wbCheckBoxList1_checkBoxList1_2"&gt;&lt;span class='prefix'&gt;Error&amp;nbsp;4:
+				&lt;/span&gt;I agree with the directives - This field is mandatory - (Correct and resubmit)&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+				&lt;/section&gt;
+			</noscript>
+
+			<section class="panel panel-info">
+				<header class="panel-heading">
+					<h2 class="panel-title">
+						Section 1
+					</h2>
+				</header>
+				<div class="panel-body">
+
+					<div class="form-group">
+						<label class="required" for="MainContent_TypeOfPrestation">
+							<span class="field-name">Type of benefit</span>
+							<strong class="required">(Required field)</strong>
+						</label>
+
+						<div>
+							<select name="ctl00$MainContent$TypeOfPrestation" id="MainContent_TypeOfPrestation" required="required">
+								<option value="">Select a benefit</option>
+								<option value="ChildrenHelp">Child benefit (Age 1-18) </option>
+								<option value="Invalidity">Invalidity (Age 1-64)</option>
+								<option selected="selected" value="Retirement">Retirement (Age 65-200)</option>
+							</select>
+						</div>
+					</div>
+
+					<fieldset>
+						<legend>Beneficiary</legend>
+						<div class="form-group">
+							<label class="required" for="MainContent_BeneficiaryName">
+								<span class="field-name">Beneficiary name</span>
+								<strong class="required">(Required field)</strong>
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv"><strong><span class="prefix">Error&nbsp;1:</span>The name should begin with "Super"</strong></span> </label>
+							<input name="ctl00$MainContent$BeneficiaryName" class="form-control valid" id="MainContent_BeneficiaryName" aria-invalid="false" required="required" type="text" maxlength="16" value="Me">
+						</div>
+
+						<div class="form-group">
+							<label class="required">
+								<span class="field-name">Beneficiary age</span>
+								<strong class="required">(Required field)</strong>
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv"><strong><span class="prefix">Error&nbsp;2:
+										</span>Age should be between 64 and 200 for a Retirement benefit</strong></span>
+								<input name="ctl00$MainContent$BeneficiaryAge" class="form-control css-implicite-input valid" id="MainContent_BeneficiaryAge" aria-invalid="false" required="required" type="number" min="1" max="200" step="1" value="52">
+							</label>
+						</div>
+					</fieldset>
+
+					<fieldset class="legend-brdr-bttm">
+						<legend class="required"><span class="field-name">Citizen Status</span> <strong class="required">(Required field)</strong></legend>
+						<div class="radio required"><label for="MainContent_wbRadioButtonList0_radioButtonList0_0"><input name="radioButtonList0" id="MainContent_wbRadioButtonList0_radioButtonList0_0" required="required" type="radio" checked="checked" value="radioButtonList0_0v"><span>&nbsp;&nbsp;Canadian citizen</span> </label></div>
+						<div class="radio">
+							<label for="MainContent_wbRadioButtonList0_radioButtonList0_1"><input name="radioButtonList0" id="MainContent_wbRadioButtonList0_radioButtonList0_1" type="radio" value="radioButtonList0_1v"><span>&nbsp;&nbsp;Permanent resident</span> </label></div>
+						<div class="radio">
+							<label for="MainContent_wbRadioButtonList0_radioButtonList0_2"><input name="radioButtonList0" id="MainContent_wbRadioButtonList0_radioButtonList0_2" type="radio" value="radioButtonList0_2v"><span>&nbsp;&nbsp;Work permit</span></label></div>
+					</fieldset>
+
+					<fieldset class="legend-brdr-bttm">
+						<legend class="required"><span class="field-name">Contact Information</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList0Cv"><strong><span class="prefix">Error&nbsp;3: </span>You can't choose more than 2 checkboxes</strong></span></legend>
+						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_0">
+								<input name="checkBoxList0" class="required_js valid" id="MainContent_wbCheckBoxList0_checkBoxList0_0" aria-invalid="false" required="required" type="checkbox" checked="checked" value="checkBoxList0_0v">
+								<span>&nbsp;&nbsp;<span class="field-name">Contact me by email</span></span>
+							</label></div>
+						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_1"><input name="checkBoxList0" id="MainContent_wbCheckBoxList0_checkBoxList0_1" type="checkbox" checked="checked" value="checkBoxList0_1v"><span>&nbsp;&nbsp;<span class="field-name">Contact me by phone</span></span> </label></div>
+						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_2"><input name="checkBoxList0" id="MainContent_wbCheckBoxList0_checkBoxList0_2" type="checkbox" checked="checked" value="checkBoxList0_2v"><span>&nbsp;&nbsp;<span class="field-name">Contact me by text messaging</span></span></label></div>
+					</fieldset>
+
+					<fieldset class="legend-brdr-bttm">
+						<legend class="required"><span class="field-name">Signature</span> <strong class="required">(Required field)</strong></legend>
+						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_0"><input name="checkBoxList1" class="required_js valid" id="MainContent_wbCheckBoxList1_checkBoxList1_0" required="required" type="checkbox" checked="checked" value="checkBoxList1_0v"><span>&nbsp;&nbsp;<span class="field-name">Print this page</span></span> </label></div>
+						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_1"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_1" type="checkbox" value="checkBoxList1_1v"><span>&nbsp;&nbsp;<span class="field-name">Please send me more information</span></span> </label></div>
+						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span>&nbsp;&nbsp;<span class="field-name">I agree with the directives</span><strong class="required"> (Required field)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv"><strong><span class="prefix">Error&nbsp;4: </span>This field is mandatory</strong></span></label></div>
+					</fieldset>
+
+					<ul class="list-inline">
+						<li><input name="ctl00$MainContent$btnSubmit" class="btn btn-primary" id="MainContent_btnSubmit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$MainContent$btnSubmit", "", true, "", "", false, false))' type="submit" value="Submit"></li>
+					</ul>
+				</div>
+			</section>
+		</form>
+	</div>
+</section>
