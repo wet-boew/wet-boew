@@ -854,9 +854,131 @@
 			</tr>
 		</tbody>
 	</table>
-
-
-	<h3>Filtering Example</h3>
+	<h3>Exemple de pagination</h3>
+	<p>L'action de changer le nombre d'entrées à afficher dans une table ou bien le fait d'avoir un petit nombre de rangées ajusteront la pagination de cette table en conséquence. Si toutes les rangées peuvent être contenues dans une seule page, alors la pagination ne sera pas visible.</p>
+	<table class="wb-tables table table-striped table-hover" data-page-length='25'>
+		<thead>
+			<tr>
+				<th>Moteur de rendu</th>
+				<th>Navigateur</th>
+				<th>Platformes</th>
+				<th>Version de moteur</th>
+				<th>Niveau de CSS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="gradeX">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 4.0</td>
+				<td>Win 95+</td>
+				<td class="center">4</td>
+				<td class="center">X</td>
+			</tr>
+			<tr class="gradeC">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.0</td>
+				<td>Win 95+</td>
+				<td class="center">5</td>
+				<td class="center">C</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.5</td>
+				<td>Win 95+</td>
+				<td class="center">5.5</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 6</td>
+				<td>Win 98+</td>
+				<td class="center">6</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Internet Explorer 7</td>
+				<td>Win XP SP2+</td>
+				<td class="center">7</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Navigateur AOL (AOL desktop)</td>
+				<td>Win XP</td>
+				<td class="center">6</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Firefox 1.0</td>
+				<td>Win 98+ / OSX.2+</td>
+				<td class="center">1.7</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Firefox 1.5</td>
+				<td>Win 98+ / OSX.2+</td>
+				<td class="center">1.8</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Firefox 2.0</td>
+				<td>Win 98+ / OSX.2+</td>
+				<td class="center">1.8</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Firefox 3.0</td>
+				<td>Win 2k+ / OSX.3+</td>
+				<td class="center">1.9</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Camino 1.0</td>
+				<td>OSX.2+</td>
+				<td class="center">1.8</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Camino 1.5</td>
+				<td>OSX.3+</td>
+				<td class="center">1.8</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Netscape 7.2</td>
+				<td>Win 95+ / Mac OS 8.6-9.2</td>
+				<td class="center">1.7</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Netscape Browser 8</td>
+				<td>Win 98SE+</td>
+				<td class="center">1.7</td>
+				<td class="center">A</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Gecko</td>
+				<td>Netscape Navigator 9</td>
+				<td>Win 98+ / OSX.2+</td>
+				<td class="center">1.8</td>
+				<td class="center">A</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Exemple de filtrage</h3>
 	<p>Le <a href="http://www.datatables.net/ref">DataTables API</a> (en anglais seulement) est entièrement accessible par le <code>data-wb-tables</code> attribut à l'aide d'un tableau JSON et pour filtrer vous pouvez utilizer le class <code>.wb-tables-filter</code> </p>
 	<div class="row">
 		<div class="col-md-3">
