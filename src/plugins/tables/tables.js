@@ -192,12 +192,24 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	$datatable.search( "" ).columns().search( "" );
 
 	// Lets loop throug all options
+	var $value = "";
 	$form.find( "[name]" ).each( function() {
-		var $elm = $( this ),
-			$value = ( $elm.is( "select" ) ) ? $elm.find( "option:selected" ).val() : $elm.val();
+		var $elm = $( this );
+
+		if ( $elm.is( "select" ) ) {
+			$value = $elm.find( "option:selected" ).val();
+		} else if ( $elm.is( ":checkbox" ) ) {
+			if ( $elm.is( ":checked" ) ) {
+				$value += ( $value.length > 0 ) ? "|" : "";
+				$value += $elm.val();
+			}
+		} else {
+			$value = $elm.val();
+		}
 
 		if ( $value ) {
-			$datatable.column( parseInt( $elm.attr( "data-column" ), 10 ) ).search( $value ).draw();
+			$value = $value.replace( /\s/g, "\\s*" );
+			$datatable.column( parseInt( $elm.attr( "data-column" ), 10 ) ).search( "(" + $value + ")", true ).draw();
 		}
 	} );
 
@@ -213,6 +225,7 @@ $document.on( "click", ".wb-tables-filter [type='reset']", function( event ) {
 	$datatable.search( "" ).columns().search( "" ).draw();
 
 	$form.find( "select" ).prop( "selectedIndex", 0 );
+	$form.find( "input:checkbox" ).prop( "checked", false );
 	$form.find( "input[type=date]" ).val( "" );
 
 	return false;
