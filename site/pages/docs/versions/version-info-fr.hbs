@@ -4,72 +4,178 @@
 	"language": "fr",
 	"description": "Contrôle des versions - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "version-info",
-	"dateModified": "2014-02-19"
+	"dateModified": "2019-02-11"
 }
 ---
-<div lang="en">
-<p><strong>Needs translation</strong></p>
-<section>
-	<h2>Major version (e.g, v3.1.x to v4.0.0)</h2>
+
+<section class="alert alert-info">
+	<h2>Changement apporté du contrôle des version à WET-BOEW et GCWeb.</h2>
+
+	<p><strong>En vigueur:</strong> <time datetime="2019-02-11">11 février 2019</time></p>
+
 	<ul>
-		<li>Typical risk of things breaking: <strong>High</strong></li>
-		<li>Typical effort to upgrade: <strong>High</strong></li>
-		<li>Typical changes:
-			<ul>
-				<li>Major framework changes (including major breaking changes)</li>
-				<li>Major markup changes (including major breaking changes)</li>
-				<li>New features and enhancements</li>
-				<li>Bug fixes</li>
-			</ul>
-		</li>
-		<li>Typical actions required to upgrade:
-			<ul>
-				<li>Modify existing content and code new content differently</li>
-				<li>Major markup changes</li>
-				<li>Add and replace JS, CSS and image files</li>
-			</ul>
-		</li>
+		<li>Le contrôle des versions se fait selon <a href="https://semver.org/lang/fr/">la gestion sémantique de version</a></li>
+		<li>Le numéro de version du projet de la WET-BOEW diffère légèrement tel que définie par la gestion sémantique de version, avec l'ajout d'un suffixe numérique représentant l'architecture tel que décris ci-dessous.</li>
+		<li>Le numéro de version de la WET-BOEW est maintenant indépendant du numéro de version du thème GCWeb (Canada.ca).</li>
 	</ul>
+
+	<p>Cette nouvelle définition est applicable pour la version et toutes les version subséquente de :</p>
+	<ul>
+		<li>WET-BOEW, version 4.0.30</li>
+		<li>GCWeb (Canada.ca), version 5.0</li>
+	</ul>
+
 </section>
 
-<section>
-	<h2>Minor version (e.g., v3.0.x to v3.1.0)</h2>
-	<ul>
-		<li>Typical risk of things breaking: <strong>Moderate</strong></li>
-		<li>Typical effort to upgrade: <strong>Moderate</strong></li>
-		<li>Typical changes:
-			<ul>
-				<li>Minor framework changes (possibility of minor breaking changes)</li>
-				<li>Minor markup changes (possibility of minor breaking changes)</li>
-				<li>New features and enhancements</li>
-				<li>Bug fixes</li>
-			</ul>
-		</li>
-		<li>Typical actions required to upgrade:
-			<ul>
-				<li>Minor markup changes</li>
-				<li>Add and replace JS, CSS and image files</li>
-			</ul>
-		</li>
-	</ul>
-</section>
+<h2>Sommaire de la gestion sémantique de version</h2>
 
-<section>
-	<h2>Maintenance version (e.g., v3.1.0 to v3.1.1)</h2>
-	<ul>
-		<li>Typical risk of things breaking: <strong>Low</strong></li>
-		<li>Typical effort to upgrade: <strong>Low</strong></li>
-		<li>Typical changes:
-			<ul>
-				<li>Minor enhancements</li>
-				<li>Bug fixes</li>
-			</ul>
-		</li>
-		<li>Typical actions required to upgrade:
-			<ul>
-				<li>Add and replace JS, CSS and image files</li>
-			</ul>
-		</li>
-	</ul>
-</section>
+<div class="well well-lg">
+	<p>Étant donné un numéro de version <strong>Majeur.Mineur.Correctif</strong>, il faut incrémenter :</p>
+
+	<ol>
+		<li>le numéro de version <strong>Majeur</strong> quand il y a des changements non rétrocompatibles,</li>
+		<li>le numéro de version <strong>Mineur</strong> quand il y a des ajouts de fonctionnalités rétrocompatibles,</li>
+		<li>le numéro de version de <strong>Correctif</strong> quand il y a des corrections d’anomalies rétrocompatibles</li>
+	</ol>
+	<p>Des libellés supplémentaires peuvent être ajoutés pour les versions de pré-livraison et pour des méta-données de construction sous forme d’extension du format <strong>Majeur.Mineur.Correctif</strong>.</p>
 </div>
+
+<p>Consulter la version intégrale du document de <a href="https://semver.org/lang/fr/">gestion sémantique de version 2.0.0</a> plus de plus ample details.</p>
+
+<h3>Variante pour le produit WET-BOEW de la gestion sémantique de version</h3>
+
+<p>Cette définition s'applique seulement au produit créer à partir des sources: <a href="https://github.com/wet-boew/wet-boew">https://github.com/wet-boew/wet-boew</a> et elle est passiblement compatible avec toutes les versions antérieur à v4.0.29.1 publié sous l'identifiant "4.x".</p>
+
+<p>Cette variante inclus l'ajout d'un suffixe numérique afin d'identifier la version architecturale du produit.</p>
+
+<p>Par example, la version 4.0.29.1</p>
+<ul class="list-none">
+	<li><strong>Architecture:</strong> 4</li>
+	<li><strong>Majeur:</strong> 0</li>
+	<li><strong>Mineur:</strong> 29</li>
+	<li><strong>Correctif:</strong> 1</li>
+</ul>
+
+<details>
+	<summary>Consulter les details de cette variante</summary>
+
+	<p>Étant donné un numéro de version <strong>Architecture.Majeur.Mineur.Correctif</strong>, il faut incrémenter :</p>
+
+	<ol>
+		<li>le numéro de version <strong>Architecture</strong> quand l'API interne, tel que l'emboîtement des plugiciel, ou quand la méthodolgie d'intégration interne et externe au produit ont des changements non rétrocompatibles,</li>
+		<li>le numéro de version <strong>Majeur</strong> quand il y a des changements non rétrocompatibles,</li>
+		<li>le numéro de version <strong>Mineur</strong> quand il y a des ajouts de fonctionnalités rétrocompatibles,</li>
+		<li>le numéro de version de <strong>Correctif</strong> quand il y a des corrections d’anomalies rétrocompatibles</li>
+	</ol>
+	<p>Des libellés supplémentaires peuvent être ajoutés pour les versions de pré-livraison et pour des méta-données de construction sous forme d’extension du format ARCHITECTURE.MAJEURE.MINEURE.CORRECTIF.</p>
+
+	<section class="well">
+		<h4>Changement apporté à la spécification (Applicable seulement à WET-BOEW core)</h4>
+
+		<p>Outre les changements ci-dessous, le reste de la spécification reste intacte.</p>
+
+		<p>Modification de la disposition numéro 2 comme suit:</p>
+		<div class="well">
+			<p>2. Un numéro de version standard <strong>doit</strong> prendre la forme A.X.Y.Z où A, X, Y et Z sont des entiers non négatifs et <strong>ne doivent pas</strong> être préfixés par des zéros. A représente l'identifiant de la version architecturale, X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de correction. Chaque élément DOIT s’incrémenter numériquement. Exemple : 2.1.9.0 -> 2.1.10.0 -> 2.1.11.0 -> 3.0.0.1.</p>
+		</div>
+
+		<p>Ajout d'une disposition numéro 8-1 à être inséré aprés la disposition 8 et ce lit comme suit:</p>
+		<div class="well">
+			<p>8-1. L’identifiant de version architecturale A (A.x.y.z | A > 0) <strong>doit</strong> être incrémenté si des changements non rétrocompatibles sont introduits pour l'emboîtement des plugiciel ou pour la méthodolgie d'intégration interne et externe du produit. Cela <strong>peut</strong> inclure dans le même temps des changements majeurs, mineurs et des corrections. Les identifiants de version majeur, mineure et de correction <strong>doivent</strong> être remis à zéro quand l’identifiant de version architecturale est incrémenté.</p>
+		</div>
+	</section>
+</details>
+
+<h2>API publique</h2>
+
+<p>L'API publique pour chaque plugiciel est définie par la <a href="https://wet-boew.github.io/wet-boew-documentation/decision/3.html" hreflang="en">décision de conception #3</a> (en anglais seulement).</p>
+
+<p>L'API publique pour la WET-BOEW et pour GCWeb est définie commme qu'il suit:</p>
+
+<ul>
+	<li>Le balisage squelettique de la page (Gabarit)</li>
+	<li>Les styles limité au nom des classe CSS ou/et de structure HTML avec leur effet respectif indépendament de leur implementation.</li>
+	<li>L'emboîtement des plugiciels définie par la liste des fonctions et des variables fondamentaux utilsé par un ou des plugiciels.</li>
+	<li>L'ensemble des plugiciels avec leur version respectif duquel chaque plugiciel est définie comme:
+		<ul>
+			<li>Les fonctions javascripts</li>
+			<li>La structure de la configuration ainsi que du type de donnée pour chaques propriétés</li>
+			<li>Le balisage HTML representant les gabarits afin de concevoir l'interface utilisateur</li>
+			<li>Les éléments d'information essentiel au plugiciel</li>
+			<li>Les aspects visuels et la mise en forme (CSS) du plugiciel</li>
+			<li>Les termes (chaines de charactère) internationalisés utilisé par le plugiciel</li>
+		</ul>
+	</li>
+	<li>Les gabarits, les composantes et les variantes de ceux-ci sont définie par:
+		<ul>
+			<li>Le balisage HTML</li>
+			<li>La strucuture d'information</li>
+			<li>Les composantes qui à leur tour peuvent inclures les même éléments qu'un gabarit</li>
+			<li>Les aspects visuels et la mise en forme (CSS)</li>
+			<li>Les termes (chaines de charactère) internationalisés utilisé</li>
+		</ul>
+	</li>
+</ul>
+
+<section>
+	<h2>Le contrôle de version précédant la version 4.0.29.1</h2>
+
+	<p>Disponible en anglais seulement</p>
+	<div lang="en">
+		<h3>Major version (e.g, v3.1.x to v4.0.0)</h3>
+		<ul>
+			<li>Typical risk of things breaking: <strong>High</strong></li>
+			<li>Typical effort to upgrade: <strong>High</strong></li>
+			<li>Typical changes:
+				<ul>
+					<li>Major framework changes (including major breaking changes)</li>
+					<li>Major markup changes (including major breaking changes)</li>
+					<li>New features and enhancements</li>
+					<li>Bug fixes</li>
+				</ul>
+			</li>
+			<li>Typical actions required to upgrade:
+				<ul>
+					<li>Modify existing content and code new content differently</li>
+					<li>Major markup changes</li>
+					<li>Add and replace JS, CSS and image files</li>
+				</ul>
+			</li>
+		</ul>
+		<h3>Minor version (e.g., v3.0.x to v3.1.0)</h3>
+		<ul>
+			<li>Typical risk of things breaking: <strong>Moderate</strong></li>
+			<li>Typical effort to upgrade: <strong>Moderate</strong></li>
+			<li>Typical changes:
+				<ul>
+					<li>Minor framework changes (possibility of minor breaking changes)</li>
+					<li>Minor markup changes (possibility of minor breaking changes)</li>
+					<li>New features and enhancements</li>
+					<li>Bug fixes</li>
+				</ul>
+			</li>
+			<li>Typical actions required to upgrade:
+				<ul>
+					<li>Minor markup changes</li>
+					<li>Add and replace JS, CSS and image files</li>
+				</ul>
+			</li>
+		</ul>
+		<h3>Maintenance version (e.g., v3.1.0 to v3.1.1)</h3>
+		<ul>
+			<li>Typical risk of things breaking: <strong>Low</strong></li>
+			<li>Typical effort to upgrade: <strong>Low</strong></li>
+			<li>Typical changes:
+				<ul>
+					<li>Minor enhancements</li>
+					<li>Bug fixes</li>
+				</ul>
+			</li>
+			<li>Typical actions required to upgrade:
+				<ul>
+					<li>Add and replace JS, CSS and image files</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
