@@ -1,0 +1,127 @@
+---
+{
+	"title": "v4.0.30 release notes",
+	"language": "en",
+	"description": "v4.0.30 release notes - Version history - Web Experience Toolkit (WET)",
+	"altLangPrefix": "v4.0.30",
+	"dateModified": "2019-02-11"
+}
+---
+<div lang="fr">
+<p>[Nécessite une traduction]</p>
+<p>Version 4.0.30</p>
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2019-02-11</time></li>
+	<li><a href="../dwnld-fr.html#v4030">Téléchargements</a></li>
+</ul>
+
+<div class="wb-prettify all-pre"></div>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+
+	<section>
+		<h3 id="v4.0.30">Version 4.0.30</h3>
+
+		<ul>
+			<li>Correctif - Lightbox - Fermeture de la fenêtre superposé lorsqu'on clique sur un lien de la page courante.</li>
+			<li>Mineur - Tableaux - Interface de filtrage, ajout du support pour <code>input[type=date]</code> lors de la réinitialisation</li>
+			<li>Mineur - Fils de syndication - Ajout de la lecture directe des fichiers XML qui sont dans la limite des CORS.</li>
+			<li>Correctif - Menu - Ouverture du menu mobile lorsque le menu est statique dans la page</li>
+			<li>Mineur - Fils de syndication - Lecture d'un fil d'actualité en format JSON similaire à ATOM XML.</li>
+			<li>Mineur - Fils de syndication - Retrait de la lecture d'un fil d'actualité via l'API Yahoo. Ceci est remplacé par une lecture directe.</li>
+			<li>Mineur - Tableaux - Retrait de la pagination lorsqu'il y a seulement une seule page de résultat</li>
+			<li>Mineur - Tableaux - Interface de filtrage, ajout l'option de filtrer les résultats avec des case à cocher</li>
+			<li>Correctif - Chronologie intégée Twitter - Retrait de l'example avec code obsolete de Twitter.</li>
+			<li>Correctif - Tableaux - Interface de filtrage - adjustement lorsqu'il y a plusieur case à cocher pour plus qu'une colonne.</li>
+			<li>Développeur de la BOEW - Modification du script de compilation et de ses dépendances.</li>
+		</ul>
+
+		<p>Canada.ca (GCWeb):</p>
+		<ul>
+			<li><a href="https://wet-boew.github.io/themes-dist/GCWeb/gcweb-theme/release/v5.0-fr.html">Publication de la version 5.0 (Notes de versions)</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>Fureteur supporté</h3>
+		<p>Tel que défini par la <a hreflang="en" href="http://wet-boew.github.io/wet-boew-documentation/decision/2.html">Décision de conception 2: Fureteur supporté</a> (en anglais)</p>
+		<ul>
+			<li>Chrome 71</li>
+			<li>Chrome 70</li>
+			<li>Safari 12.0</li>
+			<li>Firefox 65</li>
+			<li>Firefox 64.0.2</li>
+			<li>Firefox ESR - 60.5.0</li>
+			<li>IE 11</li>
+			<li>Edge 18</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Détails</h2>
+	<p><strong>Nombre de contributions:</strong> 26</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">Pierre Dubois (@duboisp)</a>: 7 contributions</li>
+		<li><a href="https://github.com/ipaksc">Ilya Pak (@ipaksc)</a>: 4 contributions</li>
+		<li><a href="https://github.com/thekodester">kody (@thekodester)</a>: 4 contribution</li>
+		<li><a href="https://github.com/EricDunsworth">Eric Dunsworth (EricDunsworth)</a>: 3 contributions</li>
+		<li><a href="https://github.com/GormFrank">Francis Gorman (@GormFrank)</a>: 2 contribution</li>
+		<li><a href="https://github.com/StdGit">Stéphane Ducharme (@StdGit)</a>: 2 contributions</li>
+		<li><a href="https://github.com/nschonni">Nick Schonning (@nschonni)</a>: 1 contribution</li>
+		<li><a href="https://github.com/PCH-TanB">Bobby(Xiuzhong) Tan (@PCH-TanB)</a>: 1 contribution</li>
+		<li><a href="https://github.com/shawnthompson">Shawn Thompson (@shawnthompson)</a>: 1 contribution</li>
+		<li><a href="https://github.com/zzucco">Zachary Zucco (@zzucco)</a>: 1 contribution</li>
+	</ul>
+
+	<section>
+		<h3>Liste des contributions</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/62ef66457">chore: Bump grunt-htmlHas some additional error handling and mutes the old "details" error</a> - Nick Schonning, <time>2018-07-23</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a169afb11">.eslintignore: Removed out of scope files.</a> - Eric Dunsworth, <time>2018-08-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e61e46145">Lightbox - Close the overlay when clicking on a same page link</a> - Pierre Dubois, <time>2018-09-05</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cd40eca0e">Update build version to v4.0.30-development</a> - Pierre Dubois, <time>2018-09-20</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9b3fe97fc">package-lock.json: Updated to npm 5.10/6.x-friendly style.</a> - Eric Dunsworth, <time>2018-10-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/30cf0c64a">Menu Footer Integration Documentation</a> - zaczucco@gmail.com, <time>2018-10-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4ad391442">Tables - fix with reset button for input type=date</a> - PCH-TanB, <time>2018-10-16</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fb6bbbb28">Release notes: Fixed issues in 4.0.28-4.0.29 pages.</a> - Eric Dunsworth, <time>2018-10-30</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/29c138fb8">Feeds plugins: CORS enabled pulling w# with '#' will be ignored, and an empty message aborts the commit.</a> - ipaksc, <time>2018-12-06</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d357e7f2a">Ignore .vscode directory</a> - Shawn Thompson, <time>2019-01-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9d020c45a">Fix #8517</a> - Stéphane Ducharme, <time>2019-01-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8eb8c25d0">Feeds - Read JSON ATOM like feed</a> - Pierre Dubois, <time>2019-01-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a0a1e47ef">Release note of version 4.0.29.1</a> - Pierre Dubois, <time>2019-01-11</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/430d6822f">Patch instruction for wet-boew v4.0.21 to v4.0.29</a> - Pierre Dubois, <time>2019-01-15</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5040c19dc">Removed Yahoo API for RSS Feeds</a> - ipaksc, <time>2019-01-17</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dda8de2b1">Feeds backup</a> - ipaksc, <time>2019-01-18</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/61b8dc1e0">v4.0.21 to v4.0.29 Patch Documentation</a> - GormFrank, <time>2019-01-18</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e3d310744">DataTable Pagination Documentation</a> - GormFrank, <time>2019-01-24</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b0f347870">Update tables pagination</a> - kody, <time>2019-01-29</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2cba58ac4">DataTable Filtering With Checkboxes</a> - kody, <time>2019-01-30</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4efccb1e3">Updated a working example of Feeds plugin</a> - ipaksc, <time>2019-01-31</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/691dd1a9f">Fix #8397 Merge server-side validation errors with client-side</a> - Stéphane Ducharme, <time>2019-02-04</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f1ebd10ae">Remove Deprecated Twitter Code</a> - kody, <time>2019-02-07</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/175f9f7f5">Value Was Never Erased After Cycling Checkboxes</a> - kody, <time>2019-02-08</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fe0feda61">Data table - Working example to test cycling checkboxes</a> - Pierre Dubois, <time>2019-02-10</time></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e002955cb">v4.0.30 - Release note</a> - Pierre Dubois, <time>2019-02-10</time></li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2 id="sri">Intégrité des sous-ressource (SRI)</h2>
+	<p>Le <a href="https://www.w3.org/TR/SRI/" hreflang="en">SRI</a> (en anglais) est une méthode qui permet de protéger le transfère des resources d'un site web. Ci-dessous vous avez les condensés numériques pour les ressource clef de la BOEW et de GCWeb.</p>
+
+	<section>
+		<h3>v4.0.30</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>[Ajouter le condensé numérique]</dd>
+		</dl>
+		<p>Obtenez tous les condensés numériques (en format JSON):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.30/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.30/theme-wet-boew/payload.json">Thème WET-BOEW</a></li>
+		</ul>
+	</section>
+</section>
+</div>
