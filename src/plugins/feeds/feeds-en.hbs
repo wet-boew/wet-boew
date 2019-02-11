@@ -21,7 +21,7 @@
 <p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
 <section>
 	<h2>Examples</h2>
-	<section class="wb-feeds limit-4">
+	<section class="wb-feeds limit-3">
 		<h3>ATOM feed</h3>
 		<p>This method fetch the ATOM feed directly and don't use a third party service.</p>
 		<ul class="feeds-cont list-unstyled lst-spcd">
@@ -139,6 +139,33 @@
 			&lt;/section&gt;</code></pre>
 			</details>
 		</section>
+	</section>
+</section>
+<section>
+	<h2>Special cases</h2>
+	<section class="wb-feeds limit-7">
+		<h3>Feed with one entry</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-1-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-7">
+		<h3>When limit is greater than the number of feed entries</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-0">
+		<h3>When limit is set to 0</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds">
+		<h3>When limit is not set</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
 	</section>
 </section>
 <section>
