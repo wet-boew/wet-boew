@@ -6,16 +6,18 @@
 	"categoryfile": "plugins",
 	"description": "Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis.",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2015-07-22"
+	"dateModified": "2018-07-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
+
 <section>
 	<h2>Purpose</h2>
 	<p>This component provides generic validation and error message handling for Web forms.</p>
+	<p>The <a href="#MergeSCE">Merge Server-Client errors functionality</a> allows the merging of server error from an application with client errors .</p>
 </section>
 
 <section>
@@ -27,9 +29,15 @@
 
 <section>
 	<h2>Working example</h2>
+		<p>English:</p>
 	<ul>
-		<li><a href="../../../demos/formvalid/formvalid-en.html">English example</a></li>
-		<li><a href="../../../demos/formvalid/formvalid-fr.html">French example</a></li>
+		<li><a href="../../../demos/formvalid/formvalid-en.html">Form Validation</a></li>
+		<li><a href="../../../demos/formvalid/formvalid-server-en.html">Merge Server-Client Errors</a></li>
+	</ul>
+	<p>French:</p>
+	<ul lang="fr">
+		<li><a href="../../../demos/formvalid/formvalid-fr.html" hreflang="fr">Validation de formulaires</a></li>
+		<li><a href="../../../demos/formvalid/formvalid-server-fr.html" hreflang="fr">Fusion des erreurs Serveur-Client</a></li>
 	</ul>
 </section>
 
@@ -50,7 +58,10 @@
 		<li>Add <code>required="required"</code> to each mandatory form field
 			<pre><code>&lt;input id="fname1" name="fname1" type="text" required="required" /&gt;</code></pre>
 		</li>
-		<li><strong>Optional:</strong> For input fields, add one of the <a href="#config">configuration options</a> for specialized validation.</li>
+		<li><p><strong>Optional: </strong>For input fields, add one of these <a href="#SpecializedValidation">options</a> for specialized validation.</p></li>
+		<li><strong>Optional: </strong>For ASP validators add the following attributes to enable the <a href="#MergeSCE">Merge Server-Client errors functionality</a>
+			<p><code>Display="Dynamic" EnableClientScript="false" CssClass="label label-danger wb-server-error"</code></p>
+		</li>
 	</ol>
 </section>
 
@@ -103,7 +114,8 @@
 		</tbody>
 	</table>
 	<section>
-		<h3>Specialized validation</h3>
+
+		<h3 id="SpecializedValidation">Specialized validation</h3>
 		<p>Add specialized validation to an input field by applying the following options.</p>
 		<table class="table">
 			<thead>
@@ -258,6 +270,32 @@
 </section>
 
 <section>
+	<h3 id="MergeSCE">Merge Server-Client errors functionality</h3>
+	<p>If you want to concatenate the server errors with the client errors, add the following attributes to each ASP validator:</p>
+	<p><code>Display="Dynamic" EnableClientScript="false" CssClass="label label-danger wb-server-error"</code></p>
+	<p><Strong>Asp Validator examples:</strong></p>
+	<pre><code>&lt;asp:CustomValidator ID=&quot;TypeOfPrestationCv&quot; ErrorMessage = &quot;Your server error message&quot; ControlToValidate=&quot;TypeOfPrestation&quot; OnServerValidate=&quot;TypeOfPrestationCvServer&quot;
+<strong>Display=&quot;Dynamic&quot; EnableClientScript=&quot;false&quot; Cssclass=&quot;label label-danger wb-server-error&quot; runat=&quot;server&quot;&gt;&lt;/asp:CustomValidator&gt;</strong></code></pre>
+	<pre><code>&lt;asp:RequiredFieldValidator ID=&quot;TypeOfPrestationRfv&quot; ErrorMessage = &quot;Your server error message&quot; ControlToValidate=&quot;TypeOfPrestation&quot;
+<strong>Display=&quot;Dynamic&quot; EnableClientScript=&quot;false&quot; CssClass=&quot;label label-danger wb-server-error&quot; runat=&quot;server&quot;&gt;&lt;/asp:RequiredFieldValidator&gt;</strong></code></pre>
+
+	<p><Strong>ASP.Net Web Form Demo1 - Source Code on GitHub</strong></p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/Demo1.aspx">Demo1.aspx</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/Demo1.aspx.cs">Demo1.aspx.cs</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbDisplayErrors.ascx">wbDisplayErrors.ascx (When Javascript is disabled)</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbDisplayErrors.ascx.cs">wbDisplayErrors.ascx.cs</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbCheckBoxList.ascx">wbCheckBoxList.ascx</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbCheckBoxList.ascx.cs">wbCheckBoxList.ascx.cs</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbRadioButtonList.ascx">wbRadioButtonList.ascx</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/wbRadioButtonList.ascx.cs">wbRadioButtonList.ascx.cs</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/Resources.resx">Resources.resx</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/Resources.fr.resx">Resources.fr.resx</a></li>
+		<li><a href="https://github.com/wet-boew/asp.net-formvalid-serverside/blob/master/Demo-Asp.Net-Web-Form-C%23/Common.js">Common.js</a></li>
+	</ul>
+</section>
+
+<section>
 	<h2>Events</h2>
 	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
@@ -301,4 +339,5 @@
 	<h2>Source code</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/formvalid">Form validation source code on GitHub</a></p>
 </section>
+
 </div>
