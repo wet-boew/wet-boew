@@ -238,12 +238,32 @@ var componentName = "wb-feeds",
 	corsEntry = function( xmlDoc, limit ) {
 		var arr_entry = [],
 			corsObj = {},
-			limit = limit,
 			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
 			jsonObj = JSON.parse( jsonString ),
-			i, iCache;
+			i, iCache,
+			feedLength;
+
+		// check that the feed is not empty
+		if ( jsonObj.feed.entry === undefined ) {
+			feedLength = 0;
+		} else {
+
+			// when there is only one item in the feed, by default, it is not in an array.
+			// let's check for that case and wrap that object in an array
+			if ( jsonObj.feed.entry.constructor !== Array ) {
+				jsonObj.feed.entry = [ jsonObj.feed.entry ];
+			}
+
+			feedLength = jsonObj.feed.entry.length;
+		}
+
+		// when limit is 0, show all feed entries since when there is no set limit, the default value is 0,
+		// otherwise, set the limit to the length of the feed
+		limit = ( limit === 0 || limit > feedLength ) ? feedLength : limit;
+
 		for ( i = 0; i < limit; i++ ) {
 			iCache = jsonObj.feed.entry[ i ];
+
 			corsObj = {
 				title: iCache.title[ "#text" ],
 				link: iCache.id[ "#text" ],
