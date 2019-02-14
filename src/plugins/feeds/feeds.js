@@ -258,7 +258,7 @@ var componentName = "wb-feeds",
 		}
 
 		// when limit is 0, show all feed entries since when there is no set limit, the default value is 0,
-		// otherwise, set the limit to the length of the feed
+		// otherwise, set the limit to the length of the feed if the limit is greater than the feed length
 		limit = ( limit === 0 || limit > feedLength ) ? feedLength : limit;
 
 		for ( i = 0; i < limit; i++ ) {
