@@ -8,123 +8,91 @@
 }
 ---
 
-<div lang="fr">
-	<p>(Certaines sections suivantes nécessite une traduction)</p>
-
 <section class="alert alert-info">
-	<h2>Changement apporté du contrôle des version à WET-BOEW et GCWeb.</h2>
-
-	<p><strong>En vigueur:</strong> <time datetime="2019-02-11">11 février 2019</time></p>
-
+	<h2>Changes in WET-BOEW and GCWeb Version Monitoring</h2>
+	<p><strong>Effective on:</strong> February 11, 2019</p>
 	<ul>
-		<li>Le contrôle des versions se fait selon <a href="https://semver.org/lang/fr/">la gestion sémantique de version</a></li>
-		<li>Le numéro de version du projet de la WET-BOEW diffère légèrement tel que définie par la gestion sémantique de version, avec l'ajout d'un suffixe numérique représentant l'architecture tel que décris ci-dessous.</li>
-		<li>Le numéro de version de la WET-BOEW est maintenant indépendant du numéro de version du thème GCWeb (Canada.ca).</li>
+		<li>Version monitoring is done according to the <a href="https://semver.org/">Semantic Versioning</a></li>
+		<li>The WET-BOEW project version number is slightly different, as defined by the Semantic Versioning, with the addition of a numerical suffix representing the architecture, as described below.</li>
+		<li>The WET-BOEW version number is now independent from the GCWeb (Canada.ca) theme&rsquo;s version number.</li>
 	</ul>
-
-	<p>Cette nouvelle définition est applicable pour la version et toutes les version subséquente de :</p>
+	<p>This new definition applies to the version and to all subsequent versions of:</p>
 	<ul>
-		<li>WET-BOEW, version 4.0.30</li>
-		<li>GCWeb (Canada.ca), version 5.0</li>
+		<li>WET-BOEW, version&nbsp;4.0.30</li>
+		<li>GCWeb (Canada.ca), version&nbsp;5.0</li>
 	</ul>
-
 </section>
-
-<h2>Sommaire de la gestion sémantique de version</h2>
-
+	<h2>Semantic Versioning Summary</h2>
 <div class="well well-lg">
-	<p>Étant donné un numéro de version <strong>Majeur.Mineur.Correctif</strong>, il faut incrémenter :</p>
-
+	<p>Given a version number <strong>Major.Minor.Patch</strong>, increment the:</p>
 	<ol>
-		<li>le numéro de version <strong>Majeur</strong> quand il y a des changements non rétrocompatibles,</li>
-		<li>le numéro de version <strong>Mineur</strong> quand il y a des ajouts de fonctionnalités rétrocompatibles,</li>
-		<li>le numéro de version de <strong>Correctif</strong> quand il y a des corrections d’anomalies rétrocompatibles</li>
+		<li><strong>Major</strong> version number when you make incompatible API changes;</li>
+		<li><strong>Minor</strong> version number when you add a feature in a backwards-compatible manner; and</li>
+		<li><strong>Patch</strong> version number when you make backwards compatible bug fixes.</li>
 	</ol>
-	<p>Des libellés supplémentaires peuvent être ajoutés pour les versions de pré-livraison et pour des méta-données de construction sous forme d’extension du format <strong>Majeur.Mineur.Correctif</strong>.</p>
+	<p>Additional labels for pre-release and build metadata are available as extensions to the <strong>Major.Minor.Patch</strong> format.</p>
 </div>
-
-<p>Consulter la version intégrale du document de <a href="https://semver.org/lang/fr/">gestion sémantique de version 2.0.0</a> plus de plus ample details.</p>
-
-<h3>Variante pour le produit WET-BOEW de la gestion sémantique de version</h3>
-
-<p>Cette définition s'applique seulement au produit créer à partir des sources: <a href="https://github.com/wet-boew/wet-boew">https://github.com/wet-boew/wet-boew</a> et elle est passiblement compatible avec toutes les versions antérieur à v4.0.29.1 publié sous l'identifiant "4.x".</p>
-
-<p>Cette variante inclus l'ajout d'un suffixe numérique afin d'identifier la version architecturale du produit.</p>
-
-<p>Par example, la version 4.0.29.1</p>
-<ul class="list-none">
+<p>See the full version of the <a href="https://semver.org/">Semantic Versioning 2.0.0</a> document for more detailed information.</p>
+<h3>Semantic Versioning WET-BOEW product variant</h3>
+<p>This definition applies only to the product created from the sources: <a href="https://github.com/wet-boew/wet-boew">https://github.com/wet-boew/wet-boew</a> and it is probably compatible with all other versions before v4.0.29.1 published under the identifier&nbsp;«&nbsp;4.x&nbsp;»</p>
+<p>This variant includes the addition of a numerical suffix in order to identify the product&rsquo;s architectural version.</p>
+<p>For example, version&nbsp;4.0.29.1</p>
+<ul>
 	<li><strong>Architecture:</strong> 4</li>
-	<li><strong>Majeur:</strong> 0</li>
-	<li><strong>Mineur:</strong> 29</li>
-	<li><strong>Correctif:</strong> 1</li>
+	<li><strong>Major:</strong> 0</li>
+	<li><strong>Minor:</strong> 29</li>
+	<li><strong>Patch:</strong> 1</li>
 </ul>
-
 <details>
-	<summary>Consulter les details de cette variante</summary>
-
-	<p>Étant donné un numéro de version <strong>Architecture.Majeur.Mineur.Correctif</strong>, il faut incrémenter :</p>
-
+	<summary>See this variant&rsquo;s details.</summary>
+	<p>Given version number <strong>Architecture.Major.Minor.Patch</strong>, increment the:</p>
 	<ol>
-		<li>le numéro de version <strong>Architecture</strong> quand l'API interne, tel que l'emboîtement des plugiciel, ou quand la méthodolgie d'intégration interne et externe au produit ont des changements non rétrocompatibles,</li>
-		<li>le numéro de version <strong>Majeur</strong> quand il y a des changements non rétrocompatibles,</li>
-		<li>le numéro de version <strong>Mineur</strong> quand il y a des ajouts de fonctionnalités rétrocompatibles,</li>
-		<li>le numéro de version de <strong>Correctif</strong> quand il y a des corrections d’anomalies rétrocompatibles</li>
+		<li><strong>Architecture</strong> version number when the internal API, such as plug-in interlacing, or the internal and external product integration methodology have non-backwards-compatible changes;</li>
+		<li><strong>Major</strong> version number when you make backwards-compatible feature changes;</li>
+		<li><strong>Minor</strong> version number when you add backwards-compatible features; and</li>
+		<li><strong>Patch</strong> version number when you make backwards-compatible bug fixes.</li>
 	</ol>
-	<p>Des libellés supplémentaires peuvent être ajoutés pour les versions de pré-livraison et pour des méta-données de construction sous forme d’extension du format ARCHITECTURE.MAJEURE.MINEURE.CORRECTIF.</p>
-
+	<p>Additional labels for pre-release and build metadata are available as extensions to the Architecture.Major.Minor.Patch format.</p>
 	<section class="well">
-		<h4>Changement apporté à la spécification (Applicable seulement à WET-BOEW core)</h4>
-
-		<p>Outre les changements ci-dessous, le reste de la spécification reste intacte.</p>
-
-		<p>Modification de la disposition numéro 2 comme suit:</p>
+		<h4>Semantic Versioning Specification Change (applicable only to WET-BOEW.Core)</h4>
+		<p>In addition to the changes below, the rest of the specifications remains	untouched.</p>
+		<p>Changes to provision&nbsp;2 include the following:</p>
 		<div class="well">
-			<p>2. Un numéro de version standard <strong>doit</strong> prendre la forme A.X.Y.Z où A, X, Y et Z sont des entiers non négatifs et <strong>ne doivent pas</strong> être préfixés par des zéros. A représente l'identifiant de la version architecturale, X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de correction. Chaque élément DOIT s’incrémenter numériquement. Exemple : 2.1.9.0 -> 2.1.10.0 -> 2.1.11.0 -> 3.0.0.1.</p>
+			<p>2. A normal version number <strong>Must</strong> be on <strong>A.X.Y.Z </strong>format, where <strong>A</strong>, <strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> are non-negative integers, and <strong>Must Not</strong> contain leading zeroes. <strong>A</strong> is the architectural version, <strong>X</strong> is	the major version, <strong>Y</strong> is the minor version, and <strong>Z</strong> is the patch version. Each element <strong>Must</strong> increase numerically. For instance: 2.1.9.0 -&gt; 2.1.10.0 -&gt; 2.1.11.0 -&gt; 3.0.0.1.</p>
 		</div>
-
-		<p>Ajout d'une disposition numéro 8-1 à être inséré aprés la disposition 8 et ce lit comme suit:</p>
+		<p>Provision&nbsp;8-1 must be added after provision&nbsp;8, and it should read as follows:</p>
 		<div class="well">
-			<p>8-1. L’identifiant de version architecturale A (A.x.y.z | A > 0) <strong>doit</strong> être incrémenté si des changements non rétrocompatibles sont introduits pour l'emboîtement des plugiciel ou pour la méthodolgie d'intégration interne et externe du produit. Cela <strong>peut</strong> inclure dans le même temps des changements majeurs, mineurs et des corrections. Les identifiants de version majeur, mineure et de correction <strong>doivent</strong> être remis à zéro quand l’identifiant de version architecturale est incrémenté.</p>
+			<p>8-1. The architectural version identifier A (A.X.Y.Z | A &gt; 0) <strong>Must</strong> be incremented if non-backwards-compatible changes are introduced for plug-in interlacing or for internal and external product integration methodology. This <strong>May</strong> include at the same time major, minor, and patch changes. Major, minor, and	patch version identifiers <strong>Must</strong> be set to zero when the architectural version identifier is incremented.</p>
 		</div>
 	</section>
 </details>
-
-<h2>API publique</h2>
-
-<p>L'API publique pour chaque plugiciel est définie par la <a href="https://wet-boew.github.io/wet-boew-documentation/decision/3.html" hreflang="en">décision de conception #3</a> (en anglais seulement).</p>
-
-<p>L'API publique pour la WET-BOEW et pour GCWeb est définie commme qu'il suit:</p>
-
+<h2>Public API</h2>
+<p>Each	plug-in&rsquo;s public API is defined by the <a href="https://wet-boew.github.io/wet-boew-documentation/decision/3.html">design decision #3</a>.</p>
+<p>The WET-BOEW and GCWeb public API is defined as follows:</p>
 <ul>
-	<li>Le balisage squelettique de la page (Gabarit)</li>
-	<li>Les styles limité au nom des classe CSS ou/et de structure HTML avec leur effet respectif indépendament de leur implementation.</li>
-	<li>L'emboîtement des plugiciels définie par la liste des fonctions et des variables fondamentaux utilsé par un ou des plugiciels.</li>
-	<li>L'ensemble des plugiciels avec leur version respectif duquel chaque plugiciel est définie comme:
-		<ul>
-			<li>Les fonctions javascripts</li>
-			<li>La structure de la configuration ainsi que du type de donnée pour chaques propriétés</li>
-			<li>Le balisage HTML representant les gabarits afin de concevoir l'interface utilisateur</li>
-			<li>Les éléments d'information essentiel au plugiciel</li>
-			<li>Les aspects visuels et la mise en forme (CSS) du plugiciel</li>
-			<li>Les termes (chaines de charactère) internationalisés utilisé par le plugiciel</li>
-		</ul>
-	</li>
-	<li>Les gabarits, les composantes et les variantes de ceux-ci sont définie par:
-		<ul>
-			<li>Le balisage HTML</li>
-			<li>La strucuture d'information</li>
-			<li>Les composantes qui à leur tour peuvent inclures les même éléments qu'un gabarit</li>
-			<li>Les aspects visuels et la mise en forme (CSS)</li>
-			<li>Les termes (chaines de charactère) internationalisés utilisé</li>
-		</ul>
-	</li>
+	<li>Structural page labels (Template);</li>
+	<li>Styles limited to CSS category names or HTML structure styles with their respective effect, regardless of their implementation;</li>
+	<li>Plug-in interlacing defined by the list of functions and essential variables used by one or more plug-ins;</li>
+	<li>The total plug-ins with their respective versions from which each plug-in is defined by:
+	<ul>
+		<li>JavaScript functions;</li>
+		<li>Configuration structure, as well as each property&rsquo;s type of data;</li>
+		<li>HTML labels representing templates for user interface design;</li>
+		<li>Key information for plug-ins;</li>
+		<li>Plug-in appearance and formatting (CSS); and</li>
+		<li>Internationalised terms used (character strings) by the plug-in.</li>
+		</ul></li>
+	<li>Their templates, components, and variants are defined by:
+	<ul>
+		<li>HTML labelling;</li>
+		<li>Structure information;</li>
+		<li>Components that in turn may include the same elements of a template;</li>
+		<li>Appearance and formatting (CSS); and</li>
+		<li>Internationalised terms used (character chains).</li>
+		</ul></li>
 </ul>
-
-</div>
-
 <section>
 	<h2>Versioning prior version 4.0.29.1</h2>
-
 	<h3>Major version (e.g, v3.1.x to v4.0.0)</h3>
 	<ul>
 		<li>Typical risk of things breaking: <strong>High</strong></li>
