@@ -192,7 +192,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	$datatable.search( "" ).columns().search( "" );
 
 	// Lets loop throug all options
-	var $value = "", $lastColumn = -1;
+	var $value = "", $lastColumn = -1, $startDate = "1800-01-01", $endDate = "2100-01-31";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
 			$column = parseInt( $elm.attr( "data-column" ), 10 );
@@ -209,6 +209,34 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 				$value += ( $value.length > 0 ) ? "|" : "";
 				$value += $elm.val();
 			}
+		} else if ( $elm.is( "input[type='date']" ) && $elm.val() ) {
+			if ( $elm.is( "[name*='start']" ) ) {
+				$startDate = $elm.val();
+			} else if ( $elm.is( "[name*='end']" ) ) {
+				$endDate = $elm.val();
+			}
+
+			var $filteredData = $datatable.column( $column ).data().filter( function( obj ) {
+				var date1 = new Date( $startDate ),
+					date2 = new Date( $endDate ),
+					objDate = new Date( obj );
+
+				if ( !isValidDate( date1 ) || !isValidDate( date2 ) || !isValidDate( objDate ) ) {
+					return;
+				}
+
+				date1.setDate( date1.getDate() + 1 );
+				date2.setDate( date2.getDate() + 1 );
+
+				date1.setHours( 0, 0, 0, 0 );
+				date2.setHours( 23, 59, 59, 999 );
+				objDate.setHours( 0, 0, 0, 0 );
+
+				return ( objDate >= date1 && objDate <= date2 );
+			} );
+
+			var data = $filteredData.join( "|" );
+			$value = ( data ) ? data : "9999-99-99";
 		} else {
 			$value = $elm.val();
 		}
@@ -236,6 +264,11 @@ $document.on( "click", ".wb-tables-filter [type='reset']", function( event ) {
 
 	return false;
 } );
+
+// Used to check if browser supports the date format being used
+function isValidDate( date ) {
+	return date instanceof Date && !isNaN( date );
+}
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

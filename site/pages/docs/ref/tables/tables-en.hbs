@@ -30,12 +30,24 @@
 
 <section>
 	<h2>How to implement</h2>
-	<ol>
-		<li>Add class <code>wb-tables</code> to the table tag of the table you wish to enhance.</li>
-		<li>Modify the default configuration by passing a JSON array through the <code>data-wb-tables</code> attribute of the table tag.
-			<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
-		</li>
-	</ol>
+
+	<section>
+		<h3>DataTables</h3>
+		<ol>
+			<li>Add class <code>wb-tables</code> to the table tag of the table you wish to enhance.</li>
+			<li>Modify the default configuration by passing a JSON array through the <code>data-wb-tables</code> attribute of the table tag.</li>
+		</ol>
+		<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Date Range Filters</h3>
+		<p>Allows a table to be filter with a date range.</p>
+		<ol>
+			<li>To use make sure any date element contains <code>start</code> or <code>end</code> in the name attribute. Examples <code>name="start_date"</code> or <code>name="date_start"</code></li>
+		</ol>
+		<pre><code>&lt;input type="date" class="form-control" id="start_date" name="start_date" data-column="1"/&gt;</code></pre>
+	</section>
 </section>
 
 <section>
