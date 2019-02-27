@@ -22,10 +22,22 @@ var componentName = "wb-geomap",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, modeJS;
+			$elm, $map, $leg, modeJS;
 
 		if ( elm ) {
 			$elm = $( elm );
+			$map = $elm.find( ".wb-geomap-map" );
+			$leg = $elm.find( ".wb-geomap-legend" );
+
+			// Initialize the map height for the loader
+			$map.height( $map.width() * 0.8 );
+			$map.append( "<div class='geomap-progress'><span class='wb-inv'>" + wb.i18n( "load" ) + "</span></div>" );
+			$leg.append( "<div class='skeleton-lgnd-1'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div class='skeleton-lgnd-2'><span class='skeleton-lgnd-3'></span></div>" +
+					"<div  class='skeleton-lgnd-1'><span class='skeleton-lgnd-3'></span></div>" );
+
 			modeJS = wb.getMode() + ".js";
 
 			Modernizr.load( [ {
@@ -33,7 +45,7 @@ var componentName = "wb-geomap",
 				// For loading multiple dependencies
 				both: [
 					"site!deps/proj4" + modeJS,
-					"site!deps/OpenLayers" + modeJS,
+					"site!deps/ol" + modeJS,
 					"site!deps/geomap-lib" + modeJS
 				],
 				complete: function() {

@@ -578,14 +578,6 @@ module.exports = (grunt) ->
 				map: "src/plugins/share/assets/sprites_share.png"
 				staticImagePath: '#{$wb-assets-path}'
 				output: "scss"
-			geomap:
-				src: [
-					"src/plugins/geomap/sprites/*.png"
-				]
-				css: "src/plugins/geomap/sprites/_sprites_geomap.scss"
-				map: "src/plugins/geomap/assets/sprites_geomap.png"
-				staticImagePath: '#{$wb-assets-path}'
-				output: "scss"
 
 		lintspaces:
 			all:
@@ -1177,6 +1169,14 @@ module.exports = (grunt) ->
 					cwd: "src/plugins"
 					src: [
 						"**/deps/*.js"
+					]
+					dest: "<%= coreDist %>/js/deps"
+					expand: true
+					flatten: true
+				,
+					cwd: "node_modules"
+					src: [
+						"openlayers/dist/ol.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true

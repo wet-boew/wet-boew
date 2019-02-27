@@ -1,25 +1,36 @@
 ---
 {
-	"title": "Géocarte",
+	"title": "GÃ©ocarte",
 	"language": "fr",
 	"category": "Plugiciels",
 	"categoryfile": "plugins",
-	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
+	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplÃ©mentaires peuvent Ãªtre superposÃ©es.",
 	"altLangPrefix": "geomap",
-	"dateModified": "2014-10-28"
+	"dateModified": "2017-11-30"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
+
+<ul>
+	<li><a href="#purpose">Purpose</a></li>
+	<li><a href="#use-when">Use when</a></li>
+	<li><a href="#working-example">Working example</a></li>
+	<li><a href="#how-to-implement">How to implement</a></li>
+	<li><a href="#events">Events</a></li>
+	<li><a href="#upgrade-notes">Upgrade Notes for v4.0.31</a></li>
+	<li><a href="#source-code">Source code</a></li>
+</ul>
+
 <section>
-	<h2>Purpose</h2>
+	<h2 id="purpose">Purpose</h2>
 	<p>Displays a map over which information from additional sources can be overlaid.</p>
 </section>
 
 <section>
-	<h2>Use when</h2>
+	<h2 id="use-when">Use when</h2>
 	<ul>
 		<li>You want to display a dynamic map with data overlays</li>
 		<li>You want to display a static map</li>
@@ -27,17 +38,20 @@
 </section>
 
 <section>
-	<h2>Working example</h2>
+	<h2 id="working-example">Working example</h2>
 	<ul>
 		<li><a href="../../../demos/geomap/geomap-en.html">English example</a></li>
 		<li><a href="../../../demos/geomap/geomap-fr.html">French example</a></li>
+		<li><a href="../../../demos/geomap/geomap-v4.0.30-en.html">On and prior v4.0.30 - English example</a></li>
+		<li><a href="../../../demos/geomap/geomap-v4.0.30-fr.html">On and prior v4.0.30 - French example</a></li>
+
 	</ul>
 </section>
 
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
-	<h2>How to implement</h2>
+	<h2 id="how-to-implement">How to implement</h2>
 	<ol>
 		<li>Add a <code>div</code> element with <code>class="wb-geomap"</code> and assign it a unique <code>id</code>.
 		<li>Add <code>div</code> with <code>class="wb-geomap-map"</code> to the <code>div</code> created in step 1 where you want the map to be rendered.</li>
@@ -111,7 +125,7 @@
 		<div class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</div>
 		<section>
 			<h4>Configuration using <code>data-wb-geomap</code> attribute on plugin element</h4>
-			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
+			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote datasource.</p>
 			<table class="table">
 				<thead>
 					<tr>
@@ -182,27 +196,34 @@
 							<pre><code>&lt;input type="hidden" id="geomap-aoi-extent-1" value="553816,1951915,2188045,3573694"&gt;
 &lt;input type="hidden" id="geomap-aoi-extent-lonlat-1" value="-73, 65, -39, 76"&gt;</code></pre>
 							<p>Access the values of the hidden fields by attaching a listener to the "change" event.</p>
-							<pre><code>wb.doc.on( "geomap.ready", function( event, maps ) {
+							<pre><code>var $document = wb.doc, mapSample;
 
-	var myMap = maps.mygeomap,
-		$aoiExtent = $( "#geomap-aoi-extent-" + myMap.uniqueId ),
-		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + myMap.uniqueId ), bbox, bboxProj;
+$document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 
-	$aoiExtent.on( "change", function() {
-		bbox = $( this ).val() ); // in map projection
-		// do something
-	} );
+	// Get the sample_map to use in zoomFeature function
+	mapSample = map;
+	var $aoiExtent = $( "#geomap-aoi-extent-" + mapSample.id ),
+		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.id );
 
-	$aoiExtentLonLat.on("change", function() {
-		bboxLonLat = $( this ).val() ); // in longitude/latitude
-		// do something
-	} );
+	if ( $aoiExtent ) {
 
-});
-							</code></pre><p>Le widget "zone d'intérêt" peut être configuré de sorte qu'il est activé par défaut en définissant, dans le module d'extension, la propriété <code>data-wb-geomap</code> à "false"</p>
+		$aoiExtent.on( "change", function() {
+			console.log( "BBox: " + $( this ).val() );
+		} );
+
+		$aoiExtentLonLat.on( "change", function() {
+			console.log( "BBox LonLat: " + $( this ).val() );
+		} );
+	}
+} );</code></pre>
+							<p>The AOI widget can be configured (v4.0.11+) so that it is enabled by default by setting the <code>toggle</code> property to false using the <code>data-wb-geomap</code> attribute on plugin element.</p>
 							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false } ... }'&gt; ... &lt;/div&gt;</code></pre>
-							<p>Le widget "zone d'intérêt" peut être configuré avec une étendue initiale en définissant, dans le module d'extension, la propriété <code>extent</code> de l'attribut <code>data-wb-geomap</code>.</p>
+							<p>The AOI widget can be configured(v4.0.11+) with an initial extent by setting the <code>extent</code> property using the <code>data-wb-geomap</code> attribute on plugin element.</p>
 							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false, , "extent": "-57, 46, -51, 50" } ... }'&gt; ... &lt;/div&gt;</code></pre></td>
+					</tr>
+					<tr>
+						<td><code>aoi-open</code></td>
+						<td>If present, the area-of-interest (AOI) widget will rendered inside a panel instead of being rendered inside an expand/collapse.</td>
 					</tr>
 					<tr>
 						<td><code>geocoder</code></td>
@@ -223,10 +244,6 @@
 					<tr>
 						<td><code>static</code></td>
 						<td>If present, the widgets (pan, zoom, select, etc.) will not be added to the map. This is useful for scenarios where a simple map with one or more features is required to communicate some value or idea (e.g. an extent map for a data product).</td>
-					</tr>
-					<tr>
-						<td><code>tab</code></td>
-						<td>If present, a tab control will be added to the page where feature tables can be added. Note that an overlay configuration would need to specify that it is to be placed in a tab control.</td>
 					</tr>
 				</tbody>
 			</table>
@@ -262,7 +279,7 @@
 					<td>Yes</td>
 					<td>String</td>
 					<td>''</td>
-					<td>The type of data source. Note that this must be 'wms'.</td>
+					<td>The type of datasource. Note that this must be 'wms'.</td>
 				</tr>
 				<tr>
 					<td><code>url</code></td>
@@ -334,7 +351,7 @@
 
 	<section>
 		<h3>Adding feature overlays</h3>
-		<p>Overlays can be generated from page markup (i.e. HTML tables) or from external sources (e.g. feeds, KML, web API's).
+		<p>Feature overlays can be generated from page markup (i.e. HTML tables) or from external sources (e.g. feeds, KML, web API's).
 
 		<section>
 			<h4>Adding features from an HTML table in the page</h4>
@@ -353,7 +370,7 @@
 			<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
 			<section>
 				<h5>WKT examples</h5>
-				<pre><code>&lt;tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
+				<pre><code>&lt;tr data-geometry="POINT (-114.05879 1.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
 				<pre><code>&lt;tr data-geometry="LINESTRING (30 10, 10 30, 40 40)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
 				<pre><code>&lt;tr data-geometry="POLYGON ((30 10, 10 20, 20 40, 40 40, 30 10))" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
 				<p>Other geometry types are supported. See <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text</a> for more examples.</p>
@@ -376,14 +393,14 @@
 		&lt;/tr&gt;
 	&lt;/thead&gt;
 	&lt;tbody&gt;
-		&lt;tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt"&gt;
+		&lt;tr data-geometry="POINT (-79.3847 43.6476)" data-type="wkt"&gt;
 			&lt;td&gt;1&lt;/td&gt;
 			&lt;td class="select"&gt;
 				&lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt;
 			&lt;/td&gt;
 			&lt;td&gt;2615060&lt;/td&gt;
 		&lt;/tr&gt;
-		&lt;tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt"&gt;
+		&lt;tr data-geometry="POINT (-73.56123 45.52927)" data-type="wkt"&gt;
 			&lt;td&gt;2&lt;/td&gt;
 			&lt;td class="select"&gt;
 				&lt;a href="../Montreal" title="Montreal"&gt;Montreal&lt;/a&gt;
@@ -399,7 +416,7 @@
 		</section>
 
 		<section>
-			<h4>Adding features from external data sources via a configuration file</h4>
+			<h4>Adding features from external datasources via a configuration file</h4>
 			<h5>Steps:</h5>
 			<ol>
 				<li>Create a Javascript configuration file and save it to a web accessible directory (e.g. "data/config-en.js").</li>
@@ -423,7 +440,7 @@ var wet_boew_geomap = {
 		</section>
 
 		<section>
-			<h4>Overlay configuration options</h4>
+			<h4>Feature overlay configuration options</h4>
 			<table class="table">
 				<thead>
 					<tr>
@@ -492,32 +509,39 @@ var wet_boew_geomap = {
 						<td>An OpenLayers style object. Unique and rule based styles are supported. Note that Geomap will assign a default style if none is provided. However, the default color combination may not have the contrast required to meet WCAG guidelines. Therefore, a style should be configured before going into production.</td>
 					</tr>
 					<tr>
-						<td><code>tab</code></td>
+						<td><code>tooltips</code> (v4.0.31+)</td>
 						<td>Yes</td>
 						<td>Boolean</td>
 						<td>''</td>
-						<td>If true, the feature table will be rendered in a tab control.</td>
+						<td>If true, feature tooltips will be displayed.</td>
+					</tr>
+					<tr>
+						<td><code>tooltipText</code> (v4.0.31+)</td>
+						<td>Yes</td>
+						<td>String</td>
+						<td>''</td>
+						<td>The name of the attribute field where tooltip text will be taken from.</td>
 					</tr>
 					<tr>
 						<td><code>title</code></td>
 						<td>Yes</td>
 						<td>String</td>
 						<td>''</td>
-						<td>The title of the overlay to be displayed in the legend, tabs (if configured) and/or the page.</td>
+						<td>The title of the overlay to be displayed in the legend, table, and/or the page.</td>
 					</tr>
 					<tr>
 						<td><code>type</code></td>
 						<td>Yes</td>
 						<td>String</td>
 						<td>''</td>
-						<td>The type of datasource for the overlay. Must be one of: atom, kml, json, geojson, georss.</td>
+						<td>The type of datasource for the overlay. Must be one of: kml, json, geojson, wms, topojson (v4.0.31+), esrijson (v4.0.31+).</td>
 					</tr>
 					<tr>
 						<td><code>url</code></td>
 						<td>Yes</td>
 						<td>String</td>
 						<td>''</td>
-						<td>The url of the data source. For example 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst'.</td>
+						<td>The url of the datasource. For example 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst'.</td>
 					</tr>
 					<tr>
 						<td><code>visible</code></td>
@@ -537,7 +561,7 @@ var wet_boew_geomap = {
 			</table>
 
 			<section>
-				<h4>Overylay configuration example</h4>
+				<h4>Feature overylay configuration example</h4>
 				<pre><code>{
 	attributes: {
 		location_desc: 'Location',
@@ -560,6 +584,8 @@ var wet_boew_geomap = {
 	zoom:  true
 }</code></pre>
 			</section>
+
+
 
 		<section>
 			<h4>Style configuration options</h4>
@@ -644,6 +670,55 @@ var wet_boew_geomap = {
 	</section>
 	</section>
 	<section>
+		<h3>Adding WMS Overlays (v4.0.11+)</h3>
+		<p>Geomap will not generate an HTML table of map features for WMS overlays. Consequently WMS overlays should only be used when feature based alternatives are not available as accessibility is severly compromised.</p>
+	<pre><code>
+{
+	title: "WMS Demo",
+	caption: "This is a sample WMS service loaded by Geomap.",
+	type: "wms",
+	url: "http://geo.weather.gc.ca/geomet/?Lang=E",
+	visible: false,
+	version: "1.1.1",
+	format: "image/png",
+	layers: "GDPS.ETA_PR",
+	transparent: true,
+	options: {
+		opacity: 0.5
+	}
+}
+	</code></pre>
+
+	<section>
+		<h4>WMS Legend</h4>
+		<p>Geomap supports both graphic and HTML legends. WMS overlay legends can be configured in the <code>options</code> property of the layer configuration.</p>
+		<section><h5>Graphic legend example:</h5>
+		<pre><code>...
+options: {
+	...
+	legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&amp;LAYERS=GDPS.ETA_PR&amp;VERSION=1.1.1&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;REQUEST=GetLegendGraphic&amp;STYLE=PRECIPMM"
+	...
+}
+...</code></pre>
+		</section>
+		<section><h5>HTML legend example:</h5>
+		<pre><code>...
+options: {
+	...
+	legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
+		"&lt;ul class='list-unstyled'&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#800000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;100.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#FF0000;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;50.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#FFA500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;20.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;li&gt;&lt;span style='background-color:#E5E500;display:inline-block;height:20px;width:20px'/&gt; &lt;small&gt;10.0&lt;/small&gt;&lt;/li&gt;" +
+		"&lt;/ul&gt;"
+	...
+}
+...</code></pre>
+		</section>
+	</section>
+	</section>
+	<section>
 		<h3>Advanced Configuration</h3>
 		<p>Geomap provides developers with a hook to access the OpenLayers Map object. This can be useful if you have specific functionality that Geomap does not support out of the box. Geomap fires an event when it has loaded that you can attach a listener to.</p>
 		<p>Once Geomap has loaded, the OpenLayers Map object can be accessed as follows:</p>
@@ -680,11 +755,33 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 	});
 &lt;/script&gt;</code></pre>
 		</section>
+		<section>
+			<h4>v4.0.31+</h4>
+			<pre><code>// get the map object with id "mygeomap"
+$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+	var myMap = map; // return OpenLayers map object
+	// do something
+});</code></pre>
+			<p>Note the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing.</p>
+			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
+			<pre><code>&lt;script&gt;
+$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+	// Get the map to use in zoomFeature function
+	var myMap = map;
+	myMap.getView().setCenter( -75.70535, 45.3995 );
+
+	// if reprojection is needed
+	// myMap.getView().setCenter( ol.proj.transform( [ -75.70535, 45.3995 ], "EPSG:4326", "EPSG:3978" ) );
+
+	myMap.getView().setZoom( 5 );
+});
+&lt;/script&gt;</code></pre>
+		</section>
 	</section>
 </section>
 
 <section>
-	<h2>Events</h2>
+	<h2 id="events">Events</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -732,7 +829,18 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 </section>
 
 <section>
-	<h2>Source code</h2>
+	<h2 id="upgrade-notes">Upgrade Notes for v4.0.31</h2>
+	<p>Since WET 4.0.31 we updated geomap to use to OpenLayers v3.20.1. Existing configurations are supported with few exceptions. OpenLayers 3 was a complete rewrite of the library and as such any interactions with the OpenLayers Map Object in your applications will need to be rewritten to use the <a href="https://openlayers.org/en/v3.20.1/apidoc/">OpenLayers v3.20.1 API</a>.</p>
+	<p>The following datasource formats are no longer supported.</p>
+	<ul>
+		<li>ATOM</li>
+		<li>GeoRSS</li>
+	</ul>
+	<p>WellKnownText POINT features with commas won't be supported in the future. Remove all commas in WellKnownText POINT features.</p>
+</section>
+
+<section>
+	<h2 id="source-code">Source code</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/geomap">Geomap plugin source code on GitHub</a></p>
 </section>
 </div>

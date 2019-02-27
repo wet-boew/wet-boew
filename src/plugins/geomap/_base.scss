@@ -2,258 +2,96 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
 */
-@import "sprites/sprites_geomap";
 
 %geomap-overflow-cursor-move {
-	cursor: move;
+	cursor: move
 }
 
 %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1 {
 	background-color: #fff;
 	font-size: .01em;
 	opacity: .5;
-	position: absolute;
+	position: absolute
 }
 
 %geomap-locate-bg-size {
-	background-size: 33px auto;
+	background-size: 33px auto
 }
 
-/**
- * Openlayer pan zoom bar button
- */
-.olButton {
-	height: 33px;
-	width: 33px;
-
-	img {
-		float: left;
-		height: 33px;
-		left: 0;
-		margin: 0;
-		top: 0;
-		width: 33px;
-	}
+.ol-overlay-container {
+	z-index: 1000
 }
 
-.olControlzoomin {
-	left: 15px;
-	top: 10px;
-}
-
-.olControlzoomout {
-	left: 15px;
-	top: 43px;
-}
-
-.olControlzoomworld {
-	left: 15px;
-	top: 83px;
-}
-
-.olPanelGeolocate {
-	left: 19px;
-	top: 127px;
-
-	button {
-		border: 0;
-		cursor: pointer;
-		height: 33px;
-		width: 33px;
-	}
-}
-
-.olButtonGeolocateItemActive {
-	@extend %_sprites_geomap_scss;
-	@extend %geomap-locate-bg-size;
-}
-
-.olButtonGeolocateItemInactive {
-	@extend %_sprites_geomap_scss;
-	@extend %geomap-locate-bg-size;
-	background-position: 0 -34px;
-}
-
-/*
- * When a potential text is bigger than the image it move the image
- * with some headers (closes #3154)
- */
-.olControlPanZoomBar {
-
-	div {
-		font-size: .01em;
-	}
-}
-
-.olMap {
-	cursor: default;
-	z-index: 0;
-}
-
-.olMapViewport {
-	text-align: left;
-}
-
-.olLayerDiv {
-	user-select: none;
-
-	img {
-		max-width: none !important;
-	}
-}
-
-.olControlMousePosition {
-	bottom: 5px;
+.ol-popup {
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,.2));
+	background-color: white;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	bottom: 12px;
+	box-shadow: 0 1px 4px rgba(0,0,0,.2);
 	display: block;
-	font-family: Arial;
+	filter: drop-shadow(0 1px 4px rgba(0,0,0,.2));
 	font-size: .75em;
-	left: 100px;
-	position: absolute;
+	left: -50px;
+	min-width: 250px;
+	padding: 15px;
+	position: absolute
 }
 
-.olControlScale {
-	bottom: 3em;
-	display: block;
-	font-size: .75em;
+.ol-popup:after, .ol-popup:before {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	pointer-events: none;
 	position: absolute;
-	right: 3px;
+	top: 100%;
+	width: 0
+}
+.ol-popup:after {
+	border-top-color: white;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px
 }
 
-.olControlScaleLine {
-	bottom: 15px;
-	display: block;
-	font-size: .65em;
-	left: 10px;
-	position: absolute;
+.ol-popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px
 }
 
-.olControlScaleLineBottom {
-	border: solid 2px #000;
-	border-bottom: 0;
-	margin-top: -2px;
+.ol-popup-closer {
+	color: #333;
+	font-family: Arial, Baskerville, monospace;
+	font-size: 24px;
+	font-weight: 700;
+	height: 28px;
+	line-height: 28px;
+	position: absolute;
+	right: 0;
 	text-align: center;
+	text-decoration: none;
+	top: 0;
+	width: 28px
 }
 
-.olControlScaleLineTop {
-	border: solid 2px #000;
-	border-top: 0;
-	text-align: center;
+.ol-popup-closer:link, .ol-popup-closer:visited, .ol-popup-closer:hover, .ol-popup-closer:active {
+	color: #333;
+	text-decoration: none
 }
 
-.olControlAttribution {
-	bottom: 5px;
-	font-size: .75em;
-	right: 5px;
-
-	p {
-		margin: 0;
-	}
+.popup-content h5 {
+	border-bottom: solid 1px #999;
+	color:#999;
+	font-size:1.0em;
+	margin:-5px 0px 5px 0px;
+	padding-bottom: 3px
 }
 
-.olHandlerBoxZoomBox {
-	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
-	border: 2px solid #f00;
-}
-
-.olHandlerBoxSelectFeature {
-	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
-	border: 2px solid #00f;
-}
-
-.olPopupCloseBox {
-	cursor: pointer;
-}
-
-.olFramedCloudPopupContent {
-	overflow: auto;
-	padding: 5px;
-}
-
-%olPopupMargin {
-	margin: 5px;
-}
-
-.olPopup {
-
-	h1 {
-		@extend %olPopupMargin;
-	}
-
-	h2 {
-		@extend %olPopupMargin;
-	}
-
-	h3 {
-		@extend %olPopupMargin;
-	}
-
-	h4 {
-		@extend %olPopupMargin;
-	}
-
-	h5 {
-		@extend %olPopupMargin;
-	}
-
-	h6 {
-		@extend %olPopupMargin;
-	}
-
-	p {
-		@extend %olPopupMargin;
-	}
-
-	ol {
-		@extend %olPopupMargin;
-	}
-
-	ul {
-		@extend %olPopupMargin;
-	}
-}
-
-.olControlNoSelect {
-	user-select: none;
-}
-
-.olImageLoadError {
-	display: none !important;
-}
-
-/**
- * Cursor styles
- */
-.olCursorWait {
-	cursor: wait;
-}
-
-.olDragDown {
-	@extend %geomap-overflow-cursor-move;
-}
-
-.olDrawBox {
-	cursor: crosshair;
-}
-
-.olControlDragFeatureOver {
-	@extend %geomap-overflow-cursor-move;
-}
-
-.olControlDragFeatureActive {
-	&.olControlDragFeatureOver {
-		&.olDragDown {
-			cursor: grabbing;
-		}
-	}
-}
-
-/**
- * Animations
- */
-.olLayerGrid {
-	.olTileImage {
-		transition: opacity .2s linear;
-	}
+.popup-content table th, .popup-content table td {
+	padding: 2px
 }
 
 /**
@@ -261,64 +99,65 @@
  */
 .wb-geomap-map {
 	outline: 1px solid #ccc;
+	overflow: hidden;
 	position: relative;
 
 	&.active {
-		outline-color: #07f;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+		outline-color: #66afe9
 	}
-}
-
-.wb-geomap-detail {
-	margin-bottom: 10px;
-	margin-top: 10px;
 }
 
 .geomap-legend-detail {
-	padding-top: 10px;
+	padding-top: 10px
+}
+
+.geomap-legend-element {
+	overflow: hidden;
+	width: 100%
 }
 
 .geomap-legend-symbol {
-	height: 18px;
-	margin: 5px;
-	width: 18px;
+	float: left;
+	margin-right: 5px
+}
+
+.geomap-legend-symbol-text {
+	display: inline-block;
+	line-height: 30px;
+	vertical-align: middle
 }
 
 .geomap-clear-format {
-	clear: both;
+	clear: both
 }
 
 .geomap-legend-label {
-	display: inline;
+	display: inline
 }
 
 .geomap-lgnd-layer {
-	margin-top: 20px !important;
+	margin-bottom: 10px !important;
+	margin-top: 0px !important
+}
+
+.geomap-lgnd > :last-child {
+	margin-bottom: 0px !important
 }
 
 .geomap-geoloc {
-	left: 70px;
-	position: absolute;
-	right: 70px;
-	top: 15px;
-	z-index: 10000;
+	background: transparent;
+	left: .25em;
+	top: .25em;
 
 	input {
 		&[type="text"] {
-			width: 80%;
+			border-color: #fff;
+			border-radius: 2px;
+			box-shadow: 1px 2px 4px #999;
+			width: 100%
 		}
-	}
-}
-
-button {
-	&.geomap-geoloc-aoi-btn {
-		background-color: #fff;
-		border-color: #eee;
-		box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
-		color: #666;
-		position: absolute;
-		right: 15px;
-		top: 15px;
-		z-index: 10000;
 	}
 }
 
@@ -326,14 +165,561 @@ button {
 	legend {
 		border: 0;
 		font-size: 1em;
-		margin-bottom: 1em;
+		margin-bottom: 1em
 	}
 
 	button {
 		&.geomap-geoloc-aoi-btn {
 			position: absolute;
 			right: 15px;
-			top: auto;
+			top: auto
 		}
 	}
+}
+
+.geomap-progress {
+	@extend %global-loading;
+}
+
+.geoloc-progress {
+
+	animation: {
+		duration: 500ms;
+		iteration-count: infinite;
+		name: spin;
+		timing-function: linear;
+	}
+
+	color: #333;
+	content: "\e031";
+	font: {
+		family: "Glyphicons Halflings";
+		size: 1em;
+	}
+
+	height: 1em;
+	line-height: 1.03;
+	width: 1em;
+	z-index: 2;
+}
+
+/* OL3 */
+
+.ol-geolocate {
+	bottom: 8em;
+	right: 1em
+}
+
+.ol-touch .ol-geolocate {
+	bottom: 1.5em;
+	right: .5em
+}
+
+.ol-mouse-position {
+	background: #fff;
+	background: rgba(255,255,255,.7);
+	border-radius: 2px;
+	bottom: 3em;
+	font-size: .75em;
+	left: .6666em;
+	min-width: 100px;
+	padding: 2px 6px 2px 6px;
+	position: absolute;
+	will-change: contents, width
+}
+
+.ol-mouse-position:before {
+	content: "\e062";
+	font-family: "Glyphicons Halflings";
+	margin-right: 3px
+}
+
+.ol-mouse-position-inner {
+	padding: 10px
+}
+
+.ol-mouse-position:empty {
+	display: none
+}
+
+.ol-touch .ol-mouse-position {
+	display: none
+}
+
+.ol-scale-line {
+	background: #fff;
+	background: rgba(255,255,255,.7);
+	border-radius: 2px;
+	bottom: .5em;
+	left: .5em;
+	padding: 2px;
+	position: absolute
+}
+
+.ol-touch .ol-scale-line {
+	display: none
+}
+
+.ol-scale-line-inner {
+	border: 1px solid #000;
+	border-top: none;
+	color: #000;
+	font-size: .75em;
+	margin: 1px;
+	text-align: center;
+	will-change: contents, width
+}
+
+.ol-overlay-container {
+	will-change: left, right, top, bottom
+}
+
+.ol-unsupported {
+	display: none
+}
+
+.ol-viewport .ol-unselectable {
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	user-select: none
+}
+
+.ol-control {
+	background-color: rgba(255,255,255,.4);
+	border-radius: 4px;
+	padding: 2px;
+	position: absolute
+}
+
+.ol-control:hover {
+	background-color: rgba(255,255,255,.4)
+}
+
+.ol-zoom {
+	bottom: 1.5em;
+	right: 1em
+}
+
+.ol-touch .ol-zoom {
+	display: none
+}
+
+.ol-rotate {
+	bottom: 1.5em;
+	right: 3.25em;
+	transition: opacity .25s linear, visibility 0s linear
+}
+
+.ol-rotate.ol-hidden {
+	opacity: 0;
+	transition: opacity .25s linear, visibility 0s linear .25s;
+	visibility: hidden;
+}
+
+.ol-zoom-extent {
+	bottom: 6em;
+	right: 1em
+}
+
+.ol-touch .ol-zoom-extent {
+	display: none
+}
+
+.ol-zoom-extent span.glyphicon {
+	top: 3px
+}
+
+.ol-full-screen {
+	right: .5em;
+	top: .5em
+}
+
+@media print {
+	.ol-control {
+		display: none
+	}
+}
+
+.ol-control button {
+	background-color: rgba(255,255,255,1.0);
+	border: none;
+	border-radius: 2px;
+	box-shadow: 1px 2px 4px #999;
+	color: #333;
+	display: block;
+	font-size: 1.14em;
+	font-weight: 700;
+	height: 1.5em;
+	line-height: .4em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	width: 1.5em
+}
+
+.ol-control button::-moz-focus-inner {
+	border: none;
+	padding: 0
+}
+
+.ol-zoom-extent button {
+	line-height: 1.4em
+}
+
+ol-geolocate button {
+	line-height: 1em
+}
+
+.ol-compass {
+	display: block;
+	font-size: 1.2em;
+	font-weight: 400;
+	will-change: transform
+}
+
+.ol-touch .ol-control button {
+	font-size: 1.5em
+}
+
+.ol-control button:focus, .ol-control button:hover {
+	text-decoration: none
+}
+
+.ol-zoom .ol-zoom-in {
+	border-bottom: solid 1px #999;
+	border-radius: 2px 2px 0 0
+}
+
+.ol-zoom .ol-zoom-out {
+	border-radius: 0 0 2px 2px
+}
+
+.ol-attribution {
+	background:rgba( 255,255,255,.7 );
+	border-radius: 2px 0 0;
+	bottom: 0;
+	line-height: .75em;
+	max-width: calc(80% - 1.3em);
+	right: 0;
+	text-align: right
+}
+
+.ol-attribution ul {
+	color: #333;
+	font-size: .75em;
+	margin: 0;
+	padding: .15em .25em;
+	text-shadow: 0 0 2px #fff
+}
+
+.ol-attribution li {
+	display: inline;
+	line-height: inherit;
+	list-style: none;
+
+	:after {
+		content: " ";
+	}
+
+	:last-child:after {
+		content: "";
+	}
+}
+
+.ol-attribution img {
+	max-height: 2em;
+	max-width: inherit
+}
+
+.ol-attribution a {
+	color: #333;
+	text-decoration: none
+}
+
+.ol-attribution a:visited, .ol-attribution a:active {
+	color: #333
+}
+
+.ol-attribution button, .ol-attribution ul {
+	display: inline-block
+}
+
+.ol-attribution.ol-collapsed ul {
+	display: none
+}
+
+.ol-attribution.ol-logo-only ul {
+	display: block
+}
+
+.ol-attribution.ol-uncollapsible {
+	border-radius: 4px 0 0;
+	bottom: 0;
+	height: 1.3em;
+	line-height: .75em;
+	right: 0;
+}
+
+.ol-attribution.ol-logo-only {
+	background: 0 0;
+	bottom: .4em;
+	height: 1.1em;
+	line-height: 1em
+}
+
+.ol-attribution.ol-uncollapsible img {
+	margin-top: -.2em;
+	max-height: 1.6em
+}
+
+.ol-attribution.ol-logo-only button, .ol-attribution.ol-uncollapsible button {
+	display: none
+}
+
+.ol-box {
+	border: 2px solid #2572b4;
+	border-radius: 2px;
+	box-sizing: border-box
+}
+
+.ol-dragbox {
+	border: 2px solid #ff0033;
+	border-radius: 2px;
+	box-sizing: border-box
+}
+
+.ol-overviewmap {
+	bottom: .5em;
+	left: .5em
+}
+
+.ol-overviewmap.ol-uncollapsible {
+	border-radius: 0 4px 0 0;
+	bottom: 0;
+	left: 0
+}
+
+.ol-overviewmap .ol-overviewmap-map, .ol-overviewmap button {
+	display: inline-block
+}
+
+.ol-overviewmap .ol-overviewmap-map {
+	border: 1px solid #7b98bc;
+	height: 150px;
+	margin: 2px;
+	width: 150px
+}
+
+.ol-overviewmap:not(.ol-collapsed) button {
+	bottom: 1px;
+	left: 2px;
+	position: absolute
+}
+
+.ol-overviewmap.ol-collapsed .ol-overviewmap-map, .ol-overviewmap.ol-uncollapsible button {
+	display: none
+}
+
+.ol-overviewmap:not(.ol-collapsed){
+	background:rgba(255,255,255,.8)
+}
+
+.ol-overviewmap-box {
+	border: 2px dotted rgba(0,60,136,.7)
+}
+
+.geomap-help-btn {
+	background-color: transparent;
+	right: .5em;
+	top: .5em
+}
+
+.geomap-help-btn:focus, .geomap-help-btn:hover {
+	background-color: transparent
+}
+
+.geomap-help-btn button {
+	background-color: #333;
+	border-radius: 50%;
+	color: #fff
+}
+
+.ol-touch .geomap-help-btn {
+	display: none
+}
+
+.geomap-help-dialog {
+	background-color: rgba(255,255,255,1);
+	height: auto;
+	margin: 10px;
+	padding: 0;
+	right: 0;
+	top: 0;
+	width: auto
+}
+
+.geomap-help-dialog {
+	background-color: rgba(255,255,255,1);
+	height: auto;
+	margin: 10px;
+	right: 0;
+	top: 0;
+	width: auto;
+
+	a.btn {
+		color: #333;
+		font-family: Arial, Baskerville, monospace;
+		font-size: 28px;
+		font-weight: 700;
+		height: 44px;
+		line-height: 44px;
+		padding: 0;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		text-decoration: none;
+		top: 0;
+		width: 44px
+	}
+}
+
+.geomap-help-dialog:hover {
+	background-color: rgba(255,255,255,1);
+}
+
+.tooltip-txt::after {
+	border-color: rgb(192, 192, 192) transparent transparent transparent;
+	border-style: solid;
+	border-width: 5px;
+	content: " ";
+	left: 50%;
+	margin-left: -5px;
+	position: absolute;
+	top: 100%
+}
+
+.tooltip-txt {
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2));
+	background: rgb(192, 192, 192);
+	border: solid 1px rgb(192, 192, 192);
+	border-radius: 5px;
+	bottom: 100%;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+	color: rgb(51, 51, 51);
+	cursor: default;
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2));
+	font-size: .80em;
+	left: 50%;
+	margin-left: -60px;
+	padding: 5px 0;
+	position: absolute;
+	text-align: center;
+	width: 120px
+}
+
+%datalist-height {
+	max-height: 15em;
+}
+
+.wb-geomap-geoloc-al-cnt {
+	@extend %datalist-height;
+	border: 1px solid transparent;
+	left: 0;
+	margin-top: 0;
+	position: absolute;
+	z-index: 50;
+
+	.wb-geomap-geoloc-al {
+		@extend %datalist-height;
+		-webkit-overflow-scrolling: touch; // mobile safari
+		background: #fff;
+		border: solid 1px #ccc;
+		border-top: 0;
+		font-size: .9em;
+		list-style-type: none;
+		overflow-y: scroll;
+		padding: 0;
+
+		li {
+			border-bottom: solid 1px #ccc
+		}
+
+		li:last-of-type {
+			border-bottom: 0
+		}
+
+		a {
+			color: #333;
+			display: block;
+			padding: 5px 5px;
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				background: #666;
+				color: #fff
+			}
+
+			span.glyphicon {
+				color: #ccc;
+				margin-right: 5px
+			}
+		}
+	}
+}
+
+.glyphicon-spin {
+	-webkit-animation: spin 1000ms infinite linear;
+	animation: spin 1000ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+@keyframes spin {
+
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+.skeleton-lgnd-1 {
+	background-color: #f5f5f5;
+	height: 25px;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.skeleton-lgnd-2 {
+	background-color: #f5f5f5;
+	height: 25px;
+	margin: 20px 0 20px 0;
+	width: 100%;
+}
+
+.skeleton-lgnd-3 {
+	background-color: #fff;
+	display: block;
+	height: 25px;
+	margin-left: 25px;
+	width: 15px;
 }
