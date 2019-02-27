@@ -32,12 +32,33 @@
 
 <section>
 	<h2>How to implement</h2>
-	<ol>
-		<li>Add class <code>wb-tables</code> to the table tag of the table you wish to enhance.</li>
-		<li>Modify the default configuration by passing a JSON array through the <code>data-wb-tables</code> attribute of the table tag.
-			<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
-		</li>
-	</ol>
+
+	<section>
+		<h3>DataTables</h3>
+		<ol>
+			<li>Add class <code>wb-tables</code> to the table tag of the table you wish to enhance.</li>
+			<li>Modify the default configuration by passing a JSON array through the <code>data-wb-tables</code> attribute of the table tag.</li>
+		</ol>
+		<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Advanced Options</h3>
+		<p>Allows the user to change how checkboxes are filtered.</p>
+		<ol>
+			<li>Add <code>data-aopts='{"type": ""}'</code> arrtibute to any checkbox element to apply the advanced options.</li>
+			<li>
+				Available filter types:
+				<ol>
+					<li>ANY - This option will return entries that contain either A or B, or both.</li>
+					<li>BOTH - This option will only return entries that contain both A and B.</li>
+					<li>EITHER - This option will return all entries that are just A or just B - and not combinations of the two.</li>
+					<li>AND - This option will only return entries that are a combination of A or B.</li>
+				</ol>
+			</li>
+		</ol>
+		<pre><code>&lt;label for="advanced_options1"&gt;&lt;input type="radio" name="advanced_options" id="advanced_options1" data-aopts='{"type": "any"}' checked /&gt;Any&lt;/label&gt;</code></pre>
+	</section>
 </section>
 
 <section>

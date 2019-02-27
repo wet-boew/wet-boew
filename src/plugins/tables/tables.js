@@ -185,37 +185,79 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 
 	event.preventDefault();
 
-	var $form = $( this ),
+	var $options = $( "[data-aopts]:checked" ),
+		$option = ( $options && $options.data( "aopts" ) ) ? $options.data( "aopts" ).type : "",
+		$form = $( this ),
 		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api();
 
 	// Lets reset the search;
 	$datatable.search( "" ).columns().search( "" );
 
 	// Lets loop throug all options
-	var $value = "", $lastColumn = -1;
+	var $value = "", $lastColumn = -1, $regex = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
+			$aopts = $elm.data( "aopts" ),
 			$column = parseInt( $elm.attr( "data-column" ), 10 );
 
+		// Ignore the advanced options fields
+		if ( $aopts ) {
+			return;
+		}
+
+		// Filters based on input type
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
+			$regex = "";
 		} else if ( $elm.is( ":checkbox" ) ) {
+
+			// Verifies if using same checkbox list
 			if ( $column !== $lastColumn && $lastColumn !== -1 ) {
 				$value = "";
 			}
 			$lastColumn = $column;
 
+			// Verifies if checkbox is checked before setting value
 			if ( $elm.is( ":checked" ) ) {
-				$value += ( $value.length > 0 ) ? "|" : "";
-				$value += $elm.val();
+				if ( $option === 2 ) {
+					$value += "(?=.*\\b" + $elm.val() + "\\b)";
+				} else {
+					$value += ( $value.length > 0 ) ? "|" : "";
+					$value += $elm.val();
+				}
+
+				// Adjust regex based on advanced options
+				$value = $value.replace( /\s/g, "\\s*" );
+				switch ( $option.toLowerCase() ) {
+				case "ether":
+					$regex = "(" + $value + ").*";
+					break;
+				case "both":
+					$regex = "^(" + $value + ")$";
+					break;
+				case "and":
+					$regex = ( $value.indexOf( "|" ) > -1 ) ? "^(" + $value + "|[,\\s])(" + $value + "|[,\\s])+$" : "(" + $value + ")";
+					break;
+				case "any":
+				default:
+					$regex = "(" + $value + ")";
+					break;
+				}
 			}
 		} else {
 			$value = $elm.val();
+			$regex = "";
 		}
 
 		if ( $value ) {
-			$value = $value.replace( /\s/g, "\\s*" );
-			$datatable.column( $column ).search( "(" + $value + ")", true ).draw();
+
+			// Verifies if regex was preset, if not preset use 'contains value' as default
+			if ( !$regex ) {
+				$value = $value.replace( /\s/g, "\\s*" );
+				$regex = "(" + $value + ")";
+			}
+
+			$datatable.column( $column ).search( $regex, true ).draw();
 		}
 	} );
 
