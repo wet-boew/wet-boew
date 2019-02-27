@@ -195,29 +195,73 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	var $lastColumn = -1, $cbVal = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
-			$column = parseInt( $elm.attr( "data-column" ), 10 ),
-			$value = "";
+			$value = "",
+			$regex = "",
+			$isAopts = $elm.data( "aopts" ),
+			$column = parseInt( $elm.attr( "data-column" ), 10 );
 
+		// Ignore the advanced options fields
+		if ( $isAopts ) {
+			return;
+		}
+
+		// Filters based on input type
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
 		} else if ( $elm.is( ":checkbox" ) ) {
+
+			// Verifies if using same checkbox list
 			if ( $column !== $lastColumn || $lastColumn === -1 ) {
 				$cbVal = "";
 			}
 			$lastColumn = $column;
 
+			// Verifies if checkbox is checked before setting value
 			if ( $elm.is( ":checked" ) ) {
-				$cbVal += ( $cbVal.length > 0 ) ? "|" : "";
-				$cbVal += $elm.val();
+				var $aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
+					$aopts = $( $aoptsSelector ),
+					$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "";
+
+				if ( $aoType === "both" ) {
+					$cbVal += "(?=.*\\b" + $elm.val() + "\\b)";
+				} else {
+					$cbVal += ( $cbVal.length > 0 ) ? "|" : "";
+					$cbVal += $elm.val();
+				}
+
 				$value = $cbVal;
+				$value = $value.replace( /\s/g, "\\s*" );
+
+				// Adjust regex based on advanced options
+				switch ( $aoType ) {
+				case "both":
+					$regex = "(" + $value + ").*";
+					break;
+				case "either":
+					$regex = "^(" + $value + ")$";
+					break;
+				case "and":
+					$regex = ( $value.indexOf( "|" ) > -1 ) ? "^(" + $value + "|[,\\s])(" + $value + "|[,\\s])+$" : "(" + $value + ")";
+					break;
+				case "any":
+				default:
+					$regex = "(" + $value + ")";
+					break;
+				}
 			}
 		} else {
 			$value = $elm.val();
 		}
 
 		if ( $value ) {
-			$value = $value.replace( /\s/g, "\\s*" );
-			$datatable.column( $column ).search( "(" + $value + ")", true ).draw();
+
+			// Verifies if regex was preset, if not preset use 'contains value' as default
+			if ( !$regex ) {
+				$value = $value.replace( /\s/g, "\\s*" );
+				$regex = "(" + $value + ")";
+			}
+
+			$datatable.column( $column ).search( $regex, true ).draw();
 		}
 	} );
 
@@ -234,6 +278,7 @@ $document.on( "click", ".wb-tables-filter [type='reset']", function( event ) {
 
 	$form.find( "select" ).prop( "selectedIndex", 0 );
 	$form.find( "input:checkbox" ).prop( "checked", false );
+	$form.find( "input:radio" ).prop( "checked", false );
 	$form.find( "input[type=date]" ).val( "" );
 
 	return false;
