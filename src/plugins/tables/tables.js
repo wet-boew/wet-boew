@@ -192,22 +192,24 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	$datatable.search( "" ).columns().search( "" );
 
 	// Lets loop throug all options
-	var $value = "", $lastColumn = -1;
+	var $lastColumn = -1, $cbVal = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
-			$column = parseInt( $elm.attr( "data-column" ), 10 );
+			$column = parseInt( $elm.attr( "data-column" ), 10 ),
+			$value = "";
 
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
 		} else if ( $elm.is( ":checkbox" ) ) {
-			if ( $column !== $lastColumn && $lastColumn !== -1 ) {
-				$value = "";
+			if ( $column !== $lastColumn || $lastColumn === -1 ) {
+				$cbVal = "";
 			}
 			$lastColumn = $column;
 
 			if ( $elm.is( ":checked" ) ) {
-				$value += ( $value.length > 0 ) ? "|" : "";
-				$value += $elm.val();
+				$cbVal += ( $cbVal.length > 0 ) ? "|" : "";
+				$cbVal += $elm.val();
+				$value = $cbVal;
 			}
 		} else {
 			$value = $elm.val();
