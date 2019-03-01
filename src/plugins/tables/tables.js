@@ -212,7 +212,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 		} else if ( $elm.is( ":checkbox" ) ) {
 
 			// Verifies if using same checkbox list
-			if ( $column !== $lastColumn && $lastColumn !== -1 ) {
+			if ( $column !== $lastColumn || $lastColumn === -1 ) {
 				$value = "";
 			}
 			$lastColumn = $column;
