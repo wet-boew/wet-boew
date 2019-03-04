@@ -175,9 +175,29 @@
 				<td>Used to manually open an overlay (event must be triggered on the <code>section</code> element of the overlay).</td>
 			</tr>
 			<tr>
+				<td><code>opened.wb-overlay</code></td>
+				<td>Triggered automatically after an overlay is open.</td>
+				<td>Used to identify when an overlay has been opened (target of the event)
+					<pre><code>$( document ).on( "opened.wb-overlay", ".wb-overlay", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-overlay" ).on( "opened.wb-overlay", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
 				<td><code>close.wb-overlay</code></td>
 				<td>Triggered manually (e.g., <code>$( ".wb-overlay" ).trigger( "close.wb-overlay" );</code>).</td>
 				<td>Used to manually close an overlay (event must be triggered on the <code>section</code> element of the overlay).</td>
+			</tr>
+			<tr>
+				<td><code>closed.wb-overlay</code></td>
+				<td>Triggered automatically after an overlay is close.</td>
+				<td>Used to identify when an overlay has been closed (target of the event)
+					<pre><code>$( document ).on( "closed.wb-overlay", ".wb-overlay", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-overlay" ).on( "closed.wb-overlay", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
