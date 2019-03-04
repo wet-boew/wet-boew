@@ -231,6 +231,25 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 &lt;/div&gt;</code></pre>
 		<p><strong>Side Note:</strong> Close buttons must be inside the modal footer (a div with the class <code>modal-footer</code>).</p>
 	</section>
+
+	<section>
+		<h3>Middle overlay with a background</h3>
+		<p>Add the CSS <code>overlay-bg</code> to the overlay dialog to stand up the overlay dialog with a black overlay background.</p>
+		<p><a href="#mid-screen-bg" aria-controls="mid-screen-bg" class="overlay-lnk" role="button">Middle screen overlay with background</a></p>
+		<details class="mrgn-bttm-lg">
+			<summary>View code</summary>
+			<pre><code>&lt;p&gt;&lt;a href=&quot;#mid-screen-bg&quot; aria-controls=&quot;mid-screen-bg&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Middle screen overlay with background&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;mid-screen-bg&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid overlay-bg&quot;&gt;
+&lt;header class=&quot;modal-header&quot;&gt;
+	&lt;h2 class=&quot;modal-title&quot;&gt;Middle screen overlay with background&lt;/h2&gt;
+&lt;/header&gt;
+&lt;div class=&quot;modal-body&quot;&gt;
+	...
+&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+		</details>
+	</section>
 </section>
 
 <section id="left-panel" class="wb-overlay modal-content overlay-def wb-panel-l">
@@ -371,6 +390,28 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 <section id="mid-screen" class="wb-overlay modal-content overlay-def wb-popup-mid">
 	<header class="modal-header">
 		<h2 class="modal-title">Middle screen overlay</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>ordered list (<code>ol</code>) first level default appearance</li>
+			<li>ordered list (<code>ol</code>) first level default appearance
+				<ol>
+					<li>ordered list (<code>ol</code>) second level default appearance</li>
+					<li>ordered list (<code>ol</code>) second level default appearance
+						<ol>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</section>
+
+<section id="mid-screen-bg" class="wb-overlay modal-content overlay-def wb-popup-mid overlay-bg">
+	<header class="modal-header">
+		<h2 class="modal-title">Middle screen overlay with background</h2>
 	</header>
 	<div class="modal-body">
 		<ol>
