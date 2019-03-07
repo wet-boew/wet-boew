@@ -89,6 +89,12 @@
 	opacity: .97;
 }
 
+.wb-overlay-dlg {
+	.overlay-bg {
+		box-shadow: 0 0 1000px 1000px black;
+	}
+}
+
 /*
  *	Overlay parts
  */
