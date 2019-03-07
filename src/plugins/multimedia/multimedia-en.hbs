@@ -243,4 +243,52 @@
 			</details>
 		</section>
 	</div>
+	<section>
+		<h3>Multimedia player in an overlay</h3>
+		<p><a href="#mltmd-overlay" aria-controls="mltmd-overlay" class="overlay-lnk" role="button">Open the video</a></p>
+		<details class="mrgn-tp-md">
+			<summary>View code</summary>
+			<pre><code>&lt;p&gt;&lt;a href="#mltmd-overlay" aria-controls="mltmd-overlay" class="overlay-lnk" role="button"&gt;Open the video&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id="mltmd-overlay" class="wb-overlay modal-content overlay-def wb-popup-full"&gt;
+	&lt;header class="modal-header"&gt;
+		&lt;h2 class="modal-title"&gt;Multimedia player in an overlay&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class="modal-body"&gt;
+		&lt;div class="row"&gt;
+			&lt;div class="col-xs-8 col-xs-offset-2"&gt;
+				&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'&gt;
+					&lt;video poster="demo/video1-en.jpg" title="Looking for a Job"&gt;
+						&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
+						&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
+						&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+					&lt;/video&gt;
+					&lt;figcaption&gt;Looking for a Job (&lt;a href="cpts-lg-en.html"&gt;Transcript&lt;/a&gt;)&lt;/figcaption&gt;
+				&lt;/figure&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+</section>
+
+<section id="mltmd-overlay" class="wb-overlay modal-content overlay-def wb-popup-full">
+	<header class="modal-header">
+		<h2 class="modal-title">Multimedia player in an overlay</h2>
+	</header>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2">
+				<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
+					<video poster="demo/video1-en.jpg" title="Looking for a Job">
+						<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" />
+						<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" />
+						<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
+					</video>
+					<figcaption>Looking for a Job (<a href="cpts-lg-en.html">Transcript</a>)</figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
 </section>
