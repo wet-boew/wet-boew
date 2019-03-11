@@ -61,10 +61,6 @@ var componentName = "wb-share",
 				name: "Blogger",
 				url: "http://www.blogger.com/blog_this.pyra?t=&amp;u={u}&amp;n={t}"
 			},
-			delicious: {
-				name: "Delicious",
-				url: "http://delicious.com/post?url={u}&amp;title={t}"
-			},
 			digg: {
 				name: "Digg",
 				url: "http://digg.com/submit?phase=2&amp;url={u}&amp;title={t}"
@@ -81,10 +77,6 @@ var componentName = "wb-share",
 				name: "Gmail",
 				url: "https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su={t}&body={u}%0A{d}"
 			},
-			googleplus: {
-				name: "Google+",
-				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
-			},
 			linkedin: {
 				name: "LinkedIn®",
 				url: "http://www.linkedin.com/shareArticle?mini=true&amp;url={u}&amp;title={t}&amp;ro=false&amp;summary={d}&amp;source="
@@ -100,10 +92,6 @@ var componentName = "wb-share",
 			reddit: {
 				name: "reddit",
 				url: "http://reddit.com/submit?url={u}&amp;title={t}"
-			},
-			stumbleupon: {
-				name: "StumbleUpon",
-				url: "http://www.stumbleupon.com/submit?url={u}&amp;title={t}"
 			},
 			tumblr: {
 				name: "tumblr",
