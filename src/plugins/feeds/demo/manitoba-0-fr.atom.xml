@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Centre des nouvelles du Canada - Manitoba</title>
+	<subtitle>Centre des nouvelles du Canada</subtitle>
+	<updated>2018-10-21T05:17:53-04:00</updated>
+	<link href="https://www.canada.ca/fr/nouvelles/fils-nouvelles/manitoba" rel="self" />
+	<id>https://www.canada.ca/fr/nouvelles.html</id>
+	<logo>https://www.canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg</logo>
+</feed>

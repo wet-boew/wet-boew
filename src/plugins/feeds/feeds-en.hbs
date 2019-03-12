@@ -21,7 +21,7 @@
 <p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
 <section>
 	<h2>Examples</h2>
-	<section class="wb-feeds limit-4">
+	<section class="wb-feeds limit-3">
 		<h3>ATOM feed</h3>
 		<p>This method fetch the ATOM feed directly and don't use a third party service.</p>
 		<ul class="feeds-cont list-unstyled lst-spcd">
@@ -32,13 +32,13 @@
 			<details>
 				<summary>View code</summary>
 				<pre><code>&lt;section class="wb-feeds limit-3"&gt;
-			&lt;h3&gt;Canada News Centre - Manitoba&lt;/h3&gt;
-			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
-				&lt;li&gt;
-					&lt;a href="demo/manitoba-en.atom.xml"&gt;Government of Canada News Releases&lt;/a&gt;
-				&lt;/li&gt;
-			&lt;/ul&gt;
-			&lt;/section&gt;</code></pre>
+				&lt;h3&gt;Canada News Centre - Manitoba&lt;/h3&gt;
+				&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
+					&lt;li&gt;
+						&lt;a href="demo/manitoba-en.atom.xml"&gt;Government of Canada News Releases&lt;/a&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+				&lt;/section&gt;</code></pre>
 			</details>
 		</section>
 	</section>
@@ -79,20 +79,20 @@
 			<details>
 				<summary>View code</summary>
 				<pre><code>&lt;section&gt;
-	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
-	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
-		&lt;div class="tabpanels"&gt;
-			&lt;details id="details-flickr"&gt;
-				&lt;summary&gt;Flickr&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
-					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
-					&lt;ul class="feeds-cont list-inline"&gt;
-						&lt;li&gt;
-							&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
-						&lt;/li&gt;
-					&lt;/ul&gt;
-					&lt;div class="clearfix"&gt;&lt;/div&gt;
-				&lt;/section&gt;
+				&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
+				&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
+					&lt;div class="tabpanels"&gt;
+						&lt;details id="details-flickr"&gt;
+							&lt;summary&gt;Flickr&lt;/summary&gt;
+							&lt;section class="wb-feeds limit-10"&gt;
+								&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
+								&lt;ul class="feeds-cont list-inline"&gt;
+									&lt;li&gt;
+										&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
+									&lt;/li&gt;
+								&lt;/ul&gt;
+								&lt;div class="clearfix"&gt;&lt;/div&gt;
+							&lt;/section&gt;
 			&lt;/details&gt;
 
 			&lt;details id="details-youtube"&gt;
@@ -130,15 +130,42 @@
 			<details>
 				<summary>View code</summary>
 				<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
-			&lt;h3&gt;JSON feed&lt;/h3&gt;
-			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
-				&lt;li&gt;
-					&lt;a data-ajax="demo/manitoba-en.atom.json" href="https://www.canada.ca/en/news/web-feeds/manitoba" rel="external"&gt;Canada News Centre - Manitoba&lt;/a&gt;
-				&lt;/li&gt;
-			&lt;/ul&gt;
-			&lt;/section&gt;</code></pre>
-			</details>
+				&lt;h3&gt;JSON feed&lt;/h3&gt;
+				&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
+					&lt;li&gt;
+						&lt;a data-ajax="demo/manitoba-en.atom.json" href="https://www.canada.ca/en/news/web-feeds/manitoba" rel="external"&gt;Canada News Centre - Manitoba&lt;/a&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+				&lt;/section&gt;</code></pre>
+				</details>
 		</section>
+	</section>
+</section>
+<section>
+	<h2>Special cases</h2>
+		<section class="wb-feeds limit-7">
+		<h3>Feed with no entries</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-0-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-7">
+		<h3>Feed with one entry</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-1-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-7">
+		<h3>When limit is greater than the number of feed entries</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds">
+		<h3>When limit is not set</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-en.atom.xml" rel="external">Government of Canada News Releases</a></li>
+		</ul>
 	</section>
 </section>
 <section>
