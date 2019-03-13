@@ -126,15 +126,42 @@
 			<details>
 				<summary>Visualiser le code</summary>
 				<pre><code>&lt;section class="wb-feeds limit-3" data-cors="true"&gt;
-			&lt;h3&gt;Fils de syndication en format JSON&lt;/h3&gt;
-			&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
-				&lt;li&gt;
-					&lt;a data-ajax="demo/manitoba-fr.atom.json" href="https://www.canada.ca/fr/nouvelles/fils-nouvelles/manitoba" rel="external"&gt;Centre des nouvelles du Canada - Manitoba&lt;/a&gt;
-				&lt;/li&gt;
-			&lt;/ul&gt;
-			&lt;/section&gt;</code></pre>
+				&lt;h3&gt;Fils de syndication en format JSON&lt;/h3&gt;
+				&lt;ul class="feeds-cont list-unstyled lst-spcd"&gt;
+					&lt;li&gt;
+						&lt;a data-ajax="demo/manitoba-fr.atom.json" href="https://www.canada.ca/fr/nouvelles/fils-nouvelles/manitoba" rel="external"&gt;Centre des nouvelles du Canada - Manitoba&lt;/a&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+				&lt;/section&gt;</code></pre>
 			</details>
 		</section>
+	</section>
+</section>
+<section>
+	<h2>Cas spéciaux</h2>
+	<section class="wb-feeds limit-7">
+		<h3>Fil d'actualité sans entrées</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-0-fr.atom.xml" rel="external">Nouvelles du Gouvernement du Canada</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-7">
+		<h3>Fil d’actualité avec une entrée</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-1-fr.atom.xml" rel="external">Nouvelles du Gouvernement du Canada</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds limit-7">
+		<h3>Lorsque la limite est supérieure au nombre d'entrées dans le fil</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-fr.atom.xml" rel="external">Nouvelles du Gouvernement du Canada</a></li>
+		</ul>
+	</section>
+	<section class="wb-feeds">
+		<h3>Quand la limite n'est pas définie</h3>
+		<ul class="feeds-cont list-unstyled lst-spcd">
+			<li><a href="demo/manitoba-fr.atom.xml" rel="external">Nouvelles du Gouvernement du Canada</a></li>
+		</ul>
 	</section>
 </section>
 <section>

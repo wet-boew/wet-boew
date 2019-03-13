@@ -236,20 +236,34 @@ var componentName = "wb-feeds",
 	 * @method corsEntry
 	 */
 	corsEntry = function( xmlDoc, limit ) {
-		var arr_entry = [],
-			corsObj = {},
+		var entries = xmlDoc.getElementsByTagName( "entry" ).length,
 			limit = limit,
+			arr_entry = [],
+			corsObj = {},
 			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
 			jsonObj = JSON.parse( jsonString ),
 			i, iCache;
-		for ( i = 0; i < limit; i++ ) {
-			iCache = jsonObj.feed.entry[ i ];
+		if ( limit > entries || limit === 0 || limit === null ) {
+			limit = entries;
+		}
+		if ( entries === 1 ) {
+			iCache = jsonObj.feed.entry;
 			corsObj = {
 				title: iCache.title[ "#text" ],
-				link: iCache.id[ "#text" ],
+				link: ( iCache.link ? iCache.link[ "@attributes" ].href : iCache.id[ "#text" ] ),
 				updated: iCache.updated[ "#text" ]
 			};
 			arr_entry.push( corsObj );
+		} else if ( entries ) {
+			for ( i = 0; i < limit; i++ ) {
+				iCache = jsonObj.feed.entry[ i ];
+				corsObj = {
+					title: iCache.title[ "#text" ],
+					link: ( iCache.link ? iCache.link[ "@attributes" ].href : iCache.id[ "#text" ] ),
+					updated: iCache.updated[ "#text" ]
+				};
+				arr_entry.push( corsObj );
+			}
 		}
 		return arr_entry;
 	},
