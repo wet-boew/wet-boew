@@ -134,7 +134,8 @@ var componentName = "wb-geomap",
 						}
 
 						// Create Geomap Object and add to map array
-						mapArray.push( new Geomap( { target: $elm, settings: settings } ) );
+						elm.geomap = new Geomap( { target: $elm, settings: settings } );
+						mapArray.push( elm.geomap );
 
 					}
 				} );
@@ -142,7 +143,8 @@ var componentName = "wb-geomap",
 			} else {
 
 				// Create Geomap Object and add to map array
-				mapArray.push( new Geomap( { target: $elm, settings: settings } ) );
+				elm.geomap = new Geomap( { target: $elm, settings: settings } );
+				mapArray.push( elm.geomap );
 			}
 
 		}
@@ -223,6 +225,9 @@ var componentName = "wb-geomap",
 	 */
 	MapLayer = function( map, options ) {
 
+		var _this = this,
+			visibilytyCallBackArr = [];
+
 		this.map = map;
 		this.settings = options;
 		this.id = this.settings.tableId ? this.settings.tableId : generateGuid();
@@ -238,15 +243,51 @@ var componentName = "wb-geomap",
 					this.id + "' class='geomap-table-wrapper' style='display:none;'></div></div></div>" );
 		}
 
+		// Make isVisibile Reactive
+		Object.defineProperty( _this, "isVisible", {
+			get: function get() {
+				return _this.visibilityState;
+			},
+			set: function set( newVal ) {
+				_this.visibilityState = newVal;
+
+				// Notify
+				visibilytyCallBackArr.forEach( function( signalHandler ) {
+
+					return signalHandler( newVal );
+				} );
+			}
+		} );
+
+		// Allow the properties to be observed
+		this.observeVisibility = function( callback ) {
+			visibilytyCallBackArr.push( callback );
+		};
+
+		this.observeVisibility( function( vis ) {
+
+			var $table = $( "div[ data-layer='" + _this.id + "' ].geomap-table-wrapper" );
+
+			if ( !vis ) {
+				$table.fadeOut();
+				$table.parent().append( "<div class='layer-msg'><p>" + i18nText.hiddenLayer + "</p></div>" ).fadeIn();
+			} else {
+				$table.fadeIn();
+				$table.parent().find( ".layer-msg" ).remove();
+			}
+
+			_this.layer.setVisible( _this.isVisible );
+		} );
+
+
 		// Add to legend if legend is configured
 		if ( this.map.legendDiv.length !== 0 ) {
 			this.addToLegend();
 		}
 
-		this.toggleVisibility( this.settings.visible );
+		this.isVisible = this.settings.visible;
 
 		return this;
-
 	},
 
 	/**
@@ -1251,29 +1292,36 @@ var componentName = "wb-geomap",
 			$( "#geomap-aoi-extent-lonlat-" + geomap.id ).val( left + ", " + bottom + ", " + right + ", " + top );
 
 		}
+	},
 
-		function drawAOI( geomap, extent ) {
+	//
+	// Param:
+	// - geomap = geomap Object
+	// - extext = array with 4 point ( West, South, East, North)
+	// - dontAddFeat = boolean (default:false) if true, no delimiter box would be added to the map
+	//
+	drawAOI = function( geomap, extent, dontAddFeat ) {
 
-			var coords = [],
-				dens, len, feat,
-				projLatLon = new ol.proj.Projection( { code: "EPSG:4326" } ),
-				projMap = geomap.map.getView().getProjection();
+		var coords = [],
+			dens, len, feat,
+			projLatLon = new ol.proj.Projection( { code: "EPSG:4326" } ),
+			projMap = geomap.map.getView().getProjection();
 
-			dens = densifyBBox( parseFloat( extent[ 0 ] ), parseFloat( extent[ 1 ] ), parseFloat( extent[ 2 ] ), parseFloat( extent[ 3 ] ) );
+		dens = densifyBBox( parseFloat( extent[ 0 ] ), parseFloat( extent[ 1 ] ), parseFloat( extent[ 2 ] ), parseFloat( extent[ 3 ] ) );
 
-			for ( len = dens.length - 1; len !== -1; len -= 1 ) {
-				coords.push( [ dens[ len ].getCoordinates()[ 0 ], dens[ len ].getCoordinates()[ 1 ] ] );
-			}
-
-			feat = new ol.Feature( {
-				geometry: new ol.geom.Polygon( [ coords ] ).transform( projLatLon, projMap )
-			} );
-
-			getLayerById( geomap.map, "locLayer" ).getSource().addFeature( feat );
-
-			return feat;
-
+		for ( len = dens.length - 1; len !== -1; len -= 1 ) {
+			coords.push( [ dens[ len ].getCoordinates()[ 0 ], dens[ len ].getCoordinates()[ 1 ] ] );
 		}
+
+		feat = new ol.Feature( {
+			geometry: new ol.geom.Polygon( [ coords ] ).transform( projLatLon, projMap )
+		} );
+
+		if ( !dontAddFeat ) {
+			getLayerById( geomap.map, "locLayer" ).getSource().addFeature( feat );
+		}
+
+		return feat;
 
 	},
 
@@ -2299,7 +2347,7 @@ MapLayer.prototype.addToLegend = function() {
 			i18nText.toggleLayer + "</legend></fieldset>" ).appendTo( legendDiv );
 	}
 
-	checked = this.settings.visible ? "checked='checked'" : "";
+	checked = this.isVisibile ? "checked='checked'" : "";
 
 	$ul = legendDiv.find( "ul.geomap-lgnd" );
 	if ( $ul.length === 0 ) {
@@ -2311,18 +2359,20 @@ MapLayer.prototype.addToLegend = function() {
 						"' " + checked + " data-map='" + this.map.id +
 								"' data-layer='" + this.id + "' />" );
 
-	// Handle the change event
-	$chkBox.change( function() {
+	_this.observeVisibility( function( visibility ) {
 
 		// Show/hide legend symbols
-		$( "#sb_" + _this.id ).toggle( $( this ).is( ":checked" ) );
-
-		// Show/hide layer
-		_this.toggleVisibility( $( this ).is( ":checked" ) );
+		$( "#sb_" + _this.id ).toggle( visibility );
 
 		// Refresh the legend
 		_this.map.legend.refresh();
 
+		$chkBox.get( 0 ).checked = visibility;
+	} );
+
+	// Handle the change event to Show/hide layer
+	$chkBox.change( function() {
+		_this.isVisible = $( this ).is( ":checked" );
 	} );
 
 	$label = $( "<label>", {
@@ -2342,8 +2392,6 @@ MapLayer.prototype.addToLegend = function() {
 	} else if ( this.settings.type !== "wms" ) {
 		this.map.legend.symbolize( this );
 	}
-
-	$( "#sb_" + this.id ).toggle( this.settings.visible );
 
 };
 
@@ -3034,12 +3082,6 @@ MapLayer.prototype.createOLLayer = function() {
 		olLayer.popupsInfo = _this.settings.popupsInfo;
 		olLayer.popups = _this.settings.popups;
 
-		// Listen for visiblilty change in case devs hook into ol directly
-		// in which case we manage the UI changes for them
-		// olLayer.on( "change:visible", function( event ) {
-		// 	_this.toggleVisibility( !event.oldValue );
-		// } );
-
 		return olLayer;
 
 	} else {
@@ -3050,29 +3092,6 @@ MapLayer.prototype.createOLLayer = function() {
 
 };
 
-/**
- * Handle visibility change events
- * @param {boolean} MapLayer visible
- */
-MapLayer.prototype.toggleVisibility = function( visible ) {
-
-	if ( !this.layer ) {
-		return;
-	}
-
-	var $table = $( "div[ data-layer='" + this.id + "' ].geomap-table-wrapper" );
-
-	if ( !visible ) {
-		$table.fadeOut();
-		$table.parent().append( "<div class='layer-msg'><p>" + i18nText.hiddenLayer + "</p></div>" ).fadeIn();
-	} else {
-		$table.fadeIn();
-		$table.parent().find( ".layer-msg" ).remove();
-	}
-
-	this.layer.setVisible( visible );
-
-};
 
 /**
  * Load controls and interactions
@@ -3248,6 +3267,102 @@ Geomap.prototype.accessibilize = function() {
 		new HelpControl( _this );
 	}
 
+};
+
+/**
+ * Zoom to an area of interest
+ *
+ * Param
+ * -----
+ * top = North || space separated list with all of them || WKT || empty
+ * right = East
+ * bottom = South
+ * left = West
+ */
+Geomap.prototype.zoomAOI = function( top, right, bottom, left ) {
+
+	var _this = this,
+		OLmap = _this.map,
+		olView = OLmap.getView(),
+		extentCoordinate,
+		extent,
+		vectorFeature,
+		isTopString = ( typeof top === "string" );
+
+	if ( isTopString && !top.length ) {
+
+		// Reset the zoom and center the map
+		olView.setZoom( olView.getMaxZoom );
+		return;
+
+	} else if ( isTopString && top.substring( 0, 1 ).match( /[a-z]/gi ) !== null ) {
+
+		// This is wkt type
+		var wktParser = new ol.format.WKT();
+
+		vectorFeature = wktParser.readFeature( top, {
+			dataProjection: "EPSG:4326",
+			featureProjection: olView.getProjection()
+		} );
+
+	} else {
+
+		// Just 4 cardinal point was given
+		if ( !right && isTopString ) {
+			extentCoordinate = top.split( " " );
+			if ( extentCoordinate.length !== 4 ) {
+				throw "4 cardinal point must be provided";
+			}
+			top = extentCoordinate[ 0 ];
+			right = extentCoordinate[ 1 ];
+			bottom = extentCoordinate[ 2 ];
+			left = extentCoordinate[ 3 ];
+		} else if ( !right || !bottom || !left ) {
+			throw "Cardinal point must be provided";
+		}
+		extentCoordinate = [ parseFloat( left ), parseFloat( bottom ), parseFloat( right ), parseFloat( top ) ];
+
+		vectorFeature = drawAOI( _this, extentCoordinate, true );
+	}
+
+	extent = vectorFeature.getGeometry().getExtent();
+
+	olView.fit( extent, OLmap.getSize() );
+};
+
+/*
+ * Select a layer
+ *
+ * layerName = String or []<string>: Layer name to apply a state
+ * state = Boolean, default false: Visibility state that are going to be set
+ * onlyThose = Boolean, default false: If true, the inverse visibility state would be set for all the other layers.
+ *
+ */
+Geomap.prototype.showLayer = function( layerName, state ) {
+
+	var layerNameArray = [],
+		geomapLayers = this.mapLayers,
+		i, i_len = geomapLayers.length,
+		i_lyr, i_lyr_title;
+
+	state = !!state;
+
+	if ( Array.isArray( layerName ) ) {
+		layerNameArray = layerName;
+	} else {
+		layerNameArray.push( layerName );
+	}
+
+	for ( i = 0; i !== i_len; i = i + 1 ) {
+		i_lyr = geomapLayers[ i ];
+		i_lyr_title = i_lyr.layer.title;
+
+		if ( !layerName || layerNameArray.indexOf( i_lyr_title ) !== -1 ) {
+			i_lyr.isVisible = state;
+		} else if ( i_lyr_title ) {
+			i_lyr.isVisible = !state;
+		}
+	}
 };
 
 /**
@@ -3521,5 +3636,65 @@ MapLegend.prototype.refresh = function() {
 ol.inherits( GeolocationControl, ol.control.Control );
 ol.inherits( HelpControl, ol.control.Control );
 ol.inherits( GeocodeControl, ol.control.Control );
+
+
+/**
+ * Event Geomap filter
+ *
+ * Apply AOI and Layer filter
+ * - only the <select> element is currently supported
+ *
+ */
+wb.doc.on( "submit", ".wb-geomap-filter", function( event ) {
+
+	event.preventDefault();
+
+	var $form = $( this ),
+		map = document.getElementById( $form.data( "bind-to" ) ).geomap;
+
+	// Loops though the form group
+	$form.find( "select[data-filter]" ).each( function() {
+		var $elm = $( this ),
+			$optSelected = $elm.find( "option:selected" ),
+			value = $optSelected.val(),
+			tpFilter = $elm.attr( "data-filter" ); // "layer || aoi"
+
+		// if aoi => There will be 4 coordinate space separated (Sequence: N E S W)
+		if ( tpFilter === "aoi" ) {
+			map.zoomAOI( value );
+		}
+
+		// if layer => The layer name
+		if ( tpFilter === "layer" ) {
+			map.showLayer( value, true );
+		}
+	} );
+} );
+
+/*
+ * Reset the view on the map and manually reset the layer filter
+ *
+ */
+wb.doc.on( "click", ".wb-geomap-filter [type=reset]", function( ) {
+
+	var $form = $( this.form ),
+		geomap = document.getElementById( $form.data( "bind-to" ) ).geomap,
+		OLmap = geomap.map,
+		mapGetView = OLmap.getView();
+
+	OLmap.getView().fit( mapGetView.calculateExtent( OLmap.getSize() ), OLmap.getSize() );
+
+	$form.find( "select[data-filter=layer] option" ).each( function() {
+		if ( this.defaultSelected ) {
+			geomap.showLayer( this.value, true );
+		}
+	} );
+	$form.find( "select[data-filter=aoi] option" ).each( function() {
+		if ( this.defaultSelected ) {
+			geomap.zoomAOI( this.value );
+		}
+	} );
+} );
+
 
 } )( jQuery, window, document, wb );
