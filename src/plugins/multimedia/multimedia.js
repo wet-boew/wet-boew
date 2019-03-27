@@ -718,7 +718,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 			var elm = evt.currentTarget,
 				ds = elm.dataset;
 
-			// Do nothing on the first load and add a flag to indicate it is loaded a second times
+			// Do nothing on the first load and add a flag to indicate it is loaded a second time
 			if ( ds.L1 ) {
 				ds.L2 = true;
 			} else {
