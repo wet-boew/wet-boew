@@ -66,7 +66,7 @@ var componentName = "wb-mltmd",
 				// the issue is when the iFrame is moved, it reloads and then it doesn't emit the right event to
 				// adjust the WET multimedia controller to represent its current state.
 				//
-				// This need to be executed only once that is why it is in the i18nText conditional
+				// This needs to be executed only once, that is why it is in the i18nText conditional
 				window.addEventListener( "message", function( e ) {
 					var data, frames, i, i_len, i_cache;
 
