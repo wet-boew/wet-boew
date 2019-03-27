@@ -711,7 +711,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 		data.ytPlayer = ytPlayer;
 
 		// Detect if the YT player reloads, like when magnific Popup show the modal, because it moves the iframe
-		// and then the iframe get refreshed and reloaded. So the issue is the iframe stop to emit the event
+		// and then the iframe gets refreshed and reloaded. So the issue is that the iframe stops emitting the event
 		// needed to adjust the multimedia player controler, like the "onStateChange" event.
 		$media.on( "load", function( evt ) {
 
