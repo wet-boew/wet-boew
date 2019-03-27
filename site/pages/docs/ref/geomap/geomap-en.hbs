@@ -12,13 +12,14 @@
 <span class="wb-prettify all-pre hide"></span>
 
 <ul>
-	<li><a href="#"></a></li>
 	<li><a href="#purpose">Purpose</a></li>
 	<li><a href="#use-when">Use when</a></li>
 	<li><a href="#working-example">Working example</a></li>
 	<li><a href="#how-to-implement">How to implement</a></li>
 	<li><a href="#events">Events</a></li>
 	<li><a href="#upgrade-notes">Upgrade Notes for v4.0.31</a></li>
+	<li><a href="#filtering">Filtering</a></li>
+	<li><a href="#jsAPI">WET-BOEW Geomap Javascript API</a></li>
 	<li><a href="#source-code">Source code</a></li>
 </ul>
 
@@ -753,7 +754,7 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 &lt;/script&gt;</code></pre>
 		</section>
 		<section>
-			<h4>v4.0.31+</h4>
+			<h4 id="get-map-obj-with-id">v4.0.31+</h4>
 			<pre><code>// get the map object with id "mygeomap"
 $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 	var myMap = map; // return OpenLayers map object
@@ -775,6 +776,150 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 &lt;/script&gt;</code></pre>
 		</section>
 	</section>
+
+	<h3 id="filtering">Filtering</h3>
+
+	<p>You can apply the following filter:</p>
+	<ul>
+		<li><strong>Area Of Interest</strong>: [<code>aoi</code>] Zoom the map to an specific area (extent).</li>
+		<li><strong>Layer (Overlays)</strong>: [<code>layer</code>] Select a specific layer (overlays) to diplay on the map</li>
+	</ul>
+
+	<p>Implementation requirement:</p>
+	<ul>
+		<li>Add a <code>&lt;form&gt;</code> with the CSS class <code>wb-geomap-filter</code></li>
+		<li>On that form element, add an attribute <code>data-bind-to</code> where it's value is the id of geomap on which the filtering are going to be applied</li>
+		<li>Add <code>&lt;select&gt;</code> element with an <code>data-filter</code> attribute specifying the type of filtering.</li>
+		<li>Set the value for each <code>&lt;option&gt;</code> element as per the type filter</li>
+		<li>Set the default selected <code>&lt;option&gt;</code> by adding the <code>selected</code> attribute to one option</li>
+	</ul>
+
+
+	<div class="row">
+		<div class="col-md-6">
+			<h4><code>data-fitler="aoi"</code></h4>
+
+			<p>The value of the option is as 4 cardinal point (North East South West) or as <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-known text (WKT)</a> if there is any letter. For example:</p>
+			<ul>
+				<li><code>value="60 -120 48 -139"</code></li>
+				<li><code>value="POLYGON((-78.30545265676142 62.84207638792185,-79.79959328176142 51.57292655739278,-79.18435890676142 46.810536399556135,-76.45974953176142 45.655468008018055,-75.58084328176142 45.961790800827984,-74.87771828176142 45.47086564114406,-74.96560890676142 44.97562684884711,-71.44998390676142 44.97562684884711,-69.16482765676142 47.349194267123444,-68.19803078176142 47.349194267123444,-64.33084328176142 48.35181916125691,-55.80545265676142 52.00783331541157,-67.31912453176142 52.16984334247954,-64.24295265676142 60.85236662687351,-78.30545265676142 62.84207638792185))"</code></li>
+			</ul>
+			<p>You can use the geomap draw box tool to calculate the 4 cardinal point and for <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">WKT</a> you can find some online tool that could generate it for you.</p>
+		</div>
+
+		<div class="col-md-6">
+			<h4><code>data-filter="layer"</code></h4>
+			<p>The value of the option should match one of the geomap layer/overlay title. If left empty, all the layers would be selected.</p>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h2 id="jsAPI">WET-BOEW Geomap Javascript API</h2>
+
+	<p>Note: The Javascript API documentation bellow is incomplete. If you have any question please open a github issue.</p>
+
+	<h3>Retrieve the geomap object</h3>
+	<dl>
+		<dt>Via <code>wb</code> javascript object</dt>
+		<dd>See the above <a href="#get-map-obj-with-id">technical note for wet-boew 4.0.31+ release</a></dd>
+		<dt>Via the <code>.wb-geomap</code> DOM element</dt>
+		<dd><pre><code>var geomap = $( ".wb-geomap" ).get( 0 ).geomap;</code></pre></dd>
+	</dl>
+
+	<h3><code>geomap</code> Object</h3>
+	<p>Options:</p>
+	<ul>
+		<li><code>target</code>: jQuery element pointing to the <code>.wb-geomap</code> DOM element</li>
+		<li><code>settings</code>: All settings/configuration set for that map. It include setting set through a javascript configuration files</li>
+	</ul>
+	<p>Instance properties:</p>
+	<dl class="dl-horizontal">
+		<dt><code>id</code></dt>
+		<dd>Id of the geomap DOM element.</dd>
+		<dt><code>layerDiv</code></dt>
+		<dd>JQuery pointer to the layer <code>&lt;div&gt;</code> DOM element</dd>
+		<dt><code>legend</code></dt>
+		<dd><code>MapLegend</code> object</dd>
+		<dt><code>legendDiv</code></dt>
+		<dd>jQuery pointer to the legend <code>&lt;div&gt;</code> DOM element</dd>
+		<dt><code>map</code></dt>
+		<dd>OpenLayer 3 map object</dd>
+		<dt><code>mapDiv</code></dt>
+		<dd>jQuery pointer to the map <code>&lt;div&gt;</code> DOM element</dd>
+		<dt><code>mapLayer</code></dt>
+		<dd>Array of <code>mapLayer</code> object</dd>
+		<dt><code>settings</code></dt>
+		<dd>All settings/configuration set for that map. It include setting set through a javascript configuration files</dd>
+	</dl>
+	<p>Prototype:</p>
+	<ul>
+		<li><code>accessibilize</code></li>
+		<li><code>addBasemap</code></li>
+		<li><code>addMapLayers</code></li>
+		<li><code>addTabularData</code></li>
+		<li><code>createPopup</code></li>
+		<li><code>loadControls</code></li>
+		<li><code>showLayer</code></li>
+		<li><code>zoomAOI</code>: Zoom the map to an Area Of Interest
+			<p>Mixed parameters:</p>
+			<ul>
+				<li><code>.zoomAOI()</code> - none: Zoom to the max zoom</li>
+				<li><code>.zoomAOI( "POLYGON((11 11, 22 22))" )</code> - &lt;string&gt; (containing letters): Will parse the string as a WKT string</li>
+				<li><code>.zoomAOI( "11 22 33 44" )</code> - &lt;string&gt; (numbers/decimals and spaces): Assume there is 4 space separated cardinal point in this exact sequence: North, East, South, West.</li>
+				<li><code>.zoomAOI( 11, 22, 33, 44)</code> - 4 &lt;decimal&gt; parameter: Decimal cardinal point in this exact sequence:  North, East, South, West.</li>
+			</ul>
+		</li>
+	</ul>
+
+	<h3><code>MapLayer</code> Object</h3>
+	<p>Options:</p>
+	<ul>
+		<li><code>map</code>: <code>Geomap</code> object</li>
+		<li><code>options</code>: All settings/configuration set for that map. It include setting set through a javascript configuration files</li>
+	</ul>
+	<p>Instance properties:</p>
+	<dl class="dl-horizontal">
+		<dt><code>id</code></dt>
+		<dd>Uniquer identifier set for that layer</dd>
+		<dt><code>layer</code></dt>
+		<dd>OpenLayer layer Vector object</dd>
+		<dt><code>map</code></dt>
+		<dd><code>Geomap</code> object</dd>
+		<dt><code>observeVisibility</code></dt>
+		<dd>Add callback for when the layer visibility change</dd>
+		<dt><code>settings</code></dt>
+		<dd>All settings/configuration set for that map. It include setting set through a javascript configuration files</dd>
+		<dt><code>visibilityState</code></dt>
+		<dd>Boolean indicating if the layer is visible or not.</dd>
+	</dl>
+	<p>Prototype:</p>
+	<ul>
+		<li><code>addToLegend</code></li>
+		<li><code>createOLLayer</code></li>
+		<li><code>populateDataTable</code></li>
+	</ul>
+
+	<h3><code>MapLegend</code> Object</h3>
+	<p>Options:</p>
+	<ul>
+		<li><code>map</code>: <code>Geomap</code> object</li>
+	</ul>
+	<p>Instance properties:</p>
+	<dl class="dl-horizontal">
+		<dt><code>map</code></dt>
+		<dd><code>Geomap</code> object</dd>
+		<dt><code>symbolMapArray</code></dt>
+		<dd>Array of Open Layer map for symbol</dd>
+		<dt><code>target</code></dt>
+		<dd>JQuery pointer to the legend <code>&lt;div&gt;</code> DOM element</dd>
+	</dl>
+	<p>Prototype:</p>
+	<ul>
+		<li><code>getSymbol</code></li>
+		<li><code>refresh</code></li>
+		<li><code>symbolize</code></li>
+	</ul>
 </section>
 
 <section>
@@ -788,6 +933,7 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 			</tr>
 		</thead>
 		<tbody>
+
 			<tr>
 				<td><code>wb-init.wb-geomap</code></td>
 				<td>Triggered manually (e.g., <code>$( ".wb-geomap" ).trigger( "wb-init.wb-geomap" );</code>).</td>
@@ -823,6 +969,14 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 			</tr>
 		</tbody>
 	</table>
+	<h3>Filtering</h3>
+	<p>A form with the CSS class <code>.wb-geomap-filter</code></p>
+	<dl class="dl-horizontal">
+		<dt><code>submit</code> (form)</dt>
+		<dd>Apply geomap filter for select input with a <code>data-filter</code> attribute</dd>
+		<dt><code>click (reset button)</code></dt>
+		<dd>Apply the default selection for select input with a <code>data-filter</code> attribute</dd>
+	</dl>
 </section>
 
 <section>

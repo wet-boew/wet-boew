@@ -29,6 +29,7 @@
 			<li><a href="#esri-rest">Exemple de carte ESRI REST</a></li>
 			<li><a href="#osm">Exemple de carte de base OSM</a></li>
 			<li><a href="#carte-xyz">Exemple de carte de base XYZ</a></li>
+			<li><a href="#filtrer">Filtrer la cartre</a></li>
 		</ul>
 	</div>
 </div>
@@ -811,6 +812,482 @@ var wet_boew_geomap = {
 	}
 };
 		</code></pre>
+		</details>
+	</section>
+</section>
+
+<section>
+	<h2 id="filtrer">Filtrer la cartre</h2>
+
+	<form class="wb-geomap-filter form-inline mrgn-bttm-md" data-bind-to="sample_map_filter">
+		<div class="form-group">
+			<label for="gm_province">Province:</label>
+			<select id="gm_province" class="form-control" data-filter="aoi">
+				<!-- Les dimension ci-dessous sont approximative pour cette demonstration seulement -->
+				<option selected value="64.097 -10.63 34.692 -177.659">Canada</option>
+				<option value="60 -120 48 -139">Colombie Britanique</option>
+				<option value="60 -110 49 -120">Alberta</option>
+				<option value="POLYGON((-78.30545265676142 62.84207638792185,-79.79959328176142 51.57292655739278,-79.18435890676142 46.810536399556135,-76.45974953176142 45.655468008018055,-75.58084328176142 45.961790800827984,-74.87771828176142 45.47086564114406,-74.96560890676142 44.97562684884711,-71.44998390676142 44.97562684884711,-69.16482765676142 47.349194267123444,-68.19803078176142 47.349194267123444,-64.33084328176142 48.35181916125691,-55.80545265676142 52.00783331541157,-67.31912453176142 52.16984334247954,-64.24295265676142 60.85236662687351,-78.30545265676142 62.84207638792185))">Québec</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="gm_layer">Couche:</label>
+			<select id="gm_layer" class="form-control" data-filter="layer">
+				<option value="Points" selected>Points</option>
+				<option value="KML">KML</option>
+				<option value="TopoJSON (World 110m)">TopoJSON (World 110m)</option>
+				<option value="">(tous)</option>
+			</select>
+		</div>
+		<button class="btn btn-primary" aria-controls="sample_map_filter" type="submit">Filtrer</button>
+		<button class="btn btn-link" type="reset">Effacer</button>
+	</form>
+	<div id="sample_map_filter"
+		class="wb-geomap position scaleline geocoder geolocation"
+		data-wb-geomap='{
+			"tables": [{
+				"id": "cities_forFilterSample",
+				"zoom": true,
+				"tooltips": true,
+				"tooltipText": "Population de 2011",
+				"popups": true,
+				"popupsInfo": {
+					"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong>_Subdivision de recensement<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom à la ville\" aria-label=\"Zoom à la ville\" onclick=\"wb.doc.zoomFeature()\">Zoom à la ville</a></div></div>"
+				},
+				"style": {
+					"type": "rule",
+					"rule": [
+					{
+						"field": "Rang",
+						"value": [3],
+						"filter": "GREATER_THAN",
+						"init": {
+							"fillColor": "#e74c3c",
+							"pointRadius": 2.6,
+							"fillOpacity": 1.0,
+							"strokeWidth": 8,
+							"strokeColor": [ 231, 76, 60, 0.5 ]
+						}
+					},
+					{
+						"field": "Rang",
+						"value": [2, 3],
+						"filter": "BETWEEN",
+						"init": {
+							"fillColor": "#e74c3c",
+							"pointRadius": 4,
+							"fillOpacity": 1.0,
+							"strokeWidth": 12,
+							"strokeColor": [ 231, 76, 60, 0.5 ]
+						}
+					},
+					{
+						"field": "Rang",
+						"value": [1],
+						"filter": "EQUAL_TO",
+						"init": {
+							"fillColor": "#e74c3c",
+							"pointRadius": 5.3,
+							"fillOpacity": 1.0,
+							"strokeWidth": 16,
+							"strokeColor": [ 231, 76, 60, 0.5 ]
+						}
+					}
+				]}
+			}],
+			"overlays": [
+			{
+				"title": "KML",
+				"caption": "*NEEDS TRANSLATION*This data is extracted from the <a href=\"http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/457ede2f-fd65-5936-ab60-3fe71da0e98b\">Principal mineral areas of Canada</a> publication.",
+				"type": "kml",
+				"url": "demo/producing-mines.kml",
+				"visible": false,
+				"datatable": true,
+				"tooltips": true,
+				"tooltipText": "Opération",
+				"popups": true,
+				"attributes": {
+					"Type_": "Type",
+					"OwnersF": "Opérateur / propriétaire",
+					"OperationF": "Opération",
+					"ComGroupF": "Groupe de produits minéraux",
+					"CommodityF": "Produit minérale"
+				},
+				"style": {
+					"type": "unique",
+					"field": "Type",
+					"init": {
+						"Coal": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA+hJREFUSInN1n9MVWUYwPHvOfeC51zvubeQiwtDCS37sZxbP5YaKbVqaw1W/DKCQiaEBfYD19ZabrlaMp0tNREItJBoDabWrC2pK1qbxXRMmoMwDav1R8GFe4DzAvee0x/iTbpwuZRrPf++z/t8znPe57w7dv6jsP8vICH8i0GqxLIiP5AknVYUbcs/goQYvgHL9AJJIEV0sMgQhn6tomovzgoSYij5MnLU20bzkc+nNeKucfNSaQme+HkvCEOXFVV7PirIMIYWYlleYFHrsTaaDn8asRlPXBzbqqrZtKGEhPj4jcLQJUXVNkaEDENPkrC8QPKXbcf58NAlRJJlLNMMQ2LsdvJzMgkGgjR83ExBThYJ8fHlwvBLiuoqnxIaGfEvkMALpHx14gSNBz8BYMeW13BpGn19Pj472krbt+2hzeOBAFt27OSVslJKCwuo3t/Ak9mZzPd4yiawskmQZf0WMyokL7D42IlvONByOFTMpWnIkownfh4Fa7NJuj5x0vr42BgjQpAQm0B+Thbb99RQsaGY+R7Pc8LQ+xVV2xyCDMM9R5aCN17o7eWDloOTXs/vf/Qx3+MBQJZkfL7B0Fqs3U7FsyW4nE5efv1N0h96gBV3LGdbVQ3bN78KWMumPKOxsfGwczjyRSuFebnIkoxpmYyOjU5C3C4XW3dVMajrNLQcYvU9d6H79bA6M94MX7efIikxEb+uY1om2RnpBIImK+++E7fLReW7exkY/KvLtpPtxNjDy0Z1BV054rIkU5CbRX+/j7d2V9Hf74umxOzuuli7neW334ZvYBBVVViUeN3Vh2ImzsQ5dy5vvL2LZUuXsO6JHKzGj+g423V1IJvNRkXpelxOJ5W79zLg93P8u1OMBYKsy8ul7kATZ7p++HeQzWaj4pn1aJoWmq7LcfJ0B8FAgMK8texrbKKzuycyZJqmKdswFyYtkG9OSabr/E+hhFuXpKCqClt37kEfHg4r0H7me8YDAR59+MEQlJP+yKVFSQp9L3YAp9M5IoRepCpqfVlxkby7tj6EdXb30Nn9TsSuO852hc4pPzOD+1NTAesCyJsmQQCKor0vhC45VEddWXGRvKu2nu4rOosmnsp8jDWpqwDOW8hpquK8GAZNYPsvY+XFRdJssKezHmf1vSsBfrQgTVWdP1+5HjYMiqLtE4YuO1RHbbRYYXYm961aAXDuEqL98vecKadOUbU6Yfglh+qoKS8uknovhu0LxRwllpRFyQDnTMta43C4fp0qb9rxVlTXexNY9S1Lb5rhp4Ee07LSpkMiQhNYrRCDzZJks0XKEyI45Ha7RaScGT9YRXFHd5nNEH8C+eGD9m6tNTgAAAAASUVORK5CYII=",
+							"fillOpacity": "1",
+							"graphicWidth": "25",
+							"name": "Mines de charbon"
+						},
+						"Metal mines and mills": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9FJREFUSInN1ltoHFUYwPH/mdndzKwzs6l7Iy1N25S+FCLaF69gg5cHq6S2FUSaS5OqD6YxASklgUpTCgqCIki1uTRF0QcDIlJpaWpES4UgrljBh7RRqsVmN5fNbpo52ezO+JBkcZtkk2gRv9fznfObc77vHMbDfxSe/wUkZWoriDdx3eIfJMQPmmZ2/CNIyltbcJ0BYCOIog4u1dJOr9N0s3VNkJRTmxeQcxPf8vFU/7JGSLE4Eq4n4gu2SDutaLr56qog254qx3UHgE3nJy5xJn2+6Gai6jpOJHpojzQQ8QabpZ0Wmm42F4VsO71R4A4Amy8kL9GbPgeAgoKDswjxCpUDwWqybo7TY59RH9xN1Bs6JO2U0HTr0JLQ9HRqg4ABoKI/eZme1Bxycv1hLI/JaGacLya/pt+O5SfPujnab77P65EGmiIv8F78E+ruribqCzXNY00FkOv+6Z2RYgDYejH5Hd2pL/OLWR4DBUHEF+RAeA+bkmUF4zNkmHYkURGmLljNG/FejoTrifpCr0g7Pa7p5tE8ZNuBEkXktg3L63SlzhYcTyIzTtQXmj9CwUR2Mj9WIry0hWqxVIPmG2+xz3iUR7RKTiR6eHfDYcC9Z8kaZZzZRXX4PPkVByPPoSBwcLDdmQKk1GPRMdJN0pmiK3WWJ/T7SDq3Fq2z4sswIH+ifKKMdG6KHA7Ph3bhjDo8bOyg1GNyPN7NmJPK51+wY3iFunYIKGhxBUFd+FnGZpN0xDtJ5FJFZq4RWogS4WWHsZ2J7CR+tYQtnrI7D3mFSluoFkO5i6M3T3Gvr4IXQ3sg0cdgZujOQB6h0h6qw1INjsd7GHfSXJQ/MjuWozG8FyfxKd9nrv07yCNU2oI1WKrBsfhcdy3EN/IK2dEsjeG95BJ9xDLDxSHHcRxFxSnX1iuV3nKuzF7PJ1R6N+FXdY6NdDPpLm7byzO/kE1k2R2oIpaYg2rNJ+cGhcjfFw+AYRjTUqYb/Ire0xLdr7wz8lEei2WGiY2cLLrrwcwQg4m5OjVaT/F46UOA+ysorxVAAJpmnpEyLfyKv7slul95e+RDfp79vShwexy0dvFY6YMAwy5Kla4Z+aMpqJGmmb0LWGu0RqwFe8l6mqrSBwCuuVCl60bBxEXNoGnmaWmnFb/i71wt9nLgGXYG7ge4OoeYf9yes2TXabrZLe2U8Cv+U63RGvGbvLEsoiklVGjlAFcd193p91tLJi/b3ppudc1jH2z3b1vhp4Ehx3WrlkOKQvNYp5STfUKoi1/Jv4WUualAICCL5ax4YTUtMLFSzmriL1z5gWQ67XYNAAAAAElFTkSuQmCC",
+							"fillOpacity": "1",
+							"graphicWidth": "25",
+							"name": "Mines de métaux"
+						},
+						"Industrial minerals": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA79JREFUSInN1ktMXFUYwPH/uVxmzoV5tBUGDe+SGmnwFWVBqQHUhYmJxo1xKZg2Pmh91IVJFWx140JXTapC62NtoombYmgHmoZQSUxUKDVWpuVheQ2tzAz3zMDc42KmIAwMUBvjtz3f/X7nnu87N9fkPwrzfwEpNV8F4iO0zr4hIX6S0nv8tiClYpVoJwiUgsjqoHlW2ZGd0vK+uS1IqWjFLWRy8Azhy19vaOS4A1Q0HEX6Ct9QdsSQlvf1LUG2HS1D6yBQPjnURXi4M+vLmHn3EOo5TmXje0hf4LCyI0Ja3sNZIduOlAp0EKiYvNRF+FJHakEYoJ1MRbgoqW1GJ5cYHzhNSW0L0hc4pOx5IS3foXWhhYX5YgFBYPfUcDfhoRSy5+lOci0f8UiYqcHviE50rTytE4ycfYeKhmNU7G/l2oUTFD/ajPQXtaax1lWQ1tdz40oEgaqp4bPMDn66XCvX8iGEgfQVUlb3EtOXK1et66QiuWhjmHdTXNtCqOdDKhuOIv1Fryk7Mictb9syZNt+tyGSe6LTI8wOnlx1OvH5GaS/KHVSwmApNrdycoakpL4N0+3lt+9b2XXv8/hKGgj1fkD1MycA/cC6PUomExltmPz1W8rrDyKEgdYOySW1jJTubyPX2kEo+D7OYpjZoZN4ip/CScxl1Nn0yxC73s3UUAVJNY/WSUpqX2DMWWJX1WMppOcYTmJ6OT86cQaEa/sQsGbEDcr3NROPzjFyrh0nPrmVEtv71glD4i9/hHjsBjkuidu3G3vmTkPCleqJ28NI97vkFTxEad0BRvsc1Gz/HYKESWl9O6bbm278LNE/f2DixyXK6g4y2qdR4Yv/EhImJfvayZVervakputWxCbPMX5xidK6A4z1Oai5geyQ4ziOkYOTf1eZ4drxIImbPy8nyJ0PY7osQr3t6MUbGQUWps8z1p8gUPMco+dTUMHeF9ObFIurII/Hs6BUpMV05Z2ubHjLCPV+soypuQGuBjfeKYCa7Wf0fKpPBTUvU1T9JKBDYLy9CgKQ0vuVUhFhuvJPpbCPSdz8JSuwNgpqXqGo+gmAEY3RZEnPaAaUxr5cwY6I7WCFNa8SqH4c4A8NTZblGfvnesYwSOn9QtkRw3Tld2wVK7y/lcB9jQBXUoh3fG3OulMnLe8pZc8L05X/eWXDERGbubYhkpPrxhOoArjiaN2Yl+ebWC9vw/GWlq8zjX3mL967yU8DvztaN22EZIXSWIdSf30jRE5OtjylklG/36+y5Wx6YaX0Z16e24i/AWg1hRJKTWppAAAAAElFTkSuQmCC",
+							"fillOpacity": "1",
+							"graphicWidth": "25",
+							"name": "Mines de non-métaux"
+						},
+						"Oil Sands": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9VJREFUSInN1l9QVFUcwPHvucDuucveXZqCHXOkZakexFkcmHypRon+PFYPNT1UY0zAiEBKJmjiKDqF04zUWA+IWk0PvTiNNtWI5hDj+CCwFskb/8JyKvk37gL3uLD39sC2hguLmNN0Xn+/+/ucP79z5qbzH430/wWkVDgfxCFsO/WEhLgspdF0V5BS03nYVgewBkRKB5vnlRm5T+rG9hVBSk35/0b6v23natsXSxoZq7Ip2r8bd072NmVGNKkbb90RZJpTudh2B/BQ/3ftjHx8POVinA+u4vKeAxQd3IM7J6dWmREhdaM2JWSakTUCuwPwD5xpZ+RIHNE0sKwkRDgdFFRuJjY3R1/rCdZVlOH25dQoMyyk7qlZFJqZCa8W0AEEBs9+zy8fzSOPf3kU6fUwPTrOwFenGTt9NvGxfTNKV+0uij7YR1FdNT+2fMLa8s0YPl91HKteANn27xk3legA8ofOnWe45WiimPR6EELDnZNNYWUZQwH/gritbjJrKtKdTgrK3+By43sUHdiF2+fbqszIhNSNvQnINL1OTcQeGR8cYuhw64Ltmb4+itvnm98qoaHGJ25tnS4Jvr8H6THoLKsh99WXeKD0SULvHmTjsSOAHVz0jGLRaNI59J88xfqqcoTQsG2LmKluIc2N6FleeuqbiI1OMNzSSvYLzzE3NplUZ9mXYfyb8wz4/UTDN8CyKXjtFey5GKs3PYHMyiK0u4m5P64n8kdPtSOcjpVDwMIWFxCs2Iw5NkF3wz5mr/15JyVW9tYJXeJ7rBhzYpJ0l8T1aIAb9xoSTgfB5kachpuut/eStaGQYNWb9FoW4c5L9wjKSCfY3Ij0GITqm5i7PsbY1+foi85SWFXOT5ZF5EL3v4TiiNNj0LNzH7HRW+09eeYH+mIxglXl/GzZRC72pIYsy7K0NKwsf66WuaGQ6a7eRIKxYT0ZLp3Qzv3ExpPbdvLcBa5EowRefpHeOOTf8vp8UIjZBZDb7Z5RKlLm0F0niuu3aaFDHyawyMUeQilmChDuvERv/JzytleQ/+zTgD0M2o4FEICUxudKRYTDlXm8uH6bFmo+zHT3lZTA7SNQV0ngmVKAIRutRJfuq0lQHPssgTXUiZVggR1bCJSWAAzaUKLr7l//GU9qBimNT5UZ0RyuzLY7xfLf2UreUxsBBuYR47fbcxbtOqkbx5UZFg5X5tHihjoxOTSyJJIundz/cD7AgGXbm1wuz7VF85YqIHXPsTjW6lu3dpmfBvot2y5ZCkkJxbE2pW6cFCItLVWeUrEpr9erUuUse2Gl9CZfnrsYfwFqWYQCxROHDQAAAABJRU5ErkJggg==",
+							"fillOpacity": "1",
+							"graphicWidth": "25",
+							"name": "Mines de sables bitumineux"
+						}
+					},
+					"select": {
+						"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACKElEQVR42uWWMU/bQBTHWVBR1aUSG7Sl4oMBoiwd+gEYGBgqWIoCLDDCBEUIqUJqB6TOEe1QCQGOEyeRHBTHl/OLfTkvcNwz2NDkzrGTpVItPeXknPy7/3t/vXdjY//V43nNWR/gyHGcEwzSbJ6QRuMp5DtXvuMcVkaAeO8BoM59X4QyuCZC/hDdrreRG0IpneEereKHXkyxgWH9KUcw33ULmSHtdvutTJeVFRLHr5+lGLY5EEIIecMpLeeBXBZNcfbNSNZRGhlsaSGu604Frmv2Qki1KjiAMH6bWtiPY0NAoxGtLxIY3e6DnJ/vjAcAhkoJQpLiy7UKtLFuCN9xxFXRfFLW9QVjsPoXSFr3FTrrYO9amZrnLlNBLov9akPmC7S/ErS2WlKeOFHVo6ggIVdFdUpxvxKEf3zWgJ6H32olkFalot0XpoEwDVmchspa0iRpexDk6EBfMoBQCToRbm7SDzOKot7Cx5bWgRzZB3PXqKBxF9Tr+RSFKYrQjd8P9WqJol48UIBs237JO3BLbFv5odPDwbXrPeRDR4evfd0h6HTmpJtuaUreswZCeNeryAb9TtnvOpTOI4yMAIsgAGWcAqkdHChdkBvvhoFxhs3UM3EKZJpJjNLFvDAsPg+gJCHTuaasTOMHhFFpELT9yrIZ/a49rj99LEfr/V1DhI8QHDVD3RsY85YQ1ndPiNcIwHEQgDE0JH5qtdpraf/JtLAsa+KfubrdA6qupf9mD9mBAAAAAElFTkSuQmCC",
+						"graphicOpacity": "1"
+					}
+				}
+			},
+			{
+				"title": "TopoJSON (World 110m)",
+				"caption": "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote TopoJSON resource.",
+				"type": "topojson",
+				"url": "demo/topojson.json",
+				"accessible": false,
+				"style": {
+					"strokeColor": "#3399ff",
+					"strokeWidth": 2.0
+				},
+				"visible": false
+			}]
+		}'>
+
+		<div class="row">
+			<div class="col-md-9 form-group">
+				<div class="wb-geomap-map"></div>
+			</div>
+
+			<section class="col-md-3 form-group">
+				<div class="panel panel-default">
+					<header class="panel-heading">
+						<h3 class="panel-title">Légende</h3>
+					</header>
+					<div class="panel-body">
+						<div class="wb-geomap-legend"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="wb-geomap-layers col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">Points</div>
+				</div>
+				<div class="panel-body">
+					<table id="cities_forFilterSample" aria-label="Points" class="table wb-tables">
+						<caption>Tableau de géométrie point</caption>
+						<thead>
+							<tr>
+								<th>Rang</th>
+								<th>Subdivision de recensement</th>
+								<th>Population de 2011</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-geometry="POINT (-79.3847 43.6476)" data-type="wkt">
+								<td>1</td>
+								<td><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+								<td>2{{{i18n "info1000"}}}615{{{i18n "info1000"}}}060</td>
+							</tr>
+							<tr data-geometry="POINT (-73.56123 45.52927)" data-type="wkt">
+								<td>2</td>
+								<td><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+								<td>1{{{i18n "info1000"}}}649{{{i18n "info1000"}}}519</td>
+							</tr>
+							<tr data-geometry="POINT (-114.05879 51.04668)" data-type="wkt">
+								<td>3</td>
+								<td><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+								<td>1{{{i18n "info1000"}}}096{{{i18n "info1000"}}}833</td>
+							</tr>
+							<tr data-geometry="POINT (-75.68937 45.41072)" data-type="wkt">
+								<td>4</td>
+								<td class="select"><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+								<td>883{{{i18n "info1000"}}}391</td>
+							</tr>
+							<tr data-geometry="POINT (-113.49590 53.53398)" data-type="wkt">
+								<td>5</td>
+								<td><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+								<td>812{{{i18n "info1000"}}}201</td>
+							</tr>
+							<tr data-geometry="POINT (-79.65 43.60)" data-type="wkt">
+								<td>6</td>
+								<td><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+								<td>713{{{i18n "info1000"}}}443</td>
+							</tr>
+							<tr data-geometry="POINT (-97.14352 49.89375)" data-type="wkt">
+								<td>7</td>
+								<td><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+								<td>663{{{i18n "info1000"}}}617</td>
+							</tr>
+							<tr data-geometry="POINT (-123.10091 49.26428)" data-type="wkt">
+								<td>8</td>
+								<td><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+								<td>603{{{i18n "info1000"}}}502</td>
+							</tr>
+							<tr data-geometry="POINT (-79.76181 43.68686)" data-type="wkt">
+								<td>9</td>
+								<td><a href="http://www.wikipedia.org/wiki/Brampton" title="Brampton">Brampton</a></td>
+								<td>523{{{i18n "info1000"}}}911</td>
+							</tr>
+							<tr data-geometry="POINT (-79.86788 43.25717)" data-type="wkt">
+								<td>10</td>
+								<td><a href="http://www.wikipedia.org/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+								<td>519{{{i18n "info1000"}}}949</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details class="mrgn-bttm-lg">
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;form class="wb-geomap-filter form-inline mrgn-bttm-md" data-bind-to="sample_map_filter"&gt;
+	&lt;div class="form-group"&gt;
+		&lt;label for="gm_province"&gt;Province:&lt;/label&gt;
+		&lt;select id="gm_province" class="form-control" data-filter="aoi"&gt;
+			&lt;!-- Les dimension ci-dessous sont approximative pour cette demonstration seulement --&gt;
+			&lt;option selected value="64.097 -10.63 34.692 -177.659"&gt;Canada&lt;/option&gt;
+			&lt;option value="60 -120 48 -139"&gt;Colombie Britanique&lt;/option&gt;
+			&lt;option value="60 -110 49 -120"&gt;Alberta&lt;/option&gt;
+			&lt;option value="POLYGON((-78.30545265676142 62.84207638792185,-79.79959328176142 51.57292655739278,-79.18435890676142 46.810536399556135,-76.45974953176142 45.655468008018055,-75.58084328176142 45.961790800827984,-74.87771828176142 45.47086564114406,-74.96560890676142 44.97562684884711,-71.44998390676142 44.97562684884711,-69.16482765676142 47.349194267123444,-68.19803078176142 47.349194267123444,-64.33084328176142 48.35181916125691,-55.80545265676142 52.00783331541157,-67.31912453176142 52.16984334247954,-64.24295265676142 60.85236662687351,-78.30545265676142 62.84207638792185))"&gt;Québec&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/div&gt;
+	&lt;div class="form-group"&gt;
+		&lt;label for="gm_layer"&gt;Couche:&lt;/label&gt;
+		&lt;select id="gm_layer" class="form-control" data-filter="layer"&gt;
+			&lt;option value="Points" selected&gt;Points&lt;/option&gt;
+			&lt;option value="KML"&gt;KML&lt;/option&gt;
+			&lt;option value="TopoJSON (World 110m)"&gt;TopoJSON (World 110m)&lt;/option&gt;
+			&lt;option value=""&gt;(tous)&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/div&gt;
+	&lt;button class="btn btn-primary" aria-controls="sample_map_filter" type="submit"&gt;Filtrer&lt;/button&gt;
+	&lt;button class="btn btn-link" type="reset"&gt;Effacer&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="sample_map_filter"
+	class="wb-geomap position scaleline geocoder geolocation"
+	data-wb-geomap='{
+		"tables": [{
+			"id": "cities_forFilterSample",
+			"zoom": true,
+			"tooltips": true,
+			"tooltipText": "Population de 2011",
+			"popups": true,
+			"popupsInfo": {
+				"content": "&lt;div style=\"white-space:nowrap;\"&gt;&lt;p&gt;&lt;strong&gt;Subdivision de recensement: &lt;/strong&gt;_Subdivision de recensement&lt;div&gt;&lt;a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom à la ville\" aria-label=\"Zoom à la ville\" onclick=\"wb.doc.zoomFeature()\"&gt;Zoom à la ville&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;"
+			},
+			"style": {
+				"type": "rule",
+				"rule": [
+				{
+					"field": "Rang",
+					"value": [3],
+					"filter": "GREATER_THAN",
+					"init": {
+						"fillColor": "#e74c3c",
+						"pointRadius": 2.6,
+						"fillOpacity": 1.0,
+						"strokeWidth": 8,
+						"strokeColor": [ 231, 76, 60, 0.5 ]
+					}
+				},
+				{
+					"field": "Rang",
+					"value": [2, 3],
+					"filter": "BETWEEN",
+					"init": {
+						"fillColor": "#e74c3c",
+						"pointRadius": 4,
+						"fillOpacity": 1.0,
+						"strokeWidth": 12,
+						"strokeColor": [ 231, 76, 60, 0.5 ]
+					}
+				},
+				{
+					"field": "Rang",
+					"value": [1],
+					"filter": "EQUAL_TO",
+					"init": {
+						"fillColor": "#e74c3c",
+						"pointRadius": 5.3,
+						"fillOpacity": 1.0,
+						"strokeWidth": 16,
+						"strokeColor": [ 231, 76, 60, 0.5 ]
+					}
+				}
+			]}
+		}],
+		"overlays": [
+		{
+			"title": "KML",
+			"caption": "*NEEDS TRANSLATION*This data is extracted from the &lt;a href=\"http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/457ede2f-fd65-5936-ab60-3fe71da0e98b\"&gt;Principal mineral areas of Canada&lt;/a&gt; publication.",
+			"type": "kml",
+			"url": "demo/producing-mines.kml",
+			"visible": false,
+			"datatable": true,
+			"tooltips": true,
+			"tooltipText": "Opération",
+			"popups": true,
+			"attributes": {
+				"Type_": "Type",
+				"OwnersF": "Opérateur / propriétaire",
+				"OperationF": "Opération",
+				"ComGroupF": "Groupe de produits minéraux",
+				"CommodityF": "Produit minérale"
+			},
+			"style": {
+				"type": "unique",
+				"field": "Type",
+				"init": {
+					"Coal": {
+						"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA+hJREFUSInN1n9MVWUYwPHvOfeC51zvubeQiwtDCS37sZxbP5YaKbVqaw1W/DKCQiaEBfYD19ZabrlaMp0tNREItJBoDabWrC2pK1qbxXRMmoMwDav1R8GFe4DzAvee0x/iTbpwuZRrPf++z/t8znPe57w7dv6jsP8vICH8i0GqxLIiP5AknVYUbcs/goQYvgHL9AJJIEV0sMgQhn6tomovzgoSYij5MnLU20bzkc+nNeKucfNSaQme+HkvCEOXFVV7PirIMIYWYlleYFHrsTaaDn8asRlPXBzbqqrZtKGEhPj4jcLQJUXVNkaEDENPkrC8QPKXbcf58NAlRJJlLNMMQ2LsdvJzMgkGgjR83ExBThYJ8fHlwvBLiuoqnxIaGfEvkMALpHx14gSNBz8BYMeW13BpGn19Pj472krbt+2hzeOBAFt27OSVslJKCwuo3t/Ak9mZzPd4yiawskmQZf0WMyokL7D42IlvONByOFTMpWnIkownfh4Fa7NJuj5x0vr42BgjQpAQm0B+Thbb99RQsaGY+R7Pc8LQ+xVV2xyCDMM9R5aCN17o7eWDloOTXs/vf/Qx3+MBQJZkfL7B0Fqs3U7FsyW4nE5efv1N0h96gBV3LGdbVQ3bN78KWMumPKOxsfGwczjyRSuFebnIkoxpmYyOjU5C3C4XW3dVMajrNLQcYvU9d6H79bA6M94MX7efIikxEb+uY1om2RnpBIImK+++E7fLReW7exkY/KvLtpPtxNjDy0Z1BV054rIkU5CbRX+/j7d2V9Hf74umxOzuuli7neW334ZvYBBVVViUeN3Vh2ImzsQ5dy5vvL2LZUuXsO6JHKzGj+g423V1IJvNRkXpelxOJ5W79zLg93P8u1OMBYKsy8ul7kATZ7p++HeQzWaj4pn1aJoWmq7LcfJ0B8FAgMK8texrbKKzuycyZJqmKdswFyYtkG9OSabr/E+hhFuXpKCqClt37kEfHg4r0H7me8YDAR59+MEQlJP+yKVFSQp9L3YAp9M5IoRepCpqfVlxkby7tj6EdXb30Nn9TsSuO852hc4pPzOD+1NTAesCyJsmQQCKor0vhC45VEddWXGRvKu2nu4rOosmnsp8jDWpqwDOW8hpquK8GAZNYPsvY+XFRdJssKezHmf1vSsBfrQgTVWdP1+5HjYMiqLtE4YuO1RHbbRYYXYm961aAXDuEqL98vecKadOUbU6Yfglh+qoKS8uknovhu0LxRwllpRFyQDnTMta43C4fp0qb9rxVlTXexNY9S1Lb5rhp4Ee07LSpkMiQhNYrRCDzZJks0XKEyI45Ha7RaScGT9YRXFHd5nNEH8C+eGD9m6tNTgAAAAASUVORK5CYII=",
+						"fillOpacity": "1",
+						"graphicWidth": "25",
+						"name": "Mines de charbon"
+					},
+					"Metal mines and mills": {
+						"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9FJREFUSInN1ltoHFUYwPH/mdndzKwzs6l7Iy1N25S+FCLaF69gg5cHq6S2FUSaS5OqD6YxASklgUpTCgqCIki1uTRF0QcDIlJpaWpES4UgrljBh7RRqsVmN5fNbpo52ezO+JBkcZtkk2gRv9fznfObc77vHMbDfxSe/wUkZWoriDdx3eIfJMQPmmZ2/CNIyltbcJ0BYCOIog4u1dJOr9N0s3VNkJRTmxeQcxPf8vFU/7JGSLE4Eq4n4gu2SDutaLr56qog254qx3UHgE3nJy5xJn2+6Gai6jpOJHpojzQQ8QabpZ0Wmm42F4VsO71R4A4Amy8kL9GbPgeAgoKDswjxCpUDwWqybo7TY59RH9xN1Bs6JO2U0HTr0JLQ9HRqg4ABoKI/eZme1Bxycv1hLI/JaGacLya/pt+O5SfPujnab77P65EGmiIv8F78E+ruribqCzXNY00FkOv+6Z2RYgDYejH5Hd2pL/OLWR4DBUHEF+RAeA+bkmUF4zNkmHYkURGmLljNG/FejoTrifpCr0g7Pa7p5tE8ZNuBEkXktg3L63SlzhYcTyIzTtQXmj9CwUR2Mj9WIry0hWqxVIPmG2+xz3iUR7RKTiR6eHfDYcC9Z8kaZZzZRXX4PPkVByPPoSBwcLDdmQKk1GPRMdJN0pmiK3WWJ/T7SDq3Fq2z4sswIH+ifKKMdG6KHA7Ph3bhjDo8bOyg1GNyPN7NmJPK51+wY3iFunYIKGhxBUFd+FnGZpN0xDtJ5FJFZq4RWogS4WWHsZ2J7CR+tYQtnrI7D3mFSluoFkO5i6M3T3Gvr4IXQ3sg0cdgZujOQB6h0h6qw1INjsd7GHfSXJQ/MjuWozG8FyfxKd9nrv07yCNU2oI1WKrBsfhcdy3EN/IK2dEsjeG95BJ9xDLDxSHHcRxFxSnX1iuV3nKuzF7PJ1R6N+FXdY6NdDPpLm7byzO/kE1k2R2oIpaYg2rNJ+cGhcjfFw+AYRjTUqYb/Ire0xLdr7wz8lEei2WGiY2cLLrrwcwQg4m5OjVaT/F46UOA+ysorxVAAJpmnpEyLfyKv7slul95e+RDfp79vShwexy0dvFY6YMAwy5Kla4Z+aMpqJGmmb0LWGu0RqwFe8l6mqrSBwCuuVCl60bBxEXNoGnmaWmnFb/i71wt9nLgGXYG7ge4OoeYf9yes2TXabrZLe2U8Cv+U63RGvGbvLEsoiklVGjlAFcd193p91tLJi/b3ppudc1jH2z3b1vhp4Ehx3WrlkOKQvNYp5STfUKoi1/Jv4WUualAICCL5ax4YTUtMLFSzmriL1z5gWQ67XYNAAAAAElFTkSuQmCC",
+						"fillOpacity": "1",
+						"graphicWidth": "25",
+						"name": "Mines de métaux"
+					},
+					"Industrial minerals": {
+						"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA79JREFUSInN1ktMXFUYwPH/uVxmzoV5tBUGDe+SGmnwFWVBqQHUhYmJxo1xKZg2Pmh91IVJFWx140JXTapC62NtoombYmgHmoZQSUxUKDVWpuVheQ2tzAz3zMDc42KmIAwMUBvjtz3f/X7nnu87N9fkPwrzfwEpNV8F4iO0zr4hIX6S0nv8tiClYpVoJwiUgsjqoHlW2ZGd0vK+uS1IqWjFLWRy8Azhy19vaOS4A1Q0HEX6Ct9QdsSQlvf1LUG2HS1D6yBQPjnURXi4M+vLmHn3EOo5TmXje0hf4LCyI0Ja3sNZIduOlAp0EKiYvNRF+FJHakEYoJ1MRbgoqW1GJ5cYHzhNSW0L0hc4pOx5IS3foXWhhYX5YgFBYPfUcDfhoRSy5+lOci0f8UiYqcHviE50rTytE4ycfYeKhmNU7G/l2oUTFD/ajPQXtaax1lWQ1tdz40oEgaqp4bPMDn66XCvX8iGEgfQVUlb3EtOXK1et66QiuWhjmHdTXNtCqOdDKhuOIv1Fryk7Mictb9syZNt+tyGSe6LTI8wOnlx1OvH5GaS/KHVSwmApNrdycoakpL4N0+3lt+9b2XXv8/hKGgj1fkD1MycA/cC6PUomExltmPz1W8rrDyKEgdYOySW1jJTubyPX2kEo+D7OYpjZoZN4ip/CScxl1Nn0yxC73s3UUAVJNY/WSUpqX2DMWWJX1WMppOcYTmJ6OT86cQaEa/sQsGbEDcr3NROPzjFyrh0nPrmVEtv71glD4i9/hHjsBjkuidu3G3vmTkPCleqJ28NI97vkFTxEad0BRvsc1Gz/HYKESWl9O6bbm278LNE/f2DixyXK6g4y2qdR4Yv/EhImJfvayZVervakputWxCbPMX5xidK6A4z1Oai5geyQ4ziOkYOTf1eZ4drxIImbPy8nyJ0PY7osQr3t6MUbGQUWps8z1p8gUPMco+dTUMHeF9ObFIurII/Hs6BUpMV05Z2ubHjLCPV+soypuQGuBjfeKYCa7Wf0fKpPBTUvU1T9JKBDYLy9CgKQ0vuVUhFhuvJPpbCPSdz8JSuwNgpqXqGo+gmAEY3RZEnPaAaUxr5cwY6I7WCFNa8SqH4c4A8NTZblGfvnesYwSOn9QtkRw3Tld2wVK7y/lcB9jQBXUoh3fG3OulMnLe8pZc8L05X/eWXDERGbubYhkpPrxhOoArjiaN2Yl+ebWC9vw/GWlq8zjX3mL967yU8DvztaN22EZIXSWIdSf30jRE5OtjylklG/36+y5Wx6YaX0Z16e24i/AWg1hRJKTWppAAAAAElFTkSuQmCC",
+						"fillOpacity": "1",
+						"graphicWidth": "25",
+						"name": "Mines de non-métaux"
+					},
+					"Oil Sands": {
+						"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9VJREFUSInN1l9QVFUcwPHvucDuucveXZqCHXOkZakexFkcmHypRon+PFYPNT1UY0zAiEBKJmjiKDqF04zUWA+IWk0PvTiNNtWI5hDj+CCwFskb/8JyKvk37gL3uLD39sC2hguLmNN0Xn+/+/ucP79z5qbzH430/wWkVDgfxCFsO/WEhLgspdF0V5BS03nYVgewBkRKB5vnlRm5T+rG9hVBSk35/0b6v23natsXSxoZq7Ip2r8bd072NmVGNKkbb90RZJpTudh2B/BQ/3ftjHx8POVinA+u4vKeAxQd3IM7J6dWmREhdaM2JWSakTUCuwPwD5xpZ+RIHNE0sKwkRDgdFFRuJjY3R1/rCdZVlOH25dQoMyyk7qlZFJqZCa8W0AEEBs9+zy8fzSOPf3kU6fUwPTrOwFenGTt9NvGxfTNKV+0uij7YR1FdNT+2fMLa8s0YPl91HKteANn27xk3legA8ofOnWe45WiimPR6EELDnZNNYWUZQwH/gritbjJrKtKdTgrK3+By43sUHdiF2+fbqszIhNSNvQnINL1OTcQeGR8cYuhw64Ltmb4+itvnm98qoaHGJ25tnS4Jvr8H6THoLKsh99WXeKD0SULvHmTjsSOAHVz0jGLRaNI59J88xfqqcoTQsG2LmKluIc2N6FleeuqbiI1OMNzSSvYLzzE3NplUZ9mXYfyb8wz4/UTDN8CyKXjtFey5GKs3PYHMyiK0u4m5P64n8kdPtSOcjpVDwMIWFxCs2Iw5NkF3wz5mr/15JyVW9tYJXeJ7rBhzYpJ0l8T1aIAb9xoSTgfB5kachpuut/eStaGQYNWb9FoW4c5L9wjKSCfY3Ij0GITqm5i7PsbY1+foi85SWFXOT5ZF5EL3v4TiiNNj0LNzH7HRW+09eeYH+mIxglXl/GzZRC72pIYsy7K0NKwsf66WuaGQ6a7eRIKxYT0ZLp3Qzv3ExpPbdvLcBa5EowRefpHeOOTf8vp8UIjZBZDb7Z5RKlLm0F0niuu3aaFDHyawyMUeQilmChDuvERv/JzytleQ/+zTgD0M2o4FEICUxudKRYTDlXm8uH6bFmo+zHT3lZTA7SNQV0ngmVKAIRutRJfuq0lQHPssgTXUiZVggR1bCJSWAAzaUKLr7l//GU9qBimNT5UZ0RyuzLY7xfLf2UreUxsBBuYR47fbcxbtOqkbx5UZFg5X5tHihjoxOTSyJJIundz/cD7AgGXbm1wuz7VF85YqIHXPsTjW6lu3dpmfBvot2y5ZCkkJxbE2pW6cFCItLVWeUrEpr9erUuUse2Gl9CZfnrsYfwFqWYQCxROHDQAAAABJRU5ErkJggg==",
+						"fillOpacity": "1",
+						"graphicWidth": "25",
+						"name": "Mines de sables bitumineux"
+					}
+				},
+				"select": {
+					"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACKElEQVR42uWWMU/bQBTHWVBR1aUSG7Sl4oMBoiwd+gEYGBgqWIoCLDDCBEUIqUJqB6TOEe1QCQGOEyeRHBTHl/OLfTkvcNwz2NDkzrGTpVItPeXknPy7/3t/vXdjY//V43nNWR/gyHGcEwzSbJ6QRuMp5DtXvuMcVkaAeO8BoM59X4QyuCZC/hDdrreRG0IpneEereKHXkyxgWH9KUcw33ULmSHtdvutTJeVFRLHr5+lGLY5EEIIecMpLeeBXBZNcfbNSNZRGhlsaSGu604Frmv2Qki1KjiAMH6bWtiPY0NAoxGtLxIY3e6DnJ/vjAcAhkoJQpLiy7UKtLFuCN9xxFXRfFLW9QVjsPoXSFr3FTrrYO9amZrnLlNBLov9akPmC7S/ErS2WlKeOFHVo6ggIVdFdUpxvxKEf3zWgJ6H32olkFalot0XpoEwDVmchspa0iRpexDk6EBfMoBQCToRbm7SDzOKot7Cx5bWgRzZB3PXqKBxF9Tr+RSFKYrQjd8P9WqJol48UIBs237JO3BLbFv5odPDwbXrPeRDR4evfd0h6HTmpJtuaUreswZCeNeryAb9TtnvOpTOI4yMAIsgAGWcAqkdHChdkBvvhoFxhs3UM3EKZJpJjNLFvDAsPg+gJCHTuaasTOMHhFFpELT9yrIZ/a49rj99LEfr/V1DhI8QHDVD3RsY85YQ1ndPiNcIwHEQgDE0JH5qtdpraf/JtLAsa+KfubrdA6qupf9mD9mBAAAAAElFTkSuQmCC",
+					"graphicOpacity": "1"
+				}
+			}
+		},
+		{
+			"title": "TopoJSON (World 110m)",
+			"caption": "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote TopoJSON resource.",
+			"type": "topojson",
+			"url": "demo/topojson.json",
+			"accessible": false,
+			"style": {
+				"strokeColor": "#3399ff",
+				"strokeWidth": 2.0
+			},
+			"visible": false
+		}]
+	}'&gt;
+
+	&lt;div class="row"&gt;
+		&lt;div class="col-md-9 form-group"&gt;
+			&lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;section class="col-md-3 form-group"&gt;
+			&lt;div class="panel panel-default"&gt;
+				&lt;header class="panel-heading"&gt;
+					&lt;h3 class="panel-title"&gt;Légende&lt;/h3&gt;
+				&lt;/header&gt;
+				&lt;div class="panel-body"&gt;
+					&lt;div class="wb-geomap-legend"&gt;&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+
+	&lt;div class="wb-geomap-layers col-md-12"&gt;
+		&lt;div class="panel panel-default"&gt;
+			&lt;div class="panel-heading"&gt;
+				&lt;div class="panel-title"&gt;Points&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="panel-body"&gt;
+				&lt;table id="cities_forFilterSample" aria-label="Points" class="table wb-tables"&gt;
+					&lt;caption&gt;Tableau de géométrie point&lt;/caption&gt;
+					&lt;thead&gt;
+						&lt;tr&gt;
+							&lt;th&gt;Rang&lt;/th&gt;
+							&lt;th&gt;Subdivision de recensement&lt;/th&gt;
+							&lt;th&gt;Population de 2011&lt;/th&gt;
+						&lt;/tr&gt;
+					&lt;/thead&gt;
+					&lt;tbody&gt;
+						&lt;tr data-geometry="POINT (-79.3847 43.6476)" data-type="wkt"&gt;
+							&lt;td&gt;1&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto"&gt;Toronto&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;2{{{i18n "info1000"}}}615{{{i18n "info1000"}}}060&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-73.56123 45.52927)" data-type="wkt"&gt;
+							&lt;td&gt;2&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal"&gt;Montreal&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;1{{{i18n "info1000"}}}649{{{i18n "info1000"}}}519&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-114.05879 51.04668)" data-type="wkt"&gt;
+							&lt;td&gt;3&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary"&gt;Calgary&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;1{{{i18n "info1000"}}}096{{{i18n "info1000"}}}833&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-75.68937 45.41072)" data-type="wkt"&gt;
+							&lt;td&gt;4&lt;/td&gt;
+							&lt;td class="select"&gt;&lt;a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa"&gt;Ottawa&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;883{{{i18n "info1000"}}}391&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-113.49590 53.53398)" data-type="wkt"&gt;
+							&lt;td&gt;5&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton"&gt;Edmonton&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;812{{{i18n "info1000"}}}201&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-79.65 43.60)" data-type="wkt"&gt;
+							&lt;td&gt;6&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga"&gt;Mississauga&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;713{{{i18n "info1000"}}}443&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-97.14352 49.89375)" data-type="wkt"&gt;
+							&lt;td&gt;7&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg"&gt;Winnipeg&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;663{{{i18n "info1000"}}}617&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-123.10091 49.26428)" data-type="wkt"&gt;
+							&lt;td&gt;8&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver"&gt;Vancouver&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;603{{{i18n "info1000"}}}502&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-79.76181 43.68686)" data-type="wkt"&gt;
+							&lt;td&gt;9&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Brampton" title="Brampton"&gt;Brampton&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;523{{{i18n "info1000"}}}911&lt;/td&gt;
+						&lt;/tr&gt;
+						&lt;tr data-geometry="POINT (-79.86788 43.25717)" data-type="wkt"&gt;
+							&lt;td&gt;10&lt;/td&gt;
+							&lt;td&gt;&lt;a href="http://www.wikipedia.org/wiki/Hamilton,_Ontario" title="Hamilton, Ontario"&gt;Hamilton&lt;/a&gt;&lt;/td&gt;
+							&lt;td&gt;519{{{i18n "info1000"}}}949&lt;/td&gt;
+						&lt;/tr&gt;
+					&lt;/tbody&gt;
+				&lt;/table&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 		</details>
 	</section>
 </section>
