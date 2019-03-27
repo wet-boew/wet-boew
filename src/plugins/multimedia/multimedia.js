@@ -77,7 +77,7 @@ var componentName = "wb-mltmd",
 						// Only for a specific YT message
 						if ( data.event && data.event === "infoDelivery" && data.info && data.info.playerState ) {
 
-							// Find the iFrame and evaluate if it need to be repost
+							// Find the iFrame and evaluate if it needs to be reposted
 							frames = document.getElementsByTagName( "iframe" );
 
 							i_len = frames.length;
