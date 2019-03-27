@@ -64,7 +64,7 @@ var componentName = "wb-mltmd",
 				// YT workaround for when played inside a modal dialog, like with lightbox
 				//
 				// the issue is when the iFrame is moved, it reloads and then it doesn't emit the right event to
-				// adjust the WET multimedia controler to represent it's current state.
+				// adjust the WET multimedia controller to represent its current state.
 				//
 				// This need to be executed only once that is why it is in the i18nText conditional
 				window.addEventListener( "message", function( e ) {
