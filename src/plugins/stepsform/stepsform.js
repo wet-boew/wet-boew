@@ -17,30 +17,25 @@ var componentName = "wb-steps",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
-	idCount = 0,
 	i18n, i18nText,
 	btnPrevious, btnNext, btnSubmit,
 
 	/**
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered the function call
+	 * @param {jQuery Event} evt Event that triggered the function call
 	 */
-	init = function( event ) {
+	init = function( evt ) {
 
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var eventTarget = wb.init( event, componentName, selector ),
-			elmId;
+		var elm = wb.init( evt, componentName, selector );
 
-		if ( eventTarget ) {
-			elmId = eventTarget.id;
+		if ( elm ) {
 
 			// Ensure there is a unique id on the element
-			if ( !elmId ) {
-				elmId = componentName + "-id-" + idCount;
-				idCount += 1;
-				eventTarget.id = elmId;
+			if ( !elm.id ) {
+				elm.id = wb.getId();
 			}
 
 			// Only initialize the i18nText once
@@ -52,24 +47,22 @@ var componentName = "wb-steps",
 				};
 			}
 
-			// Only initialize the buttons once
-			if ( !btnPrevious || !btnNext || !btnSubmit ) {
-				btnPrevious = createStepsButton( "a", "button", "mrgn-rght-sm mrgn-bttm-md", i18nText.prv );
-				btnNext = createStepsButton( "a", "submit", "mrgn-bttm-md", i18nText.nxt );
-				btnSubmit = createStepsButton( "input", "submit", "mrgn-bttm-md" );
-			}
-
 			/*
 			 * Variable and function definitions
-			 * These well be initialized once per instance of plugin.
+			 * These will be initialized once per instance of plugin.
 			 */
-			var form = eventTarget.getElementsByTagName( "FORM" )[ 0 ],
+			var form = elm.getElementsByTagName( "FORM" )[ 0 ],
 				fieldsets = ( form ) ? $( form ).children( "fieldset" ) : 0,
-				settings = wb.getData( eventTarget, componentName ),
 				hasStepsInitialized;
 
+			// Initialize navigation buttons
+			btnPrevious = createStepsButton( "A", "prev", "mrgn-rght-sm mrgn-bttm-md", i18nText.prv );
+			btnNext = createStepsButton( "A", "next", "mrgn-bttm-md", i18nText.nxt );
+			btnSubmit = form.querySelector( "input[type=submit], button[type=submit]" );
+			btnSubmit.classList.add( "mrgn-bttm-md" );
+
 			/*
-			 * Determines if html is correctly formatted and initialize all fieldsets/legend combitions into steps.
+			 * Determines if html is correctly formatted and initialize all fieldsets/legend combinations into steps.
 			 */
 			for ( var i = 0, len = fieldsets.length; i < len; i++ ) {
 
@@ -85,16 +78,14 @@ var componentName = "wb-steps",
 					isFirstFieldset = ( i === 0 ) ? true : false,
 					isLastFieldset = ( i === ( len - 1 ) ) ? true : false,
 					legend = fieldset.firstElementChild,
-					div = ( legend && legend.tagName.toUpperCase() === "LEGEND" ) ? legend.nextElementSibling : false;
+					div = ( legend && legend.tagName === "LEGEND" ) ? legend.nextElementSibling : false;
 
-				if ( div && div.tagName.toUpperCase() === "DIV" ) {
+				if ( div && div.tagName === "DIV" ) {
 					var btnClone;
 					hasStepsInitialized = true;
 
 					if ( !isFirstFieldset ) {
 						btnClone = btnPrevious.cloneNode( true );
-						btnClone.id = componentName + "-btn-" + idCount;
-						idCount += 1;
 
 						setStepsBtnEvent( btnClone );
 						div.appendChild( btnClone );
@@ -102,32 +93,19 @@ var componentName = "wb-steps",
 
 					if ( !isLastFieldset ) {
 						btnClone = btnNext.cloneNode( true );
-						btnClone.id = componentName + "-btn-" + idCount;
-						idCount += 1;
 
 						setStepsBtnEvent( btnClone );
 						div.appendChild( btnClone );
 					} else {
-						var btnValue = ( settings && settings.submitBtnVal ) ? settings.submitBtnVal : "X",
-							btnName = ( settings && settings.submitBtnNme ) ? settings.submitBtnNme : "";
-
-						btnClone = btnSubmit.cloneNode( true );
-						btnClone.id = componentName + "-btn-" + idCount;
-						idCount += 1;
-
-						btnClone.value = btnValue;
-						if ( btnName ) {
-							btnClone.name = btnName;
-						}
-						div.appendChild( btnClone );
+						div.appendChild( btnSubmit );
 					}
 
-					fieldset.setAttribute( "class", "wb-tggle-fildst" );
-					div.setAttribute( "class", "hidden" );
+					fieldset.classList.add( "wb-tggle-fildst" );
+					div.classList.add( "hidden" );
 
 					if ( isFirstFieldset ) {
-						legend.setAttribute( "class", "wb-steps-active" );
-						div.removeAttribute( "class" );
+						legend.classList.add( "wb-steps-active" );
+						div.classList.remove( "hidden" );
 					}
 				}
 			}
@@ -144,39 +122,34 @@ var componentName = "wb-steps",
 	/**
 	 * @method createStepsButton
 	 * @param {string var} tagName, {string var} type, {boolean var} isPrimary, {string var} style, {string var} text
+	 * @returns {Object} A ready-to-use button element
 	 */
 	createStepsButton = function( tagName, type, style, text ) {
-		var isInput = (  tagName && tagName.toUpperCase() === "INPUT" ) ? true : false,
-			control = document.createElement( tagName ),
+		var control = document.createElement( tagName ),
 			btnPrimary = "btn btn-md btn-primary",
 			btnDefault = "btn btn-md btn-default";
 
 		// set default attributes
-		control.className = ( ( type && type.toUpperCase() === "SUBMIT" ) ? btnPrimary : btnDefault ) + " " + style;
-
-		// set default attributes based on tagName
-		if ( isInput ) {
-			control.setAttribute( "type", "submit" );
-		} else {
-			control.href = "#";
-			control.setAttribute( "aria-labelby", text );
-			control.setAttribute( "role", type );
-			control.innerHTML = text;
-		}
+		control.className = ( type === "prev" ? btnDefault : btnPrimary ) + " " + style;
+		control.href = "#";
+		control.setAttribute( "aria-labelby", text );
+		control.setAttribute( "rel", type );
+		control.setAttribute( "role", "button" );
+		control.innerHTML = text;
 
 		return control;
 	},
 
 	/**
 	 * @method setStepsBtnEvent
-	 * @param {JavaScript element} div
+	 * @param {JavaScript element} elm
 	 */
-	setStepsBtnEvent = function( element ) {
-		element.addEventListener( "click", function( evt ) {
+	setStepsBtnEvent = function( elm ) {
+		elm.addEventListener( "click", function( evt ) {
 			evt.preventDefault();
 
-			var classes = ( this.className ) ? this.className.toUpperCase() : false,
-				isNext = ( classes && classes.indexOf( "BTN-PRIMARY" ) > -1 ) ? true : false,
+			var classes = ( this.className ) ? this.className : false,
+				isNext = ( classes && classes.indexOf( "btn-primary" ) > -1 ),
 				isFormValid = true;
 
 			// confirm if form is valid
@@ -188,38 +161,38 @@ var componentName = "wb-steps",
 			if ( isFormValid ) {
 				showSteps( this.parentElement, isNext );
 				if ( isNext ) {
-					this.parentElement.previousElementSibling.removeAttribute( "class" );
+					this.parentElement.previousElementSibling.classList.remove( "wb-steps-error" );
 				}
 			} else if ( isNext && !isFormValid ) {
-				this.parentElement.previousElementSibling.setAttribute( "class", "wb-steps-error" );
+				this.parentElement.previousElementSibling.classList.add( "wb-steps-error" );
 			}
 		} );
 	},
 
 	/**
 	 * @method showSteps
-	 * @param {JavaScript element} div and {boolean var} isNext
+	 * @param {JavaScript element} elm and {boolean var} isNext
 	 */
-	showSteps = function( div, isNext ) {
+	showSteps = function( elm, isNext ) {
 		var fieldset, legend;
 
-		if ( div ) {
-			div.setAttribute( "class", "hidden" );
+		if ( elm ) {
+			elm.classList.add( "hidden" );
 
-			legend = ( div.previousElementSibling ) ? div.previousElementSibling : false;
+			legend = ( elm.previousElementSibling ) ? elm.previousElementSibling : false;
 			if ( legend ) {
-				legend.removeAttribute( "class" );
+				legend.classList.remove( "wb-steps-active" );
 			}
 
-			fieldset = ( !isNext ) ? div.parentElement.previousElementSibling : div.parentElement.nextElementSibling;
+			fieldset = ( !isNext ) ? elm.parentElement.previousElementSibling : elm.parentElement.nextElementSibling;
 			if ( fieldset ) {
 				legend = fieldset.getElementsByTagName( "LEGEND" )[ 0 ];
-				div = fieldset.getElementsByTagName( "DIV" )[ 0 ];
+				elm = fieldset.getElementsByTagName( "DIV" )[ 0 ];
 				if ( legend ) {
-					legend.setAttribute( "class", "wb-steps-active" );
+					legend.classList.add( "wb-steps-active" );
 				}
-				if ( div ) {
-					div.removeAttribute( "class" );
+				if ( elm ) {
+					elm.classList.remove( "hidden" );
 				}
 			}
 		}
