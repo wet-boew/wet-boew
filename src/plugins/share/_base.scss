@@ -33,7 +33,7 @@
 	@each $service in bitly, blogger, digg, diigo, facebook, feed, gmail, linkedin, myspace, pinterest, reddit, tumblr, twitter, yahoomail {
 		.#{$service} {
 			&:before {
-				@extend %#{$service};
+				@extend %#{$service} !optional;
 			}
 		}
 	}

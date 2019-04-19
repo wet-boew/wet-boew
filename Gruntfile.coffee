@@ -36,7 +36,7 @@ module.exports = (grunt) ->
 			"checkDependencies"
 			"clean:dist"
 			"assets"
-			"sprites"
+			"sprite"
 			"css"
 			"js"
 			"string-replace"
@@ -569,15 +569,12 @@ module.exports = (grunt) ->
 				expand: true
 
 		#Generate the sprites including the stylesheet
-		sprites:
+		sprite:
 			share:
-				src: [
-					"src/plugins/share/sprites/*.png"
-				]
-				css: "src/plugins/share/sprites/_sprites_share.scss"
-				map: "src/plugins/share/assets/sprites_share.png"
-				staticImagePath: '#{$wb-assets-path}'
-				output: "scss"
+				src: "src/plugins/share/sprites/*.png"
+				destCss: "src/plugins/share/sprites/_sprites_share.scss"
+				dest: "src/plugins/share/assets/sprites_share.png"
+				imgPath: '#{$wb-assets-path}'
 
 		lintspaces:
 			all:
