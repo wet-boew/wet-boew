@@ -4,6 +4,17 @@
  */
 @import "sprites/sprites_share";
 
+@mixin sprites($sprites) {
+	@each $sprite in $sprites {
+		$sprite-name: nth($sprite, 10);
+		.#{$sprite-name} {
+			&:before {
+				@include sprite($sprite);
+			}
+		}
+	}
+}
+
 .shr-opn {
 	span {
 		padding-right: .2em;
@@ -30,13 +41,7 @@
 		}
 	}
 
-	@each $service in bitly, blogger, digg, diigo, facebook, feed, gmail, linkedin, myspace, pinterest, reddit, tumblr, twitter, yahoomail {
-		.#{$service} {
-			&:before {
-				@extend %#{$service};
-			}
-		}
-	}
+	@include sprites($spritesheet-sprites);
 
 	.shr-dscl {
 		padding-bottom: 0;
