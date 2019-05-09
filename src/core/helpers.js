@@ -24,6 +24,54 @@ wb.getData = function( element, dataName ) {
 	return dataObj;
 };
 
+/*
+ * Initiate an in-browser download from a blob
+ * @param blob: a reference to a blob object
+ * @param filename: a suggested file name to save as under
+ * @param title: (Optional) a title added to the link. Its use case is for web analytics tracking.
+*/
+wb.download = function( blob, filename, title ) {
+
+	var objectURL = URL.createObjectURL( blob ),
+		anchor = document.createElement( "a" );
+
+	filename = filename || "unnamed"; // Ensure a filename is defined
+
+	anchor.textContent = title || "";
+	anchor.download = filename;
+
+	anchor.hidden = true;
+	document.body.appendChild( anchor ); // Added to the body for the web analytic tracking use case.
+
+	if ( window.navigator.msSaveOrOpenBlob ) {
+
+		// This is for IE11 support
+		anchor.addEventListener( "click", function( ) {
+			window.navigator.msSaveOrOpenBlob( blob, filename );
+		} );
+		anchor.setAttribute( "target", "_blank" );
+	} else {
+		anchor.href = objectURL;
+	}
+
+	anchor.click();
+
+	// Clean the DOM, remove the accessory anchor at the next tick
+	setTimeout( function() {
+		document.body.removeChild( anchor );
+	}, 1 );
+
+	// Revoke the ojbect, A setTimeout is used because Blob API don't have a download complete event.
+	setTimeout( function() {
+		if ( typeof objectURL === "string" ) {
+			URL.revokeObjectURL( objectURL );
+		} else {
+			objectURL.remove();
+		}
+	}, 40000 ); // The revoking time is arbitrary
+
+};
+
 } )( jQuery, wb );
 
 ( function( wb ) {
