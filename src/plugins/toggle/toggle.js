@@ -370,6 +370,16 @@ var componentName = "wb-toggle",
 		} else if ( !selector ) {
 			return $link.data( componentName + "-state" ) || data.stateOff;
 
+		// When toggling multiple <details> elements, state is "off" if any are collapsed
+		} else if ( selector === "details" && !type ) {
+			var anyCollapsed = false;
+			getElements( $link, data ).each( function() {
+				if ( !$( this ).attr( "open" ) ) {
+					anyCollapsed = true;
+				}
+			} );
+			return anyCollapsed ? data.stateOff : data.stateOn;
+
 		// Get the current on/off state of the elements specified by the selector and parent
 		} else if ( states.hasOwnProperty( selector ) ) {
 			return states[ selector ].hasOwnProperty( parent ) ?
