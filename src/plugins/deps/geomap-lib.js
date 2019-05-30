@@ -197,6 +197,32 @@ var componentName = "wb-geomap",
 			this.map.getView().fit( viewOptions.extent, this.map.getSize() );
 		}
 
+		// Get layer(s) by name
+		// Build a layer object containing features with "OL2 friendly" properties
+		// (( To be removed on next major version ))
+		var mapLayersCached = this.mapLayers;
+		this.map.getLayersByName = function( layerName ) {
+			var i, i_lyr,
+				i_len = mapLayersCached.length,
+				feature = {
+					popup: {
+						visible: function() {
+							return true;
+						}
+					},
+					geometry: {
+						bounds: ol.proj.transform( this.getOverlays().getArray()[ 0 ].getPosition(), "EPSG:3978", "EPSG:4326" )
+					}
+				};
+
+			for ( i = 0; i !== i_len; i += 1 ) {
+				i_lyr = mapLayersCached[ i ];
+				if ( i_lyr.id && i_lyr.id === layerName ) {
+					return [ { features: [ feature ] } ];
+				}
+			}
+		};
+
 		// Load Controls
 		this.loadControls();
 
@@ -258,6 +284,11 @@ var componentName = "wb-geomap",
 				} );
 			}
 		} );
+
+		// Skip if layer is null
+		if ( !_this.layer ) {
+			return null;
+		}
 
 		// Allow the properties to be observed
 		this.observeVisibility = function( callback ) {
