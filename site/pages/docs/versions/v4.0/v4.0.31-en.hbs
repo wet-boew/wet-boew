@@ -1,0 +1,163 @@
+---
+{
+	"title": "v4.0.31 release notes",
+	"language": "en",
+	"description": "v4.0.31 release notes - Version history - Web Experience Toolkit (WET)",
+	"altLangPrefix": "v4.0.31",
+	"dateModified": "2019-06-19"
+}
+---
+<p>Version 4.0.31</p>
+<ul>
+	<li><strong>Launching date:</strong>
+		<time>2019-06-20</time>
+	</li>
+	<li><a href="../dwnld-en.html#v4031">Downloads</a></li>
+</ul>
+<div class="wb-prettify all-pre"></div>
+<section>
+	<h2>What’s new?</h2>
+	<ul>
+		<li>Template
+			<ul>
+				<li>Minor - Added <code>nav</code> element to skip links, as <a href="#nav-ex">shown here</a></li>
+			</ul>
+		</li>
+		<li>Styles and plugins
+			<ul>
+				<li>Minor - Overlay - Added optional background for overlays with <code>.overlay-bg</code> class and added an "opened" and "closed" event</li>
+				<li>Minor - Share widget - Removed deprecated social sites in the interface (Google+, Delicious and StumbleUpon)</li>
+				<li>Minor - Share widget - Updated Twitter share link to match the new pattern (<a href="#twitter-ex">see what has changed</a>)</li>
+				<li>Minor - Geomap - Added filtering with URL manager compatibility</li>
+				<li>Minor - Geomap - Migrated Openlayer from version 2.x to 3.x (<a href="https://github.com/wet-boew/wet-boew/pull/8578">more information</a>)</li>
+				<li>Minor - Core - Added a download function that uses a blob to the core functions</li>
+				<li>Minor - Tables - Added advanced options for filtering (<a href="https://wet-boew.github.io/wet-boew/docs/ref/tables/tables-en.html#advopt">read documentation to learn more</a>)</li>
+				<li>Patch - Tables - Fixed checkbox filtering when followed by a <code>&lt;select&gt;</code> element.</li>
+				<li>Patch - Tables - Removed text duplication upon initialization</li>
+				<li>Patch - Multimedia player - Fixed player playing in the background when contained in an overlay.</li>
+				<li>Patch - Feeds - Fixed condition when limit is greater than the number of entries</li>
+				<li>Patch - Toggle - Ajusted <code>&lt;detail&gt;</code> toggle behaviour to better match natural cycle when there is multiple details to toggle at once</li>
+			</ul>
+		</li>
+		<li>Maintenance
+			<ul>
+				<li>Fixed blocking condition in the build script related to sprites</li>
+			</ul>
+		</li>
+	</ul>
+	<section>
+		<h3>Browser supported:</h3>
+		<p>As per the rule defined by <a href="http://wet-boew.github.io/wet-boew-documentation/decision/2.html">Design decision 2: Browser supported</a></p>
+		<ul>
+			<li>Chrome 75</li>
+			<li>Chrome 74</li>
+			<li>Safari 12.1.1</li>
+			<li>Firefox 67.0.3</li>
+			<li>Firefox 66.0.5</li>
+			<li>Firefox ESR - 60.7.1</li>
+			<li>IE 11</li>
+			<li>Edge 44</li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2>Details</h2>
+	<p><strong>Number of commits:</strong> 26</p>
+	<ul>
+		<li><a href="https://github.com/duboisp">Pierre Dubois (@duboisp)</a>: 10 commits</li>
+		<li><a href="https://github.com/thekodester">Kody (@thekodester)</a>:5 commits</li>
+		<li><a href="https://github.com/ipaksc">Ilya Pak (@ipaksc)</a>: 3 commits</li>
+		<li><a href="https://github.com/GormFrank">Francis Gorman (@GormFrank)</a>: 2 commits</li>
+		<li><a href="https://github.com/jkshapiro">Kivi Shapiro (@jkshapiro)</a>: 2 commits</li>
+		<li><a href="https://github.com/ClassicCut">ClassicCut (@ClassicCut)</a>: 1 commit</li>
+		<li><a href="https://github.com/jvanulde">Joost van Ulden (@jvanulde)</a>: 1 commit</li>
+		<li><a href="https://github.com/juleskuehn">Jules Kuehn (@juleskuehn)</a>: 1 commit</li>
+		<li><a href="https://github.com/Scott-D-Hodgson">Scott Hodgson (@Scott-D-Hodgson)</a>: 1 commit</li>
+		<li><a href="https://github.com/shawnthompson">Shawn Thompson (@shawnthompson)</a>: 1 commit</li>
+	</ul>
+	<section>
+		<h3>List of commits</h3>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9de22a68b">Update build version to v4.0.31-development + broken link fix</a> - Pierre Dubois, 2019-02-11</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a087afadf">add nav element to skip navigation closes wet-boew/GCWeb#1500</a> - Shawn Thompson, 2019-02-13</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f61efd4f0">WET4 release notes update</a> - ipaksc, 2019-02-23</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5d0f66ad2">GCWeb v5.0.1 download links</a> - Pierre Dubois, 2019-02-23</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2f6d209a0">Geomap - Migration to OpenLayers v3.x</a> - Joost van Ulden, 2019-02-25</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/840d90747">Checkbox Filtering Bug</a> - kody, 2019-03-01</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a9f265acc">Overlay - Add optional overlay background</a> - Pierre Dubois, 2019-03-04</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/152830e9e">Overlay - Add opened and closed js event</a> - Pierre Dubois, 2019-03-04</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c71a3766d">Multimedia Player in overlay - Pause the video when overlay close</a> - Pierre Dubois, 2019-03-04</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/342a840e7">i18n - Update for zh-Hans language</a> - Pierre Dubois, 2019-03-06</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6ab49136d">Share Widget: Remove Deprecated Site</a> - kody, 2019-03-11</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/be90451d5">Feeds Plugin: When limit is greater than the number of feed entries</a> - ipaksc, 2019-03-12</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/551970e25">Geomap - Map filtering</a> - Pierre Dubois, 2019-03-19</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/47ed53c9c">DataTables: Advanced Options</a> - kody, 2019-03-21</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0f840df28">Multimedia Youtube player - YT event workaround when open in a modal (#8614)</a> - Pierre Dubois, 2019-03-28</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d7cb2507b">Fix #8606 Data table – Pagination: Duplicated text on initialization</a> - ipaksc, 2019-03-28</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6c692b25e">Remove Dead Link From Examples</a> - kody, 2019-04-03</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/68c9f0a34">wb-focus - add extra logic condition for focus with empty href (#8621)</a> - ClassicCut, 2019-04-04</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c840080d8">Content - Updated link to wet-boew style guide</a> - Pierre Dubois, 2019-04-11</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ceb40b1e2">Plugin Share/Sprite: Fix build blocking condition</a> - Scott Hodgson, 2019-05-08</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/39653b0f8">Core: Add Download function</a> - Pierre Dubois, 2019-05-09</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a7d2ea76">Toggle plugin: multiple details toggle fix</a> - Jules Kuehn, 2019-05-15</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/589e2918d">Build script: Geomap dependency workaround</a> - GormFrank, 2019-05-21</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/09ddaf8ec">Update Twitter Share Link</a> - thekodester, 2019-05-26</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/17d7e6d59">Geomap: Zoom feature fix for backtrack compatibility</a> - GormFrank, 2019-05-29</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1273e15d3">Reflect ARIA name change</a> - Kivi Shapiro, 2019-06-04</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5dae5ee9a">Reflect ARIA name change</a> - Kivi Shapiro, 2019-06-04</li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2 id="sri">Subresource integrity (SRI)</h2>
+	<p>Le <a href="https://www.w3.org/TR/SRI/">SRI</a> rovide a method to protect website delivery. The following information are the hash for key resource in WET and GCWeb.</p>
+	<section>
+		<h3>v4.0.31</h3>
+		<dl>
+			<dt><code>wet-boew/js/wet-boew.min.js</code></dt>
+			<dd>[add SRI hash]</dd>
+		</dl>
+		<p>Get all hash (JSON format):</p>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.31/wet-boew/payload.json">WET-BOEW</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew-dist/blob/v4.0.31/theme-wet-boew/payload.json">WET-BOEW theme</a></li>
+		</ul>
+	</section>
+</section>
+<section>
+	<h2>More details and examples</h2>
+
+	<h3>Related to template</h3>
+
+	<h4 id="nav-ex">Skip links</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<h5>Now</h5>
+			<pre><code><strong>&lt;nav&gt;</strong>
+		&lt;ul id="wb-tphp"&gt;
+			[...]
+		&lt;/ul&gt;
+	<strong>&lt;/nav&gt;</strong></code></pre>
+		</div>
+		<div class="col-md-6">
+			<h5>Was</h5>
+			<pre><code>&lt;ul id="wb-tphp"&gt;
+		[...]
+	&lt;/ul&gt;</code></pre>
+		</div>
+	</div>
+
+	<h3>Related to styles and plugins</h3>
+
+	<h4 id="twitter-ex">Twitter share link</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<h5>After</h5>
+			<p class="well">http<strong>s</strong>://twitter.com/<strong>intent/tweet?text={t}&amp;url={u}</strong></p>
+		</div>
+		<div class="col-md-6">
+			<h5>Before</h5>
+			<p class="well">http://twitter.com/home?status={t}%20{u}</p>
+		</div>
+	</div>
+</section>

@@ -4,12 +4,89 @@
 	"language": "fr",
 	"description": "ChangeLog de la version 4.0 - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2019-02-11"
+	"dateModified": "2019-06-19"
 }
 ---
 <p>Voir <a href="../version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
 <span class="wb-prettify all-pre"></span>
 
+<section>
+	<h2>v4.0.31</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> <time>2019-06-20</time></li>
+		<li><a href="v4.0.31-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.31</span></a></li>
+		<li><a href="../dwnld-fr.html#v4031">Téléchargements<span class="wb-inv"> - v4.0.31</span></a></li>
+	</ul>
+	<h3>Quoi de neuf?</h3>
+	<ul lang="en">
+		<li>Template
+			<ul>
+				<li>Minor - Added <code>nav</code> element to skip links</li>
+			</ul>
+		</li>
+		<li>Styles and plugins
+			<ul>
+				<li>Minor - Overlay - Added optional background for overlays with <code>.overlay-bg</code> class and added an "opened" and "closed" event</li>
+				<li>Minor - Share widget - Removed deprecated social sites in the interface (Google+, Delicious and StumbleUpon)</li>
+				<li>Minor - Share widget - Updated Twitter share link to match the new pattern</li>
+				<li>Minor - Geomap - Added filtering with URL manager compatibility</li>
+				<li>Minor - Geomap - Migrated Openlayer from version 2.x to 3.x</li>
+				<li>Minor - Core - Added a download function that uses a blob to the core functions</li>
+				<li>Minor - Tables - Added advanced options for filtering</li>
+				<li>Patch - Tables - Fixed checkbox filtering when followed by a <code>&lt;select&gt;</code> element.</li>
+				<li>Patch - Tables - Removed text duplication upon initialization</li>
+				<li>Patch - Multimedia player - Fixed player playing in the background when contained in an overlay.</li>
+				<li>Patch - Feeds - Fixed condition when limit is greater than the number of entries</li>
+				<li>Patch - Toggle - Ajusted <code>&lt;detail&gt;</code> toggle behaviour to better match natural cycle when there is multiple details to toggle at once</li>
+			</ul>
+		</li>
+		<li>Maintenance
+			<ul>
+				<li>Fixed blocking condition in the build script related to sprites</li>
+			</ul>
+		</li>
+	</ul>
+	<p>Canada.ca (GCWeb):</p>
+	<ul lang="en">
+		<li>Template
+			<ul>
+				<li>Minor - Search template - New template for pages with search results.</li>
+				<li>Minor - Navigation element - A <code>&lt;nav&gt;</code> element was added for the skip nav link.</li>
+				<li>Minor - Font Awesome - A reference to font-awesome 5.8.1 was added inside the <code>&lt;head&gt;</code> tag.</li>
+				<li>Minor - RDFa + schema.org improvement to Canada wordmark - The RDFa markup has been modified, new property added, to improve SEO and how search engine interprete some information included in our template.</li>
+				<li>Patch - RDFa markup for main element - Fixed RDFa markup issue on the main element by adding <code>typeof="WebPageElement"</code> attribute to the <code>&lt;main&gt;</code> element.</li>
+			</ul>
+		</li>
+		<li>Styles and plugins
+			<ul>
+				<li>Minor - Custom CSS variant - New concept that allows integration of custom CSS for implementation variant of GCWeb by writing styles inside	new SASS files that are included in the build for pick-up.</li>
+				<li>Minor - Background colour -	Set a dark background to an element (e.g. well) with the class <code>.bg-dark</code> or a completely black one with <code>.bg-darker</code>.</li>
+				<li>Minor - Text colour- Set text in white with a CSS class called <code>text-white</code>. Works jointly with dark backgrounds.</li>
+				<li>Minor - Redacted text - Change of redacted text character to a full block when <code>.redacted</code> is in use.</li>
+				<li>Minor - Well - Provide a responsive well that takes the full width of its parent by adding the <code>.header-rwd</code> class to it.</li>
+				<li>Minor - URL manager and geomap - Added the possibility to prefill geomap configurations with action management.</li>
+				<li>Patch - Footer background image - Canadian flag was added on the top of the parliament on the landscpae image.</li>
+				<li>Patch - Carousel - Link underline override was removed on carousel.</li>
+				<li>Patch - Multimedia player - Top margin override was removed on multimedia player.</li>
+				<li>Patch - Menu - Fix menu navigation on different browsers when using a screen reader by running rigorous operability tests with JAWS and NVDA.</li>
+			</ul>
+		</li>
+		<li>Experimental (<a href="https://wet-boew.github.io/themes-dist/GCWeb/experimental-en.html">en savoir plus sur les règlements entourant les fonctionnalités expérimentales</a>)
+			<ul>
+				<li>Bootstrap 4 spacers - CSS classes added for padding and margin spacing, e.g. <code>.p-0</code> for no padding and <code>.mb-sm-5</code> for extra-large bottom margin for small devices and up.</li>
+				<li>Background image size - CSS class added for a background image to cover the boxes size with <code>.bg-cover</code>.</li>
+				<li>Background image URL - New plugin that allows to set a background image from a data attribute called <code>data-bgimg</code>. It was introduced in the specifications but is not yet supported by browsers.</li>
+				<li>Theme colours - Provides the ability to change theme colours to pink or dark.</li>
+			</ul>
+		</li>
+		<li>Maintenance
+			<ul>
+				<li>Build script - HTMLlint exception was added to prohibit integrity attribute in link tags until adopted in the HTML specifications.</li>
+				<li>GCWeb install from other repository - Include a package.lock in the repository "themes-cdn_GCWeb" to be able to refer at it as a dependency in a nodejs project.</li>
+			</ul>
+		</li>
+	</ul>
+</section>
 <section>
 	<h2>v4.0.30</h2>
 	<ul>
