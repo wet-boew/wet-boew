@@ -80,7 +80,7 @@ var componentName = "wb-overlay",
 
 				overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary " + closeClassFtr +
 					"' style='" + buttonStyle +
-					"' title='" + closeTextFtr + " " + spanTextFtr + "'>" +
+					"' title='" + spanTextFtr + "'>" +
 					closeTextFtr +
 					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
 
