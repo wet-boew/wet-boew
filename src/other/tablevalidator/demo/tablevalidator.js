@@ -89,7 +89,7 @@ var componentName = "wb-tblvalidator",
 		"colgroupsummary-techniques.html", /* 10 */
 		"colheader-description-techniques.html", /* 11 */
 		"layoutcell-techniques.html", /* 12 */
-		"http:/*www.w3.org/TR/html5/spec.html" ], /* 13 */
+		"https://html.spec.whatwg.org/multipage/tables.html#tables" ], /* 13 */
 	techniqueName = [
 		"Defining a Key Cell", /* 1 */
 		"Defining a Data Row Group in a Data Table", /* 2 */
@@ -103,7 +103,7 @@ var componentName = "wb-tblvalidator",
 		"Summaries a Data Column Group in a Data Table", /* 10 */
 		"Describing a Column Header Cell in a Data Table", /* 11 */
 		"Defining a Layout Cell in a Data Table", /* 12 */
-		"HTML5 Specification" ]; /* 13 */
+		"HTML Standard: Tabular data" ]; /* 13 */
 
 // Prevent any form to submit
 $document.on( "submit", formSelector, function( ) {
