@@ -15,11 +15,14 @@
   "important": false,
   // Need due to use of "\9" hacks for oldIE
   "known-properties": false,
+  "order-alphabetical": false,
   "outline-none": false,
   "overqualified-elements": false,
   "qualified-headings": false,
   "regex-selectors": false,
+  "selector-max": false,
   "selector-max-approaching": false,
+  "selector-newline": false,
   // Some Bootstrap mixins end up listing all the longhand properties
   "shorthand": false,
   "text-indent": false,
