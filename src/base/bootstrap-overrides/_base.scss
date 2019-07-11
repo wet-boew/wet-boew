@@ -578,6 +578,10 @@ blockquote {
  *  height:37px; rule of Bootstrap was overwritten by height: auto; first
  *  then a min-height specified, in order to address the issue #8492. July 2019.
  */
+input[type=button], input[type=reset], input[type=submit] {
+	height: auto;
+	min-height: 37px;
+}
 .form-control {
 	height: auto;
 	max-width: 100%;
