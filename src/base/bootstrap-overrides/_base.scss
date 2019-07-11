@@ -217,6 +217,27 @@ a {
 }
 
 /*
+ *	Abbreviations with title attributes
+ *	Workaround for abbreviations with titles using solid underlines in IE11/Edge in Bootstrap 3.4.0 (via normalize.css 4.0.1-8.0.1):
+ *	- Use a dotted underline in browsers that support it (e.g. Firefox, Chrome, etc...)
+ *	- Fallback on a dotted bottom border in browsers that don't support it (e.g. IE11, Edge, etc...)
+ *	Source: https://github.com/necolas/normalize.css/pull/738#issuecomment-387549760
+ *	Created by: @mattbrundage
+ */
+
+abbr[title] {
+	border-bottom: 1px dotted;
+	text-decoration: none;
+}
+
+@supports (text-decoration: underline dotted) {
+	abbr[title] {
+		border-bottom: 0;
+		text-decoration: underline dotted;
+	}
+}
+
+/*
  *	Override the design of alerts and labels
  */
 
