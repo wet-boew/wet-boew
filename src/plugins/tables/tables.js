@@ -158,9 +158,16 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		// Should be pushed upstream to DataTables
 		$elm.next( ".bottom" ).find( ".paginate_button" )
 			.attr( {
-				"role": "button",
-				"href": "javascript:;"
+				"href": "#" + $elm.context.id
 			} )
+
+			// This is required to override the datatable.js (v1.10.13) behavior to cancel the event propagation on anchor element.
+			.on( "keypress", function( evn ) {
+				if ( evn.keyCode === 13 ) {
+					window.location = evn.target.href;
+				}
+			} )
+
 			.not( ".previous, .next" )
 				.attr( "aria-pressed", "false" )
 				.html( function( index, oldHtml ) {
