@@ -79,7 +79,7 @@ describe( "Feeds test suite", function() {
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds'><ul class='feeds-cont'>" +
-				"<li><a href='http://foobar.com/'></a></li>" +
+				"<li><a href='https://foobar.com/'></a></li>" +
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
@@ -113,7 +113,7 @@ describe( "Feeds test suite", function() {
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds limit-2'><ul class='feeds-cont'>" +
-				"<li><a href='http://foobar.com/'></a></li>" +
+				"<li><a href='https://foobar.com/'></a></li>" +
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
@@ -140,7 +140,7 @@ describe( "Feeds test suite", function() {
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds'><ul class='feeds-cont'>" +
-				"<li><a href='http://foobar.com/'></a></li>" +
+				"<li><a href='https://foobar.com/'></a></li>" +
 				"<li><a href='http://bazbam.com/'></a></li>" +
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )

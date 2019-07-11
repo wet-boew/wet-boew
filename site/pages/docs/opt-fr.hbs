@@ -48,7 +48,7 @@ for ( i = 0; i !== len; i += 1 ) {
 		il est important de considérer le nombre de conditions à comparer. Si il n'y a qu'une ou deux conditions, les déclarations « if/else » sont généralement plus rapides.
 		Cependant, lorsque vous avez 3 conditions ou plus à comparer, une déclaration « switch » est l'option la plus rapide.
 		Vos déclarations « if/else » et « switch » devraient aussi être organisées pour que les conditions les plus communes
-		apparaissent au haut du bloc de déclaration « if/else » ou « switch » (Voir jsPerf <a rel="external" href="http://jsperf.com/program-flow-statements" lang="en">if/else versus switch test case</a>).</li>
+		apparaissent au haut du bloc de déclaration « if/else » ou « switch » (Voir jsPerf <a rel="external" href="https://jsperf.com/program-flow-statements" lang="en">if/else versus switch test case</a>).</li>
 		<li><strong>Éléments DOM en mémoire tampon, objets jQuery et valeurs objet/collection :</strong>
 		Il y a beaucoup de frais système à faire des recherches DOM, créer des objets jQuery, et retrouver des valeurs objet/collection.
 		Minimisez l'impact en ajoutant à la mémoire tampon les résultats où ces résultats seront utilisés plus d'une fois.
@@ -79,7 +79,7 @@ for ( i = 0; i !== len; i += 1 ) {
 			<strong>Combiner de multiples événements à un élément :</strong> Lorsque vous combinez de multiples événements à un élément,
 			il est plus rapide de combiner tous les événements a un seul gestionnaire d'événement.
 			Vous pouvez utiliser la propriété type de l'événement pour déterminer quel événement a été activé
-			(see the jsPerf <a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers" lang="en">handling multiple events test case</a>).
+			(see the jsPerf <a rel="external" href="https://jsperf.com/combined-or-separate-event-handlers" lang="en">handling multiple events test case</a>).
 <pre><code>// Plus rapide : un seul gestionnaire d'événement pour les deux événements
 $( "#elem" ).on( "mouseover mouseout", function( event ) {
 	if ( event.type === "mouseover" ) {
@@ -110,29 +110,29 @@ $elem.on( "mouseout", function( event ) {
 		<pre><code>var test = ( new Date() ).getTime();
 // Code à tester
 console.log( ( new Date() ).getTime() - test );</code></pre>
-		<p>Un autre option est d'tiliser un site tel que <a rel="external" href="http://jsperf.com/">jsPerf</a> pour mesurer différents morceaux de code JavaScript.</p>
+		<p>Un autre option est d'tiliser un site tel que <a rel="external" href="https://jsperf.com/">jsPerf</a> pour mesurer différents morceaux de code JavaScript.</p>
 	</section>
 
 	<section>
 		<h3>Scénarios d'essai jsPerf</h3>
 		<ul lang="en">
-			<li><a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers/3">Combined vs. Separate Event Binding</a></li>
-			<li><a rel="external" href="http://jsperf.com/program-flow-statements">if/else versus switch statements</a></li>
-			<li><a rel="external" href="http://jsperf.com/jep-vs-direct-binding">jQuery Event Binding: Document vs. Element</a></li>
-			<li><a rel="external" href="http://jsperf.com/jquery-mobile-panel-popup">jQuery Mobile Panel vs. Popup Open</a></li>
+			<li><a rel="external" href="https://jsperf.com/combined-or-separate-event-handlers/3">Combined vs. Separate Event Binding</a></li>
+			<li><a rel="external" href="https://jsperf.com/program-flow-statements">if/else versus switch statements</a></li>
+			<li><a rel="external" href="https://jsperf.com/jep-vs-direct-binding">jQuery Event Binding: Document vs. Element</a></li>
+			<li><a rel="external" href="https://jsperf.com/jquery-mobile-panel-popup">jQuery Mobile Panel vs. Popup Open</a></li>
 		</ul>
 	</section>
 
 	<section>
 		<h3>Techniques additionelles</h3>
 		<ul>
-			<li><a rel="external" href="http://24ways.org/2011/your-jquery-now-with-less-suck">Your jQuery: Now With 67% Less Suck</a></li>
-			<li><a rel="external" href="http://hungred.com/useful-information/jquery-optimization-tips-and-tricks/">8 jQuery Optimization Tips and Tricks</a></li>
+			<li><a rel="external" href="https://24ways.org/2011/your-jquery-now-with-less-suck">Your jQuery: Now With 67% Less Suck</a></li>
+			<li><a rel="external" href="https://hungred.com/useful-information/jquery-optimization-tips-and-tricks/">8 jQuery Optimization Tips and Tricks</a></li>
 			<li><a rel="external" href="http://jonraasch.com/blog/10-advanced-jquery-performance-tuning-tips-from-paul-irish">10 Advanced jQuery Performance Tuning Tips from Paul Irish</a></li>
 			<li><a rel="external" href="https://developers.google.com/speed/articles/optimizing-javascript">Optimizing JavaScript code</a></li>
-			<li><a rel="external" href="http://desalasworks.com/javascript-performance-techniques/">25 Techniques for Javascript Performance</a></li>
+			<li><a rel="external" href="https://desalasworks.com/javascript-performance-techniques/">25 Techniques for Javascript Performance</a></li>
 			<li><a rel="external" href="http://jonraasch.com/blog/10-javascript-performance-boosting-tips-from-nicholas-zakas">10 Javascript Performance Boosting Tips from Nicholas Zakas</a></li>
-			<li><a rel="external" href="http://oreilly.com/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html">Writing Efficient JavaScript: Chapter 7 - Even Faster Websites</a></li>
+			<li><a rel="external" href="https://oreilly.com/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html">Writing Efficient JavaScript: Chapter 7 - Even Faster Websites</a></li>
 		</ul>
 	</section>
 </section>
@@ -149,9 +149,9 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 	<section>
 		<h3>Techniques aditionelles</h3>
 		<ul lang="en">
-			<li><a rel="external" href="http://www.queness.com/post/588/15-ways-to-optimize-css-and-reduce-css-file-size">15 Ways to Optimize CSS and Reduce CSS File Size</a></li>
+			<li><a rel="external" href="https://www.queness.com/post/588/15-ways-to-optimize-css-and-reduce-css-file-size">15 Ways to Optimize CSS and Reduce CSS File Size</a></li>
 			<li><a rel="external" href="http://www.dailycoding.com/Posts/top_7_tip_for_optimizing_css.aspx">Top 7 Tip for Optimizing CSS</a></li>
-			<li><a rel="external" href="http://perishablepress.com/how-to-micro-optimize-your-css/">How to Micro-Optimize Your CSS]</a></li>
+			<li><a rel="external" href="https://perishablepress.com/how-to-micro-optimize-your-css/">How to Micro-Optimize Your CSS]</a></li>
 		</ul>
 	</section>
 </section>

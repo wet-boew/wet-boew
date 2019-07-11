@@ -12,15 +12,15 @@
 	<h2>Enable SVG MIME type</h2>
 	<p>Certain webservers (e.g. IIS 6, 7.x) do not serve .svg files by default. If not already configured, you will need to add the <code>image/svg+xml</code> MIME type. Example configuration steps below:</p>
 	<ul>
-		<li><a href="http://support.microsoft.com/kb/326965">IIS 6.0</a></li>
-		<li><a href="http://technet.microsoft.com/en-us/library/cc725608%28WS.10%29.aspx">IIS 7.0</a></li>
+		<li><a href="https://support.microsoft.com/kb/326965">IIS 6.0</a></li>
+		<li><a href="https://technet.microsoft.com/en-us/library/cc725608%28WS.10%29.aspx">IIS 7.0</a></li>
 	</ul>
 	<p><strong>Note:</strong> If this MIME type is not enabled, it can result in 404 "File Not Found" errors, or display issues with the GCWU and other themes headers.</p>
 </section>
 
 <section>
 	<h2>IE Compatibility Mode</h2>
-	<p>By default, IE displays Intranet web pages using Compatibility View (IE7 standards mode). This causes display and JavaScript problems with the WET template. To fix the problem, configure your web server to send the <strong>"X-UA-Compatible" "IE=Edge"</strong> HTTP header. Instructions for <a rel="external" href="http://msdn.microsoft.com/en-ca/cc817572.aspx">configuring IIS</a> and for <a rel="external" href="http://msdn.microsoft.com/en-ca/library/cc817573.aspx">configuring Apache</a> can be found on MSDN. The HTTP header ensures that IE 8, 9, and 10 use their most recent rendering engine, as opposed to Compatibility View.</p>
+	<p>By default, IE displays Intranet web pages using Compatibility View (IE7 standards mode). This causes display and JavaScript problems with the WET template. To fix the problem, configure your web server to send the <strong>"X-UA-Compatible" "IE=Edge"</strong> HTTP header. Instructions for <a rel="external" href="https://msdn.microsoft.com/en-ca/cc817572.aspx">configuring IIS</a> and for <a rel="external" href="https://msdn.microsoft.com/en-ca/library/cc817573.aspx">configuring Apache</a> can be found on MSDN. The HTTP header ensures that IE 8, 9, and 10 use their most recent rendering engine, as opposed to Compatibility View.</p>
 	<p><strong>Note:</strong> Setting the <strong>meta tag</strong> in the HTML document (<code>&lt;http-equiv="X-UA-Compatible" content="IE=edge"&#160;/&gt;</code>) will '''not''' work for WET because of the conditional comments that configure the HTML element at the top of the page. These conditional comments force IE's rendering engine and the meta tag can't override it:</p>
 	<pre><code>&lt;!--[if IE 7]&gt;&lt;html lang="en" class="no-js ie7"&gt;&lt;![endif]--&gt;
 &lt;!--[if IE 8]&gt;&lt;html lang="en" class="no-js ie8"&gt;&lt;![endif]--&gt;
@@ -30,10 +30,10 @@
 		<h3>Troubleshooting</h3>
 		<p>It is possible for public facing, Internet webpages to display in Compatibility View because of user or administrator settings:</p>
 		<ul>
-			<li><a rel="external" href="http://blogs.msdn.com/b/ie/archive/2010/03/02/how-ie8-determines-document-mode.aspx">How IE Determines Document Mode</a></li>
-			<li><a rel="external" href="http://blogs.msdn.com/b/ieinternals/archive/2012/06/05/the-local-intranet-security-zone.aspx">IE's Intranet Zone Mapping</a></li>
+			<li><a rel="external" href="https://blogs.msdn.com/b/ie/archive/2010/03/02/how-ie8-determines-document-mode.aspx">How IE Determines Document Mode</a></li>
+			<li><a rel="external" href="https://blogs.msdn.com/b/ieinternals/archive/2012/06/05/the-local-intranet-security-zone.aspx">IE's Intranet Zone Mapping</a></li>
 		</ul>
-		<p>To troubleshoot display problems in IE 8 and above, use the <a rel="external" href="http://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx">F12 Developer Tools</a> which are accessible by pressing F12 on your keyboard:</p>
+		<p>To troubleshoot display problems in IE 8 and above, use the <a rel="external" href="https://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx">F12 Developer Tools</a> which are accessible by pressing F12 on your keyboard:</p>
 		<figure>
 			<img src="img/ie-compat-view.png" class="image-actual" alt="F12 Developer Tools showing a web page rendering in Compatibility View" />
 			<figcaption>F12 Developer Tools showing a web page rendering in Compatibility View</figcaption>
@@ -42,7 +42,7 @@
 		<ol>
 			<li>sending the "X-UA-Compatible" "IE=Edge" HTTP header,</li>
 			<li>disabling the user or administrator setting that is triggering Compatibility View, or</li>
-			<li>configuring the <a rel="external" href="http://blogs.msdn.com/b/ie/archive/2008/10/02/ie8-group-policy.aspx">group policy objects</a> that control Compatibility View.</li>
+			<li>configuring the <a rel="external" href="https://blogs.msdn.com/b/ie/archive/2008/10/02/ie8-group-policy.aspx">group policy objects</a> that control Compatibility View.</li>
 		</ol>
 	</section>
 </section>

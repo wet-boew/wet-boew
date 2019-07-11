@@ -5,66 +5,66 @@
     {
       "rel": "self",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"
     },
     {
       "rel": "next",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099"
     },
     {
       "rel": "alternate",
       "enctype": "application/atom+xml",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=atom"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=atom"
     },
     {
       "rel": "alternate",
       "enctype": "text/html",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=html"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=html"
     },
     {
       "rel": "alternate",
       "enctype": "text/phtml",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=phtml"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=phtml"
     },
     {
       "rel": "alternate",
       "enctype": "text/csv",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=csv"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=csv"
     },
     {
       "rel": "alternate",
       "enctype": "application/rss+xml",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=rss"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=rss"
     },
     {
       "rel": "alternate",
       "enctype": "application/vnd.google-earth.kml+xml",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=kml"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=kml"
     },
     {
       "rel": "alternate",
       "enctype": "application/gcod+xml",
       "method": "GET",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=gcod"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=gcod"
     },
     {
       "rel": "alternate",
       "method": "GET",
       "hreflang": "en",
-      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"
+      "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"
     },
     {
       "rel": "alternate",
       "method": "GET",
       "hreflang": "fr",
-      "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst"
+      "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst"
     }
 
   ],
@@ -77,67 +77,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
       }
 
     ],
@@ -226,67 +226,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
       }
 
     ],
@@ -447,67 +447,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
       }
 
     ],
@@ -596,67 +596,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
       }
 
     ],
@@ -809,67 +809,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
       }
 
     ],
@@ -958,67 +958,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
       }
 
     ],
@@ -1127,67 +1127,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
       }
 
     ],
@@ -1264,67 +1264,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
       }
 
     ],
@@ -1405,67 +1405,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
       }
 
     ],
@@ -1546,67 +1546,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
       }
 
     ],
@@ -1691,67 +1691,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
       }
 
     ],
@@ -1832,67 +1832,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
       }
 
     ],
@@ -1977,67 +1977,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
       }
 
     ],
@@ -2118,67 +2118,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
       }
 
     ],
@@ -2263,67 +2263,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
       }
 
     ],
@@ -2404,67 +2404,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
       }
 
     ],
@@ -2545,67 +2545,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
       }
 
     ],
@@ -2690,67 +2690,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
       }
 
     ],
@@ -2839,67 +2839,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
       }
 
     ],
@@ -2984,67 +2984,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
       }
 
     ],
@@ -3129,67 +3129,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
       }
 
     ],
@@ -3270,67 +3270,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
       }
 
     ],
@@ -3411,67 +3411,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
       }
 
     ],
@@ -3560,67 +3560,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
       }
 
     ],
@@ -3717,67 +3717,67 @@
     "links": [{
         "rel": "self",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
       },
       {
         "rel": "alternate",
         "enctype": "application/atom+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.atom"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.atom"
       },
       {
         "rel": "alternate",
         "enctype": "text/html",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.html"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.html"
       },
       {
         "rel": "alternate",
         "enctype": "text/phtml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.phtml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.phtml"
       },
       {
         "rel": "alternate",
         "enctype": "text/csv",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.csv"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.csv"
       },
       {
         "rel": "alternate",
         "enctype": "application/rss+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.rss"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.rss"
       },
       {
         "rel": "alternate",
         "enctype": "application/vnd.google-earth.kml+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.kml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.kml"
       },
       {
         "rel": "alternate",
         "enctype": "application/nap+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.nap"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.nap"
       },
       {
         "rel": "alternate",
         "enctype": "application/gcod+xml",
         "method": "GET",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.gcod"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.gcod"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "en",
-        "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
+        "href": "https://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
       },
       {
         "rel": "alternate",
         "method": "GET",
         "hreflang": "fr",
-        "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
+        "href": "https://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
       }
 
     ],

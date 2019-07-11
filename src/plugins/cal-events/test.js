@@ -57,8 +57,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2003-03-11" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2004-11-05" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2003-03-11" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2004-11-05" ] }
 			] );
 		} );
 
@@ -88,8 +88,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2003-03-11" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2004-11-05", "2006-09-08" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2003-03-11" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2004-11-05", "2006-09-08" ] }
 			] );
 		} );
 
@@ -111,8 +111,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2203-03-11" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2204-11-05" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2203-03-11" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2204-11-05" ] }
 			] );
 		} );
 
@@ -135,8 +135,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2203-03-11", "2203-04-25" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2204-11-05" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2203-03-11", "2203-04-25" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2204-11-05" ] }
 			] );
 		} );
 
@@ -158,8 +158,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2010-01-30" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2075-07-16" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2010-01-30" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2075-07-16" ] }
 			] );
 		} );
 
@@ -181,8 +181,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2010-01-30", "2040-01-30" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2005-04-16", "2075-07-16" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2010-01-30", "2040-01-30" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2005-04-16", "2075-07-16" ] }
 			] );
 		} );
 
@@ -204,7 +204,7 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] }
 			] );
 		} );
 
@@ -226,8 +226,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2120-09-15" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2120-09-15" ] }
 			] );
 		} );
 
@@ -249,8 +249,8 @@ describe( "event calendar test suite", function() {
 
 		before( function( ) {
 			$elm = createEvtCalendar( [
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] },
-				{ lnk: "http://www.canada.ca", txt: "Day event", dates: [ "2000-09-15" ] }
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ thisYear + "-" + ( thisMonth + 1 ) + "-15" ] },
+				{ lnk: "https://www.canada.ca", txt: "Day event", dates: [ "2000-09-15" ] }
 			] );
 		} );
 

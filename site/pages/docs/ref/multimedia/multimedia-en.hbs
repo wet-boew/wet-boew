@@ -82,8 +82,8 @@
 				<li>
 					Add one or more <code>source</code> elements to the <code>video</code> element with the <code>src</code> attribute value being the URL of the media file and the <code>type</code> attribute being the media file MIME type.<br />
 					<strong>Note:</strong> If you list multiple media sources for the video, the player will play the first media source file that works (is available, compatible, etc.).
-					<pre><code>&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
-&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;</code></pre>
+					<pre><code>&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
+&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;</code></pre>
 				</li>
 				<li>Add a <code>track</code> element with <code>kind="captions"</code> to the <code>video</code> element to add captions.
 					<ol>
@@ -93,7 +93,7 @@
 						</li>
 						<li>Add the <code>src</code> and <code>data-type</code> attributes to the <code>track</code> element to identify the source of the captions.
 							<ul>
-								<li><strong>Timed Text Markup Language:</strong> <code>data-type="application/ttml+xml"</code> and <code>src</code> is the URL of the <a rel="external" href="http://www.w3.org/TR/ttaf1-dfxp/">Timed Text Markup Language</a> captions file.</li>
+								<li><strong>Timed Text Markup Language:</strong> <code>data-type="application/ttml+xml"</code> and <code>src</code> is the URL of the <a rel="external" href="https://www.w3.org/TR/ttaf1-dfxp/">Timed Text Markup Language</a> captions file.</li>
 								<li><strong>HTML captions file:</strong> <code>data-type="text/html"</code> and <code>src</code> is the URL of the HTML captions file.</li>
 								<li><strong>Inline HTML captions:</strong> <code>data-type="text/html"</code> and <code>src</code> is the URL of the inline HTML captions (e.g., <code>src="#inline-captions"</code>.</li>
 							</ul>
@@ -115,8 +115,8 @@
 				<h5>Code</h5>
 				<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'&gt;
 	&lt;video poster="demo/video1-en.jpg" title="Looking for a Job"&gt;
-		&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
-		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
+		&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
+		&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
 		&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
 	&lt;/video&gt;
 	&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Cue point - 75s&lt;/button&gt;
@@ -133,7 +133,7 @@
 				<li>Add a <code>title</code> attribute to the <code>video</code> element with the value being the title of the video.</li>
 				<li>
 					<p>Add a <code>source</code> element to the <code>video</code> element with <code>type="video/youtube"</code> and the <code>src</code> attribute being the URL of the video.</p>
-					<pre><code>&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
+					<pre><code>&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
 					<p>or</p>
 					<pre><code>&lt;source type="video/youtube" src="https://youtu.be/9znKJqnFuuY" /&gt;</code></pre>
 				</li>
@@ -144,7 +144,7 @@
 				<h5>Code</h5>
 			<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;video title="Suspect"&gt;
-		&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;
+		&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Suspect&lt;/p&gt;
@@ -160,8 +160,8 @@
 				<li>
 					Add one or more <code>source</code> elements to the <code>audio</code> element with the <code>src</code> attribute value being the URL of the media file and the <code>type</code> attribute being the media file MIME type.<br />
 					<strong>Note:</strong> If you list multiple media sources for the audio, the player will play the first media source file that works (is available, compatible, etc.).
-					<pre><code>&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
-&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;</code></pre>
+					<pre><code>&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
+&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;</code></pre>
 				</li>
 			</ol>
 
@@ -169,8 +169,8 @@
 				<h5>Code</h5>
 				<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;audio title="Ride of the Valkyries"&gt;
-		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
-		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;
+		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
+		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;
 	&lt;/audio&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Ride of the Valkyries&lt;/p&gt;

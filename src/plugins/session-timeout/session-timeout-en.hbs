@@ -36,7 +36,7 @@
 	</ul>
 	<p>The only required parameter is logouturl, all other fields are optional. The default plugin code is:</p>
 	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
-	<p><strong>Note:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. For help with the time values, use this <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">time converter</a>.</p>
+	<p><strong>Note:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. For help with the time values, use this <a href="https://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">time converter</a>.</p>
 	<p><strong>Note:</strong> Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
 	<p><strong>Note:</strong> The server response needs to contain a message body. Don't use a request method (e.g. HEAD) that disallows a message body in the response.</p>
 </section>
