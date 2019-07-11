@@ -1,6 +1,6 @@
 /**
  * @title WET-BOEW Responsive equal height
- * @overview Sets the same height for all elements in a container that are rendered on the same baseline (row). Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
+ * @overview Sets the same height for all elements in a container that are rendered on the same baseline (row). Adapted from https://codepen.io/micahgodbolt/pen/FgqLc.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard
  */

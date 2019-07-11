@@ -89,7 +89,7 @@
 	basemap : {
 		title: 'CBMT',
 		type: 'wms',
-		url: 'http://geogratis.gc.ca/maps/CBMT',
+		url: 'https://geogratis.gc.ca/maps/CBMT',
 		layers: 'CBMT',
 		format: 'image/png',
 		version: '1.1.1'
@@ -284,7 +284,7 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 					<td>Yes</td>
 					<td>String</td>
 					<td>''</td>
-					<td>The url of the WMS service providing the base map. For example 'http://geogratis.gc.ca/maps/CBMT'.</td>
+					<td>The url of the WMS service providing the base map. For example 'https://geogratis.gc.ca/maps/CBMT'.</td>
 				</tr>
 				<tr>
 					<td><code>layers</code></td>
@@ -329,7 +329,7 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 			<pre><code>basemap : {
 	title: 'CBMT',
 	type: 'wms',
-	url: 'http://geogratis.gc.ca/maps/CBMT',
+	url: 'https://geogratis.gc.ca/maps/CBMT',
 	layers: 'CBMT',
 	format: 'image/png',
 	version: '1.1.1',
@@ -371,7 +371,7 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 				<pre><code>&lt;tr data-geometry="POINT (-114.05879 1.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
 				<pre><code>&lt;tr data-geometry="LINESTRING (30 10, 10 30, 40 40)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
 				<pre><code>&lt;tr data-geometry="POLYGON ((30 10, 10 20, 20 40, 40 40, 30 10))" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
-				<p>Other geometry types are supported. See <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text</a> for more examples.</p>
+				<p>Other geometry types are supported. See <a href="https://en.wikipedia.org/wiki/Well-known_text">Well-known text</a> for more examples.</p>
 			</section>
 
 			<section>
@@ -539,7 +539,7 @@ var wet_boew_geomap = {
 						<td>Yes</td>
 						<td>String</td>
 						<td>''</td>
-						<td>The url of the datasource. For example 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst'.</td>
+						<td>The url of the datasource. For example 'https://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst'.</td>
 					</tr>
 					<tr>
 						<td><code>visible</code></td>
@@ -577,7 +577,7 @@ var wet_boew_geomap = {
 	tab: true,
 	title: 'Traffic Cameras',
 	type: 'geojson',
-	url: 'http://stephenott.cartodb.com/api/v2/sql',
+	url: 'https://stephenott.cartodb.com/api/v2/sql',
 	visible: true,
 	zoom:  true
 }</code></pre>
@@ -675,7 +675,7 @@ var wet_boew_geomap = {
 	title: "WMS Demo",
 	caption: "This is a sample WMS service loaded by Geomap.",
 	type: "wms",
-	url: "http://geo.weather.gc.ca/geomet/?Lang=E",
+	url: "https://geo.weather.gc.ca/geomet/?Lang=E",
 	visible: false,
 	version: "1.1.1",
 	format: "image/png",
@@ -694,7 +694,7 @@ var wet_boew_geomap = {
 		<pre><code>...
 options: {
 	...
-	legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&amp;LAYERS=GDPS.ETA_PR&amp;VERSION=1.1.1&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;REQUEST=GetLegendGraphic&amp;STYLE=PRECIPMM"
+	legendGraphicUrl: "https://geo.weather.gc.ca/geomet/?Lang=E&amp;LAYERS=GDPS.ETA_PR&amp;VERSION=1.1.1&amp;FORMAT=image%2Fpng&amp;SERVICE=WMS&amp;REQUEST=GetLegendGraphic&amp;STYLE=PRECIPMM"
 	...
 }
 ...</code></pre>

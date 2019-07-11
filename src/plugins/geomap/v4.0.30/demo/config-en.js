@@ -41,7 +41,7 @@ var wet_boew_geomap = {
 			title: "WMS Demo",
 			caption: "This is a sample WMS service loaded by Geomap.",
 			type: "wms",
-			url: "http://geo.weather.gc.ca/geomet/?Lang=E",
+			url: "https://geo.weather.gc.ca/geomet/?Lang=E",
 			visible: false,
 			version: "1.1.1",
 			format: "image/png",
@@ -50,7 +50,7 @@ var wet_boew_geomap = {
 			options: {
 				opacity: 0.5,
 
-				//legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
+				//legendGraphicUrl: "https://geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
 				legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
 						"<ul class='list-unstyled'>" +
 						"<li><span style='background-color:#800000;display:inline-block;height:20px;width:20px'/> <small>100.0</small></li>" +
@@ -210,7 +210,7 @@ var wet_boew_geomap = {
 			title: "GeoJSON (CartoDB)",
 			caption: "This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.",
 			type: "geojson",
-			url: "http://stephenott.cartodb.com/api/v2/sql",
+			url: "https://stephenott.cartodb.com/api/v2/sql",
 			params: {
 				format: "GeoJSON",
 				q: "SELECT * FROM traffic_cameras LIMIT 25"

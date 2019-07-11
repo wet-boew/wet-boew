@@ -382,8 +382,8 @@ var getUrlParts = function( url ) {
 		hashString: function( str ) {
 
 			// Sources:
-			//	http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
-			//	http://jsperf.com/hashing-strings
+			//	https://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+			//	https://jsperf.com/hashing-strings
 			var hash = 0,
 				chr, i;
 

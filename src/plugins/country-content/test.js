@@ -27,7 +27,7 @@ describe( "Country Content test suite", function() {
 
 			// Stub the $.ajax method to return data.country_code = "CA" on success.
 			// This must be used instead of Sinon's fakeServer because the plugin uses
-			// JSON-P for the request: http://sinonjs.org/docs/#json-p
+			// JSON-P for the request: https://sinonjs.org/docs/#json-p
 			stubs.ajax = sandbox.stub( $, "ajax" ).yieldsTo( "success", { country_code: "CA" } );
 			stubs.load = sandbox.stub( $.prototype, "load" );
 

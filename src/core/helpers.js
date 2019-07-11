@@ -79,7 +79,7 @@ wb.download = function( blob, filename, title ) {
 "use strict";
 
 // Escapes the characters in a string for use in a jQuery selector
-// Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
+// Based on https://totaldev.com/content/escaping-characters-get-valid-jquery-id
 wb.jqEscape = function( selector ) {
 	return selector.replace( /([;&,\.\+\*\~':"\\\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
 };
@@ -1144,7 +1144,7 @@ wb.date = {
 
 /*
  * Returns a RFC4122 compliant Global Unique ID (GUID).
- * Originally from http://stackoverflow.com/a/2117523/455535
+ * Originally from https://stackoverflow.com/a/2117523/455535
  */
 wb.guid = function() {
 	return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace( /[xy]/g, function( replacementChar ) {
