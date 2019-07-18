@@ -1,5 +1,6 @@
 path = require("path")
 fs = require("fs")
+sass = require("node-sass")
 
 module.exports = (grunt) ->
 
@@ -644,6 +645,7 @@ module.exports = (grunt) ->
 		# Compiles the Sass files
 		sass:
 			options:
+				implementation: sass,
 				includePaths: [
 					"node_modules"
 				]
