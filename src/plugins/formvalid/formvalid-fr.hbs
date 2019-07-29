@@ -8,7 +8,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2018-07-04"
+	"dateModified": "2019-07-29"
 }
 ---
 
@@ -33,7 +33,7 @@
 				<legend>Coordonnées</legend>
 				<div class="form-group">
 					<label for="title1" class="required"><span class="field-name">Titre</span> <strong class="required">(obligatoire)</strong></label>
-					<select class="form-control" id="title1" name="title1" required="required">
+					<select class="form-control" id="title1" name="title1" autocomplete="honorific-prefix" required="required">
 						<option label="Sélectionner un titre"></option>
 						<option value="dr">D. Ph.</option>
 						<option value="esq">Me</option>
@@ -48,7 +48,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="title1" class="required"&gt;&lt;span class="field-name"&gt;Titre&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;select class="form-control" id="title1" name="title1" required="required"&gt;
+			&lt;select class="form-control" id="title1" name="title1" autocomplete="honorific-prefix" required="required"&gt;
 				&lt;option label="Sélectionner un titre"&gt;&lt;/option&gt;
 				&lt;option value="dr"&gt;D. Ph.&lt;/option&gt;
 				&lt;option value="esq"&gt;Me&lt;/option&gt;
@@ -60,7 +60,7 @@
 
 				<div class="form-group">
 					<label for="fname" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+					<input class="form-control" id="fname" name="fname" type="text" autocomplete="given-name" required="required" pattern=".{2,}" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -69,13 +69,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="fname" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+			&lt;input class="form-control" id="fname" name="fname" type="text" autocomplete="given-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="lname" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+					<input class="form-control" id="lname" name="lname" type="text" autocomplete="family-name" required="required" pattern=".{2,}" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -84,13 +84,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="lname" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+			&lt;input class="form-control" id="lname" name="lname" type="text" autocomplete="family-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="tel1" class="required"><span class="field-name">Numéro de téléphone</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" />
+					<input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -99,13 +99,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Numéro de téléphone (avec l'indicatif régional)&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" /&gt;
+			&lt;input class="form-control" id="tel1" name="tel1" type="tel" autocomplete="tel" required="required" data-rule-phoneUS="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="pcodeca1" class="required"><span class="field-name">Code postal (Canada)</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="pcodeca1" name="pcodeca1" type="text" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
+					<input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>View code</summary>
@@ -114,13 +114,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="pcodeca1" class="required"&gt;&lt;span class="field-name"&gt;Code postal&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="pcodeca1" name="pcodeca1" type="text" required="required" data-rule-postalCodeCA="true" /&gt;
+			&lt;input class="form-control" id="pcodeca1" name="pcodeca1" type="text" autocomplete="postal-code" required="required" data-rule-postalCodeCA="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="email1"><span class="field-name">Adresse électronique</span> (votrenom@domaine.com)</label>
-					<input class="form-control" id="email1" name="email1" type="email" />
+					<input class="form-control" id="email1" name="email1" type="email" autocomplete="email" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -129,13 +129,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Adresse électronique&lt;/span&gt; (votrenom@domaine.com)&lt;/label&gt;
-			&lt;input class="form-control" id="email1" name="email1" type="email" /&gt;
+			&lt;input class="form-control" id="email1" name="email1" type="email" autocomplete="email" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="url1"><span class="field-name">URL du site Web (https://www.url.com)</span></label>
-					<input class="form-control" id="url1" name="url1" type="url" />
+					<input class="form-control" id="url1" name="url1" type="url" autocomplete="url" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -144,7 +144,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="url1"&gt;&lt;span class="field-name"&gt;URL du site Web (https://www.url.com)&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="url1" name="url1" type="url" /&gt;
+			&lt;input class="form-control" id="url1" name="url1" type="url" autocomplete="url" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
@@ -333,9 +333,9 @@
 
 				<div class="form-group">
 					<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 caractères)</label>
-					<input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+					<input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
 					<label for="passwordconfirm"><span class="field-name">Confirmez votre mot de passe</span></label>
-					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" />
+					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -344,9 +344,9 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Mot de passe&lt;/span&gt; (entre 5 et 10 caractères)&lt;/label&gt;
-			&lt;input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
 			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirmez votre mot de passe&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 			</fieldset>
