@@ -208,7 +208,7 @@ Disable/enable WET plugins and polyfills (v4.x+),wb-disable,Switch to basic HTML
 ,wb-enable,Switch to standard version,Passer à la version standard,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,wb-basic-warning,You are currently viewing in basic HTML.,Vous visualisez actuellement en HTML simplifiée.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,disable-notice-h,Notice: Basic HTML,Avis : Version HTML simplifiée,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,disable-notice,You are viewing Basic HTML view. Some features may be disabled.,Vous naviguez présentement sur la version HTML simplifiée de cette page. Certaines fonctionnalités peuvent être déactivées.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,disable-notice,You are viewing Basic HTML view. Some features may be disabled.,Vous naviguez présentement sur la version HTML simplifiée de cette page. Certaines fonctionnalités peuvent être désactivées.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Dismissable content,dismiss,Dismiss,Écarter,,,,,,,,,,,,,,,,,,ᖁᔭᓈᕐᓗᒍ,,,,,,,,,,,,,,
 Filter,fltr-lbl,"Filter<span class=""wb-inv""> content: results appear below as you type.</span>","Filtrer<span class=""wb-inv""> le contenu: Les résultats s'afficherons au moment même de la saisie.</span>",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,fltr-info,Showing _NBITEM_ filtered from _TOTAL_ total entries,Affiche _NBITEM_ de _TOTAL_ éléments filtrés.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
