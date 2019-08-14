@@ -205,7 +205,7 @@ var componentName = "wb-share",
 							.replace( /\{d\}/, pageDescription );
 					panel += "<li><a href='" + url + "' class='" + shareLink +
 						" " + ( siteProperties.isMailto ? "email" : key ) +
-						" btn btn-default' target='_blank'>" +
+						" btn btn-default' target='_blank' rel='noreferrer noopener'>" +
 						siteProperties.name + "</a></li>";
 				}
 
