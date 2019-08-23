@@ -35,7 +35,7 @@ var componentName = "wb-wamethod",
 	rsltAAA = document.getElementById( "rsltAAA" ),
 	percAAA = document.getElementById( "percAAA" ),
 	aaaIncluded = rsltAAA !== null,
-	successCriteriaDivideBy = aaaIncluded ? 0.61 : 0.38,
+	successCriteriaDivideBy = aaaIncluded ? 0.78 : 0.50,
 
 	/**
 	 * @method init
@@ -82,13 +82,13 @@ $document.on( "change", selector + " input", function() {
 	// Update number of Success Criteria evaluated and passed
 	$summaryTd.attr( "aria-busy", "true" );
 	rsltA.innerHTML = aPassed;
-	percA.innerHTML = Math.round( aPassed / 0.25 );
+	percA.innerHTML = Math.round( aPassed / 0.30 );
 	rsltAA.innerHTML = aaPassed;
-	percAA.innerHTML = Math.round( aaPassed / 0.13 );
+	percAA.innerHTML = Math.round( aaPassed / 0.20 );
 	naTotal.innerHTML = naChecked;
 	if ( aaaIncluded ) {
 		rsltAAA.innerHTML = aaaPassed;
-		percAAA.innerHTML = Math.round( aaaPassed / 0.23 );
+		percAAA.innerHTML = Math.round( aaaPassed / 0.28 );
 	}
 	evalTotal.innerHTML = aEvaluated + aaEvaluated + aaaEvaluated;
 	percEvalTotal.innerHTML = Math.round( ( aEvaluated + aaEvaluated + aaaEvaluated ) / successCriteriaDivideBy );
