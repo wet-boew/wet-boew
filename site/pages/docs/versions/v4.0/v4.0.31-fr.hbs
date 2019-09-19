@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "v4.0.31 - Notes de version - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "v4.0.31",
-	"dateModified": "2019-06-19"
+	"dateModified": "2019-09-16"
 }
 ---
 <p>Version 4.0.31</p>
@@ -26,14 +26,14 @@
 		<li>Styles et plugiciels
 			<ul>
 				<li>Mineur - Superposition - Ajout d’un fond facultatif pour les superpositions ayant la <code>.overlay-bg</code> et ajout d’un événement «&nbsp;ouvert&nbsp;» et «&nbsp;fermé&nbsp;»</li>
-				<li>Mineur - Gadget de partage - Enlèvement des sites sociaux obsolètes dans l’interface (Google+, Delicious et StumbleUpon)</li>
+				<li>Mineur - Gadget de partage - Retrait des sites sociaux obsolètes dans l’interface (Google+, Delicious et StumbleUpon)</li>
 				<li>Mineur - Gadget de partage - Mise à jour du lien «&nbsp;partager sur Twitter&nbsp;» pour l’harmoniser avec le nouveau motif (<a href="#twitter-ex">voir ce qui a été modifié</a>)</li>
 				<li>Mineur - Géocarte - Ajout d’un filtrage avec la compatibilité du gestionnaire d’URL</li>
 				<li>Mineur - Géocarte - Migration d’Openlayer de la version 2.x à la version 3.x (<a href="https://github.com/wet-boew/wet-boew/pull/8578">plus de renseignements</a>)</li>
 				<li>Mineur - Coeur - Ajout d’une fonction de téléchargement aux fonctions essentielles, qui utilise une forme floue</li>
 				<li>Mineur - Tableaux - Ajout d’options avancés de filtrage (<a href="https://wet-boew.github.io/wet-boew/docs/ref/tables/tables-en.html#advopt" hreflang="en">consulter les documents pour en apprendre plus</a>)</li>
 				<li>Correctif - Tableaux - Correction du filtrage des cases à cocher lorsqu’elles sont suivies d’un élément <code>&lt;select&gt;</code></li>
-				<li>Correctif - Tableaux - Enlèvement des répétitions dans le texte lors du lancement</li>
+				<li>Correctif - Tableaux - Retrait des répétitions dans le texte lors du lancement</li>
 				<li>Correctif - Lecteur multimédia - Correction du lecteur qui reproduisait un fond sonore lorsqu’il était contenu dans une superposition</li>
 				<li>Correctif - Flux - Correction de la situation où une limite est plus grande que le nombre d’entrées</li>
 				<li>Correctif - Basculer - Ajustement du comportement d’activation <code>&lt;detail&gt;</code> pour mieux correspondre au cycle naturel lorsqu’il y a de divers détails à activer en même temps</li>
@@ -45,6 +45,36 @@
 			</ul>
 		</li>
 	</ul>
+	<section>
+		<h3 id="implementation">Fichiers modifiés pour implémentation</h3>
+		<ul>
+			<li><ins>Image pour les logos de réseaux sociaux (gadget de partage)&nbsp;: wet-boew/assets/sprites_share.png</ins> <span class="label label-info">Clarifié le&nbsp;: 2019-09-16</span></li>
+			<li>Dépendance de la Géocarte&nbsp;:
+				<ul>
+					<li>wet-boew/js/geomap-lib.js</li>
+					<li>wet-boew/js/geomap-lib.min.js</li>
+				</ul>
+			</li>
+			<li>i18n, Langue zh-Hans&nbsp;:
+				<ul>
+					<li>wet-boew/js/i18n/zh-Hans.js</li>
+					<li>wet-boew/js/i18n/zh-Hans.min.js</li>
+				</ul>
+			</li>
+			<li>JavaScript primaire&nbsp;:
+				<ul>
+					<li>wet-boew/js/wet-boew.js</li>
+					<li>wet-boew/js/wet-boew.min.js</li>
+				</ul>
+			</li>
+			<li>CSS primaire&nbsp;:
+				<ul>
+					<li>theme-wet-boew/css/theme.css</li>
+					<li>theme-wet-boew/css/theme.min.css</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
 	<section>
 		<h3>Fureteurs supportés</h3>
 		<p>Tel que défini par la <a href="https://wet-boew.github.io/wet-boew-documentation/decision/2.html" hreflang="en">Décision de conception 2&nbsp;: Fureteur supporté</a> (en anglais)</p>
