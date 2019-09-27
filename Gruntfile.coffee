@@ -980,9 +980,6 @@ module.exports = (grunt) ->
 			all:
 				options:
 					ignore: [
-						"The “date” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
-						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
-						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
 						# TODO: Should be removed and fixed now that HTML5 specs updated
 						"The “main” role is unnecessary for element “main”."
 						"The “contentinfo” role is unnecessary for element “footer”."
