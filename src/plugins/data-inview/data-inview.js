@@ -126,11 +126,11 @@ var componentName = "wb-inview",
 							$dataInView
 								.attr( "aria-hidden", show )
 								.toggleClass( "in", !show );	
-							if ( !$dataInView.hasClass( "play-once" ) ) {
+							if ( !$dataInView.hasClass( "in-only" ) ) {
 								$dataInView.toggleClass( "out", show );
 							}
 						} 	
-						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "play-once" )){
+						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "in-only" )){
 							$dataInView.attr("data-hasPlayed", "true");
 						}	
 					}
