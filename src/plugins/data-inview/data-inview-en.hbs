@@ -125,6 +125,33 @@
 </code></pre>
 		</details>
 	</section>
+	
+    <section id="slide-effect1" class="slide play-once bar-demo">
+        <h3 class="no-gutter">Section that slides in/out <code>id="slide-effect1"</code> only once</h3>
+        <div class="jumbotron mrgn-tp-lg">
+            <p>This section slides in or out based upon the view state of the next section.</p>
+        </div>
+    </section>
+    
+    
+    <section class="wb-inview show-none bar-demo" data-inview="slide-effect1">
+        <h3 class="no-gutter">Section that triggers a slide for the previous section only once</h3>
+        <p>The previous section will slide in when this section is <strong>partially out</strong> of the viewport (with <code>class=&quot;show-none&quot;</code>), then stay in place.</p>
+        <p><strong>View state:</strong> <code class="view-state-status"></code></p>
+        <details>
+            <summary>View code</summary>
+            <pre><code>&lt;section id=&quot;slide-effect1&quot; class=&quot;slide play-once bar-demo&quot;&gt;
+                &lt;h3 class=&quot;no-gutter&quot;&gt;Section that slides in/out&lt;/h3&gt;
+                ...
+            &lt;/section&gt;
+            
+            &lt;section class=&quot;wb-inview show-none bar-demo&quot; data-inview=&quot;slide-effect1&quot;&gt;
+                &lt;h3 class=&quot;no-gutter&quot;&gt;Section that triggers a slide in or out effect for the previous section only once&lt;/h3&gt;
+                ...
+            &lt;/section&gt;
+            </code></pre>
+        </details>
+    </section>
 </section>
 
 <div class="text-muted">
