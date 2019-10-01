@@ -122,31 +122,16 @@ var componentName = "wb-inview",
 							noFocus: true
 						} );
 					} else {
-						$dataInView
-							.attr( "aria-hidden", show )
-							.toggleClass( "in", !show )
-							.toggleClass( "out", show );
-						// require "play-once" class
-						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "play-once" )) {
-							if ( $dataInView.hasClass( "pop" )) {
-								effect = "pop";	
-							} else if ( $dataInView.hasClass( "fade" ) ) {
-								effect = "fade";
-							} else if ( $dataInView.hasClass( "slide" ) ) {
-								effect = "slide";
-							} else if ( $dataInView.hasClass( "slidefade" ) ) {
-								effect = "slidefade";
-							} else if ( $dataInView.hasClass( "slidevert" ) ) {
-								effect = "slidevert";
-							} else {
-								effect = null;
+						if ( !$dataInView.attr("data-hasPlayed") ) {
+							$dataInView
+								.attr( "aria-hidden", show )
+								.toggleClass( "in", !show );	
+							if ( !$dataInView.hasClass( "play-once" ) ) {
+								$dataInView.toggleClass( "out", show );
 							}
-
-							if ( effect ) {
-								setTimeout( function () {
-									$dataInView.removeClass( effect )
-								}, 500 );
-							}
+						} 	
+						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "play-once" )){
+							$dataInView.attr("data-hasPlayed", "true");
 						}	
 					}
 				}
