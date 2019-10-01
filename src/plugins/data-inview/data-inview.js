@@ -122,21 +122,21 @@ var componentName = "wb-inview",
 							noFocus: true
 						} );
 					} else {
-						if ( !$dataInView.attr("data-hasPlayed") ) {
+						if ( !$dataInView.attr( "data-hasPlayed" ) ) {
 							$dataInView
 								.attr( "aria-hidden", show )
-								.toggleClass( "in", !show );	
+								.toggleClass( "in", !show );
 							if ( !$dataInView.hasClass( "in-only" ) ) {
 								$dataInView.toggleClass( "out", show );
 							}
-						} 	
-						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "in-only" )){
-							$dataInView.attr("data-hasPlayed", "true");
-						}	
+						}
+						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "in-only" ) ) {
+							$dataInView.attr( "data-hasPlayed", "true" );
+						}
 					}
 				}
 			}
-			
+
 			// Trigger an event on the element identifying that the view state has changed
 			// (e.g., "all.wb-inview", "partial.wb-inview", "none.wb-inview")
 			$elm.trigger( viewState + selector );
