@@ -123,13 +123,35 @@ var componentName = "wb-inview",
 						} );
 					} else {
 						$dataInView
-							.attr( "aria-hidden", !show )
+							.attr( "aria-hidden", show )
 							.toggleClass( "in", !show )
 							.toggleClass( "out", show );
+						// require "play-once" class
+						if ( wb.isReady && viewState === "all" && $dataInView.hasClass( "play-once" )) {
+							if ( $dataInView.hasClass( "pop" )) {
+								effect = "pop";	
+							} else if ( $dataInView.hasClass( "fade" ) ) {
+								effect = "fade";
+							} else if ( $dataInView.hasClass( "slide" ) ) {
+								effect = "slide";
+							} else if ( $dataInView.hasClass( "slidefade" ) ) {
+								effect = "slidefade";
+							} else if ( $dataInView.hasClass( "slidevert" ) ) {
+								effect = "slidevert";
+							} else {
+								effect = null;
+							}
+
+							if ( effect ) {
+								setTimeout( function () {
+									$dataInView.removeClass( effect )
+								}, 500 );
+							}
+						}	
 					}
 				}
 			}
-
+			
 			// Trigger an event on the element identifying that the view state has changed
 			// (e.g., "all.wb-inview", "partial.wb-inview", "none.wb-inview")
 			$elm.trigger( viewState + selector );
