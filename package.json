@@ -67,7 +67,7 @@
     "grunt-cssmin-ie8-clean": "0.0.1",
     "grunt-eslint": "^19.0.0",
     "grunt-gh-pages": "~2.0.0",
-    "grunt-html": "^9.2.0",
+    "grunt-html": "^11.1.1",
     "grunt-i18n-csv": "^0.1.0",
     "grunt-lintspaces": "^0.8.3",
     "grunt-markdownlint": "^1.1.3",
