@@ -1,0 +1,40 @@
+/*
+  WET-BOEW
+  @title: Bootstrap 4 suplemental style for WET-BOEW
+ */
+
+/* Padding */
+.p-0 {
+	padding: 0 !important;
+}
+
+.pl-2
+.px-2 {
+	padding-left: 5px !important;
+}
+.px-2 {
+	padding-right: 5px !important;
+}
+
+.pt-4,
+.py-4 {
+	padding-top: 30px !important;
+}
+.py-4 {
+	padding-bottom: 30px !important;
+}
+
+/* Stretched link */
+.stretched-link {
+	&:after {
+		background-color: rgba(0, 0, 0, 0);
+		bottom: 0;
+		content: "";
+		left: 0;
+		pointer-events: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+	}
+}
