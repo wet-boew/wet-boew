@@ -1,0 +1,90 @@
+---
+{
+	"title": "Content filter",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Filters through content and show/hide content that match a certain tags.",
+	"tag": "filter",
+	"parentdir": "contentfilter",
+	"altLangPrefix": "contentfilter",
+	"dateModified": "2018-08-17"
+}
+---
+
+<p property="description">Filters through content and show/hide content that match a certain tags.</p>
+
+<p>This plugin is stable enought to be used in a production, but it's documentation is currently incomplete.</p>
+
+<h2>Todos</h2>
+
+<ol>
+	<li>Review the plugin name or find a better name</li>
+	<li>Review the CSS class name for persistant heading for hidden section</li>
+	<li>Finish the French working example</li>
+	<li>Complete this documentation</li>
+</ol>
+
+<h2>How to make it works</h2>
+
+<ul>
+	<li>Tag your content and define the initial state
+		<ol>
+			<li>Wrap in a <code>&lt;div class="wb-contentfilter"&gt;</code> the whole section that are going to be filtered by tags. That container is used to bind with the filtering interface.</li>
+			<li>Tag each section by using the attribute <code>data-wb-tags</code></li>
+			<li>To show the heading of a hidden section, but styled fade-out, identify those section with the CSS class <code>wb-fltr-fade</code></li>
+			<li>Add multiple tag by spacing them in the attribute value, like <code>tag1 tag2 tag3</code></li>
+			<li>If the initial state is hidden, then apply the css class <code>wb-flt-out</code> on that section</li>
+			<li>To show a section only when a tag is removed, prefix the tag with an exclamation mark <code>!tag</code></li>
+			<li>For exclusive tagging, which hide all the sibling but not the tagged one, prefix the tag with an asterik <code>*tag</code></li>
+			<li>If the initial state for an exclusive tag is "on" then:
+				<ul>
+					<li>Add the CSS class <code>wb-flt-in</code> to the exclusive tagged element</li>
+					<li>Add the CSS class <code>wb-fltr-exclusive</code> to the immediate parent of exclusive tagged element</li>
+				</ul>
+			</li>
+		</ol>
+	</li>
+	<li>Create an user interface (UI) to turn on/off the tags filtering
+		<ol>
+			<li>By default for tag filtering:
+				<ul>
+					<li>Checked state means the content is visible</li>
+					<li>Unchecked state means the content are hidden</li>
+				</ul>
+			</li>
+			<li>By default for exclusive tag filtering:
+				<ul>
+					<li>Checked state means the exclusive tag is "on", so all the sibling are hidden</li>
+					<li>Uncheck state means the exclusive tag is "off", so the filter have no effect</li>
+				</ul>
+			</li>
+			<li>Add <code>input[type=checkbox]</code> element
+				<ul>
+					<li>It's <code>value</code> attribute define the tag managed by the controller.</li>
+					<li>It's <code>aria-controls</code> attribute define the block where the tag filterting will be applied.</li>
+					<li>Set the <code>checked</code> to the default stated defined in the content</li>
+				</ul>
+			</li>
+		</ol>
+	</li>
+</ul>
+
+<h3>Template</h3>
+
+<pre><code>&helips;Flow content&helips;
+
+&lt;input type="checkbox" aria-controls="{{ containerID }}" value="{{ ui-controller.tagValue }}" data-wb5-bind="checked@filters.contains(ui-controller.tagValue)" /&gt;
+
+&lt;iv class="wb-contentfilter" data-wb5-bind="containerID@containerID"&gt;
+	&helips;Flow content&helips;
+	&lt;section data-wb5-tags="{{ List of tags }}"&gt;
+		&lt;h2 data-optional="class='wb-fltr-fade'"&gt;&helips;Phrasing content&helips;&lt;/h2&gt;
+		&helips;Flow content&helips;
+	&lt;/section&gt;
+	&helips;Flow content&helips;
+&lt;/div&gt;</code></pre>
+
+<p>The tagging can be set on any elements, like <code>li</code></p>
+
+<h3>Notes</h3>
+<p>Currently it only support <code>input[type=checkbox]</code>. But, the plugin can easilly modified to support other type of input, it just need to be defined and tested.</p>

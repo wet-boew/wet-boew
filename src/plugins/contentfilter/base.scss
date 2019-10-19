@@ -1,0 +1,11 @@
+/**
+ * @title Content filter CSS
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @duboisp
+ *
+ * Note: Depend also on the CSS for the filter WET plugin
+ */
+
+.wb-fltr-exclusive > *:not( .wb-fltr-in ) {
+	display: none !important;
+}

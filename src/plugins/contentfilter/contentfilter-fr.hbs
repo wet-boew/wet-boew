@@ -1,0 +1,2446 @@
+---
+{
+	"title": "Filtre de contenu",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Filtre du contenu selon les étiquettes choisi.",
+	"tag": "contentfilter",
+	"parentdir": "contentfilter",
+	"altLangPrefix": "contentfilter",
+	"dateModified": "2018-08-20"
+}
+---
+<p>Filtre du contenu selon les étiquettes choisi.</p>
+
+
+
+<aside class="well">
+	<h2>Interface utilisateur pour appliquer les filtres</h2>
+
+	<p>Ces contrôles sont pacifique, donc leur état initial doit absolument représenter l'état initial de la page.</p>
+
+	<h3>Afficher/cacher les détails du contenu</h3>
+
+	<ul class="list-unstyled">
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-cd" value="content-details" /> <label for="test-cd">Détails du contenu</label></li>
+	</ul>
+
+	<p class="text-muted">Lorsqu'il n'est pas coché par défaut, il est assumé que ce contenu est contient déjà la class CSS <code>wb-fltr-out</code>.</p>
+
+	<h3>Table des matières</h3>
+
+	<ul class="list-unstyled">
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-chkFilter2" value="sintro" checked /> <label for="test-chkFilter2">Introduction pour une norme</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-chkFilter3" value="guidelines" checked /> <label for="test-chkFilter3">Lignes directrices</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-chkFilter4" value="related" checked /> <label for="test-chkFilter4">Lignes directrices connexes</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-chkFilter" value="guideline" checked /> <label for="test-chkFilter">6.1 Tirer parti des normes ouvertes et adopter [...]</label></li>
+	</ul>
+
+	<h3>Filtrer les sous-section de la section 6.1</h3>
+
+	<ul class="list-unstyled">
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-8" value="intro" checked /> <label for="test-8">Introduction</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-3" value="checklist" checked /> <label for="test-3">Liste de contrôle</label> <span class="text-muted">(Le titre de cette section reste visible car elle a été identifié comme tel dans code HTML.</span></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-4" value="guides" checked /> <label for="test-4">Guides d’application</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-5" value="solutions" checked /> <label for="test-5">Solutions réutilisables</label></li>
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-6" value="similar" checked /> <label for="test-6">Ressources similaires</label></li>
+	</ul>
+
+	<h3>Filtres exclusifs</h3>
+
+	<ul class="list-unstyled">
+		<li><input aria-controls="fiterableContentContainer" type="checkbox" id="test-7" value="architectural" /> <label for="test-7">Principes Construisez-le bien</label></li>
+	</ul>
+
+	<p class="text-muted">Le filtre exclusive est définie selon l'étiquetage du contenu. Une étiquette exclusive saura préfixé par un astérik. <code>*</code>. Un filtre exclusive cachera seulement les éléments voisins non-exclusive.</p>
+
+</aside>
+
+
+
+
+<div class="dpgn-section-intro-standard">
+
+  <p>
+<strong>[TODO: Ajouter / réviser le texte d'introduction]</strong>
+</p>
+
+</div>
+
+<div class="dpgn-section-guidelines">
+  <details open="open">
+    <summary><strong>Lignes directrices</strong></summary>
+    <ul class="list-unstyled mrgn-bttm-0">
+<li><a href="#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant" class="btn btn-md btn-link"><span class="btn-block text-left">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</span></a></li>
+<li><a href="#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes" class="btn btn-md btn-link"><span class="btn-block text-left">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</span></a></li>
+<li><a href="#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services" class="btn btn-md btn-link"><span class="btn-block text-left">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</span></a></li>
+<li><a href="#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service" class="btn btn-md btn-link"><span class="btn-block text-left">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</span></a></li>
+</ul>
+
+  </details>
+</div>
+
+<div class="dpgn-section-guidelines-related">
+  <details>
+    <summary>Lignes directrices connexes</summary>
+    <ul data-guidelines="1.3,3.4,5.1,10.3" class="list-unstyled mrgn-bttm-0">
+<li><a href="1-concevoir-avec-utilisateurs.html#comprendre-le-contexte-dans-lequel-les-personnes-interagissent-et-concevoir-des-solutions-propres--rpondre--leurs-besoins" class="btn btn-md btn-link"><span class="btn-block text-left">1.3 Comprendre le contexte dans lequel les personnes interagissent et concevoir des solutions propres à répondre à leurs besoins (1. Concevoir avec les utilisateurs (ébauche))</span></a></li>
+<li><a href="3-collaborer-largement.html#partager-et-collaborer-ouvertement-tisser-des-liens-avec-le-travail-des-autres-et-fournir-des-ressources-que-les-autres-pourront-rutiliser" class="btn btn-md btn-link"><span class="btn-block text-left">3.4 Partager et collaborer ouvertement, tisser des liens avec le travail des autres et fournir des ressources que les autres pourront réutiliser (3. Collaborer largement (ébauche))</span></a></li>
+<li><a href="5-travailler-ouvertement-par-defaut.html#ouvrir-au-monde-extrieur-toutes-les-donnes-tous-les-renseignements-et-tout-nouveau-code-source-ouvert-non-sensibles-pour-le-partage-et-la-rutilisation-sous-licence-ouverte" class="btn btn-md btn-link"><span class="btn-block text-left">5.1 Ouvrir au monde extérieur toutes les données, tous les renseignements et tout nouveau code source ouvert non sensibles pour le partage et la réutilisation sous licence ouverte (5. Travailler ouvertement par défaut (ébauche))</span></a></li>
+<li><a href="10-etre-bons-utilisateurs-donnees.html#veiller--ce-que-les-donnes-soient-recueillies-de-faon-normalise-pour-quelles-soient-facilement-intgrables-et-rutilisables-par-les-autres" class="btn btn-md btn-link"><span class="btn-block text-left">10.3 Veiller à ce que les données soient recueillies de façon normalisée pour qu’elles soient facilement intégrables et réutilisables par les autres (10. Être de bons utilisateurs de données (ébauche))</span></a></li>
+</ul>
+
+  </details>
+</div>
+
+<section class="dpgn-section-guideline">
+  <h2 id="tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</h2>
+
+  <div class="dpgn-section-intro-guideline">
+
+    <p>
+<strong>[TODO: Ajouter / réviser le texte d'introduction]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Créez une technologie qui utilise des normes ouvertes pour garantir que votre système fonctionne et communique avec d'autres produits ou systèmes, et peut facilement être mis à niveau et étendu.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Adopter et utiliser des normes ouvertes signifie que vous pouvez:
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+passer d'une technologie à l'autre lorsque vous en avez besoin, en évitant le verrouillage des fournisseurs
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+changer rapidement et facilement votre service quand vous en avez besoin
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+augmenter la compatibilité avec toutes les parties prenantes
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+ouvrir la gamme des entreprises de qui vous pouvez acheter, car plus d'entre eux sont susceptibles d'utiliser la même norme que vous
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+accéder à un plus large éventail de fournisseurs de logiciels libres et propriétaires
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+    <p>
+Nos choix pour l'infrastructure d'hébergement, les bases de données, les plateformes logiciels, les langages de programmation et le reste de la pile technologique devraient éviter le verrouillage des fournisseurs et correspondre à ce que les entreprises modernes de logiciels grand public choisissent aujourd'hui. En particulier, les équipes de services numériques devraient envisager d'utiliser des logiciels libres, des solutions infonuagiques et des produits de base à travers la pile technologique, en raison de leur adoption généralisée et de leur soutien par les entreprises technologiques du secteur privé.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Les logiciels libres ont tendance à utiliser et à aider à définir des normes ouvertes et des spécifications accessibles au public. Les logiciels libres sont, par nature, des spécifications accessibles au public, et la disponibilité de leur code source favorise un débat ouvert et démocratique autour de leurs spécifications, les rendant à la fois plus robustes et interopérables.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Utiliser un logiciel libre signifie que vous pouvez bénéficier de:
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+résoudre les problèmes courants avec la technologie libre facilement disponible
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+plus de temps et de ressources pour des solutions personnalisées pour résoudre les problèmes rares ou uniques
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+réduction des coûts de mise enieuvre et de fonctionnement
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+    <p>
+There are many potential benefits from the greater use of digital services, including greater convenience for users, quicker and more responsive service delivery, increased security and reliability and reduced costs. To maximize these potential benefits and avoid user reliance on less convenient ways of interacting with government, services should be designed to be digital from end-to-end.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+  </div>
+
+  <section class="dpgn-section-checklist">
+
+    <h3><span class="glyphicon glyphicon-check text-success" aria-hidden="true"></span>
+Liste de contrôle</h3>
+
+    <p>
+<strong>[TODO: Ajouter / modifier les éléments de la liste de contrôle]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+Utiliser des normes ouvertes et des logiciels libres à chaque couche de la pile technologique
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Tenir compte de l'utilisation de normes ouvertes et de logiciels libres lors du calcul du coût total de possession d'une solution, y compris les coûts de sortie ou de transition
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Éviter le verrouillage à toutes les solutions propriétaires où des logiciels libres et / ou des normes ouvertes sont disponibles
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Assurez-vous que le logiciel peut être déployé sur une variété de types de matériel de base
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Concevoir, créer et tester des services numériques de bout en bout
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+assurez-vous que les prototypes intègrent l'expérience utilisateur de bout en bout <strong>(4. Conception du service du début à la fin, Normes des services numériques (Ontario))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+design and test your service to work with the devices and browsers your users use - find out the browsers you must test with <strong>(Digital Service Standard (UK))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+testez le service dans un environnement aussi semblable que possible à l'environnement de déploiement <strong>(Normes des services numériques (Ontario))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+adoptez un processus de test des modifications apportées au service <strong>(Normes des services numériques (Ontario))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+mettez en place un processus périodique de contrôle et de test du service, même quand il n'a pas subi de modifications <strong>(Normes des services numériques (Ontario))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Create automated tests that verify all user-facing functionality <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Create unit and integration tests to verify modules and components <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Run tests automatically as part of the build process <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Perform deployments automatically with deployment scripts, continuous delivery services, or similar techniques <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Conduct load and performance tests at regular intervals, including before public launch <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Determine how users would be affected if your service was unavailable for any length of time and how that's changed since beta <strong>(Digital Service Standard (UK))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Determine the most likely ways the service could go offline and how you plan to stop them <strong>(Digital Service Standard (UK))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Determine your strategy for dealing with outages, including who's responsible and the decisions they can make <strong>(Digital Service Standard (UK))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Modélisation des processus métier à l'aide du langage de modélisation unifiée pour identifier les processus d'entreprise communs
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Se servir de normes, solutions, composantes et pratiques de pointe en matière de source ouverte
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Préconiser cet ordre de préférences : source ouverte d’abord, puis les logiciels disponibles sur le marché qui sont indifférents à la plateforme, puis les logiciels disponibles sur le marché exclusifs, puis en dernier lieu, les logiciels conçus sur mesure
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Concevoir à des fins de résilience
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Veiller à ce que les temps de réponse répondent aux besoins des utilisateurs, et que les services critiques soient grandement disponibles
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Appuyer les déploiements sans temps morts, dans les cas de maintenance planifiée et non planifiée
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Se servir d’architectures distribuées, en présumant que des échecs se produiront, traiter des erreurs avec dignité, et surveiller activement
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Avant d'entrer en production, élaborer les processus appropriés afin de s'assurer que les données d'apprentissage sont évaluées pour la présence de biais imprévus dans les données et d'autres facteurs qui pourraient influencer injustement les résultats.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+<li><strong>Source du contenu&#160;:</strong> Section 6.3.1, Directive sur les processus décisionnels automatisés (ébauche) (GC)</li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-guides">
+
+    <h3><span class="glyphicon glyphicon-book text-info" aria-hidden="true"></span>
+Guides d’application</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les éléments du guide de mise en œuvre]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+<a href="https://references.modernisation.gouv.fr/socle-logiciels-libres">Socle Logiciels Libres (France)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.tresor.gouv.qc.ca/fileadmin/PDF/ressources_informationnelles/logiciels_libres/pollo.pdf">Logiciels libres et ouverts - Guide d'analyse de maturité (Québec)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.tresor.gouv.qc.ca/fileadmin/PDF/ressources_informationnelles/logiciels_libres/ctp.pdf">Logiciels libres et ouverts - Guide d'analyse du coût total de propriété (Québec)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions">
+<a href="https://www.gov.uk/service-manual/technology/working-with-open-standards">Working with open standards (Service Manual (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions">
+<a href="https://www.gov.uk/service-manual/technology/choosing-technology-an-introduction">Choosing technology: an introduction (Service Manual (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions</code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://finance.gov.au/policy-guides-procurement/">Australian Government ICT Policy Guides and Procurement (AU)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://www.finance.gov.au/sites/default/files/australian-government-open-source-software-policy-2013.pdf">Australian Government Open Source Software Policy (AU)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://dodcio.defense.gov/Open-Source-Software-FAQ/">DoD Open Source Software FAQ (US)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://dodcio.defense.gov/Portals/0/Documents/OSSFAQ/2009OSS.pdf">DoD Memorandum on Guidance Regarding Open Source Software (US)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.w3.org/standards/">W3C Standards (W3C)</a><ul class="lst-spcd">
+<li>
+<a href="https://www.w3.org/standards/webdesign/">Web Design and Applications - W3C Web design standards (W3C)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.w3.org/standards/webofdevices/">Web of Devices (W3C)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.oasis-open.org/standards">OASIS Standards (oasis-open.org)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/technology/quality-assurance-testing-your-service-regularly">Quality assurance: testing your service regularly (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability">
+<a href="https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices">Designing for different browsers and devices (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability">
+<a href="https://www.gov.uk/service-manual/technology/test-your-services-performance">Test your service's performance (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability</code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/technology/exploratory-testing">Exploratory testing (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability">
+<a href="https://www.gov.uk/service-manual/making-software/deployment.html">Deployment environments (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability</code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/technology/vulnerability-and-penetration-testing">Vulnerability and penetration testing (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability">
+<a href="https://www.dta.gov.au/standard/design-guides/performance-testing/">Performance testing (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-performance-availability-scalability</code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/technology#testing-your-service">Testing your service (Service Manual (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://testing-cookbook.18f.gov/">Testing Cookbook (18F (US))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/technology/uptime-and-availability-keeping-your-service-online">Keeping your service online (Service Manual (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-solutions">
+
+    <h3><span class="glyphicon glyphicon-refresh text-success" aria-hidden="true"></span>
+Solutions réutilisables</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les solutions réutilisables]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+  </section>
+
+  <section class="dpgn-section-similar">
+
+    <h3><span class="glyphicon glyphicon-bookmark text-muted" aria-hidden="true"></span>
+Ressources similaires</h3>
+
+    <ul class="lst-spcd">
+<li>
+<a href="https://github.com/canada-ca/Open_First_Whitepaper/blob/master/fr/2_Normes_ouvertes.md">Normes ouvertes (Livre blanc ouvert en premier (GC)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://github.com/canada-ca/Open_First_Whitepaper/blob/master/fr/3_Logiciel_libre_Utilisation.md">Logiciels libres - Utilisation (Livre blanc ouvert en premier (GC))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://ftp.maps.canada.ca/pub/nrcan_rncan/publications/ess_sst/295/295664/cgdi_ip_33_f.pdf">Ressources naturelles Canada - Guide d'introduction aux licences de logiciel libre avec code source ouvert (GC)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.tresor.gouv.qc.ca/fileadmin/PDF/ressources_informationnelles/logiciels_libres/ll.pdf">Logiciels libres et ouverts - Guide de référence (Québec)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://github.com/VilledeMontreal/politique-libre/blob/master/Politique/PolitiqueDuLibre.md">Politique du libre (Montréal)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://playbook.cio.gov/#play8">8. Choose a modern technology stack (Digital Services Playbook (US))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://github.com/18F/open-source-policy/blob/master/policy.md">18F Open Source Policy (US)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/guidance/be-open-and-use-open-source">3. Be open and use open source (Technology Code of Practice (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/guidance/make-use-of-open-standards">4. Make use of open standards (Technology Code of Practice (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/service-standard/use-open-standards-and-common-platforms">9. Use open standards and common platforms (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.ontario.ca/fr/page/norme-des-services-numeriques#section-9">9. Utiliser des normes ouvertes et des plateformes communes (Normes des services numériques (Ontario))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.dta.gov.au/standard/7-open-standards-and-common-platforms/">7. Use open standards and common platforms (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/service-standard/test-the-end-to-end-service">10. Test the end-to-end service (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.ontario.ca/page/digital-service-standard#section-5">4. Conception du service du début à la fin (Normes des services numériques (Ontario))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.ontario.ca/page/digital-service-standard#section-7">6. Tester le service de bout en bout (Normes des services numériques (Ontario))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://playbook.cio.gov/#play10">10. Automate testing and deployments (Digital Services Playbook (US))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.dta.gov.au/standard/10-test-the-service/">10. Test the service (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/service-manual/service-standard/make-a-plan-for-being-offline">11. Make a plan for being offline (Digital Service Standard (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#tirer-parti-des-normes-ouvertes-et-adopter-les-pratiques-exemplaires-y-compris-lutilisation-de-logiciels-libres-le-cas-chant">6.1 Tirer parti des normes ouvertes et adopter les pratiques exemplaires, y compris l'utilisation de logiciels libres, le cas échéant</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+</section>
+
+<section class="dpgn-section-guideline">
+  <h2 id="utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</h2>
+
+  <div class="dpgn-section-intro-guideline">
+
+    <p>
+<strong>[TODO: Ajouter / réviser le texte d'introduction]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+In order to limit costs, avoid duplication of effort and provide a consistent client experience when using various services, the reuse and adaptation of existing technological solutions is encouraged. If the development of new solutions is required, consider the ability of others to reuse and adapt your work as this will provide additional value on an organizational level.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Using common, proven government solutions, approaches, and platforms will help the government:
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+meet the needs of your users by building with proven solutions
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+make users' experience of government more consistent, which generates trust
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+save time and money by reusing things that are already available
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+
+  </div>
+
+  <section class="dpgn-section-checklist">
+
+    <h3><span class="glyphicon glyphicon-check text-success" aria-hidden="true"></span>
+Liste de contrôle</h3>
+
+    <p>
+<strong>[TODO: Ajouter / modifier les éléments de la liste de contrôle]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+Use device-agnostic and modular technology. <strong>(2. Reuse, improve and share technological solutions where appropriate (Do - Digital Design Playbook (ISED)))</strong><ul class="lst-spcd">
+<li>
+Use technology that allows your service to function regardless of the device or operating system. Make sure mobile apps can function on all devices.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Modular technology can be reused, in part or in whole to innovate new solutions and uses for it. It also allows you to add new capabilities and capacities to your technology in response to changing operational environments.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Follow the <a href="https://www.tbs-sct.gc.ca/hgw-cgf/oversight-surveillance/communications/csc-grc-eng.asp">Canada.ca Content Style Guide</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Static assets are served through a content delivery network <strong>(Digital Services Playbook (US))</strong>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Les services d’informatique en nuage sont désignés et évalués comme la principale option de prestation de services lorsqu’on procède à des investissements en matière de TI ou qu’on lance des initiatives, des stratégies et des projets de la TI.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Pour déterminer comment gérer les risques pour la sécurité, les ministères et organismes doivent observer le contenu des documents <a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/approche-procedures-gestion-risques-securite-informatique-nuage.html">Approche et procédures de gestion des risques à la sécurité de l’informatique en nuage du gouvernement du Canada</a> et <a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/acces-information-protection-reseignements-personnels/gestion-securite-identite/orientation-utilisation-securisee-services-commerciaux-informatique-nuage-amops.html">Orientation sur l’utilisation sécurisée des services commerciaux d’informatique en nuage : Avis de mise en œuvre de la Politique sur la sécurité (AMOPS)</a>.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Les ministères et organismes peuvent déployer des solutions dont les exigences en matière de catégorisation de données ne correspondent pas à un profil de contrôle de sécurité de l’informatique en nuage donné, comme il est indiqué dans le <a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/profil-controle-securite-services-ti-fondes-information-nuage.html">Profil de contrôle de sécurité pour les services de la TI du GC fondés sur l’informatique en nuage</a>, avec des mesures d’atténuation des risques appropriées élaborées de concert avec des partenaires de la sécurité du GC.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Pour garantir, dans la mesure du possible, l’accès continu du GC aux données de nature délicate, les ministères et organismes doivent se conformer à l’<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/avis-mise-oeuvre-politique/orientation-relative-residence-donnees-electroniques.html">Orientation relative à la résidence des données électroniques</a>.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Pour assurer la continuité des activités et gérer les risques, les ministères et organismes élaboreront une stratégie de retrait appropriée avant d’utiliser les services d’informatique en nuage.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Les ministères et organismes devraient tenir compte de la transférabilité et de l’interopérabilité des services au moment d’élaborer des solutions d’informatique en nuage.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Définir les services de programme en tant que fonctionnalités métier permettant d'établir un vocabulaire commun entre les activités, le développement et les opérations
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Identifier les fonctionnalités communes à l'entreprise GC et pouvant être partagées et réutilisées
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Faire rouler les applications en conteneurs
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Tirer parti des composantes intégrées d’échange numérique comme le Bus de service du GC, la plateforme d’échange numérique, et le magasin IPA, conçu à des fins d’utilisation sur mesure
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Tirer parti et réutiliser les solutions, composantes et processus qui existent déjà
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Sélectionner des solutions intégrées et regroupées avant d’opter pour des solutions spécifiques à un ministère
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Réaliser la simplification en minimisant le dédoublement des composantes et en s’en tenant aux normes pertinentes
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Informer le CEAI GC des investissements et des innovations ministériels
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Préconiser cet ordre de préférences : Logiciel comme service (SaaS) d’abord, puis Plateforme comme service (PaaS), et en dernier lieu, l’Infrastructure comme service (IaaS)
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Préconiser cet ordre de préférences : Le nuage public d’abord, ensuite, le nuage hybride, puis le nuage privé et, en dernier lieu, les solutions non nuagiques (sur site)
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Concevoir en vue d’une mobilité nuagique, et élaborer une stratégie de sortie afin d’éviter l’enfermement propriétaire
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-guides">
+
+    <h3><span class="glyphicon glyphicon-book text-info" aria-hidden="true"></span>
+Guides d’application</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les éléments du guide de mise en œuvre]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li class="dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/communications-gouvernementales/specifications-contenu-architecture-information-canada.html">Spécifications du contenu et de l’architecture de l'information pour Canada.ca</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/communications-gouvernementales/guide-redaction-contenu-canada.html">Guide de rédaction du contenu du site Canada.ca</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse</code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+    <section>
+
+      <h5 id="services-dinformatique-en-nuage">Services d’informatique en nuage</h5>
+
+      <ul class="lst-spcd">
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/gouvernement-canada-guide-selection-nuage-approprie.html">Gouvernement du Canada Guide de Sélection du Nuage Approprié</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/profil-controle-securite-services-ti-fondes-information-nuage.html">Profil de contrôle de sécurité pour les services de la TI du GC fondés sur l'informatique en nuage</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/strategie-adoption-information-nuage-gouvernement-canada.html">Stratégie d’adoption de l’informatique en nuage du Gouvernement du Canada</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/gc-livre-blanc-souverainete-donnees-nuage-public.html">Gouvernement du Canada Livre blanc : Souveraineté des données et nuage public</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/informatique-nuage/approche-procedures-gestion-risques-securite-informatique-nuage.html">Gouvernement du Canada Approche et procédures de gestion des risques à la sécurité de l’informatique en nuage</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/acces-information-protection-reseignements-personnels/gestion-securite-identite/orientation-utilisation-securisee-services-commerciaux-informatique-nuage-amops.html">Orientation sur l’utilisation sécurisée des services commerciaux d’informatique en nuage : Avis de mise en œuvre de la Politique sur la sécurité (AMOPS)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-cloud-first">
+<a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/avis-mise-oeuvre-politique/orientation-relative-residence-donnees-electroniques.html">Orientation relative à la résidence des données électroniques</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-cloud-first</code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+
+    </section>
+  </section>
+
+  <section class="dpgn-section-solutions">
+
+    <h3><span class="glyphicon glyphicon-refresh text-success" aria-hidden="true"></span>
+Solutions réutilisables</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les solutions réutilisables]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li class="dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse">
+<a href="http://wet-boew.github.io/wet-boew/index-fr.html">Boîte à outils de l’expérience Web (BOEW)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-maximize-reuse</code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-similar">
+
+    <h3><span class="glyphicon glyphicon-bookmark text-muted" aria-hidden="true"></span>
+Ressources similaires</h3>
+
+    <ul class="lst-spcd">
+<li>
+<a href="https://sourcecode.cio.gov/Three-Step-Software-Solutions-Analysis/">Three-Step Software Solutions Analysis (Federal Source Code Policy (US))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://www.gcpedia.gc.ca/wiki/DDPlayBook_Plan#1._Comply_with_Government_of_Canada_acts.2C_policies.2C_standards_and_directives">1. Comply with Government of Canada acts, policies, standards and directives (Plan - Digital Design Playbook (ISED)) (internal to GC only)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="http://www.gcpedia.gc.ca/wiki/DDPlayBook_Do#2._Reuse.2C_improve_and_share_technological_solutions_where_appropriate">2. Reuse, improve and share technological solutions where appropriate (Do - Digital Design Playbook (ISED)) (internal to GC only)</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://playbook.cio.gov/#play9">9. Deploy in a flexible hosting environment (Digital Services Playbook (US))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#utiliser-et-rutiliser-les-solutions-les-approches-et-les-plateformes-gouvernementales-prouves-et-communes">6.2 Utiliser et réutiliser les solutions, les approches et les plateformes gouvernementales éprouvées et communes</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+</section>
+
+<section class="dpgn-section-guideline">
+  <h2 id="faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</h2>
+
+  <div class="dpgn-section-intro-guideline">
+
+    <p>
+<strong>[TODO: Ajouter / réviser le texte d'introduction]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+L’interopérabilité est la capacité que possède un produit ou un système, dont les interfaces sont intégralement connues, à fonctionner avec d'autres produits ou systèmes existants ou futurs et ce sans restriction d'accès ou de mise en oeuvre. L'interopérabilité technique devrait être assurée par l'utilisation de normes ouvertes.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <p>
+Les interfaces de programme d'application (API) sont un moyen par lequel les fonctionnalités métier sont exposées numériquement. Ce sont des éléments essentiels à la prestation réussie des services numériques en direct du gouvernement et à l'expansion de la prestation de services à des fournisseurs tiers. Ils peuvent également permettre une plus grande interopérabilité entre les services, optimiser les expériences entre les appareils et même mener à de nouveaux services novateurs en permettant à des produits tiers de fonctionner de façon transparente avec les systèmes du gouvernement du Canada.
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+  </div>
+
+  <section class="dpgn-section-checklist">
+
+    <h3><span class="glyphicon glyphicon-check text-success" aria-hidden="true"></span>
+Liste de contrôle</h3>
+
+    <p>
+<strong>[TODO: Ajouter / modifier les éléments de la liste de contrôle]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+Build services that are API-centric services, which execute most, if not all, functionality through API calls (e.g., connecting frontend to backend through an API)
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Plan out API access from the beginning, designing services to be able to safely and securely expose functionality to other systems and the public.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Design APIs to be compete but also minimal, ensuring the expected functionality is provided but with as few public members per class and as few classes as possible. This makes it easier to understand, remember, debug and change the API.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Design APIs to have clear and simple semantics to make common tasks easy. Rare tasks should still be possible but not the focus. Avoid being overly general, optimizing specific use cases.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Design APIs to be intuitive so that a semi-experienced user can be successful with minimal assistance from the documentation and programmers can easily understand code that uses the API.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Design APIs to be easy to memorize by implementing a consistent and precise naming convention. Use plain language and recognizable patterns and concepts, avoiding abbreviations where possible.
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Exposer toutes les fonctionnalités en tant que services
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Se servir de microservices ayant été conçus autour des capacités opérationnelles. Concevoir chaque servir à une fin particulière
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+Exploiter chaque service selon son propre processus, et veiller à ce qu’il communique avec les autres services par l’entremise d’une interface bien définie, comme une Interface de programmation d’applications (IPA) axée sur un protocole HTTPS
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-guides">
+
+    <h3><span class="glyphicon glyphicon-book text-info" aria-hidden="true"></span>
+Guides d’application</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les éléments du guide de mise en œuvre]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li class="dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions dpgn-digital-architectural-enable-interoperability">
+<a href="https://www.gov.uk/guidance/gds-api-technical-and-data-standards">API technical and data standards (Government Digital Service (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions dpgn-digital-architectural-enable-interoperability</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-enable-interoperability">
+<a href="https://gdstechnology.blog.gov.uk/2018/02/13/developing-cross-government-api-data-and-technical-standards/">Developing cross-government API data and technical standards (Government Digital Service Blog (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-enable-interoperability</code></li>
+</ul>
+</details>
+
+</li>
+<li class="dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions dpgn-digital-architectural-enable-interoperability">
+<a href="https://www.dta.gov.au/standard/design-guides/api/">Application Programming Interfaces (APIs) (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code>dpgn-digital-architectural dpgn-digital-architectural-open-standards-solutions dpgn-digital-architectural-enable-interoperability</code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-solutions">
+
+    <h3><span class="glyphicon glyphicon-refresh text-success" aria-hidden="true"></span>
+Solutions réutilisables</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les solutions réutilisables]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#faire-la-conception-en-fonction-de-linteroprabilit-en-permettant--la-collectivit-de-dcouvrir-et-dexploiter-les-services">6.3 Faire la conception en fonction de l’interopérabilité, en permettant à la collectivité de découvrir et d’exploiter les services</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+  </section>
+
+</section>
+
+<section class="dpgn-section-guideline">
+  <h2 id="ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</h2>
+
+  <div class="dpgn-section-intro-guideline">
+
+    <p>
+<strong>[TODO: Ajouter / réviser le texte d'introduction]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+  </div>
+
+  <section class="dpgn-section-checklist">
+
+    <h3><span class="glyphicon glyphicon-check text-success" aria-hidden="true"></span>
+Liste de contrôle</h3>
+
+    <p>
+<strong>[TODO: Ajouter / modifier les éléments de la liste de contrôle]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+  </section>
+
+  <section class="dpgn-section-guides">
+
+    <h3><span class="glyphicon glyphicon-book text-info" aria-hidden="true"></span>
+Guides d’application</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les éléments du guide de mise en œuvre]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+
+    <ul class="lst-spcd">
+<li>
+<a href="https://www.dta.gov.au/standard/design-guides/open-data/">Open data (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.gov.uk/guidance/gds-api-technical-and-data-standards">API technical and data standards (Government Digital Service (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://gdstechnology.blog.gov.uk/2018/02/13/developing-cross-government-api-data-and-technical-standards/">Developing cross-government API data and technical standards (Government Digital Service blog (UK))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+<li>
+<a href="https://www.dta.gov.au/standard/design-guides/api/">Application Programming Interfaces (APIs) (Digital Service Standard (AU))</a>
+
+
+<details class="dpgn-content-details hide dpgn-data-ignore">
+<summary>Détails du contenu</summary>
+<ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+</details>
+
+</li>
+</ul>
+  </section>
+
+  <section class="dpgn-section-solutions">
+
+    <h3><span class="glyphicon glyphicon-refresh text-success" aria-hidden="true"></span>
+Solutions réutilisables</h3>
+
+    <p>
+<strong>[TODO: Ajouter / réviser les solutions réutilisables]</strong>
+</p>
+
+    <details class="dpgn-content-details hide dpgn-data-ignore">
+      <summary>Détails du contenu</summary>
+      <ul>
+<li><strong>Norme&#160;numérique&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html">6. Utiliser des normes et des solutions ouvertes (ébauche)</a></li>
+<li><strong>Ligne directrice&#160;:</strong> <a href="/digital-playbook-guide-numerique/fr/6-utiliser-normes-solutions-ouvertes.html#ouvrir-laccs-aux-donns-aux-transactions-et-aux-rgles-commerciales-qui-sous-tendent-un-service">6.4 Ouvrir l’accès aux donnés, aux transactions et aux règles commerciales qui sous-tendent un service</a></li>
+<li><strong>Mots clés&#160;:</strong> <code></code></li>
+</ul>
+    </details>
+  </section>
+
+</section>
+
+
+<hr />
+<ul class="list-unstyled">
+  <li><a href="#feedback-popup" aria-controls="feedback-popup" class="wb-lbx" role="button">Donnez votre avis sur cette page</a></li>
+  <li><a href="https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/fr/6-utiliser-normes-solutions-ouvertes.md">Voir la source du contenu sur GitHub</a></li>
+  <li><a href="https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/views-vues/standards-normes/fr/6-utiliser-normes-solutions-ouvertes.md">Voir la source du modèle sur GitHub</a></li>
+  <li><a href="#filter-panel" aria-controls="filter-panel" class="overlay-lnk btn btn-primary" role="button">Afficher les filtres</a></li>
+</ul>
+
+<div class="text-center">
+<ul class="pagination">  
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/5-travailler-ouvertement-par-defaut.html" rel="prev">Précédent<span class="wb-inv"> - 5. Travailler ouvertement par défaut (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/1-concevoir-avec-utilisateurs.html">1<span class="wb-inv"> - Aller à la 1. Concevoir avec les utilisateurs (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/2-integrer-accessibilite-des-depart.html">2<span class="wb-inv"> - Aller à la 2. Intégrer l’accessibilité dès le départ (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/3-collaborer-largement.html">3<span class="wb-inv"> - Aller à la 3. Collaborer largement (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/4-permettre-personnel-offrir-meilleurs-services.html">4<span class="wb-inv"> - Aller à la 4. Permettre au personnel d’offrir de meilleurs services (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/5-travailler-ouvertement-par-defaut.html">5<span class="wb-inv"> - Aller à la 5. Travailler ouvertement par défaut (ébauche)</span></a></li>
+  <li class="active"><a href="#">6<span class="wb-inv"> - Aller à la 6. Utiliser des normes et des solutions ouvertes (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/7-effectuer-iterations-ameliorations-constamment.html">7<span class="wb-inv"> - Aller à la 7. Effectuer des itérations et des améliorations constamment (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/8-concevoir-services-ethiques.html">8<span class="wb-inv"> - Aller à la 8. Concevoir des services éthiques (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/9-gerer-risques-matiere-securite-protection-renseignements-personnels.html">9<span class="wb-inv"> - Aller à la 9. Gérer les risques en matière de sécurité et de protection des renseignements personnels (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/10-etre-bons-utilisateurs-donnees.html">10<span class="wb-inv"> - Aller à la 10. Être de bons utilisateurs de données (ébauche)</span></a></li>
+  <li><a href="/digital-playbook-guide-numerique/views-vues/standards-normes/fr/7-effectuer-iterations-ameliorations-constamment.html" rel="next">Suivant<span class="wb-inv"> - 7. Effectuer des itérations et des améliorations constamment (ébauche)</span></a></li>
+</ul>
+</div>
