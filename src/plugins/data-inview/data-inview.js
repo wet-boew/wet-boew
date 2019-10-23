@@ -123,9 +123,7 @@ var componentName = "wb-inview",
 						} );
 					} else {
 						if ( !$dataInView.attr( "data-hasPlayed" ) ) {
-							$dataInView
-								.attr( "aria-hidden", show )
-								.toggleClass( "in", !show );
+							$dataInView.toggleClass( "in", !show );
 							if ( !$dataInView.hasClass( "in-only" ) ) {
 								$dataInView.toggleClass( "out", show );
 							}
