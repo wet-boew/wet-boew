@@ -2888,19 +2888,6 @@ MapLayer.prototype.createOLLayer = function() {
 			olLayer.setStyle( styleFactory.createStyleFunction( _this.settings.style, featureGeometry ) );
 		} );
 
-		function getCoordKey( feature ) {
-
-			var geomKey;
-
-			$.each( feature, function( k, v ) {
-				if ( v.coordinates ) {
-					geomKey = k;
-				}
-			} );
-
-			return geomKey;
-		}
-
 		var successHandler = function( data ) {
 
 			var layerRoot = _this.settings.root,
@@ -3123,6 +3110,18 @@ MapLayer.prototype.createOLLayer = function() {
 
 };
 
+function getCoordKey( feature ) {
+
+	var geomKey;
+
+	$.each( feature, function( k, v ) {
+		if ( v.coordinates ) {
+			geomKey = k;
+		}
+	} );
+
+	return geomKey;
+};
 
 /**
  * Load controls and interactions
