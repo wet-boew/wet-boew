@@ -6,3 +6,13 @@
 .col-sm-auto {
 	width: auto;
 }
+
+.form-inline {
+	.label-inline {
+		display: inline-block;
+		padding-right: 10px;
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+}
