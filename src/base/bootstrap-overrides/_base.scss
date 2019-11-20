@@ -590,6 +590,24 @@ input[type=button], input[type=reset], input[type=submit] {
 }
 
 /*
+ * Explicit labels for checkbox and radio button inputs
+ *
+ * Allow the use of horizontal explicit labels instead of the default implicit
+ * labelling pattern for checkbox and radio button inputs provided by Bootstrap.
+ */
+.form-inline {
+	.label-inline {
+		position: relative;
+		vertical-align: middle;
+		label {
+			font-weight: 400;
+			margin-bottom: 0px;
+			padding-left: 2px;
+		}
+	}
+}
+
+/*
  *	Fieldset/legend border position
  *
  *	Bootstrap puts the border below the legend which creates a visual
