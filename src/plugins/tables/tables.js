@@ -132,11 +132,28 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 	var $elm = $( event.target ),
 		pagination = $elm.next( ".bottom" ).find( "div:first-child" ),
 		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
+		pbLength = paginate_buttons.length,
+		pHasLF = pagination.find( ".last, .first" ).length === 2,
+		pHasPN = pagination.find( ".previous, .next" ).length === 2,
 		ol = document.createElement( "OL" ),
 		li = document.createElement( "LI" );
 
 	// Determine if Pagination required
-	if ( paginate_buttons.length === 1 || ( pagination.find( ".previous, .next" ).length === 2 && paginate_buttons.length < 4 ) ) {
+	if (
+		pbLength === 1 ||
+		(
+			pbLength === 3 &&
+			(
+				pHasLF ||
+				pHasPN
+			)
+		) ||
+		(
+			pbLength === 5 &&
+			pHasLF &&
+			pHasPN
+		)
+	) {
 		pagination.addClass( "hidden" );
 	} else {
 
