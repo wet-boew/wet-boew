@@ -61,10 +61,6 @@ var componentName = "wb-share",
 				name: "Blogger",
 				url: "https://www.blogger.com/blog_this.pyra?t=&amp;u={u}&amp;n={t}"
 			},
-			digg: {
-				name: "Digg",
-				url: "http://digg.com/submit?phase=2&amp;url={u}&amp;title={t}"
-			},
 			diigo: {
 				name: "Diigo",
 				url: "https://www.diigo.com/post?url={u}&amp;title={t}"
