@@ -418,6 +418,7 @@ module.exports = (grunt) ->
 				src: [
 					"src/test.js"
 					"src/**/test.js"
+					"!src/polyfills/datepicker/test.js"
 				]
 				dest: "dist/unmin/test/tests.js"
 
