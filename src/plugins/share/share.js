@@ -100,6 +100,10 @@ var componentName = "wb-share",
 			yahoomail: {
 				name: "Yahoo! Mail",
 				url: "https://compose.mail.yahoo.com/?to=&subject={t}&body={u}%0A{d}"
+			},
+			whatsapp: {
+				name: "Whatsapp",
+				url: "https://api.whatsapp.com/send?text={t}%0A{d}%0A{u}"
 			}
 		}
 	},
