@@ -234,6 +234,8 @@ abbr[title] {
 	abbr[title] {
 		border-bottom: 0;
 		text-decoration: underline dotted;
+		//Next line ported from Bootstrap 4
+		text-decoration-skip-ink: none; // sass-lint:disable-line no-misspelled-properties
 	}
 }
 
