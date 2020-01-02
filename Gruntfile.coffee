@@ -58,6 +58,26 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		->
 			if process.env.TRAVIS_PULL_REQUEST is "false" and process.env.DIST_REPO isnt `undefined` and ( process.env.TRAVIS_TAG isnt "" or process.env.TRAVIS_BRANCH is "master" )
+				pkgOriginal = grunt.file.readJSON("package.json");
+				addToRepo = "wet-boew-cdn";
+				writeTo = "dist/wet-boew/package.json";
+				pkg = {
+					name: "wet-boew",
+					version: pkgOriginal.version,
+					description: pkgOriginal.name.toLowerCase() + " theme"
+					repository: {
+						type: "git",
+						url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
+					},
+					author: "wet-boew-bot",
+					license: "MIT",
+					bugs: {
+						url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
+					},
+					homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
+				};
+				grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
+
 				grunt.task.run [
 					"copy:deploy"
 					"gh-pages:travis"
@@ -1452,6 +1472,7 @@ module.exports = (grunt) ->
 					))
 				src: [
 					"**/*.*"
+					"!package.json"
 				]
 
 			travis_cdn:
@@ -1493,6 +1514,10 @@ module.exports = (grunt) ->
 					repo: process.env.DEMOS_REPO
 					branch: process.env.DEMOS_BRANCH
 					message: "<%= distDeployMessage %>"
+				src: [
+					"**/*.*"
+					"!package.json"
+				]
 
 		sri:
 			options:
