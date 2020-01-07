@@ -46,7 +46,7 @@ if (ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1) {
    $( '.wb-twitter a' ).removeClass( 'twitter-timeline' );
    $( '.wb-twitter' ).after( '<p id="ieNotSupportedMessage">' );
    var pathName = window.location.pathname; 
-   var pageLanguage = str.substring(1, 3);
+   var pageLanguage = pathName.substring(1, 3);
    if (pageLanguage === "en") {
       $('#ieNotSupportedMessage').text("Your browser does not support the display of the Twitter feed. Please try another browser.");
    }
