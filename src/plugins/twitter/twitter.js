@@ -44,7 +44,7 @@ var ua = navigator.userAgent;
 /* If the user's browser is IE, don't load the Twitter widget and display a message */
 if (ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1) {
    $( '.wb-twitter a' ).removeClass( 'twitter-timeline' );
-   $( '.wb-twitter' ).after( '<p id="ieNotSupportedMessage">' );
+   $( '.wb-twitter' ).after( '<p id="ieNotSupportedMessage"></p>' );
    var pathName = window.location.pathname; 
    var pageLanguage = pathName.substring(1, 3);
    if (pageLanguage === "en") {
