@@ -1,0 +1,115 @@
+---
+{
+	"title": "Fonctionnalités provisoires",
+	"language": "fr",
+	"altLangPrefix": "provisional",
+	"dateModified": "2020-01-10",
+	"share": "true"
+}
+---
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. All functionalities described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p>The documentation and/or working examples for those features could be incomplete or not available.</p>
+</div>
+
+<h2>Feature availability</h2>
+
+<p>The following table describes until which version of WET-BOEW each provisional feature will be available. The features' availability will be re-evaluated at every release. A withdrawn provisional feature would be notified one version in advance.</p>
+
+<details>
+	<summary>Status description</summary>
+	<dl class="dl-horizontal">
+		<dt>&lt;not specified&gt;</dt>
+		<dd>provisional</dd>
+		<dt>Withdrawn</dt>
+		<dd>The feature are not available</dd>
+		<dt>Supported</dt>
+		<dd>The feature are included and supported by the WET-BOEW public API.</dd>
+		<dt>Withdrawn after v.Major.Minor</dt>
+		<dd>The v.Major.Minor represent the last version where that feature is available. Authors must consider an alternative or remove that feature.</dd>
+	</dl>
+</details>
+
+<table class="table table-bordered">
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th class="nowrap">Available in</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<th>CSS <code>.bg-cover</code></th>
+		<td>Background size cover</td>
+		<td>v4.0.34</td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Plugin <code>[data-bgimg]</code></th>
+		<td>Take the URL value and set it as the background image. To be replaced by CSS4 selector.</td>
+		<td>v4.0.34</td>
+		<td>Having <code>.provisional</code> class as a parent will be deprecated in July 2020 (approximately), which is 6 months after this feature was updated.</td>
+	</tr>
+	<tr>
+		<th>Plugin <code>[data-bgimg-srcset]</code></th>
+		<td>Detects the change in screen width and replace the background image accordingly</td>
+		<td>v4.0.34</td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+
+<h2>Provisional feature documentation</h2>
+
+<p>CSS provisional features must be accompanied by the class <code>.provisional</code> within his context of use.</p>
+
+
+<h2>Provisional working examples</h2>
+
+<h3 id="well-header-rwd-bgimg">Background image using [data-bgimg] plugin</h3>
+
+<div class="provisional bg-cover well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Secondary title</p>
+	</div>
+</div>
+
+<pre><code>&lt;div class="provisional bg-cover well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
+	&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+		&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+		&lt;p&gt;Secondary title&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="well-header-rwd-bgimg">Responsive background image using [data-bgimg-srcset] plugin</h3>
+<p>[data-bgimg-srcset] plugin is very similar to how <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset">srcset</a></code> attribute works. This plugin is not to be used with [data-bgimg].</p>
+
+<pre><code>data-bgimg-srcset="image1_link 600w, image2_link 960w, image3_link 1280w"</code></pre>
+
+<p>Within the quotation marks, the configurations are separated by a comma and each configuration consists of a link to an image and a screen width(1000w = 1000px). Make sure to leave only one space between the link and the size. If user's screen size is greater than any sizes listed in the attribute, it will automatically choose the one with the biggest size.</p>
+
+<div class="provisional bg-cover well" data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Secondary title</p>
+	</div>
+</div>
+
+<pre><code>&lt;div class="provisional bg-cover well"
+	data-bgimg="../../demos/tabs/img/investinourfuture.jpg 600w,
+			../../demos/tabs/img/flytheskies.jpg 960w,
+			../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+	&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+		&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+		&lt;p&gt;Secondary title&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
