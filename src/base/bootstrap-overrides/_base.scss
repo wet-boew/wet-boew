@@ -911,3 +911,10 @@ caption {
 	}
 	text-align: center;
 }
+
+//Overiding mark to have a better contrast ratio
+mark {
+	background-color: $txthl-bg-color;
+	color: $txthl-color;
+	font-weight: $txthl-font-weight;
+}
