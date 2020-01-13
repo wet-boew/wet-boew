@@ -190,6 +190,7 @@
 	@import "views/screen-sm-min";
 	@import "views/_bootstrap-4-screen-sm-min";
 	@import "proximity/screen-sm-min";
+	@import "../plugins/filter/screen-sm-min";
 }
 
 /* Medium view and over */
@@ -204,6 +205,7 @@
 @media screen and (min-width: $screen-lg-min) {
 	@import "views/screen-lg-min";
 	@import "proximity/screen-lg-min";
+	@import "../plugins/filter/screen-lg-min";
 }
 
 /* Extra-extra-small view */

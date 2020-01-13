@@ -38,10 +38,11 @@ var componentName = "wb-filter",
 			$elm, elmTagName, filterUI, prependUI,
 			settings, setDefault,
 			inptId, totalEntries;
+
 		if ( elm ) {
 			$elm = $( elm );
-
 			elmTagName = elm.nodeName;
+
 			if ( [ "DIV", "SECTION", "ARTICLE" ].indexOf( elm.nodeName ) >= 0 ) {
 				setDefault = defaults.grp;
 				prependUI = true;
