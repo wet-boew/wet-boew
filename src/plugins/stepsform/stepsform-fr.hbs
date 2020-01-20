@@ -10,6 +10,14 @@
 	"dateModified": "2019-04-04"
 }
 ---
+
+<div lang="en" class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="/docs/ref/provisional-fr.html">Check other provisional features available.</a></small></p>
+</div>
+
 <section>
 	<h2>But</h2>
 	<p>Offre la possibilité de diviser un formulaire en différentes étapes (sans ou avec validation de formulaire).</p>
@@ -18,7 +26,7 @@
 <section>
 	<h2>Exemple pratique</h2>
 
-	<div class="wb-frmvld wb-steps">
+	<div class="wb-frmvld provisional wb-steps">
 		<form action="#" method="get" id="steps-example">
 			<fieldset id="client">
 				<legend>Informations du client</legend>
@@ -58,7 +66,7 @@
 				<legend>Questionnaire éthique</legend>
 				<div>
 					<small>Pour chacun des exemples suivants, indiquez si vous sentez qu'il s'agit d'un cas de problème éthique ou pas.</small>
-					<fieldset style="border:0;">
+					<fieldset class="subfields">
 						<legend><span class="field-name">Exemple 1</span>: Vous payez 10,00&nbsp;$ pour un achat, mais vous recevez de la monnaie comme s'il s'agissait de 20,00&nbsp;$. Garderiez vous la monnaie en surplus?</legend>
 						<div class="radio">
 							<label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1"/>&#160;Absolument pas</label>&#160;
@@ -68,7 +76,7 @@
 							<label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1"/>&#160;Définitivement</label>
 						</div>
 					</fieldset>
-					<fieldset style="border:0;">
+					<fieldset class="subfields">
 						<legend><span class="field-name">Exemple 2</span>: Vous avez besoin d'un logiciel, mais vous ne pouvez pas attendre que la gestion prenne cette décision. Le téléchargeriez-vous sans avoir de licence?</legend>
 						<div class="radio">
 							<label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2"/>&#160;Absolument pas</label>&#160;

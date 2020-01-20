@@ -10,6 +10,13 @@
 	"dateModified": "2017-02-20"
 }
 ---
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="/docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
+</div>
+
 <section>
 	<h2>Purpose</h2>
 	<p>Provides the ability to split a form into steps (without/with generic validation).</p>
@@ -18,7 +25,7 @@
 <section>
 	<h2>Example</h2>
 
-	<div class="wb-frmvld wb-steps">
+	<div class="wb-frmvld provisional wb-steps">
 		<form action="#" method="get" id="steps-example">
 			<fieldset id="client">
 				<legend>Client Information</legend>
@@ -57,8 +64,8 @@
 			<fieldset id="questionaire">
 				<legend>Ethics Questionnaire</legend>
 				<div>
-					<small>For each of the following examples, indicate whether or not you feel that there is an ethical issue.</small>
-					<fieldset style="border:0;">
+					<p><small>For each of the following examples, indicate whether or not you feel that there is an ethical issue.</small></p>
+					<fieldset class="subfields">
 						<legend><span class="field-name">Ethics 1</span>: You pay $10.00 bucks for a purchase, but receive change for $20.00 bucks. Would you keep the extra money?</legend>
 						<div class="radio">
 							<label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1"/>&#160;Definitely Not</label>&#160;
@@ -68,7 +75,7 @@
 							<label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1"/>&#160;Definitely</label>
 						</div>
 					</fieldset>
-					<fieldset style="border:0;">
+					<fieldset class="subfields">
 						<legend><span class="field-name">Ethics 2</span>: You need a software, but can't wait for office to make a decision. Against license restrictions would you download it?</legend>
 						<div class="radio">
 							<label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2"/>&#160;Definitely Not</label>&#160;

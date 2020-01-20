@@ -2,7 +2,7 @@
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
-.wb-steps {
+.provisional.wb-steps {
 	counter-reset: fieldset_counter;
 
 	.wb-tggle-fildst {
@@ -21,5 +21,13 @@
 				color: #942826;
 			}
 		}
+	}
+
+	.steps-wrapper {
+		border-bottom: 1px solid #c0c0c0;
+	}
+
+	.subfields {
+		border: 0;
 	}
 }

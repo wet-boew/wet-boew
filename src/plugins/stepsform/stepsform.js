@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var componentName = "wb-steps",
-	selector = "." + componentName,
+	selector = ".provisional." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	i18n, i18nText,
@@ -56,8 +56,8 @@ var componentName = "wb-steps",
 				hasStepsInitialized;
 
 			// Initialize navigation buttons
-			btnPrevious = createStepsButton( "A", "prev", "mrgn-rght-sm mrgn-bttm-md", i18nText.prv );
-			btnNext = createStepsButton( "A", "next", "mrgn-bttm-md", i18nText.nxt );
+			btnPrevious = createStepsButton( "prev", "mrgn-rght-sm mrgn-bttm-md", i18nText.prv );
+			btnNext = createStepsButton( "next", "mrgn-bttm-md", i18nText.nxt );
 			btnSubmit = form.querySelector( "input[type=submit], button[type=submit]" );
 			btnSubmit.classList.add( "mrgn-bttm-md" );
 
@@ -78,7 +78,16 @@ var componentName = "wb-steps",
 					isFirstFieldset = ( i === 0 ) ? true : false,
 					isLastFieldset = ( i === ( len - 1 ) ) ? true : false,
 					legend = fieldset.firstElementChild,
-					div = ( legend && legend.tagName === "LEGEND" ) ? legend.nextElementSibling : false;
+					div = ( legend && legend.tagName === "LEGEND" ) ? legend.nextElementSibling : false,
+					buttonGroup = document.createElement( "div" ),
+					wrapper = document.createElement( "div" ),
+					buttonGroupClassList = buttonGroup.classList,
+					divClassList = div.classList;
+
+				buttonGroupClassList.add( "buttons" );
+				fieldset.parentNode.insertBefore( wrapper, fieldset );
+				wrapper.appendChild( fieldset );
+				wrapper.classList.add( "steps-wrapper" );
 
 				if ( div && div.tagName === "DIV" ) {
 					var btnClone;
@@ -86,26 +95,30 @@ var componentName = "wb-steps",
 
 					if ( !isFirstFieldset ) {
 						btnClone = btnPrevious.cloneNode( true );
-
 						setStepsBtnEvent( btnClone );
-						div.appendChild( btnClone );
+						buttonGroup.appendChild( btnClone );
+						wrapper.appendChild( buttonGroup );
 					}
 
 					if ( !isLastFieldset ) {
 						btnClone = btnNext.cloneNode( true );
-
 						setStepsBtnEvent( btnClone );
-						div.appendChild( btnClone );
+						buttonGroup.appendChild( btnClone );
 					} else {
-						div.appendChild( btnSubmit );
+						buttonGroup.appendChild( btnSubmit );
 					}
 
+					wrapper.appendChild( buttonGroup );
+
 					fieldset.classList.add( "wb-tggle-fildst" );
-					div.classList.add( "hidden" );
+					divClassList.add( "hidden" );
+					buttonGroupClassList.add( "hidden" );
 
 					if ( isFirstFieldset ) {
 						legend.classList.add( "wb-steps-active" );
-						div.classList.remove( "hidden" );
+						btnClone.classList.remove( "hidden" );
+						divClassList.remove( "hidden" );
+						buttonGroupClassList.remove( "hidden" );
 					}
 				}
 			}
@@ -124,17 +137,11 @@ var componentName = "wb-steps",
 	 * @param {string var} tagName, {string var} type, {boolean var} isPrimary, {string var} style, {string var} text
 	 * @returns {Object} A ready-to-use button element
 	 */
-	createStepsButton = function( tagName, type, style, text ) {
-		var control = document.createElement( tagName ),
-			btnPrimary = "btn btn-md btn-primary",
-			btnDefault = "btn btn-md btn-default";
+	createStepsButton = function( type, style, text ) {
+		var control = document.createElement( "BUTTON" );
 
 		// set default attributes
-		control.className = ( type === "prev" ? btnDefault : btnPrimary ) + " " + style;
-		control.href = "#";
-		control.setAttribute( "aria-labelby", text );
-		control.setAttribute( "rel", type );
-		control.setAttribute( "role", "button" );
+		control.className = ( type === "prev" ? "btn btn-md btn-default" : "btn btn-md btn-primary" ) + " " + style;
 		control.innerHTML = text;
 
 		return control;
@@ -147,24 +154,26 @@ var componentName = "wb-steps",
 	setStepsBtnEvent = function( elm ) {
 		elm.addEventListener( "click", function( evt ) {
 			evt.preventDefault();
-
 			var classes = ( this.className ) ? this.className : false,
 				isNext = ( classes && classes.indexOf( "btn-primary" ) > -1 ),
-				isFormValid = true;
+				isFormValid = true,
+				parentElement = this.parentElement,
+				parentParentElement = parentElement.parentElement,
+				parentPreviousClassList = parentElement.previousElementSibling.classList;
 
 			// confirm if form is valid
 			if ( isNext && jQuery.validator && jQuery.validator !== "undefined" ) {
-				isFormValid =  $( "#" + this.parentElement.parentElement.parentElement.id ).valid();
+				isFormValid =  $( "#" + parentParentElement.parentElement.id ).valid();
 			}
 
 			// continue if valid
 			if ( isFormValid ) {
-				showSteps( this.parentElement, isNext );
+				showSteps( parentParentElement, isNext );
 				if ( isNext ) {
-					this.parentElement.previousElementSibling.classList.remove( "wb-steps-error" );
+					parentPreviousClassList.remove( "wb-steps-error" );
 				}
 			} else if ( isNext && !isFormValid ) {
-				this.parentElement.previousElementSibling.classList.add( "wb-steps-error" );
+				parentPreviousClassList.add( "wb-steps-error" );
 			}
 		} );
 	},
@@ -174,25 +183,33 @@ var componentName = "wb-steps",
 	 * @param {JavaScript element} elm and {boolean var} isNext
 	 */
 	showSteps = function( elm, isNext ) {
-		var fieldset, legend;
+		var fieldsetElement = elm.getElementsByTagName( "FIELDSET" )[ 0 ],
+			fields = fieldsetElement.getElementsByTagName( "div" )[ 0 ],
+			legend = fieldsetElement.getElementsByTagName( "legend" )[ 0 ],
+			buttonGroup = elm.querySelector( "div.buttons" ),
+			fieldset;
 
 		if ( elm ) {
-			elm.classList.add( "hidden" );
+			fields.classList.add( "hidden" );
+			buttonGroup.classList.add( "hidden" );
 
-			legend = ( elm.previousElementSibling ) ? elm.previousElementSibling : false;
 			if ( legend ) {
 				legend.classList.remove( "wb-steps-active" );
 			}
 
-			fieldset = ( !isNext ) ? elm.parentElement.previousElementSibling : elm.parentElement.nextElementSibling;
+			fieldset = ( !isNext ) ? elm.previousElementSibling : elm.nextElementSibling;
 			if ( fieldset ) {
 				legend = fieldset.getElementsByTagName( "LEGEND" )[ 0 ];
 				elm = fieldset.getElementsByTagName( "DIV" )[ 0 ];
+				buttonGroup = fieldset.querySelector( "div.buttons" );
 				if ( legend ) {
 					legend.classList.add( "wb-steps-active" );
 				}
 				if ( elm ) {
 					elm.classList.remove( "hidden" );
+				}
+				if ( buttonGroup ) {
+					buttonGroup.classList.remove( "hidden" );
 				}
 			}
 		}
