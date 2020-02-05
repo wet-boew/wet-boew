@@ -61,6 +61,12 @@
 		<td>v4.0.34</td>
 		<td></td>
 	</tr>
+	<tr>
+		<th>Plugin <code>[data-wb-randomize]</code></th>
+		<td>This plugin randomly picks one of the child component to be shown on the browser</td>
+		<td>v4.0.34</td>
+		<td></td>
+	</tr>
 </tbody>
 </table>
 
@@ -110,4 +116,28 @@
 		&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
 		&lt;p&gt;Secondary title&lt;/p&gt;
 	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="well-header-rwd-bgimg">Showing random image using [data-wb-randomize] plugin</h3>
+<p>Below example shows one image out of three images randomly. Refresh the page to see that the image changes.</p>
+<p>There are three inputs required for this plugin.</p>
+<dl>
+	<dt><code>selector</code> is a required attribute. This attribute specifies the type of child components to be displayed.</dt>
+	<dt><code>shuffle</code> is a boolean value and if it is true, it will shuffle the order of child components (in this example, the child components are three <code>img</code>s).</dt>
+	<dt><code>toggle</code> specifies the class that will be toggled in child components and it will toggle the specified class of child components to reveal (in this example, the name of class that will be toggled is 'hide' in three <code>img</code>s).</dt>
+	<dt><code>number</code> specifies the number of child components to be displayed when toggled. If it is more than the number of child components, all of them will be displayed. By default, it is set to 1.</dt>
+</dt>
+<div class="provisional" data-wb-randomize='{ "shuffle": true, "selector": "img", "number": 2, "toggle": "hide" }'>
+	<img class="full-width hide" src="../../demos/tabs/img/investinourfuture.jpg" alt="Invest in our Future" />
+	<img class="full-width hide" src="../../demos/tabs/img/flytheskies.jpg" alt="Fly the Skies" />
+	<img class="full-width hide" src="../../demos/tabs/img/protect-environment.jpg" alt="Protect Environment" />
+</div>
+
+<pre><code>&lt;div class="provisional" data-wb-randomize='{&quot;shuffle&quot;:true, &quot;selector&quot;: &quot;img&quot;, &quot;number&quot;: 2, &quot;toggle&quot;: &quot;hide&quot; }'&gt;
+	&lt;img class="provisional-img-example hide"
+		src="../../demos/tabs/img/investinourfuture.jpg" alt="Invest in our Future" /&gt;
+	&lt;img class="provisional-img-example hide"
+		src="../../demos/tabs/img/flytheskies.jpg" alt="Fly the Skies" /&gt;
+	&lt;img class="provisional-img-example hide"
+		src="../../demos/tabs/img/protect-environment.jpg" alt="Protect Environment" /&gt;
 &lt;/div&gt;</code></pre>

@@ -72,6 +72,60 @@ wb.download = function( blob, filename, title ) {
 
 };
 
+/* ---------------------------------
+@extension: shuffleDOM
+@returns: [list] shuffles a list of items randomly
+-------------------------------- */
+wb.shuffleDOM = function( DOM ) {
+	var allElems = DOM.get(),
+		shuffled = $.map( allElems, function() {
+			var random = Math.floor( Math.random() * allElems.length ),
+				randEl = $( allElems[ random ] ).clone( true )[ 0 ];
+			allElems.splice( random, 1 );
+			return randEl;
+		} ),
+		DOMLen = DOM.length;
+
+	for ( var i = 0; i < DOMLen; i++ ) {
+		$( DOM[ i ] ).replaceWith( $( shuffled[ i ] ) );
+	}
+
+	return $( shuffled );
+};
+
+/* ---------------------------------
+@extension: pickElements
+@returns: [collection] of randoms elements
+-------------------------------- */
+wb.pickElements = function( DOM, k ) {
+	var b = DOM,
+		n = b.size(),
+		k = k ? parseInt( k ) : 1,
+		r;
+
+	// Special cases
+	if ( k > n ) {
+		return b.pushStack( b );
+	} else if ( k === 1 ) {
+		return b.filter( ":eq(" + Math.floor( Math.random() * n ) + ")" );
+	}
+
+	// Create a randomized copy of the set of elements,
+	// using Fisher-Yates sorting
+	r = b.get();
+
+	for ( var i = 0; i < n - 1; i++ ) {
+		var swap = Math.floor( Math.random() * ( n - i ) ) + i;
+		r[ swap ] = r.splice( i, 1, r[ swap ] )[ 0 ];
+	}
+	r = r.slice( 0, k );
+
+	// Finally, filter jQuery stack
+	return b.filter( function( i ) {
+		return $.inArray( b.get( i ), r ) > -1;
+	} );
+};
+
 } )( jQuery, wb );
 
 ( function( wb ) {
