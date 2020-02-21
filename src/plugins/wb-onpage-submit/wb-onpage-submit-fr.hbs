@@ -1,0 +1,71 @@
+---
+{
+	"title": "Onpage Submit",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Makes AJAX request when submitting a form.",
+	"tag": "wb-onpage-submit",
+	"parentdir": "wb-onpage-submit",
+	"altLangPrefix": "wb-onpage-submit",
+	"dateModified": "2020-02-21"
+}
+---
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="/docs/ref/provisional-fr.html">Check other provisional features available.</a></small></p>
+</div>
+
+<section>
+	<h2>But</h2>
+	<p>This plugin makes an AJAX request when a form is submitted.</p>
+</section>
+
+<section>
+	<h2>Exemple</h2>
+	<p>After the submission, check the network tab of console to see AJAX request sent.</p>
+
+	<form class="provisional wb-onpage-submit" action="#target-address" method="POST">
+		<div class="formContents">
+			<div class="form-group">
+				<label for="firstname"><span class="field-name">First Name</span></label>
+				<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" />
+			</div>
+			<div class="form-group">
+				<label for="lastname"><span class="field-name">Last Name</span></label>
+				<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" />
+			</div>
+			<div class="form-group">
+				<label for="preferredNumber">Preferred&nbsp;: <span class="field-name">Phone Number</span></label>
+				<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+			</div>
+			<div class="form-group">
+				<label for="email"><span class="field-name">Email Address</span> (test@domaine)</label>
+				<input class="form-control" id="email" name="email" type="email" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		<p class="successMessage hidden">Merci!</p>
+		<p class="failureMessage hidden">Quelque chose a mal tourné</p>
+	</form>
+
+	<details class="mrgn-tp-md mrgn-bttm-md">
+		<summary>View code</summary>
+		<ol>
+			<li>Create a <code>&lt;form&gt;</code> element and set <code>method</code> and <code>action</code> attributes
+				<pre><code>&lt;form action="#target-link" method="POST"&gt;&lt;/form&gt;</code></pre>
+			</li>
+			<li>Within the <code>&lt;form&gt;</code> element, add <code>&lt;div class="formContents"&gt;</code>. This is where the inputs and buttons will go.
+			</li>
+			<li>Within the <code>&lt;div class="formContents"&gt;</code> element, add a submit <code>&lt;button&gt;</code> element with <code>class="provisioanl wb-onpage-submit"</code> and <code>type="submit"</code>.
+				<pre><code>&lt;div class="formContents"&gt;&lt;button class="provisional wb-onpage-submit" type="submit"&gt;Submit&lt;/button&gt;&lt;/div&gt;</code></pre>
+			</li>
+			<li>Outside <code>&lt;div class="formContents"&gt;</code> element, add success and failure message with classes <code>class="successMessage hidden"</code> and <code>class="failureMessage hidden"</code>
+			</li>
+		</ol>
+	</details>
+</section>
+</div>
