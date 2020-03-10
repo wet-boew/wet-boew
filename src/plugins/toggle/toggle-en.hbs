@@ -8,7 +8,7 @@
 	"parentdir": "toggle",
 	"altLangPrefix": "toggle",
 	"css": ["demo/toggle"],
-	"dateModified": "2015-04-22"
+	"dateModified": "2020-03-10"
 }
 ---
 <section>
@@ -26,6 +26,7 @@
 			<a href="#grouped" class="list-group-item">Grouped Toggle</a>
 			<a href="#accordion" class="list-group-item">Accordion</a>
 			<a href="#persist" class="list-group-item">Persist Toggle State</a>
+			<a href="#checkbox" class="list-group-item">Checkbox Example</a>
 		</div>
 	</div>
 
@@ -519,6 +520,25 @@
 				</table>
 			</details>
 
+		</section>
+
+		<section>
+			<h2 id="checkbox">Checkbox Example</h2>
+			<p>The toggle plugin can also be used to show or hide content when ticking checkboxes.</p>
+
+			<h3>Example</h3>
+			<label for="more-checkbox">Contact me for more information: <input type="checkbox" name="more" id="more-checkbox" value="Contact me" class="wb-toggle" data-toggle='{ "selector": "#more-information", "stateOff": "hidden"}' /></label>
+
+			<div id="more-information" class="hidden">
+				<label for="email">Email adress: <input type="email" id="email" name="contact-email" /></label>
+			</div>
+
+			<h3>Setup</h3>
+			<pre><code>&lt;label for="more-checkbox"&gt;Contact me for more information: &lt;input type="checkbox" name="more" id="more-checkbox" value="Contact me" class="wb-toggle" data-toggle='{ "selector": "#more-information", "stateOff": "hidden"}' /&gt;&lt;/label&gt;
+
+&lt;div id="more-information" class="hidden"&gt;
+	&lt;label for="email"&gt;Email adress: &lt;input type="email" id="email" name="contact-email" /&gt;&lt;/label&gt;
+&lt;/div&gt;</code></pre>
 		</section>
 	</div>
 </div>
