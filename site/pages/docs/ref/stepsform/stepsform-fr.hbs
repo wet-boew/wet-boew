@@ -1,0 +1,102 @@
+---
+{
+	"title": "Formulaire à étapes",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Converti automatiquement un formulaire en étapes.",
+	"altLangPrefix": "stepsform",
+	"dateModified": "2019-04-04"
+}
+---
+<div lang="en">
+<span class="wb-prettify all-pre hide"></span>
+<p><strong>Needs translation</strong></p>
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="/docs/ref/provisional-fr.html">Check other provisional features available.</a></small></p>
+</div>
+
+<section>
+	<h2>But</h2>
+	<p>Offre la possibilité de diviser un formulaire en différentes étapes (sans ou avec validation de formulaire).</p>
+</section>
+
+<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>Les formulaires sont longs ou contiennent un substantiel d'information.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Exemple pratique</h2>
+	<ul>
+		<li><a hreflang="en" href="../../../demos/stepsform/stepsform-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/stepsform/stepsform-fr.html">Exemple en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Comment implémenter le plucigiel</h2>
+	<ol>
+		<li>Créez un élément <code>&lt;div&gt;</code> avec la classe <code>wb-steps</code> (vous pouvez aussi ajouter la classe <code>wb-frmvld</code> pour intégrer la validation).
+			<pre><code>&lt;div class=&quot;wb-frmvld wb-steps&quot;&gt;&lt;/div&gt;</code></pre>
+		</li>
+		<li>À l'intérieur de cet élément <code>&lt;div&gt;</code>, ajoutez un élément <code>&lt;form&gt;</code>.
+			<pre><code>&lt;form action="#" method="get" id="steps-example"&gt;&lt;/form&gt;</code></pre>
+		</li>
+		<li>À l'intérieur de cet élément <code>&lt;form&gt;</code>, ajoutez un élément <code>&lt;fieldset&gt;</code> qui aura besoin d'une légende <code>&lt;legend&gt;</code> et d'un conteneur <code>&lt;div&gt;</code>.
+			<small>Ces éléments <code>&lt;fieldset&gt;</code> deviendront les étapes de votre formulaire</small>
+			<pre><code>&lt;fieldset&gt;<br/>&lt;legend&gt;Informations du client&lt;/legend&gt;<br/>&lt;div&gt;(Tout contenu situé à l'intérieur du div sera caché.)&lt;/div&gt;<br/>&lt;/fieldset&gt;</code></pre>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="config">Paramètres de configuration</h2>
+	<p>Aucun paramètre de configuration.</p>
+</section>
+
+<section>
+	<h2>Événements</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Effet déclenché</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-steps</code></td>
+				<td>Déclenché manuellement (ex.&nbsp;: <code>$( ".wb-steps" ).trigger( "wb-init.wb-steps" );</code>).</td>
+				<td>Utilisé pour initialisé manuellement le formulaire à étapes. <strong>Note&nbsp;:</strong> La validation de formulaire devra être initialisée au préalable avant d'initialiser wb-steps (vous pouvez ajouter <code>wb-frmvld</code> au <code>&lt;div&gt;</code> conteneur et ainsi déclencher l'événement sur cet élément).</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-steps</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement après l'initialisation du formulaire à étapes.</td>
+				<td>Utilisé afin d'identifié l'élément sur lequel le formulaire à étapes a été initialisé (la cible de l'événement)
+					<pre><code>$( document ).on( "wb-ready.wb-steps", ".wb-steps", function( event ) {});</code></pre>
+					<pre><code>$( ".wb-steps" ).on( "wb-ready.wb-steps", function( event ) {});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement lorsque la WET-BOEW a terminé son chargement et son exécution.</td>
+				<td>Utilisé pour identifié le moment lorsque tous les plugiciels et tous les polyfills de la WET-BOEW ont terminés de charger et de s'exécuter.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/stepsform">Code source du plugiciel de formulaire à étapes sur GitHub</a></p>
+</section>
+</div>
