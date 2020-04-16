@@ -76,18 +76,19 @@ wb.download = function( blob, filename, title ) {
 @extension: shuffleDOM
 @returns: [list] shuffles a list of items randomly
 -------------------------------- */
-wb.shuffleDOM = function( DOM ) {
-	var allElems = DOM.get(),
+wb.shuffleDOM = function( $elm ) {
+	var allElems = $elm.get(),
 		shuffled = $.map( allElems, function() {
 			var random = Math.floor( Math.random() * allElems.length ),
 				randEl = $( allElems[ random ] ).clone( true )[ 0 ];
 			allElems.splice( random, 1 );
 			return randEl;
 		} ),
-		DOMLen = DOM.length;
+		elm_len = $elm.length,
+		i;
 
-	for ( var i = 0; i < DOMLen; i++ ) {
-		$( DOM[ i ] ).replaceWith( $( shuffled[ i ] ) );
+	for ( i = 0; i < elm_len; i++ ) {
+		$( $elm[ i ] ).replaceWith( $( shuffled[ i ] ) );
 	}
 
 	return $( shuffled );
@@ -97,32 +98,33 @@ wb.shuffleDOM = function( DOM ) {
 @extension: pickElements
 @returns: [collection] of randoms elements
 -------------------------------- */
-wb.pickElements = function( DOM, k ) {
-	var b = DOM,
-		n = b.size(),
-		k = k ? parseInt( k ) : 1,
-		r;
+wb.pickElements = function( $elm, numOfElm ) {
+	var nbElm = $elm.size(),
+		elmCopies,
+		i, swap;
+
+	numOfElm = numOfElm || 1;
 
 	// Special cases
-	if ( k > n ) {
-		return b.pushStack( b );
-	} else if ( k === 1 ) {
-		return b.filter( ":eq(" + Math.floor( Math.random() * n ) + ")" );
+	if ( numOfElm > nbElm ) {
+		return $elm.pushStack( $elm );
+	} else if ( numOfElm === 1 ) {
+		return $elm.filter( ":eq(" + Math.floor( Math.random() * nbElm ) + ")" );
 	}
 
 	// Create a randomized copy of the set of elements,
 	// using Fisher-Yates sorting
-	r = b.get();
+	elmCopies = $elm.get();
 
-	for ( var i = 0; i < n - 1; i++ ) {
-		var swap = Math.floor( Math.random() * ( n - i ) ) + i;
-		r[ swap ] = r.splice( i, 1, r[ swap ] )[ 0 ];
+	for ( i = 0; i < nbElm - 1; i++ ) {
+		swap = Math.floor( Math.random() * ( nbElm - i ) ) + i;
+		elmCopies[ swap ] = elmCopies.splice( i, 1, elmCopies[ swap ] )[ 0 ];
 	}
-	r = r.slice( 0, k );
+	elmCopies = elmCopies.slice( 0, numOfElm );
 
 	// Finally, filter jQuery stack
-	return b.filter( function( i ) {
-		return $.inArray( b.get( i ), r ) > -1;
+	return $elm.filter( function( idx ) {
+		return $.inArray( $elm.get( idx ), elmCopies ) > -1;
 	} );
 };
 
