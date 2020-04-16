@@ -1,5 +1,5 @@
 /**
- * @title WET-BOEW Form validation
+ * @title WET-BOEW step form
  * @overview Provide ability for a form to be broken into steps.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @kodecount
