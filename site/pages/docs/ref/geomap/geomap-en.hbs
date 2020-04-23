@@ -189,7 +189,9 @@
 					<tr>
 						<td><code>aoi</code></td>
 						<td>
-							<p>If present, an area-of-interest (AOI) widget is added to the map. The AOI widget allows user to draw a bounding box extent to the map where the coordinates are made available in a hidden field that developers can attach a listener to. Useful for search and discovery applications.</p>
+							<p>If present, an area-of-interest (AOI) widget is added to the map. The AOI widget allows user to draw a bounding box extent to the map where the coordinates are made available in a hidden field that developers can attach a listener to. Useful for search and discovery applications.
+								AOI should be used when the map takes the full width of content page.
+							</p>
 							<p>Geomap will write the AOI extent to two hidden fields, one in the maps projection and the other in longitude/latitude.</p>
 							<pre><code>&lt;input type="hidden" id="geomap-aoi-extent-1" value="553816,1951915,2188045,3573694"&gt;
 &lt;input type="hidden" id="geomap-aoi-extent-lonlat-1" value="-73, 65, -39, 76"&gt;</code></pre>
