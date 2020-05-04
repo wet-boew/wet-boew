@@ -1134,10 +1134,11 @@ var componentName = "wb-geomap",
 			// zoom to extent of feature
 			geomap.map.getView().fit( geomProj.getGeometry().getExtent(), geomap.map.getSize() );
 
-			$( "#geomap-aoi-minx-" + geomap.id ).val( extent[ 0 ] );
-			$( "#geomap-aoi-maxx-" + geomap.id ).val( extent[ 2 ] );
-			$( "#geomap-aoi-maxy-" + geomap.id ).val( extent[ 3 ] );
-			$( "#geomap-aoi-miny-" + geomap.id ).val( extent[ 1 ] );
+			// Round extent to step value of input controls
+			$( "#geomap-aoi-minx-" + geomap.id ).val( extent[ 0 ].toFixed( 6 ) );
+			$( "#geomap-aoi-maxx-" + geomap.id ).val( extent[ 2 ].toFixed( 6 ) );
+			$( "#geomap-aoi-maxy-" + geomap.id ).val( extent[ 3 ].toFixed( 6 ) );
+			$( "#geomap-aoi-miny-" + geomap.id ).val( extent[ 1 ].toFixed( 6 ) );
 
 			$( "#geomap-aoi-extent-" + geomap.id ).val( geomProj.getGeometry().getExtent() ).trigger( "change" );
 			$( "#geomap-aoi-extent-lonlat-" + geomap.id ).val( extent[ 0 ] + ", " + extent[ 1 ] + ", " + extent[ 2 ] + ", " + extent[ 3 ] ).trigger( "change" );
@@ -1366,6 +1367,7 @@ var componentName = "wb-geomap",
 
 		button.innerHTML = "?";
 		button.title = i18nText.accessTitle;
+		button.setAttribute( "type", "button" );
 
 		button.addEventListener( "click", function() {
 
