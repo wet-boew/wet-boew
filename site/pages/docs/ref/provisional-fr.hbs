@@ -3,7 +3,7 @@
 	"title": "Fonctionnalités provisoires",
 	"language": "fr",
 	"altLangPrefix": "provisional",
-	"dateModified": "2020-04-16",
+	"dateModified": "2020-05-25",
 	"share": "true"
 }
 ---
@@ -84,6 +84,8 @@
 </tbody>
 </table>
 
+<p lang="fr">Pour plus de fonctionnalités provisoires, voyez la <a href="https://wet-boew.github.io/themes-dist/GCWeb/provisional-fr.html">page des fonctionnalités provisoires du thème GCWeb</a>.</p>
+
 <h2>Provisional feature documentation</h2>
 
 <p>CSS provisional features must be accompanied by the class <code>.provisional</code> within his context of use.</p>
@@ -100,19 +102,22 @@
 	</div>
 </div>
 
-<pre><code>&lt;div class="provisional bg-cover well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
-	&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
-		&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
-		&lt;p&gt;Secondary title&lt;/p&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="provisional bg-cover well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+			&lt;p&gt;Secondary title&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
 
 <h3 id="well-header-rwd-bgimg">Responsive background image using [data-bgimg-srcset] plugin</h3>
 <p>[data-bgimg-srcset] plugin is very similar to how <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset">srcset</a></code> attribute works. This plugin is not to be used with [data-bgimg].</p>
 
 <pre><code>data-bgimg-srcset="image1_link 600w, image2_link 960w, image3_link 1280w"</code></pre>
 
-<p>Within the quotation marks, the configurations are separated by a comma and each configuration consists of a link to an image and a screen width(1000w = 1000px). Make sure to leave only one space between the link and the size. If user's screen size is greater than any sizes listed in the attribute, it will automatically choose the one with the biggest size.</p>
+<p>Within the quotation marks, the configurations are separated by a comma and each configuration consists of a link to an image and a screen width (1000w = 1000px). That image will then be displayed at that specific width and down, unless it is the biggest image declared; if it is, then it will be shown at any width down to the next smaller configuration. Consequently, if a user's screen size is greater than any sizes listed in the attribute, it will automatically choose the one with the biggest configuration. Make sure to leave only one space between the link and the size.</p>
 
 <div class="provisional bg-cover well" data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
 	<div class="well mrgn-tp-md mrgn-bttm-md">
@@ -121,15 +126,18 @@
 	</div>
 </div>
 
-<pre><code>&lt;div class="provisional bg-cover well"
-	data-bgimg="../../demos/tabs/img/investinourfuture.jpg 600w,
-			../../demos/tabs/img/flytheskies.jpg 960w,
-			../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
-	&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
-		&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
-		&lt;p&gt;Secondary title&lt;/p&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="provisional bg-cover well"
+		data-bgimg="../../demos/tabs/img/investinourfuture.jpg 600w,
+				../../demos/tabs/img/flytheskies.jpg 960w,
+				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+			&lt;p&gt;Secondary title&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
 
 
 <h3>Showing random image using [data-wb-randomize] plugin</h3>
