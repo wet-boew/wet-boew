@@ -555,19 +555,13 @@ ol-geolocate button {
 	background-color: rgba(255,255,255,1);
 	height: auto;
 	margin: 10px;
-	padding: 0;
-	right: 0;
-	top: 0;
-	width: auto
-}
-
-.geomap-help-dialog {
-	background-color: rgba(255,255,255,1);
-	height: auto;
-	margin: 10px;
 	right: 0;
 	top: 0;
 	width: auto;
+
+	header {
+		position: static;
+	}
 
 	a.btn {
 		color: #333;
