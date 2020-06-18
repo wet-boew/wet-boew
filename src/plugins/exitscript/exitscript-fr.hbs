@@ -1,0 +1,53 @@
+---
+{
+	"title": "Exitscript",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Redirects users to non secure sites.",
+	"tag": "exitsctipt",
+	"parentdir": "exitsctipt",
+	"altLangPrefix": "exitsctipt",
+	"dateModified": "2020-06-17"
+}
+---
+<div lang="en">
+<p>The script redirects users to non secure site.</p>
+<p>Plugin default settings:</p>
+<ul class="list-unstyled">
+   <li>"displayModal": true</li>
+   <li>"exitMsg": "Vous êtes sur le point de quitter un site sécurisé. Voulez-vous continuer?"</li>
+   <li>"cancelMsg": "Cancel"</li>
+   <li>"yesMsg": "Yes"</li>
+   <li>“targetBlank”:  target _self</li>
+</ul>
+<p>Test the plugin: <a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{"exitURL": "http://www.canada.ca"}'>http://csszengarden.com/219</a></p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{ "exitURL": "http://www.canada.ca" }'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Users can set "displayModal": false and “targetBlank”: true</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{
+	"exitURL": "http://www.canada.ca",
+	"displayModal": false,
+	 “targetBlank”: true
+	}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Users can change a button label and set a custom message</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{
+	"exitURL": "http://www.canada.ca",
+	"exitMsg": "This is a custom message.",
+	"cancelMsg": "Nope",
+	"yesMsg": "Sure",
+	}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+</div>
