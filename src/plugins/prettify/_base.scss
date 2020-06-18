@@ -24,6 +24,15 @@ pre {
 		&.linenums {
 			box-shadow: 40px 0 0 #fbfbfc inset, 41px 0 0 #eee inset;
 		}
+
+		code {
+			tab-size: 20px;
+
+			ins {
+				font-weight: bold;
+				text-decoration: none;
+			}
+		}
 	}
 }
 
