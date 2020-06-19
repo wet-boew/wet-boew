@@ -1,0 +1,86 @@
+---
+{
+	"title": "Exitsctipt",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Redirects users to non secure sites.",
+	"tag": "exitscript",
+	"parentdir": "exitscript",
+	"altLangPrefix": "exitscript",
+	"dateModified": "2020-06-17"
+}
+---
+<p>The script redirects users to non secure site.</p>
+<p>Plugin default settings:</p>
+<dl>
+<dt>"i18n": { "msgboxHeader": }: </dt>
+<dd>"Warning"</dd>
+<dt>"i18n": { "exitMsg": }: </dt>
+<dd>"You are about to leave a secure site, do you wish to continue?"</dd>
+<dt>"i18n": { "targetWarning": }: </dt>
+<dd>"The link will open in a new browser window."</dd>
+<dt>"i18n": { "yesBtn": }: </dt>
+<dd>Yes</dd>
+<dt>"i18n": { "cancelBtn" }: </dt>
+<dd>Cancel</dd>
+<dt>target</dt>
+<dd>_self</dd>
+</dl>
+
+<p>Scenario – 1: <a href="http://csszengarden.com/219" class="wb-exitscript">http://csszengarden.com/219</a></p>
+<p>This scenario displays a modal dialog with a message, “You are about to leave a secure site, do you wish to continue?”</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript"&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Scenario – 2: <a href="http://csszengarden.com/219" class="wb-exitscript" target="_blank">http://csszengarden.com/219</a></p>
+<p>This scenario displays a modal dialog with a message, “You are about to leave a secure site, do you wish to continue? The link will open in a new browser window.”</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" target="_blank"&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Scenario – 3: <a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{"url": "exiturl-en.html"}'>http://csszengarden.com/219</a></p>
+<p>In this scenario a middle page opens in the same window with a link to the non-secure site.</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{"url": "exiturl-en.html"}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Scenario – 4: <a href="http://csszengarden.com/219" class="wb-exitscript" target="_blank" data-wb-exitscript='{"url": "exiturl-en.html"}'>http://csszengarden.com/219</a>. The link will open in a new browser window.</p>
+<p>In this scenario a middle page opens in a new window with a link to the non-secure site.</p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" target="_blank" data-wb-exitscript='{"url": "exiturl-en.html"}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details
+<p>This example shows a custom message</p>
+<p><a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{"i18n": { "exitMsg": "This is a custom message.", "cancelBtn": "Nope", "yesBtn": "Sure" }}'>http://csszengarden.com/219</a></p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{
+	"i18n":{
+	"exitMsg": "This is a custom message.",
+	"cancelBtn": "Nope",
+	"yesBtn": "Sure" }
+	}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
+<p>Users can change button labels, message box title, and set a custom message</p>
+<p><a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{"i18n": { "msgboxHeader": "Avertissement de sortie", "cancelBtn": "Nope", "yesBtn": "Sure" }}'>http://csszengarden.com/219</a></p>
+<details class="mrgn-bttm-md">
+<summary>View code</summary>
+	<pre><code>
+	&lt;a href="http://csszengarden.com/219" class="wb-exitscript" data-wb-exitscript='{
+	"i18n":{ "msgboxHeader": "Avertissement de sortie",
+	"cancelBtn": "Nope",
+	"yesBtn": "Sure" }
+	}'&gt;http://csszengarden.com/219&lt;/a&gt;
+	</code></pre>
+</details>
