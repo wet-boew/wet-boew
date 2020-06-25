@@ -49,7 +49,7 @@
 	<h2 id="examples" class="wb-prettify all-pre lang-css">Examples</h2>
 	<section>
 		<h3>HTML</h3>
-		<pre class="prettyprint"><code>&lt;form action="#" method="post"&gt;
+		<pre><code>&lt;form action="#" method="post"&gt;
 	&lt;div&gt;
 		&lt;label for="data1"&gt;Form input default appearance:&lt;/label&gt;
 		&lt;input name="data1" type="text" id="data1" /&gt;
@@ -156,5 +156,51 @@ init = function() {
 		}
 	});
 }</code></pre>
+	</section>
+	<section>
+	<h3>Before and after comparison</h3>
+	<div class="row">
+	<div class="col-md-6">
+	<h4>Before</h4>
+	<pre><code>
+	&lt;section id="wb-srch" class="<del>col-lg-8 text-right</del>"&gt;
+		&lt;h2&gt;Search&lt;/h2&gt;
+		&lt;form action="#" method="post" name="cse-search-box" role="search"<del> class="form-inline"</del>&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="wb-srch-q" class="wb-inv"&gt;Search Canada.ca&lt;/label&gt;
+				&lt;input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search Canada.ca"&gt;
+				&lt;datalist id="wb-srch-q-ac"&gt;&lt;/datalist&gt;
+			&lt;/div&gt;
+			&lt;div class="form-group submit"&gt;
+				&lt;button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"&gt;
+					&lt;span class="glyphicon-search glyphicon"&gt;&lt;/span&gt;
+					&lt;span class="wb-inv"&gt;Search&lt;/span&gt;
+				&lt;/button&gt;
+			&lt;/div&gt;
+		&lt;/form&gt;
+	&lt;/section&gt;
+	</code></pre>
+	</div>
+	<div class="col-md-6">
+	<h4>After</h4>
+	<pre><code>
+	&lt;section id="wb-srch" class="<ins>col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4</ins>"&gt;
+		&lt;h2&gt;Search&lt;/h2&gt;
+		&lt;form action="#" method="post" name="cse-search-box" role="search"&gt;
+			&lt;div class="form-group<ins> wb-srch-qry</ins>"&gt;
+				&lt;label for="wb-srch-q" class="wb-inv"&gt;Search Canada.ca&lt;/label&gt;
+				&lt;input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="34" maxlength="170" placeholder="Search Canada.ca"&gt;
+				&lt;datalist id="wb-srch-q-ac"&gt;&lt;/datalist&gt;
+			&lt;/div&gt;
+			&lt;div class="form-group submit"&gt;
+				&lt;button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"&gt;
+					&lt;span class="glyphicon-search glyphicon"&gt;&lt;/span&gt;
+					&lt;span class="wb-inv"&gt;Search&lt;/span&gt;&lt;/button&gt;
+			&lt;/div&gt;
+		&lt;/form&gt;
+	&lt;/section&gt;
+	</code></pre>
+	</div>
+	</div>
 	</section>
 </section>
