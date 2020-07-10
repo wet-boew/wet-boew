@@ -204,6 +204,9 @@ var componentName = "wb-steps",
 				buttonGroup = fieldset.querySelector( "div.buttons" );
 				if ( legend ) {
 					legend.classList.add( "wb-steps-active" );
+					legend.tabIndex = 0;
+					legend.focus();
+					legend.tabIndex = -1;
 				}
 				if ( elm ) {
 					elm.classList.remove( "hidden" );
