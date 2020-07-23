@@ -36,6 +36,7 @@ var componentName = "wb-mltmd",
 		"timeupdate",
 		"waiting",
 		"canplay",
+		"seeked",
 		"progress",
 		captionsLoadedEvent,
 		captionsLoadFailedEvent,
@@ -1018,6 +1019,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		break;
 
 	case "canplay":
+	case "seeked":
 		this.loading = clearTimeout( this.loading );
 		$this.removeClass( "waiting" );
 		break;
