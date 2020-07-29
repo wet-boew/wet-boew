@@ -175,7 +175,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		// Should be pushed upstream to DataTables
 		$elm.next( ".bottom" ).find( ".paginate_button" )
 			.attr( {
-				"href": "#" + $elm.context.id
+				"href": "#" + $elm.get( 0 ).id
 			} )
 
 			// This is required to override the datatable.js (v1.10.13) behavior to cancel the event propagation on anchor element.
