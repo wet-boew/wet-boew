@@ -3,7 +3,7 @@
 	"title": "Fonctionnalités provisoires",
 	"language": "fr",
 	"altLangPrefix": "provisional",
-	"dateModified": "2020-06-25",
+	"dateModified": "2020-08-18",
 	"share": "true"
 }
 ---
@@ -84,7 +84,13 @@
 	<tr>
 		<th>CSS <code>.bg-center</code></th>
 		<td>Background position center</td>
-		<td>(Next release)</td>
+		<td>v4.0.36</td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>CSS <code>.position-relative</code></th>
+		<td>Puts an element in a relative position.</td>
+		<td>Supported after v4.0.37 (STR)</td>
 		<td></td>
 	</tr>
 </tbody>
@@ -155,7 +161,7 @@
 	<dt><code>toggle</code> (CSS class)</dt>
 	<dd>Class name that will be toggled in child components and it will toggle the specified class of child components to reveal.</dd>
 	<dt><code>number</code> (number)</dt>
-	<dd>Optional and use with toggle. Number of child components to be displayed when toggled. Default is set to <code>1</code>.</dt>
+	<dd>Optional and use with toggle. Number of child components to be displayed when toggled. Default is set to <code>1</code>.</dd>
 </dl>
 
 <h4>Show one random image</h4>
@@ -186,7 +192,7 @@
 	<thead>
 		<tr>
 			<th>Column A</th>
-			<th>Column B</tgh>
+			<th>Column B</th>
 		</tr>
 	</thead>
 	<tbody class="provisional" data-wb-randomize='{ "shuffle": true }'>
@@ -220,7 +226,7 @@
 	&lt;thead&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Column A&lt;/th&gt;
-			&lt;th&gt;Column B&lt;/tgh&gt;
+			&lt;th&gt;Column B&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
 	&lt;tbody <strong>class=&quot;provisional&quot; data-wb-randomize='{ "shuffle": true }'</strong>&gt;
@@ -257,7 +263,7 @@
 	<thead>
 		<tr>
 			<th>Column A</th>
-			<th>Column B</tgh>
+			<th>Column B</th>
 		</tr>
 	</thead>
 	<tbody class="provisional" data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'>
@@ -291,7 +297,7 @@
 	&lt;thead&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Column A&lt;/th&gt;
-			&lt;th&gt;Column B&lt;/tgh&gt;
+			&lt;th&gt;Column B&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
 	&lt;tbody <strong>class=&quot;provisional&quot; data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'</strong>&gt;
@@ -318,4 +324,15 @@
 	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </details>
+
+<h4>Stretched link with position-relative</h4>
+<p>It is recommended to use this class as a parent of a stretched-link, in order to prevent clickable area from propagating all the way up to columns margins.</p>
+<div class="row">
+	<div class="col-md-6 bg-danger">
+		<div class="position-relative bg-success mrgn-tp-md">
+			<p>Without the &lt;div&gt; element with .position-relative class, clickable area would expend to the red zone.</p>
+			<p><a href="#" class="btn btn-default stretched-link">I am a stretched link</a></p>
+		</div>
+	</div>
+</div>
 </div>
