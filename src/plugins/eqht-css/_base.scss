@@ -1,0 +1,18 @@
+.wb-eqht-grd {
+	align-items: stretch;
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+
+	>[class*="col-"] {
+		display:flex;
+		flex-direction: column;
+		flex-grow:1;
+	}
+
+	>[class*="col-"]>section, .hght-inhrt {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+	}
+}
