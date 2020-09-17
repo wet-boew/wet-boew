@@ -336,11 +336,6 @@ var componentName = "wb-frmvld",
 
 						invalidHandler: function() {
 							submitted = true;
-						},
-
-						/* adds on tab validation */
-						onfocusout: function( element ) {
-							this.element( element );
 						}
 
 					} ); /* end of validate() */
