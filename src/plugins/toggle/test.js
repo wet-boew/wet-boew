@@ -114,10 +114,6 @@ describe( "Toggle test suite", function() {
 				data = $( this ).data( "toggle" );
 				$parent = $( data.parent );
 				expect( $parent.attr( "role" ) ).to.equal( "tablist" );
-
-				$parent.find( ".tgl-tab" ).each( function() {
-					expect( this.getAttribute( "role" ) ).to.equal( "tab" );
-				} );
 				$parent.find( ".tgl-panel" ).each( function() {
 					expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
 				} );
