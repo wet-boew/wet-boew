@@ -118,7 +118,6 @@ var componentName = "wb-toggle",
 					if ( !tab.getAttribute( "id" ) ) {
 						tab.setAttribute( "id", wb.getId() );
 					}
-					tab.setAttribute( "role", "tab" );
 					tab.setAttribute( "aria-selected", isOpen );
 					tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
 					tab.setAttribute( "aria-posinset", i + 1 );
