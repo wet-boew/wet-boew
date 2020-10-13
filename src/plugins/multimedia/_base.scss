@@ -144,6 +144,16 @@
 				@extend %multimedia-display-none;
 			}
 		}
+
+		&.video {
+			&:not(.playing):not(.waiting) {
+				.display {
+					&:before {
+						background: $mm-ctrl-bg-color;
+					}
+				}
+			}
+		}
 	}
 
 	/*
