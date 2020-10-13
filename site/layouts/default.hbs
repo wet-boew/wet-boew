@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="row">
 {{/is}}
-	<main role="main" property="mainContentOfPage" class="{{#is secondarymenu "true"}}col-md-9 col-md-push-3{{else}}{{#isnt fullwidthmain "true"}}container{{/isnt}}{{/is}}">
+	<main role="main" property="mainContentOfPage" resource="#wb-main" class="{{#is secondarymenu "true"}}col-md-9 col-md-push-3{{else}}{{#isnt fullwidthmain "true"}}container{{/isnt}}{{/is}}">
 {{#isnt fullwidthmain "true"}}
 		{{>contenttitle}}
 		{{>sitewidemessages}}
