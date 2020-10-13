@@ -1,7 +1,20 @@
 /*
   Multimedia Player Code (print view)
  */
+
+%multimedia-print-display-none {
+	display: none;
+}
+
 .wb-mm-ctrls,
 .wb-mm-ovrly {
-	display: none;
+	@extend %multimedia-print-display-none;
+}
+
+.wb-mltmd {
+	&.cc_on {
+		.wb-mm-cc {
+			@extend %multimedia-print-display-none;
+		}
+	}
 }
