@@ -805,7 +805,7 @@ $document.on( "click", selector, function( event ) {
 	// JSPerf for multiple class matching https://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|display/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
 		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player( "play" ) : this.player( "pause" );
-	} else if ( className.match( /(^|\s)cc\b|-subtitles/ )  ) {
+	} else if ( className.match( /(^|\s)cc\b|-subtitles/ ) && !$target.attr( "disabled" ) && !$target.parent().attr( "disabled" ) ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
@@ -989,11 +989,15 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 
 	case "ccloadfail":
 		if ( eventNamespace === componentName ) {
-			$this.find( ".wb-mm-cc" )
-				.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
-				.end()
-				.find( ".cc" )
-				.attr( "disabled", "" );
+			if ( !$this.hasClass( "errmsg" ) ) {
+				$this.addClass( "cc_on errmsg" )
+					.find( ".wb-mm-cc" )
+					.append( "<div>" + i18nText.cc_error + "</div>" )
+					.end()
+					.find( ".cc" )
+					.attr( "disabled", "" )
+					.removeAttr( "aria-pressed" );
+			}
 		}
 		break;
 
