@@ -114,8 +114,7 @@ describe( "Toggle test suite", function() {
 				data = $( this ).data( "toggle" );
 				$parent = $( data.parent );
 				expect( $parent.attr( "role" ) ).to.equal( "tablist" );
-
-				$parent.find( ".tgl-tab" ).each( function() {
+				$parent.find( "div.tgl-tab" ).each( function() {
 					expect( this.getAttribute( "role" ) ).to.equal( "tab" );
 				} );
 				$parent.find( ".tgl-panel" ).each( function() {
@@ -361,16 +360,16 @@ describe( "Toggle test suite", function() {
 	 * Accordion
 	 */
 	describe( "Accordion", function() {
-		var $accordion, $details, $panels, $tabs,
+		var $accordion, $details, $panels, $tabs, $wrapper,
 			testAccordionClosed = function( idx ) {
 				expect( $details.eq( idx ).hasClass( "on" ) ).to.equal( false );
-				expect( $tabs.eq( idx ).attr( "aria-selected" ) ).to.equal( "false" );
+				expect( $wrapper.eq( idx ).attr( "aria-selected" ) ).to.equal( "false" );
 				expect( $panels.eq( idx ).attr( "aria-expanded" ) ).to.equal( "false" );
 				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "true" );
 			},
 			testAccordionOpen = function( idx ) {
 				expect( $details.eq( idx ).hasClass( "on" ) ).to.equal( true );
-				expect( $tabs.eq( idx ).attr( "aria-selected" ) ).to.equal( "true" );
+				expect( $wrapper.eq( idx ).attr( "aria-selected" ) ).to.equal( "true" );
 				expect( $panels.eq( idx ).attr( "aria-expanded" ) ).to.equal( "true" );
 				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "false" );
 			};
@@ -388,10 +387,12 @@ describe( "Toggle test suite", function() {
 				"</div>" )
 				.appendTo( $body );
 
-			$details = $accordion.find( "details" );
-			$panels = $accordion.find( ".tgl-panel" );
 			$tabs = $accordion.find( ".tgl-tab" )
 				.trigger( "wb-init.wb-toggle" );
+			$details = $accordion.find( "details" );
+			$panels = $accordion.find( ".tgl-panel" );
+			$wrapper = $accordion.find( "div.tgl-tab" );
+
 
 			if ( !Modernizr.details ) {
 				$tabs.trigger( "wb-init.wb-details" );
