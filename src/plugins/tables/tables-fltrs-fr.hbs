@@ -15,7 +15,7 @@
 	<h2>Exemples</h2>
 	<p>Ajoutes des fonctionnalités aux tableaux telles que la recherche, le tri, le filtrage et la pagination.</p>
 
-	<h3>Drop-Down List and Checkbox Filters</h3>
+	<h3>Date Range, Drop-Down List and Checkbox Filters</h3>
 	<div class="row">
 		<div class="col-md-3">
 			<h4 class="wb-inv">Options</h4>
@@ -23,6 +23,21 @@
 				<summary><h4 class="h4">Options</h4></summary>
 				<p class="mrgn-tp-md">Utilisez les options ci-dessous pour modifier vos résultats dans le tableau suivant.</p>
 				<form class="wb-tables-filter" data-bind-to="dataset-filter1" lang="en">
+					<div class="form-group">
+						<fieldset>
+							<legend>
+								<span class="field-name">Publication date</span>
+							</legend>
+							<div class="form-group">
+								<label for="dt_mindate" class="small">Start date</label>
+								<input type="date" class="form-control" id="dt_mindate" name="dt_mindate" data-column="1"/>
+							</div>
+							<div class="form-group">
+								<label for="dt_maxdate" class="small">End date</label>
+								<input type="date" class="form-control" id="dt_maxdate" name="dt_maxdate" data-column="1"/>
+							</div>
+						</fieldset>
+					</div>
 					<div class="form-group">
 						<label for="dt_type">Data Type</label>
 						<select class="form-control" id="dt_type" name="dt_type" data-column="3">
@@ -201,10 +216,15 @@
 			</table>
 		</div>
 		<div class="col-md-12">
-			<h3>Creating Drop-Down List and/or Checkbox Filters</h3>
+			<h3>Creating Date Range, Drop-Down List and/or Checkbox Filters</h3>
 			<ol>
 				<li>
 					<p>Create a <code>&lt;form&gt;</code> with the following attributes <code>class="wb-tables-filter"</code> and <code>data-bind-to="TABLE_ID"</code>.</p>
+				</li>
+				<li>
+					<p>For date range create two date inputs (<code>&lt;input type="date"/&gt;</code>) add the following attribute <code>data-column="COLUMN_NUMBER"</code></p>
+					<p>Example: <code>&lt;input type="date" class="form-control" id="dt_mindate" name="dt_mindate" data-column="1"/&gt;</code></p>
+					<p><small>Each date input requires the same column number. Please note that the column numbers start at 0.</small></p>
 				</li>
 				<li>
 					<p>For drop-down list create a select list (<code>&lt;select&gt;</code>) add the following attribute <code>data-column="COLUMN_NUMBER"</code></p>
@@ -215,6 +235,13 @@
 					<p><small>Each checkbox requires the same column number. Please note that the column numbers start at 0.</small></p>
 				</li>
 			</ol>
+			<h3>Accepted Formats for Date Range</h3>
+			<p>Currently only accepts ISO 8601 (YYYY-MM-DD). See examples below.</p>
+			<ul>
+				<li>2016-07-26T14:07:00</li>
+				<li>2016-07-26 14:07:00</li>
+				<li>2016-07-26</li>
+			</ul>
 			<h3>Advanced Options For Checkboxes</h3>
 			<p>Allows the user to change how checkboxes are filtered (default is ANY).</p>
 			<ol>
