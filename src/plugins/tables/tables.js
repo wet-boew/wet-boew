@@ -209,50 +209,98 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	event.preventDefault();
 
 	var $form = $( this ),
-		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api();
+		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api(),
+		$toNumber = function stringToNumber( number ) {
+			number = number.replace( /[^0-9\-\,\.]+/g, "" );
+			if ( /[\,]\d{1,2}$/.test( number ) ) {
+				number = number.replace( /(\d{2})$/, ".$1" );
+			}
+			number = number.replace( /\,/g, "" );
+			return parseFloat( number );
+		};
 
 	// Lets reset the search
 	$datatable.search( "" ).columns().search( "" ).draw();
 
 	// Lets loop throug all options
-	var $lastColumn = -1, $cbVal = "";
+	var $prevCol = -1, $cachedVal = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),
 			$value = "",
 			$regex = "",
+			$column = parseInt( $elm.attr( "data-column" ), 10 ),
 			$isAopts = $elm.data( "aopts" ),
-			$column = parseInt( $elm.attr( "data-column" ), 10 );
+			$aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
+			$aopts = $( $aoptsSelector ),
+			$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "";
 
 		// Ignore the advanced options fields
 		if ( $isAopts ) {
 			return;
 		}
 
+		// Verifies if filtering the same column
+		if ( $column !== $prevCol || $prevCol === -1 ) {
+			$cachedVal = "";
+		}
+		$prevCol = $column;
+
 		// Filters based on input type
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
-		} else if ( $elm.is( ":checkbox" ) ) {
+		} else if ( $elm.is( "input[type='number']" ) ) {
+			var $val = $elm.val(), $minNum, $maxNum, $fData;
 
-			// Verifies if using same checkbox list
-			if ( $column !== $lastColumn || $lastColumn === -1 ) {
-				$cbVal = "";
+			// Retain minimum number (always the first number input)
+			if ( $cachedVal === "" ) {
+				$cachedVal = parseFloat( $val );
+				$cachedVal = ( $cachedVal ) ? $cachedVal : "-0";
 			}
-			$lastColumn = $column;
+			$minNum = $cachedVal;
+
+			// Maximum number is always the current selected number
+			$maxNum = parseFloat( $val );
+
+			// Generates a list of numbers (within the min and max number)
+			if ( !isNaN( $minNum ) && !isNaN( $maxNum ) ) {
+				$fData = $datatable.column( $column ).data().filter( function( obj ) {
+					var $num = $toNumber( obj.toString() );
+
+					if ( !isNaN( $num ) ) {
+						if ( $aoType === "and" ) {
+							if ( $cachedVal !== $maxNum && $cachedVal !== "-0" && $num >= $minNum && $num <= $maxNum ) {
+								return true;
+							}
+						} else {
+							if ( $cachedVal === $maxNum && $num >= $minNum ) {
+								return true;
+							} else if ( $cachedVal === "-0" && $num <= $maxNum ) {
+								return true;
+							} else if ( $cachedVal !== "-0" && $num >= $minNum && $num <= $maxNum ) {
+								return true;
+							}
+						}
+					}
+					return false;
+				} );
+				$fData = $fData.join( "|" );
+
+				// If no numbers match set as -0, so no results return
+				$value = ( $fData ) ? $fData : "-0";
+				$regex = "(" + $value.replace( /\&nbsp\;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
+			}
+		} else if ( $elm.is( ":checkbox" ) ) {
 
 			// Verifies if checkbox is checked before setting value
 			if ( $elm.is( ":checked" ) ) {
-				var $aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
-					$aopts = $( $aoptsSelector ),
-					$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "";
-
 				if ( $aoType === "both" ) {
-					$cbVal += "(?=.*\\b" + $elm.val() + "\\b)";
+					$cachedVal += "(?=.*\\b" + $elm.val() + "\\b)";
 				} else {
-					$cbVal += ( $cbVal.length > 0 ) ? "|" : "";
-					$cbVal += $elm.val();
+					$cachedVal += ( $cachedVal.length > 0 ) ? "|" : "";
+					$cachedVal += $elm.val();
 				}
 
-				$value = $cbVal;
+				$value = $cachedVal;
 				$value = $value.replace( /\s/g, "\\s*" );
 
 				// Adjust regex based on advanced options
