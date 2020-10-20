@@ -97,19 +97,6 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"saucelabs"
-		"Run tests on SauceLabs. Currently only for Travis builds"
-		->
-			# TODO: Add error message when TRAVIS_SECURE_VARS is fixed (see https://github.com/wet-boew/wet-boew/pull/6108#discussion_r18190951)
-			if process.env.SAUCE_USERNAME isnt `undefined` and process.env.SAUCE_ACCESS_KEY isnt `undefined`
-				grunt.task.run [
-					"pre-mocha"
-					(if process.env.TRAVIS is "true" then "saucelabs-mocha:travis" else "saucelabs-mocha:local")
-				]
-
-	)
-
-	@registerTask(
 		"init"
 		"Only needed when the repo is first cloned"
 		[
@@ -251,7 +238,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"test"
-		"INTERNAL: Runs testing tasks except for SauceLabs testing"
+		"INTERNAL: Runs testing tasks"
 		[
 			"eslint"
 			"sasslint"
@@ -1418,34 +1405,6 @@ module.exports = (grunt) ->
 				options:
 					reporter: "Spec"
 					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just%20some%7Ctest"]
-
-		"saucelabs-mocha":
-			options:
-				urls: "<%= mocha.all.options.urls %>"
-				throttled: 3
-				browsers: @file.readJSON "browsers.json"
-				tunnelArgs: [
-					"-D"
-					"ajax.googleapis.com"
-				]
-				sauceConfig:
-					"video-upload-on-pass": false
-					"single-window": true
-					"record-screenshots": false
-					"capture-html": true
-				maxRetries: 3
-			travis:
-				options:
-					testname: process.env.TRAVIS_COMMIT_MSG
-					build: process.env.TRAVIS_BUILD_NUMBER
-					tags: [
-						process.env.TRAVIS_JOB_ID
-						process.env.TRAVIS_BRANCH
-						process.env.TRAVIS_COMMIT
-					]
-			local:
-				options:
-					testname: "Local Test - <%= grunt.template.today('yyyy-mm-dd hh:MM') %>"
 
 		"string-replace":
 			inline:

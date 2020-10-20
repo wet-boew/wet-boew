@@ -3,8 +3,6 @@
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.svg?branch=master)](https://travis-ci.org/wet-boew/wet-boew)
 [![devDependency Status](https://david-dm.org/wet-boew/wet-boew/dev-status.svg)](https://david-dm.org/wet-boew/wet-boew#info=devDependencies)
 
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/wet-boew-bot.svg)](https://saucelabs.com/u/wet-boew-bot)
-
 ## What is the Web Experience Toolkit?
 
 * An [award-winning](https://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html#awards) front-end framework for building websites that are [accessible](https://wet-boew.github.io/wet-boew/index-en.html#accessibility), [usable](https://wet-boew.github.io/wet-boew/index-en.html#usability), [interoperable](https://wet-boew.github.io/wet-boew/index-en.html#interoperability), [mobile friendly](https://wet-boew.github.io/wet-boew/index-en.html#mobile-friendly-responsive-design) and [multilingual](https://wet-boew.github.io/wet-boew/index-en.html#multilingual)
