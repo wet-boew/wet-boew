@@ -805,7 +805,7 @@ $document.on( "click", selector, function( event ) {
 	// JSPerf for multiple class matching https://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|display/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
 		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player( "play" ) : this.player( "pause" );
-	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
+	} else if ( className.match( /(^|\s)cc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
