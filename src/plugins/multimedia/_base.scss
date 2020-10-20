@@ -87,13 +87,6 @@
 			@include multimedia_overlay_play;
 		}
 
-		&.playing {
-
-			.errmsg {
-				display: none;
-			}
-		}
-
 		&.waiting {
 			@include multimedia_overlay_loading;
 		}
@@ -127,13 +120,15 @@
 			padding: .5em;
 		}
 
-		.cc {
-			&:after {
-				border-bottom: 3px solid $mm-ctrl-cc-color;
-				content: " ";
-				display: block;
-				margin-left: -2px;
-				width: 1.2em;
+		&:not(.errmsg) {
+			.cc {
+				&:after {
+					border-bottom: 3px solid $mm-ctrl-cc-color;
+					content: " ";
+					display: block;
+					margin-left: -2px;
+					width: 1.2em;
+				}
 			}
 		}
 	}
@@ -171,6 +166,14 @@
 				background: #fff;
 				border: 0;
 				color: #000;
+
+				&[disabled] {
+					&:active {
+						&:hover {
+							color: #000;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -222,6 +225,18 @@
 		}
 		color: $mm-ctrl-fg-color;
 		font-size: 130%;
+
+		&[disabled] {
+			&:active {
+				&:hover {
+					color: $mm-ctrl-fg-color;
+				}
+			}
+
+			&:hover {
+				background-color: transparent;
+			}
+		}
 	}
 
 	.frstpnl {
