@@ -81,11 +81,7 @@ var componentName = "wb-frmvld",
 						formDOM = $form.get( 0 ),
 						formId = $form.attr( "id" ),
 						labels = formDOM.getElementsByTagName( "label" ),
-						$formElms = $form.find( "input, select, textarea" ),
-						$inputs = $formElms.filter( "input" ),
-						$pattern = $inputs.filter( "[pattern]" ),
 						submitted = false,
-						$required = $formElms.filter( "[required], [data-rule-required], .required" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
 						settings = $.extend(
 							true,
@@ -104,29 +100,6 @@ var componentName = "wb-frmvld",
 					len = labels.length;
 					for ( i = 0; i !== len; i += 1 ) {
 						labels[ i ].innerHTML += " ";
-					}
-
-					// Remove the pattern attribute until it is safe to use with jQuery Validation
-					len = $pattern.length;
-					for ( i = 0; i !== len; i += 1 ) {
-						$pattern.eq( i ).removeAttr( "pattern" );
-					}
-
-					// Change form attributes and values that interfere with validation in IE7/8
-					// TODO: Need better way of dealing with this rather than browser sniffing
-					if ( wb.ieVersion > 0 && wb.ieVersion < 9 ) {
-						len = $required.length;
-						$required.removeAttr( "required" );
-						for ( i = 0; i !== len; i += 1 ) {
-							$required[ i ].setAttribute( "data-rule-required", "true" );
-						}
-						$inputs.filter( "[type=date]" ).each( function() {
-							var $this = $( this ),
-								$parent = $this.wrap( "<div/>" ).parent(),
-								newElm = $( $parent.html().replace( "type=date", "type=text" ) );
-							$parent.replaceWith( newElm );
-						} );
-						$formElms = $form.find( "input, select, textarea" );
 					}
 
 					// The jQuery validation plug-in in action
