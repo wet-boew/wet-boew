@@ -120,7 +120,7 @@ var componentName = "wb-toggle",
 					}
 
 					//Details and summary don't support aria roles and some aria attribute that is why they are wrapped in a div
-					if ( elm.nodeName.toLowerCase() === "details" && elm.parentNode.className.toLowerCase() === "accordion" ) {
+					if ( elm.nodeName.toLowerCase() === "details" && elm.parentNode.className.toLowerCase().indexOf( "accordion" ) > -1 ) {
 						wrapper = document.createElement( "div" );
 						wrapper.classList.add( "tgl-tab" );
 						wrapper.setAttribute( "role", "tab" );
