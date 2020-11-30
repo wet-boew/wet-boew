@@ -2887,7 +2887,7 @@ MapLayer.prototype.createOLLayer = function() {
 			olLayer.setStyle( styleFactory.createStyleFunction( _this.settings.style, featureGeometry ) );
 		} );
 
-		function getCoordKey( feature ) {
+		var getCoordKey = function( feature ) {
 
 			var geomKey;
 
@@ -2898,7 +2898,7 @@ MapLayer.prototype.createOLLayer = function() {
 			} );
 
 			return geomKey;
-		}
+		};
 
 		var successHandler = function( data ) {
 
