@@ -83,7 +83,7 @@
     "grunt-wget": "~0.1.0",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^8.2.1",
-    "node-sass": "^5.0.0",
+    "node-sass": "^4.14.1",
     "openlayers": "git+https://github.com/wet-boew/openlayers-dist.git#v3.20.1",
     "sinon": "^9.2.1",
     "time-grunt": "^2.0.0"
