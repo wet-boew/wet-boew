@@ -46,6 +46,7 @@
     "unorm": "^1.4.1"
   },
   "devDependencies": {
+    "@lodder/grunt-postcss": "^3.0.0",
     "assemble-contrib-i18n": "0.1.*",
     "autoprefixer": "^10.0.4",
     "coffeescript": "^2.5.1",
@@ -73,7 +74,6 @@
     "grunt-lintspaces": "^0.9.0",
     "grunt-markdownlint": "^3.1.1",
     "grunt-mocha": "^1.2.0",
-    "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.1.0",
     "grunt-sass-lint": "^0.2.4",
     "grunt-spritesmith": "^6.8.0",
@@ -85,6 +85,7 @@
     "mocha": "^8.2.1",
     "node-sass": "^4.14.1",
     "openlayers": "git+https://github.com/wet-boew/openlayers-dist.git#v3.20.1",
+    "postcss": "^8.1.10",
     "sinon": "^9.2.1",
     "time-grunt": "^2.0.0"
   }
