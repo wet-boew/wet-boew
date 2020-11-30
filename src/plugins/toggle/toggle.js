@@ -297,6 +297,8 @@ var componentName = "wb-toggle",
 				try {
 					data.persist.setItem( data.persistKey, stateTo );
 				} catch ( error ) {
+
+					/* swallow error */
 				}
 			}
 		}

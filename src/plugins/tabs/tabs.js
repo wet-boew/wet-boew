@@ -131,10 +131,14 @@ var componentName = "wb-tabs",
 						try {
 							sessionStorage.setItem( pagePath + elmId + activePanel, activeId );
 						} catch ( error ) {
+
+							/* swallow error */
 						}
 					}
 				}
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 
 			// Determine the current view
@@ -511,6 +515,8 @@ var componentName = "wb-tabs",
 					$next.attr( "id" )
 				);
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 		}
 
@@ -947,6 +953,8 @@ $document.on( activateEvent, selector + " > .tabpanels > details > summary", fun
 					details.id
 				);
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 		}
 

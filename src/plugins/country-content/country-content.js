@@ -75,6 +75,8 @@ var componentName = "wb-ctrycnt",
 						try {
 							localStorage.setItem( "countryCode", countryCode );
 						} catch ( error ) {
+
+							/* swallow error */
 						}
 					}
 

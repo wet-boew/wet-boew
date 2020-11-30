@@ -616,7 +616,8 @@ describe( "calendar test suite", function() {
 						year: 2010,
 						month: 4
 					} );
-				} catch ( e ) {}
+				} catch ( e ) {
+					/* swallow error */}
 			} );
 
 			it( "should update the calendar even if the callback throws an exception", function() {

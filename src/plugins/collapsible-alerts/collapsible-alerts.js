@@ -57,7 +57,8 @@ var componentName = "wb-collapsible",
 					}
 
 				}
-			} catch ( e ) {}
+			} catch ( e ) {
+				/* swallow error */}
 
 			// Identify that initialization has completed
 			wb.ready( $details, componentName );
@@ -89,11 +90,13 @@ if ( Modernizr.details ) {
 			if ( isClosed ) {
 				try {
 					localStorage.setItem( key, "open" );
-				} catch ( e ) {}
+				} catch ( e ) {
+					/* swallow error */}
 			} else {
 				try {
 					localStorage.setItem( key, "closed" );
-				} catch ( e ) {}
+				} catch ( e ) {
+					/* swallow error */}
 			}
 		} else if ( which === 13 || which === 32 ) {
 			event.preventDefault();

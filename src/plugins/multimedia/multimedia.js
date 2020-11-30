@@ -95,7 +95,10 @@ var componentName = "wb-mltmd",
 								}
 							}
 						}
-					} catch ( err ) { }
+					} catch ( err ) {
+
+						/* swallow error */
+					}
 				} );
 
 				//

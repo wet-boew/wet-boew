@@ -88,7 +88,8 @@ var componentName = "wb-details",
 		if ( key ) {
 			try {
 				localStorage.setItem( key, this.open ? "open" : "closed" );
-			} catch ( e ) {}
+			} catch ( e ) {
+				/* swallow error */}
 		}
 	};
 

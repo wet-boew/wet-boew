@@ -108,7 +108,7 @@ var getUrlParts = function( url ) {
 		while ( (
 			div.innerHTML = "<!--[if gt IE " + ( v += 1 ) + "]><i></i><![endif]-->",
 			all[ 0 ]
-		) ) {}
+		) ) { /* empty */ }
 
 		return v > 4 ? v : undef;
 	}() ),
@@ -129,7 +129,10 @@ var getUrlParts = function( url ) {
 
 		try {
 			disabledSaved = localStorage.getItem( "wbdisable" ) || disabledSaved;
-		} catch ( e ) {}
+		} catch ( e ) {
+
+			/* swallow error */
+		}
 
 		disabled = currentpage.params.wbdisable || disabledSaved;
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
