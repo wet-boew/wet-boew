@@ -237,7 +237,6 @@ var componentName = "wb-feeds",
 	 */
 	corsEntry = function( xmlDoc, limit ) {
 		var entries = xmlDoc.getElementsByTagName( "entry" ).length,
-			limit = limit,
 			arr_entry = [],
 			corsObj = {},
 			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
