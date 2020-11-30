@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "assemble-contrib-i18n": "0.1.*",
-    "autoprefixer": "^10.0.2",
+    "autoprefixer": "^10.0.4",
     "coffeescript": "^2.5.1",
     "eslint-config-jquery": "^3.0.0",
     "expect.js": "^0.3.1",
