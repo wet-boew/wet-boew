@@ -239,8 +239,8 @@ var componentName = "wb-lbx",
 
 					$response
 						.find( ".modal-title, h1" )
-							.first()
-								.attr( "id", "lbx-title" );
+						.first()
+						.attr( "id", "lbx-title" );
 
 					mfpResponse.data = $response;
 				},

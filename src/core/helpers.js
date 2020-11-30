@@ -137,11 +137,11 @@ wb.pickElements = function( $elm, numOfElm ) {
 // Escapes the characters in a string for use in a jQuery selector
 // Based on https://totaldev.com/content/escaping-characters-get-valid-jquery-id
 wb.jqEscape = function( selector ) {
-	return selector.replace( /([;&,\.\+\*\~':"\\\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
+	return selector.replace( /([;&,.+*~':"\\!^/#$%@[]()=>\|])/g, "\\$1" );
 };
 
 // RegEx used by formattedNumCompare
-wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d\.])/g;
+wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d.])/g;
 
 // Compares two formatted numbers (e.g., 1.2.12 or 1,000,345)
 wb.formattedNumCompare = function( a, b ) {
@@ -1293,14 +1293,14 @@ function focusable( element, isTabIndexNotNaN, visibility ) {
 	if ( visibility ) {
 		return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 			nodeName === "a" ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN ) &&
+				element.href || isTabIndexNotNaN :
+				isTabIndexNotNaN ) &&
 		visible( element ); /* the element and all of its ancestors must be visible */
 	} else {
 		return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 			nodeName === "a" ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN );
+				element.href || isTabIndexNotNaN :
+				isTabIndexNotNaN );
 	}
 }
 
@@ -1323,9 +1323,9 @@ $.extend( $.expr[ ":" ], {
 
 	// support: jQuery <1.8
 
-	function( elem, i, match ) {
-		return !!$.data( elem, match[ 3 ] );
-	},
+		function( elem, i, match ) {
+			return !!$.data( elem, match[ 3 ] );
+		},
 	focusable: function( element ) {
 		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ), true );
 	},

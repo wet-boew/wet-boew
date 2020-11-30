@@ -170,7 +170,7 @@ var componentName = "wb-calevt",
 			},
 			objEventsList = obj.find( "ol > li, ul > li" ),
 			iLen = objEventsList.length,
-			dateTimeRegExp = /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/,
+			dateTimeRegExp = /datetime\s+\{date:\s*(\d+-\d+-\d+)\}/,
 			i, $event, event, $objTitle, title, link, href, target,
 			linkId, date, tCollection, tCollectionTemp,	strDate1,
 			strDate2, z, zLen, className, dateClass;

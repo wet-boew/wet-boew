@@ -37,7 +37,7 @@ var componentName = "wb-txthl",
 			} else if ( params && params.txthl ) {
 				searchCriteria = decodeURIComponent(
 					wb.pageUrlParts.params.txthl
-						.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" )
+						.replace( /^\s+|\s+$|\|+|"|\(|\)/g, "" ).replace( /\++/g, "|" )
 				);
 			}
 

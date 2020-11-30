@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -132,7 +130,7 @@ describe( "[data-pic] test suite", function() {
 
 		before( function() {
 			$img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
+				"<span data-pic data-alt='foo' class='test'>" +
 					"<span data-src='bar.jpg' data-media='print'></span>" +
 					"</span>" )
 				.appendTo( $body )

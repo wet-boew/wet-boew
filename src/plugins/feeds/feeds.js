@@ -158,8 +158,8 @@ var componentName = "wb-feeds",
 			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
-					.data( "feedLimit", limit )
-					.data( "entries", [] );
+				.data( "feedLimit", limit )
+				.data( "entries", [] );
 
 			for ( i = last; i !== -1; i -= 1 ) {
 				fElem = feeds.eq( i );
@@ -417,10 +417,10 @@ var componentName = "wb-feeds",
 				$elm.empty().addClass( "waiting" );
 				$details
 					.children( "summary" )
-						.on( "click.wb-feeds", function( event ) {
-							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
-							activateFeed( $summary.parent().find( feedContSelector ) );
-						} );
+					.on( "click.wb-feeds", function( event ) {
+						var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
+						activateFeed( $summary.parent().find( feedContSelector ) );
+					} );
 			}
 		}
 

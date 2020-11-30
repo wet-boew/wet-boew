@@ -133,11 +133,11 @@ var componentName = "wb-menu",
 
 			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
 				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
-						/(<a\s)/,
-						"$1" + menuitem + itemsLength +
+					/(<a\s)/,
+					"$1" + menuitem + itemsLength +
 							posinset + ( k + 1 ) +
 							"' tabindex='-1' "
-					) + "</li>";
+				) + "</li>";
 			} else {
 				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
 			}
@@ -314,7 +314,7 @@ var componentName = "wb-menu",
 				panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
 						document.getElementById( "wb-glb-mn" )
 							.getElementsByTagName( "h2" )[ 0 ]
-								.innerHTML +
+							.innerHTML +
 						"</div></header><div class='modal-body'>" + panel + "</div>";
 				panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 
@@ -332,14 +332,14 @@ var componentName = "wb-menu",
 				 */
 				$ajaxed
 					.find( ":discoverable" )
-						.attr( "tabindex", "-1" );
+					.attr( "tabindex", "-1" );
 
 				if ( $menu.length !== 0 ) {
 					$menu[ 0 ].setAttribute( "tabindex", "0" );
 					drizzleAria( $menu );
 					$menu
 						.filter( "[aria-haspopup=true]" )
-							.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
+						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
 				}
 
 				// Replace elements
@@ -359,9 +359,9 @@ var componentName = "wb-menu",
 						// If not at the top level, then add wb-navcurr to the top level
 						if ( !$menuItem.hasClass( ".mb-item" ) ) {
 							$menuItem = $menuItem
-											.closest( "details" )
-												.children( "summary" )
-													.addClass( "wb-navcurr" );
+								.closest( "details" )
+								.children( "summary" )
+								.addClass( "wb-navcurr" );
 						}
 					}
 
@@ -371,7 +371,7 @@ var componentName = "wb-menu",
 						$menuItem
 							.trigger( "click" )
 							.parent()
-								.prop( "open", "open" );
+							.prop( "open", "open" );
 					}
 
 					// Identify that initialization has completed
@@ -438,20 +438,20 @@ var componentName = "wb-menu",
 		$elm
 			.removeClass( "sm-open" )
 			.children( ".open" )
-				.removeClass( "open" )
-				.attr( {
-					"aria-hidden": "true",
-					"aria-expanded": "false"
-				} )
+			.removeClass( "open" )
+			.attr( {
+				"aria-hidden": "true",
+				"aria-expanded": "false"
+			} )
 
-				// Close nested submenus
-				.find( "details" )
-					.removeAttr( "open" )
-					.children( "ul" )
-						.attr( {
-							"aria-hidden": "true",
-							"aria-expanded": "false"
-						} );
+		// Close nested submenus
+			.find( "details" )
+			.removeAttr( "open" )
+			.children( "ul" )
+			.attr( {
+				"aria-hidden": "true",
+				"aria-expanded": "false"
+			} );
 
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
@@ -477,11 +477,11 @@ var componentName = "wb-menu",
 			menu
 				.addClass( "sm-open" )
 				.children( ".sm" )
-					.addClass( "open" )
-					.attr( {
-						"aria-hidden": "false",
-						"aria-expanded": "true"
-					} );
+				.addClass( "open" )
+				.attr( {
+					"aria-hidden": "false",
+					"aria-expanded": "true"
+				} );
 		}
 	},
 
@@ -596,11 +596,11 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 	if ( !isOpen ) {
 		$( parent )
 			.closest( "[role^='menu']" )
-				.find( "[aria-hidden=false]" )
-					.parent()
-						.find( "[aria-haspopup=true]" )
-							.not( menuItem )
-								.trigger( "click" );
+			.find( "[aria-hidden=false]" )
+			.parent()
+			.find( "[aria-haspopup=true]" )
+			.not( menuItem )
+			.trigger( "click" );
 
 		// Ensure the opened menu is in view if in a mobile panel
 		menuContainer = document.getElementById( "mb-pnl" );
@@ -755,11 +755,11 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					if ( !isOpen ) {
 						$( parent )
 							.closest( "[role^='menu']" )
-								.find( "[aria-hidden=false]" )
-									.parent()
-										.find( "[aria-haspopup=true]" )
-											.not( menuItem )
-												.trigger( "click" );
+							.find( "[aria-hidden=false]" )
+							.parent()
+							.find( "[aria-haspopup=true]" )
+							.not( menuItem )
+							.trigger( "click" );
 
 						// Ensure the opened menu is in view if in a mobile panel
 						menuContainer = document.getElementById( "mb-pnl" );
@@ -782,7 +782,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 							"aria-hidden": "false"
 						} )
 						.find( "[role=menuitem]:first" )
-							.trigger( "setfocus.wb" );
+						.trigger( "setfocus.wb" );
 				}
 
 			// Escape, left / right arrow without a submenu
@@ -826,8 +826,8 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						event.preventDefault();
 						$menu.closest( "li" )
 							.find( menuitemSelector )
-								.trigger( "click" )
-								.trigger( "setfocus.wb" );
+							.trigger( "click" )
+							.trigger( "setfocus.wb" );
 
 					// No higher-level menu but the current submenu is open
 					} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {

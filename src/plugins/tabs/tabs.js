@@ -89,8 +89,8 @@ var componentName = "wb-tabs",
 				defaults,
 				{
 					interval: $elm.hasClass( "slow" ) ?
-								9 : $elm.hasClass( "fast" ) ?
-									3 : defaults.interval,
+						9 : $elm.hasClass( "fast" ) ?
+							3 : defaults.interval,
 					excludeControls: $elm.hasClass( "exclude-controls" ),
 					excludePlay: $elm.hasClass( "exclude-play" ),
 					updateHash: $elm.hasClass( "update-hash" ),
@@ -237,7 +237,7 @@ var componentName = "wb-tabs",
 				$tablist.find( "a" )
 					.filter( "[href$='" + activeId + "']" )
 					.parent()
-						.addClass( "active" );
+					.addClass( "active" );
 			}
 
 			drizzleAria( $panels, $tablist );
@@ -483,17 +483,17 @@ var componentName = "wb-tabs",
 
 		$controls
 			.find( ".active" )
-				.removeClass( "active" )
-				.children( "a" )
-					.attr( {
-						"aria-selected": "false",
-						tabindex: "-1"
-					} );
+			.removeClass( "active" )
+			.children( "a" )
+			.attr( {
+				"aria-selected": "false",
+				tabindex: "-1"
+			} );
 
 		// Update the Item x of n
 		$controls
 			.find( ".curr-index" )
-				.html( newIndex );
+			.html( newIndex );
 
 		$control
 			.attr( {
@@ -501,7 +501,7 @@ var componentName = "wb-tabs",
 				tabindex: "0"
 			} )
 			.parent()
-				.addClass( "active" );
+			.addClass( "active" );
 
 		// Update sessionStorage with the current active panel
 		if ( !tabSettings.ignoreSession ) {
@@ -648,10 +648,10 @@ var componentName = "wb-tabs",
 								if ( !isInit ) {
 									$detailsElm
 										.children( "summary" )
-											.attr( {
-												"aria-expanded": isActive,
-												"aria-selected": isActive
-											} );
+										.attr( {
+											"aria-expanded": isActive,
+											"aria-selected": isActive
+										} );
 								}
 							}
 						} else if ( oldIsSmallView ) {
@@ -668,11 +668,11 @@ var componentName = "wb-tabs",
 									open: "open"
 								} )
 								.not( $openDetails )
-									.addClass( "fade out noheight wb-inv" )
-									.attr( {
-										"aria-hidden": "true",
-										"aria-expanded": "false"
-									} );
+								.addClass( "fade out noheight wb-inv" )
+								.attr( {
+									"aria-hidden": "true",
+									"aria-expanded": "false"
+								} );
 
 							$details.children( ".tgl-panel" ).removeAttr( "role" );
 
@@ -886,8 +886,8 @@ $document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 		} else {
 			$( currentTarget )
 				.closest( selector )
-					.find( "[href$='#" + currentTarget.id + "']" )
-						.trigger( setFocusEvent );
+				.find( "[href$='#" + currentTarget.id + "']" )
+				.trigger( setFocusEvent );
 		}
 
 	// Left mouse button click or escape key

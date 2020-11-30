@@ -514,7 +514,7 @@ $document.on( "keydown", selectorTab, function( event ) {
 
 		$newPanel
 			.children( "summary" )
-				.trigger( setFocusEvent );
+			.trigger( setFocusEvent );
 	}
 } );
 
@@ -526,7 +526,7 @@ $document.on( "keydown", selectorPanel, function( event ) {
 		// Move focus to the summary element
 		$( event.currentTarget )
 			.prev()
-				.trigger( setFocusEvent );
+			.trigger( setFocusEvent );
 	}
 } );
 

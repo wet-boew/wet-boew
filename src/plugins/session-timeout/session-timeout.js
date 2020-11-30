@@ -218,7 +218,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 							body: "<p>" + i18nText.timeoutAlready + "</p>",
 							buttons: $( "<button type='button' class='" + confirmClass +
 								" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonSignin + "</button>" )
-									.data( "logouturl", settings.logouturl )
+								.data( "logouturl", settings.logouturl )
 						} );
 					}
 				}
@@ -246,11 +246,11 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonContinue + buttonEnd )
-				.data( settings )
-				.data( "start", getCurrentTime() );
+			.data( settings )
+			.data( "start", getCurrentTime() );
 		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
 			i18nText.buttonEnd + buttonEnd )
-				.data( "logouturl", settings.logouturl );
+			.data( "logouturl", settings.logouturl );
 
 		openModal( {
 			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",

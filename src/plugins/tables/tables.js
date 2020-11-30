@@ -186,12 +186,12 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 			} )
 
 			.not( ".previous, .next" )
-				.attr( "aria-pressed", "false" )
-				.html( function( index, oldHtml ) {
-					return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
-				} )
-				.filter( ".current" )
-					.attr( "aria-pressed", "true" );
+			.attr( "aria-pressed", "false" )
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
+			} )
+			.filter( ".current" )
+			.attr( "aria-pressed", "true" );
 	}
 
 	// Identify that the table has been updated

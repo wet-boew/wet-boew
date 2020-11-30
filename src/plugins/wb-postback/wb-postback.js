@@ -62,21 +62,21 @@ var $document = wb.doc,
 						url: this.action,
 						data: $.param( data )
 					} )
-					.done( function() {
-						$selectorSuccess.removeClass( classToggle );
-					} )
-					.fail( function() {
-						$selectorFailure.removeClass( classToggle );
-					} )
-					.always( function() {
+						.done( function() {
+							$selectorSuccess.removeClass( classToggle );
+						} )
+						.fail( function() {
+							$selectorFailure.removeClass( classToggle );
+						} )
+						.always( function() {
 
-						// Make the form submittable again if multiple submits are allowed or hide
-						if ( multiple ) {
-							$elm.removeAttr( attrEngaged );
-						} else {
-							$elm.addClass( classToggle );
-						}
-					} );
+							// Make the form submittable again if multiple submits are allowed or hide
+							if ( multiple ) {
+								$elm.removeAttr( attrEngaged );
+							} else {
+								$elm.addClass( classToggle );
+							}
+						} );
 				}
 			} );
 

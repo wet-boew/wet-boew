@@ -7,12 +7,12 @@
 ( function( $, window, wb ) {
 "use strict";
 
-	/*
-	* Variable and function definitions.
-	* These are global to the plugin - meaning that they will be initialized once per page,
-	* not once per instance of plugin on the page. So, this is a good place to define
-	* variables that are common to all instances of the plugin on a page.
-	*/
+/*
+* Variable and function definitions.
+* These are global to the plugin - meaning that they will be initialized once per page,
+* not once per instance of plugin on the page. So, this is a good place to define
+* variables that are common to all instances of the plugin on a page.
+*/
 var componentName = "wb-facebook",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,

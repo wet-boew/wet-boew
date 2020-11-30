@@ -24,7 +24,7 @@ var getUrlParts = function( url ) {
 			host: a.host,
 			hostname: a.hostname,
 			port: a.port,
-			pathname: a.pathname.replace( /^([^\/])/, "/$1" ), // Prefix pathname with a slash in browsers that don't natively do it (i.e. all versions of IE and possibly early versions of Edge). See pull request #8110.
+			pathname: a.pathname.replace( /^([^/])/, "/$1" ), // Prefix pathname with a slash in browsers that don't natively do it (i.e. all versions of IE and possibly early versions of Edge). See pull request #8110.
 			protocol: a.protocol,
 			hash: a.hash,
 			search: a.search,
@@ -70,9 +70,9 @@ var getUrlParts = function( url ) {
 		var paths = {};
 
 		paths.home = ele.prop( "src" )
-				.split( "?" )[ 0 ].split( "/" )
-				.slice( 0, -1 )
-				.join( "/" );
+			.split( "?" )[ 0 ].split( "/" )
+			.slice( 0, -1 )
+			.join( "/" );
 		paths.asset = paths.home + "/../assets";
 		paths.template = paths.home + "/assets/templates";
 		paths.dep = paths.home + "/deps";
@@ -108,7 +108,7 @@ var getUrlParts = function( url ) {
 		while ( (
 			div.innerHTML = "<!--[if gt IE " + ( v += 1 ) + "]><i></i><![endif]-->",
 			all[ 0 ]
-		) ) {};
+		) ) {}
 
 		return v > 4 ? v : undef;
 	}() ),
@@ -203,9 +203,9 @@ var getUrlParts = function( url ) {
 				// Trigger any nested elements (excluding nested within nested)
 				$elm
 					.find( wb.allSelectors )
-						.addClass( "wb-init" )
-						.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
-							.trigger( "timerpoke.wb" );
+					.addClass( "wb-init" )
+					.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
+					.trigger( "timerpoke.wb" );
 
 				// Identify that the component is ready
 				$elm.trigger( "wb-ready." + componentName, context );

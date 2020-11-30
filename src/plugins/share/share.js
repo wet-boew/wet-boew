@@ -162,12 +162,12 @@ var componentName = "wb-share",
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
 
-			regex = /\'|&#39;|&apos;/g;
+			regex = /'|&#39;|&apos;/g;
 			pageTitle = encodeURIComponent( settings.title )
-							.replace( regex, "%27" );
+				.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );
 			pageDescription = encodeURIComponent( settings.desc )
-								.replace( regex, "%27" );
+				.replace( regex, "%27" );
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
@@ -199,10 +199,10 @@ var componentName = "wb-share",
 					key = keys[ i ];
 					siteProperties = sites[ key ];
 					url = siteProperties.url
-							.replace( /\{u\}/, pageHref )
-							.replace( /\{t\}/, pageTitle )
-							.replace( /\{i\}/, pageImage )
-							.replace( /\{d\}/, pageDescription );
+						.replace( /\{u\}/, pageHref )
+						.replace( /\{t\}/, pageTitle )
+						.replace( /\{i\}/, pageImage )
+						.replace( /\{d\}/, pageDescription );
 					panel += "<li><a href='" + url + "' class='" + shareLink +
 						" " + ( siteProperties.isMailto ? "email" : key ) +
 						" btn btn-default' target='_blank' rel='noreferrer noopener'>" +

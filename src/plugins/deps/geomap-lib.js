@@ -178,7 +178,7 @@ var componentName = "wb-geomap",
 		this.settings.aspectRatio = ( this.settings.basemap &&
 				this.settings.basemap.mapOptions &&
 					this.settings.basemap.mapOptions.aspectRatio !== undefined ) ?
-						this.settings.basemap.mapOptions.aspectRatio : 0.8;
+			this.settings.basemap.mapOptions.aspectRatio : 0.8;
 
 		this.map = createOLMap( this );
 		this.legend = new MapLegend( this );
@@ -370,8 +370,8 @@ var componentName = "wb-geomap",
 		resolution = 1;
 		if ( !resolution ) {
 			resolution = Math.max(
-					gw / symbolWidth || 0,
-					gh / symbolHeight || 0
+				gw / symbolWidth || 0,
+				gh / symbolHeight || 0
 			) || 1;
 		}
 		map.setView( new ol.View( {
@@ -1925,7 +1925,7 @@ var componentName = "wb-geomap",
 		_this.geolocation.on( "change:position", function() {
 			coordinates = _this.geolocation.getPosition();
 			positionFeature.setGeometry( coordinates ?
-					new ol.geom.Point( coordinates ) : null );
+				new ol.geom.Point( coordinates ) : null );
 
 			// zoom to feature
 			var extent = _this.featuresOverlay.getSource().getExtent();
@@ -2414,7 +2414,7 @@ MapLayer.prototype.addToLegend = function() {
 	} ).prepend( $chkBox );
 
 	$li = $( "<li class='checkbox geomap-lgnd-layer'>" )
-			.append( $label, "<div id='sb_" + this.id + "'></div>" );
+		.append( $label, "<div id='sb_" + this.id + "'></div>" );
 
 	$ul.append( $li );
 
@@ -2488,8 +2488,8 @@ Geomap.prototype.addTabularData = function() {
 		colors = defaultColors();
 
 		style = typeof featureTable.style === "undefined" ?
-				{ "strokeColor": colors.stroke, "fillColor": colors.fill } :
-					featureTable.style;
+			{ "strokeColor": colors.stroke, "fillColor": colors.fill } :
+			featureTable.style;
 
 		// Loop through each row
 		for ( trLen = trElms.length - 1; trLen !== -1; trLen -= 1 ) {
@@ -2796,8 +2796,8 @@ MapLayer.prototype.createOLLayer = function() {
 
 			if ( !extractStyles ) {
 				var style = styleFactory.createStyleFunction(
-						_this.settings.style,
-						featureGeometry
+					_this.settings.style,
+					featureGeometry
 				);
 				olLayer.setStyle( style );
 			}
@@ -2820,8 +2820,8 @@ MapLayer.prototype.createOLLayer = function() {
 						_this.settings.style.select.type = "select";
 						var selStyleFactory = new StyleFactory(),
 							selStyle = selStyleFactory.createStyleFunction(
-									_this.settings.style.select,
-									feature.getGeometry().getType()
+								_this.settings.style.select,
+								feature.getGeometry().getType()
 							);
 						feature.selectStyle = selStyle;
 					}
@@ -3055,8 +3055,8 @@ MapLayer.prototype.createOLLayer = function() {
 		olLayer.getSource().once( "addfeature", function( event ) {
 			featureGeometry = event.feature.getGeometry().getType();
 			var style = styleFactory.createStyleFunction(
-					_this.settings.style,
-					featureGeometry
+				_this.settings.style,
+				featureGeometry
 			);
 			olLayer.setStyle( style );
 		} );
@@ -3557,7 +3557,7 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 	case "Polygon" || "MultiPolygon":
 		pseudoFeature = new ol.Feature( {
 			geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ],
-					[ 10, 7 ], [ -10, 7 ] ] ] )
+				[ 10, 7 ], [ -10, 7 ] ] ] )
 		} );
 		style = getPolygonStyle( {
 			fill: new ol.style.Fill( {

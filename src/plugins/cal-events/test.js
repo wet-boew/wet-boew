@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 describe( "event calendar test suite", function() {
@@ -15,7 +13,6 @@ describe( "event calendar test suite", function() {
 		todayDate = new Date(),
 		thisYear = "" + todayDate.getFullYear(),
 		thisMonth = todayDate.getMonth(),
-		$elm,
 		$calElm;
 
 	before( function() {
@@ -51,7 +48,7 @@ describe( "event calendar test suite", function() {
 		return $( elm )
 			.appendTo( $body )
 			.trigger( "wb-init.wb-calevt" );
-	};
+	}
 
 	describe( "past events", function() {
 

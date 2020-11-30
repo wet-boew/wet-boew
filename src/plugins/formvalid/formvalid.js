@@ -196,8 +196,8 @@ var componentName = "wb-frmvld",
 									i18nText.formNotSubmitted + $errors.length +
 									(
 										$errors.length !== 1 ?
-										i18nText.errorsFound :
-										i18nText.errorFound
+											i18nText.errorsFound :
+											i18nText.errorFound
 									) + "</" + summaryHeading + "><ul>";
 								$errorfields
 									.closest( ".form-group" )
