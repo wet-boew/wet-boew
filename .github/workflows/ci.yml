@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: ./script/setup
+      - run: npm i -g bower grunt-cli
       - run: npm ci
       - run: grunt dist
       - run: grunt test-mocha
