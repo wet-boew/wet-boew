@@ -30,8 +30,7 @@
     ],
     "no-irregular-whitespace": 2,
     "no-nested-ternary": 0,
-    "linebreak-style": 0,
-    "no-fallthrough": 0
+    "linebreak-style": 0
   },
   "overrides": [
     {
