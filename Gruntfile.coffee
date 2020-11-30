@@ -1019,6 +1019,8 @@ module.exports = (grunt) ->
 						"E014" # Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s
 						"E031" # Glyphicon classes must only be used on elements that contain no text content and have no child elements.
 						"E032" # `.modal-content` must be a child of `.modal-dialog`
+						"E049" # `.modal-dialog` must have a `role="document"` attribute.
+						"E051" # `.pull-right` and `.pull-left` must not be used on `.col-*-*` elements
 					]
 				src: [
 					"dist/**/*.html"
