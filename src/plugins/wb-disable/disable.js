@@ -42,7 +42,7 @@ var componentName = "wb-disable",
 
 			// Rebuild the query string
 			for ( param in pageUrl.params ) {
-				if ( param && pageUrl.params.hasOwnProperty( param ) && param !== "wbdisable" ) {
+				if ( param && Object.prototype.hasOwnProperty.call( pageUrl.params, param ) && param !== "wbdisable" ) {
 					nQuery += param + "=" + pageUrl.params[ param ] + "&#38;";
 				}
 			}

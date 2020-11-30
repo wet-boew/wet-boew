@@ -180,7 +180,7 @@ var componentName = "wb-share",
 				if ( !filter || filter.length === 0 ) {
 					keys = [];
 					for ( key in sites ) {
-						if ( sites.hasOwnProperty( key ) ) {
+						if ( Object.prototype.hasOwnProperty.call( sites, key ) ) {
 							keys.push( key );
 						}
 					}

@@ -394,8 +394,8 @@ var componentName = "wb-toggle",
 			return anyCollapsed ? data.stateOff : data.stateOn;
 
 		// Get the current on/off state of the elements specified by the selector and parent
-		} else if ( states.hasOwnProperty( selector ) ) {
-			return states[ selector ].hasOwnProperty( parent ) ?
+		} else if ( Object.prototype.hasOwnProperty.call( states, selector ) ) {
+			return Object.prototype.hasOwnProperty.call( states[ selector ], parent ) ?
 				states[ selector ][ parent ] :
 				states[ selector ].all;
 		}
@@ -431,7 +431,7 @@ var componentName = "wb-toggle",
 			// links that are restricted by parent.
 			} else {
 				for ( prop in elmsState ) {
-					if ( elmsState.hasOwnProperty( prop ) ) {
+					if ( Object.prototype.hasOwnProperty.call( elmsState, prop ) ) {
 						elmsState[ prop ] = state;
 					}
 				}

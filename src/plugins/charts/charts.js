@@ -234,7 +234,7 @@ var componentName = "wb-charts",
 				return target;
 			}
 			for ( key in cachedObj ) {
-				if ( !cachedObj.hasOwnProperty( key ) ) {
+				if ( !Object.prototype.hasOwnProperty.call( cachedObj, key ) ) {
 					continue;
 				}
 				target[ scopekey ][ key ] = cachedObj[ key ];
@@ -321,7 +321,7 @@ var componentName = "wb-charts",
 
 			// Merge and override the function.
 			for ( key in fn ) {
-				if ( !fn.hasOwnProperty( key ) ) {
+				if ( !Object.prototype.hasOwnProperty.call( fn, key ) ) {
 					continue;
 				}
 				tblFn = key.split( "/" );

@@ -1075,7 +1075,7 @@ wb.normalizeDiacritics = function( str ) {
 		i, character;
 	for ( i = 0; i !== len; i += 1 ) {
 		character = chars[ i ];
-		if ( diacritics.hasOwnProperty( character ) ) {
+		if ( Object.prototype.hasOwnProperty.call( diacritics, character ) ) {
 			chars[ i ] = diacritics[ character ];
 			normalized = true;
 		}

@@ -894,7 +894,7 @@ var componentName = "wb-geomap",
 				content += layer.popupsInfo.content;
 
 				for ( key in obj ) {
-					if ( obj.hasOwnProperty( key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 						regex = new RegExp( "_" + key, "igm" );
 						content = content.replace( regex, obj[ key ] );
 					}
@@ -903,7 +903,7 @@ var componentName = "wb-geomap",
 			} else {
 
 				for ( key in obj ) {
-					if ( obj.hasOwnProperty( key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 						content += "<tr><th><strong>" + key + "</strong></th><td> " + obj[ key ] + "</td></tr>";
 					}
 				}
@@ -925,7 +925,7 @@ var componentName = "wb-geomap",
 	getLayerKeys = function( obj ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( key !== "type" && key !== "caption" && key !== "url" && key !== "title" ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -940,7 +940,7 @@ var componentName = "wb-geomap",
 	removeKeys = function( obj, k ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( $.inArray( key, k ) < 0 ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -955,7 +955,7 @@ var componentName = "wb-geomap",
 	removeNullKeys = function( obj ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( obj[ key ] !== null ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -2673,7 +2673,7 @@ MapLayer.prototype.populateDataTable = function() {
 
 	// Create the header row
 	for ( key in attributes ) {
-		if ( attributes.hasOwnProperty( key ) ) {
+		if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 			attKey = attributes[ key ].alias ? attributes[ key ].alias : attributes[ key ];
 			head += "<th>" + attKey + "</th>";
 		}
@@ -2690,7 +2690,7 @@ MapLayer.prototype.populateDataTable = function() {
 		attributes = features[ i ].attributes;
 
 		for ( key in attributes ) {
-			if ( attributes.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 				body += "<td>" + attributes[ key ] + "</td>";
 			}
 		}
@@ -2706,7 +2706,7 @@ MapLayer.prototype.populateDataTable = function() {
 	function attributeLen() {
 		var len = 0;
 		for ( var key in attributes ) {
-			if ( attributes.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 				len += 1;
 			}
 		}
@@ -2834,7 +2834,7 @@ MapLayer.prototype.createOLLayer = function() {
 					// Parse and store the attributes
 					// TODO: test on nested attributes
 					for ( var name in layerAttributes ) {
-						if ( layerAttributes.hasOwnProperty( name ) ) {
+						if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 							atts[ layerAttributes[ name ] ] = feature.getProperties()[ name ];
 						}
 					}
@@ -2972,7 +2972,7 @@ MapLayer.prototype.createOLLayer = function() {
 
 				for ( var name in layerAttributes ) {
 					path = null;
-					if ( layerAttributes.hasOwnProperty( name ) ) {
+					if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 						path = layerAttributes[ name ].path;
 						if ( path ) {
 							atts[ layerAttributes[ name ].alias ] = feature[ name ] ? feature[ name ][ path ] : "";
@@ -3082,7 +3082,7 @@ MapLayer.prototype.createOLLayer = function() {
 					// Parse and store the attributes
 					// TODO: test on nested attributes
 					for ( var name in layerAttributes ) {
-						if ( layerAttributes.hasOwnProperty( name ) ) {
+						if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 							atts[ layerAttributes[ name ] ] = feature.getProperties()[ name ];
 						}
 					}

@@ -158,7 +158,7 @@ var getUrlParts = function( url ) {
 		initQueue: 0,
 
 		getPath: function( property ) {
-			return this.hasOwnProperty( property ) ? this[ property ] : undef;
+			return Object.prototype.hasOwnProperty.call( this, property ) ? this[ property ] : undef;
 		},
 
 		getMode: function() {
