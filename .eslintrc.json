@@ -35,7 +35,6 @@
     "no-prototype-builtins": 0,
     "no-inner-declarations": 0,
     "no-fallthrough": 0,
-    "no-self-assign": 0,
     "no-redeclare": 0
   },
   "overrides": [

@@ -423,7 +423,6 @@ var componentName = "wb-geomap",
 
 		this.createStyleFunction = function( theStyle, featureType ) {
 			style = theStyle;
-			featureType = featureType;
 			styleType = style && style.type ? style.type : "default";
 
 			// called on each feature
