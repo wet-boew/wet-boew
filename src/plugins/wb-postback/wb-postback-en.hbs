@@ -3,81 +3,65 @@
 	"title": "Postback",
 	"language": "en",
 	"category": "Plugins",
-	"description": "Submitting a form on the same page.",
+	"description": "Submit web form through AJAX call.",
 	"tag": "wb-postback",
 	"parentdir": "wb-postback",
 	"altLangPrefix": "wb-postback",
-	"dateModified": "2020-04-16"
+	"dateModified": "2020-12-09"
 }
 ---
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
+<div class="wb-prettify all-pre hide"></div>
 
-<section>
-	<h2>Purpose</h2>
-	<p>This plugin makes an AJAX request when a form is submitted to stay on page.</p>
-</section>
+<p>Submit web form through AJAX call.</p>
 
-<section>
-	<h2>Example</h2>
-	<p>After the submission, check the network tab of console to see AJAX request sent.</p>
+<p>To see this example in action, check the network tab of browser console to see AJAX request sent.</p>
 
-	<form action="wb-postback-en.html" method="GET" class="provisional wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message","content":".form-content"}'>
-		<div class="form-content">
-			<div class="form-group">
-				<label for="firstname"><span class="field-name">First Name</span></label>
-				<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" />
-			</div>
-			<div class="form-group">
-				<label for="lastname"><span class="field-name">Last Name</span></label>
-				<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" />
-			</div>
-			<div class="form-group">
-				<label for="preferredNumber">Preferred: <span class="field-name">Phone Number</span></label>
-				<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
-			</div>
-			<div class="form-group">
-				<label for="email"><span class="field-name">Email Address</span> (test@domaine)</label>
-				<input class="form-control" id="email" name="email" type="email" />
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+<form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message","content":".form-content"}'>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname"><span class="field-name">First Name</span></label>
+			<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" />
 		</div>
-		<p class="success-message hide">Thank you!</p>
-		<p class="failure-message hide">Something went wrong</p>
-	</form>
-
-	<details class="mrgn-tp-md mrgn-bttm-md">
-		<summary>View code</summary>
-		<pre>
-			<code>
-				&lt;form action="wb-postback-en.html" method="GET" class="provisional wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message&amp;quot;,&amp;quot;content&amp;quot;:&amp;quot;form-content&amp;quot;}"&gt;
-					&lt;div class="form-content"&gt;
-						&lt;div class="form-group"&gt;
-							&lt;label for="firstname"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt;&lt;/label&gt;
-							&lt;input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" /&gt;
-						&lt;/div&gt;
-						&lt;div class="form-group"&gt;
-							&lt;label for="lastname"&gt;&lt;span class="field-name"&gt;Last Name&lt;/span&gt;&lt;/label&gt;
-							&lt;input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" /&gt;
-						&lt;/div&gt;
-						&lt;div class="form-group"&gt;
-							&lt;label for="preferredNumber"&gt;Preferred: &lt;span class="field-name"&gt;Phone Number&lt;/span&gt;&lt;/label&gt;
-							&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" /&gt;
-						&lt;/div&gt;
-						&lt;div class="form-group"&gt;
-							&lt;label for="email"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (test@domaine)&lt;/label&gt;
-							&lt;input class="form-control" id="email" name="email" type="email" /&gt;
-						&lt;/div&gt;
-						&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
-					&lt;/div&gt;
-					&lt;p class="success-message hide"&gt;Thank you!&lt;/p&gt;
-					&lt;p class="failure-message hide"&gt;Something went wrong&lt;/p&gt;
-				&lt;/form&gt;
-			</code>
-		</pre>
-	</details>
-</section>
+		<div class="form-group">
+			<label for="lastname"><span class="field-name">Last Name</span></label>
+			<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="preferredNumber">Preferred: <span class="field-name">Phone Number</span></label>
+			<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		</div>
+		<div class="form-group">
+			<label for="email"><span class="field-name">Email Address</span> (test@domaine)</label>
+			<input class="form-control" id="email" name="email" type="email" />
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+<p class="success-message hide">Thank you!</p>
+<p class="failure-message hide">Something went wrong. Please submit your information via an alternative method.</p>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message&amp;quot;}"&gt;
+	&lt;div class="form-content"&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="firstname"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="lastname"&gt;&lt;span class="field-name"&gt;Last Name&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" /&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="preferredNumber"&gt;Preferred: &lt;span class="field-name"&gt;Phone Number&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" /&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="email"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (test@domaine)&lt;/label&gt;
+			&lt;input class="form-control" id="email" name="email" type="email" /&gt;
+		&lt;/div&gt;
+		&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+&lt;p class="success-message hide"&gt;Thank you!&lt;/p&gt;
+&lt;p class="failure-message hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;</code></pre>
+</details>

@@ -1,0 +1,66 @@
+---
+{
+	"title": "Background image",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Apply a background image from the given URL in parameter or as per the srcset information.",
+	"tag": "bgimg",
+	"parentdir": "bgimg",
+	"altLangPrefix": "bgimg",
+	"dateModified": "2020-12-08"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Apply a background image from the given URL in parameter or as per the image group (<code>srcset</code>) information.</p>
+
+<p>Note: Examples below use the new CSS recently introduced in wet-boew: <code>bg-center</code>, <code>bg-cover</code> and <code>bg-norepeat</code></p>
+
+<h2>Set a custom background image - <code>[data-bgimg]</code></h2>
+
+<div class="bg-cover bg-center well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Paragraph</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover bg-center well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+			&lt;p&gt;Paragraph&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
+
+<p>Note: Eventually, the javascript associated with this feature would be replaceable by a CSS4 selector.</p>
+
+<h2>Responsive background image - <code>[data-bgimg-srcset]</code></h2>
+
+<p>This plugin is very similar to how <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset">srcset</a></code> attribute works.</p>
+
+<pre><code>data-bgimg-srcset="image1_link 600w, image2_link 960w, image3_link 1280w"</code></pre>
+
+<p>The configurations are separated by a comma and each configuration consists of a link to an image and a screen width (1000w = 1000px). That image will then be displayed at that specific width and down, unless it is the biggest image declared; if it is, then it will be shown at any width down to the next smaller configuration. Consequently, if a user's screen size is greater than any sizes listed in the attribute, it will automatically choose the one with the biggest configuration. Make sure to leave only one space between the link and the size.</p>
+
+<div class="bg-cover well" data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Paragraph</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover well"
+		data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w,
+				../../demos/tabs/img/flytheskies.jpg 960w,
+				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+			&lt;p&gt;SParagraph&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>

@@ -9,7 +9,7 @@
 
 var $document = wb.doc,
 	componentName = "wb-randomize",
-	selector = ".provisional[data-wb-randomize]",
+	selector = "[data-wb-randomize]",
 	initEvent = "wb-init" + selector,
 	defaults = {},
 

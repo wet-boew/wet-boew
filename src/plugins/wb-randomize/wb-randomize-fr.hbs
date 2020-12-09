@@ -1,0 +1,175 @@
+---
+{
+	"title": "Aléatoire",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Choisi un des éléments enfant aléatoirement.",
+	"tag": "randomize",
+	"parentdir": "wb-randomize",
+	"altLangPrefix": "wb-randomize",
+	"dateModified": "2020-12-09"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Choisi un des éléments enfant aléatoirement.</p>
+
+<h2>Afficher une image aléatoire</h2>
+<p>Cet example affiche une image parmi trois aléatoirement. Les probabilité est de 33% qu'une image différente soit affiché lors du prochain rafraichissement de la page web. Le nom de la classe qui bascule est <code>hide</code> dans l'un des trois <code>img</code> elements suivant.</p>
+<div class="mrgn-bttm-md" data-wb-randomize='{ "shuffle": true, "selector": "img", "toggle": "hide" }'>
+	<img class="full-width hide" src="../../demos/tabs/img/investinourfuture.jpg" alt="Investir dans le future" />
+	<img class="full-width hide" src="../../demos/tabs/img/flytheskies.jpg" alt="Volez dans le ciel" />
+	<img class="full-width hide" src="../../demos/tabs/img/protect-environment.jpg" alt="Protéger l'environment" />
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="mrgn-bttm-md"" <strong>data-wb-randomize='{ "shuffle": true, "selector": "img", "toggle": "hide" }'</strong>&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/investinourfuture.jpg" alt="Investir dans le future" /&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/flytheskies.jpg" alt="Volez dans le ciel" /&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/protect-environment.jpg" alt="Protéger l'environment" /&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Changer aléatoirement des lignes de tableaux</h2>
+<p>Les cinq (5) ligne de tableaux sera réorganisé aléatoirement au rafraichissement de la page.</p>
+
+<table class="table table-bordered">
+	<caption>Échantillion de donnée</caption>
+	<thead>
+		<tr>
+			<th>Colonne A</th>
+			<th>Colonne B</th>
+		</tr>
+	</thead>
+	<tbody data-wb-randomize='{ "shuffle": true }'>
+		<tr>
+			<td>Ligne 1, colonne A</td>
+			<td>Ligne 1, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 2, colonne A</td>
+			<td>Ligne 2, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 3, colonne A</td>
+			<td>Ligne 3, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 4, colonne A</td>
+			<td>Ligne 4, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 5, colonne A</td>
+			<td>Ligne 5, colonne B</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;table class=&quot;table table-bordered&quot;&gt;
+	&lt;caption&gt;Échantillion de donnée&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Colonne A&lt;/th&gt;
+			&lt;th&gt;Colonne B&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody <strong>data-wb-randomize='{ "shuffle": true }'</strong>&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 1, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 1, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 2, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 2, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 3, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 3, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 4, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 4, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 5, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 5, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+<h2>Changer aléatoirement les lignes de tableaux et identifier 2 ligne</h2>
+<p>Les cinq (5) ligne de tableaux sera réorganisé aléatoirement et 2 lignes sera sélectionner.</p>
+
+<table class="table table-bordered">
+	<caption>Échantillion de donnée</caption>
+	<thead>
+		<tr>
+			<th>Colonne A</th>
+			<th>Colonne B</th>
+		</tr>
+	</thead>
+	<tbody data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'>
+		<tr>
+			<td>Ligne 1, colonne A</td>
+			<td>Ligne 1, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 2, colonne A</td>
+			<td>Ligne 2, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 3, colonne A</td>
+			<td>Ligne 3, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 4, colonne A</td>
+			<td>Ligne 4, colonne B</td>
+		</tr>
+		<tr>
+			<td>Ligne 5, colonne A</td>
+			<td>Ligne 5, colonne B</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;table class=&quot;table table-bordered&quot;&gt;
+	&lt;caption&gt;Échantillion de donnée&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Colonne A&lt;/th&gt;
+			&lt;th&gt;Colonne B&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody <strong>data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'</strong>&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 1, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 1, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 2, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 2, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 3, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 3, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 4, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 4, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Ligne 5, colonne A&lt;/td&gt;
+			&lt;td&gt;Ligne 5, colonne B&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>

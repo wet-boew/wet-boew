@@ -1,0 +1,66 @@
+---
+{
+	"title": "Image d'arrière plan",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Défini une image d'arrière plan pour l'URL passé en paramètre ou tel que spécifier par l'information du group d'image.",
+	"tag": "bgimg",
+	"parentdir": "bgimg",
+	"altLangPrefix": "bgimg",
+	"dateModified": "2020-12-08"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Défini une image d'arrière plan pour l'URL passé en paramètre ou tel que spécifier par l'information du group d'image (<code>srcset</code>).</p>
+
+<p>Noter: Les exemples ci-dessous utilise de nouveau CSS introduit récemment dans la wet-boew. Tel que: <code>bg-center</code>, <code>bg-cover</code> et <code>bg-norepeat</code></p>
+
+<h2>Definir une image d'arrière plan - <code>[data-bgimg]</code></h2>
+
+<div class="bg-cover bg-center well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Titre</h4>
+		<p>Paragraphe</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover bg-center well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Titre&lt;/h4&gt;
+			&lt;p&gt;Paragraphe&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
+
+<p>Noter: Éventuellement le code javascript associé à cette fonctionalité pourra être remplacé par un sélecteur CSS 4.</p>
+
+<h2>Définir une image d'arrière plan adaptable - <code>[data-bgimg-srcset]</code></h2>
+
+<p>Cet fonctionalité est très similaire à l'attribut de l'image <code><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/Img#attr-srcset">srcset</a></code>.</p>
+
+<pre><code>data-bgimg-srcset="image1_link 600w, image2_link 960w, image3_link 1280w"</code></pre>
+
+<p>Chaque configuration sont séparé par une virgule et consiste en un lien suivi de la largeur d'écran en pixel (1000w = 1000px). L'image sera affiché selon que la largeur définiera la valeur maximal permis pour utiliser l'image. Par conséquence, si la grandeur de l'écran de l'utilisateur va au delà des grandeurs spécifié, l'image qui a la plus grande largeur sera sélectionné. Make sure to leave only one space between the link and the size.</p>
+
+<div class="bg-cover well" data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Titre</h4>
+		<p>Paragraphe</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover well"
+		data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w,
+				../../demos/tabs/img/flytheskies.jpg 960w,
+				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Titre&lt;/h4&gt;
+			&lt;p&gt;Paragraphe&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>

@@ -9,7 +9,7 @@
 
 var $document = wb.doc,
 	componentName = "wb-postback",
-	selector = ".provisional." + componentName,
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	defaults = {},
 
