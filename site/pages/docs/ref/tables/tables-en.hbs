@@ -39,25 +39,6 @@
 		</ol>
 		<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
 	</section>
-
-	<section>
-		<h3 id="advopt">Advanced Options</h3>
-		<p>Allows the user to change how checkboxes are filtered.</p>
-		<ol>
-			<li>Add <code>data-aopts='{"type": "", "column": ""}'</code> arrtibute to any checkbox element to apply the advanced options.</li>
-			<li>
-				Available filter types:
-				<ol>
-					<li>ANY - This option will return entries that contain either A or B, or both.</li>
-					<li>BOTH - This option will only return entries that contain both A and B.</li>
-					<li>EITHER - This option will return all entries that are just A or just B - and not combinations of the two.</li>
-					<li>AND - This option will only return entries that are a combination of A or B.</li>
-				</ol>
-			</li>
-			<li>Column is the checkboxes that the filter well apply too (must match there 'data-column').</li>
-		</ol>
-		<pre><code>&lt;label for="advanced_options1_1"&gt;&lt;input type="radio" name="advanced_options1" id="advanced_options1_1" data-aopts='{"type": "any", "column": "5"}' checked /&gt;Any&lt;/label&gt;</code></pre>
-	</section>
 </section>
 
 <section>
