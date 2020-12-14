@@ -1,0 +1,188 @@
+---
+{
+	"title": "Randomize",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Randomly picks one of the child elements.",
+	"tag": "randomize",
+	"parentdir": "wb-randomize",
+	"altLangPrefix": "wb-randomize",
+	"dateModified": "2020-12-09"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Randomly picks one of the child elements.</p>
+
+<h2>Configuration</h2>
+<dl>
+	<dt><code>selector</code> (jQuery selector)</dt>
+	<dd>Default undefined. When undefined it selects all the children. This attribute specifies the child elements to be displayed.</dd>
+	<dt><code>shuffle</code> (boolean)</dt>
+	<dd>If true, it will shuffle the order of child components.</dd>
+	<dt><code>toggle</code> (CSS class)</dt>
+	<dd>Class name that will be toggled in child components and it will toggle the specified class of child components to reveal.</dd>
+	<dt><code>number</code> (number)</dt>
+	<dd>Optional and use with toggle. Number of child components to be displayed when toggled. Default is set to <code>1</code>.</dd>
+</dl>
+
+<h2>Show one random image</h2>
+<p>Below example shows one image out of three images randomly. Probability of 33% that a different image will be display on the next page refresh. The name of class that will be toggled is 'hide' in the following three <code>img</code>s.</p>
+<div class="mrgn-bttm-md" data-wb-randomize='{ "shuffle": true, "selector": "img", "toggle": "hide" }'>
+	<img class="full-width hide" src="../../demos/tabs/img/investinourfuture.jpg" alt="Invest in our Future" />
+	<img class="full-width hide" src="../../demos/tabs/img/flytheskies.jpg" alt="Fly the Skies" />
+	<img class="full-width hide" src="../../demos/tabs/img/protect-environment.jpg" alt="Protect Environment" />
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="mrgn-bttm-md"" <strong>data-wb-randomize='{ "shuffle": true, "selector": "img", "toggle": "hide" }'</strong>&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/investinourfuture.jpg" alt="Invest in our Future" /&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/flytheskies.jpg" alt="Fly the Skies" /&gt;
+	&lt;img class="full-width hide"
+		src="../../demos/tabs/img/protect-environment.jpg" alt="Protect Environment" /&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h4>Randomize tables rows</h4>
+<p>All five (5) table rows get shuffled on page load.</p>
+
+<table class="table table-bordered">
+	<caption>Data sample</caption>
+	<thead>
+		<tr>
+			<th>Column A</th>
+			<th>Column B</th>
+		</tr>
+	</thead>
+	<tbody data-wb-randomize='{ "shuffle": true }'>
+		<tr>
+			<td>Row 1, column A</td>
+			<td>Row 1, column B</td>
+		</tr>
+		<tr>
+			<td>Row 2, column A</td>
+			<td>Row 2, column B</td>
+		</tr>
+		<tr>
+			<td>Row 3, column A</td>
+			<td>Row 3, column B</td>
+		</tr>
+		<tr>
+			<td>Row 4, column A</td>
+			<td>Row 4, column B</td>
+		</tr>
+		<tr>
+			<td>Row 5, column A</td>
+			<td>Row 5, column B</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;table class=&quot;table table-bordered&quot;&gt;
+	&lt;caption&gt;Data sample&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Column A&lt;/th&gt;
+			&lt;th&gt;Column B&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody <strong>data-wb-randomize='{ "shuffle": true }'</strong>&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 1, column A&lt;/td&gt;
+			&lt;td&gt;Row 1, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 2, column A&lt;/td&gt;
+			&lt;td&gt;Row 2, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 3, column A&lt;/td&gt;
+			&lt;td&gt;Row 3, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 4, column A&lt;/td&gt;
+			&lt;td&gt;Row 4, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 5, column A&lt;/td&gt;
+			&lt;td&gt;Row 5, column B&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<h4>Randomize tables rows and toggle 2 rows</h4>
+<p>All five (5) table rows get shuffled on page load and 2 of them get the CSS class <code>warning</code>.</p>
+
+<table class="table table-bordered">
+	<caption>Data sample</caption>
+	<thead>
+		<tr>
+			<th>Column A</th>
+			<th>Column B</th>
+		</tr>
+	</thead>
+	<tbody data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'>
+		<tr>
+			<td>Row 1, column A</td>
+			<td>Row 1, column B</td>
+		</tr>
+		<tr>
+			<td>Row 2, column A</td>
+			<td>Row 2, column B</td>
+		</tr>
+		<tr>
+			<td>Row 3, column A</td>
+			<td>Row 3, column B</td>
+		</tr>
+		<tr>
+			<td>Row 4, column A</td>
+			<td>Row 4, column B</td>
+		</tr>
+		<tr>
+			<td>Row 5, column A</td>
+			<td>Row 5, column B</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;table class=&quot;table table-bordered&quot;&gt;
+	&lt;caption&gt;Data sample&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Column A&lt;/th&gt;
+			&lt;th&gt;Column B&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody <strong>data-wb-randomize='{ "shuffle": true, "toggle": "warning", "number": 2 }'</strong>&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 1, column A&lt;/td&gt;
+			&lt;td&gt;Row 1, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 2, column A&lt;/td&gt;
+			&lt;td&gt;Row 2, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 3, column A&lt;/td&gt;
+			&lt;td&gt;Row 3, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 4, column A&lt;/td&gt;
+			&lt;td&gt;Row 4, column B&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Row 5, column A&lt;/td&gt;
+			&lt;td&gt;Row 5, column B&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
