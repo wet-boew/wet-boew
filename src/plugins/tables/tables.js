@@ -217,6 +217,9 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 			}
 			number = number.replace( /\,/g, "" );
 			return parseFloat( number );
+		},
+		$isDate = function isDate( date ) {
+			return date instanceof Date && !isNaN( date );
 		};
 
 	// Lets reset the search
@@ -289,6 +292,39 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 				$value = ( $fData ) ? $fData : "-0";
 				$regex = "(" + $value.replace( /\&nbsp\;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
 			}
+		} else if ( $elm.is( "input[type='date']" ) ) {
+			var $minDate, $maxDate, $fData;
+
+			// Retain minimum date (always the first date input)
+			if ( $cachedVal === "" ) {
+				$cachedVal = new Date( $elm.val() );
+				$cachedVal.setDate( $cachedVal.getDate() + 1 );
+				$cachedVal.setHours( 0, 0, 0, 0 );
+			}
+			$minDate = $cachedVal;
+
+			// Maximum date is always the current selected date
+			$maxDate = new Date( $elm.val() );
+			$maxDate.setDate( $maxDate.getDate() + 1 );
+			$maxDate.setHours( 23, 59, 59, 999 );
+
+			// Generates a list of date strings (within the min and max date)
+			$fData = $datatable.column( $column ).data().filter( function( obj ) {
+				var $date = obj.replace( /[0-9]{2}\s[0-9]{2}\:/g, function( e ) {
+					return e.replace( /\s/g, "T" );
+				} );
+				$date = new Date( $date );
+				$date.setHours( 0, 0, 0, 0 );
+
+				if ( !$isDate( $minDate ) || !$isDate( $maxDate ) || !$isDate( $date ) ) {
+					return;
+				}
+				return ( $date >= $minDate && $date <= $maxDate );
+			} );
+			$fData = $fData.join( "|" );
+
+			// If no dates match set as -1, so no results return
+			$value = ( $fData ) ? $fData : "-1";
 		} else if ( $elm.is( ":checkbox" ) ) {
 
 			// Verifies if checkbox is checked before setting value
