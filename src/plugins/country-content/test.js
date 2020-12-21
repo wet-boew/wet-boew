@@ -19,7 +19,7 @@ describe( "Country Content test suite", function() {
 	describe( "init behaviour", function() {
 		var $elm,
 			stubs = {},
-			sandbox = sinon.sandbox.create();
+			sandbox = sinon.createSandbox();
 
 		before( function() {
 

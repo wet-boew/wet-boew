@@ -13,7 +13,7 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Feeds test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		ajaxEvent = "ajax-fetch.wb",
 		fetchedEvent = "ajax-fetched.wb",
 		$document = wb.doc,

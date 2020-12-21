@@ -12,7 +12,7 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "[data-pic] test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		selector = "[data-pic]",
 		$document = wb.doc,
 		$body = $document.find( "body" ),

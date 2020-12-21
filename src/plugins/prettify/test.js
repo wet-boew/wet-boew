@@ -15,7 +15,7 @@ describe( "Prettify test suite", function() {
 	var callback, $prettify,
 		$document = wb.doc,
 		$body = $document.find( "body" ),
-		sandbox = sinon.sandbox.create();
+		sandbox = sinon.createSandbox();
 
 	/*
 	 * Before beginning the test suite, this function is executed once.

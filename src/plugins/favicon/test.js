@@ -15,7 +15,7 @@
 describe( "Favicon test suite", function() {
 
 	var $favicon, $faviconMobile, spy,
-		sandbox = sinon.sandbox.create();
+		sandbox = sinon.createSandbox();
 
 	/*
 	 * Before beginning the test suite, this function is executed once.

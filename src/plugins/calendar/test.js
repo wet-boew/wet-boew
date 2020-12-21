@@ -7,7 +7,7 @@
 ( function( $, wb ) {
 
 describe( "calendar test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		trigger = sandbox.spy( $.prototype, "trigger" ),
 		$document = wb.doc,
 		$elm;
@@ -115,7 +115,7 @@ describe( "calendar test suite", function() {
 		after( function() {
 			$calendarObj.remove();
 
-			trigger.reset();
+			sandbox.reset();
 		} );
 
 		it( "should update the year setting", function() {
@@ -229,7 +229,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event with the new year and month", function() {
@@ -280,7 +280,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event with the new year and month", function() {
@@ -335,7 +335,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event with the new year and month", function() {
@@ -367,7 +367,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event with the new year and month", function() {
@@ -403,7 +403,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event to the previous month", function() {
@@ -442,7 +442,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event to the previous year", function() {
@@ -474,7 +474,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event to the next month", function() {
@@ -513,7 +513,7 @@ describe( "calendar test suite", function() {
 			after( function() {
 				$calendarObj.remove();
 
-				trigger.reset();
+				sandbox.reset();
 			} );
 
 			it( "should trigger a wb-navigate event to the next year", function() {
@@ -590,7 +590,7 @@ describe( "calendar test suite", function() {
 
 		describe( "callback on navigate", function() {
 			before( function() {
-				callback.reset();
+				sandbox.reset();
 				calendar.reInit( settings );
 				$calendarObj.trigger( {
 					type: "wb-navigate.wb-clndr",

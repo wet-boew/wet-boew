@@ -13,7 +13,7 @@
  */
 describe( "data-ajax test suite", function() {
 	var spy,
-		sandbox = sinon.sandbox.create(),
+		sandbox = sinon.createSandbox(),
 		$document = wb.doc,
 		$body = $document.find( "body" ),
 		ajax = {

@@ -7,7 +7,7 @@
 ( function( $, wb ) {
 
 describe( "event calendar test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		$body = wb.doc.find( "body" ),
 		$elm,
 		todayDate = new Date(),
