@@ -306,7 +306,7 @@ module.exports = (grunt) ->
 
 	globalConnectMiddleware = (connect, middlewares) ->
 		middlewares.unshift(
-			connect.compress filter: (req, res) ->
+			connect.compression filter: (req, res) ->
 				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
 		)
 
@@ -1362,7 +1362,7 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						globalConnectMiddleware connect, middlewares
+						# globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace "/v4.0-ci/", "/"
@@ -1386,7 +1386,7 @@ module.exports = (grunt) ->
 				options:
 					base: "."
 					middleware: (connect, options, middlewares) ->
-						globalConnectMiddleware connect, middlewares
+						# globalConnectMiddleware connect, middlewares
 						middlewares
 
 		i18n_csv:
@@ -1406,7 +1406,7 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just%20some%7Ctest"]
+					urls: ["http://localhost:8000/unmin/test/test.html?txthl=just%20some%7Ctest"]
 
 		"string-replace":
 			inline:
