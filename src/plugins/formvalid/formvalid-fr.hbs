@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2020-09-15"
+	"dateModified": "2020-12-23"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -25,7 +25,7 @@
 </section>
 
 <section>
-	<h2>Exemples</h2>
+	<h2>Exemples utilisant la validation régulière ou spécialisée</h2>
 
 	<div class="wb-frmvld">
 		<form action="#" method="get" id="validation-example">
@@ -60,7 +60,7 @@
 
 				<div class="form-group">
 					<label for="fname1" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" pattern=".{2,}" data-rule-minlength="2" />
+					<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Voir le code</summary>
@@ -69,13 +69,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="fname1" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+			&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="lname1" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
-					<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" pattern=".{2,}" data-rule-minlength="2" />
+					<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Voir le code</summary>
@@ -84,7 +84,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="lname1" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
+			&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="family-name" required="required" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
@@ -213,7 +213,7 @@
 
 				<div class="form-group">
 					<label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label>
-					<input class="form-control" id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
+					<input class="form-control" id="an1" name="an1" type="text" data-rule-alphanumeric="true" data-rule-minlength="4" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Voir le code</summary>
@@ -222,7 +222,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="an1"&gt;&lt;span class="field-name"&gt;Alphanumérique&lt;/span&gt; (4 caractères minimum)&lt;/label&gt;
-			&lt;input class="form-control" id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" /&gt;
+			&lt;input class="form-control" id="an1" name="an1" type="text" data-rule-alphanumeric="true" data-rule-minlength="4" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
@@ -243,7 +243,7 @@
 
 				<div class="form-group">
 					<label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label>
-					<input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" />
+					<input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" data-rule-lettersonly="true" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Voir le code</summary>
@@ -252,13 +252,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="letters1"&gt;&lt;span class="field-name"&gt;Lettres seulement&lt;/span&gt; (5 caractères maximum)&lt;/label&gt;
-			&lt;input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" /&gt;
+			&lt;input class="form-control" id="letters1" name="letters1" type="text" size="5" maxlength="5" data-rule-lettersonly="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permise&#160;: [. , ( ) "])</label>
-					<input class="form-control" id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-letterswithbasicpunc="true" />
+					<input class="form-control" id="text1" name="text1" type="text" data-rule-letterswithbasicpunc="true" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Voir le code</summary>
@@ -267,7 +267,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="text1"&gt;&lt;span class="field-name"&gt;Lettres et des signes de ponctuation seulement&lt;/span&gt; (ponctuation qui est permise&#160;: [. , ( ) "])&lt;/label&gt;
-			&lt;input class="form-control" id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-letterswithbasicpunc="true" /&gt;
+			&lt;input class="form-control" id="text1" name="text1" type="text" data-rule-letterswithbasicpunc="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
@@ -327,13 +327,13 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="nowhitespace1"&gt;&lt;span class="field-name"&gt;Sans d'espaces blancs&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-nowhitespace="true" /&gt;
+			&lt;input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" data-rule-nowhitespace="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
 					<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 caractères)</label>
-					<input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+					<input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-rangelength="[5,10]" />
 					<label for="passwordconfirm"><span class="field-name">Confirmez votre mot de passe</span></label>
 					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" />
 				</div>
@@ -344,7 +344,7 @@
 		...
 		&lt;div class="form-group"&gt;
 			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Mot de passe&lt;/span&gt; (entre 5 et 10 caractères)&lt;/label&gt;
-			&lt;input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;input class="form-control" id="password1" name="password1" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-rangelength="[5,10]" /&gt;
 			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirmez votre mot de passe&lt;/span&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" autocomplete="new-password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
 		&lt;/div&gt;</code></pre>
@@ -425,7 +425,32 @@
 		&lt;/fieldset&gt;</code></pre>
 			</details>
 
-			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 pt-4" />
+			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+</section>
+<hr>
+<section>
+	<h2>Exemple utilisant un modèle de validation personnalisé</h2>
+	<p>Si l'attribut <code>pattern</code> est utilisé de paire avec l'attribut <code>data-msg</code>, la validation du motif prévaudra; ce qui signifie qu'au final vous n'obtiendrez seulement que le message d'erreur générique qui provient du <code>pattern</code>. Il est fortement recommandé d'utiliser l'attribut <code>data-msg</code> pour personnaliser le message d'erreur affiché par la validation du motif lorsque le champ est en état d'erreur.</p>
+	<div class="wb-frmvld">
+		<form action="#" method="get" id="validation-example-3">
+			<div class="form-group">
+				<label for="custom1" class="required"><span class="field-name">Numéro d'application (une lettre suivi de six chiffres)</span> <strong class="required">(obligatoire)</strong></label>
+				<input class="form-control" id="custom1" name="custom1" type="text" pattern="[A-Za-z][0-9]{6}" data-msg="Veuillez entrer un numéro d'application valide" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>Voir le code</summary>
+				<pre><code>&lt;div class="wb-frmvld"&gt;
+				&lt;form action="#" method="get" id="validation-example"&gt;
+					...
+					&lt;div class="form-group"&gt;
+						&lt;label for="custom1" class="required"&gt;&lt;span class="field-name"&gt;Numéro d'application (une lettre suivi de six chiffres)&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="custom1" name="custom1" type="text" pattern="[A-Za-z][0-9]{6}" required="required" /&gt;
+					&lt;/div&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
 		</form>
 	</div>
 </section>
@@ -679,7 +704,7 @@
 		&lt;/fieldset&gt;</code></pre>
 			</details>
 
-			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 pt-4" />
+			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
 		</form>
 	</div>
 
