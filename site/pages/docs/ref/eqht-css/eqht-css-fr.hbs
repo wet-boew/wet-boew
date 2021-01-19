@@ -1,0 +1,81 @@
+---
+{
+	"title": "Égalisation des hauteurs (pure CSS)",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Un plugiel d'égalisation des hauteurs pour les grilles.",
+	"altLangPrefix": "eqht-css",
+	"dateModified": "2020-09-17"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Fonction</h2>
+	<p>Égalise la hauteur d'éléments étant sur la même ligne de base.</p>
+</section>
+
+<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>Des éléments ayant des hauteurs différentes sont affichés sur la même ligne de base.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Éviter lorsque</h2>
+	<p>Aucun cas d'utilisation n'est connu pour lequel l'utilisation de ce plugiciel devrait être évitée.</p>
+</section>
+
+<section>
+	<h2>Exemples pratiques</h2>
+	<p><a href="../../../demos/eqht-css/eqht-css-fr.html">Exemples pratiques du plugiciel d'égalisation des hauteurs pure css</a></p>
+</section>
+
+<section>
+	<h2>Comment implémenter le plucigiel</h2>
+	<ol>
+		<li>Ajouter la classe <code lang="en">wb-eqht-grd</code> à l'élément qui contient les grilles pour lesquelles vous voulez égaliser la hauteur.</li>
+		<li>Ajouter la classe <code lang="en">hght-inhrt</code> à tous les éléments contenus dans les grilles pour lequels vous voulez égaliser la hauteur.</li>
+		<li>Ajouter la classe <code lang="en">eqht-trgt</code> à l'élément à égaliser. Il s'agit de la même chose que d'ajouter <code>hght-inhrt</code> sur tous les éléments jusqu'à l'élément enfant de <code>wb-eqht-grd</code>.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Paramètres de configuration</h2>
+	<p>Aucun paramètre de configuration.</p>
+</section>
+
+<section>
+	<h2>Événements</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Effet déclenché</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-eqht-grd .eqht-trgt</code></td>
+				<td>Déclenché manuellement (ex.&nbsp;: <code>$( ".wb-eqht-grd .eqht-trgt" ).trigger( "wb-init.wb-eqht-grd .eqht-trgt" );</code>).</td>
+				<td>Utilisé pour initialisé manuellement l'égalisateur des hauteur en CSS pure.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-eqht-grd .eqht-trgt</code></td>
+				<td>Déclenché automatiquement après l'initialisation du formulaire à étapes.</td>
+				<td>Utilisé afin d'identifié l'élément sur lequel le formulaire à étapes a été initialisé (la cible de l'événement)
+					<pre><code>$( document ).on( "wb-ready.wb-eqht-grd .eqht-trgt", ".wb-eqht-grd .eqht-trgt", function( event ) {});</code></pre>
+					<pre><code>$( ".wb-eqht-grd .eqht-trgt" ).on( "wb-ready.wb-eqht-grd .eqht-trgt", function( event ) {});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/eqht-css">Code source du plugiciel d'égalisation des hauteurs pure css sur <span lang="en">GitHub</span></a></p>
+</section>
