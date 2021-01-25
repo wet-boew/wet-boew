@@ -88,15 +88,6 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"test-mocha"
-		"Run tests locally with Grunt Mocha"
-		[
-			"pre-mocha"
-			"mocha"
-		]
-	)
-
-	@registerTask(
 		"init"
 		"Only needed when the repo is first cloned"
 		[
@@ -256,9 +247,6 @@ module.exports = (grunt) ->
 				"pages:test"
 			]
 
-			#Prevents multiple instances of connect from running
-			if grunt.config.get "connect.test.options.port" is undefined
-				grunt.task.run "connect:test"
 	)
 
 	@registerTask(
@@ -1382,12 +1370,6 @@ module.exports = (grunt) ->
 
 						middlewares
 
-			test:
-				options:
-					base: "."
-					middleware: (connect, options, middlewares) ->
-						# globalConnectMiddleware connect, middlewares
-						middlewares
 
 		i18n_csv:
 			options:
@@ -1401,12 +1383,6 @@ module.exports = (grunt) ->
 				dest: "<%= coreDist %>/js/i18n/"
 			assemble:
 				dest: 'site/data/i18n'
-
-		mocha:
-			all:
-				options:
-					reporter: "Spec"
-					urls: ["http://localhost:8000/unmin/test/test.html?txthl=just%20some%7Ctest"]
 
 		"string-replace":
 			inline:

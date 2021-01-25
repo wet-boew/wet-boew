@@ -28,8 +28,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install puppeteer libraries
+        run: |
+         sudo apt-get update
+         sudo apt-get install -y libgbm1
+      - run: gem install rake html-proofer
       - run: npm i -g bower grunt-cli
       - run: npm ci
-      - run: grunt dist
-      - run: grunt test-mocha
+      # - run: grunt dist
+      - run: npm test
       - run: rake
