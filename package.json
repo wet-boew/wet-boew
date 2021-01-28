@@ -41,7 +41,7 @@
     "jquery": "2.2.4",
     "jquery-validation": "1.17.0",
     "magnific-popup": "git+https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
-    "mathjax": "2.7.1",
+    "mathjax": "2.7.4",
     "proj4": "2.3.3",
     "unorm": "^1.4.1"
   },
