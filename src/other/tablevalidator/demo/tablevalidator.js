@@ -8,7 +8,6 @@
  * @author: Pierre Dubois
  *
  */
-/*global jQuery: false, alert: false */
 ( function( $, wb ) {
 "use strict";
 
@@ -194,9 +193,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			currCell = currRow.cell[ j ];
 
 			if ( ( currCell.type === 1 || currCell.type === 7 ) && (
-					!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
+				!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
 					!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
-				) ) {
+			) ) {
 
 				// If there no id, add an uid
 				currCellId = $( currCell.elem ).attr( "id" );

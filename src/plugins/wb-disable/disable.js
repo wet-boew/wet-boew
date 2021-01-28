@@ -42,7 +42,7 @@ var componentName = "wb-disable",
 
 			// Rebuild the query string
 			for ( param in pageUrl.params ) {
-				if ( param && pageUrl.params.hasOwnProperty( param ) && param !== "wbdisable" ) {
+				if ( param && Object.prototype.hasOwnProperty.call( pageUrl.params, param ) && param !== "wbdisable" ) {
 					nQuery += param + "=" + pageUrl.params[ param ] + "&#38;";
 				}
 			}
@@ -55,7 +55,10 @@ var componentName = "wb-disable",
 
 						// Store preference for WET plugins and polyfills to be disabled in localStorage
 						localStorage.setItem( "wbdisable", "true" );
-					} catch ( e ) {}
+					} catch ( e ) {
+
+						/* swallow error */
+					}
 
 					// Add notice and link to re-enable WET plugins and polyfills
 					noticehtml = noticehtml + " class='alert alert-warning text-center'><h2>" + noticeHeader + "</h2><p>" + noticeBody + "</p><p><a rel='alternate' property='significantLink' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + noticehtmlend;
@@ -78,6 +81,8 @@ var componentName = "wb-disable",
 					window.history.replaceState( "", "", lc );
 				}
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 
 			// Append the Basic HTML version link version

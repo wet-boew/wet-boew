@@ -14,7 +14,7 @@ wb.doc.on( "click vclick", "#update-progress", function() {
 	$elm
 		.attr( "value", newValue )
 		.find( "span" )
-			.text( newValue + "%" );
+		.text( newValue + "%" );
 
 	// Update the visuals
 	$elm.trigger( "wb-update.wb-progress" );

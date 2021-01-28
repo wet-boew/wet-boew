@@ -178,7 +178,7 @@ var componentName = "wb-geomap",
 		this.settings.aspectRatio = ( this.settings.basemap &&
 				this.settings.basemap.mapOptions &&
 					this.settings.basemap.mapOptions.aspectRatio !== undefined ) ?
-						this.settings.basemap.mapOptions.aspectRatio : 0.8;
+			this.settings.basemap.mapOptions.aspectRatio : 0.8;
 
 		this.map = createOLMap( this );
 		this.legend = new MapLegend( this );
@@ -370,8 +370,8 @@ var componentName = "wb-geomap",
 		resolution = 1;
 		if ( !resolution ) {
 			resolution = Math.max(
-					gw / symbolWidth || 0,
-					gh / symbolHeight || 0
+				gw / symbolWidth || 0,
+				gh / symbolHeight || 0
 			) || 1;
 		}
 		map.setView( new ol.View( {
@@ -423,7 +423,6 @@ var componentName = "wb-geomap",
 
 		this.createStyleFunction = function( theStyle, featureType ) {
 			style = theStyle;
-			featureType = featureType;
 			styleType = style && style.type ? style.type : "default";
 
 			// called on each feature
@@ -607,7 +606,6 @@ var componentName = "wb-geomap",
 				radius = objStyle.pointRadius ? objStyle.pointRadius : 5;
 				strokeColor = objStyle.strokeColor ? hexToRGB( objStyle.strokeColor, opacity ) : colors.transparent;
 				fillColor = objStyle.fillColor ? hexToRGB( objStyle.fillColor, opacity ) : null;
-				name = objStyle.name ? objStyle.name : null;
 				graphicHeight = objStyle.graphicHeight ? objStyle.graphicHeight : 25;
 				externalGraphic = objStyle.externalGraphic;
 				graphicWidth = objStyle.graphicWidth ? objStyle.graphicWidth : 25;
@@ -669,7 +667,6 @@ var componentName = "wb-geomap",
 			radius = style.pointRadius ? style.pointRadius : 5;
 			strokeColor = style.strokeColor ? hexToRGB( style.strokeColor, opacity ) : colors.transparent;
 			fillColor = style.fillColor ? hexToRGB( style.fillColor, opacity ) : null;
-			name = style.name ? style.name : null;
 			graphicHeight = style.graphicHeight ? style.graphicHeight : 25;
 			externalGraphic = style.externalGraphic;
 			graphicWidth = style.graphicWidth ? style.graphicWidth : 25;
@@ -897,7 +894,7 @@ var componentName = "wb-geomap",
 				content += layer.popupsInfo.content;
 
 				for ( key in obj ) {
-					if ( obj.hasOwnProperty( key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 						regex = new RegExp( "_" + key, "igm" );
 						content = content.replace( regex, obj[ key ] );
 					}
@@ -906,7 +903,7 @@ var componentName = "wb-geomap",
 			} else {
 
 				for ( key in obj ) {
-					if ( obj.hasOwnProperty( key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 						content += "<tr><th><strong>" + key + "</strong></th><td> " + obj[ key ] + "</td></tr>";
 					}
 				}
@@ -928,7 +925,7 @@ var componentName = "wb-geomap",
 	getLayerKeys = function( obj ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( key !== "type" && key !== "caption" && key !== "url" && key !== "title" ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -943,7 +940,7 @@ var componentName = "wb-geomap",
 	removeKeys = function( obj, k ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( $.inArray( key, k ) < 0 ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -958,7 +955,7 @@ var componentName = "wb-geomap",
 	removeNullKeys = function( obj ) {
 		var key, keys = {};
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
 				if ( obj[ key ] !== null ) {
 					keys[ key ] = obj[ key ];
 				}
@@ -1925,7 +1922,7 @@ var componentName = "wb-geomap",
 		_this.geolocation.on( "change:position", function() {
 			coordinates = _this.geolocation.getPosition();
 			positionFeature.setGeometry( coordinates ?
-					new ol.geom.Point( coordinates ) : null );
+				new ol.geom.Point( coordinates ) : null );
 
 			// zoom to feature
 			var extent = _this.featuresOverlay.getSource().getExtent();
@@ -2414,7 +2411,7 @@ MapLayer.prototype.addToLegend = function() {
 	} ).prepend( $chkBox );
 
 	$li = $( "<li class='checkbox geomap-lgnd-layer'>" )
-			.append( $label, "<div id='sb_" + this.id + "'></div>" );
+		.append( $label, "<div id='sb_" + this.id + "'></div>" );
 
 	$ul.append( $li );
 
@@ -2488,8 +2485,8 @@ Geomap.prototype.addTabularData = function() {
 		colors = defaultColors();
 
 		style = typeof featureTable.style === "undefined" ?
-				{ "strokeColor": colors.stroke, "fillColor": colors.fill } :
-					featureTable.style;
+			{ "strokeColor": colors.stroke, "fillColor": colors.fill } :
+			featureTable.style;
 
 		// Loop through each row
 		for ( trLen = trElms.length - 1; trLen !== -1; trLen -= 1 ) {
@@ -2676,7 +2673,7 @@ MapLayer.prototype.populateDataTable = function() {
 
 	// Create the header row
 	for ( key in attributes ) {
-		if ( attributes.hasOwnProperty( key ) ) {
+		if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 			attKey = attributes[ key ].alias ? attributes[ key ].alias : attributes[ key ];
 			head += "<th>" + attKey + "</th>";
 		}
@@ -2693,7 +2690,7 @@ MapLayer.prototype.populateDataTable = function() {
 		attributes = features[ i ].attributes;
 
 		for ( key in attributes ) {
-			if ( attributes.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 				body += "<td>" + attributes[ key ] + "</td>";
 			}
 		}
@@ -2709,7 +2706,7 @@ MapLayer.prototype.populateDataTable = function() {
 	function attributeLen() {
 		var len = 0;
 		for ( var key in attributes ) {
-			if ( attributes.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( attributes, key ) ) {
 				len += 1;
 			}
 		}
@@ -2796,8 +2793,8 @@ MapLayer.prototype.createOLLayer = function() {
 
 			if ( !extractStyles ) {
 				var style = styleFactory.createStyleFunction(
-						_this.settings.style,
-						featureGeometry
+					_this.settings.style,
+					featureGeometry
 				);
 				olLayer.setStyle( style );
 			}
@@ -2820,8 +2817,8 @@ MapLayer.prototype.createOLLayer = function() {
 						_this.settings.style.select.type = "select";
 						var selStyleFactory = new StyleFactory(),
 							selStyle = selStyleFactory.createStyleFunction(
-									_this.settings.style.select,
-									feature.getGeometry().getType()
+								_this.settings.style.select,
+								feature.getGeometry().getType()
 							);
 						feature.selectStyle = selStyle;
 					}
@@ -2837,7 +2834,7 @@ MapLayer.prototype.createOLLayer = function() {
 					// Parse and store the attributes
 					// TODO: test on nested attributes
 					for ( var name in layerAttributes ) {
-						if ( layerAttributes.hasOwnProperty( name ) ) {
+						if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 							atts[ layerAttributes[ name ] ] = feature.getProperties()[ name ];
 						}
 					}
@@ -2890,7 +2887,7 @@ MapLayer.prototype.createOLLayer = function() {
 			olLayer.setStyle( styleFactory.createStyleFunction( _this.settings.style, featureGeometry ) );
 		} );
 
-		function getCoordKey( feature ) {
+		var getCoordKey = function( feature ) {
 
 			var geomKey;
 
@@ -2901,7 +2898,7 @@ MapLayer.prototype.createOLLayer = function() {
 			} );
 
 			return geomKey;
-		}
+		};
 
 		var successHandler = function( data ) {
 
@@ -2975,7 +2972,7 @@ MapLayer.prototype.createOLLayer = function() {
 
 				for ( var name in layerAttributes ) {
 					path = null;
-					if ( layerAttributes.hasOwnProperty( name ) ) {
+					if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 						path = layerAttributes[ name ].path;
 						if ( path ) {
 							atts[ layerAttributes[ name ].alias ] = feature[ name ] ? feature[ name ][ path ] : "";
@@ -3055,8 +3052,8 @@ MapLayer.prototype.createOLLayer = function() {
 		olLayer.getSource().once( "addfeature", function( event ) {
 			featureGeometry = event.feature.getGeometry().getType();
 			var style = styleFactory.createStyleFunction(
-					_this.settings.style,
-					featureGeometry
+				_this.settings.style,
+				featureGeometry
 			);
 			olLayer.setStyle( style );
 		} );
@@ -3085,7 +3082,7 @@ MapLayer.prototype.createOLLayer = function() {
 					// Parse and store the attributes
 					// TODO: test on nested attributes
 					for ( var name in layerAttributes ) {
-						if ( layerAttributes.hasOwnProperty( name ) ) {
+						if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 							atts[ layerAttributes[ name ] ] = feature.getProperties()[ name ];
 						}
 					}
@@ -3557,7 +3554,7 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 	case "Polygon" || "MultiPolygon":
 		pseudoFeature = new ol.Feature( {
 			geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ],
-					[ 10, 7 ], [ -10, 7 ] ] ] )
+				[ 10, 7 ], [ -10, 7 ] ] ] )
 		} );
 		style = getPolygonStyle( {
 			fill: new ol.style.Fill( {

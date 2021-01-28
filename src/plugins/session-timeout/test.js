@@ -5,8 +5,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -18,7 +16,7 @@ describe( "Session Timeout test suite", function() {
 
 	var clock, server, $session,
 		spies = {},
-		sandbox = sinon.sandbox.create(),
+		sandbox = sinon.createSandbox(),
 		$document = wb.doc,
 		callback;
 
@@ -94,7 +92,7 @@ describe( "Session Timeout test suite", function() {
 
 				// Reset the plugin timeouts and the trigger spy (prevents false positives from previous tests)
 				$session.trigger( "reset.wb-sessto", $session.data( "wet-boew" ) );
-				spies.trigger.reset();
+				spies.trigger.resetHistory();
 
 				done();
 			}, 500 );
@@ -114,7 +112,7 @@ describe( "Session Timeout test suite", function() {
 		} );
 
 		it( "should not have triggered inactivity events 19950ms", function() {
-			spies.trigger.reset();
+			spies.trigger.resetHistory();
 			clock.tick( 9940 );
 			expect( spies.trigger.calledWith( "inactivity.wb-sessto" ) ).to.equal( false );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( false );
@@ -122,7 +120,7 @@ describe( "Session Timeout test suite", function() {
 		} );
 
 		it( "should have triggered inactivity events after 20000ms", function() {
-			spies.trigger.reset();
+			spies.trigger.resetHistory();
 			clock.tick( 100 );
 			expect( spies.trigger.calledWith( "inactivity.wb-sessto" ) ).to.equal( true );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
@@ -140,8 +138,8 @@ describe( "Session Timeout test suite", function() {
 		before( function() {
 
 			// Reset the state of the spies
-			spies.trigger.reset();
-			spies.ajax.reset();
+			spies.trigger.resetHistory();
+			spies.ajax.resetHistory();
 		} );
 
 		it( "should trigger keepalive.wb-sessto on document click", function() {
@@ -159,14 +157,14 @@ describe( "Session Timeout test suite", function() {
 		} );
 
 		it( "should not trigger keepalive.wb-sessto on document click (refresh limit prevents)", function() {
-			spies.trigger.reset();
+			spies.trigger.resetHistory();
 
 			$document.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( false );
 		} );
 
 		it( "should trigger keepalive.wb-sessto on document click (refresh limit allows)", function() {
-			spies.trigger.reset();
+			spies.trigger.resetHistory();
 			clock.tick( 42010 );
 
 			$document.trigger( "click" );
@@ -194,8 +192,8 @@ describe( "Session Timeout test suite", function() {
 		} );
 
 		it( "should trigger keepalive.wb-sessto after 5000ms", function() {
-			spies.trigger.reset();
-			spies.ajax.reset();
+			spies.trigger.resetHistory();
+			spies.ajax.resetHistory();
 
 			clock.tick( 5010 );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );

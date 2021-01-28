@@ -95,7 +95,10 @@ var componentName = "wb-mltmd",
 								}
 							}
 						}
-					} catch ( err ) { }
+					} catch ( err ) {
+
+						/* swallow error */
+					}
 				} );
 
 				//
@@ -782,10 +785,10 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		// Create the share widgets if needed
 		if ( data.shareUrl !== undef ) {
-			$( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
+			$( "<div class='wb-share' data-wb-share='{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
 				data.title.replace( /'/g, "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
-				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
+				"\", \"pnlId\": \"" + data.id + "-shr\"}'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
 		}
@@ -941,9 +944,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		$button
 			.attr( "title", buttonData )
 			.children( "span" )
-				.toggleClass( "glyphicon-play", !isPlay )
-				.toggleClass( "glyphicon-pause", isPlay )
-				.html( invStart + buttonData + invEnd );
+			.toggleClass( "glyphicon-play", !isPlay )
+			.toggleClass( "glyphicon-pause", isPlay )
+			.html( invStart + buttonData + invEnd );
 		break;
 
 	case "volumechange":
@@ -957,9 +960,9 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 				"aria-pressed": isMuted
 			} )
 			.children( "span" )
-				.toggleClass( "glyphicon-volume-up", !isMuted )
-				.toggleClass( "glyphicon-volume-off", isMuted )
-				.html( invStart + buttonData + invEnd );
+			.toggleClass( "glyphicon-volume-up", !isMuted )
+			.toggleClass( "glyphicon-volume-off", isMuted )
+			.html( invStart + buttonData + invEnd );
 		$slider = $this.find( "input[type='range']" );
 		$slider[ 0 ].value = isMuted ? 0 : volume;
 		$slider.trigger( "wb-update.wb-slider" );

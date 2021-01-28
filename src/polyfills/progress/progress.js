@@ -58,6 +58,8 @@ var componentName = "wb-progress",
 			try {
 				ariaValueMax = parseFloat( elm.getAttribute( "max" ) );
 			} catch ( error ) {
+
+				/* swallow error */
 			}
 
 			ariaValueNow = elm.getAttribute( "value" );

@@ -5,8 +5,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -15,7 +13,7 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Feeds test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		ajaxEvent = "ajax-fetch.wb",
 		fetchedEvent = "ajax-fetched.wb",
 		$document = wb.doc,

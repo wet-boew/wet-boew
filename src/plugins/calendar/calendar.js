@@ -352,9 +352,8 @@ $document.on( "keydown", selector, function( event ) {
 		case 33:
 			date.setDate( minDate.getDate() );
 
+			//page down
 			/* falls through */
-
-		//page down
 		case 34:
 			modifier = ( which === 33 ? -1 : 1 );
 

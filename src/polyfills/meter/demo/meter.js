@@ -17,7 +17,7 @@ wb.doc.on( "click vclick", "#increaseMeter, #decreaseMeter", function( event ) {
 	$elm
 		.attr( "value", newValue )
 		.find( "span" )
-			.text( newValue );
+		.text( newValue );
 
 	// Update the visuals
 	$elm.trigger( "wb-update.wb-meter" );

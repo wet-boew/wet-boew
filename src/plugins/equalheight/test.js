@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, beforeEach, after */
-/* jshint unused:vars */
 ( function( $, wb, undef ) {
 
 /*
@@ -253,6 +251,9 @@ describe( "equalheights test suite", function() {
 
 	} );
 
+	/*
+	 * Deactivating this test, need to be reviewed. Also, equal-height is going to be replaced by a CSS alternative See PR #8933
+	 *
 	describe( "resize multiple equalheights", function() {
 		var $first = $( "<div class='wb-eqht test'>" +
 					"<div style='width:33%; display: inline-block; height: 25px'></div>" +
@@ -289,6 +290,7 @@ describe( "equalheights test suite", function() {
 			$document.trigger( "txt-rsz.wb" );
 		} );
 	} );
+	*/
 } );
 
 }( jQuery, wb ) );

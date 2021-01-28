@@ -35,7 +35,7 @@ var componentName = "wb-navcurr",
 				menuLinksArray = [],
 				menuLinksUrlArray = [],
 				windowLocation = window.location,
-				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
+				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^/])/, "/$1" ),
 				pageUrlQuery = windowLocation.search,
 				match = false,
 				className = classNameOverride ? classNameOverride : componentName,
@@ -52,7 +52,7 @@ var componentName = "wb-navcurr",
 					linkHref = link.getAttribute( "href" );
 					if ( linkHref !== null ) {
 						if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
-							linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
+							linkUrl = link.hostname + link.pathname.replace( /^([^/])/, "/$1" );
 							linkQuery = link.search;
 							linkQueryLen = linkQuery.length;
 							if ( pageUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || pageUrlQuery.slice( -linkQueryLen ) === linkQuery ) ) {
@@ -82,7 +82,7 @@ var componentName = "wb-navcurr",
 							linkHref = ( child && child.nodeName === "A" ) ? child.getAttribute( "href" ) : "";
 							if ( linkHref && linkHref.charAt( 0 ) !== "#" ) {
 								localBreadcrumbLinksArray.push( child );
-								localBreadcrumbLinksUrlArray.push( child.hostname + child.pathname.replace( /^([^\/])/, "/$1" ) );
+								localBreadcrumbLinksUrlArray.push( child.hostname + child.pathname.replace( /^([^/])/, "/$1" ) );
 							}
 						}
 

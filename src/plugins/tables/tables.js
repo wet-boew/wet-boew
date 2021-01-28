@@ -186,12 +186,12 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 			} )
 
 			.not( ".previous, .next" )
-				.attr( "aria-pressed", "false" )
-				.html( function( index, oldHtml ) {
-					return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
-				} )
-				.filter( ".current" )
-					.attr( "aria-pressed", "true" );
+			.attr( "aria-pressed", "false" )
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
+			} )
+			.filter( ".current" )
+			.attr( "aria-pressed", "true" );
 	}
 
 	// Identify that the table has been updated
@@ -211,11 +211,11 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	var $form = $( this ),
 		$datatable = $( "#" + $form.data( "bind-to" ) ).dataTable( { "retrieve": true } ).api(),
 		$toNumber = function stringToNumber( number ) {
-			number = number.replace( /[^0-9\-\,\.]+/g, "" );
-			if ( /[\,]\d{1,2}$/.test( number ) ) {
+			number = number.replace( /[^0-9\-,.]+/g, "" );
+			if ( /[,]\d{1,2}$/.test( number ) ) {
 				number = number.replace( /(\d{2})$/, ".$1" );
 			}
-			number = number.replace( /\,/g, "" );
+			number = number.replace( /,/g, "" );
 			return parseFloat( number );
 		},
 		$isDate = function isDate( date ) {
@@ -235,7 +235,8 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 			$isAopts = $elm.data( "aopts" ),
 			$aoptsSelector = "[data-aopts*='\"column\": \"" + $column + "\"']:checked",
 			$aopts = $( $aoptsSelector ),
-			$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "";
+			$aoType = ( $aopts && $aopts.data( "aopts" ) ) ? $aopts.data( "aopts" ).type.toLowerCase() : "",
+			$fData;
 
 		// Ignore the advanced options fields
 		if ( $isAopts ) {
@@ -252,7 +253,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
 		} else if ( $elm.is( "input[type='number']" ) ) {
-			var $val = $elm.val(), $minNum, $maxNum, $fData;
+			var $val = $elm.val(), $minNum, $maxNum;
 
 			// Retain minimum number (always the first number input)
 			if ( $cachedVal === "" ) {
@@ -290,10 +291,10 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 
 				// If no numbers match set as -0, so no results return
 				$value = ( $fData ) ? $fData : "-0";
-				$regex = "(" + $value.replace( /\&nbsp\;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
+				$regex = "(" + $value.replace( /&nbsp;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
 			}
 		} else if ( $elm.is( "input[type='date']" ) ) {
-			var $minDate, $maxDate, $fData;
+			var $minDate, $maxDate;
 
 			// Retain minimum date (always the first date input)
 			if ( $cachedVal === "" ) {
@@ -310,7 +311,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 
 			// Generates a list of date strings (within the min and max date)
 			$fData = $datatable.column( $column ).data().filter( function( obj ) {
-				var $date = obj.replace( /[0-9]{2}\s[0-9]{2}\:/g, function( e ) {
+				var $date = obj.replace( /[0-9]{2}\s[0-9]{2}:/g, function( e ) {
 					return e.replace( /\s/g, "T" );
 				} );
 				$date = new Date( $date );

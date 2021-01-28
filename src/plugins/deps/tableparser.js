@@ -1912,9 +1912,9 @@ var componentName = "wb-tableparser",
 					currCell = currRow.cell[ j ];
 
 					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
-							!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
+						!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
 							!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
-						) ) {
+					) ) {
 
 						// Imediate header
 						currCell.header = currCell.header || [];

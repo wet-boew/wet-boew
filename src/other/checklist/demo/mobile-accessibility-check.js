@@ -27,7 +27,7 @@ $( document ).ready( function() {
 	// reassigns values on each radio button select event
 	$( "input[type=radio]" ).change( function() {
 
-	// variables to store number of clicks
+		// variables to store number of clicks
 		var zoomVoiceDisabledPassed = $( "input[id^='ap']:checked, [id^='an']:checked" ).length,
 			voiceEnabledPassed = $( "input[id^='bp']:checked, [id^='bn']:checked" ).length,
 			zoomEnabledPassed = $( "input[id^='cp']:checked, [id^='cn']:checked" ).length,

@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, sinon, before, after */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -21,7 +19,7 @@ describe( "Country Content test suite", function() {
 	describe( "init behaviour", function() {
 		var $elm,
 			stubs = {},
-			sandbox = sinon.sandbox.create();
+			sandbox = sinon.createSandbox();
 
 		before( function() {
 

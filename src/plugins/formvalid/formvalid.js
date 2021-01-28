@@ -196,8 +196,8 @@ var componentName = "wb-frmvld",
 									i18nText.formNotSubmitted + $errors.length +
 									(
 										$errors.length !== 1 ?
-										i18nText.errorsFound :
-										i18nText.errorFound
+											i18nText.errorsFound :
+											i18nText.errorFound
 									) + "</" + summaryHeading + "><ul>";
 								$errorfields
 									.closest( ".form-group" )
@@ -253,7 +253,7 @@ var componentName = "wb-frmvld",
 									// Update the aria-live region as necessary
 									i = 0;
 									for ( key in errorMap ) {
-										if ( errorMap.hasOwnProperty( key ) ) {
+										if ( Object.prototype.hasOwnProperty.call( errorMap, key ) ) {
 											i += 1;
 											break;
 										}

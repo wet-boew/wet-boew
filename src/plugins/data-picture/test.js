@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -14,7 +12,7 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "[data-pic] test suite", function() {
-	var sandbox = sinon.sandbox.create(),
+	var sandbox = sinon.createSandbox(),
 		selector = "[data-pic]",
 		$document = wb.doc,
 		$body = $document.find( "body" ),
@@ -132,7 +130,7 @@ describe( "[data-pic] test suite", function() {
 
 		before( function() {
 			$img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
+				"<span data-pic data-alt='foo' class='test'>" +
 					"<span data-src='bar.jpg' data-media='print'></span>" +
 					"</span>" )
 				.appendTo( $body )

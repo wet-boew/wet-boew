@@ -88,15 +88,6 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"test-mocha"
-		"Run tests locally with Grunt Mocha"
-		[
-			"pre-mocha"
-			"mocha"
-		]
-	)
-
-	@registerTask(
 		"init"
 		"Only needed when the repo is first cloned"
 		[
@@ -256,9 +247,6 @@ module.exports = (grunt) ->
 				"pages:test"
 			]
 
-			#Prevents multiple instances of connect from running
-			if grunt.config.get "connect.test.options.port" is undefined
-				grunt.task.run "connect:test"
 	)
 
 	@registerTask(
@@ -306,7 +294,7 @@ module.exports = (grunt) ->
 
 	globalConnectMiddleware = (connect, middlewares) ->
 		middlewares.unshift(
-			connect.compress filter: (req, res) ->
+			connect.compression filter: (req, res) ->
 				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
 		)
 
@@ -1019,6 +1007,8 @@ module.exports = (grunt) ->
 						"E014" # Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s
 						"E031" # Glyphicon classes must only be used on elements that contain no text content and have no child elements.
 						"E032" # `.modal-content` must be a child of `.modal-dialog`
+						"E049" # `.modal-dialog` must have a `role="document"` attribute.
+						"E051" # `.pull-right` and `.pull-left` must not be used on `.col-*-*` elements
 					]
 				src: [
 					"dist/**/*.html"
@@ -1360,7 +1350,7 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						globalConnectMiddleware connect, middlewares
+						# globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace "/v4.0-ci/", "/"
@@ -1380,12 +1370,6 @@ module.exports = (grunt) ->
 
 						middlewares
 
-			test:
-				options:
-					base: "."
-					middleware: (connect, options, middlewares) ->
-						globalConnectMiddleware connect, middlewares
-						middlewares
 
 		i18n_csv:
 			options:
@@ -1399,12 +1383,6 @@ module.exports = (grunt) ->
 				dest: "<%= coreDist %>/js/i18n/"
 			assemble:
 				dest: 'site/data/i18n'
-
-		mocha:
-			all:
-				options:
-					reporter: "Spec"
-					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just%20some%7Ctest"]
 
 		"string-replace":
 			inline:

@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -15,7 +13,7 @@
  */
 describe( "Toggle test suite", function() {
 	var spy,
-		sandbox = sinon.sandbox.create(),
+		sandbox = sinon.createSandbox(),
 		$body = wb.doc.find( "body" );
 
 	/*
@@ -135,7 +133,7 @@ describe( "Toggle test suite", function() {
 		var $toggle;
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 
 			// Create toggle element and trigger plugin init
 			$toggle = $( "<div class='wb-toggle'>" )
@@ -330,7 +328,7 @@ describe( "Toggle test suite", function() {
 		var $details, $toggler;
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 
 			// Create the toggle elements and start testing once it has been initialized
 			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \".test-details\"}'/>" ).appendTo( $body );
@@ -429,7 +427,7 @@ describe( "Toggle test suite", function() {
 		var $detailsOn, $detailsOff;
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 
 			$detailsOn = $( "<details class=\"wb-toggle\" data-toggle='{\"print\": \"on\"}'><summary></summary></details>" )
 				.appendTo( $body )
@@ -468,7 +466,7 @@ describe( "Toggle test suite", function() {
 			keySession = "wb-toggletest-session";
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 			localStorage.removeItem( keyLocal );
 			sessionStorage.removeItem( keySession );
 
@@ -518,7 +516,7 @@ describe( "Toggle test suite", function() {
 			key = "wb-toggletest-session";
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 			sessionStorage.setItem( key, "on" );
 
 			$details = $( "<details class=\"wb-toggle\" id=\"test-session\" data-toggle='{\"persist\": \"session\"}'><summary></summary></details>" )
@@ -547,7 +545,7 @@ describe( "Toggle test suite", function() {
 			key2 = "wb-toggle.test-grouptest-2";
 
 		before( function() {
-			spy.reset();
+			spy.resetHistory();
 			sessionStorage.removeItem( key1 );
 			sessionStorage.removeItem( key2 );
 

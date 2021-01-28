@@ -83,10 +83,10 @@ var componentName = "wb-date",
 				i18n = wb.i18n;
 				space = i18n( "space" ).replace( "&#32;", " " ).replace( "&#178;", "" );
 				i18nText = {
-					show: i18n( "date-show" ).replace( "\\\'", "'" ) + space,
-					hide: i18n( "date-hide" ).replace( "\\\'", "'" ) + space +
-						space + i18n( "esc-key" ).replace( "\\\'", "'" ),
-					selected: i18n( "date-sel" ).replace( "\\\'", "'" )
+					show: i18n( "date-show" ).replace( "\\'", "'" ) + space,
+					hide: i18n( "date-hide" ).replace( "\\'", "'" ) + space +
+						space + i18n( "esc-key" ).replace( "\\'", "'" ),
+					selected: i18n( "date-sel" ).replace( "\\'", "'" )
 				};
 			}
 
@@ -99,8 +99,8 @@ var componentName = "wb-date",
 				labelText: $( "label[for=" + wb.jqEscape( elm.id ) + "]" )
 					.clone()
 					.find( ".datepicker-format, .error" )
-						.remove()
-						.end()
+					.remove()
+					.end()
 					.text()
 			};
 
@@ -211,7 +211,7 @@ var componentName = "wb-date",
 		$( "#" + wb.jqEscape( field.id + toggleSuffix ) )
 			.attr( "title", labelText.replace( "&#32;", " " ) )
 			.children( ".wb-inv" )
-				.html( labelText );
+			.html( labelText );
 
 		$container
 			.removeClass( "open" )
@@ -241,7 +241,7 @@ var componentName = "wb-date",
 		$( "#" + wb.jqEscape( fieldId + toggleSuffix ) )
 			.attr( "title", closeText )
 			.children( ".wb-inv" )
-				.text( closeText );
+			.text( closeText );
 	},
 
 	position = function() {

@@ -60,7 +60,7 @@ var componentName = "wb-fnote",
 					$refLinkDest = $document.find( refId );
 
 					$refLinkDest.find( "p.fn-rtn a" )
-								.attr( "href", "#" + eventTarget.parentNode.id );
+						.attr( "href", "#" + eventTarget.parentNode.id );
 
 					// Assign focus to $refLinkDest
 					$refLinkDest.trigger( setFocusEvent );

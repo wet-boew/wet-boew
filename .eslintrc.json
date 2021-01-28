@@ -1,5 +1,8 @@
 {
-  "extends": "jquery",
+  "extends": [
+    "eslint:recommended",
+    "jquery"
+  ],
   "env": {
     "browser": true,
     "jquery": true
@@ -28,5 +31,19 @@
     "no-irregular-whitespace": 2,
     "no-nested-ternary": 0,
     "linebreak-style": 0
-  }
+  },
+  "overrides": [
+    {
+      "files":[
+        "**/test.js"
+      ],
+      "globals": {
+        "sinon": true,
+        "expect": true
+      },
+      "env": {
+        "mocha": true
+      }
+    }
+  ]
 }

@@ -4,8 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, beforeEach, after, sinon */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
@@ -24,7 +22,7 @@ describe( "data-inview test suite", function() {
 		$document = wb.doc,
 		$window = wb.win,
 		$body  = $document.find( "body" ),
-		sandbox = sinon.sandbox.create(),
+		sandbox = sinon.createSandbox(),
 		componentName = "wb-inview",
 		selector = "." + componentName,
 		initEvent = "wb-init" + selector;
@@ -92,7 +90,7 @@ describe( "data-inview test suite", function() {
 	describe( "scroll.wb-inview event triggering", function() {
 
 		beforeEach( function() {
-			spy.reset();
+			sandbox.reset();
 		} );
 
 		it( "window 'scroll' event should trigger a scroll.wb-inview event", function() {

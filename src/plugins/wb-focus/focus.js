@@ -44,14 +44,14 @@ $document.on( setFocusEvent, function( event ) {
 				$closedPanel = $closedPanels.eq( i );
 				$closedPanel.closest( ".wb-tabs" )
 					.find( "#" + $closedPanel.attr( "aria-labelledby" ) )
-						.trigger( "click" );
+					.trigger( "click" );
 			}
 		}
 
 		// Set the tabindex to -1 (as needed) to ensure the element is focusable
 		$elm
 			.filter( ":not([tabindex], a[href], button, input, textarea, select)" )
-				.attr( "tabindex", "-1" );
+			.attr( "tabindex", "-1" );
 
 		// Assigns focus to an element (delay allows for revealing of hidden content)
 		setTimeout( function() {

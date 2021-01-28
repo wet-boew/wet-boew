@@ -1,21 +1,18 @@
-language: generic
 dist: trusty
-sudo: required
+
+language: node_js
+node_js:
+  - "12"
 
 env:
   global:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
 before_install:
-  - sudo groupadd --gid 1000 dockerbuild && sudo usermod -a -G 1000 $USER && sudo chown -R :dockerbuild .
-  - echo "machine github.com login $GH_TOKEN" >> ~/.netrc
-  - env -0 | while IFS='=' read -r -d '' n v; do echo "$n"="$(echo $v)";done | grep  'TRAVIS\|CI\|GIT\|REPO\|BRANCH' >> script/docker/env
-  - shopt -s expand_aliases
-  - source script/docker/activate
-  - npm --version
+  - npm install -g bower grunt-cli
 
 install:
-  - npm install --quiet
+  - npm ci --quiet
 
 script:
   - npm run-script travis_script

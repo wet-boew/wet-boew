@@ -14,7 +14,7 @@ var currentValueString = document.documentElement.lang === "fr" ?
 $document.on( "change", "#html5shim-1, #html5shim-2", function( event ) {
 	document
 		.getElementById( event.target.id + "-out" )
-			.innerHTML = "(" + currentValueString + " " + this.value + ")";
+		.innerHTML = "(" + currentValueString + " " + this.value + ")";
 } );
 
 $document.one( "timerpoke.wb", function() {

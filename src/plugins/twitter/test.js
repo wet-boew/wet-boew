@@ -4,8 +4,6 @@
  * @overview Test the favicon plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-/* global jQuery, describe, it, expect, before, after */
-/* jshint unused:vars */
 ( function( $, wb ) {
 
 /*
