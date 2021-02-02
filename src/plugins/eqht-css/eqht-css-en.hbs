@@ -18,7 +18,6 @@
 
 <section id="simple">
 	<h2>Example</h2>
-	<p><strong>Note:</strong> The last row will always didive your columns proportionately in order to fill the full-width, as seen in the example below.</p>
 	<div class="row wb-eqht-grd">
 		<div class="col-sm-6 col-md-4">
 			<section>
@@ -101,6 +100,101 @@
 		<section>
 			<h4>CSS</h4>
 			<pre><code>#simple .wb-eqht-grd section {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	padding: 15px;
+}
+</code></pre>
+		</section>
+	</section>
+</section>
+
+<section id="grow">
+	<h2>Grow Example</h2>
+	<p><strong>Note:</strong> The last row will always divide your columns proportionately in order to fill the full width.</p>
+	<div class="row wb-eqht-grd grow">
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Short container</h3>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Medium container</h3>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+				<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Long container</h3>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+				<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+				<p>Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Short container</h3>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Medium container</h3>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+				<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+			</section>
+		</div>
+	</div>
+
+	<section>
+		<h3>Code</h3>
+		<section>
+			<h4>HTML</h4>
+			<pre><code>&lt;section id="grow"&gt;
+	&lt;h2&gt;Grow Example&lt;/h2&gt;
+
+	&lt;div class=&quot;row wb-eqht-grd grow&quot;&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Short container&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Medium container&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Long container&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Short container&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Medium container&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>CSS</h4>
+			<pre><code>#grow .wb-eqht-grd section {
 	border: 1px solid #ddd;
 	border-radius: 4px;
 	margin-bottom: 15px;
