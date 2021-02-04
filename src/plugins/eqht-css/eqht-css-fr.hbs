@@ -18,7 +18,6 @@
 
 <section id="simple">
 	<h2>Exemple</h2>
-	<p><strong>Note&nbsp;:</strong> La dernière rangée divisera toujours vos colonnes proportionellement afin de remplir la pleine largeur, tel que démontré dans l'exemple ci-dessous.</p>
 	<div class="row wb-eqht-grd">
 		<div class="col-sm-6 col-md-4">
 			<section>
@@ -101,6 +100,101 @@
 		<section>
 			<h4>CSS</h4>
 			<pre><code>#simple .wb-eqht-grd section {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	padding: 15px;
+}
+</code></pre>
+		</section>
+	</section>
+</section>
+
+<section id="grow">
+	<h2>Exemple remplissage</h2>
+	<p><strong>Note&nbsp;:</strong> La dernière rangée divisera toujours vos colonnes proportionellement afin de remplir la pleine largeur.</p>
+	<div class="row wb-eqht-grd grow">
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Contenant à basse hauteur</h3>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Contenant à hauteur moyenne</h3>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+				<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Contenant à grande hauteur</h3>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+				<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
+				<p>Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Contenant à basse hauteur</h3>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+			</section>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<section>
+				<h3>Contenant à hauteur moyenne</h3>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+				<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
+			</section>
+		</div>
+	</div>
+
+	<section>
+		<h3>Code</h3>
+		<section>
+			<h4>HTML</h4>
+			<pre><code>&lt;section id="grow"&gt;
+	&lt;h2&gt;Exemple remplissage&lt;/h2&gt;
+
+	&lt;div class=&quot;row wb-eqht-grd grow&quot;&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contenant à basse hauteur&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contenant à hauteur moyenne&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contenant à grande hauteur&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contenant à basse hauteur&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-md-4&quot;&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contenant à hauteur moyenne&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>CSS</h4>
+			<pre><code>#grow .wb-eqht-grd section {
 	border: 1px solid #ddd;
 	border-radius: 4px;
 	margin-bottom: 15px;
