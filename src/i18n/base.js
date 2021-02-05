@@ -227,6 +227,7 @@ wb.i18nDict = {
 	"wb-enable": "@wb-enable@",
 	"disable-notice-h": "@disable-notice-h@",
 	"disable-notice": "@disable-notice@",
+	"skip-prefix": "@tmpl-skip-prefix@",
 
 	/* Dismissable content */
 	"dismiss": "@dismiss@",
