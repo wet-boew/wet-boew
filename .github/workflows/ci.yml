@@ -1,7 +1,6 @@
 name: CI
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -36,5 +35,7 @@ jobs:
       - run: npm i -g bower grunt-cli
       - run: npm ci
       # - run: grunt dist
+      - if: ${{ !env.ACT }}
+        run: grunt test
       - run: npm test
       - run: rake

@@ -54,37 +54,42 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"deploy"
-		"Build and deploy artifacts to wet-boew-dist"
-		->
-			if process.env.TRAVIS_PULL_REQUEST is "false" and process.env.DIST_REPO isnt `undefined` and ( process.env.TRAVIS_TAG isnt "" or process.env.TRAVIS_BRANCH is "master" )
-				pkgOriginal = grunt.file.readJSON("package.json");
-				addToRepo = "wet-boew-cdn";
-				writeTo = "dist/wet-boew/package.json";
-				pkg = {
-					name: "wet-boew",
-					version: pkgOriginal.version,
-					description: pkgOriginal.name.toLowerCase() + " theme"
-					repository: {
-						type: "git",
-						url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
-					},
-					author: "wet-boew-bot",
-					license: "MIT",
-					bugs: {
-						url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
-					},
-					homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
-				};
-				grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
+		"deploy-build"
+		"Produces the production files"
+		[
+			"build"
+			"minify"
+			"pages:theme"
+			"docs-min"
+			"demos-min"
+			"sri"
+		]
+	)
 
-				grunt.task.run [
-					"copy:deploy"
-					"gh-pages:travis"
-					"gh-pages:travis_cdn"
-					"gh-pages:travis_theme_cdn"
-					"wb-update-examples"
-				]
+	@registerTask(
+		"build-pkg-json"
+		"Build package.json for deployment"
+		->
+			pkgOriginal = grunt.file.readJSON("package.json");
+			addToRepo = "wet-boew-cdn";
+			writeTo = "dist/wet-boew/package.json";
+			pkg = {
+				name: "wet-boew",
+				version: pkgOriginal.version,
+				description: pkgOriginal.name.toLowerCase() + " theme"
+				repository: {
+					type: "git",
+					url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
+				},
+				author: "wet-boew-bot",
+				license: "MIT",
+				bugs: {
+					url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
+				},
+				homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
+			};
+			grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
+
 	)
 
 	@registerTask(

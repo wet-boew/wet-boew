@@ -38,3 +38,9 @@ csslint.out.xml
 *.orig
 *.tmp
 *.log
+
+# deployment artifacts
+~wet-boew-dist/
+~wet-boew-cdn/
+~wet-boew-submodule/
+.actrc.swp

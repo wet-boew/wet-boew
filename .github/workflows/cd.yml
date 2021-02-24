@@ -1,0 +1,176 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - master
+      - cd-script
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    environment: github-cd
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    env:
+      REPO_DIST: wet-boew-dist
+      REPO_DIST_CDN: wet-boew-cdn
+      REPO_GITHUB_IO: wet-boew.github.io
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i -g bower grunt-cli
+      - run: npm ci
+      - run: grunt deploy-build
+
+      #
+      # Prepare wet-boew deployment
+      #
+      - name: Extract tag or branch name
+        id: ref_name
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.my_token }}
+          result-encoding: string
+          # act use "\" and githbu use "/"
+          script: |
+            return context.ref.replace(/\/?refs\/heads\//, '').replace(/\\?refs\\heads\\/, '').replace(/\/?refs\/tags\//, '').replace(/\\?refs\\tags\\/, '')
+      - name: Check if it a tag
+        id: ref_tags
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.my_token }}
+          result-encoding: string
+          # act use "\" and githbu use "/"
+          script: |
+            return context.ref.startsWith("\\refs\\tags\\") || context.ref.startsWith("/refs/tags/") || context.ref.startsWith("refs/tags/") || context.ref.startsWith("refs\\tags\\") || ''
+      - name: Tag or branch info
+        env:
+           ref_name: ${{ steps.ref_name.outputs.result }}
+           is_tags: ${{ steps.ref_tags.outputs.result }}
+        run: |
+          echo Ref name: ${{ env.ref_name }}
+          echo Is tag: ${{ env.is_tags }}
+      - name: Git config
+        run: |
+          git config --global user.name "${{ secrets.my_username }}"
+          git config --global user.email "${{ secrets.my_email }}"
+
+      #
+      # Deploy wet-boew dist
+      #
+      - name: Dist - Applying changes
+        run: |
+          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git --branch v4.0-dist ~wet-boew-dist
+          rm -rf ~wet-boew-dist/*
+          cp -r dist/. ~wet-boew-dist/
+          cd ~wet-boew-dist
+          git add .
+          git commit -m "CD ${{ github.run_id }}: Update wet-boew dist files" --allow-empty
+      - name: Dist - Deploy in v4.0-dist branch
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ github.actor }}/${{ env.REPO_DIST }}
+          directory: ~wet-boew-dist
+          branch: v4.0-dist
+          github_token: ${{ secrets.my_token }}
+
+      - name: Dist - Create release
+        if: ${{ env.is_tags != '' }}
+        uses: actions/github-script@v3
+        env:
+          commitish: v4.0-dist
+          repo: ${{ env.REPO_DIST }}
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        with:
+          github-token: ${{ secrets.my_token }}
+          script: |
+            github.repos.createRelease({
+              owner: context.actor,
+              repo: process.env.repo,
+              tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
+              target_commitish: process.env.commitish
+            });
+
+      #
+      # wet-boew Dist CDN
+      #
+      - name: Dist CDN - Prepare and build package.json
+        run: grunt build-pkg-json
+      - name: Dist CDN - Applying changes
+        run: |
+          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_DIST_CDN }}.git --branch v4.0-dist ~wet-boew-cdn
+          rm -rf ~wet-boew-cdn/*
+          cp -r dist/wet-boew/. ~wet-boew-cdn/
+          cp Licence-fr.txt ~wet-boew-cdn/Licence-fr.txt
+          cp License-en.txt ~wet-boew-cdn/License-en.txt
+          cd ~wet-boew-cdn
+          git add .
+          git commit -m "CD ${{ github.run_id }}: Update wet-boew dist cdn files" --allow-empty
+      - name: Dist CDN - Deploy in v4.0-dist branch
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ github.actor }}/${{ env.REPO_DIST_CDN }}
+          directory: ~wet-boew-cdn
+          branch: v4.0-dist
+          github_token: ${{ secrets.my_token }}
+      - name: Dist CDN - Create release
+        uses: actions/github-script@v3
+        env:
+          commitish: v4.0-dist
+          repo: ${{ env.REPO_DIST_CDN }}
+          ref_name: ${{ steps.ref_name.outputs.result }}
+          is_tags: ${{ steps.ref_tags.outputs.result }}
+        if: ${{ env.is_tags != '' }}
+        with:
+          github-token: ${{ secrets.my_token }}
+          script: |
+            github.repos.createRelease({
+              owner: context.actor,
+              repo: process.env.repo,
+              tag_name: process.env.ref_name,
+              name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
+              target_commitish: process.env.commitish
+            });
+
+
+      #
+      # Deploy submodule for wet-boew.github.io
+      #
+      - name: Dist wet-boew.github.io - Update submodule
+        run: |
+          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_GITHUB_IO }}.git --branch master ~wet-boew-submodule
+          cd ~wet-boew-submodule
+          git submodule update --init --depth 1 v4.0-ci
+          git submodule update --init --depth 1 wet-boew
+          cd v4.0-ci
+          git remote add neworigin https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git
+          git fetch --depth 1 neworigin v4.0-dist
+          git reset --hard neworigin/v4.0-dist
+          cd ../wet-boew
+          git remote add neworigin https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git
+          git fetch --depth 1 neworigin v4.0-dist
+          git reset --hard neworigin/v4.0-dist
+          cd ..
+          git add .
+          git commit -m "CD ${{ github.run_id }}: Update submodule wet-boew dist" --allow-empty
+      - name: Dist - Deploy submodule updated
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ github.actor }}/${{ env.REPO_GITHUB_IO }}
+          directory: ~wet-boew-submodule
+          branch: master
+          github_token: ${{ secrets.my_token }}
+
