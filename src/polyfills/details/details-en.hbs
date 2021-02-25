@@ -7,7 +7,7 @@
 	"tag": "details",
 	"parentdir": "details",
 	"altLangPrefix": "details",
-	"dateModified": "2014-07-21"
+	"dateModified": "2021-02-25"
 }
 ---
 <p>The HTML5 <code>details</code> and <code>summary</code> elements are used to provide expandable/collapsible content. This component adds support for these elements in browsers that do not already have native support.</p>
@@ -80,7 +80,7 @@
 		</li>
 		<li>
 			<details>
-				<summary>Example 3</summary>
+				<summary class="h3"><h3>Example 3</h3></summary>
 				<p>Example content that provides more details.</p>
 				<table class="table">
 					<caption>Cups of coffee consumed by each delegate</caption>
@@ -123,6 +123,12 @@
 	&lt;li&gt;
 		&lt;details open="open"&gt;
 			&lt;summary&gt;Example 2&lt;/summary&gt;
+			...
+		&lt;/details&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;details open="open"&gt;
+			&lt;summary class="h3"&gt;&lt;h3&gt;Example 3&lt;/h3&gt;&lt;/summary&gt;
 			...
 		&lt;/details&gt;
 	&lt;/li&gt;
