@@ -71,7 +71,7 @@ jobs:
       #
       - name: Dist - Applying changes
         run: |
-          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git --branch v4.0-dist ~wet-boew-dist
+          git clone --depth 1 https://github.com/${{ github.repository_owner }}/${{ env.REPO_DIST }}.git --branch v4.0-dist ~wet-boew-dist
           rm -rf ~wet-boew-dist/*
           cp -r dist/. ~wet-boew-dist/
           cd ~wet-boew-dist
@@ -80,7 +80,7 @@ jobs:
       - name: Dist - Deploy in v4.0-dist branch
         uses: ad-m/github-push-action@master
         with:
-          repository: ${{ github.actor }}/${{ env.REPO_DIST }}
+          repository: ${{ github.repository_owner }}/${{ env.REPO_DIST }}
           directory: ~wet-boew-dist
           branch: v4.0-dist
           github_token: ${{ secrets.my_token }}
@@ -97,7 +97,7 @@ jobs:
           github-token: ${{ secrets.my_token }}
           script: |
             github.repos.createRelease({
-              owner: context.actor,
+              owner: context.repository_owner,
               repo: process.env.repo,
               tag_name: process.env.ref_name,
               name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
@@ -111,7 +111,7 @@ jobs:
         run: grunt build-pkg-json
       - name: Dist CDN - Applying changes
         run: |
-          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_DIST_CDN }}.git --branch v4.0-dist ~wet-boew-cdn
+          git clone --depth 1 https://github.com/${{ github.repository_owner }}/${{ env.REPO_DIST_CDN }}.git --branch v4.0-dist ~wet-boew-cdn
           rm -rf ~wet-boew-cdn/*
           cp -r dist/wet-boew/. ~wet-boew-cdn/
           cp Licence-fr.txt ~wet-boew-cdn/Licence-fr.txt
@@ -122,7 +122,7 @@ jobs:
       - name: Dist CDN - Deploy in v4.0-dist branch
         uses: ad-m/github-push-action@master
         with:
-          repository: ${{ github.actor }}/${{ env.REPO_DIST_CDN }}
+          repository: ${{ github.repository_owner }}/${{ env.REPO_DIST_CDN }}
           directory: ~wet-boew-cdn
           branch: v4.0-dist
           github_token: ${{ secrets.my_token }}
@@ -138,7 +138,7 @@ jobs:
           github-token: ${{ secrets.my_token }}
           script: |
             github.repos.createRelease({
-              owner: context.actor,
+              owner: context.repository_owner,
               repo: process.env.repo,
               tag_name: process.env.ref_name,
               name: 'Release ' + process.env.ref_name + ' (' + context.runId + ')',
@@ -151,16 +151,16 @@ jobs:
       #
       - name: Dist wet-boew.github.io - Update submodule
         run: |
-          git clone --depth 1 https://github.com/${{ github.actor }}/${{ env.REPO_GITHUB_IO }}.git --branch master ~wet-boew-submodule
+          git clone --depth 1 https://github.com/${{ github.repository_owner }}/${{ env.REPO_GITHUB_IO }}.git --branch master ~wet-boew-submodule
           cd ~wet-boew-submodule
           git submodule update --init --depth 1 v4.0-ci
           git submodule update --init --depth 1 wet-boew
           cd v4.0-ci
-          git remote add neworigin https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git
+          git remote add neworigin https://github.com/${{ github.repository_owner }}/${{ env.REPO_DIST }}.git
           git fetch --depth 1 neworigin v4.0-dist
           git reset --hard neworigin/v4.0-dist
           cd ../wet-boew
-          git remote add neworigin https://github.com/${{ github.actor }}/${{ env.REPO_DIST }}.git
+          git remote add neworigin https://github.com/${{ github.repository_owner }}/${{ env.REPO_DIST }}.git
           git fetch --depth 1 neworigin v4.0-dist
           git reset --hard neworigin/v4.0-dist
           cd ..
@@ -169,7 +169,7 @@ jobs:
       - name: Dist - Deploy submodule updated
         uses: ad-m/github-push-action@master
         with:
-          repository: ${{ github.actor }}/${{ env.REPO_GITHUB_IO }}
+          repository: ${{ github.repository_owner }}/${{ env.REPO_GITHUB_IO }}
           directory: ~wet-boew-submodule
           branch: master
           github_token: ${{ secrets.my_token }}
