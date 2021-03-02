@@ -815,8 +815,9 @@ module.exports = (grunt) ->
 		# Minify
 		uglify:
 			options:
-				preserveComments: (uglify,comment) ->
-					return comment.value.match /^!/i
+				output:
+					comments: (uglify,comment) ->
+						return comment.value.match /^!/i
 
 			polyfills:
 				options:
@@ -840,6 +841,7 @@ module.exports = (grunt) ->
 			core:
 				options:
 					beautify:
+						beautify: false
 						quote_keys: true
 					sourceMap: true
 				cwd: "<%= coreDist %>/js/"
@@ -855,6 +857,7 @@ module.exports = (grunt) ->
 			coreIE8:
 				options:
 					beautify:
+						beautify: false
 						quote_keys: true
 						ascii_only: true
 				cwd: "<%= coreDist %>/js/"
