@@ -293,7 +293,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 				$value = ( $fData ) ? $fData : "-0";
 				$regex = "(" + $value.replace( /&nbsp;|\s/g, "\\s" ).replace( /\$/g, "\\$" ) + ")";
 			}
-		} else if ( $elm.is( "input[type='date']" ) ) {
+		} else if ( $elm.is( "input[type='date']" ) && $elm.val() ) {
 			var $minDate, $maxDate;
 
 			// Retain minimum date (always the first date input)
