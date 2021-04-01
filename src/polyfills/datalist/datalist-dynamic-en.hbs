@@ -82,7 +82,7 @@ $document.on( &quot;change&quot;, pluginSelector, function( event ) {
 	$( this ).trigger({
 		type: &quot;ajax-fetch.wb&quot;,
 		fetch: {
-			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: &quot; + pluginName ),
+			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Feature: &quot; + pluginName ),
 			dataType: wb.ielt10 ? &quot;jsonp&quot; : &quot;json&quot;,
 			jsonp: wb.ielt10 ? &quot;callback&quot; : null
 		}
