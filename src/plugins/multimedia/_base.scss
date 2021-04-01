@@ -182,6 +182,11 @@
 		text-align: right;
 	}
 
+	summary,
+	details[open] {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
 }
 
 .wb-mm-cc {
