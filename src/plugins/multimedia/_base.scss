@@ -70,7 +70,7 @@
 
 %captions_text_box {
 	display: table-cell;
-	height: 3em;
+	height: #{$line-height-base * $mm-cc-lines}em;
 	vertical-align: middle;
 }
 
@@ -116,8 +116,8 @@
 	&.cc_on {
 		.wb-mm-cc {
 			display: table;
-			height: 4em;
-			padding: .5em;
+			height: calc(#{$line-height-base * $mm-cc-lines}em + #{$mm-cc-padding * 2});
+			padding: $mm-cc-padding;
 		}
 
 		&:not(.errmsg) {
