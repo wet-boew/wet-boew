@@ -128,6 +128,7 @@ var componentName = "wb-steps",
 			 */
 			if ( form && hasStepsInitialized ) {
 				$( form ).children( "input" ).hide();
+				wb.ready( $( elm ), componentName );
 			}
 		}
 	},
