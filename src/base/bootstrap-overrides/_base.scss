@@ -918,3 +918,7 @@ mark {
 	color: $txthl-color;
 	font-weight: $txthl-font-weight;
 }
+
+[hidden] {
+	display: none !important;
+}
