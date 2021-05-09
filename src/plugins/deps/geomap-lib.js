@@ -2746,7 +2746,7 @@ MapLayer.prototype.createOLLayer = function() {
 		_this.settings.accessible = false;
 
 	} else if ( _this.settings.type === "esritile" ) {
-	
+
 		var mapOpts = {
 			url: _this.settings.url,
 			params: _this.settings.params
@@ -2944,7 +2944,7 @@ MapLayer.prototype.createOLLayer = function() {
 				firstComponent = feature[ geomKey ].coordinates[ 0 ];
 
 				// if we have a bounding box polygon, densify the coordinates
-				if ( Object.values( feature[geomKey] ).includes( "Polygon" ) &&
+				if ( Object.values( feature[ geomKey ] ).includes( "Polygon" ) &&
 					firstComponent.length === 5 ) {
 
 					bnds = densifyBBox(
@@ -2963,12 +2963,12 @@ MapLayer.prototype.createOLLayer = function() {
 
 					geom = new ol.geom.Polygon( [ coordinates ] );
 
-				} else if ( Object.values( feature[geomKey] ).includes( "Point" ) ) {
+				} else if ( Object.values( feature[ geomKey ] ).includes( "Point" ) ) {
 
 					// TODO: if creating point fails, try reversing the coordinate order. Perhaps a configuration parameter would be best.
 					geom = new ol.geom.Point( [ feature[ geomKey ].coordinates[ 0 ], feature[ geomKey ].coordinates[ 1 ] ] );
 
-				} else if ( Object.values( feature[geomKey] ).includes( "LineString" ) ) {
+				} else if ( Object.values( feature[ geomKey ] ).includes( "LineString" ) ) {
 
 					geom = new ol.geom.LineString( feature[ geomKey ].coordinates );
 
