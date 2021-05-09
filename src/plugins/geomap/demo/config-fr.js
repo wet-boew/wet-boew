@@ -18,29 +18,38 @@
 var wet_boew_geomap = {
 
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
-	/*basemap: {
-		title:"OSM Map",
-		type:"osm",
+		/*basemap: {
+		title: "WMS-Toporama",
+		type: "wms",
+		url: "http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en",
+		version: "1.1.1",
+		format: "image/jpeg",
+		layers: "WMS-Toporama",
 		mapOptions: {
-			center: [ -123, 49 ],
-			zoomLevel: 5
+			maxExtent: "-2650000.0, -900000.0, 3600000.0, 4630000.0",
+			restrictedExtent: "-2750000.0, -1000000.0, 3700000.0, 4730000.0",
+			maxResolution: "auto",
+			projection: "EPSG:3978",
+			units: "m",
+			displayProjection: "EPSG:4269",
+			aspectRatio: 0.8
 		}
 	},*/
 	overlays: [
 		{
 			title: "WMS",
-			caption: " Ceci est un exemple de service WMS chargé à l’aide de Géomap.",
+			caption: "Ceci est un exemple de service WMS chargé par Geomap.",
 			type: "wms",
-			url: "//geo.weather.gc.ca/geomet/?Lang=F",
+			url: "//geo.weather.gc.ca/geomet?lang=en",
 			visible: false,
-			version: "1.1.1",
+			version: "1.3.0",
 			format: "image/png",
 			layers: "GDPS.ETA_PR",
 			transparent: true,
 			options: {
 				opacity: 0.5,
 
-				//legendGraphicUrl: "//geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
+				//legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
 				legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
 						"<ul class='list-unstyled'>" +
 						"<li><span style='background-color:#800000;display:inline-block;height:20px;width:20px'/> <small>100.0</small></li>" +
@@ -61,20 +70,20 @@ var wet_boew_geomap = {
 		},
 		{
 			title: "KML",
-			caption: "*NEEDS TRANSLATION*This data is extracted from the <a href=\"http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/457ede2f-fd65-5936-ab60-3fe71da0e98b\">Principal mineral areas of Canada</a> publication.",
+			caption: "Ces données sont extraites de la publication <a href=\"http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/457ede2f-fd65-5936-ab60-3fe71da0e98b\">Principales régions minérales du Canada</a>.",
 			type: "kml",
 			url: "demo/producing-mines.kml",
 			visible: false,
 			datatable: true,
 			tooltips: true,
-			tooltipText: "Opération",
+			tooltipText: "Operation",
 			popups: true,
 			attributes: {
 				Type_: "Type",
-				OwnersF: "Opérateur / propriétaire",
-				OperationF: "Opération",
-				ComGroupF: "Groupe de produits minéraux",
-				CommodityF: "Produit minérale"
+				OwnersE: "Owner",
+				OperationE: "Operation",
+				ComGroupE: "Commodity Group",
+				CommodityE: "Commodity"
 			},
 			style: {
 				type: "unique",
@@ -93,7 +102,7 @@ var wet_boew_geomap = {
 						"oKS8uknovhu0LxRwllpRFyQDnTMta43C4fp0qb9rxVlTXexNY9S1Lb5rhp4Ee07LSpkMiQhNYrRCDzZJks0XKEyI45Ha7RaScGT9YRXFHd5nNEH8C+eGD9m6tNTgAAAAASUVORK5CYII=",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Mines de charbon"
+						name: "Coal mines"
 					},
 					"Metal mines and mills": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9FJREFUSInN1ltoHFUYwPH" +
@@ -108,7 +117,7 @@ var wet_boew_geomap = {
 						"p91tLJi/b3ppudc1jH2z3b1vhp4Ehx3WrlkOKQvNYp5STfUKoi1/Jv4WUualAICCL5ax4YTUtMLFSzmriL1z5gWQ67XYNAAAAAElFTkSuQmCC",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Mines de métaux"
+						name: "Metal mines"
 					},
 					"Industrial minerals": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA79JREFUSInN1ktMXFUYwPH" +
@@ -123,7 +132,7 @@ var wet_boew_geomap = {
 						"7yU8DvztaN22EZIXSWIdSf30jRE5OtjylklG/36+y5Wx6YaX0Z16e24i/AWg1hRJKTWppAAAAAElFTkSuQmCC",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Mines de non-métaux"
+						name: "Nonmetal Mines"
 					},
 					"Oil Sands": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9VJREFUSInN1l9QVFUcwPH" +
@@ -138,7 +147,7 @@ var wet_boew_geomap = {
 						"AgGXbm1wuz7VF85YqIHXPsTjW6lu3dpmfBvot2y5ZCkkJxbE2pW6cFCItLVWeUrEpr9erUuUse2Gl9CZfnrsYfwFqWYQCxROHDQAAAABJRU5ErkJggg==",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Mines de sables bitumineux"
+						name: "Oil sands mines"
 					}
 				},
 				select: {
@@ -154,45 +163,62 @@ var wet_boew_geomap = {
 		},
 		{
 			title: "TopoJSON (World 110m)",
-			caption: "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote TopoJSON resource.",
+			caption: "Voici un exemple de jeu de données chargé à partir d'une ressource TopoJSON distante.",
 			type: "topojson",
 			url: "demo/topojson.json",
 			accessible: false,
+			visible: false,
 			style: {
 				strokeColor: "#3399ff",
 				strokeWidth: 2.0
+			}
+		},
+		{
+			title: "Esri REST Tile Layer",
+			caption: "Il s'agit d'un exemple de jeu de données chargé à partir d'un service de tuiles REST Esri distant.",
+			type: "esritile",
+			url: "//maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/Carte_climatique_HOT2000_Climate_Map_EN/MapServer/",
+			params: {
+				LAYERS: "show:0"
 			},
-			visible: false
+			visible: false,
+			datatable: false,
+			options: {
+				legendHTML: "<ul class='list-unstyled'>" +
+					"<li><small>Weather Station</small><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAFZJREFUOI3t0TEKwDAMQ1F9yIFzlN5YHUqgpOA2TZaANdnLQ9hFi1MSTPCKbbcZYAq0bWq3B2gI9pgkUWN086cAPG54xI95bdjQ+/674VdkGBxJgvM5AZAOH6jK5pnSAAAAAElFTkSuQmCC'></li>" +
+					"</ul>"
+			}
 		},
 		{
 			title: "EsriJSON",
-			caption: "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote Esri JSON resource.",
+			caption: "Ceci est un exemple de jeu de données chargé à partir d'une ressource Esri JSON distante.",
 			type: "esrijson",
-			url: "//geoappext.nrcan.gc.ca/arcgis/rest/services/NEB/Pipeline/MapServer/0/query?where=OBJECTID>0&f=pjson",
+			url: "https://geoappext.nrcan.gc.ca/arcgis/rest/services/FGP/TMX_EN/MapServer/2/query?where=OBJECTID>0&f=pjson",
 			attributes: {
-				OPERATOR: "Opérateur"
+				OPERATOR: "Operator"
 			},
 			visible: false,
 			zoom: true,
 			style: {
 				strokeColor: "#FF0000",
 				strokeWidth: 2.0,
-				strokeDash: [ 6, 4 ]
+				strokeDash: [ 6, 6 ]
 			}
 		},
 		{
-			title: "JSON (Séismes récents)",
-			caption: "*NEEDS TRANSLATION*This is a sample dataset loaded from a remote JSON resource, in this case the Earthquakes API.",
+			title: "JSON (Earthquakes)",
+			caption: "Il s'agit d'un exemple de jeu de données chargé à partir d'une ressource JSON distante, dans ce cas l'API USGS Earthquakes.",
 			type: "json",
-			url: "//www.earthquakescanada.nrcan.gc.ca/api/earthquakes/latest/30d.json",
+			url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
 			visible: false,
 			popups: true,
 			datatable: true,
 			zoom: true,
+			root: "features",
 			attributes: {
-				location: { path: "en", alias: "Localisation" },
-				magnitude: "Magnitude",
-				origin_time: "Time"
+				title: { path: "properties", alias: "Title" },
+				mag: { path: "properties", alias: "Magnitude" },
+				time: { path: "properties", alias: "Time" }
 			},
 			style: {
 				type: "rule",
@@ -281,7 +307,7 @@ var wet_boew_geomap = {
 		},
 		{
 			title: "GeoJSON (CartoDB)",
-			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci les caméras de circulation de la ville d'Ottawa à partir du site Carto DB.",
+			caption: "Ceci est un exemple de jeu de données chargé à partir d'une ressource GeoJSON distante, dans ce cas les caméras de circulation dans la ville d'Ottawa à partir de l'API CartoDB",
 			type: "geojson",
 			url: "//stephenott.cartodb.com/api/v2/sql",
 			params: {
@@ -289,10 +315,10 @@ var wet_boew_geomap = {
 				q: "SELECT * FROM traffic_cameras LIMIT 25"
 			},
 			attributes: {
-				location_desc: "Emplacement",
+				location_desc: "Location",
 				longitude: "Latitude",
 				latitude: "Longitude",
-				updated_at: "Dernière mise à jour"
+				updated_at: "Last updated"
 			},
 			visible: false,
 			zoom: true,
@@ -300,16 +326,16 @@ var wet_boew_geomap = {
 			style: {
 				type: "symbol",
 				init: {
-					graphicWidth: 30,
-					graphicHeight: 30,
+					graphicWidth: 32,
+					graphicHeight: 37,
 					externalGraphic: "demo/trafficcamera.png",
 					graphicOpacity: 1.0
 				},
 				select: {
-					graphicWidth: 20,
-					graphicHeight: 20,
+					graphicWidth: 32,
+					graphicHeight: 37,
 					externalGraphic: "demo/trafficcamera_active.png",
-					graphicOpacity: 0.5
+					graphicOpacity: 1.0
 				}
 			}
 		}

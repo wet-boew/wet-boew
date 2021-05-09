@@ -460,7 +460,7 @@ var wet_boew_geomap = {
 						<td>No</td>
 						<td>Array</td>
 						<td>''</td>
-						<td>An array of feature attributes to be displayed in the table with their aliases. For example: <code>attributes: { location_desc: 'Location', longitude: 'Latitude', latitude: 'Longitude', updated_at: 'Last updated' }</code>.</td>
+						<td>An array of feature attributes to be displayed in the table with their aliases. For example: <code>attributes: { location_desc: 'Location', longitude: 'Latitude', latitude: 'Longitude', updated_at: 'Last updated' }</code>. If the required attributes are not at the root element you can specify a path to the attribute. For example: <code>attributes: { title: { path: "properties", alias: "Title" } }</code></td>
 					</tr>
 					<tr>
 						<td><code>caption</code></td>
@@ -500,7 +500,7 @@ var wet_boew_geomap = {
 					<tr>
 						<td><code>root</code></td>
 						<td>No</td>
-						<td>Boolean</td>
+						<td>String</td>
 						<td>''</td>
 						<td>Name of the root element that contains the array of objects that contain the features to be rendered.</td>
 					</tr>
