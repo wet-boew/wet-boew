@@ -76,14 +76,14 @@ var wet_boew_geomap = {
 			visible: false,
 			datatable: true,
 			tooltips: true,
-			tooltipText: "Operation",
+			tooltipText: "Opération",
 			popups: true,
 			attributes: {
 				Type_: "Type",
-				OwnersE: "Owner",
-				OperationE: "Operation",
-				ComGroupE: "Commodity Group",
-				CommodityE: "Commodity"
+				OwnersF: "Opérateur / propriétaire",
+				OperationF: "Opération",
+				ComGroupF: "Groupe de produits minéraux",
+				CommodityF: "Produit minérale"
 			},
 			style: {
 				type: "unique",
@@ -102,7 +102,7 @@ var wet_boew_geomap = {
 						"oKS8uknovhu0LxRwllpRFyQDnTMta43C4fp0qb9rxVlTXexNY9S1Lb5rhp4Ee07LSpkMiQhNYrRCDzZJks0XKEyI45Ha7RaScGT9YRXFHd5nNEH8C+eGD9m6tNTgAAAAASUVORK5CYII=",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Coal mines"
+						name: "Mines de charbon"
 					},
 					"Metal mines and mills": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9FJREFUSInN1ltoHFUYwPH" +
@@ -117,7 +117,7 @@ var wet_boew_geomap = {
 						"p91tLJi/b3ppudc1jH2z3b1vhp4Ehx3WrlkOKQvNYp5STfUKoi1/Jv4WUualAICCL5ax4YTUtMLFSzmriL1z5gWQ67XYNAAAAAElFTkSuQmCC",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Metal mines"
+						name: "Mines de métaux"
 					},
 					"Industrial minerals": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA79JREFUSInN1ktMXFUYwPH" +
@@ -132,7 +132,7 @@ var wet_boew_geomap = {
 						"7yU8DvztaN22EZIXSWIdSf30jRE5OtjylklG/36+y5Wx6YaX0Z16e24i/AWg1hRJKTWppAAAAAElFTkSuQmCC",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Nonmetal Mines"
+						name: "Mines de non-métaux"
 					},
 					"Oil Sands": {
 						externalGraphic: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA9VJREFUSInN1l9QVFUcwPH" +
@@ -147,7 +147,7 @@ var wet_boew_geomap = {
 						"AgGXbm1wuz7VF85YqIHXPsTjW6lu3dpmfBvot2y5ZCkkJxbE2pW6cFCItLVWeUrEpr9erUuUse2Gl9CZfnrsYfwFqWYQCxROHDQAAAABJRU5ErkJggg==",
 						fillOpacity: "1",
 						graphicWidth: "25",
-						name: "Oil sands mines"
+						name: "Mines de sables bitumineux"
 					}
 				},
 				select: {
