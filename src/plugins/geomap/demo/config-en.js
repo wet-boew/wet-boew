@@ -187,7 +187,7 @@ var wet_boew_geomap = {
 			type: "esrijson",
 			url: "https://geoappext.nrcan.gc.ca/arcgis/rest/services/FGP/TMX_EN/MapServer/2/query?where=OBJECTID>0&f=pjson",
 			attributes: {
-				OPERATOR: "Operator"
+				Type: "Type"
 			},
 			visible: false,
 			zoom: true,

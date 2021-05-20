@@ -195,7 +195,7 @@ var wet_boew_geomap = {
 			type: "esrijson",
 			url: "https://geoappext.nrcan.gc.ca/arcgis/rest/services/FGP/TMX_EN/MapServer/2/query?where=OBJECTID>0&f=pjson",
 			attributes: {
-				OPERATOR: "Operator"
+				Type: "Type"
 			},
 			visible: false,
 			zoom: true,
@@ -216,9 +216,9 @@ var wet_boew_geomap = {
 			zoom: true,
 			root: "features",
 			attributes: {
-				title: { path: "properties", alias: "Title" },
+				title: { path: "properties", alias: "Titre" },
 				mag: { path: "properties", alias: "Magnitude" },
-				time: { path: "properties", alias: "Time" }
+				time: { path: "properties", alias: "Temps" }
 			},
 			style: {
 				type: "rule",
@@ -315,10 +315,10 @@ var wet_boew_geomap = {
 				q: "SELECT * FROM traffic_cameras LIMIT 25"
 			},
 			attributes: {
-				location_desc: "Location",
+				location_desc: "Emplacement",
 				longitude: "Latitude",
 				latitude: "Longitude",
-				updated_at: "Last updated"
+				updated_at: "Dernière mise à jour"
 			},
 			visible: false,
 			zoom: true,
