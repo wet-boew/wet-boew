@@ -1,0 +1,74 @@
+---
+{
+	"title": "Add to Calendar",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Adding an event to a calendar (google, Apple, Android, Outlook and others).",
+	"tag": "add-cal",
+	"parentdir": "add-cal",
+	"altLangPrefix": "add-cal",
+	"dateModified": "2021-05-07"
+}
+---
+
+<h2>Example of an event including a detailed location</h2>
+<p>The following example present an event including a full detailed location (street address, region, province and postal code).</p>
+<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
+	<h3 property="name">Canux20</h3>
+	<p property="description">CanUX (pronounced “canucks”, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.</p>
+	<p property="location" typeof="Place">
+		<span property="name">Shaw Centre</span><br />
+		<span class="address" property="address" typeof="PostalAddress">
+			<span property="streetAddress">55 Colonel By Drive</span><br />
+			<span property="addressLocality">Ottawa</span>,
+			<span property="addressRegion">ON</span><br />
+			<span property="postalCode">K1N 9J2</span>
+		</span>
+	</p>
+	<dl>
+		<dt>Start</dt>
+		<dd><time property="startDate" datetime="2020-01-27 07:00Z">Monday, Jan 27, 2020, 7:00am EST</time></dd>
+		<dt>End</dt>
+		<dd><time property="endDate" datetime="2020-01-29 12:00Z">Wednesday, Jan 29, 2020, 12:00pm EST</time></dd>
+	</dl>
+</div>
+
+<h2>Example of an event including a place only</h2>
+<p>The following example present an event including a place only without it's full address.</p>
+<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
+	<h3 property="name">Igloo Baratanga</h3>
+	<p property="description">A percussion activity for the whole family! Take part in a drum circle and get warmed up. No musical experience required and smiles guaranteed! Come play with us!</p>
+	<p><strong>When:</strong> From <time property="startDate" datetime="2020-02-08 13:00Z">Sunday, February 8, 2020 | 1:00 pm</time> to <time property="endDate" datetime="2020-02-08 13:30Z">1:30 pm</time></p>
+	<p property="location"><strong>Where:</strong> Snowflake Kingdom, <span lang="fr">Jacques-Cartier</span> Park, Gatineau</p>
+</div>
+
+<h2>Source code</h2>
+<pre><code>&lt;h2&gt;Example of an event including a detailed location&lt;/h2&gt;
+&lt;p&gt;The following example present an event including a full detailed location (street address, region, province and postal code).&lt;/p&gt;
+&lt;div class="wb-addcal provisional mrgn-bttm-md" typeof="Event"&gt;
+	&lt;h3 property="name"&gt;Canux20&lt;/h3&gt;
+	&lt;p property="description"&gt;CanUX (pronounced “canucks”, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.&lt;/p&gt;
+	&lt;p property="location" typeof="Place"&gt;
+		&lt;span property="name"&gt;Shaw Centre&lt;/span&gt;&lt;br /&gt;
+		&lt;span class="address" property="address" typeof="PostalAddress"&gt;
+			&lt;span property="streetAddress"&gt;55 Colonel By Drive&lt;/span&gt;&lt;br /&gt;
+			&lt;span property="addressLocality"&gt;Ottawa&lt;/span&gt;,
+			&lt;span property="addressRegion"&gt;ON&lt;/span&gt;&lt;br /&gt;
+			&lt;span property="postalCode"&gt;K1N 9J2&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/p&gt;
+	&lt;dl&gt;
+		&lt;dt&gt;Start&lt;/dt&gt;
+		&lt;dd&gt;&lt;time property="startDate" datetime="2020-01-27 07:00Z"&gt;Monday, Jan 27, 2020, 7:00am EST&lt;/time&gt;&lt;/dd&gt;
+		&lt;dt&gt;End&lt;/dt&gt;
+		&lt;dd&gt;&lt;time property="endDate" datetime="2020-01-29 12:00Z"&gt;Wednesday, Jan 29, 2020, 12:00pm EST&lt;/time&gt;&lt;/dd&gt;
+	&lt;/dl&gt;
+&lt;/div&gt;
+&lt;h2&gt;Example of an event including a place only&lt;/h2&gt;
+&lt;p&gt;The following example present an event including a place only without it's full address.&lt;/p&gt;
+&lt;div class="wb-addcal provisional mrgn-bttm-md" typeof="Event"&gt;
+	&lt;h3 property="name"&gt;Igloo Baratanga&lt;/h3&gt;
+	&lt;p property="description"&gt;A percussion activity for the whole family! Take part in a drum circle and get warmed up. No musical experience required and smiles guaranteed! Come play with us!&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;When:&lt;/strong&gt; From &lt;time property="startDate" datetime="2020-02-08 13:00Z"&gt;Sunday, February 8, 2020 | 1:00 pm&lt;/time&gt; to &lt;time property="endDate" datetime="2020-02-08 13:30Z"&gt;1:30 pm&lt;/time&gt;&lt;/p&gt;
+	&lt;p property="location"&gt;&lt;strong&gt;Where:&lt;/strong&gt; Snowflake Kingdom, &lt;span lang="fr"&gt;Jacques-Cartier&lt;/span&gt; Park, Gatineau&lt;/p&gt;
+&lt;/div&gt;</code></pre>

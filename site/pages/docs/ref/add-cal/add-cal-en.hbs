@@ -1,0 +1,105 @@
+---
+{
+	"title": "Add to calendar",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Add an event to a calendar (google, Apple, Android, Outlook and others).",
+	"altLangPrefix": "add-cal",
+	"dateModified": "2021-05-12"
+}
+---
+<h2>Purpose</h2>
+<p>Add an event to a calendar (google, Apple, Android, Outlook and others).</p>
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/add-cal/add-cal-en.html">English example</a></li>
+	<li><a href="../../../demos/add-cal/add-cal-fr.html">French example</a></li>
+</ul>
+
+<h2>Evaluation and report</h2>
+<p>There is no evaluation and report available for this component.</p>
+
+<h2>API (Version 1.0)</h2>
+<dl class="dl-horizontal">
+	<dt>Function</dt>
+	<dd>provisional</dd>
+	<dt>Configuration</dt>
+	<dd>Not applicable</dd>
+	<dt>User interface (Template)</dt>
+	<dd>provisional</dd>
+	<dt>Data source</dt>
+	<dd>provisional</dd>
+	<dt>View and style</dt>
+	<dd>provisional</dd>
+	<dt>i18n string</dt>
+	<dd>provisional</dd>
+</dl>
+
+<h3>Function</h3>
+<p>(Version 1.0)</p>
+<table class="table">
+	<tr>
+		<th>Function type</th>
+		<th>Name</th>
+		<th>How to implement</th>
+		<th>What it does</th>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-init.wb-addcal</code></td>
+		<td>Triggered manually (e.g., <code>$( ".wb-addcal" ).trigger( "wb-init.wb-addcal" );</code>).</td>
+		<td>Initializes the bg-img plugin. This plugin will be initialized automatically unless the <code>.wb-wb-addcal</code> element is added after the page load and wet-boew was initialized.</td>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-ready.wb-addcal</code></td>
+		<td>Triggered automatically after the plugin initializes.</td>
+		<td>Used to identify when and where the plugin initializes (target of the event).
+			<pre><code>$( document ).on( "wb-ready.wb-addcal", ".wb-addcal", function( event ) {
+});</code></pre>
+			<pre><code>$elm.on( "wb-ready.wb-addcal", function( event ) {
+});</code></pre>
+		</td>
+	</tr>
+</table>
+
+<h3>Configuration</h3>
+<p>Not applicable for this plugin.</p>
+
+<h3>User interface (Template)</h3>
+<p>(Provisional)</p>
+
+<p>The Schema.org <code>Event</code> type noted in RDFa is required when implementing this add to calendar widget. It identifies an event happeing at a certain time and location. The followings are Schema.org types and properties:</p>
+<dl>
+	<dt><code>name</code> (Event)</dt>
+	<dd>Required - Short text that defines the event title.</dd>
+	<dt><code>description</code> (Event)</dt>
+	<dd>Optional - Short text that provides a brief description of the event.</dd>
+	<dt><code>startDate</code> (Event)</dt>
+	<dd>Required - Specifies the start date and or start time of the event. It needs to be used in a <code>&lt;time&gt;</code> element and the value must be defined in text or by adding the <code>datetime</code> attribute either following this pattern: "YYYY-MM-DD HH:MMZ"</dd>
+	<dt><code>endDate</code> (Event)</dt>
+	<dd>Required - Specifies the end date and or end time of the event. It needs to be used in a <code>&lt;time&gt;</code> element and the value must be defined in text or by adding the <code>datetime</code> attribute either following this pattern: "YYYY-MM-DD HH:MMZ"</dd>
+	<dt><code>location</code> (Event)</dt>
+	<dd>Recommended - Short text that identifies the place of the event or can be refined with type <strong>Place</strong> to provide a detailed address.</dd>
+	<dt><code>name</code> (Place)</dt>
+	<dd>Optional - Short text that identifies the name of a location for the event.</dd>
+	<dt><code>address</code> (Place)</dt>
+	<dd>Optional - Short text that identifies the address or can be refined with <strong>PostalAddress</strong> to initiate a detailed location.</dd>
+	<dt><code>streetAddress</code> (PostalAddress)</dt>
+	<dd>Optional - Text that identifies the street address.</dd>
+	<dt><code>addressLocality</code> (PostalAddress)</dt>
+	<dd>Optional - Text that specifies the locatily (city).</dd>
+	<dt><code>addressRegion</code> (PostalAddress)</dt>
+	<dd>Optional - Text that specifies the region (province) of the event.</dd>
+	<dt><code>postalCode</code> (PostalAddress)</dt>
+	<dd>Optional - Text that specifies the postal code.</dd>
+</dl>
+
+<p>The HTML element <code>time</code> must be used when specifying a date and or time in machine readable format or when adding the <code>datetime</code> attribute when using text. The following ISO date pattern noted in RDFa must be applied when using the machine readable format in the time element or as a value for the datetime attribute: "YYYY-MM-DD HH:MMZ".</p>
+
+<p>The propery "datemodified" must be present in the web page.</p>
+
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/add-cal">Add to Calendar source code on GitHub</a></p>
