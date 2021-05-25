@@ -7,7 +7,7 @@
 	"tag": "details",
 	"parentdir": "details",
 	"altLangPrefix": "details",
-	"dateModified": "2021-02-25"
+	"dateModified": "2021-04-25"
 }
 ---
 <p>The HTML5 <code>details</code> and <code>summary</code> elements are used to provide expandable/collapsible content. This component adds support for these elements in browsers that do not already have native support.</p>
@@ -80,7 +80,7 @@
 		</li>
 		<li>
 			<details>
-				<summary class="h3"><h3>Example 3</h3></summary>
+				<summary>Example 3</summary>
 				<p>Example content that provides more details.</p>
 				<table class="table">
 					<caption>Cups of coffee consumed by each delegate</caption>
@@ -126,13 +126,81 @@
 			...
 		&lt;/details&gt;
 	&lt;/li&gt;
-	&lt;li&gt;
-		&lt;details open="open"&gt;
-			&lt;summary class="h3"&gt;&lt;h3&gt;Example 3&lt;/h3&gt;&lt;/summary&gt;
-			...
-		&lt;/details&gt;
-	&lt;/li&gt;
 	...
 &lt;/ul&gt;</code></pre>
 	</section>
+
+	<h3>Summaries with headings</h3>
+	<ul class="list-unstyled">
+		<li>
+			<details>
+				<summary class="h2"><h2>Heading 2 (<code>h2</code>)</h2></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="h3"><h3>Heading 3 (<code>h3</code>)</h3></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="h4"><h4>Heading 4 (<code>h4</code>)</h4></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="h5"><h5>Heading 5 (<code>h5</code>)</h5></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="h6"><h6>Heading 6 (<code>h6</code>)</h6></summary>
+				<p>...</p>
+			</details>
+		</li>
+	</ul>
+
+	<h3>Summaries with <code>summary-title</code> class</h3>
+	<ul class="list-unstyled">
+		<li>
+			<details>
+				<summary class="summary-title"><h2>Heading 2 (<code>h2</code>)</h2></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="summary-title"><h3>Heading 3 (<code>h3</code>)</h3></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="summary-title"><h4>Heading 4 (<code>h4</code>)</h4></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="summary-title"><h4>Heading 4 (<code>h4</code>)</h4></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="summary-title"><h5>Heading 5 (<code>h5</code>)</h5></summary>
+				<p>...</p>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary class="summary-title"><h6>Heading 6 (<code>h6</code>)</h6></summary>
+				<p>...</p>
+			</details>
+		</li>
+	</ul>
 </section>
