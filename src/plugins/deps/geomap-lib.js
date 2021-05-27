@@ -2419,7 +2419,7 @@ MapLayer.prototype.addToLegend = function() {
 		$( "#sb_" + this.id ).append( "<img src='" + this.settings.options.legendUrl + "' alt='" + i18nText.geoLgndGrphc + "'/>" );
 	} else if ( this.settings.options && this.settings.options.legendHTML ) {
 		$( "#sb_" + this.id ).append( this.settings.options.legendHTML );
-	} else if ( this.settings.type !== "wms" ) {
+	} else if ( this.settings.type !== "wms" && this.settings.type !== "esritile" ) {
 		this.map.legend.symbolize( this );
 	}
 
@@ -2745,6 +2745,20 @@ MapLayer.prototype.createOLLayer = function() {
 		// Image layers don't have features, so don't create table
 		_this.settings.accessible = false;
 
+	} else if ( _this.settings.type === "esritile" ) {
+
+		var mapOpts = {
+			url: _this.settings.url,
+			params: _this.settings.params
+		};
+
+		olLayer = new ol.layer.Tile( {
+			visible: _this.settings.visible,
+			source: new ol.source.TileArcGISRest( mapOpts )
+		} );
+
+		_this.settings.accessible = false;
+
 	} else if ( _this.settings.type === "wkt" ) {
 
 		styleFactory = new StyleFactory();
@@ -2930,7 +2944,7 @@ MapLayer.prototype.createOLLayer = function() {
 				firstComponent = feature[ geomKey ].coordinates[ 0 ];
 
 				// if we have a bounding box polygon, densify the coordinates
-				if ( feature[ geomKey ].type === "Polygon" &&
+				if ( Object.values( feature[ geomKey ] ).includes( "Polygon" ) &&
 					firstComponent.length === 5 ) {
 
 					bnds = densifyBBox(
@@ -2949,11 +2963,12 @@ MapLayer.prototype.createOLLayer = function() {
 
 					geom = new ol.geom.Polygon( [ coordinates ] );
 
-				} else if ( feature[ geomKey ].type === "Point" ) {
+				} else if ( Object.values( feature[ geomKey ] ).includes( "Point" ) ) {
 
-					geom = new ol.geom.Point( [ feature[ geomKey ].coordinates[ 1 ], feature[ geomKey ].coordinates[ 0 ] ] );
+					// TODO: if creating point fails, try reversing the coordinate order. Perhaps a configuration parameter would be best.
+					geom = new ol.geom.Point( [ feature[ geomKey ].coordinates[ 0 ], feature[ geomKey ].coordinates[ 1 ] ] );
 
-				} else if ( feature[ geomKey ].type === "LineString" ) {
+				} else if ( Object.values( feature[ geomKey ] ).includes( "LineString" ) ) {
 
 					geom = new ol.geom.LineString( feature[ geomKey ].coordinates );
 
@@ -2975,7 +2990,7 @@ MapLayer.prototype.createOLLayer = function() {
 					if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 						path = layerAttributes[ name ].path;
 						if ( path ) {
-							atts[ layerAttributes[ name ].alias ] = feature[ name ] ? feature[ name ][ path ] : "";
+							atts[ layerAttributes[ name ].alias ] = feature[ path ] ? feature[ path ][ name ] : "";
 						} else {
 							atts[ layerAttributes[ name ] ] = feature[ name ] ? feature[ name ] : "";
 						}
