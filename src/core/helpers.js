@@ -172,7 +172,8 @@ wb.addSkipLink = function( text, attr, isBtn, isLast ) {
 // Escapes the characters in a string for use in a jQuery selector
 // Based on https://totaldev.com/content/escaping-characters-get-valid-jquery-id
 wb.jqEscape = function( selector ) {
-	return selector.replace( /([;&,.+*~':"\\!^/#$%@[]()=>\|])/g, "\\$1" );
+	// eslint-disable-next-line no-useless-escape
+	return selector.replace( /([;&,\.\+\*\~':"\\\!\^\/#$%@\[\]\(\)=>\|])/g, "\\$1" );
 };
 
 // RegEx used by formattedNumCompare
