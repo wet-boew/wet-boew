@@ -6,14 +6,14 @@
 	"categoryfile": "plugins",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2016-06-10"
+	"dateModified": "2016-01-21"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>This plugin allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.0 compliance when providing such footnotes.</p>
+	<p>This plugin allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.1 compliance when providing such footnotes.</p>
 </section>
 
 <section>
@@ -60,14 +60,14 @@
 		<section>
 			<h4>Link to a Footnote</h4>
 			<p>Use the following code as a basis to link to a particular footnote.</p>
-			<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;1&lt;span class="wb-inv"&gt; (footnote)&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</code></pre>
 			<p><strong>Note:</strong> The ID attributes of links to a multi-referenced footnote should contain a hyphen and a number just after the indicator (e.g. <code>id="fn2-1-rf"</code>, <code>id="fn2-2-rf"</code>, <code>id="fn2-3-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
 		</section>
 
 		<section>
 			<h4>Link to Multiple Footnotes</h4>
 			<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
-			<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;2&lt;span class="wb-inv"&gt; (footnote)&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;3&lt;span class="wb-inv"&gt; (footnote)&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</code></pre>
 			<p><strong>Note:</strong> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 		</section>
 	</section>
@@ -95,7 +95,7 @@
 			<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
 &lt;dd id="fn1"&gt;
 	&lt;p&gt;Example of a standard footnote.&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;&lt;span class="wb-inv"&gt;Return to footnote &lt;/span&gt;1&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;1&lt;span class="wb-inv"&gt;, return to footnote referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 		</section>
 
@@ -106,7 +106,7 @@
 			<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
 &lt;dd id="fn2"&gt;
 	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;2&lt;span class="wb-inv"&gt;, return to <span>first</span> footnote referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 
 			<p><strong>Note 1:</strong> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain "-1" after the footnote indicator (e.g. <code>href="#fn2-1-rf"</code>).</p>
@@ -122,7 +122,7 @@
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (first paragraph).&lt;/p&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (second paragraph).&lt;/p&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (third paragraph).&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn3-rf"&gt;&lt;span class="wb-inv"&gt;Return to footnote &lt;/span&gt;3&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn3-rf"&gt;3&lt;span class="wb-inv"&gt;, return to footnote referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 		</section>
 	</section>
