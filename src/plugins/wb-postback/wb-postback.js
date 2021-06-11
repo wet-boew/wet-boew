@@ -44,11 +44,11 @@ var $document = wb.doc,
 
 				if ( !$( this ).attr( attrEngaged ) ) {
 					var data = $elm.serializeArray(),
-						$btn = $( "[type=submit][" + attrEngaged + "]", $elm ),
+						$btn = $( "[type=submit][name][" + attrEngaged + "]", $elm ),
 						$selectorSuccess = $( selectorSuccess ),
 						$selectorFailure = $( selectorFailure );
 
-					if ( $btn ) {
+					if ( $btn.length ) {
 						data.push( { name: $btn.attr( "name" ), value: $btn.val() } );
 					}
 					$( this ).attr( attrEngaged, true );
