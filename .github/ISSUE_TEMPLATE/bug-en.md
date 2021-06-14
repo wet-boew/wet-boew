@@ -14,13 +14,13 @@ A clear and concise description of what the bug is.
 If you found another bug report related to this issue on GitHub, please mention its number e.g. #7890
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Steps to reproduce the behaviour:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+**Expected behaviour**
 A clear and concise description of what you expected to happen.
 
 **Who shall do the work?**
