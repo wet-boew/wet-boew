@@ -22,6 +22,7 @@ var componentName = "wb-overlay",
 	OverlayOpenFlag = "wb-overlay-dlg",
 	initialized = false,
 	sourceLinks = {},
+	defaults = { noFooter: false },
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 	i18n, i18nText,
@@ -36,10 +37,25 @@ var componentName = "wb-overlay",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, footer, $header, closeText, overlayClose;
+			settings,
+			$elm,
+			footer,
+			$header,
+			closeText,
+			overlayClose;
 
 		if ( elm ) {
 			$elm = $( elm );
+			settings = $.extend(
+				true,
+				{},
+				defaults,
+				window[ componentName ],
+				wb.getData( $elm, componentName )
+
+			);
+
+			$elm.data( componentName, settings );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -56,9 +72,9 @@ var componentName = "wb-overlay",
 			// One left and right panels add close button
 			var isPanel = ( $elm.attr( "class" ).indexOf( "wb-panel" ) > -1 ) ? true : false,
 				isPopup = ( $elm.attr( "class" ).indexOf( "wb-popup" ) > -1 ) ? true : false;
+
 			if ( isPanel || isPopup ) {
 				footer = $elm.find( ".modal-footer" )[ 0 ];
-
 				var hasFooter = ( footer && footer.length !== 0 ) ? true : false,
 					hasButton = hasFooter && $( footer ).find( closeClass ).length !== 0,
 					closeClassFtr = ( $elm.hasClass( "wb-panel-l" ) ? "pull-right " : "pull-left " )  + closeClass,
@@ -76,13 +92,12 @@ var componentName = "wb-overlay",
 						footer.style.border = "0";
 					}
 
-					overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary " + closeClassFtr +
-						"' title='" + spanTextFtr + "'>" +
-						closeTextFtr +
-						"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
+					overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary " + closeClassFtr + "' title='" + spanTextFtr + "'>" + closeTextFtr +
+					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
 
 					$( footer ).append( overlayCloseFtr );
-					if ( !hasFooter ) {
+
+					if ( !hasFooter && !settings.noFooter ) {
 						$elm.append( footer );
 					}
 				}
@@ -117,7 +132,7 @@ var componentName = "wb-overlay",
 			.addClass( "open" )
 			.attr( "aria-hidden", "false" );
 
-		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
+		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) || $overlay.hasClass( "wb-popup-br" ) ) {
 			$overlay.attr( "data-pgtitle", document.getElementsByTagName( "H1" )[ 0 ].textContent );
 			$document.find( "body" ).addClass( OverlayOpenFlag );
 		}
@@ -147,7 +162,7 @@ var componentName = "wb-overlay",
 			.removeClass( "open" )
 			.attr( "aria-hidden", "true" );
 
-		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
+		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) || $overlay.hasClass( "wb-popup-br" ) ) {
 			$document.find( "body" ).removeClass( OverlayOpenFlag );
 		}
 
