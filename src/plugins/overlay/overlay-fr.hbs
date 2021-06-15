@@ -9,7 +9,7 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2014-07-22"
+	"dateModified": "2021-09-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -123,6 +123,22 @@
 &lt;section id=&quot;cs-mi-ecran&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot;&gt;
 	&lt;header class=&quot;modal-header&quot;&gt;
 		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé mi-écran&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#cs-coin-inferieur-droit" aria-controls="cs-coin-inferieur-droit" class="overlay-lnk" role="button">Contenu superposé coin inférieur droit</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-coin-inferieur-droit&quot; aria-controls=&quot;cs-coin-inferieur-droit&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé coin inferieur droit&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-coin-inferieur-droit&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-br&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé coin inferieur droit&lt;/h2&gt;
 	&lt;/header&gt;
 	&lt;div class=&quot;modal-body&quot;&gt;
 		...
@@ -251,6 +267,64 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 	...
 &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+		</details>
+	</section>
+
+	<section>
+		<h3>Contenu superposé coin inférieur droit avec un en-tête et pied de page fixes.</h3>
+		<p>Ajouter la classe CSS <code>wb-popup-flex</code> à la fenêtre superposé afin que l'en-tête et le pied de page deviennent fixes et que seulement le contenu puisse défiler de haut en bas.</p>
+		<p><a href="#cs-coin-inferieur-droit-flex" aria-controls="cs-coin-inferieur-droit-flex" class="overlay-lnk" role="button">Contenu superposé coin inférieur droit avec un en-tête et pied de page fixes.</a></p>
+		<details class="mrgn-bttm-lg">
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-coin-inferieur-droit-flex&quot; aria-controls=&quot;cs-coin-inferieur-droit-flex&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé coin inférieur droit avec un en-tête et pied de page fixes.&lt;/a&gt;&lt;/p&gt;
+			&lt;section id=&quot;cs-coin-inferieur-droit-flex&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-br wb-popup-flex&quot;&gt;
+			&lt;header class=&quot;modal-header&quot;&gt;
+			&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé coin inférieur droit avec un en-tête et pied de page fixes.&lt;/h2&gt;
+			&lt;/header&gt;
+			&lt;div class=&quot;modal-body&quot;&gt;
+				...
+			&lt;/div&gt;
+		&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+</section>
+
+	<section>
+		<h3>Désactiver le pied de page par défaut et ou rendre le contenu superposé persistent.</h3>
+		<p>Ajouter <code>data-wb-overlay</code> afin de personaliser le pied de page et ou désactiver l'événement de fermeture.</p>
+		<ul>
+			<li><code>{ &quot;noFooter&quot;: true }</code> cela désactivera le pied de page par défaut du contenu superposé afin qu'un pied de page personnalisé puisse être ajouté. </li>
+			<li><code>{ &quot;noClose&quot;: true }</code> cela empêchera le contenu superposé de se fermer lorsque vous appuyez sur la touche d'échappement ou lorsque vous cliquez en dehors de la fenêtre de superposition. </li>
+		</ul>
+
+		<p><a href="#cs-coin-inferieur-droit-sp" aria-controls="br-screen" class="overlay-lnk" role="button">Contenu superposé coin inférieur droit sans pied de page.</a></p>
+		<details class="mrgn-bttm-lg">
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-coin-inferieur-droit-sp&quot; aria-controls=&quot;br-screen&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé coin inférieur droit sans pied de page.&lt;/a&gt;&lt;/p&gt;
+			&lt;section id=&quot;br-screen-nf&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-br wb-popup-flex&quot; data-wb-overlay=&apos;{ &quot;noFooter&quot;: true }&apos;&gt;
+			&lt;header class=&quot;modal-header&quot;&gt;
+			&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé coin inférieur droit sans pied de page.&lt;/h2&gt;
+			&lt;/header&gt;
+			&lt;div class=&quot;modal-body&quot;&gt;
+			...
+			&lt;/div&gt;
+		&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+
+	<section>
+		<p><a href="#cs-mi-ecran-persistent" aria-controls="mid-screen" class="overlay-lnk" role="button">Contenu superposé mi-écran persistent prévenant la fermeture</a>.</p>
+		<details class="mrgn-bttm-lg">
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-mi-ecran-persistent&quot; aria-controls=&quot;mid-screen&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé mi-écran persistent prévenant l'événement de fermeture&lt;/a&gt;&lt;/p&gt;
+			&lt;section id=&quot;cs-mi-ecran-persistent&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot; data-wb-overlay=&apos;{&quot;persistent&quot;: true}&apos;&gt;
+			&lt;header class=&quot;modal-header&quot;&gt;
+			&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé mi-écran persistent&lt;/h2&gt;
+			&lt;/header&gt;
+			&lt;div class=&quot;modal-body&quot;&gt;
+			...
+			&lt;/div&gt;
+		&lt;/section&gt;</code></pre>
 		</details>
 	</section>
 </section>
@@ -437,6 +511,28 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 	</div>
 </section>
 
+<section id="cs-coin-inferieur-droit" class="wb-overlay modal-content overlay-def wb-popup-br">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé coin inferieur droit</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</section>
+
 <section id="cs-plein-ecran" class="wb-overlay modal-content overlay-def wb-popup-full">
 	<header class="modal-header">
 		<h2 class="modal-title">Contenu superposé plein écran</h2>
@@ -480,5 +576,99 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 			</li>
 		</ol>
 		<p><a href="#">Lien - apparence par défaut</a></p>
+	</div>
+</section>
+
+<section id="cs-coin-inferieur-droit-flex" class="wb-overlay modal-content overlay-def wb-popup-br wb-popup-flex">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé coin inférieur droit avec un entête et pied de page fixe</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</section>
+
+<section id="cs-coin-inferieur-droit-sp" class="wb-overlay modal-content overlay-def wb-popup-br wb-popup" data-wb-overlay='{ "noFooter": true }'>
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé coin inférieur droit sans pied de page</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</section>
+
+<section id="cs-mi-ecran-persistent" class="wb-overlay modal-content overlay-def wb-popup-mid" data-wb-overlay='{ "persistent": true }'>
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé mi-écran persistant</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
 	</div>
 </section>
