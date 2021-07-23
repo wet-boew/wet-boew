@@ -40,7 +40,6 @@ module.exports = (grunt) ->
 			"sprite"
 			"css"
 			"js"
-			"string-replace"
 		]
 	)
 
@@ -127,6 +126,7 @@ module.exports = (grunt) ->
 			"copy:js"
 			"concat:core"
 			"concat:coreIE8"
+			"string-replace"
 			"concat:pluginsIE8"
 			"concat:i18n"
 		]
@@ -1321,7 +1321,6 @@ module.exports = (grunt) ->
 				files: "<%= eslint.all.src %>"
 				tasks: [
 					"js"
-					"string-replace"
 				]
 			css:
 				files: [
