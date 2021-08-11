@@ -72,7 +72,7 @@ var componentName = "wb-disable",
 					}
 
 					// Remove variable from URL
-					var lc = window.location.href.replace( "wbdisable=false", "" ).replace( "?#", "#" );
+					var lc = window.location.href.replace( /&?wbdisable=false/gi, "" ).replace( "?#", "#" );
 					if ( lc.indexOf( "?" ) === ( lc.length - 1 ) ) {
 						lc = lc.replace( "?", "" );
 					}
