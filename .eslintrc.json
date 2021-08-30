@@ -1,10 +1,16 @@
 {
+  "plugins": [
+    "es5",
+    "ie11"
+  ],
   "extends": [
     "eslint:recommended",
-    "jquery"
+    "jquery",
+    "plugin:es5/no-es2015"
   ],
   "env": {
     "browser": true,
+    "es6": true,
     "jquery": true
   },
   "globals": {
@@ -30,7 +36,13 @@
     ],
     "no-irregular-whitespace": 2,
     "no-nested-ternary": 0,
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "es5/no-block-scoping": ["error", { "const": true, "let": true }],
+    "es5/no-es6-methods": ["error", { "exceptMethods": ["find"] }],
+    "ie11/no-collection-args": [ "error" ],
+    "ie11/no-for-in-const": [ "error" ],
+    "ie11/no-loop-func": [ "error" ],
+    "ie11/no-weak-collections": [ "error" ]
   },
   "overrides": [
     {

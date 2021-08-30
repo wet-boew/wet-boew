@@ -51,6 +51,8 @@
     "autoprefixer": "^10.2.5",
     "coffeescript": "^2.5.1",
     "eslint-config-jquery": "^3.0.0",
+    "eslint-plugin-es5": "git+https://github.com/skyway777/eslint-plugin-es5.git#470d588607ff0c9f98a9b570d182cdb708d134cf",
+    "eslint-plugin-ie11": "^1.0.0",
     "expect.js": "^0.3.1",
     "grunt": "^1.3.0",
     "grunt-assemble": "~0.6.3",
