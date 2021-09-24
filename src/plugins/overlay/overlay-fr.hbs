@@ -9,7 +9,7 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2021-09-24"
+	"dateModified": "2021-09-29"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -245,7 +245,7 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 		<p>Overlays/Modals through JavaScript are automatically updated with a close overlay/modal button. This button can be changed with the following code:</p>
 		<pre><code>&lt;div class=&quot;modal-footer&quot;&gt;
 ...
-&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
+&lt;button class=&quot;btn btn-primary overlay-close&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
 &lt;/div&gt;</code></pre>
 		<p><strong>Side Note:</strong> Close buttons must be inside the modal footer (a div with the class <code>modal-footer</code>).</p>
 	</section>
@@ -290,26 +290,11 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 </section>
 
 	<section>
-		<h3>Désactiver le pied de page par défaut et ou rendre le contenu superposé persistent.</h3>
-		<p>Ajouter <code>data-wb-overlay</code> afin de personaliser le pied de page et ou désactiver l'événement de fermeture.</p>
+		<h3>Rendre le contenu superposé persistent.</h3>
+		<p>Ajouter <code>data-wb-overlay</code> afin de désactiver l'événement de fermeture et ainsi rendre la fenêtre du contenu superposé persistante.</p>
 		<ul>
-			<li><code>{ &quot;noFooter&quot;: true }</code> cela désactivera le pied de page par défaut du contenu superposé afin qu'un pied de page personnalisé puisse être ajouté. </li>
 			<li><code>{ &quot;noClose&quot;: true }</code> cela empêchera le contenu superposé de se fermer lorsque vous appuyez sur la touche d'échappement ou lorsque vous cliquez en dehors de la fenêtre de superposition. </li>
 		</ul>
-
-		<p><a href="#cs-coin-inferieur-droit-sp" aria-controls="br-screen" class="overlay-lnk" role="button">Contenu superposé coin inférieur droit sans pied de page.</a></p>
-		<details class="mrgn-bttm-lg">
-			<summary>Visualiser le code</summary>
-			<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-coin-inferieur-droit-sp&quot; aria-controls=&quot;br-screen&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé coin inférieur droit sans pied de page.&lt;/a&gt;&lt;/p&gt;
-			&lt;section id=&quot;br-screen-nf&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-br wb-popup-flex&quot; data-wb-overlay=&apos;{ &quot;noFooter&quot;: true }&apos;&gt;
-			&lt;header class=&quot;modal-header&quot;&gt;
-			&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé coin inférieur droit sans pied de page.&lt;/h2&gt;
-			&lt;/header&gt;
-			&lt;div class=&quot;modal-body&quot;&gt;
-			...
-			&lt;/div&gt;
-		&lt;/section&gt;</code></pre>
-		</details>
 	</section>
 
 	<section>
@@ -612,28 +597,6 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 				</ol>
 			</li>
 		</ol>
-		<ol>
-			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-				<ol>
-					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-						<ol>
-							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-						</ol>
-					</li>
-				</ol>
-			</li>
-		</ol>
-	</div>
-</section>
-
-<section id="cs-coin-inferieur-droit-sp" class="wb-overlay modal-content overlay-def wb-popup-br wb-popup" data-wb-overlay='{ "noFooter": true }'>
-	<header class="modal-header">
-		<h2 class="modal-title">Contenu superposé coin inférieur droit sans pied de page</h2>
-	</header>
-	<div class="modal-body">
 		<ol>
 			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
 			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut

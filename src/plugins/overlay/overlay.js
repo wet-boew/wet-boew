@@ -24,7 +24,6 @@ var componentName = "wb-overlay",
 	sourceLinks = {},
 	settings,
 	defaults = {
-		noFooter: false,
 		persistent: false
 	},
 	setFocusEvent = "setfocus.wb",
@@ -79,7 +78,7 @@ var componentName = "wb-overlay",
 			if ( isPanel || isPopup ) {
 				footer = $elm.find( ".modal-footer" )[ 0 ];
 				var hasFooter = ( footer && footer.length !== 0 ) ? true : false,
-					hasButton = hasFooter && $( footer ).find( closeClass ).length !== 0,
+					hasButton = $( footer ).find( "button" ).hasClass( closeClass ),
 					closeClassFtr = ( $elm.hasClass( "wb-panel-l" ) ? "pull-right " : "pull-left " )  + closeClass,
 					closeTextFtr = i18nText.close,
 					spanTextFtr = i18nText.closeOverlay,

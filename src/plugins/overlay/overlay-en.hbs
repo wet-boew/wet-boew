@@ -9,7 +9,7 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2021-09-24"
+	"dateModified": "2021-09-29"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -238,7 +238,7 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 		<p>Overlays/Modals through JavaScript are automatically updated with a close overlay/modal button. This button can be changed with the following code:</p>
 		<pre><code>&lt;div class=&quot;modal-footer&quot;&gt;
 ...
-&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
+&lt;button class=&quot;btn btn-primary overlay-close&quot; type=&quot;button&quot;&gt;Close overlay/modal&lt;/button&gt;
 &lt;/div&gt;</code></pre>
 		<p><strong>Side Note:</strong> Close buttons must be inside the modal footer (a div with the class <code>modal-footer</code>).</p>
 	</section>
@@ -281,26 +281,11 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 	</section>
 
 	<section>
-		<h3>Remove default footer and or make overlay persistent</h3>
-		<p>Add <code>data-wb-overlay</code> to customize footer and or disable the close event.</p>
+		<h3>Persistent overlay</h3>
+		<p>Add <code>data-wb-overlay</code> to disable the close event in order to make overlay persistent.</p>
 		<ul>
-			<li><code>{ &quot;noFooter&quot;: true }</code> this will remove the default footer from the overlay dialogue so a customized footer can be added.</li>
-			<li><code>{ &quot;noClose&quot;: true }</code> this will prevent the overlay dialogue to close when pressing the escape key or when clicking outside the overlay.</li>
+			<li><code>{ &quot;noClose&quot;: true }</code> this will prevent the overlay dialogue to close when pressing the escape key or when clicking outside the overlay window.</li>
 		</ul>
-
-		<p><a href="#br-screen-nf" aria-controls="br-screen" class="overlay-lnk" role="button">Bottom-right overlay without default footer</a></p>
-		<details class="mrgn-bttm-lg">
-			<summary>View code</summary>
-			<pre><code>&lt;p&gt;&lt;a href=&quot;#br-screen-nf&quot; aria-controls=&quot;br-screen-flex&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Bottom-right overlay without default footer&lt;/a&gt;&lt;/p&gt;
-			&lt;section id=&quot;br-screen-nf&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-br wb-popup-flex&quot; data-wb-overlay=&apos;{ &quot;noFooter&quot;: true }&apos;&gt;
-			&lt;header class=&quot;modal-header&quot;&gt;
-			&lt;h2 class=&quot;modal-title&quot;&gt;Bottom-right overlay without footer&lt;/h2&gt;
-			&lt;/header&gt;
-			&lt;div class=&quot;modal-body&quot;&gt;
-			...
-			&lt;/div&gt;
-		&lt;/section&gt;</code></pre>
-		</details>
 	</section>
 
 	<section>
@@ -584,28 +569,6 @@ wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
 				</ol>
 			</li>
 		</ol>
-		<ol>
-			<li>ordered list (<code>ol</code>) first level default appearance</li>
-			<li>ordered list (<code>ol</code>) first level default appearance
-				<ol>
-					<li>ordered list (<code>ol</code>) second level default appearance</li>
-					<li>ordered list (<code>ol</code>) second level default appearance
-						<ol>
-							<li>ordered list (<code>ol</code>) third level default appearance</li>
-							<li>ordered list (<code>ol</code>) third level default appearance</li>
-						</ol>
-					</li>
-				</ol>
-			</li>
-		</ol>
-	</div>
-</section>
-
-<section id="br-screen-nf" class="wb-overlay modal-content overlay-def wb-popup-br wb-popup" data-wb-overlay='{ "noFooter": true }'>
-	<header class="modal-header">
-		<h2 class="modal-title">Bottom-right overlay without default footer</h2>
-	</header>
-	<div class="modal-body">
 		<ol>
 			<li>ordered list (<code>ol</code>) first level default appearance</li>
 			<li>ordered list (<code>ol</code>) first level default appearance
