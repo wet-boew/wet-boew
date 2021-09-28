@@ -84,7 +84,8 @@ var componentName = "wb-tables",
 				},
 				complete: function() {
 					var $elm = $( "#" + elmId ),
-						dataTableExt = $.fn.dataTableExt;
+						dataTableExt = $.fn.dataTableExt,
+						userDefaults = wb.getData( $elm, componentName );
 
 					/*
 					 * Extend sorting support
@@ -114,11 +115,19 @@ var componentName = "wb-tables",
 						}
 					} );
 
-					// Add the container or the sorting icons
-					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
+					// Handle sorting/ordering
+					var ordering = ( userDefaults && userDefaults.ordering === false ) ? false : true;
+					if ( ordering ) {
+						$elm.find( "th" ).each( function() {
+							var $th = $( this );
+							$th.html( "<button type='button' class='sorting-cnt' title='" + $th.html() + i18nText.aria.sortAscending + "'>" + $th.html() + " <span class='sorting-icons' aria-hidden='true'></span></button>" );
+							$th.removeAttr( "aria-label" );
+						} );
+						$elm.attr( "summary", "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time." );
+					}
 
 					// Create the DataTable object
-					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
+					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], userDefaults ) );
 				}
 			} );
 		}
@@ -137,6 +146,18 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		pHasPN = pagination.find( ".previous, .next" ).length === 2,
 		ol = document.createElement( "OL" ),
 		li = document.createElement( "LI" );
+
+	// Handle sorting/ordering
+	var order = $elm.dataTable( { "retrieve": true } ).api().order();
+	$elm.find( "th" ).each( function( index ) {
+		var $th = $( this );
+		if ( order && order[ 0 ][ 0 ] === index ) {
+			var label = ( order[ 0 ][ 1 ] === "desc" ) ? i18nText.aria.sortAscending : i18nText.aria.sortDescending;
+			label = $th.find( "button" ).text() + label;
+			$th.find( "button" ).attr( "title", label );
+		}
+		$th.removeAttr( "aria-label" );
+	} );
 
 	// Determine if Pagination required
 	if (

@@ -189,6 +189,18 @@ table {
 				}
 			}
 
+			button {
+				&.sorting-cnt {
+					-moz-appearance: none;
+					-webkit-appearance: none;
+					background: transparent;
+					border: 0;
+					font-family: inherit;
+					font-size: 100%;
+					padding: 0;
+				}
+			}
+
 			.sorting-cnt {
 				white-space: nowrap;
 
