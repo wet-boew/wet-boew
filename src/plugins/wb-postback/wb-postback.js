@@ -30,6 +30,7 @@ var $document = wb.doc,
 				classToggle = settings.toggle || "hide",
 				selectorSuccess = settings.success,
 				selectorFailure = settings.failure || selectorSuccess;
+				configuredMethod = settings.method
 
 			// Set "clicked" attribute on element that initiated the form submit
 			$buttons.on( "click", function() {
@@ -58,7 +59,7 @@ var $document = wb.doc,
 					$selectorSuccess.addClass( classToggle );
 
 					$.ajax( {
-						type: this.method,
+						type: configuredMethod || this.method,
 						url: this.action,
 						data: $.param( data )
 					} )
