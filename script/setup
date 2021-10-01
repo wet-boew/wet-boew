@@ -2,8 +2,8 @@
 
 case "$(uname -s)" in
 	CYGWIN*|MINGW*)
-			npm install -g bower grunt-cli && npm install
-		;;
+		npm install -g bower grunt-cli && npm install
+	;;
 	*)
 		if [ $(id -u) == "0" ]
 		then
