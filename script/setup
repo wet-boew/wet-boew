@@ -1,15 +1,21 @@
 #!/bin/sh
 
+#
+# Setup script.  Dash users will have issues with this, so try Bash if so.
+# 2021.10.03
+#
+
 case "$(uname -s)" in
 	CYGWIN*|MINGW*)
 		npm install -g bower grunt-cli && npm install
 	;;
+
 	*)
-		if [ $(id -u) == "0" ]
+		if [ "$(id -u)" == "0" ]
 		then
 			npm install -g bower grunt-cli && npm install
 		else
-			# Allows Linux and OSX users to run script/setup without the need for sudo
+			# Allows Linux and OSX users to run script/setup without the need for being root
 			sudo npm install -g bower grunt-cli
 			sudo -u $(logname) npm install
 		fi

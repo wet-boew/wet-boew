@@ -29,8 +29,8 @@ var $document = wb.doc,
 				multiple = typeof $elm.data( componentName + "-multiple" ) !== "undefined",
 				classToggle = settings.toggle || "hide",
 				selectorSuccess = settings.success,
-				selectorFailure = settings.failure || selectorSuccess;
-				configuredMethod = settings.method
+				selectorFailure = settings.failure || selectorSuccess,
+				configuredMethod = settings.method;
 
 			// Set "clicked" attribute on element that initiated the form submit
 			$buttons.on( "click", function() {
