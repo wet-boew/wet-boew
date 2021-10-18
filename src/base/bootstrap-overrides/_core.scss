@@ -1,0 +1,142 @@
+/*
+	WET-BOEW
+	@title: Bootstrap overrides for WET-BOEW - Core CSS
+ */
+
+/*! Placeholders */
+%no-decoration {
+	text-decoration: none;
+}
+
+/*
+ *  Link colour and decoration
+ */
+
+a {
+	text-decoration: underline;   // re-enable underlining
+
+	&.btn {
+		@extend %no-decoration; // except for buttons
+	}
+
+	&:visited {
+		color: $link-visited-color;
+	}
+
+	// make placeholder links look like plain text
+	&:not([href]) {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: inherit;
+			outline: none;
+			text-decoration: none;
+		}
+	}
+}
+
+.dl-horizontal {
+	@media (min-width: $screen-sm-min) {
+		&.brdr-0 { // removes bordered for dl-horizontal
+			dt,
+			dd {
+				border: 0 !important;
+			}
+		}
+
+		dt {
+			border-top: 1px solid $clrMedium;
+			padding: 10px 10px 10px 0;
+			text-align: left;
+			white-space: normal;
+		}
+
+		dd {
+			border-top: 1px solid $clrMedium;
+			margin-bottom: 3px;
+			margin-left: 160px;
+			padding: 10px 10px 10px 0;
+		}
+
+		dt + dd {
+			padding-bottom: 0;
+		}
+	}
+}
+
+/*
+ *  Abbreviations with title attributes
+ *  Workaround for abbreviations with titles using solid underlines in IE11/Edge in Bootstrap 3.4.0 (via normalize.css 4.0.1-8.0.1):
+ *  - Use a dotted underline in browsers that support it (e.g. Firefox, Chrome, etc...)
+ *  - Fallback on a dotted bottom border in browsers that don't support it (e.g. IE11, Edge, etc...)
+ *  Source: https://github.com/necolas/normalize.css/pull/738#issuecomment-387549760
+ *  Created by: @mattbrundage
+ */
+
+abbr[title] {
+	border-bottom: 1px dotted;
+	text-decoration: none;
+}
+
+@supports (text-decoration: underline dotted) {
+	abbr[title] {
+		border-bottom: 0;
+		text-decoration: underline dotted;
+		//Next line ported from Bootstrap 4
+		text-decoration-skip-ink: none; // sass-lint:disable-line no-misspelled-properties
+	}
+}
+
+/*
+ * Code
+ */
+code {
+	white-space: normal;
+}
+
+/*
+ * Adding space for definition list items
+ */
+dt {
+	margin-bottom: 3px;
+}
+
+dd {
+	margin-bottom: 15px;
+}
+
+/*
+ *  Blockquote font size
+ */
+blockquote {
+	font-size: $font-size-base;
+}
+
+/*
+ *  Right-to-left support
+ */
+[dir=rtl] {
+	.list-unstyled {
+		padding-right: 0;
+	}
+}
+
+//Overiding mark to have a better contrast ratio
+mark {
+	background-color: $txthl-bg-color;
+	color: $txthl-color;
+	font-weight: $txthl-font-weight;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+q {
+	&:before,
+	&:after {
+		content: "";
+	}
+}

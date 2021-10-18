@@ -3,115 +3,90 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+/*! Global and helpers */
+@import "../variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-overrides/helper-variables";
+@import "helper-mixins";
+@import "proximity/helper-mixins";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "helper-placeholders";
+
+/*! Reset and dependencies */
+@import "bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/print";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+
+/*! Core - HTML */
+@import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "bootstrap-overrides/core-heading";
+@import "lists/base";
+@import "bootstrap-overrides/core";
+@import "details/base";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "bootstrap-overrides/core-forms";
+@import "forms/base";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "bootstrap-overrides/core-button";
+
 /*
- Global placeholders
+ Polyfills
  */
-%accessible-invisible {
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px;
-	margin: 0;
-	overflow: hidden;
-	position: absolute;
-	width: 1px;
-}
+@import "../polyfills/datalist/base";
+@import "../polyfills/details/base";
+@import "../polyfills/datepicker/base";
 
-%accessible-invisible-show {
-	clip: rect(auto, auto, auto, auto);
-	height: inherit;
-	margin: inherit;
-	overflow: inherit;
-	position: static;
-	width: inherit;
-}
 
-%global-display-none {
-	display: none;
-}
+/*! Components (CSS type only) */
+@import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "transitions/base";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "bootstrap-overrides/placeholders-alerts-labels";
+@import "bootstrap-overrides/alerts";
+@import "bootstrap-overrides/labels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/close";
+@import "bootstrap-overrides/components";
+@import "ellipsis/base";
 
-%global-display-block {
-	display: block;
-}
+// Provisional components
+@import "provisional";
 
-%global-display-block-important {
-	display: block !important;
-}
 
-%global-text-decoration-none {
-	text-decoration: none;
-}
+// Components w/ JavaScript
+@import "bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/carousel";
 
-%global-centered-overlay-container {
-	bottom: 0;
-	content: " ";
-	height: 100px;
-	left: 0;
-	margin: auto;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 100px;
-}
 
-%global-centered-overlay {
-	&:after {
-		@extend %global-centered-overlay-container;
-		z-index: 1;
-	}
-
-	&:before {
-		@extend %global-centered-overlay-container;
-		background: rgba(0, 0, 0, .7);
-		border-radius: 10px;
-	}
-}
-
-@keyframes spin {
-	from {
-		transform: rotate(0);
-	}
-
-	to {
-		transform: rotate(360deg);
-	}
-}
-
-/* TODO: Use bootstratp placeholder when nested extends are supproted */
-%global-loading {
-	@extend %global-centered-overlay;
-
-	&:after {
-		animation: {
-			duration: 500ms;
-			iteration-count: infinite;
-			name: spin;
-			timing-function: linear;
-		}
-		color: #fff;
-		content: "\e031";
-		font: {
-			family: "Glyphicons Halflings";
-			size: 3.5em;
-		}
-		height: 1em;
-		line-height: 1.03;
-		width: 1em;
-		z-index: 2;
-	}
-}
-
-/*! WET-BOEW Core and Plugins */
-@import "accessibility/base";
+/*! Base Site */
+@import "accessibility/sites";
 @import "breadcrumb/base";
 @import "language-selector/base";
 @import "sign-in-off/base";
-@import "ellipsis/base";
-@import "transitions/base";
-@import "proximity/base";
-@import "lists/base";
-@import "forms/base";
-@import "details/base";
-@import "component";
-@import "provisional";
+
 
 /*
  Plugins
@@ -142,12 +117,13 @@
 @import "../plugins/zebra/base";
 @import "../plugins/feeds/base";
 
-/*
- Polyfills
- */
-@import "../polyfills/datalist/base";
-@import "../polyfills/details/base";
-@import "../polyfills/datepicker/base";
+/*! Core - Utilities */
+@import "bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+@import "accessibility/utilities";
+@import "proximity/base";
+@import "bootstrap-4";
+@import "component";
 
 /*
  Views

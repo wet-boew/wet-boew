@@ -1,0 +1,52 @@
+/*
+	WET-BOEW
+	@title: Bootstrap overrides for WET-BOEW - Helper - Placeholders
+ */
+
+/*
+ *  Alerts and labels
+ */
+
+%label-alert-common {
+	border-radius: 0;
+	border-style: solid;
+	border-width: 0 0 0 4px;
+}
+
+%label-alert-color-000 {
+	color: #000;
+}
+
+%label-alert-underline {
+	text-decoration: underline;
+}
+
+%label-default-bg-border-left {
+	background: #eee;
+	border-color: #acacac;
+}
+
+%label-primary-bg-border-left {
+	background: #e8f2f4;
+	border-color: #083c6c;
+}
+
+%label-alert-success-bg-border-left {
+	background: #d8eeca;
+	border-color: $label-alert-success-border-icon-color;
+}
+
+%label-alert-info-bg-border-left {
+	background: #d7faff;
+	border-color: $label-alert-info-border-icon-color;
+}
+
+%label-alert-warning-bg-border-left {
+	background: #f9f4d4;
+	border-color: $label-alert-warning-border-icon-color;
+}
+
+%label-alert-danger-bg-border-left {
+	background: #f3e9e8;
+	border-color: $label-alert-danger-border-icon-color;
+}
