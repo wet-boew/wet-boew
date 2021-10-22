@@ -32,13 +32,11 @@ var componentName = "wb-data-ajax",
 		"append",
 		"prepend"
 	],
-	selectorsLength = selectors.length,
 	selector = selectors.join( "," ),
 	initEvent = "wb-init." + componentName,
 	updateEvent = "wb-update." + componentName,
 	contentUpdatedEvent = "wb-contentupdated",
 	$document = wb.doc,
-	s,
 
 	/**
 	 * @method init
@@ -229,8 +227,6 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 } );
 
 // Add the timerpoke to initialize the plugin
-for ( s = 0; s !== selectorsLength; s += 1 ) {
-	wb.add( selectors[ s ] );
-}
+wb.add( selector );
 
 } )( jQuery, window, wb );
