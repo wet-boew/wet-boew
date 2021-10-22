@@ -7,18 +7,17 @@
 	"tag": "mathml",
 	"parentdir": "mathml",
 	"altLangPrefix": "mathml",
-	"dateModified": "2014-02-19"
+	"dateModified": "2021-10-13"
 }
 ---
 
 <section><h2>Overview</h2>
 <p>This polyfill loads MathJax when MathML is detected on the page and the browser has inadequate MathML support.</p>
 <section><h3>Known issues</h3>
-<ol>
-<li>Browsers that lack both MathML and SVG support (e.g., IE7 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
-<li>IE8 takes a lot longer to load MathML than either IE7 or IE9 (known MathJax reflow issue)</li>
-<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
-</ol>
+<ul>
+<li>Browsers that lack MathML support (e.g. Chromium and IE11) will take longer to load MathML than browsers with MathML support</li>
+<li>IE11 won't display MathML correctly in isolated networks. It relies on an extra polyfill that requires internet access.</li>
+</ul>
 </section>
 </section>
 
