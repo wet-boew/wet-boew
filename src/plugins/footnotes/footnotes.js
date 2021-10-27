@@ -36,7 +36,7 @@ var componentName = "wb-fnote",
 			footnoteDd = elm.getElementsByTagName( "dd" );
 			footnoteDt = elm.getElementsByTagName( "dt" );
 
-			// Apply aria-labelledby and set initial event handlers for return to referrer links
+			// Set initial event handlers for return to referrer links
 			len = footnoteDd.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				dd = footnoteDd[ i ];
