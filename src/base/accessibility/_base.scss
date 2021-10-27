@@ -44,9 +44,6 @@
 }
 
 .wb-disable {
-	#wb-tphp {
-		background: #fff;
-	}
 
 	.wb-slc {
 		position: static;
@@ -67,6 +64,19 @@
 
 	#wb-dtmd {
 		float: none !important;
+	}
+
+	#wb-tphp + section h2 {
+		margin-left: 1.3em;
+
+		&::before {
+			color: $label-alert-warning-border-icon-color;
+			content: "\e107";
+			display: inline-block;
+			font-family: "Glyphicons Halflings";
+			margin-left: -1.3em;
+			position: absolute;
+		}
 	}
 }
 
