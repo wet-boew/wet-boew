@@ -121,14 +121,16 @@ var componentName = "wb-data-ajax",
 				return {};
 			}
 
-			url = getURL( dtAttr.url, dtAttr.httpref );
-			if ( !url ) {
-				return {};
-			}
 			ajaxType = dtAttr.type;
 			if ( ajaxTypes.indexOf( ajaxType ) === -1 ) {
 				throw "Invalid ajax type";
 			}
+
+			url = getURL( dtAttr.url, dtAttr.httpref );
+			if ( !url ) {
+				return { "type": ajaxType };
+			}
+
 			nocache = dtAttr.nocache;
 			nocachekey = dtAttr.nocachekey;
 		}
