@@ -2,7 +2,7 @@
   "data": [{
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Biomass Program Continues to Support Transition to Renewable Energy in Manitoba</a>",
     "TEASER": "The governments of Canada and Manitoba are supporting a greener, more sustainable economy through the $1 million Biomass Energy Support Program, Federal Agriculture Minister Lawrence MacAulay and Manitoba Agriculture Minister Ralph Eichler announced today.",
-    "PUBDATE": "2016-07-29 12:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "News Releases",
     "DEPT": "Agriculture and Agri-Food Canada",
     "SUBJECT": "Agriculture",
@@ -22,7 +22,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">An Exhibition Dedicated to the Caribou and Other Animals Like It</a>",
     "TEASER": "The Government of Canada supports the Musée du Fjord",
-    "PUBDATE": "2016-07-29 11:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "News Releases",
     "DEPT": "Canadian Heritage",
     "SUBJECT": "Arts, Music, Literature",
@@ -42,7 +42,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada delivers $109 million to Alberta for community infrastructure projects</a>",
     "TEASER": "Modern and up-to-date community infrastructure helps ensure that Canadians live the quality of life that they want and expect. Community infrastructure helps connect people to jobs and provides access to better community services, attracts new businesses and creates economic growth opportunities.",
-    "PUBDATE": "2016-07-29 11:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "News Releases",
     "DEPT": "Infrastructure Canada",
     "SUBJECT": "Transport",
@@ -62,7 +62,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Post-Secondary Institutions Strategic Investment Fund Announcement at the University of Toronto</a>",
     "TEASER": "What an honour to be at the University of Toronto-my alma mater-for this tremendous announcement.",
-    "PUBDATE": "2016-07-29 10:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "Speeches",
     "DEPT": "Innovation, Science and Economic Development Canada",
     "SUBJECT": "Economics and Industry",
@@ -82,7 +82,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">The Royal 22e Régiment Takes On Tough Competition at Leapfest</a>",
     "TEASER": "Ten members of 3rd Battalion, Royal 22e Régiment will be testing their parachuting abilities at Leapfest from August 1 to 9.",
-    "PUBDATE": "2016-07-29 10:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -102,7 +102,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">UPDATE: Address by Minister Dion on the occasion of a joint press conference with Sri Lankan Minister of Foreign Affairs Samaraweera</a>",
     "TEASER": "I'm touched by the warmth and smiles that have greeted the Canadian delegation since our arrival in Sri Lanka last night. Minister Samaraweera, thank you very much for your invitation and the exceptional hospitality we've been shown.",
-    "PUBDATE": "2016-07-29 01:07:00",
+    "PUBDATE": "2016-07-29",
     "TYPE": "Speeches",
     "DEPT": "Global Affairs Canada",
     "SUBJECT": "Government and Politics",
@@ -122,7 +122,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Statement from the Vice Chief of the Defence Staff Regarding the 1974 Valcartier Grenade Incident</a>",
     "TEASER": "Lieutenant-General Guy Thibault, Vice Chief of the Defence Staff, today issued the following statement:",
-    "PUBDATE": "2016-07-28 18:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Statements",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -142,7 +142,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Building the Manitoba First Nations Network of the Future</a>",
     "TEASER": "Manitoba has some of the poorest Internet connectivity in the country south of 60. Of Manitoba's 63 First Nations, less than a third of communities have sufficient Internet capability for email, texting, or online applications.",
-    "PUBDATE": "2016-07-28 16:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Backgrounders",
     "DEPT": "Indigenous and Northern Affairs Canada",
     "SUBJECT": "Society and Culture",
@@ -162,7 +162,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canadian Soldiers headed to Exercise PANAMAX</a>",
     "TEASER": "The newly enlarged Panama Canal will be the focus of Exercise PANAMAX, led by Chile, Colombia and Peru. Canadian participation in the U.S. Southern Command- sponsored exercise consists of 10 Regular and Reserve Force members from 5th Canadian Division from July 29 to August 5.",
-    "PUBDATE": "2016-07-28 15:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -182,7 +182,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada Supports Mississauga Biotech Innovator</a>",
     "TEASER": "Minister of Innovation, Science and Economic Development Navdeep Bains, on behalf of the Minister of Agriculture and Agri-Food Canada, Lawrence MacAulay, will be in Mississauga, Ontario, on Friday, July 29th, to make an announcement in support of a Mississauga-based biotechnology company, AbCelex Technologies Inc.",
-    "PUBDATE": "2016-07-28 15:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Media Advisories",
     "DEPT": "Agriculture and Agri-Food Canada",
     "SUBJECT": "Agriculture",
@@ -202,7 +202,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canadian Energy in a Global Marketplace</a>",
     "TEASER": "The past two years in energy markets have been a wild ride, to say the least. This has been a time of unprecedented uncertainty",
-    "PUBDATE": "2016-07-28 13:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Speeches",
     "DEPT": "National Energy Board",
     "SUBJECT": "Nature and Environment,Economics and Industry",
@@ -222,7 +222,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Recreational Improvements in Stratford</a>",
     "TEASER": "The Town of Stratford will soon see many of its recreational assets undergo important infrastructure upgrades. Locations include Kelly's Pond, MacNeill Community Centre and the adjacent MacNeill Ball Field, Robert L. Cotton Centre, and Bunbury Ball Field.",
-    "PUBDATE": "2016-07-28 13:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Economics and Industry",
@@ -242,7 +242,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">The Government of Canada takes action to eliminate known Sex-Based Discrimination in the Indian Act</a>",
     "TEASER": "Today, the Honourable Carolyn Bennett, Minister of Indigenous and Northern Affairs, provided details on the Government of Canada's two-staged approach in the context of the response to the Superior Court of Quebec decision in the case of Descheneaux et al., v. Canada",
-    "PUBDATE": "2016-07-28 11:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "Indigenous and Northern Affairs Canada",
     "SUBJECT": "Society and Culture",
@@ -262,7 +262,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada investing in innovation at Cape Breton University</a>",
     "TEASER": "Rodger Cuzner, Member of Parliament for Cape Breton – Canso, was joined by the Honourable Mark Eyking, Member of Parliament for Sydney – Victoria, today to announce a more than $1.1 million investment to the Cape Breton University's Verschuren Centre for Sustainability in Energy and Environment for a project that supports research and development to degrade organic matter commonly found in food processing wastewater. The funding is being provided through ACOA's Atlantic Innovation Fund.",
-    "PUBDATE": "2016-07-28 11:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Nature and Environment,Science and Technology,Economics and Industry",
@@ -282,7 +282,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Post-Secondary Institutions Strategic Investment Fund</a>",
     "TEASER": "The Post-Secondary Institutions Strategic Investment Fund is a $2-billion initiative designed to modernize research and commercialization facilities at Canadian universities, colleges and polytechnics.",
-    "PUBDATE": "2016-07-28 10:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Backgrounders",
     "DEPT": "Innovation, Science and Economic Development Canada",
     "SUBJECT": "Economics and Industry",
@@ -302,7 +302,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Media Advisory - Martensville, Saskatchewan</a>",
     "TEASER": "Martensville, Saskatchewan July 28, 2016 – Members of the media are invited to attend an important infrastructure event regarding Highways 11 and 12 with the Honourable Ralph Goodale, Minister of Public Safety and Emergency Preparedness and the Honourable Nancy Heppner, Minister of Highways and Infrastructure.",
-    "PUBDATE": "2016-07-28 10:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Media Advisories",
     "DEPT": "Infrastructure Canada",
     "SUBJECT": "Transport",
@@ -322,7 +322,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Member of Parliament Denis Lemieux to Make an Announcement About the Musée du Fjord</a>",
     "TEASER": "SAGUENAY, Quebec – Denis Lemieux, Member of Parliament (Chicoutimi–Le Fjord)...",
-    "PUBDATE": "2016-07-28 10:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "Media Advisories",
     "DEPT": "Canadian Heritage",
     "SUBJECT": "Arts, Music, Literature",
@@ -342,7 +342,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Ottawa River Designated a Canadian Heritage River</a>",
     "TEASER": "Today, the Ontario Minister of Natural Resources and Forestry, Kathryn McGarry, and the Minister of Environment and Climate Change and Minister responsible for Parks Canada, Catherine McKenna, designated the Ontario portion of the Ottawa River as a Canadian Heritage River for its outstanding cultural heritage values.",
-    "PUBDATE": "2016-07-28 09:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "Parks Canada",
     "SUBJECT": "History and Archaeology",
@@ -362,7 +362,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Veterans Affairs Canada office in Charlottetown to reopen November, 2016</a>",
     "TEASER": "Government of Canada committed to doing more for Veterans",
-    "PUBDATE": "2016-07-28 09:07:00",
+    "PUBDATE": "2016-07-28",
     "TYPE": "News Releases",
     "DEPT": "Veterans Affairs Canada",
     "SUBJECT": "Military",
@@ -382,7 +382,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Parliamentary Secretary Alghabra to attend presidential inauguration in Peru</a>",
     "TEASER": "Omar Alghabra, Parliamentary Secretary to the Minister of Foreign Affairs (Consular Affairs), today announced that he will attend the inauguration of president-elect Pedro Pablo Kuczynski in Lima, Peru, on July 28, 2016.",
-    "PUBDATE": "2016-07-27 20:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Global Affairs Canada",
     "SUBJECT": "Government and Politics",
@@ -402,7 +402,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Bains and Minister Duncan to announce infrastructure funding at University of Toronto</a>",
     "TEASER": "Event date: <span class=doe>July 28, 2016</span> - The Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development, the Honourable Kirsty Duncan, Minister of Science, and the Honourable Deb Matthews, Ontario Minister of Advanced Education and Skills Development, will be joined by Parliamentary Assistant to the Minister of Advanced Education and Skills Development Han Dong at the University of Toronto on July 28 to announce infrastructure funding for the University of Toronto and to highlight the benefits of the new Post-Secondary Institutions Strategic Investment Fund.",
-    "PUBDATE": "2016-07-27 18:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "Media Advisories",
     "DEPT": "Innovation, Science and Economic Development Canada",
     "SUBJECT": "Economics and Industry",
@@ -422,7 +422,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Free streaming of Thérèse Ottawa's Red Path at NFB.ca, starting Aug. 4. NFB short received two special mentions at last year's Festival Présence autochtone/Montreal First Peoples Festival.</a>",
     "TEASER": "As the Festival Présence autochtone/Montreal First Peoples Festival kicks off its new season, one of the National Film Board of Canada's hits from the 2015 edition will premiere at NFB.ca, with Atikamekw filmmaker Thérèse Ottawa's acclaimed short Red Path (Le chemin rouge) debuting online August 4.",
-    "PUBDATE": "2016-07-27 17:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "National Film Board",
     "SUBJECT": "Society and Culture,Arts, Music, Literature",
@@ -442,7 +442,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">FedDev Ontario Supports Expansion Activities for Belleville Clean Technology Manufacturer</a>",
     "TEASER": "Today, Neil R. Ellis, Member of Parliament for Bay of Quinte, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for FedDev Ontario, announced an investment of up to $1.95 million to Strathcona Energy Group Inc. (SEG) to expand production capacity for its core solar panel business in Belleville.",
-    "PUBDATE": "2016-07-27 15:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Federal Economic Development Agency for Southern Ontario",
     "SUBJECT": "Economics and Industry",
@@ -462,7 +462,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">McKay Memorial Library Opens New Chapter of Community Support</a>",
     "TEASER": "The McKay Memorial Library is opening up a new chapter in its book; one where it will be better equipped to support the needs of its community. The Library will be receiving renovations that will expand their programming space in order to enhance non-traditional library services such as workshops, training, specialized programming, artisan's displays and community space.",
-    "PUBDATE": "2016-07-27 14:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Society and Culture,Education and Training,Information and Communications",
@@ -482,7 +482,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada invests in southern Ontario</a>",
     "TEASER": "Ontarians will benefit from well­paying jobs for the middle class and those working hard to join it as a result of a series of investments made this week by the Government of Canada to commercialize new technologies, diversify regional economies and accelerate the growth of small businesses.",
-    "PUBDATE": "2016-07-27 14:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Innovation, Science and Economic Development Canada",
     "SUBJECT": "Economics and Industry",
@@ -502,7 +502,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canada Announces Improved Additions to Reserve Process to Advance Reconciliation with First Nations and Promote Economic Development</a>",
     "TEASER": "The Government of Canada is committed to improving the process for creating new reserves and adding land to existing reserves.",
-    "PUBDATE": "2016-07-27 13:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Indigenous and Northern Affairs Canada",
     "SUBJECT": "Society and Culture",
@@ -522,7 +522,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Enforcement Advisory - Notice for businesses and individuals on how to keep records of consent</a>",
     "TEASER": "Commission staff has published this advisory, directed to businesses and individuals in Canada sending commercial electronic messages (CEMs) as part of their commercial activities.",
-    "PUBDATE": "2016-07-27 12:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "Media Advisories",
     "DEPT": "Canadian Radio-television and Telecommunications Commission",
     "SUBJECT": "Economics and Industry",
@@ -542,7 +542,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Hehr to make announcement regarding office opening in Charlottetown, Prince Edward Island</a>",
     "TEASER": "The Honourable Kent Hehr, Minister of Veterans Affairs and Associate Minister of National Defence, will announce plans to reopen the Veterans Affairs Canada office in Charlottetown, Prince Edward Island, and speak to Budget 2016 measures which improve support for Canadian Armed Forces members, Veterans and their families",
-    "PUBDATE": "2016-07-27 11:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "Media Advisories",
     "DEPT": "Veterans Affairs Canada",
     "SUBJECT": "Military",
@@ -562,7 +562,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canadian Army trains with Allied Forces in Romania during Exercise SABER GUARDIAN</a>",
     "TEASER": "Starting today until August 7, approximately 45 Canadian Army soldiers will be participating in Exercise SABER GUARDIAN 2016, a U.S.-led joint, multinational, regional exercise, in Cincu, Romania. In support of allied and partner nations, more than 2,500 soldiers from 11 countries will partake in the exercise designed to improve interoperability within a multinational brigade.",
-    "PUBDATE": "2016-07-27 10:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -582,7 +582,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Veterans Affairs Canada office in Sydney to reopen November 2016</a>",
     "TEASER": "Government of Canada committed to doing more for Veterans",
-    "PUBDATE": "2016-07-27 09:07:00",
+    "PUBDATE": "2016-07-27",
     "TYPE": "News Releases",
     "DEPT": "Veterans Affairs Canada",
     "SUBJECT": "Military",
@@ -602,7 +602,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Backgrounder - Southeast Asia security and stability project announcements</a>",
     "TEASER": "This initiative will assist the Lao People's Democratic Republic (PDR) in developing ways to track public expenditures related to disaster risk management. The initiative will also assist the governments of the Lao PDR and Cambodia in developing disaster-loss databases for the road sector to ensure risk-informed decision making in the construction and repair of roads.",
-    "PUBDATE": "2016-07-26 17:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "Backgrounders",
     "DEPT": "Global Affairs Canada",
     "SUBJECT": "Government and Politics",
@@ -622,7 +622,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Ontario and Canada Investing in Barrie Area Agricultural Projects</a>",
     "TEASER": "The provincial and federal governments have invested over $1 million in 24 projects in Barrie and the surrounding area of Dufferin County and Simcoe County to help grow the area's food and beverage sector and the local economy.",
-    "PUBDATE": "2016-07-26 15:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Agriculture and Agri-Food Canada",
     "SUBJECT": "Agriculture",
@@ -642,7 +642,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">FedDev Ontario Invests in Biomedical Engineering and Advanced Manufacturing Centre</a>",
     "TEASER": "Hamilton residents will benefit from well-paying jobs for the middle class and those working hard to join it as a result of an $11.96-million investment to establish a biomedical engineering and advanced manufacturing facility. The products developed as a result of this investment have the potential to change diagnostics and treatment, which could improve the quality of life of Canadians as well as people living in countries around the world.",
-    "PUBDATE": "2016-07-26 14:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Federal Economic Development Agency for Southern Ontario",
     "SUBJECT": "Economics and Industry",
@@ -662,7 +662,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">MP Jordan to make announcement in Shelburne</a>",
     "TEASER": "Members of the media are invited to join Bernadette Jordan, Member of Parliament for South Shore – St. Margarets, on behalf of the Honorable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency, for a funding announcement in Shelburne.",
-    "PUBDATE": "2016-07-26 14:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "Media Advisories",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Persons,Science and Technology,Society and Culture,Language and Linguistics,Education and Training",
@@ -682,7 +682,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Fisheries and Oceans Canada announces new round of funding for Canadian researchers to study contaminants</a>",
     "TEASER": "Ottawa, Ontario – Research that studies the effects of contaminants on our aquatic ecosystems helps improve decision-making on the use and protection of our marine and freshwater environments. It contributes to Fisheries and Oceans Canada's overall advice on sustainable aquaculture, resource development and emergency response measures.",
-    "PUBDATE": "2016-07-26 14:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Fisheries and Oceans Canada",
     "SUBJECT": "Nature and Environment,Science and Technology,Economics and Industry,Health and Safety",
@@ -702,7 +702,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government Of Canada Investing in Innovation at QRA Corp</a>",
     "TEASER": "The Honourable Scott Brison, President of the Treasury Board of Canada and Member of Parliament for Kings-Hants, was joined by Andy Fillmore, Member of Parliament for Halifax, today to announce an investment of $2,994,928 for the development of QRA Corp's QVtrace analysis tool. The announcement was made on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency (ACOA). Minister Brison and MP Fillmore were joined by Dr. Jordan Kyriakidis, Co-founder and CEO of QRA Corp, and Greg Phipps, Managing Director of Investment for Innovacorp.",
-    "PUBDATE": "2016-07-26 14:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Persons,Science and Technology",
@@ -722,7 +722,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">MP Ellis to Announce Support for Business Growth and Productivity in Belleville</a>",
     "TEASER": "Neil R. Ellis, Member of Parliament for Bay of Quinte, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for FedDev Ontario, will make an announcement supporting a Belleville-based clean technology manufacturer.",
-    "PUBDATE": "2016-07-26 13:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "Media Advisories",
     "DEPT": "Federal Economic Development Agency for Southern Ontario",
     "SUBJECT": "Economics and Industry",
@@ -742,7 +742,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Hehr to make announcement regarding office reopening in Sydney, Nova Scotia</a>",
     "TEASER": "The Honourable Kent Hehr, Minister of Veterans Affairs and Associate Minister of National Defence, will announce plans to reopen the Veterans Affairs Canada office in Sydney, Nova Scotia, and speak to Budget 2016 measures which improve support for Canadian Armed Forces members, Veterans and their families",
-    "PUBDATE": "2016-07-26 12:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "Media Advisories",
     "DEPT": "Veterans Affairs Canada",
     "SUBJECT": "Military",
@@ -762,7 +762,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government funding brings high-speed internet to Southwestern Ontario communities</a>",
     "TEASER": "The governments of Canada and Ontario are committed to supporting innovation and encouraging economic activity that contributes to growing the middle class. That is why the federal and provincial governments are providing up to $180 million in joint funding to improve high-speed internet connectivity to over 300 communities in Southwestern Ontario.",
-    "PUBDATE": "2016-07-26 11:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Infrastructure Canada",
     "SUBJECT": "Transport",
@@ -782,7 +782,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Chair Kathy Fox statement on the expedited removal of legacy tank cars for crude oil transport</a>",
     "TEASER": "TSB issues statement on expedited removal of legacy tank cars.",
-    "PUBDATE": "2016-07-26 10:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Transportation Safety Board of Canada",
     "SUBJECT": "Transport",
@@ -802,7 +802,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada Supports Stella's Circle Building Upgrades</a>",
     "TEASER": "Plans are underway to upgrade the Stella's Circle building on Cabot Street, thanks in part to a contribution from the Government of Canada. Seamus O'Regan, Member of Parliament for St. John's South-Mount Pearl, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency (ACOA), today announced funding of $32,500 for the project through the Canada 150 Community Infrastructure Program (CIP 150).",
-    "PUBDATE": "2016-07-26 10:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Economics and Industry",
@@ -822,7 +822,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Lockdown and search at Matsqui Institution</a>",
     "TEASER": "On July 24, 2016, at about 4:00 p.m., a lockdown was put in place at Matsqui Institution, a medium security federal institution, to enable staff members to conduct an exceptional search.",
-    "PUBDATE": "2016-07-26 09:07:00",
+    "PUBDATE": "2016-07-26",
     "TYPE": "News Releases",
     "DEPT": "Correctional Service Canada",
     "SUBJECT": "Health and Safety",
@@ -842,7 +842,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">End of lockdown and search at Warkworth Institution</a>",
     "TEASER": "The lockdown put in place at Warkworth Institution on July 20, 2016, has ended. The institution has resumed its normal operations.",
-    "PUBDATE": "2016-07-25 16:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "News Releases",
     "DEPT": "Correctional Service Canada",
     "SUBJECT": "Health and Safety",
@@ -862,7 +862,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Faster timeline for phasing out DOT-111 tank cars</a>",
     "TEASER": "In 2015, more than 146,000 carloads of crude oil were shipped throughout Canada by rail.",
-    "PUBDATE": "2016-07-25 14:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "News Releases",
     "DEPT": "Transport Canada",
     "SUBJECT": "Transport",
@@ -882,7 +882,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Brison to speak about the Government of Canada's plan for the middle class</a>",
     "TEASER": "President of the Treasury Board and Member of Parliament for Kings-Hants Scott Brison will be speaking about the Government of Canada's plan to strengthen Canada's middle class and help the families who need it most.",
-    "PUBDATE": "2016-07-25 13:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Media Advisories",
     "DEPT": "Treasury Board of Canada Secretariat",
     "SUBJECT": "Economics and Industry",
@@ -902,7 +902,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canada promotes regional security and safety in Southeast Asia</a>",
     "TEASER": "The Honourable Stéphane Dion, Minister of Foreign Affairs, today announced seven new security and safety initiatives worth more than $17 million during his participation at the Association of Southeast Asian Nations (ASEAN)-Canada Post-Ministerial Conference in Vientiane, the Lao People's Democratic Republic (PDR).",
-    "PUBDATE": "2016-07-25 13:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "News Releases",
     "DEPT": "Global Affairs Canada",
     "SUBJECT": "Government and Politics",
@@ -922,7 +922,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Westmount District</a>",
     "TEASER": "Westmount District",
-    "PUBDATE": "2016-07-25 13:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Backgrounders",
     "DEPT": "Parks Canada",
     "SUBJECT": "History and Archaeology",
@@ -942,7 +942,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Backgrounder: 27 Manitoba Infrastructure Projects Approved Under New Federal Funding Programs</a>",
     "TEASER": "Canada and Manitoba approved 27 community infrastructure projects today under two new federal infrastructure programs introduced as part of Phase 1 of the 10-year Investing in Canada plan. The Public Transit Infrastructure Fund and the Canadian Water and Wastewater Fund, are both aimed at addressing priority projects and focuses on repairing and upgrading existing facilities and assets. Phase 1 will help lay the foundation for the longer-term federal investment strategy. Details on Phase 2 of Investing in Canada will be announced over the next year.",
-    "PUBDATE": "2016-07-25 12:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Backgrounders",
     "DEPT": "Infrastructure Canada",
     "SUBJECT": "Transport",
@@ -962,7 +962,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canada 150 Community Infrastructure Program Investments for Montague</a>",
     "TEASER": "Members of the media are invited to attend an infrastructure announcement in Montague. The Honourable Lawrence MacAulay, Minister of Agriculture and Agri-Food, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency, will join officials from the Town of Montague and the Montague Waterfront Development Corporation to make the announcement.",
-    "PUBDATE": "2016-07-25 12:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Media Advisories",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Economics and Industry",
@@ -982,7 +982,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Media Advisory - London, Ontario</a>",
     "TEASER": "Members of the media are invited to attend an important infrastructure event regarding internet connectivity with the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development, on behalf of the Honourable Amarjeet Sohi, Minister of Infrastructure and Communities; and the Honourable Bob Chiarelli, Ontario Minister of Infrastructure.",
-    "PUBDATE": "2016-07-25 12:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Media Advisories",
     "DEPT": "Infrastructure Canada",
     "SUBJECT": "Transport",
@@ -1002,7 +1002,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Brison and MP Fillmore to make innovation funding announcement</a>",
     "TEASER": "Members of the media are invited to attend an event where the Honourable Scott Brison, President of the Treasury Board of Canada and Member of Parliament for Kings-Hants, along with Andy Fillmore, Member of Parliament for Halifax, on behalf of the Honourable Navdeep Bains, Minister of Innovation, Science and Economic Development and Minister responsible for the Atlantic Canada Opportunities Agency (ACOA), will make an official announcement concerning a major investment in innovation in Atlantic Canada under ACOA's Atlantic Innovation Fund.",
-    "PUBDATE": "2016-07-25 10:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "Media Advisories",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Science and Technology",
@@ -1022,7 +1022,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canadians recognized for their dedication to Veterans</a>",
     "TEASER": "Minister of Veterans Affairs Commendation presented at a ceremony in Halifax",
-    "PUBDATE": "2016-07-25 09:07:00",
+    "PUBDATE": "2016-07-25",
     "TYPE": "News Releases",
     "DEPT": "Veterans Affairs Canada",
     "SUBJECT": "History and Archaeology",
@@ -1042,7 +1042,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canada took strong stance at United Nations meetings on climate warming HFCs</a>",
     "TEASER": "Canada is taking action on climate change at home and abroad. Environment and Climate Change Minister, Catherine McKenna, today wrapped up a series of UN meetings in Vienna, where Canada pushed for international action to phase down climate-warming hydrofluorocarbons (HFCs) as quickly as possible.",
-    "PUBDATE": "2016-07-24 15:07:00",
+    "PUBDATE": "2016-07-24",
     "TYPE": "News Releases",
     "DEPT": "Environment and Climate Change Canada",
     "SUBJECT": "Nature and Environment",
@@ -1062,7 +1062,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Camp Hughes, WWI Military Training Camp, Recognized for its National Historic Significance</a>",
     "TEASER": "Camp Hughes, WWI Military Training Camp, Recognized for its National Historic Significance",
-    "PUBDATE": "2016-07-24 15:07:00",
+    "PUBDATE": "2016-07-24",
     "TYPE": "News Releases",
     "DEPT": "Parks Canada",
     "SUBJECT": "History and Archaeology",
@@ -1082,7 +1082,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Minister Dion to travel to the Lao People's Democratic Republic, establish new diplomatic mission and participate in Association of Southeast Asian Nations meetings</a>",
     "TEASER": "The Honourable Stéphane Dion, Minister of Foreign Affairs, today announced that he will travel to Vientiane, the Lao People's Democratic Republic (PDR), for the annual Association of Southeast Asian Nations (ASEAN)-Canada Post-Ministerial Conference and the ASEAN Regional Forum, scheduled, respectively, for July 25 and 26, 2016.",
-    "PUBDATE": "2016-07-23 17:07:00",
+    "PUBDATE": "2016-07-23",
     "TYPE": "News Releases",
     "DEPT": "Global Affairs Canada",
     "SUBJECT": "Government and Politics",
@@ -1102,7 +1102,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Federal and Provincial Governments Celebrate the Grand Opening of Revitalized Bridge Street</a>",
     "TEASER": "Completed restoration project will enhance business, community and tourism activities",
-    "PUBDATE": "2016-07-23 11:07:00",
+    "PUBDATE": "2016-07-23",
     "TYPE": "News Releases",
     "DEPT": "Atlantic Canada Opportunities Agency",
     "SUBJECT": "Economics and Industry",
@@ -1122,7 +1122,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada, provinces and territories reach unprecedented agreement-in-principle on internal trade</a>",
     "TEASER": "In an increasingly global economy, Canada must have a free trade agreement that lowers barriers within our own country. An open Canadian market creates well-paying jobs for the middle class and those working hard to join it. It drives economic growth and provides consumers with more choice. It also enables Canadian businesses to be as competitive at home as they are abroad.",
-    "PUBDATE": "2016-07-22 19:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "Innovation, Science and Economic Development Canada",
     "SUBJECT": "Economics and Industry",
@@ -1142,7 +1142,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Defence Minister Concludes Visit to RIMPAC 2016</a>",
     "TEASER": "As part of the Government of Canada's commitment to maintaining strong, multilateral ties with allies in the Asia-Pacific region, Defence Minister Harjit S. Sajjan today concluded a successful visit with Canadian Armed Forces (CAF) personnel and international partners in the region of the Hawaiian Islands during the world's largest international maritime exercise, Rim of the Pacific (RIMPAC) 2016.",
-    "PUBDATE": "2016-07-22 18:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -1162,7 +1162,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Statement from Minister MacAulay on Federal, Provincial and Territorial Ministers of Agriculture Annual Conference</a>",
     "TEASER": "The Honourable Lawrence MacAulay, Minister of Agriculture and Agri-Food, today issued the following statement regarding the annual conference of federal, provincial and territorial (FPT) Ministers of Agriculture.",
-    "PUBDATE": "2016-07-22 17:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "Statements",
     "DEPT": "Agriculture and Agri-Food Canada",
     "SUBJECT": "Agriculture",
@@ -1182,7 +1182,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Government of Canada Announces Re-evaluation Decision for Pesticides Containing Boric Acid</a>",
     "TEASER": "Today, the Government of Canada published a final pesticide re-evaluation decision for boric acid, a naturally occurring substance that is commonly used in a wide range of pesticide products in Canada to control insects and fungi.",
-    "PUBDATE": "2016-07-22 16:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "Health Canada",
     "SUBJECT": "Health and Safety",
@@ -1202,7 +1202,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Canadian Armed Forces teams complete the 2016 Nijmegen Marches</a>",
     "TEASER": "Today marks the end of the 100th annual International Four Days Marches Nijmegen in the Netherlands. This year, more than 200 Canadian Armed Forces (CAF) members from across Canada and Formation Europe participated in the marching event, and were awarded a special 100th anniversary edition of the Four Day Marches Cross.",
-    "PUBDATE": "2016-07-22 15:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -1222,7 +1222,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">New Leader at the Helm of Maritime Forces Pacific</a>",
     "TEASER": "Rear-Admiral (RAdm) Art McDonald officially assumed command of Maritime Forces Pacific (MARPAC) and Joint Task Force (Pacific) (JTF(P)) from RAdm Gilles Couturier during a ceremony held today at CFB Esquimalt. Presiding over the ceremony was Vice-Admiral Ron Lloyd, Commander Royal Canadian Navy.",
-    "PUBDATE": "2016-07-22 14:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "National Defence and the Canadian Armed Forces",
     "SUBJECT": "Military",
@@ -1242,7 +1242,7 @@
   }, {
     "TITLE": "<a href=\"http://news.gc.ca/web/index-en.do\">Department of Finance Releases Legislative and Regulatory Proposals Relating to the Goods and Services Tax/Harmonized Sales Tax</a>",
     "TEASER": "Department of Finance Releases Legislative and Regulatory Proposals Relating to the Goods and Services Tax/Harmonized Sales Tax",
-    "PUBDATE": "2016-07-22 13:07:00",
+    "PUBDATE": "2016-07-22",
     "TYPE": "News Releases",
     "DEPT": "Finance Canada",
     "SUBJECT": "Government and Politics",

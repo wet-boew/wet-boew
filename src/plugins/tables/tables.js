@@ -314,6 +314,10 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 				var $date = obj.replace( /[0-9]{2}\s[0-9]{2}:/g, function( e ) {
 					return e.replace( /\s/g, "T" );
 				} );
+
+				if ( !$date.includes( "T" ) ) {
+					$date = $date + "T00:00:00";
+				}
 				$date = new Date( $date );
 				$date.setHours( 0, 0, 0, 0 );
 
