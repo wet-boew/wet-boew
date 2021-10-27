@@ -126,7 +126,6 @@ module.exports = (grunt) ->
 			"copy:js"
 			"concat:core"
 			"concat:coreIE8"
-			"string-replace"
 			"concat:pluginsIE8"
 			"concat:i18n"
 		]
@@ -313,7 +312,6 @@ module.exports = (grunt) ->
 		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: "<%= pkg.dependencies.jquery %>"
 		jqueryOldIEVersion: "1.12.4"
-		MathJaxVersion: "<%= pkg.dependencies.mathjax %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -1141,15 +1139,10 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "node_modules/mathjax"
+					cwd: "node_modules/mathjax/es5"
 					src: [
-						"MathJax.js"
-						"config/**"
-						"extensions/**"
-						"jax/**"
-						"localization/**"
-						"fonts/HTML-CSS/TeX/woff/**"
-						"fonts/HTML-CSS/TeX/otf/**"
+						"mml-chtml.js"
+						"output/chtml/fonts/woff-v2/**"
 					]
 					dest: "<%= coreDist %>/js/MathJax/"
 					expand: true
@@ -1390,16 +1383,6 @@ module.exports = (grunt) ->
 				dest: "<%= coreDist %>/js/i18n/"
 			assemble:
 				dest: 'site/data/i18n'
-
-		"string-replace":
-			inline:
-				files:
-					"dist/wet-boew/js/": "dist/wet-boew/js/*.js"
-				options:
-					replacements: [
-						pattern: "WET_BOEW_VERSION_MATHJAX"
-						replacement: "<%= MathJaxVersion %>"
-					]
 
 		"gh-pages":
 			options:

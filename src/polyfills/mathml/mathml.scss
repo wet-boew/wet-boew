@@ -1,0 +1,19 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*
+Extra CSS for MathJax 3.2.0:
+-Prevent msubsup element's superscripts from looking like subscripts
+-See https://github.com/mathjax/MathJax/issues/2765#issuecomment-920400049
+-Only needed for 3.2.0, remove whenever WET updates to > 3.2.0
+*/
+
+mjx-script > * {
+	display: inline-block !important;
+}
+
+mjx-script > mjx-spacer {
+	display: block !important;
+}
