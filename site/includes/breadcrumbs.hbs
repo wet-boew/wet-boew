@@ -2,8 +2,74 @@
 	<h2>{{{i18n "you-are-here"}}}</h2>
 	<div class="container">
 		<div class="row">
-			<ol class="breadcrumb">
-				{{>breadcrumbscontent}}
+			<ol class="breadcrumb" typeof="BreadcrumbList">
+				<li property="itemListElement" typeof="ListItem">
+					<a property="item" typeof="WebPage" href="{{assets}}/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html"><span property="name">{{{i18n "tmpl-home"}}}</span></a>
+					<meta property="position" content="1">
+				</li>
+				{{#contains page.src "/demos/index"}}
+					<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="2"></li>
+				{{else}}
+					{{#contains page.src "/docs/"}}
+						{{#contains page.src "/versions/"}}
+							{{#contains page.src "/index"}}
+								<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="2"></li>
+							{{else}}
+								<li property="itemListElement" typeof="ListItem">
+									<a property="item" typeof="WebPage" href="{{assets}}/docs/versions/index-{{language}}.html"><span property="name">{{{i18n "tmpl-version-history"}}}</span></a>
+									<meta property="position" content="2">
+								</li>
+								<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="3"></li>
+							{{/contains}}
+						{{else}}
+							{{#contains page.src "/docs/index"}}
+								<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="2"></li>
+							{{else}}
+								<li property="itemListElement" typeof="ListItem">
+									<a property="item" typeof="WebPage" href="{{assets}}/docs/index-{{language}}.html"><span property="name">{{{i18n "tmpl-documentation"}}}</span></a>
+									<meta property="position" content="2">
+								</li>
+								{{#if page.categoryfile}}
+									<li property="itemListElement" typeof="ListItem">
+										<a property="item" typeof="WebPage" href="{{assets}}/docs/ref/{{page.categoryfile}}-{{language}}.html"><span property="name">{{page.category}}</span></a>
+										<meta property="position" content="3">
+									</li>
+									<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="4"></li>
+									{{else}}
+										<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="3"></li>
+								{{/if}}
+							{{/contains}}
+						{{/contains}}
+					{{else}}
+						<li property="itemListElement" typeof="ListItem">
+							<a property="item" typeof="WebPage" href="{{assets}}/demos/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html"><span property="name">{{{i18n "tmpl-work-examples"}}}</span></a>
+							<meta property="position" content="2">
+						</li>
+						<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="3"></li>
+						{{#is breadcrumb3 "true"}}
+							{{#contains tag "theme-wet-boew"}}
+								<li property="itemListElement" typeof="ListItem">
+									<a property="item" typeof="WebPage" href="{{assets}}/theme/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html"><span property="name">{{breadcrumb3-title}}</span></a>
+									<meta property="position" content="2">
+								</li>
+								<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="3"></li>
+							{{else}}
+								<li property="itemListElement" typeof="ListItem">
+									<a property="item" typeof="WebPage" href="{{assets}}/demos/{{tag}}/index-{{language}}.html"><span property="name">{{breadcrumb3-title}}</span></a>
+									<meta property="position" content="3">
+								</li>
+								<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="4"></li>
+							{{/contains}}
+						{{/is}}
+						{{#if parentPage}}
+							<li property="itemListElement" typeof="ListItem">
+								<a property="item" typeof="WebPage" href="{{assets}}/demos/{{tag}}/{{parentPageURL}}-{{language}}.html"><span property="name">{{parentPage}}</span></a>
+								<meta property="position" content="3">
+							</li>
+							<li property="itemListElement" typeof="ListItem"><span property="name">{{title}}</span><meta property="position" content="4"></li>
+						{{/if}}
+					{{/contains}}
+				{{/contains}}
 			</ol>
 		</div>
 	</div>
