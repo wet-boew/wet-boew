@@ -1,0 +1,87 @@
+---
+{
+	"title": "Details closed on small views",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Keep selected details elements closed on defined viewport and under.",
+	"altLangPrefix": "details-close",
+	"dateModified": "2021-11-29"
+}
+---
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../provisional-en.html">Check other provisional features available.</a></small></p>
+</div>
+
+<h2>Purpose</h2>
+<p>Keep selected <code>details</code> elements closed on defined viewport and down if they were not engaged, default is small.</p>
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/details-close/details-close-en.html">Default example</a></li>
+	<li><a href="../../../demos/details-close/details-close-md-en.html">Medium viewport example</a></li>
+</ul>
+
+<h2>Evaluation and report</h2>
+<p>There is no evaluation and report available for this component.</p>
+
+<h2>API (provisional)</h2>
+<dl class="dl-horizontal">
+	<dt>Function</dt>
+	<dd>provisional</dd>
+	<dt>Configuration</dt>
+	<dd>provisional</dd>
+</dl>
+
+<h3>Function</h3>
+<p>(Version provisional)</p>
+<table class="table">
+	<tr>
+		<th>Function type</th>
+		<th>Name</th>
+		<th>How to implement</th>
+		<th>What it does</th>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-init.wb-details-close</code></td>
+		<td>Triggered manually (e.g., <code>$( ".wb-details-close" ).trigger( "wb-init.wb-details-close" );</code>).</td>
+		<td>Initializes the details-close plugin. This plugin will be initialized automatically unless the <code>.wb-details-close</code> element is added after the page load and wet-boew was initialized.</td>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-ready.wb-details-close</code></td>
+		<td>Triggered automatically after the plugin initializes.</td>
+		<td>Used to identify when and where the plugin initializes (target of the event).
+			<pre><code>$( document ).on( "wb-ready.wb-details-close", ".wb-details-close", function( event ) {
+});</code></pre>
+			<pre><code>$elm.on( "wb-ready.wb-details-close", function( event ) {
+});</code></pre>
+		</td>
+	</tr>
+</table>
+
+<h3>Configuration</h3>
+<p>(Version provisional)</p>
+<table class="table">
+	<tr>
+		<th>Proprety name/type</th>
+		<th>Option</th>
+		<th>Description</th>
+		<th>How to configure</th>
+		<th>Values</th>
+	</tr>
+	<tr>
+		<td><code>[data-breakpoint]</code> String</td>
+		<td>Viewport abbreviation</td>
+		<td>defines highest viewport from which <code>details</code> are closed.</td>
+		<td>Valid Bootstrap 3 viewport</td>
+		<td>xs, sm, md, lg</td>
+	</tr>
+</table>
+
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/details-close">Details closed on mobile source code on GitHub</a></p>
