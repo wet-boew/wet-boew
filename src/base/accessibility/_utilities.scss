@@ -1,0 +1,20 @@
+/*
+  WET-BOEW
+  @title: Accessibility Additions to WET-BOEW - Utilities
+ */
+
+.wb-invisible {
+	@extend %accessible-invisible;
+}
+
+.wb-inv {
+	@extend %accessible-invisible;
+}
+
+.wb-show-onfocus {
+	@extend %accessible-invisible;
+
+	&:focus {
+		@extend %accessible-invisible-show;
+	}
+}

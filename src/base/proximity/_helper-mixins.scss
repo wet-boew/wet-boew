@@ -1,0 +1,40 @@
+/*
+  WET-BOEW
+  @title: Proximity CSS - Helper mixin
+ */
+
+@mixin pstn {
+	position: absolute;
+}
+
+@mixin pstn-lft {
+	left: 0;
+}
+
+@mixin pstn-rght {
+	right: 0;
+}
+
+@mixin pstn-tp {
+	top: 0;
+}
+
+@mixin pstn-bttm {
+	bottom: 0;
+}
+
+@mixin pstn-lft-rst {
+	left: auto;
+}
+
+@mixin pstn-rght-rst {
+	right: auto;
+}
+
+@mixin pstn-tp-rst {
+	top: auto;
+}
+
+@mixin pstn-bttm-rst {
+	bottom: auto;
+}

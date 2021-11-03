@@ -10,9 +10,7 @@
 @import "variables";
 @import "defaults";
 
-@import "../src/base/bootstrap";
-
-/* WET Core */
+/* WET Core (It import bootstrap too) */
 @import "../src/base/wet-boew";
 
 @import "banner/base";

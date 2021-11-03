@@ -1,0 +1,14 @@
+/*
+  WET-BOEW
+  @title: Bootstrap overrides for WET-BOEW - Helper - Variables
+ */
+
+$label-alert-success-border-icon-color: #278400;
+$label-alert-info-border-icon-color: #269abc;
+$label-alert-warning-border-icon-color: #f90;
+$label-alert-danger-border-icon-color: #d3080c;
+
+/*
+ *  Firefox-safe line height on input[type="reset|button|submit"]
+ */
+$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);

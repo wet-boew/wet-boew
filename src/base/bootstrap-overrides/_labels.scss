@@ -1,0 +1,102 @@
+/*
+  WET-BOEW
+  @title: Bootstrap overrides for WET-BOEW - Components - Alert
+ */
+
+/*
+ *	Override the design of alerts and labels
+ */
+
+.label {
+	@extend %label-alert-common;
+}
+
+.label-default {
+	@extend %label-default-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-default-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}
+
+.label-primary {
+	@extend %label-primary-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-primary-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}
+
+.label-success {
+	@extend %label-alert-success-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-alert-success-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}
+
+.label-info {
+	@extend %label-alert-info-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-alert-info-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}
+
+.label-warning {
+	@extend %label-alert-warning-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-alert-warning-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}
+
+.label-danger {
+	@extend %label-alert-danger-bg-border-left;
+	@extend %label-alert-color-000;
+
+	&[href] {
+		&:hover,
+		&:focus,
+		&:active {
+			@extend %label-alert-danger-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
+		}
+	}
+}

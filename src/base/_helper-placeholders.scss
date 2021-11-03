@@ -1,0 +1,69 @@
+/*
+  WET-BOEW
+  @title: Helper - Global Placeholders
+ */
+
+%global-display-none {
+	display: none;
+}
+
+%global-display-block {
+	display: block;
+}
+
+%global-display-block-important {
+	display: block !important;
+}
+
+%global-text-decoration-none {
+	text-decoration: none;
+}
+
+%global-centered-overlay-container {
+	bottom: 0;
+	content: " ";
+	height: 100px;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100px;
+}
+
+%global-centered-overlay {
+	&:after {
+		@extend %global-centered-overlay-container;
+		z-index: 1;
+	}
+
+	&:before {
+		@extend %global-centered-overlay-container;
+		background: rgba(0, 0, 0, .7);
+		border-radius: 10px;
+	}
+}
+
+/* TODO: Use bootstrap placeholder when nested extends are supported */
+%global-loading {
+	@extend %global-centered-overlay;
+
+	&:after {
+		animation: {
+			duration: 500ms;
+			iteration-count: infinite;
+			name: spin;
+			timing-function: linear;
+		}
+		color: #fff;
+		content: "\e031";
+		font: {
+			family: "Glyphicons Halflings";
+			size: 3.5em;
+		}
+		height: 1em;
+		line-height: 1.03;
+		width: 1em;
+		z-index: 2;
+	}
+}

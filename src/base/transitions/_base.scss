@@ -7,22 +7,24 @@
 *
 */
 
-@mixin visible {
-	opacity: 1;
-	visibility: visible;
-}
 
-@mixin invisible {
-	opacity: 0;
-	visibility: hidden;
-}
-
+/*! Placeholders */
 %visible {
 	@include visible;
 }
 
 %invisible {
 	@include invisible;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .out {
@@ -89,7 +91,7 @@
 	}
 }
 
-
+// Extend bootstrap fade css
 .fade {
 	transition: all 0 ease 0;
 

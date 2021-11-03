@@ -3,13 +3,6 @@
   @title: Language selector
  */
 
-//	Sourced from https://css-tricks.com/snippets/css/clear-fix/
-%clear-fix {
-	clear: both;
-	content: "";
-	display: table;
-}
-
 //	Horizontal language selector
 .wb-lng-lnks-horiz {
 	.wb-lng-lnk {
@@ -32,7 +25,9 @@
 }
 
 .wb-lng-lnks-rtl:after {
-	@extend %clear-fix;
+	clear: both;
+	content: "";
+	display: table;
 }
 
 #wb-lng {
