@@ -1128,7 +1128,7 @@ module.exports = (grunt) ->
 					cwd: "node_modules"
 					src: [
 						"code-prettify/src/*.js"
-						"datatables/media/js/jquery.dataTables.js"
+						"datatables.net/js/jquery.dataTables.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"

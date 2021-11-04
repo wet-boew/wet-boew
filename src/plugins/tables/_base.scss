@@ -140,15 +140,16 @@
 	box-sizing: content-box;
 }
 
-%tables-active-sort-option {
-	background: #ccc;
-	border: 1px solid #111;
-}
-
 %tables-inactive-sort-option {
 	background: #fff;
 	border: 1px solid #aaa;
 	color: #757575;
+}
+
+%tables-active-sort-option {
+	background: #ccc;
+	border: 1px solid #111;
+	color: #000;
 }
 
 %tables-cursor-pointer {
