@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-( function( $, window, document, wb ) {
+( function( $, DOMPurify, window, document, wb ) {
 "use strict";
 
 /*
@@ -202,6 +202,9 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 				dataType: "text",
 				method: settings.method,
 				success: function( response ) {
+
+					// Sanitize the response
+					response = DOMPurify.sanitize( response );
 
 					// Session is valid
 					if ( response && settings.refreshCallback( response ) ) {
@@ -448,4 +451,4 @@ $document.on( "click", "." + confirmClass, confirm );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-} )( jQuery, window, document, wb );
+} )( jQuery, DOMPurify, window, document, wb );

@@ -502,7 +502,7 @@ $document.on( "click", selector + " .feed-youtube", function( event ) {
 		youtubeData = wb.getData( event.currentTarget, "youtube" ),
 		videoUrl = wb.pageUrlParts.protocol + "//www.youtube.com/watch?v=" + youtubeData.videoId,
 		videoSource = "<figure class='wb-mltmd'><video title='" + youtubeData.title + "'>" +
-			"<source type='video/youtube' src='" + videoUrl + "' />" +
+			"<source type='video/youtube' src='" + videoUrl + "'></source>" +
 			"</video><figcaption><p>" +  youtubeData.title + "</p>" +
 			"</figcaption></figure>";
 

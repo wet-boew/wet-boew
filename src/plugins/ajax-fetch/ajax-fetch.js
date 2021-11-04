@@ -61,12 +61,21 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		}
 		callerId = caller.id;
 
+		// Ensure we don't allow jsonp load
+		if ( fetchOpts.dataType && fetchOpts.dataType === "jsonp" ) {
+			fetchOpts.dataType = "json";
+		}
+		if ( fetchOpts.jsonp ) {
+			fetchOpts.jsonp = false;
+		}
+
 		$.ajax( fetchOpts )
 			.done( function( response, status, xhr ) {
 				var responseType = typeof response;
 
+				response = $( response );
 				if ( selector ) {
-					response = $( "<div>" + response + "</div>" ).find( selector );
+					response = response.wrapAll( "<div></div>" ).find( selector );
 				}
 
 				fetchData = {

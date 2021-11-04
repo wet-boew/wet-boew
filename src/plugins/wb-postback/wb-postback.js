@@ -57,6 +57,7 @@ var $document = wb.doc,
 					$selectorFailure.addClass( classToggle );
 					$selectorSuccess.addClass( classToggle );
 
+					// Send the form through ajax and ignore the response body.
 					$.ajax( {
 						type: this.method,
 						url: this.action,

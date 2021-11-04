@@ -5,7 +5,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-( function( $, wb ) {
+( function( $ ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -25,9 +25,14 @@ describe( "Favicon test suite", function() {
 		// Spy on jQuery's trigger methods
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		$favicon = $( "<link href='test/path/favicon.ico' rel='icon' type='image/x-icon'/>" )
-			.appendTo( wb.doc.find( "head" ) )
-			.trigger( "wb-init.wb-favicon" );
+		var lnk = document.createElement( "link" );
+		lnk.setAttribute( "href", "test/path/favicon.ico" );
+		lnk.setAttribute( "rel", "icon" );
+		lnk.setAttribute( "type", "image/x-icon" );
+
+		document.head.appendChild( lnk );
+
+		$favicon = $( lnk ).trigger( "wb-init.wb-favicon" );
 	} );
 
 	/*
@@ -144,4 +149,4 @@ describe( "Favicon test suite", function() {
 	} );
 } );
 
-}( jQuery, wb ) );
+}( jQuery ) );

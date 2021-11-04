@@ -1,4 +1,4 @@
-( function( $, window, document, wb, undef ) {
+( function( $, DOMPurify, window, document, wb, undef ) {
 
 var i18nText,
 	$document = wb.doc,
@@ -140,13 +140,14 @@ var i18nText,
 
 	createDays = function( calendar, year, month ) {
 		var $container = $( calendar ).find( ".cal-days" ),
+			daysContainer = $container.get( 0 ),
 			dayCount = 1,
 			textCurrentDay = i18nText.currDay,
 			lib = calendar.lib,
 			minDate = lib.minDate,
 			maxDate = lib.maxDate,
 			callback = lib.daysCallback,
-			cells = "",
+			row, cell,
 			date, firstDay, lastDay, currYear, currMonth, currDay, week, day, className, isCurrentDate, isoDate, printDate, breakAtEnd, days, inRange;
 
 		date = new Date( year, month, 1 );
@@ -161,14 +162,21 @@ var i18nText,
 		currMonth = date.getMonth();
 		currDay = date.getDate();
 
+		// Clean all existing rows
+		$container.empty();
+
 		for ( week = 1; week < 7; week += 1 ) {
-			cells += "<tr>";
+			row = daysContainer.insertRow();
+
 			for ( day = 0; day < 7; day += 1 ) {
 
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
 					// Creates empty cells | Cree les cellules vides
-					cells += "<td class='cal-empty'>&#160;</td>";
+					cell = row.insertCell();
+					cell.classList.add( "cal-empty" );
+					cell.textContent = " ";
+
 				} else {
 
 					// Creates date cells | Cree les cellules de date
@@ -179,7 +187,9 @@ var i18nText,
 					isoDate = date.toLocalISOString().substr( 0, 10 );
 					printDate = displayDate( date ) + ( isCurrentDate ? "<span class='wb-inv'>" + textCurrentDay + "</span>" : "" );
 
-					cells += "<td class='" + className + "'><time datetime='" + isoDate  + "'>" + printDate + "</time></td>";
+					cell = row.insertCell();
+					cell.setAttribute( "class", className );
+					cell.innerHTML = DOMPurify.sanitize( "<time datetime='" + isoDate  + "'>" + printDate + "</time>" );
 
 					if ( dayCount >= lastDay ) {
 						breakAtEnd = true;
@@ -188,13 +198,10 @@ var i18nText,
 					dayCount += 1;
 				}
 			}
-			cells += "</tr>";
 			if ( breakAtEnd ) {
 				break;
 			}
 		}
-
-		$container.empty().append( cells );
 
 		if ( callback ) {
 			days = $container.find( "time" );
@@ -466,4 +473,4 @@ $document.on( "keydown", selector, function( event ) {
 	}
 }() );
 
-} )( jQuery, window, document, wb );
+} )( jQuery, DOMPurify, window, document, wb );

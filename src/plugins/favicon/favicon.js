@@ -17,7 +17,7 @@
  *
  *     <link href="favion.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico"/>
  */
-( function( $, window, wb ) {
+( function( $, document, wb ) {
 "use strict";
 
 /*
@@ -86,7 +86,14 @@ var componentName = "wb-favicon",
 
 		// Create the mobile favicon if it doesn't exist
 		if ( !isFaviconMobile ) {
-			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='" + componentName + "'/>" );
+			var lnk = document.createElement( "link" );
+			lnk.setAttribute( "rel", data.rel  );
+			lnk.setAttribute( "sizes", data.sizes );
+			lnk.setAttribute( "class", componentName );
+
+			document.head.appendChild( lnk );
+
+			faviconMobile = $( lnk );
 		}
 
 		// Only add/update a mobile favicon that was created by the plugin
@@ -156,4 +163,4 @@ $document.on( mobileEvent + " " + iconEvent, selector, function( event, data ) {
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-} )( jQuery, window, wb );
+} )( jQuery, document, wb );

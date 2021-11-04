@@ -1,4 +1,4 @@
 src/polyfills/slider/slider.js
 src/polyfills/events/mobile.js
 lib/
-dep/modernizr-custom.js
+src/core/dep/modernizr-custom.js
