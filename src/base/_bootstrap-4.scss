@@ -60,3 +60,15 @@
 .align-bottom {
 	vertical-align: bottom !important;
 }
+
+/* Color scheme */
+.text-white, a.text-white:visited {
+	color: #fff;
+}
+a {
+	&.text-white {
+		&:hover, &:focus {
+			color: #b3ffff;
+		}
+	}
+}

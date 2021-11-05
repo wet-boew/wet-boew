@@ -25,3 +25,21 @@
 .bg-darker {
 	background-color: #000;
 }
+
+.bg-dark {
+	background-color: #343a40;
+}
+button {
+	&.bg-dark {
+		&:hover, &:focus {
+			background-color: #1d2124;
+		}
+	}
+}
+
+/*
+Miscellaneous Utiliy CSS
+ */
+.max-content {
+	max-width: max-content;
+}
