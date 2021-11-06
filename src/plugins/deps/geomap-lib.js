@@ -1676,7 +1676,7 @@ var componentName = "wb-geomap",
 					}
 
 				},
-				dataType: wb.ielt10 ? "jsonp" : "json",
+				dataType: "json",
 				cache: false
 			} );
 

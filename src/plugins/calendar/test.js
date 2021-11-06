@@ -646,7 +646,8 @@ describe( "calendar test suite", function() {
 						}
 					}
 
-					inRange.wrap( "<a href='javascript:;' tabindex='-1'></a>" ).filter( ":eq(0)" ).parent().removeAttr( "tabindex" );
+					inRange.wrap( "<a tabindex='-1'></a>" ).filter( ":eq(0)" ).parent().removeAttr( "tabindex" );
+					inRange.parent().attr( "href", "javascript:;" );
 				}
 			},
 			calendar, $calendarObj, $daysArea, $focused;

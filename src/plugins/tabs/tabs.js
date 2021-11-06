@@ -63,7 +63,7 @@ var componentName = "wb-tabs",
 
 			// For backwards compatibility. Should be removed in WET v4.1
 			if ( $elm.children( ".tabpanels" ).length === 0 ) {
-				$elm.children( "[role=tabpanel], details" ).wrapAll( "<div class='tabpanels'/>" );
+				$elm.children( "[role=tabpanel], details" ).wrapAll( "<div class='tabpanels'></div>" );
 			}
 
 			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );

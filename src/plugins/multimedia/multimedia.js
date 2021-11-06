@@ -5,7 +5,7 @@
  * @author WET Community
  */
 /* globals YT */
-( function( $, window, wb, undef ) {
+( function( $, DOMPurify, window, wb, undef ) {
 "use strict";
 
 /* Local scoped variables*/
@@ -296,22 +296,22 @@ var componentName = "wb-mltmd",
 	parseXml = function( content ) {
 		var captions = [],
 			captionSelector = "[begin]",
-			captionElements = content.find( captionSelector ),
+			parser = new DOMParser(),
+			doc = parser.parseFromString( content, "application/xml" ),
+			captionElements = doc.querySelectorAll( captionSelector ),
 			len = captionElements.length,
 			i, captionElement, begin, end;
 
 		for ( i = 0; i !== len; i += 1 ) {
-			captionElement = $( captionElements[ i ] );
-			begin = parseTime( captionElement.attr( "begin" ) );
-			end = captionElement.attr( "end" ) !== undef ?
-				parseTime( captionElement.attr( "end" ) ) :
-				parseTime( captionElement.attr( "dur" ) ) + begin;
+			captionElement = captionElements[ i ];
 
-			captionElement = captionElement.clone();
-			captionElement.find( captionSelector ).detach();
+			begin = parseTime( captionElement.getAttribute( "begin" ) + "" );
+			end = captionElement.hasAttribute( "end" ) ?
+				parseTime( captionElement.getAttribute( "end" ) + "" ) :
+				parseTime( captionElement.getAttribute( "dur" ) + "" ) + begin;
 
 			captions[ captions.length ] = {
-				text: captionElement.html(),
+				text: DOMPurify.sanitize( captionElement.textContent ),
 				begin: begin,
 				end: end
 			};
@@ -337,9 +337,18 @@ var componentName = "wb-mltmd",
 				return data.replace( /<img|object [^>]*>/g, "" );
 			},
 			success: function( data ) {
-				var captionItems = data.indexOf( "<html" ) !== -1 ?
-					parseHtml( $( data ) ) :
-					parseXml( $( data ) );
+
+				var captionItems;
+
+				if ( data.indexOf( "<html" ) !== -1 ) {
+
+					// Sanitize the response
+					captionItems = parseHtml( $( DOMPurify.sanitize( data, { WHOLE_DOCUMENT: true } ) ) );
+				} else {
+
+					// Response is sanitized in the XML parser function
+					captionItems = parseXml( data );
+				}
 
 				if ( captionItems.length ) {
 					elm.trigger( {
@@ -1101,4 +1110,4 @@ window.youTube = {
 
 wb.add( selector );
 
-} )( jQuery, window, wb );
+} )( jQuery, DOMPurify, window, wb );

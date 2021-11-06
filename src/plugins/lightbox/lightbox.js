@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-( function( $, window, document, wb, undef ) {
+( function( $, DOMPurify, window, document, wb, undef ) {
 "use strict";
 
 /*
@@ -227,6 +227,9 @@ var componentName = "wb-lbx",
 						selector = filter || ( urlHash ? "#" + urlHash : false ),
 						$response;
 
+					// Sanitize the response
+					mfpResponse = DOMPurify.sanitize( mfpResponse );
+
 					// Provide the ability to filter the AJAX response HTML
 					// by the URL hash or a selector
 					// TODO: Should be dealt with upstream by Magnific Popup
@@ -390,4 +393,4 @@ $( document ).on( "open" + selector, function( event, items, modal, title, ajax 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-} )( jQuery, window, document, wb );
+} )( jQuery, DOMPurify, window, document, wb );

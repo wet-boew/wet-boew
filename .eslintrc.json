@@ -12,7 +12,8 @@
     "wb": true,
     "Modernizr": true,
     "yepnope": true,
-    "JSON": true
+    "JSON": true,
+    "DOMPurify": true
   },
   "rules": {
     "indent": ["error", "tab", { "outerIIFEBody": 0 }],

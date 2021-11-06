@@ -329,10 +329,11 @@ var componentName = "wb-calevt",
 
 						//Determine the focus based on the day before
 						if ( dayIndex && $days[ dayIndex - 1 ].parentNode.nodeName === "A" ) {
-							$day.wrap( "<a href='javascript:;' class='cal-evt' tabindex='-1'></a>" );
+							$day.wrap( "<a class='cal-evt' tabindex='-1'></a>" );
 						} else {
-							$day.wrap( "<a href='javascript:;' class='cal-evt'></a>" );
+							$day.wrap( "<a class='cal-evt'></a>" );
 						}
+						$day.parent().attr( "href", "javascript:;" );
 					}
 
 					//Add the event to the list

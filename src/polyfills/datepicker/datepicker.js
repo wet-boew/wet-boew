@@ -172,7 +172,7 @@ var componentName = "wb-date",
 				showFieldLabelText + "</span></a></span>";
 
 		$( "#" + wb.jqEscape( fieldId ) )
-			.wrap( "<span class='wb-date-wrap input-group'/>" )
+			.wrap( "<span class='wb-date-wrap input-group'></span>" )
 			.after( objToggle );
 		$container.slideUp( 0 );
 	},

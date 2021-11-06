@@ -51,7 +51,7 @@ var componentName = "wb-progress",
 
 		if ( elm.getAttribute( "value" ) !== null ) {
 			if ( $progress.length === 0 ) {
-				$progress = $( "<div class='progress'><div class='progress-bar' role='progressbar' /></div>" );
+				$progress = $( "<div class='progress'><div class='progress-bar' role='progressbar'></div></div>" );
 				$elm.append( $progress );
 			}
 
@@ -80,7 +80,7 @@ var componentName = "wb-progress",
 			$span.appendTo( $progressbar );
 
 		} else if ( $progress.length === 0 ) {
-			$elm.append( "<div class='undef'/>" );
+			$elm.append( "<div class='undef'></div>" );
 		}
 
 		$elm.trigger( "wb-updated." + componentName );

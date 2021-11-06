@@ -741,7 +741,7 @@ var componentName = "wb-charts",
 
 			$summary = $( "<summary>" + captionHtml + i18nText.tableMention + "</summary>" );
 			$elm
-				.wrap( "<details/>" )
+				.wrap( "<details></details>" )
 				.before( $summary );
 
 			$summary.trigger( "wb-init.wb-details" );
