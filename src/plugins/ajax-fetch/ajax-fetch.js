@@ -73,9 +73,10 @@ $document.on( "ajax-fetch.wb", function( event ) {
 			.done( function( response, status, xhr ) {
 				var responseType = typeof response;
 
-				response = $( response );
 				if ( selector ) {
-					response = response.wrapAll( "<div></div>" ).find( selector );
+					response = $( "<div>" + response + "</div>" ).find( selector );
+				} else {
+					response = $( response );
 				}
 
 				fetchData = {
