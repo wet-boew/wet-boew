@@ -370,6 +370,7 @@ var componentName = "wb-tabs",
 		if ( !excludeControls && !excludePlay ) {
 			$tablist.append( playControl );
 		}
+		$tablist.find( "a[role=button]" ).attr( "href", "javascript:;" );
 
 		return isPlaying;
 	},
