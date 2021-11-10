@@ -84,7 +84,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 					xhr: xhr
 				};
 
-				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "' />" )
+				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "'></div>" )
 					.append( responseType === "string" ? response : "" );
 
 				$( "#" + callerId ).trigger( {
