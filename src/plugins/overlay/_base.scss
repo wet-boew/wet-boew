@@ -67,6 +67,29 @@
 	bottom: 0;
 }
 
+.wb-popup-br {
+	border-radius: 6px;
+	bottom: 20px;
+	max-height: 500px;
+	min-height: 200px;
+	right: 20px;
+	width: 35%;
+}
+
+.wb-popup-flex {
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+	.modal-body {
+		overflow: auto;
+	}
+
+	&.open {
+		display: inline-flex;
+		position: fixed;
+	}
+}
+
 .wb-popup-mid {
 	@extend %overlay-popup;
 	border-radius: 6px;
@@ -128,6 +151,7 @@
 
 .hidden-hd {
 	.modal-body {
+		overflow: auto;
 		padding-top: 50px;
 	}
 
