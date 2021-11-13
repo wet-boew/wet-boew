@@ -85,7 +85,7 @@
     "mocha": "^8.3.2",
     "node-sass": "^5.0.0",
     "openlayers": "git+https://github.com/wet-boew/openlayers-dist.git#v3.20.1",
-    "postcss": "^8.2.8",
+    "postcss": "^8.2.10",
     "puppeteer": "^1.20.0",
     "sinon": "^9.2.4",
     "time-grunt": "^2.0.0"
