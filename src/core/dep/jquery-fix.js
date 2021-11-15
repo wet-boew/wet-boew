@@ -62,7 +62,7 @@ Test: jQuery.extend
 
 */
 
-( function( jQuery, DOMPurify ) {
+( function( jQuery, DOMPurify, window ) {
 "use strict";
 
 /**
@@ -163,14 +163,28 @@ jQuery.htmlPrefilter = function( html ) {
  * This implementation leverage DOMPurify for filtering every string prior DOM manipulation by jQuery
  *
  */
-var sanitize = DOMPurify.sanitize,
-	localParseHTML = jQuery.parseHTML,
+var localParseHTML = jQuery.parseHTML,
 	append = jQuery.fn.append,
 	prepend = jQuery.fn.prepend,
 	before = jQuery.fn.before,
 	after = jQuery.fn.after,
 	replaceWith = jQuery.fn.replaceWith,
-	jqInit = jQuery.fn.init;
+	jqInit = jQuery.fn.init,
+	dataTableAllowedTag = [
+		"<tbody/>",
+		"<tr/>",
+		"<td />",
+		"<td/>"
+	],
+	sanitize = function( html ) {
+
+		// Add an exception for DataTable plugin
+		if ( window.DataTable && dataTableAllowedTag.indexOf( html ) !== -1 ) {
+			return html;
+		}
+
+		return DOMPurify.sanitize( html );
+	};
 
 jQuery.parseHTML = function( data, context, keepScripts ) {
 	return localParseHTML( sanitize( data ), context, keepScripts );
@@ -230,13 +244,13 @@ jQuery.replaceWith = jQuery.fn.replaceWith = function() {
 
 jQuery.fn.init = function( selector, context, root ) {
 	if ( typeof selector === "string" ) {
-		selector = DOMPurify.sanitize( selector );
+		selector = sanitize( selector );
 	}
 	return new jqInit( selector, context, root );
 };
 
 jQuery.html = function( value ) {
-	return jQuery.html( DOMPurify.sanitize( value ) );
+	return jQuery.html( sanitize( value ) );
 };
 
-} )( jQuery, DOMPurify );
+} )( jQuery, DOMPurify, window );
