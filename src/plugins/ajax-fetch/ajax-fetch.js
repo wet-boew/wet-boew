@@ -83,11 +83,9 @@ $document.on( "ajax-fetch.wb", function( event ) {
 
 				response = $( response );
 
-				fetchData = {
-					response: response,
-					status: status,
-					xhr: xhr
-				};
+				fetchData.response = response;
+				fetchData.status = status;
+				fetchData.xhr = xhr;
 
 				$( "#" + callerId ).trigger( {
 					type: "ajax-fetched.wb",
