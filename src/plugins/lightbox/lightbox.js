@@ -228,7 +228,7 @@ var componentName = "wb-lbx",
 						$response;
 
 					// Sanitize the response
-					mfpResponse = DOMPurify.sanitize( mfpResponse );
+					mfpResponse.data = DOMPurify.sanitize( mfpResponse.data );
 
 					// Provide the ability to filter the AJAX response HTML
 					// by the URL hash or a selector
