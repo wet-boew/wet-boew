@@ -65,3 +65,62 @@
 &lt;p class="success-message hide"&gt;Merci!&lt;/p&gt;
 &lt;p class="failure-message hide"&gt;Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.&lt;/p&gt;</code></pre>
 </details>
+
+<p>Soumission de formulaire via une requête Ajax en utilisant aussi le plugiciel <a href="https://wet-boew.github.io/wet-boew/demos/formvalid/formvalid-fr.html">Validation de formulaires</a> .</p>
+
+<p>Pour voir cet example en action, vérifier l'onglet réseaux de la console du fureteur afin de voir la requête Ajax envoyé.</p>
+<div class="wb-frmvld">
+<form action="wb-postback-fr.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
+			<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required"/>
+		</div>
+		<div class="form-group">
+			<label for="lastname" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
+			<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required"/>
+		</div>
+		<div class="form-group">
+			<label for="preferredNumber"><span class="field-name">Numéro de téléphone</span></label>
+			<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		</div>
+		<div class="form-group">
+			<label for="email"><span class="field-name">Addresse courriel</span> (test@domaine)</label>
+			<input class="form-control" id="email" name="email" type="email" />
+		</div>
+		<button type="submit" class="btn btn-primary">Soumettre</button>
+	</div>
+</form>
+<p class="success-message-2 hide">Merci!</p>
+<p class="failure-message-2 hide">Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.</p>
+</div>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>
+		&lt;div class="wb-frmvld"&gt;
+		&lt;form action="wb-postback-fr.html" class="wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message-2&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message-2&amp;quot;}"&gt;
+	&lt;div class="form-content"&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="firstname" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required"/&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="lastname" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required" /&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="preferredNumber"&gt;&lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" /&gt;
+		&lt;/div&gt;
+		&lt;div class="form-group"&gt;
+			&lt;label for="email"&gt;&lt;span class="field-name"&gt;Addresse courriel&lt;/span&gt; (test@domaine)&lt;/label&gt;
+			&lt;input class="form-control" id="email" name="email" type="email" /&gt;
+		&lt;/div&gt;
+		&lt;button type="submit" class="btn btn-primary"&gt;Soumettre&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+&lt;p class="success-message-2 hide"&gt;Merci!&lt;/p&gt;
+&lt;p class="failure-message-2 hide"&gt;Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</details>
