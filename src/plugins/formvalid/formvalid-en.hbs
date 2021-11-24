@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2021-08-11"
+	"dateModified": "2021-11-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -468,7 +468,7 @@
 				<legend class="required"><span class="field-name">Stacked checkboxes in a <code>&lt;li&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="checkbox">
-						<label for="fruits1a"><input type="checkbox" name="example1" value="1" id="fruits1a" required="required" />Apple</label>
+						<label for="fruits1a"><input type="checkbox" name="example1" value="1" id="fruits1a" data-rule-required="true" />Apple</label>
 					</li>
 					<li class="checkbox">
 						<label for="fruits2a"><input type="checkbox" name="example1" value="2" id="fruits2a" />Orange</label>
@@ -483,6 +483,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -490,7 +491,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked checkboxes in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="checkbox"&gt;
-					&lt;label for="fruits1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="fruits1a" required="required" /&gt;Apple&lt;/label&gt;
+					&lt;label for="fruits1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="fruits1a" data-rule-required="true" /&gt;Apple&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="checkbox"&gt;
 					&lt;label for="fruits2a"&gt;&lt;input type="checkbox" name="example1" value="2" id="fruits2a" /&gt;Orange&lt;/label&gt;
@@ -511,7 +512,7 @@
 				<legend class="required"><span class="field-name">Stacked radio buttons in a <code>&lt;li&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="radio">
-						<label for="fruits1b"><input type="radio" name="example2" value="1" id="fruits1b" required="required" />Apple</label>
+						<label for="fruits1b"><input type="radio" name="example2" value="1" id="fruits1b" data-rule-required="true" />Apple</label>
 					</li>
 					<li class="radio">
 						<label for="fruits2b"><input type="radio" name="example2" value="2" id="fruits2b" />Orange</label>
@@ -526,6 +527,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -533,7 +535,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked radio buttons in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="radio"&gt;
-					&lt;label for="fruits1b"&gt;&lt;input type="radio" name="example2" value="1" id="fruits1b" required="required" /&gt;Apple&lt;/label&gt;
+					&lt;label for="fruits1b"&gt;&lt;input type="radio" name="example2" value="1" id="fruits1b" data-rule-required="true" /&gt;Apple&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="radio"&gt;
 					&lt;label for="fruits2b"&gt;&lt;input type="radio" name="example2" value="2" id="fruits2b" /&gt;Orange&lt;/label&gt;
@@ -553,7 +555,7 @@
 			<fieldset class="chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Stacked checkboxes in a <code>&lt;div&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
 				<div class="checkbox">
-					<label for="fruits1c"><input type="checkbox" name="example3" value="1" id="fruits1c" required="required" />Apple</label>
+					<label for="fruits1c"><input type="checkbox" name="example3" value="1" id="fruits1c" data-rule-required="true" />Apple</label>
 				</div>
 				<div class="checkbox">
 					<label for="fruits2c"><input type="checkbox" name="example3" value="2" id="fruits2c" />Orange</label>
@@ -567,13 +569,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Stacked checkboxes in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="checkbox"&gt;
-				&lt;label for="fruits1c"&gt;&lt;input type="checkbox" name="example3" value="1" id="fruits1c" required="required" /&gt;Apple&lt;/label&gt;
+				&lt;label for="fruits1c"&gt;&lt;input type="checkbox" name="example3" value="1" id="fruits1c" data-rule-required="true" /&gt;Apple&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="checkbox"&gt;
 				&lt;label for="fruits2c"&gt;&lt;input type="checkbox" name="example3" value="2" id="fruits2c" /&gt;Orange&lt;/label&gt;
@@ -593,7 +596,7 @@
 				<legend class="required"><span class="field-name">Horizontal checkboxes in a <code>&lt;li&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
 				<ul class="form-inline list-unstyled">
 					<li class="label-inline">
-						<input type="checkbox" name="example4" value="1" id="fruits5" required="required" />
+						<input type="checkbox" name="example4" value="1" id="fruits5" data-rule-required="true" />
 						<label for="fruits5">Apple</label>
 					</li>
 					<li class="label-inline">
@@ -612,6 +615,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -619,7 +623,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal checkboxes in a &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-inline list-unstyled"&gt;
 				&lt;li class="label-inline"&gt;
-					&lt;input type="checkbox" name="example4" value="1" id="fruits5" required="required" /&gt;
+					&lt;input type="checkbox" name="example4" value="1" id="fruits5" data-rule-required="true" /&gt;
 					&lt;label for="fruits5"&gt;Apple&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="label-inline"&gt;
@@ -641,19 +645,20 @@
 <!-- Radio inline list item with implicit labels-->
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Horizontal radio buttons in a <code>&lt;label&gt;</code> pattern with implicit labels</span> <strong class="required">(required)</strong></legend>
-				<label for="tech1" class="radio-inline"><input type="radio" name="example5" value="1" id="tech1" required="required" />Smartphone</label>
+				<label for="tech1" class="radio-inline"><input type="radio" name="example5" value="1" id="tech1" data-rule-required="true" />Smartphone</label>
 				<label for="tech2" class="radio-inline"><input type="radio" name="example5" value="2" id="tech2" />Laptop</label>
 				<label for="tech3" class="radio-inline"><input type="radio" name="example5" value="3" id="tech3" />Voice assistant</label>
 				<label for="tech4" class="radio-inline"><input type="radio" name="example5" value="4" id="tech4" />Fusion reactor</label>
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>View code</summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal radio buttons in a &lt;code&gt;&amp;lt;label&gt;&lt;/code&gt; pattern with implicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
-			&lt;label for="tech1" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="1" id="tech1" required="required" /&gt;Smartphone&lt;/label&gt;
+			&lt;label for="tech1" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="1" id="tech1" data-rule-required="true" /&gt;Smartphone&lt;/label&gt;
 			&lt;label for="tech2" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="2" id="tech2" /&gt;Laptop&lt;/label&gt;
 			&lt;label for="tech3" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="3" id="tech3" /&gt;Voice assistant&lt;/label&gt;
 			&lt;label for="tech4" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="4" id="tech4" /&gt;Fusion reactor&lt;/label&gt;
@@ -664,7 +669,7 @@
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Horizontal checkboxes in a <code>&lt;div&gt;</code> pattern with explicit labels</span> <strong class="required">(required)</strong></legend>
 				<div class="label-inline">
-					<input type="checkbox" name="example6" value="1" id="tech5" required="required" />
+					<input type="checkbox" name="example6" value="1" id="tech5" data-rule-required="true" />
 					<label for="tech5">Smartphone</label>
 				</div>
 				<div class="label-inline">
@@ -682,13 +687,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>View code </summary>
+				<div class="alert alert-info"><p>It is recommended to use <code>data-rule-required="true"</code> vs <code>required="required"</code> as this avoids screen readers indicating that the first option is required.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Horizontal checkboxes in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; pattern with explicit labels&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="label-inline"&gt;
-				&lt;input type="checkbox" name="example6" value="1" id="tech5" required="required" /&gt;
+				&lt;input type="checkbox" name="example6" value="1" id="tech5" data-rule-required="true" /&gt;
 				&lt;label for="tech5"&gt;Smartphone&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="label-inline"&gt;
