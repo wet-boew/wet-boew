@@ -42,6 +42,16 @@ var $document = wb.doc,
 				// Prevent regular form submit
 				e.preventDefault();
 
+				//Check if the form use the validation plugin
+				if ( elm.parentElement.classList.contains( "wb-frmvld" ) ) {
+					if ( !$elm.valid() ) {
+						$( this ).attr( attrEngaged, true );
+					} else {
+						$buttons.removeAttr( attrEngaged );
+						$( this ).attr( attrEngaged, "" );
+					}
+				}
+
 				if ( !$( this ).attr( attrEngaged ) ) {
 					var data = $elm.serializeArray(),
 						$btn = $( "[type=submit][name][" + attrEngaged + "]", $elm ),
