@@ -1,0 +1,49 @@
+---
+{
+	"title": "Balise details fermée sur petits écrans",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Garder les éléments details visés fermés sur petits écrans et moins.",
+	"tag": "details-close",
+	"parentdir": "details-close",
+	"altLangPrefix": "details-close",
+	"dateModified": "2021-11-29"
+}
+---
+<div lang="en">
+	<div class="alert alert-warning">
+		<h2>Unstable feature</h2>
+		<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+		<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+		<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
+	</div>
+
+	<h2>Other example</h2>
+	<ul>
+		<li><a href="details-close-md-en.html">Medium viewport example</a></li>
+	</ul>
+
+	<h2>Example of <code>details</code> element kept closed on small viewport and down (sm, xs and xxs)</h2>
+	<p>Resize your browser to view the plugin at play.</p>
+	<div class="row">
+		<div class="col-md-6">
+			<details class="provisional wb-details-close" open>
+				<summary>I am closed on mobile (uses plugin)</summary>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+			</details>
+		</div>
+		<div class="col-md-6">
+			<details open>
+				<summary>I am opened on mobile (regular)</summary>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+			</details>
+		</div>
+	</div>
+
+	<h3>Source code</h3>
+	<pre><code>&lt;details class="provisional wb-details-close" open&gt;
+		&lt;summary&gt;I am closed on mobile (uses plugin)&lt;/summary&gt;
+		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.&lt;/p&gt;
+	&lt;/details&gt;
+	</code></pre>
+</div>
