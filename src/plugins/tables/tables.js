@@ -67,7 +67,8 @@ var componentName = "wb-tables",
 					processing: i18n( "process" ),
 					search: i18n( "filter" ),
 					thousands: i18n( "info1000" ),
-					zeroRecords: i18n( "infoEmpty" )
+					zeroRecords: i18n( "infoEmpty" ),
+					tblFilterInstruction: i18n( "tbFilterInst" )
 				};
 			}
 
@@ -84,7 +85,8 @@ var componentName = "wb-tables",
 				},
 				complete: function() {
 					var $elm = $( "#" + elmId ),
-						dataTableExt = $.fn.dataTableExt;
+						dataTableExt = $.fn.dataTableExt,
+						settings = wb.getData( $elm, componentName );
 
 					/*
 					 * Extend sorting support
@@ -114,11 +116,8 @@ var componentName = "wb-tables",
 						}
 					} );
 
-					// Add the container or the sorting icons
-					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
-
 					// Create the DataTable object
-					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
+					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], settings ) );
 				}
 			} );
 		}
@@ -137,6 +136,19 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		pHasPN = pagination.find( ".previous, .next" ).length === 2,
 		ol = document.createElement( "OL" ),
 		li = document.createElement( "LI" );
+
+	// Handle sorting/ordering
+	var order = $elm.dataTable( { "retrieve": true } ).api().order();
+	$elm.find( "th" ).each( function( index ) {
+		var $th = $( this ),
+			$btn = $th.find( "button" );
+		if ( order && order[ 0 ][ 0 ] === index ) {
+			var label = ( order[ 0 ][ 1 ] === "desc" ) ? i18nText.aria.sortAscending : i18nText.aria.sortDescending;
+			label = $btn.text() + label;
+			$btn.attr( "title", label );
+		}
+		$th.removeAttr( "aria-label" );
+	} );
 
 	// Determine if Pagination required
 	if (
@@ -200,6 +212,21 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 
 // Identify that initialization has completed
 $document.on( "init.dt", function( event ) {
+	var $elm = $( event.target ),
+		settings = $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) );
+
+	// Handle sorting/ordering
+	var ordering = ( settings && settings.ordering === false ) ? false : true;
+	if ( ordering ) {
+		$elm.find( "th" ).each( function() {
+			var $th = $( this ),
+				label = ( $th.attr( "aria-sort" ) === "ascending" ) ? i18nText.aria.sortDescending : i18nText.aria.sortAscending;
+
+			$th.html( "<button type='button' class='sorting-cnt' aria-controls='" + $th.attr( "aria-controls" ) +  "' title='" + $th.text().replace( /'/g, "&#39;" ) + label + "'>" + $th.html() + " <span class='sorting-icons' aria-hidden='true'></span></button>" );
+			$th.removeAttr( "aria-label tabindex aria-controls" );
+		} );
+		$elm.attr( "aria-label", i18nText.tblFilterInstruction );
+	}
 	wb.ready( $( event.target ), componentName );
 } );
 

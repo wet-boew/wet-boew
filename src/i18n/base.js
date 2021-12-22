@@ -184,6 +184,7 @@ wb.i18nDict = {
 	info1000: "@info1000@",
 	lenMenu: "@lenMenu@",
 	filter: "@filter@",
+	tbFilterInst: "@tbFilterInst@",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
