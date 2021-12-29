@@ -126,3 +126,10 @@ body {
 		@extend %global-display-block-important;
 	}
 }
+
+.mfp-wrap {
+	dialog{
+		background-color:transparent;
+		border:none;
+	 }
+}

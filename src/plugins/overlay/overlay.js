@@ -115,6 +115,7 @@ var componentName = "wb-overlay",
 
 		$overlay
 			.addClass( "open" )
+			.attr( "role", "dialog" )
 			.attr( "aria-hidden", "false" );
 
 		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
@@ -145,6 +146,7 @@ var componentName = "wb-overlay",
 
 		$overlay
 			.removeClass( "open" )
+			.removeAttr( "role" )
 			.attr( "aria-hidden", "true" );
 
 		if ( $overlay.hasClass( "wb-popup-full" ) || $overlay.hasClass( "wb-popup-mid" ) ) {
