@@ -169,10 +169,7 @@ var componentName = "wb-lbx",
 
 					trapTabbing( $wrap );
 
-					if ( $container.html().trim() !== "" ) {
-						var contentHtml = $container.html();
-						$container.empty().html( "<dialog class='mfp-content' open>" + contentHtml + "</dialog>" );
-					}
+					$container.wrap( "<dialog class='mfp-content' open='open'></dialog>" );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
