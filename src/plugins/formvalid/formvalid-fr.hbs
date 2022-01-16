@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2021-08-11"
+	"dateModified": "2021-11-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -468,7 +468,7 @@
 				<legend class="required"><span class="field-name">Cases à cocher empilées dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="checkbox">
-						<label for="fruits1a"><input type="checkbox" name="example1" value="1" id="fruits1a" required="required" />Pomme</label>
+						<label for="fruits1a"><input type="checkbox" name="example1" value="1" id="fruits1a" data-rule-required="true" />Pomme</label>
 					</li>
 					<li class="checkbox">
 						<label for="fruits2a"><input type="checkbox" name="example1" value="2" id="fruits2a" />Orange</label>
@@ -483,6 +483,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -490,7 +491,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher empilées dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="checkbox"&gt;
-					&lt;label for="fruits1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="fruits1a" required="required" /&gt;Pomme&lt;/label&gt;
+					&lt;label for="fruits1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="fruits1a" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="checkbox"&gt;
 					&lt;label for="fruits2a"&gt;&lt;input type="checkbox" name="example1" value="2" id="fruits2a" /&gt;Orange&lt;/label&gt;
@@ -511,7 +512,7 @@
 				<legend class="required"><span class="field-name">Boutons radio verticaux dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="radio">
-						<label for="fruits1b"><input type="radio" name="example2" value="1" id="fruits1b" required="required" />Pomme</label>
+						<label for="fruits1b"><input type="radio" name="example2" value="1" id="fruits1b" data-rule-required="true" />Pomme</label>
 					</li>
 					<li class="radio">
 						<label for="fruits2b"><input type="radio" name="example2" value="2" id="fruits2b" />Orange</label>
@@ -526,6 +527,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -533,7 +535,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radio verticaux dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="radio"&gt;
-					&lt;label for="fruits1b"&gt;&lt;input type="radio" name="example2" value="1" id="fruits1b" required="required" /&gt;Pomme&lt;/label&gt;
+					&lt;label for="fruits1b"&gt;&lt;input type="radio" name="example2" value="1" id="fruits1b" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="radio"&gt;
 					&lt;label for="fruits2b"&gt;&lt;input type="radio" name="example2" value="2" id="fruits2b" /&gt;Orange&lt;/label&gt;
@@ -553,7 +555,7 @@
 			<fieldset class="chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Cases à cocher empilées dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="checkbox">
-					<label for="fruits1c"><input type="checkbox" name="example3" value="1" id="fruits1c" required="required" />Pomme</label>
+					<label for="fruits1c"><input type="checkbox" name="example3" value="1" id="fruits1c" data-rule-required="true" />Pomme</label>
 				</div>
 				<div class="checkbox">
 					<label for="fruits2c"><input type="checkbox" name="example3" value="2" id="fruits2c" />Orange</label>
@@ -567,13 +569,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher empilées dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="checkbox"&gt;
-				&lt;label for="fruits1c"&gt;&lt;input type="checkbox" name="example3" value="1" id="fruits1c" required="required" /&gt;Pomme&lt;/label&gt;
+				&lt;label for="fruits1c"&gt;&lt;input type="checkbox" name="example3" value="1" id="fruits1c" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="checkbox"&gt;
 				&lt;label for="fruits2c"&gt;&lt;input type="checkbox" name="example3" value="2" id="fruits2c" /&gt;Orange&lt;/label&gt;
@@ -593,7 +596,7 @@
 				<legend class="required"><span class="field-name">Cases à cocher horizontales dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-inline list-unstyled">
 					<li class="label-inline">
-						<input type="checkbox" name="example4" value="1" id="fruits5" required="required" />
+						<input type="checkbox" name="example4" value="1" id="fruits5" data-rule-required="true" />
 						<label for="fruits5">Pomme</label>
 					</li>
 					<li class="label-inline">
@@ -612,6 +615,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -619,7 +623,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher horizontales dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-inline list-unstyled"&gt;
 				&lt;li class="label-inline"&gt;
-					&lt;input type="checkbox" name="example4" value="1" id="fruits5" required="required" /&gt;
+					&lt;input type="checkbox" name="example4" value="1" id="fruits5" data-rule-required="true" /&gt;
 					&lt;label for="fruits5"&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="label-inline"&gt;
@@ -641,19 +645,20 @@
 <!-- Radio inline list item with implicit labels-->
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Boutons radio horizontaux dans un modèle d'éléments <code>&lt;label&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
-				<label for="tech1" class="radio-inline"><input type="radio" name="example5" value="1" id="tech1" required="required" />Téléphone intelligent</label>
+				<label for="tech1" class="radio-inline"><input type="radio" name="example5" value="1" id="tech1" data-rule-required="true" />Téléphone intelligent</label>
 				<label for="tech2" class="radio-inline"><input type="radio" name="example5" value="2" id="tech2" />Ordinateur portatif</label>
 				<label for="tech3" class="radio-inline"><input type="radio" name="example5" value="3" id="tech3" />Système d’assistance vocale</label>
 				<label for="tech4" class="radio-inline"><input type="radio" name="example5" value="4" id="tech4" />Réacteur à fusion</label>
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radio horizontaux dans un modèle d'éléments &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
-			&lt;label for="tech1" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="1" id="tech1" required="required" /&gt;Téléphone intelligent&lt;/label&gt;
+			&lt;label for="tech1" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="1" id="tech1" data-rule-required="true" /&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;label for="tech2" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="2" id="tech2" /&gt;Ordinateur portatif&lt;/label&gt;
 			&lt;label for="tech3" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="3" id="tech3" /&gt;Système d’assistance vocale&lt;/label&gt;
 			&lt;label for="tech4" class="radio-inline"&gt;&lt;input type="radio" name="example5" value="4" id="tech4" /&gt;Réacteur à fusion&lt;/label&gt;
@@ -664,7 +669,7 @@
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Cases à cocher horizontales dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="label-inline">
-					<input type="checkbox" name="example6" value="1" id="tech5" required="required" />
+					<input type="checkbox" name="example6" value="1" id="tech5" data-rule-required="true" />
 					<label for="tech5">Téléphone intelligent</label>
 				</div>
 				<div class="label-inline">
@@ -682,13 +687,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher horizontales dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="label-inline"&gt;
-				&lt;input type="checkbox" name="example6" value="1" id="tech5" required="required" /&gt;
+				&lt;input type="checkbox" name="example6" value="1" id="tech5" data-rule-required="true" /&gt;
 				&lt;label for="tech5"&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="label-inline"&gt;
