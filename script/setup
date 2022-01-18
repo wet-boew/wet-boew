@@ -5,7 +5,7 @@ case "$(uname -s)" in
 			npm install -g bower grunt-cli && npm install
 		;;
 	*)
-			if [ $(id -u) != "0" ];
+			if [ $(id -u) == "0" ];
 				then
 					npm install -g bower grunt-cli && npm install
 				else
