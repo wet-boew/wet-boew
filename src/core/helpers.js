@@ -1250,6 +1250,41 @@ wb.escapeAttribute = function( str ) {
 	return str.replace( /'/g, "&#39;" ).replace( /"/g, "&#34;" );
 };
 
+/*
+* Find most common Personal Identifiable Information (PII) in a string and return either the cleaned string either true/false
+* @param {string} str
+* @param {boolean} toClean
+* @return {string | true | false}
+* @example
+* wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", true )
+* returns "email:, phone:",
+* wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", false )
+* returns true
+*/
+wb.findPotentialPII = function( str, toClean ) {
+
+	if ( typeof str  !== "string" ) {
+		return false;
+	}
+	var regEx = [
+			/\b(?:\w*[\s\\.-]*?\d[\s\\.-]*?){5,}\b/ig, //5digits or more pattern
+			/\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig, //postal code pattern
+			/\b([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})\b/ig //email pattern
+		],
+		isFound = false;
+
+	for ( var key in regEx ) {
+		if ( str.match( regEx[ key ] ) ) {
+			isFound = true;
+			if ( toClean ) {
+				str = str.replaceAll( regEx[ key ], "" );
+			}
+		}
+	}
+
+	return toClean && isFound ? str : isFound;
+};
+
 } )( wb );
 
 ( function( $, undef ) {
