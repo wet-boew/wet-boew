@@ -79,7 +79,7 @@ var $document = wb.doc,
 							$elm.trigger( successEvent );
 							$selectorSuccess.removeClass( classToggle );
 						} )
-						.fail( function(response) {
+						.fail( function( response ) {
 							$elm.trigger( failEvent, response );
 							$selectorFailure.removeClass( classToggle );
 						} )
