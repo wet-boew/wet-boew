@@ -65,6 +65,18 @@
 			<td>Used to identify the element where plugin has initialized (target of the event)
 			</td>
 		</tr>
+		<tr>
+			<td>jQuery Event</td>
+			<td><code>fail.wb-postback</code></td>
+			<td>Triggered automatically after the Form submission (HTTP request) fails.</td>
+			<td>Allows dynamic customization of the failure message before being shown.  The `response` from the server can be accessed at `event.data.response`.</td>
+		</tr>
+		<tr>
+			<td>jQuery Event</td>
+			<td><code>success.wb-postback</code></td>
+			<td>Triggered automatically after the Form submission (HTTP request) succeeds.</td>
+			<td>Allows dynamic customization of the failure message before being shown.</td>
+		</tr>
 	</tbody>
 </table>
 

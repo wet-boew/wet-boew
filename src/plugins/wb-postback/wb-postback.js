@@ -11,6 +11,8 @@ var $document = wb.doc,
 	componentName = "wb-postback",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
+	failEvent = "fail" + selector,
+	successEvent = "success" + selector,
 	defaults = {},
 
 	init = function( event ) {
@@ -74,9 +76,11 @@ var $document = wb.doc,
 						data: $.param( data )
 					} )
 						.done( function() {
+							$elm.trigger( successEvent );
 							$selectorSuccess.removeClass( classToggle );
 						} )
-						.fail( function() {
+						.fail( function( response ) {
+							$elm.trigger( failEvent, response );
 							$selectorFailure.removeClass( classToggle );
 						} )
 						.always( function() {
