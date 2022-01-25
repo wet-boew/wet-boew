@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Provides generic validation and error message handling for Web forms.",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2020-12-23"
+	"dateModified": "2022-01-25"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -55,9 +55,12 @@
 		<li>Add <code>required="required"</code> to each mandatory form field
 			<pre><code>&lt;input id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" /&gt;</code></pre>
 		</li>
-		<li><p><strong>Optional: </strong>For input fields, add one of these <a href="#SpecializedValidation">options</a> for specialized validation, or else you can use a <a href="#pattern">custom pattern validation</a> only if your pattern is very specific and is not part of the options for specialized validation.</p></li>
-		<li><strong>Optional: </strong>For ASP validators add the following attributes to enable the <a href="#MergeSCE">Merge Server-Client errors functionality</a>
-			<p><code>Display="Dynamic" EnableClientScript="false" CssClass="label label-danger wb-server-error"</code></p>
+		<li><strong>Optional:</strong>
+			<ul class="lst-spcd">
+				<li>To make a standalone checkbox field's label look consistent with text field labels (i.e. bolded), add the <code>checkbox checkbox-standalone</code> classes to the checkbox and place it in a <code>&lt;div class="form-group"&gt;</code> element.</li>
+				<li>For input fields, add one of these <a href="#SpecializedValidation">options</a> for specialized validation, or else you can use a <a href="#pattern">custom pattern validation</a> only if your pattern is very specific and is not part of the options for specialized validation.</li>
+				<li>For ASP validators add the following attributes to enable the <a href="#MergeSCE">Merge Server-Client errors functionality</a>:<br /><code>Display="Dynamic" EnableClientScript="false" CssClass="label label-danger wb-server-error"</code></li>
+			</ul>
 		</li>
 	</ol>
 </section>

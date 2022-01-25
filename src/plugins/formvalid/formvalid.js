@@ -163,8 +163,8 @@ var componentName = "wb-frmvld",
 
 							//Std If we have a label and the input field is inside the label
 							// need to add a css-implicite-input
-							if ( $form.find( "label" ).find( "input[name='" + $element.attr( "name" ) + "']" ).length > 0 ) {
-								$error.insertBefore( $form.find( "input[name='" + $element.attr( "name" ) + "']" ) );
+							if ( $form.find( "label" ).find( ".wb-server-error + input.css-implicite-input[name='" + $element.attr( "name" ) + "']" ).length > 0 ) {
+								$error.insertBefore( $form.find( ".wb-server-error + input.css-implicite-input[name='" + $element.attr( "name" ) + "']" ) );
 								return;
 							}
 

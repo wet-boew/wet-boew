@@ -3,7 +3,7 @@
   @title: Form additions to WET-BOEW
  */
 
-$asterisk-width: .665em;
+$asterisk-width: .67em;
 
 %forms-color-red-bold {
 	color: #d3080c;
@@ -20,6 +20,7 @@ input[type="checkbox"] {
 			@extend %forms-color-red-bold;
 			content: "* ";
 			margin-left: -$asterisk-width;
+			vertical-align: top;
 		}
 
 		strong {
@@ -30,6 +31,22 @@ input[type="checkbox"] {
 	}
 }
 // scss-lint:enable QualifyingElement
+
+.form-group {
+	&.has-error {
+		.checkbox {
+			color: $text-color;
+		}
+	}
+
+	.checkbox {
+		&.checkbox-standalone {
+			label {
+				font-weight: 700;
+			}
+		}
+	}
+}
 
 [dir=rtl] {
 	label,
