@@ -145,6 +145,7 @@ var componentName = "wb-lbx",
 						$content = this.contentContainer,
 						$wrap = this.wrap,
 						$container = $wrap.find( ".mfp-container" ),
+						$containerParent = $container.parent(),
 						$modal = $wrap.find( ".modal-dialog" ),
 						$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
 						len = $buttons.length,
@@ -169,7 +170,11 @@ var componentName = "wb-lbx",
 
 					trapTabbing( $wrap );
 
-					$container.wrap( "<dialog class='mfp-content' open='open'></dialog>" );
+					if ( !$containerParent.is( "dialog" ) ) {
+						$container.wrap( "<dialog open='open'></dialog>" );
+					} else {
+						$containerParent.attr( "open", "open" );
+					}
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
