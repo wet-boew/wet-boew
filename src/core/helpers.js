@@ -1269,7 +1269,7 @@ wb.findPotentialPII = function( str, toClean ) {
 	var regEx = [
 			/\b(?:\w*[\s\\.-]*?\d[\s\\.-]*?){5,}\b/ig, //5digits or more pattern
 			/\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig, //postal code pattern
-			/\b([a-zA-Z0-9_\-\\.]+)@([a-zA-Z0-9_\-\\.]+)\.([a-zA-Z]{2,5})\b/ig //email pattern
+			/\b(?:[a-zA-Z0-9_\-\\.]+)(?:@|%40)(?:[a-zA-Z0-9_\-\\.]+)\.(?:[a-zA-Z]{2,5})\b/ig //email pattern
 		],
 		isFound = false;
 
