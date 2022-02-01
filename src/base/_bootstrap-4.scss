@@ -72,3 +72,10 @@ a {
 		}
 	}
 }
+.btn {
+	&.text-white {
+		&:hover, &:focus {
+			color: #b3ffff;
+		}
+	}
+}
