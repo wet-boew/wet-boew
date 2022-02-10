@@ -171,7 +171,7 @@ var componentName = "wb-lbx",
 					trapTabbing( $wrap );
 
 					if ( !$containerParent.is( "dialog" ) ) {
-						$container.wrap( "<dialog open='open'></dialog>" );
+						$container.wrap( "<dialog class='mfp-container' open='open'></dialog>" );
 					} else {
 						$containerParent.attr( "open", "open" );
 					}
