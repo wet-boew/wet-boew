@@ -191,12 +191,16 @@ table {
 			}
 
 			// The followings apply to the button for sorting
-			.sorting-cnt {
+			button {
 				appearance: none;
 				background: transparent;
 				border: 0;
 				font-family: inherit;
 				padding: 0;
+				text-align: left;
+			}
+
+			.sorting-cnt {
 				white-space: nowrap;
 
 				&:before {
