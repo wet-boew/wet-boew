@@ -126,3 +126,10 @@ body {
 		@extend %global-display-block-important;
 	}
 }
+
+.wb-modal {
+	dialog{
+		background-color: transparent;
+		border: none;
+	}
+}
