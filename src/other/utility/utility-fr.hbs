@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-02-01"
+	"dateModified": "2022-02-15"
 }
 ---
 
@@ -178,7 +178,7 @@
 <pre><code>&lt;p class="<strong>position-relative</strong>"&gt;Ceci est un paragraphe relativement positionné.&lt;/p&gt;</code></pre>
 
 <h2 id="divers">Divers</h2>
-<h3><code>max-content</code></h3>
+<h3><code>max-content</code></h3
 <p>Limite la largeur d'un élément à la largeur de son contenu le plus grand.</p>
 <h4>Example pratique:</h4>
 <details class="max-content">
@@ -219,3 +219,19 @@
 		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
+
+<h3><code>test-textSpacing</code></h3>
+<div class="test-textSpacing">
+	<p>Ajoutez cette classe à l'élément <code>body</code> afin de tester le <a href="https://www.w3.org/TR/WCAG21/#text-spacing" lang="en">critère de réussite 1.4.12 Espacement du texte de WCAG 2.1</a> (Anglais seulement). Cette classe d'assistance aura les effets suivants :</p>
+	<ul>
+		<li>Hauteur de ligne de 1,5 fois la taille de la police.</li>
+		<li>Espacement des paragraphes suivants 2 fois la taille de la police.</li>
+		<li>Espacement des lettres à 0,12 fois la taille de la police.</li>
+		<li>Espacement des mots à 0,16 fois la taille de la police.</li>
+	</ul>
+	<p>Après avoir défini la classe, assurez-vous qu'il n'y a aucune perte de contenu ou de fonctionnalité.</p>
+</div>
+<h4>Exemple de code :</h4>
+<pre><code>&lt;body class="<strong>test-textSpacing</strong>" vocab="http://schema.org/" typeof="WebPage" resource="#wb-webpage" class="home page-type-nav "&gt;
+...
+&lt;/body&gt;</code></pre>
