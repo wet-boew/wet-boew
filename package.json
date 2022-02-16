@@ -35,8 +35,8 @@
   "dependencies": {
     "bootstrap-sass": "3.4.1",
     "code-prettify": "^0.1.0",
-    "datatables.net": "1.11.3",
-    "dompurify": "^2.3.3",
+    "datatables.net": "1.11.4",
+    "dompurify": "^2.3.5",
     "es5-shim": "2.3.0",
     "html5shiv": "^3.7.3",
     "jquery": "2.2.4",
