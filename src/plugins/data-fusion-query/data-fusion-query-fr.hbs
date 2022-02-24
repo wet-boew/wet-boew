@@ -1,0 +1,41 @@
+---
+{
+	"title": "Donnée de requête fusionné",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Application de la valeur correspondant à un paramètre dans la requête (URL) de la page vers un champs.",
+	"tag": "data-fusion-query",
+	"parentdir": "data-fusion-query",
+	"altLangPrefix": "data-fusion-query",
+	"dateModified": "2022-02-23"
+}
+---
+
+<p>Application de la valeur correspondant à un paramètre dans la requête (URL) de la page vers un champs d'entrée de donnée.</p>
+
+<p>Pour un exemple, les liens suivants vont mettre à jour la valeur des champs ci-dessous.</p>
+<ul>
+	<li><a href="?text=Ceci+est+un+test">Zone de texte, attribuer la valeur "Ceci est un test" (<code>?text=Ceci+est+un+test</code>)</a></li>
+	<li><a href="?select=ipsum">Liste déroulante, attribuer la valeur "ipsum" (<code>?select=ipsum</code>)</a></li>
+	<li><a href="?multiline=Ceci+est+multiligne+<strong>emphase</strong>">Zone de texte multiligne, attribuer la valeur "Ceci est multiligne &lt;strong&gt;emphase&lt;/strong&gt;" (<code>?multiline=Ceci+est+multiligne+&lt;strong&gt;emphase&lt;/strong&gt;</code>)</a></li>
+</ul>
+
+<div class="form-group">
+	<label for="id-text">Zone de texte</label>
+	<input class="form-control" id="id-text" name="text" type="text" data-fusion-query />
+</div>
+
+<div class="form-group">
+	<label for="id-select">Liste déroulante</label>
+	<select class="form-control" id="id-select" name="select" data-fusion-query>
+		<option label="Select"></option>
+		<option value="lorem">Lorem</option>
+		<option value="ipsum">Ipsum</option>
+		<option value="value3">Value 3</option>
+	</select>
+</div>
+
+<div class="form-group">
+	<label for="id-multiline">Zone de texte multiligne</label>
+	<textarea class="form-control" id="id-multiline" name="multiline" rows="5" cols="45" data-fusion-query></textarea>
+</div>
