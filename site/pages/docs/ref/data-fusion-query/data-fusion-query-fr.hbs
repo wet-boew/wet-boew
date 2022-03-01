@@ -1,0 +1,84 @@
+---
+{
+	"title": "Donnée de requête fusionné",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Application de la valeur correspondant à un paramètre dans la requête (URL) de la page vers un champs.",
+	"altLangPrefix": "data-fusion-query",
+	"dateModified": "2022-02-23"
+}
+---
+
+<p lang="en"><strong>Needs translation</strong></p>
+
+<h2>But</h2>
+<p>Application de la valeur correspondant à un paramètre dans la requête (URL) de la page vers un champs.</p>
+
+<div lang="en">
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/data-fusion-query/data-fusion-query-en.html">English example</a></li>
+	<li><a href="../../../demos/data-fusion-query/data-fusion-query-fr.html">French example</a></li>
+</ul>
+
+<h2>Evaluation and report</h2>
+<p>There is no evaluation and report available for this component.</p>
+
+<h2>API (Version 1.0)</h2>
+<dl class="dl-horizontal">
+	<dt>Function</dt>
+	<dd>Version 1.0</dd>
+	<dt>Configuration</dt>
+	<dd>Not applicable</dd>
+	<dt>User interface (Template)</dt>
+	<dd>Version 1.0</dd>
+	<dt>Data source</dt>
+	<dd>Not applicable</dd>
+	<dt>View and style</dt>
+	<dd>Not applicable</dd>
+	<dt>i18n string</dt>
+	<dd>Not applicable</dd>
+</dl>
+
+<h3>Function</h3>
+<p>(Version 1.0)</p>
+<table class="table">
+	<tr>
+		<th>Function type</th>
+		<th>Name</th>
+		<th>How to implement</th>
+		<th>What it does</th>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-init.wb-data-fusion-query</code></td>
+		<td>Triggered manually (e.g., <code>$( "[data-fusion-query][name]" ).trigger( "wb-init.wb-data-fusion-query" );</code>).</td>
+		<td>Initializes the plugin.</td>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-ready.wb-data-fusion-query</code></td>
+		<td>Triggered automatically after the plugin initialization is completed.</td>
+		<td>Used to identify when and where the plugin initialization has completed (target of the event).
+			<pre><code>$( document ).on( "wb-ready.wb-data-fusion-query", "[data-fusion-query][name]", function( event ) {
+});</code></pre>
+			<pre><code>$elm.on( "wb-ready.wb-data-fusion-query", function( event ) {
+});</code></pre>
+		</td>
+	</tr>
+</table>
+
+<h3>User interface (Template)</h3>
+<p>(Version 1.0)</p>
+<ul>
+	<li>
+		<p>Attribute:</p>
+		<pre><code>data-fusion-query</code></pre>
+	</li>
+</ul>
+
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/data-fusion-query">Source code on GitHub</a></p>
+</div>
