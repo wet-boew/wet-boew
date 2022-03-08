@@ -712,14 +712,7 @@ module.exports = (grunt) ->
 			modern:
 				options:
 					processors: [
-						require("autoprefixer")(
-							browsers: [
-								"last 2 versions"
-								"bb >= 10"
-								"Firefox ESR"
-								"ie > 10"
-							]
-						)
+						require("autoprefixer")()
 					]
 				files: [
 					{
@@ -747,14 +740,7 @@ module.exports = (grunt) ->
 			mixed:
 				options:
 					processors: [
-						require("autoprefixer")(
-							browsers: [
-								"last 2 versions"
-								"bb >= 10"
-								"Firefox ESR"
-								"ie > 10"
-							]
-						)
+						require("autoprefixer")()
 					]
 				files: [
 					cwd: "<%= coreDist %>/css/polyfills"
@@ -776,8 +762,12 @@ module.exports = (grunt) ->
 			# Only IE8 support
 			oldIE:
 				options:
-					browsers: [
-						"ie 8"
+					processors: [
+						require("autoprefixer")(
+							overrideBrowserslist: [
+								"ie 8"
+							]
+						)
 					]
 				cwd: "dist"
 				src: [

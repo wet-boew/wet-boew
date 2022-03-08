@@ -32,6 +32,12 @@
   ],
   "author": "",
   "license": "MIT",
+  "browserslist": [
+    "last 2 versions",
+    "bb >= 10",
+    "Firefox ESR",
+    "ie > 10"
+  ],
   "dependencies": {
     "bootstrap-sass": "3.4.1",
     "code-prettify": "^0.1.0",
