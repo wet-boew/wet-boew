@@ -138,6 +138,7 @@
 /* Extra-small view and under */
 @media screen and (max-width: $screen-xs-max) {
 	@import "views/screen-xs-max";
+	@import "../plugins/eqht-css/screen-xs-max";
 }
 
 /* Small view and under */
