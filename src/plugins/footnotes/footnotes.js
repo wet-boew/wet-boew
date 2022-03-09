@@ -92,11 +92,12 @@ var componentName = "wb-fnote",
 						refIdDashIdx = refId.indexOf( "-" );
 						if ( refIdDashIdx !== -1 && !$elmTarget.attr( modFlag ) ) {
 							searchRefId = refId.substring( 0, refIdDashIdx + 1 );
-							refIdSrc = $( "sup[id^='" + searchRefId + "']:first()" ).attr( "id" );
+							refIdSrc = wb.jqEscape( $( "sup[id^='" + searchRefId + "']:first()" ).attr( "id" ) );
 							if ( !refIdSrc || refId !== refIdSrc ) {
 								console.warn( componentName + " - Relink first reference of " + ref + " for #" + refIdSrc );
+								refId = refIdSrc;
 								$elmTarget
-									.attr( "href", "#" + refIdSrc )
+									.attr( "href", "#" + refId )
 									.attr( modFlag, true );
 							}
 						}
