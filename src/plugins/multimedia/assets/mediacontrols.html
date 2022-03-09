@@ -9,7 +9,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<div class="btn-group">
 			<button type="button" class="btn btn-default playpause" aria-controls="{{mId}}"  aria-labelledby="{{mId}}" title="{{play}}" data-state-on="{{play}}" data-state-off="{{pause}}"><span class="glyphicon glyphicon-play"><span class="wb-inv">{{play}}</span></span></button>
 			<button type="button" class="btn btn-default mute" aria-controls="{{mId}}" aria-labelledby="{{mId}}" title="{{mute_on}}" data-state-on="{{mute_on}}" data-state-off="{{mute_off}}" aria-pressed="false"><span class="glyphicon glyphicon-volume-up"><span class="wb-inv">{{mute_on}}</span></span></button>
-			<input type="range" class="volume" aria-controls="{{mId}}" aria-labelledby="{{mId}}" title="{{volume}}" min="0" max="100" value="100" step="5" />
+			<p id="{{mId}}-vlm-lbl" hidden>{{volume}}</p>
+			<input type="range" class="volume" aria-controls="{{mId}}" aria-labelledby="{{mId}}" aria-describedby="{{mId}}-vlm-lbl" title="{{volume}}" min="0" max="100" value="100" step="5" />
 		</div>
 	</div>
 	<div class="tline">
