@@ -15,6 +15,7 @@
  */
 var componentName = "wb-fnote",
 	selector = "." + componentName,
+	modFlag = "data-" + componentName,
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
@@ -49,7 +50,7 @@ var componentName = "wb-fnote",
 			$elm.find( "dd p.fn-rtn a span span" ).remove();
 
 			// Listen for footnote reference links that get clicked
-			$document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
+			$document.on( "click", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
 				var eventTarget = event.target,
 					which = event.which,
 					refId, $refLinkDest;
@@ -60,7 +61,8 @@ var componentName = "wb-fnote",
 					$refLinkDest = $document.find( refId );
 
 					$refLinkDest.find( "p.fn-rtn a" )
-						.attr( "href", "#" + eventTarget.parentNode.id );
+						.attr( "href", "#" + eventTarget.parentNode.id )
+						.attr( modFlag, true );
 
 					// Assign focus to $refLinkDest
 					$refLinkDest.trigger( setFocusEvent );
@@ -69,21 +71,39 @@ var componentName = "wb-fnote",
 			} );
 
 			// Listen for footnote return links that get clicked
-			$document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
+			$document.on( "click", selector + " dd p.fn-rtn a", function( event ) {
 				var which = event.which,
+					$elmTarget = $( event.target ),
 					ref,
-					refId;
+					refId,
+					refIdSrc,
+					refIdDashIdx,
+					searchRefId;
 
 				// Ignore middle/right mouse button
 				if ( !which || which === 1 ) {
-					ref = event.target.getAttribute( "href" );
+					ref = $elmTarget.attr( "href" );
 
 					// Focus on associated referrer link (if the return link points to an ID)
 					if ( ref.charAt( 0 ) === "#" ) {
-						refId = "#" + wb.jqEscape( ref.substring( 1 ) );
+						refId = wb.jqEscape( ref.substring( 1 ) );
+
+						// When first clicked, ensure we send the user on the first instance when the id follow the recommend pattern
+						refIdDashIdx = refId.indexOf( "-" );
+						if ( refIdDashIdx !== -1 && !$elmTarget.attr( modFlag ) ) {
+							searchRefId = refId.substring( 0, refIdDashIdx + 1 );
+							refIdSrc = wb.jqEscape( $( "sup[id^='" + searchRefId + "']:first()" ).attr( "id" ) );
+							if ( !refIdSrc || refId !== refIdSrc ) {
+								console.warn( componentName + " - Relink first reference of " + ref + " for #" + refIdSrc );
+								refId = refIdSrc;
+								$elmTarget
+									.attr( "href", "#" + refId )
+									.attr( modFlag, true );
+							}
+						}
 
 						// Assign focus to the link
-						$document.find( refId + " a" ).trigger( setFocusEvent );
+						$document.find( "#" + refId + " a" ).trigger( setFocusEvent );
 						return false;
 					}
 				}
