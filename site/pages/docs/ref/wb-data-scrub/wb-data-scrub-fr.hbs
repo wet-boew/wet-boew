@@ -1,0 +1,101 @@
+---
+{
+	"title": "Data Scrub",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Supprimer les informations personnelles identifiables (IPI) avant de soumettre le formulaire",
+	"altLangPrefix": "wb-data-scrub",
+	"dateModified": "2022-03-02"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>But</h2>
+	<p>Ce composant offre la possibilité de supprimer les informations personnelles identifiables (PII) dans les champs d'un formulaire avant de le soumettre.</p>
+	<p>Voici la liste des IPI que le plugiciel recherchera et supprimera:</p>
+	<ul>
+		<li>Toutes les combinaisons de 8 chiffres et plus</li>
+		<li>Numéro de série du passeport canadien</li>
+		<li>E-mail</li>
+		<li>Code postal canadien</li>
+		<li>Toute valeur de nom d'utilisateur potentielle ajoutée dans ce format username=theUserValue, username:theUserValue, user=theUserValue, user:theUserValue</li>
+		<li>Toute valeur de mot de passe potentielle ajoutée dans ce format password=thePassValue, mot de passe:thePassValue pass=thePassValue, pass:thePassValue</li>
+	</ul>
+	<p>Un message contextuel informera l'utilisateur si des champs contiennent des informations personnelles et affichera la sortie des données nettoyées. L'utilisateur peut choisir de revenir au formulaire et de supprimer les données ou de poursuivre la soumission du formulaire qui comprend le nettoyage automatique des informations personnelles.</p>
+	<p>Pour plus de détails sur le comportement de nettoyage des PII, veuillez consulter l'assistant de base wet-boew:<code>wb.findPotentialPII</code></p>
+</section>
+
+<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>les formulaires peuvent contenir des informations personnelles identifiables (PII), ce plugiciel identifiera et supprimera ces informations avant la soumission du formulaire.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Ne pas utiliser lorsque</h2>
+	<ul>
+		<li>un formulaire utilise le plugiciel Validation de formulaires</li>
+		<li>un formulaire utilise le plugiciel Envoie via Ajax</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Exemple pratique</h2>
+	<ul>
+		<li><a href="../../../demos/wb-data-scrub/wb-data-scrub-en.html">Exemple anglais</a></li>
+		<li><a hreflang="fr" href="../../../demos/wb-data-scrub/wb-data-scrub-fr.html">Exemple français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Comment implémenter le plugiciel</h2>
+	<ol>
+		<li>Ajoutez l'attribut de données suivant <code>data-rule-wbscrub</code> pour chaque élément du formulaire susceptible de contenir des informations personnelles.
+			<pre><code>&lt;input id="email" name="email" type="email" <strong>data-rule-wbscrub</strong> /&gt;</code></pre>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Événements</h2>
+	<p>Documentez les événements publics qui peuvent être utilisés par les implémenteurs ou les développeurs.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Effet déclenché</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-data-scrub</code></td>
+				<td>Déclenché manuellement (e.g., <code>$( ".wb-data-scrub" ).trigger( "wb-init.wb-data-scrub" );</code>).</td>
+				<td>Utilisé pour initialisé manuellement le plugiciel Supprime-IPI.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-data-scrub</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement après l'initialisation du plugiciel Supprime-IPI.</td>
+				<td>Utilisé afin d'identifié l'élément sur lequel le plugiciel Supprime-IPI a été initialisé (la cible de l'événement)
+					<pre><code>$( document ).on( "wb-ready.wb-data-scrub", ".wb-data-scrub", function( event ) {});</code></pre>
+					<pre><code>$( ".wb-data-scrub" ).on( "wb-ready.wb-data-scrub", function( event ) {});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement lorsque la WET-BOEW a terminé son chargement et son exécution.</td>
+				<td>Utilisé pour identifié le moment lorsque tous les plugiciels et tous les polyfills de la WET-BOEW ont terminés de charger et de s'exécuter.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/wb-data-scrub">Code source du plugiciel Data Scrub sur GitHub</a></p>
+</section>
