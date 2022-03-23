@@ -142,7 +142,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 	$elm.find( "th" ).each( function( index ) {
 		var $th = $( this ),
 			$btn = $th.find( "button" );
-		if ( order && order[ 0 ][ 0 ] === index ) {
+		if ( order && order.length && order[ 0 ][ 0 ] === index ) {
 			var label = ( order[ 0 ][ 1 ] === "desc" ) ? i18nText.aria.sortAscending : i18nText.aria.sortDescending;
 			label = $btn.text() + label;
 			$btn.attr( "title", label );
