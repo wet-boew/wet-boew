@@ -1,0 +1,123 @@
+---
+{
+	"title": "Nested control (pure CSS)",
+	"language": "en",
+	"category": "Plugins",
+	"description": "A CSS plugin for nested fields within checkboxes and radio.",
+	"tag": "nested-control",
+	"parentdir": "nested-control",
+	"altLangPrefix": "nested-control",
+	"dateModified": "2022-03-29"
+}
+---
+<section>
+	<h2>Purpose</h2>
+	<p>Provide ability to have a nested field within a checkbox or radio form control.</p>
+</section>
+
+<section>
+	<h2>Example</h2>
+	<h3>Radio buttons</h3>
+	<form>
+		<fieldset class="chkbxrdio-grp">
+			<legend class="required"><span class="field-name">Citizenship status</span> <strong class="required">(required)</strong></legend>
+			<ul>
+				<li class="radio">
+					<input type="radio" name="status" value="1" id="status1" data-rule-required="true">
+					<label for="status1">Canadian citizen</label>
+				</li>
+				<li class="radio">
+					<input type="radio" name="status" value="2" id="status2">
+					<label for="status2">Permanent resident</label>
+				</li>
+				<li class="radio">
+					<input type="radio" name="status" value="3" id="status3">
+					<label for="status3">Other</label>
+					<div class="form-group provisional wb-nested-control">
+						<label for="statusother">Please specify:</label>
+						<input type="text" name="statusother" value="" id="statusother" class="form-control">
+					</div>
+				</li>
+			</ul>
+		</fieldset>
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
+
+	<h4>Code</h4>
+<pre><code>&lt;form&gt;
+	&lt;fieldset class="chkbxrdio-grp"&gt;
+		&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Citizenship status&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+		&lt;ul&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="1" id="status1" data-rule-required="true"&gt;
+				&lt;label for="status1"&gt;Canadian citizen&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="2" id="status2"&gt;
+				&lt;label for="status2"&gt;Permanent resident&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="3" id="status3"&gt;
+				&lt;label for="status3"&gt;Other&lt;/label&gt;
+				&lt;div class="form-group provisional wb-nested-control"&gt;
+					&lt;label for="statusother"&gt;Please specify:&lt;/label&gt;
+					&lt;input type="text" name="statusother" value="" id="statusother" class="form-control"&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/fieldset&gt;
+	&lt;input type="submit" class="btn btn-primary" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+
+	<h3>Checkboxes</h3>
+	<form>
+		<fieldset class="chkbxrdio-grp">
+			<legend class="required"><span class="field-name">Favourite pets</span> <strong class="required">(required)</strong></legend>
+			<ul>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true">
+					<label for="animal1">Dog</label>
+				</li>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="2" id="animal2">
+					<label for="animal2">Cat</label>
+				</li>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="3" id="animal3">
+					<label for="animal3">Other</label>
+					<div class="form-group provisional wb-nested-control">
+						<label for="animalother">Please specify:</label>
+						<input type="text" name="animalother" value="" id="animalother" class="form-control">
+					</div>
+				</li>
+			</ul>
+		</fieldset>
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
+
+	<h4>Code</h4>
+<pre><code>&lt;form&gt;
+	&lt;fieldset class="chkbxrdio-grp"&gt;
+		&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Favourite pets&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/legend&gt;
+		&lt;ul&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true"&gt;
+				&lt;label for="animal1"&gt;Dog&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="2" id="animal2"&gt;
+				&lt;label for="animal2"&gt;Cat&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="3" id="animal3"&gt;
+				&lt;label for="animal3"&gt;Other&lt;/label&gt;
+				&lt;div class="form-group provisional wb-nested-control"&gt;
+					&lt;label for="animalother"&gt;Please specify:&lt;/label&gt;
+					&lt;input type="text" name="animalother" value="" id="animalother" class="form-control"&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/fieldset&gt;
+	&lt;input type="submit" class="btn btn-primary" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+</section>

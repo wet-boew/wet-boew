@@ -1,0 +1,38 @@
+/**
+ * @title nested-control
+ * @overview Provide ability to have a nested field with a checkbox or radio form control
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @GormFrank
+ */
+
+/* Unchecked state (hide) */
+.provisional.wb-nested-control {
+	display: none;
+
+	label {
+		padding-left: 0;
+	}
+}
+
+form {
+	.chkbxrdio-grp {
+		ul {
+			padding-left: 0;
+
+			.radio, .checkbox {
+				margin-left: 20px;
+
+				label {
+					padding-left: 0;
+				}
+
+				/* Checked state (show) */
+				input:checked {
+					& ~ .provisional.wb-nested-control {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
