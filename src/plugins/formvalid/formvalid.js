@@ -102,6 +102,26 @@ var componentName = "wb-frmvld",
 						labels[ i ].innerHTML += " ";
 					}
 
+					// Hide "required" label text in older forms from screen readers
+					// Prevents redundant "required" announcements on semantically-required fields whose labels mention they're required
+					$form.find( "strong.required:not([aria-hidden='true'])" ).each( function() {
+						const $requiredText = $( this ),
+							$label = $requiredText.closest( "label" ),
+							fieldId = $label.attr( "for" );
+						let $field = fieldId ? $( "#" + fieldId ) : $label.find( ":input" ).first();
+
+						// If the label's field has yet to be found, look for fields that refer to the label via aria-labelledby
+						if ( !$field.length ) {
+							const labelId = $label.attr( "id" ) || $requiredText.closest( "id" );
+							$field = $form.find( "[aria-labelledby~='" + labelId + "']:input" ).first();
+						}
+
+						// Hide the "required" text if its field is semantically-required
+						if ( $field.is( "[required], [aria-required='true']" ) ) {
+							$requiredText.attr( "aria-hidden", "true" );
+						}
+					} );
+
 					// The jQuery validation plug-in in action
 					validator = $form.validate( {
 						meta: "validate",

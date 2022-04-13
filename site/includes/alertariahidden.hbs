@@ -1,0 +1,8 @@
+{{! Page content include}}
+{{#contains this.alert "false"}}{{else}}<div class="alert alert-info">{{/contains}}
+{{#contains language "en"}}
+	<p>Consider adding an <code>aria-hidden="true"</code> attribute to <code>&lt;strong class="required"&gt;</code> (i.e. <code>&lt;strong class="required" aria-hidden="true"&gt;</code>) in required field labels. Hardcoding it will prevent screen readers from announcing "required" twice in the noscript and basic HTML versions of the page. The form validation plugin automatically adds the attribute to the JavaScript version. Don't use the attribute in required <code>&lt;legend&gt;</code> elements.</p>
+{{else}}
+	<p>Considérez ajouter un attribut <code lang="en">aria-hidden="true"</code> à <code lang="en">&lt;strong class="required"&gt;</code> (c.-à-d. <code lang="en">&lt;strong class="required" aria-hidden="true"&gt;</code>) dans les libellés des champs obligatoires. Le code ajouté de façon statique préviendra les lecteurs d’écran d’annoncer «&#160;obligatoire&#160;» deux fois dans les versions sans script et HTML simplifiée de la page. Le plugiciel de validation de formulaires ajoute l’attribut automatiquement à la version JavaScript. N’utilisez pas l’attribut dans les éléments <code lang="en">&lt;legend&gt;</code> obligatoires.</p>
+{{/contains}}
+{{#contains this.alert "false"}}{{else}}</div>{{/contains}}
