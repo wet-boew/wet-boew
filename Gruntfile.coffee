@@ -376,6 +376,7 @@ module.exports = (grunt) ->
 					"src/core/dep/modernizr-custom.js"
 					"src/core/wb.js"
 					"src/core/helpers.js"
+					"src/core/wcag.js"
 					"src/shims/**/*.js"
 					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
