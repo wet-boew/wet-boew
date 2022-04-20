@@ -89,7 +89,7 @@
     "grunt-wget": "~0.1.0",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^8.3.2",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "openlayers": "git+https://github.com/wet-boew/openlayers-dist.git#v3.20.1",
     "postcss": "^8.2.13",
     "puppeteer": "^1.20.0",
