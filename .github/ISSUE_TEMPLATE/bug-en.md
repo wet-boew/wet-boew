@@ -13,6 +13,8 @@ assignees: ''
 A clear and concise description of what the bug is.
 If you found another bug report related to this issue on GitHub, please mention its number e.g. #7890
 
+Note: If your request is related to security, please do not open a publicly visible "issue"; refer to [SECURITY.md](https://github.com/wet-boew/wet-boew/blob/master/SECURITY.md).
+
 **To Reproduce**
 Steps to reproduce the behaviour:
 1. Go to '...'

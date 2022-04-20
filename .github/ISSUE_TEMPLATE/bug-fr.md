@@ -13,6 +13,8 @@ assignees: ''
 Une description claire et concise du bogue.
 Si vous avez trouvé un autre rapport de bogue relié à ceci sur GitHub, veuillez mentionner son numéro ex. : #7890
 
+Note : Si votre demande est reliée à la sécurité, veuillez ne pas ouvrir une "issue" publiquement visible; référez-vous au [SECURITY.md](https://github.com/wet-boew/wet-boew/blob/master/SECURITY.md).
+
 **Pour le reproduire**
 Étapes pour reproduire le problème :
 1. Allez à "..."
