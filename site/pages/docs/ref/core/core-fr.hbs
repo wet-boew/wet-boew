@@ -1,0 +1,71 @@
+---
+{
+	"title": "Base de la BOEW",
+	"language": "fr",
+	"category": "Autre",
+	"categoryfile": "other",
+	"description": "Objet principal de la BOEW.",
+	"altLangPrefix": "core",
+	"dateModified": "2022-04-20"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<div class="alert alert-warning mrgn-tp-lg">
+	<h2>Travail en cours</h2>
+	<p>Cette page est un travail en cours.</p>
+</div>
+
+<p lang="en"><strong>Needs translation</strong></p>
+
+<section>
+	<h2>But</h2>
+	<p>Objet principal de la BOEW.</p>
+</section>
+
+<div lang="en">
+<section>
+	<h2>Language (<code>wb.lang</code>)</h2>
+	<p>WET's language is derived from the <code>html</code> element's <code>lang</code> attribute. A formatted version of the page's language code is stored in the <code>wb.lang</code> variable.</p>
+	<p>By default, the variable's value will be derived from the first two characters of the page's language code. If a longer code is specified, it'll be re-used as the variable's value so long as it corresponds to one of WET's built-in languages (i.e. <code>pt-BR</code> for Portuguese [Brazilian] or <code>zh-Hans</code> for Chinese [Simplified]).</p>
+	<p>Implementations that want to provide custom i18n files for longer language codes (e.g. <code>en-CA</code>, <code>en-US</code>, etc) can do so by adding <code>data-wb-core</code> and <code>lang-lang-long=""</code> attributes to WET's <code>script</code> element.</p>
+	<p>WET will also attempt to load an i18n file named after the variable. Plugins won't initialize if the i18n file fails to load.</p>
+</section>
+
+<section>
+	<h2>Configuration</h2>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Option</th>
+					<th>Description</th>
+					<th>How to configure</th>
+					<th>Values</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>HTML attribue</td>
+					<td><code>data-wb-core</code></td>
+					<td>Customizes WET's core variables. Use with other <code>data-*</code> attributes.</td>
+					<td>Add a <code>data-wb-core</code> attribute to WET's <code>script</code> element</td>
+					<td>None</td>
+				</tr>
+				<tr>
+					<td>HTML attribue</td>
+					<td><code>data-lang-long</code></td>
+					<td>Extends <code>wb.lang</code>'s support for long language codes (&gt; 2 characters). Use with the <code>data-wb-core</code> attribute.</td>
+					<td>Add a <code>data-wb-core</code> attribute to WET's <code>script</code> element</td>
+					<td>Space-separated <a href="https://www.rfc-editor.org/info/bcp47" rel="external">BCP 47</a> language codes</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code on GitHub</a></p>
+</section>
