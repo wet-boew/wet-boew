@@ -10,7 +10,7 @@ If this is your first time contributing on GitHub, don't worry! Here are some gu
 
 ## Fixing or improving WET as a developer
 
-Refer to the [get started rubric for deveopers](https://wet-boew.github.io/wet-boew/docs/start-en.html#develop).
+Refer to the [get started rubric for developers](https://wet-boew.github.io/wet-boew/docs/start-en.html#develop).
 
 ## Create or edit WET features
 
