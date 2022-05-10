@@ -90,6 +90,8 @@
 }
 
 .wb-overlay-dlg {
+	overflow: hidden;
+	
 	.overlay-bg {
 		box-shadow: 0 0 1000px 1000px black;
 	}
