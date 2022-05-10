@@ -627,11 +627,13 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 } );
 
 $document.on( initializedEvent, selector, function( event ) {
-	if ( event.namespace === componentName ) {
-		var $this = $( this ),
-			$media = $this.children( "audio, video" ).eq( 0 ),
-			captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
-			id = $this.attr( "id" ),
+	var $this = $( this ),
+		$media = $this.children( "audio, video" ).eq( 0 ),
+		media = $media.get( 0 );
+
+	if ( event.namespace === componentName && media ) {
+		var captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+			id = $this.attr( "id" ) ? $this.attr( "id" ) : wb.getId(),
 			mId = $media.attr( "id" ) || id + "-md",
 			type = $media.is( "audio" ) ? "audio" : "video",
 			title = $media.attr( "title" ) || "",
@@ -648,7 +650,6 @@ $document.on( initializedEvent, selector, function( event ) {
 				height: height,
 				width: width
 			}, i18nText ),
-			media = $media.get( 0 ),
 			youTube = window.youTube,
 			url;
 
@@ -683,7 +684,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				load: "https://www.youtube.com/iframe_api"
 			} );
 
-		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
+		} else if ( media.error === null ) {
 			$this.trigger( renderUIEvent, [ type, data ] );
 		} else {
 
