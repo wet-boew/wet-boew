@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-	<title>Canada News Centre - Manitoba</title>
-	<subtitle>Canada News Centre</subtitle>
-	<updated>2018-10-25T08:50:38-04:00</updated>
-	<link href="https://www.canada.ca/en/news/web-feeds/manitoba" rel="self" />
-	<id>https://www.canada.ca/en/news.html</id>
-	<logo>https://www.canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg</logo>
-</feed>
