@@ -3,8 +3,6 @@
   @title: Form additions to WET-BOEW
  */
 
-$asterisk-width: .67em;
-
 %forms-color-red-bold {
 	color: #d3080c;
 	font-weight: 700;
@@ -17,7 +15,7 @@ legend,
 		&:before {
 			@extend %forms-color-red-bold;
 			content: "* ";
-			margin-left: -$asterisk-width;
+			margin-left: -$wb-forms-asterisk-width;
 			vertical-align: top;
 		}
 
@@ -51,7 +49,7 @@ legend,
 		&.required {
 			&:before {
 				margin-left: auto;
-				margin-right: -$asterisk-width;
+				margin-right: -$wb-forms-asterisk-width;
 			}
 		}
 	}

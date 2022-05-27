@@ -110,6 +110,12 @@ $wb-so-text-align: right !default;
 $wb-so-padding: 1em 0 0 !default;
 
 
+//== Forms
+//
+// WET Custom
+$wb-forms-asterisk-width: .67em !default; // Asterisk offset for required field labels.
+
+
 //== Tables
 //
 //## Customizes the `.table` component with basic values, each used across all table variations.
