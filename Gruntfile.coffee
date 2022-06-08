@@ -1174,6 +1174,15 @@ module.exports = (grunt) ->
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
 					flatten: true
+				,
+					cwd: "node_modules"
+					src: [
+						"jsonpointer.js/src/jsonpointer.js",
+						"fast-json-patch/src/json-patch.js"
+					]
+					dest: "<%= coreDist %>/js/deps"
+					expand: true
+					flatten: true
 				]
 
 			demos:

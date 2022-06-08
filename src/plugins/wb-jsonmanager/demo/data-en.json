@@ -1,0 +1,23 @@
+{
+  "product": "Hello world",
+  "products": [
+    "My first product",
+    "My second product",
+    "My third product",
+    "My forth product"
+  ],
+  "level1": {
+    "level2": [
+      {
+        "itm1": "2016-11-30T07:53:56Z"
+      },
+      {
+        "itm1": "2017-02-01T16:52:00Z"
+      },
+      {
+        "itm1": "2013-09-08T14:14:14Z"
+      }
+    ]
+  },
+  "price": 1234.98
+}

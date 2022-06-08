@@ -1,0 +1,793 @@
+---
+{
+	"title": "Gabarit HTML 5",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Prendre avantage de l'élément template du HTML 5 avec le plugiciel data json",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "template-en.html",
+	"dateModified": "2022-03-02"
+}
+---
+<!--
+<ul class="list-inline">
+	<li><a class="btn btn-primary" href="data-json-doc-fr.html">Documentation</a></li>
+	<li><a class="btn btn-primary" href="https://github.com/wet-boew/GCWeb/issues/new?title=DataJSON">Questions ou commentaires?</a></li>
+</ul>
+-->
+<p>Prendre avantage de l'élément <code>&lt;template&gt;</code> du HTML 5 avec le plugiciel data json</p>
+
+<div class="wb-prettify all-pre"></div>
+
+<details>
+	<summary>Donnée JSON utilisé pour les examples suivantes</summary>
+	<p>Fichier: <code>demo/data-fr.json</code></p>
+	<pre><code>{
+	&quot;frais&quot;: {
+		&quot;ABC&quot;: &quot;20$&quot;
+	},
+	&quot;produit&quot;: &quot;Bonjour le monde&quot;,
+	&quot;produits&quot;: [
+		&quot;Mon nouveau produit&quot;,
+		&quot;Mon deuxième produit&quot;,
+		&quot;Mon produit numéro 3&quot;
+	],
+	&quot;etats&quot;: &quot;text-muted&quot;,
+	&quot;jesuisvrai&quot;: true,
+	&quot;jesuisfaux&quot;: false,
+	&quot;jour&quot;:&quot;2016-11-05T01:42:31Z&quot;,
+	&quot;unTableau&quot;: [
+		{ &quot;nom&quot;: &quot;Item 1&quot;, &quot;prop&quot;: &quot;rouge&quot; },
+		{ &quot;nom&quot;: &quot;Item 2&quot;, &quot;prop&quot;: &quot;bleu&quot; },
+		{ &quot;nom&quot;: &quot;Item 3&quot;, &quot;prop&quot;: &quot;jaune&quot; },
+		{ &quot;nom&quot;: &quot;Item 4&quot;, &quot;prop&quot;: &quot;violet&quot; }
+	],
+	&quot;bureaux&quot;: [
+		{ &quot;nom&quot;: &quot;Nom de lieu exemple 1&quot;, &quot;num&quot;: 300, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot; },
+		{ &quot;nom&quot;: &quot;Nom de lieu exemple 2&quot;, &quot;num&quot;: 50, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot; }
+	],
+	&quot;listeAdresses&quot;: [
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 1&quot;, &quot;num&quot;: 100, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J8X 0I6&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info1@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 2&quot;, &quot;num&quot;: 65, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;codePostal&quot;: &quot;J8S 0M6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info2@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 3&quot;, &quot;num&quot;: 87, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J9X 0I9&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info3@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 4&quot;, &quot;num&quot;: 34, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;codePostal&quot;: &quot;J8P 0K6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info4@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 5&quot;, &quot;num&quot;: 980, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J8F 5P6&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info5@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 6&quot;, &quot;num&quot;: 1123, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;codePostal&quot;: &quot;J8H 4K6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info6@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 7&quot;, &quot;num&quot;: 543, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J8G 0N7&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info7@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 8&quot;, &quot;num&quot;: 723, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;codePostal&quot;: &quot;J8P 2I6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info8@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 9&quot;, &quot;num&quot;: 2345, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J8P 0I7&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info9@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 10&quot;, &quot;num&quot;: 56, &quot;rue&quot;: &quot;Victoria&quot;, &quot;ville&quot;: &quot;Gatineau&quot;, &quot;codePostal&quot;: &quot;J8X 0N6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info10@example.com&quot; },
+	{ &quot;nom&quot;: &quot;Nom de lieu exemple 11&quot;, &quot;num&quot;: 200, &quot;rue&quot;: &quot;Slater&quot;, &quot;ville&quot;: &quot;Ottawa&quot;, &quot;codePostal&quot;: &quot;J8T 0I8&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;courriel&quot;: &quot;info11@example.com&quot; }
+	],
+	&quot;auteur&quot;: &quot;&lt;a href=\&quot;https://github.com/duboisp/\&quot;&gt;Pierre Dubois&lt;/a&gt; a créé la fonctionalité data-json&quot;,
+	&quot;commentaire&quot;: {
+		&quot;2017-1&quot;: {
+			&quot;nom&quot;: &quot;M. X&quot;,
+			&quot;ville&quot;: &quot;Gatineau&quot;,
+			&quot;quelquesChoseHTML&quot;: &quot;&lt;strong&gt;Horay&lt;/strong&gt; ici du contenu HTML enrichie&quot;,
+			&quot;passetemps&quot;: [ &quot;Voiture&quot;, &quot;Mécanique&quot;, &quot;Course&quot; ]
+		},
+		&quot;2017-2&quot;: {
+			&quot;nom&quot;: &quot;Mme. Y&quot;,
+			&quot;ville&quot;: &quot;St-Pierre&quot;,
+			&quot;quelquesChoseHTML&quot;: &quot;le mot &lt;strong&gt;Youpi&lt;/strong&gt; devrais avoir de la mise en évidence&quot;,
+			&quot;passetemps&quot;: [ &quot;Spa&quot;, &quot;Nature&quot;, &quot;Bicyclette&quot;, &quot;Lecture&quot; ]
+		}
+	}
+}</code></pre>
+</details>
+
+
+<h2>Liste</h2>
+
+
+<div class="row">
+<div class="col-md-6">
+
+<p>Liste de définition:</p>
+<dl class="dl-horizontal" data-wb-json='{
+		"url": "demo/data-fr.json#/unTableau",
+		"mapping": [
+			{ "selector": "dt", "value": "/nom" },
+			{ "selector": "dd", "value": "/prop" }
+		]
+	}'>
+	<template>
+		<dt></dt>
+		<dd></dd>
+	</template>
+</dl>
+
+</div>
+<div class="col-md-3">
+
+<p>Non-ordonnée:</p>
+<ul class="lst-spcd" data-wb-json='{
+		"url": "demo/data-fr.json#/unTableau",
+		"queryall": "li",
+		"mapping": [
+			"/nom"
+		]
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+</div>
+<div class="col-md-3">
+
+<p>Ordonnée:</p>
+<ol class="lst-spcd" data-wb-json='{
+		"url": "demo/data-fr.json#/unTableau",
+		"queryall": "li",
+		"mapping": [
+			"/nom"
+		]
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ol>
+
+</div>
+
+</div>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;p&gt;Liste de définition:&lt;/p&gt;
+&lt;dl class=&quot;dl-horizontal&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;dt&quot;, &quot;value&quot;: &quot;/nom&quot; },
+			{ &quot;selector&quot;: &quot;dd&quot;, &quot;value&quot;: &quot;/prop&quot; }
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;dt&gt;&lt;/dt&gt;
+		&lt;dd&gt;&lt;/dd&gt;
+	&lt;/template&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Non-ordonnée:&lt;/p&gt;
+&lt;ul class=&quot;lst-spcd&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/nom&quot;
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ordonnée:&lt;/p&gt;
+&lt;ol class=&quot;lst-spcd&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/nom&quot;
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ol&gt;</code></pre>
+</details>
+
+
+
+<h2>Interpréter en HTML du contenu JSON</h2>
+
+
+
+<div class="row">
+<div class="col-md-6">
+
+<table class="table">
+	<caption>Avec l'interprétation HTML</caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Ville</th>
+			<th>Quelques chose en HTML</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+			"url": "demo/data-fr.json#/commentaire",
+			"tobeclone": "tr",
+			"queryall": "td",
+			"source": "#tblHTMLRender",
+			"mapping": [
+				"/nom",
+				"/ville",
+				{ "value": "/quelquesChoseHTML", "isHTML": true }
+			]
+		}'>
+	</tbody>
+</table>
+
+<template id="tblHTMLRender">
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+</div>
+<div class="col-md-6">
+
+<table class="table">
+	<caption>Sans l'interprétation HTML</caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Ville</th>
+			<th>Quelques chose en HTML</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+			"url": "demo/data-fr.json#/commentaire",
+			"tobeclone": "tr",
+			"queryall": "td",
+			"source": "#tblHTMLRender2",
+			"mapping": [
+				"/nom",
+				"/ville",
+				"/quelquesChoseHTML"
+			]
+		}'>
+	</tbody>
+</table>
+
+<template id="tblHTMLRender2">
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;table class=&quot;table&quot;&gt;
+	&lt;caption&gt;Avec l'interprétation HTML&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Nom&lt;/th&gt;
+			&lt;th&gt;Ville&lt;/th&gt;
+			&lt;th&gt;Quelques chose en HTML&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+			&quot;url&quot;: &quot;demo/data-fr.json#/commentaire&quot;,
+			&quot;tobeclone&quot;: &quot;tr&quot;,
+			&quot;queryall&quot;: &quot;td&quot;,
+			&quot;source&quot;: &quot;#tblHTMLRender&quot;,
+			&quot;mapping&quot;: [
+				&quot;/nom&quot;,
+				&quot;/ville&quot;,
+				{ &quot;value&quot;: &quot;/quelquesChoseHTML&quot;, &quot;isHTML&quot;: true }
+			]
+		}'&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tblHTMLRender&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+	&lt;caption&gt;Sans l'interprétation HTML&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Nom&lt;/th&gt;
+			&lt;th&gt;Ville&lt;/th&gt;
+			&lt;th&gt;Quelques chose en HTML&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+			&quot;url&quot;: &quot;demo/data-fr.json#/commentaire&quot;,
+			&quot;tobeclone&quot;: &quot;tr&quot;,
+			&quot;queryall&quot;: &quot;td&quot;,
+			&quot;source&quot;: &quot;#tblHTMLRender2&quot;,
+			&quot;mapping&quot;: [
+				&quot;/nom&quot;,
+				&quot;/ville&quot;,
+				&quot;/quelquesChoseHTML&quot;
+			]
+		}'&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tblHTMLRender2&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;</code></pre>
+</details>
+
+
+<h2>Sous-modèle</h2>
+
+
+<div class="row" data-wb-json='{
+		"url": "demo/data-fr.json#/commentaire",
+		"mapping": [
+			{ "selector": "h3", "value": "/nom" },
+			{ "selector": ":nth-child(2)", "value": "/ville", "placeholder": "[[ville]]" },
+			{ "selector": ":nth-child(3)", "value": "/quelquesChoseHTML", "isHTML": true },
+
+			{ "selector": "ul", "value": "/passetemps", "queryall": "li" }
+		]
+	}'>
+	<template>
+		<div class="col-md-6">
+			<h3></h3> <!-- Nom -->
+			<p>De: [[ville]]</p>
+			<p></p> <!-- Description -->
+			<h4>Hobby:</h4>
+			<ul class="lst-spcd"> <!-- Conteneur du sous-modèle -->
+				<template>
+					<li></li>
+				</template>
+			</ul>
+		</div>
+	</template>
+</div>
+
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;row&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/commentaire&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;h3&quot;, &quot;value&quot;: &quot;/nom&quot; },
+			{ &quot;selector&quot;: &quot;:nth-child(2)&quot;, &quot;value&quot;: &quot;/ville&quot;, &quot;placeholder&quot;: &quot;[[ville]]&quot; },
+			{ &quot;selector&quot;: &quot;:nth-child(3)&quot;, &quot;value&quot;: &quot;/quelquesChoseHTML&quot;, &quot;isHTML&quot;: true },
+
+			{ &quot;selector&quot;: &quot;ul&quot;, &quot;value&quot;: &quot;/passetemps&quot;, &quot;queryall&quot;: &quot;li&quot; }
+		]
+	}'&gt;
+	&lt;template&gt;
+		&lt;div class=&quot;col-md-6&quot;&gt;
+			&lt;h3&gt;&lt;/h3&gt; &lt;!-- Nom --&gt;
+			&lt;p&gt;De: [[ville]]&lt;/p&gt;
+			&lt;p&gt;&lt;/p&gt; &lt;!-- Description --&gt;
+			&lt;h4&gt;Hobby:&lt;/h4&gt;
+			&lt;ul class=&quot;lst-spcd&quot;&gt; &lt;!-- Conteneur du sous-modèle --&gt;
+				&lt;template&gt;
+					&lt;li&gt;&lt;/li&gt;
+				&lt;/template&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/template&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Répéter à partir d'un objet JSON</h2>
+
+<p>Lorsqu'on selectionne un objet JSON à la place d'un tableau, celui va être transformé en tableau selon un style similaire au JSON-LD sous sa forme étendu. Vous trouverez dans la <a href="../../docs/ref/wb-data-json/wb-data-json-fr.html#jsonObjToArr">documentation du data-json</a> des examples illustrant les transformations d'objet vers un tableau.</p>
+
+<ul class="lst-spcd" data-wb-json='{
+		"url": "demo/data-fr.json#/unTableau/2",
+		"queryall": "li",
+		"mapping": "/@value"
+	}'>
+	<template>
+		<li></li>
+	</template>
+</ul>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;ul class=&quot;lst-spcd&quot; data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau/2&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: &quot;/@value&quot;
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;</code></pre>
+</details>
+
+<h2>Tableau</h2>
+
+<div class="alert alert-info">
+	<p>Veuillez noter: Lorsque vous utilisé un template pour ajouter des lignes à un tableau, il existe une problématique lorsque l'élement <code>&lt;template&gt;</code> est situé à l'intérieur de l'élément <code>&lt;table&gt;</code> et ce seulement avec le fureteur <abbr title="Internet Explorer">IE</abbr>. Afin de contourner le problème, il suffit de déplacer l'élément <code>&lt;template&gt;</code> en dehors de la porté dudit tableau. Idéalement il serait situé à la suite de celui-ci. D'ailleurs, il sera necessaire d'ajouter l'élément <code>&lt;table&gt;</code> à l'intérieur du <code>&lt;template&gt;</code> afin de définir le gabarit de vos ligne. Par la suite, il vous suffira de configurer <code>tobeclone</code> et <code>source</code> afin d'établir un lien entre votre gabarit et le plugiciel data json.</p>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Numéro</th>
+			<th>Rue</th>
+			<th>Ville</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+			"url": "demo/data-fr.json#/bureaux",
+			"tobeclone": "tr",
+			"queryall": "td",
+			"source": "#tbl1",
+			"mapping": [
+				"/nom",
+				"/num",
+				"/rue",
+				"/ville"
+			]
+		}'>
+	</tbody>
+</table>
+
+<template id="tbl1">
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+<table class="table">
+	<caption>Modifier des attributs et utiliser des espaces réservé</caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Numéro</th>
+			<th>Rue</th>
+			<th>Ville</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "demo/data-fr.json#/bureaux",
+		"source": "#tbl2",
+		"tobeclone": "tr",
+		"mapping": [
+			{ "selector": "td", "value": "/nom", "placeholder": "[[nom]]" },
+			{ "selector": "td:nth-child(2)", "value": "/css", "attr": "class" },
+			{ "selector": "td:nth-child(2)", "value": "/num" },
+			{ "selector": "td:nth-last-child(2)", "value": "/rue" },
+			{ "selector": "td:last-child", "value": "/ville" }
+		]
+	}'>
+		<tr>
+			<td>Place du centre</td>
+			<td>200</td>
+			<td>Promenade du Portage</td>
+			<td>Gatineau</td>
+		</tr>
+		<tr>
+			<td>Jean Edmonds, Tour sud</td>
+			<td>365</td>
+			<td>Laurier ave O</td>
+			<td>Ottawa</td>
+		</tr>
+	</tbody>
+</table>
+
+<template id="tbl2">
+	<table>
+		<tr>
+			<td>Le nom est: [[nom]]</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
+
+<!-- data-wb-json doit être définie sur le "table" element -->
+<table class="table wb-tables" data-wb-json='{
+	"url": "demo/data-fr.json#/listeAdresses",
+	"source": "#tbl3",
+	"mapping": [
+		{ "selector": "a", "value": "/nom" },
+		{ "selector": "a", "value": "/homeUrl", "attr": "href" },
+		{ "selector": ".adresseRurale", "value": "/num", "placeholder": "[[num]]" },
+		{ "selector": ".adresseRurale", "value": "/rue", "placeholder": "[[rue]]" },
+		{ "selector": ".adresseRurale", "value": "/ville", "placeholder": "[[ville]]" },
+		{ "selector": ".adresseRurale", "value": "/codePostal", "placeholder": "[[codep]]" },
+		{ "selector": ".courriel", "value": "/courriel", "attr": "href", "placeholder": "adresseCourriel@example.com" },
+		{ "selector": ".courriel", "value": "/courriel" }
+	]
+}'>
+	<caption>Connection avec le plugiciels d'amélioration des tableaux <code>wb-tables</code></caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Adresse</th>
+			<th>Courriel</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<template id="tbl3">
+	<table>
+		<tr>
+			<td><a href=""></a></td>
+			<td>
+				<span class="adresseRurale">[[num]] [[rue]], [[ville]], [[codep]]</span>
+			</td>
+			<td><a class="courriel" href="mailto:adresseCourriel@example.com">adresseCourriel</a></td>
+		</tr>
+	</table>
+</template>
+
+
+<details class="mrgn-tp-lg">
+	<summary>Source code</summary>
+	<pre><code>&lt;table class=&quot;table&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Nom&lt;/th&gt;
+			&lt;th&gt;Numéro&lt;/th&gt;
+			&lt;th&gt;Rue&lt;/th&gt;
+			&lt;th&gt;Ville&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+			&quot;url&quot;: &quot;demo/data-fr.json#/bureaux&quot;,
+			&quot;tobeclone&quot;: &quot;tr&quot;,
+			&quot;queryall&quot;: &quot;td&quot;,
+			&quot;source&quot;: &quot;#tbl1&quot;,
+			&quot;mapping&quot;: [
+				&quot;/nom&quot;,
+				&quot;/num&quot;,
+				&quot;/rue&quot;,
+				&quot;/ville&quot;
+			]
+		}'&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tbl1&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+	&lt;caption&gt;Modifier des attributs et utiliser des espaces réservé&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Nom&lt;/th&gt;
+			&lt;th&gt;Numéro&lt;/th&gt;
+			&lt;th&gt;Rue&lt;/th&gt;
+			&lt;th&gt;Ville&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/bureaux&quot;,
+		&quot;source&quot;: &quot;#tbl2&quot;,
+		&quot;tobeclone&quot;: &quot;tr&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;td&quot;, &quot;value&quot;: &quot;/nom&quot;, &quot;placeholder&quot;: &quot;[[nom]]&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-child(2)&quot;, &quot;value&quot;: &quot;/css&quot;, &quot;attr&quot;: &quot;class&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-child(2)&quot;, &quot;value&quot;: &quot;/num&quot; },
+			{ &quot;selector&quot;: &quot;td:nth-last-child(2)&quot;, &quot;value&quot;: &quot;/rue&quot; },
+			{ &quot;selector&quot;: &quot;td:last-child&quot;, &quot;value&quot;: &quot;/ville&quot; }
+		]
+	}'&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Place du centre&lt;/td&gt;
+			&lt;td&gt;200&lt;/td&gt;
+			&lt;td&gt;Promenade du Portage&lt;/td&gt;
+			&lt;td&gt;Gatineau&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Jean Edmonds, Tour sud&lt;/td&gt;
+			&lt;td&gt;365&lt;/td&gt;
+			&lt;td&gt;Laurier ave O&lt;/td&gt;
+			&lt;td&gt;Ottawa&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tbl2&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Le nom est: [[nom]]&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;
+
+
+&lt;!-- data-wb-json doit être définie sur le &quot;table&quot; element --&gt;
+&lt;table class=&quot;table wb-tables&quot; data-wb-json='{
+	&quot;url&quot;: &quot;demo/data-fr.json#/listeAdresses&quot;,
+	&quot;source&quot;: &quot;#tbl3&quot;,
+	&quot;mapping&quot;: [
+		{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/nom&quot; },
+		{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/homeUrl&quot;, &quot;attr&quot;: &quot;href&quot; },
+		{ &quot;selector&quot;: &quot;.adresseRurale&quot;, &quot;value&quot;: &quot;/num&quot;, &quot;placeholder&quot;: &quot;[[num]]&quot; },
+		{ &quot;selector&quot;: &quot;.adresseRurale&quot;, &quot;value&quot;: &quot;/rue&quot;, &quot;placeholder&quot;: &quot;[[rue]]&quot; },
+		{ &quot;selector&quot;: &quot;.adresseRurale&quot;, &quot;value&quot;: &quot;/ville&quot;, &quot;placeholder&quot;: &quot;[[ville]]&quot; },
+		{ &quot;selector&quot;: &quot;.adresseRurale&quot;, &quot;value&quot;: &quot;/codePostal&quot;, &quot;placeholder&quot;: &quot;[[codep]]&quot; },
+		{ &quot;selector&quot;: &quot;.courriel&quot;, &quot;value&quot;: &quot;/courriel&quot;, &quot;attr&quot;: &quot;href&quot;, &quot;placeholder&quot;: &quot;adresseCourriel@example.com&quot; },
+		{ &quot;selector&quot;: &quot;.courriel&quot;, &quot;value&quot;: &quot;/courriel&quot; }
+	]
+}'&gt;
+	&lt;caption&gt;Connection avec le plugiciels d'amélioration des tableaux &lt;code&gt;wb-tables&lt;/code&gt;&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Nom&lt;/th&gt;
+			&lt;th&gt;Adresse&lt;/th&gt;
+			&lt;th&gt;Courriel&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;template id=&quot;tbl3&quot;&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;span class=&quot;adresseRurale&quot;&gt;[[num]] [[rue]], [[ville]], [[codep]]&lt;/span&gt;
+			&lt;/td&gt;
+			&lt;td&gt;&lt;a class=&quot;courriel&quot; href=&quot;mailto:adresseCourriel@example.com&quot;&gt;adresseCourriel&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/template&gt;</code></pre>
+</details>
+
+
+<h2>Filtrage</h2>
+
+
+<p><span class="label label-warning">Non recommander</span> Cette fonctionnalité fonctionne mais nous recommendons d'utiliser le <a href="../../docs/ref/wb-jsonmanager/wb-jsonmanager-en.html">gestionnaire JSON</a> au lieu.</p>
+
+<details>
+	<summary>Code source à titre de référence</summary>
+	<pre><code>&lt;p&gt;Lors d'une condition &lt;strong&gt;affirmative&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/nom&quot;
+		],
+		&quot;filter&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;bleu&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lors d'une condition &lt;strong&gt;négative&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/nom&quot;
+		],
+		&quot;filternot&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;bleu&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Combinaison des deux conditions :&lt;/p&gt;
+&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/unTableau&quot;,
+		&quot;queryall&quot;: &quot;li&quot;,
+		&quot;mapping&quot;: [
+			&quot;/nom&quot;
+		],
+		&quot;filter&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;jaune&quot;, &quot;optional&quot;: true },
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;bleu&quot;, &quot;optional&quot;: true }
+		],
+		&quot;filternot&quot;: [
+			{ &quot;path&quot;: &quot;/prop&quot;, &quot;value&quot;: &quot;bleu&quot; }
+		]
+
+	}'&gt;
+	&lt;template&gt;
+		&lt;li&gt;&lt;/li&gt;
+	&lt;/template&gt;
+&lt;/ul&gt;</code></pre>
+</details>
+
+<h2>Utilisé l'espace réserver avec un <code>template</code> pour ajouter à un élément</h2>
+
+<template id="metadatacontent"  data-wb-json='{
+		"url": "demo/data-fr.json#/produit",
+		"appendto": "title",
+		"source": "#metadatacontent",
+		"mapping": [
+			{ "placeholder": "[[fantastique]]" }
+		]
+	}'> *** [[fantastique]] ***</template>
+
+<p>(Pour voir cet example pratique, regarder le contenu de l'élément <code>title</code> de cette page)</p>
+
+<pre><code>&lt;template id=&quot;metadatacontent&quot;  data-wb-json='{
+		&quot;url&quot;: &quot;demo/data-fr.json#/produit&quot;,
+		&quot;appendto&quot;: &quot;title&quot;,
+		&quot;source&quot;: &quot;#metadatacontent&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;placeholder&quot;: &quot;[[fantastique]]&quot; }
+		]
+	}'&gt; *** [[fantastique]] ***&lt;/template&gt;</code></pre>
+
+
+<h2>Mise en forme d'un flux RSS</h2>
+
+<p>Le flux RSS suivant est lu à partir du service web <a href="https://developer.yahoo.com/yql/guide/yql_url.html" hreflang="en" lang="en">Yahoo YQL Web Service URLs</a>. Le lien directe vers le flux RSS est : <a href="https://www.tc.gc.ca/medias/rss/routier.xml"><code>https://www.tc.gc.ca/medias/rss/routier.xml</code></a></p>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div data-wb-json='{
+		&quot;url&quot;: &quot;https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20&amp;#39;https%3A%2F%2Fwww.tc.gc.ca%2Fmedias%2Frss%2Froutier.xml&amp;#39;%20limit%2019&amp;amp;format=json#/query/results/item&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;h3&quot;, &quot;value&quot;: &quot;/title&quot;, &quot;placeholder&quot;: &quot;&quot; },
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/description&quot; },
+			{ &quot;selector&quot;: &quot;a&quot;, &quot;value&quot;: &quot;/link&quot;, &quot;attr&quot;: &quot;href&quot; },
+			{ &quot;selector&quot;: &quot;span&quot;, &quot;value&quot;: &quot;/pubDate&quot;, &quot;placeholder&quot;: &quot;[[pubdate]]&quot; }
+		]
+	}'&gt;
+
+	&lt;template&gt;
+		&lt;h3&gt;&lt;/h3&gt;
+		&lt;p&gt;&lt;span&gt;Publish on [[pubdate]]&lt;/span&gt; &lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;/template&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<div data-wb-json='{
+		"url": "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20&#39;https%3A%2F%2Fwww.tc.gc.ca%2Fmedias%2Frss%2Froutier.xml&#39;%20limit%2019&amp;format=json#/query/results/item",
+		"mapping": [
+			{ "selector": "h3", "value": "/title", "placeholder": "" },
+			{ "selector": "a", "value": "/description" },
+			{ "selector": "a", "value": "/link", "attr": "href" },
+			{ "selector": "span", "value": "/pubDate", "placeholder": "[[pubjour]]" }
+		]
+	}'>
+
+	<template>
+		<h3></h3>
+		<p><span>Publié le [[pubjour]]</span> <a href=""></a></p>
+	</template>
+</div>
