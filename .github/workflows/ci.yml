@@ -37,5 +37,7 @@ jobs:
       # - run: grunt dist
       - if: ${{ !env.ACT }}
         run: grunt test
+      - run: grunt htmllint
+      - run: grunt bootlint
       - run: npm test
       - run: rake
