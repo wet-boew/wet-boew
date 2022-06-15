@@ -972,6 +972,22 @@ module.exports = (grunt) ->
 					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
 				]
+
+			lightbox:
+				options:
+					ignore: [
+						# TODO: Remove longdesc attributes without hindering user agents/screen readers that still support longdesc
+						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
+						# TODO: Should be removed and fixed now that HTML5 specs updated
+						"The “main” role is unnecessary for element “main”."
+						"The “contentinfo” role is unnecessary for element “footer”."
+						"The “navigation” role is unnecessary for element “nav”."
+						"The “banner” role is unnecessary for element “header”."
+					]
+				src: [
+					"dist/unmin/demos/lightbox/*.html"
+				]
+
 			all:
 				options:
 					ignore: [
@@ -985,6 +1001,7 @@ module.exports = (grunt) ->
 					"dist/unmin/**/*.html"
 					"!dist/unmin/**/ajax/**/*.html"
 					"!dist/unmin/assets/**/*.html"
+					"!dist/unmin/demos/lightbox/*.html"
 					"!dist/unmin/demos/menu/demo/*.html"
 					"!dist/unmin/test/**/*.html"
 				]
