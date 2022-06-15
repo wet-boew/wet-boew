@@ -64,7 +64,66 @@
 		</table>
 	</div>
 </section>
+<section>
+	<h2>JS API</h2>
+	<h3>wb.findPotentialPII(str, scope, opts) - Find most common Personal Identifiable Information (PII) in a string </h3>
+	<p>Find most common Personal Identifiable Information (PII) in a string and return either the cleaned string either true/false</p>
+	<p>This function can have the following parameters</p>
+	<ul>
+		<li>
+			<code>str</code> (required) - string representing the content that needs to be verified
+		</li>
+		<li>
+			<code>scope</code> this parameter can be:
+			<ul>
+				<li>either a boolean (required) - If passed as true will scrub the content</li>
+				<li>either an object (optional) - having the following properties (optional):
+					<ul>
+						<li>{string} any key name of the default patterns e.g. <code>email</code>, <code>digits</code>, etc. with the value 1. The function will only scrub the content that match the regex of the default patterns passed in this object
+						<p>The list of the regular expressions that will be applied by default:</p>
+						<ul>
+							<li>digits</li>
+							<li>passport</li>
+							<li>email</li>
+							<li>postalCode</li>
+							<li>username</li><li>password</li>
+						</ul>
+						</li>
 
+						<li>{regex} <code>customCase</code> - this param is a regular expression. It will search and replace the values corresponding that pattern</li>
+					</ul>
+				</li>
+			</ul>
+
+		</li>
+		<li>
+			<code>opts</code> (optional) - the 3rd param of the function is an object that can contain the following properties (optional):
+			<ul>
+				<li>{boolean} <code>isCustomExclusive</code> - if the value is 1(true), it will scrubb only the custom regex if the regex is the only property of the <code>scope</code> object
+</li>
+				<li>{string} <code>replaceWith</code> - this string will replace the scrubbed content</li>
+				<li>{bolean} <code>useFullBlock</code> - if the is value 1(true), it will replace the scrubbed characters with the "█" symbol;</li>
+			</ul>
+		</li>
+	</ul>
+	<p>Working example</p>
+<pre><code>
+wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", true )
+</code></pre>
+<p>It will return: "email:, phone:" </p>
+<pre><code>
+	wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", false )
+</code></pre>
+<p>It will return: <code>true</code> </p>
+<pre><code>
+wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", { email:1 }{ replaceWith: [REDACTED/CAVIARDÉ] } )
+</code></pre>
+<p>It will return:"email:[REDACTED/CAVIARDÉ], phone:123 123 1234" </p>
+<pre><code>
+wb.findPotentialPII( "email:test@test.com, phone:123 123 1234, numéro de cas 12345678", { "customCase":/\b(?:case[\s-]?number[\s\-\\.]?(?:\d{5,10}))|(?:numéro[\s-]?de[\s-]?cas[\s\-\\.]?(?:\d{5,10}))/ig }, { useFullBlock:1})
+</code></pre>
+<p>It will return: "phone:████████████, email:█████████████, postalCode:██████, ██████████████████████"</p>
+</section>
 <section>
 	<h2>Source code</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code on GitHub</a></p>

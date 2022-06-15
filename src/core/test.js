@@ -56,6 +56,36 @@ describe( "findPotentialPII test suite", function() {
 		it( "should match password = value", function() {
 			expect( wb.findPotentialPII( "password:P123456, password=P123456, pass:P123456, pass=P123456", true ) ).to.equal( ", , , " );
 		} );
+
+		it( "should return true", function() {
+			expect( wb.findPotentialPII( "phone:514-514-5144, email:1@example.com" ) ).to.equal( true );
+		} );
+
+		it( "should return false", function() {
+			expect( wb.findPotentialPII( "date:2022-02-02, case number:1234" ) ).to.equal( false );
+		} );
+
+		it( "should match the all the default patterns and the custom case passed as parameter", function() {
+			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2, my-custom-rule: case number:123456", { myCustomRule: /\b(?:case[\s-]?number[\s\-\\.:]?(?:\d{5,10}))/ig }, { useFullBlock: 1 } ) ).to.equal( "email:█████████████, phone:████████████, postal code:███████, my-custom-rule: ██████████████████" );
+		} );
+
+		it( "should match only the custom case passed as parameter", function() {
+			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2, my-custom-rule: case number:123456", { myCustomRule: /\b(?:case[\s-]?number[\s\-\\.:]?(?:\d{5,10}))/ig }, { isCustomExclusive: 1, useFullBlock: 1 } ) ).to.equal( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2, my-custom-rule: ██████████████████" );
+		} );
+
+		it( "should replace removed content with this string: [REDACTED/CAVIARDÉ]", function() {
+			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2", true, { replaceWith: "[REDACTED/CAVIARDÉ]" } ) ).to.equal( "email:[REDACTED/CAVIARDÉ], phone:[REDACTED/CAVIARDÉ], postal code:[REDACTED/CAVIARDÉ]" );
+		} );
+
+		it( "should replace the scrubbed characters with the █ symbol", function() {
+			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2", true, { useFullBlock: 1 } ) ).to.equal( "email:█████████████, phone:████████████, postal code:███████" );
+		} );
+
+		it( "should find and replace content matching a specific pattern e.g 'email' and 'postalCode' that is present in the list of the default patterns", function() {
+			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2, case number:123456", { email: 1, postalCode: 1 }, { useFullBlock: 1 } ) ).to.equal( "email:█████████████, phone:514-514-5144, postal code:███████, case number:123456" );
+		} );
+
+
 	} );
 
 } );

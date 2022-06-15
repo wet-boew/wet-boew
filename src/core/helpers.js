@@ -1252,35 +1252,91 @@ wb.escapeAttribute = function( str ) {
 
 /*
 * Find most common Personal Identifiable Information (PII) in a string and return either the cleaned string either true/false
-* @param {string} str
-* @param {boolean} toClean
+* @param {string} str (required) - the content that needs to be verified
+*
+* @param {boolean} scope - if true will scrub the content
+* @param {object} (optional) the 2nd param (scope) can also be an object having the following properties (optional):
+* 	{string} any key name of the default patterns e.g. email, digits, etc. with the value 1. The function will only scrub the content that match the regex of the default patterns passed in this object
+* 	{regex} customCase - this param is a regex. It will search and replace the values corresponding that pattern
+*
+* @param {object} opts (optional) - the 3rd param of the function that can contain the following properties (optional):
+* 	{boolean} isCustomExclusive - if true, it will scrubb only the custom regex if the regex is the only property of the "scope" object
+* 	{bolean} useFullBlock - if true, it will replace the scrubbed characters with the "█" symbol;
+* 	{string} replaceWith - this string will replace the scrubbed content
+*
+
 * @return {string | true | false}
 * @example
 * wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", true )
 * returns "email:, phone:",
+*
 * wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", false )
 * returns true
+*
+* wb.findPotentialPII( "email:test@test.com, phone:123 123 1234", { email:1 }{ replaceWith: [REDACTED/CAVIARDÉ] } )
+* returns "email:[REDACTED/CAVIARDÉ], phone:123 123 1234"
+*
+* wb.findPotentialPII( "email:test@test.com, phone:123 123 1234, numéro de cas 12345678", { "customCase":/\b(?:case[\s-]?number[\s\-\\.]?(?:\d{5,10}))|(?:numéro[\s-]?de[\s-]?cas[\s\-\\.]?(?:\d{5,10}))/ig }, { useFullBlock:1})
+* returns "phone:████████████, email:█████████████, postalCode:██████, ██████████████████████"
 */
-wb.findPotentialPII = function( str, toClean ) {
-
-	if ( typeof str  !== "string" ) {
+wb.findPotentialPII = function( str, scope, opts ) {
+	if ( str && typeof str  !== "string" ) {
 		return false;
 	}
-	var regEx = [
-			/\d(?:[\s\-\\.\\/]?\d){7,}(?!\d)/ig, //8digits or more pattern
-			/\b[A-Za-z]{2}[\s\\.-]*?\d{6}\b/ig, //canadian nr passport pattern
-			/\b(?:[a-zA-Z0-9_\-\\.]+)(?:@|%40)(?:[a-zA-Z0-9_\-\\.]+)\.(?:[a-zA-Z]{2,5})\b/ig, //email pattern
-			/\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig, //postal code pattern
-			/\b(?:(username|user)[:=][a-zA-Z0-9_\-\\.]+)\b/ig,
-			/\b(?:(password|pass)[:=][^\s#&]+)\b/ig
-		],
-		isFound = false;
+	var oRegEx = {
+			digits: /\d(?:[\s\-\\.\\/]?\d){8,}(?!\d)/ig, //9digits or more pattern
+			passport: /\b[A-Za-z]{2}[\s\\.-]*?\d{6}\b/ig, //canadian nr passport pattern
+			email: /\b(?:[a-zA-Z0-9_\-\\.]+)(?:@|%40)(?:[a-zA-Z0-9_\-\\.]+)\.(?:[a-zA-Z]{2,5})\b/ig, //email pattern
+			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig, //postal code pattern
+			username: /\b(?:(username|user)[:=][a-zA-Z0-9_\-\\.]+)\b/ig,
+			password: /\b(?:(password|pass)[:=][^\s#&]+)\b/ig
+		},
+		isFound = false,
+		txtMarker = opts && opts.replaceWith ? opts.replaceWith : "",
+		toClean = typeof scope === "object" ? true : scope,
+		arMatchedStr,
+		settings = opts || {},
+		defaultSettings = {
+			isCustomExclusive: false,
+			useFullBlock: false,
+			replaceWith: ""
+		},
+		isFullBlock = settings.useFullBlock || false,
+		validatedScope = typeof scope === "object" ? {} : oRegEx;
+	settings = $.extend( {}, defaultSettings, settings );
 
-	for ( var key in regEx ) {
-		if ( str.match( regEx[ key ] ) ) {
+	if ( Object.keys( validatedScope ).length === 0 ) {
+		if ( settings.isCustomExclusive ) {
+			for ( var key in scope ) {
+				if ( scope[ key ] instanceof RegExp ) {
+					validatedScope[ key ] = scope[ key ];
+				}
+			}
+		} else {
+			if ( Object.keys( scope ).length === 1 && Object.values( scope )[ 0 ] instanceof RegExp ) {
+				validatedScope = oRegEx;
+				validatedScope[ Object.keys( scope )[ 0 ] ] = Object.values( scope )[ 0 ];
+			} else {
+				for ( var keyScope in scope ) {
+					if ( Object.prototype.hasOwnProperty.call( oRegEx, keyScope ) ) {
+						validatedScope [ keyScope ] = oRegEx [ keyScope ];
+					} else {
+						if ( scope[ keyScope ]  instanceof RegExp ) {
+							validatedScope [ keyScope ] = scope [ keyScope ];
+						}
+					}
+				}
+			}
+		}
+	}
+
+	for ( var valKey in validatedScope ) {
+		arMatchedStr = str.match( validatedScope[ valKey ] );
+		if ( arMatchedStr ) {
 			isFound = true;
 			if ( toClean ) {
-				str = str.replaceAll( regEx[ key ], "" );
+				txtMarker = isFullBlock ? "█".repeat( arMatchedStr[ 0 ].length ) : txtMarker;
+				str = str.replaceAll( validatedScope[ valKey ], txtMarker );
 			}
 		}
 	}
