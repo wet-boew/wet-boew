@@ -12,5 +12,17 @@
 <link rel="alternate" hreflang="en" href="{{altLangPrefix}}-en.html" />
 {{/is}}
 {{/is}}
+{{/if}}
+
+{{#if altLangPage}}
+
+{{#is language "en"}}
+<link rel="alternate" hreflang="fr" href="{{altLangPage}}" />
+{{else}}
+
+{{#is language "fr"}}
+<link rel="alternate" hreflang="en" href="{{altLangPage}}" />
+{{/is}}
+{{/is}}
 
 {{/if}}

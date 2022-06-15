@@ -5,12 +5,12 @@
 		{{#isnt language "en"}}
 			<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
 		{{/isnt}}
-		<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{{i18n "lang-native" language="fr"}}}</a></li>
+		<li><a lang="fr" hreflang="fr" href="{{#unless altLangPage}}{{altLangPrefix}}-fr.html{{else}}{{altLangPage}}{{/unless}}">{{{i18n "lang-native" language="fr"}}}</a></li>
 	{{else}}
 		<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
 	{{/isnt}}
 	{{#isnt language "en"}}
-		<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{{i18n "lang-native" language="en"}}}</a></li>
+		<li><a lang="en" hreflang="en" href="{{#unless altLangPage}}{{altLangPrefix}}-en.html{{else}}{{altLangPage}}{{/unless}}">{{{i18n "lang-native" language="en"}}}</a></li>
 	{{else}}
 		<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
 	{{/isnt}}

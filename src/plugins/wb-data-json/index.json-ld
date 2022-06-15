@@ -1,0 +1,56 @@
+{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Data JSON",
+		"fr": "Data JSON"
+	},
+	"description": {
+		"en": "Insert content extracted from a JSON file.",
+		"fr": "Insertion de contenu extrait d'un fichier JSON"
+	},
+	"modified": "2019-09-05",
+	"componentName": "wb-data-json",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Data JSON",
+				"language": "en",
+				"path": "data-json-en.html"
+			},
+			{
+				"title": "Data JSON",
+				"language": "fr",
+				"path": "data-json-fr.html"
+			},
+			{
+				"title": "Template HTML 5",
+				"language": "en",
+				"path": "template-en.html"
+			},
+			{
+				"title": "Gabarit HTML 5",
+				"language": "fr",
+				"path": "template-fr.html"
+			}
+		],
+		"docs": [
+			{
+				"title": "Data JSON",
+				"language": "en",
+				"path": "data-json-doc-en.html"
+			},
+			{
+				"title": "Data JSON",
+				"language": "fr",
+				"path": "data-json-doc-fr.html"
+			}
+		]
+	}
+}

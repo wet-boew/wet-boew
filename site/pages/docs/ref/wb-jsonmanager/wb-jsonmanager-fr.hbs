@@ -1,0 +1,580 @@
+---
+{
+	"title": "Gestionnaire JSON - Documentation",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Gérer des jeux de données et applique des correctifs JSON.",
+	"altLangPage": "wb-jsonmanager-en.html",
+	"dateModified": "2017-02-02"
+}
+---
+<div class="wb-prettify all-pre"></div>
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+<section>
+	<h2>Purpose</h2>
+	<p>Middleware plugin that perform JSON manipulation through patches and are accessed through dataset, a named alias.</p>
+</section>
+<section>
+	<h2>Use when</h2>
+	<p>When a reteived JSON file or when a JSON result requested through a RESTful API need a few minor manipulation in order to be displayed with the data-json.</p>
+</section>
+<section>
+	<h2>Do not use when</h2>
+	<p>To perform complexe manipulation or metamorphing data in a way that change his original meaning. By complexe manipulation is like filtering, sorting, forking, merging, infering a result based from multiple source inside or outside the data context and any other operation that take time or required considerable amount of ressource where it badly impact the performance of the device and the user experience.</p>
+	<p>Instead, if your JSON file need a lot of manipulation, consider to create your own RESTful service that will accomodate for performing those task and it will allow to cache the result.</p>
+	<p>Instead, if your are metamorphing the JSON data source, then that is probably means it should be an middleware service that do that transformation prior to receive the data for being display.</p>
+</section>
+<section>
+	<h2>Working example</h2>
+	<p>English:</p>
+	<ul>
+		<li><a href="../../../demos/wb-jsonmanager/jsonmanager-en.html">JSON manager</a></li>
+		<li><a href="https://wet-boew.github.io/GCWeb/components/wb-jsonmanager/jsonmanager-doaction-en.html">JSON manager with Do Action patches</a></li>
+	</ul>
+	<p>French:</p>
+	<ul>
+		<li><a href="../../../demos/wb-jsonmanager/jsonmanager-fr.html" hreflang="fr" lang="fr">Gestionnaire JSON</a></li>
+		<li><a href="https://wet-boew.github.io/GCWeb/components/wb-jsonmanager/jsonmanager-doaction-fr.html" hreflang="fr" lang="fr">Gestionnaire JSON avec l'exécuteur d'action de patches</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<p>JSON manager is a middleware plugin that allow to manipulate JSON data and return it as a fetch result.</p>
+		<ol>
+		<li>
+			<p>From a plugin that request JSON content, refer to a dataset name in the request url. For example with the data json plugin.</p>
+			<pre><code>&lt;span data-json-replace=&quot;#<strong>[example1]</strong>/product&quot;&gt;unknown number of&lt;/span&gt;</code></pre>
+		</li>
+		<li>
+			<p>Create a JSON manager plugin by adding the attribute <code>data-jsonmanager</code> to an element. At the minimum, you will need to configure the url and the dataset name.</p>
+			<p>Then the following configuration is required if:</p>
+			<ul>
+				<li>
+					<p><code>patches=[]</code> If you are only applying static patches at the fetched JSON.</p>
+					<pre><code>&lt;div data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/data-en.json&quot;,
+		&quot;name&quot;: &quot;example1&quot;,
+		&quot;patches&quot;: [
+			{ &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/products&quot;, &quot;set&quot;: &quot;/nbproduct&quot; },
+			{ &quot;op&quot;: &quot;copy&quot;, &quot;from&quot;: &quot;/products/0&quot;, &quot;path&quot;: &quot;/product&quot;}
+		]
+	}'&gt;&lt;/div&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>wait=true</code> If the JSON manager need to wait to receive patches from another plugin, like urlmapping. Note that in this mode you can also specified a series of default patches to apply through setting the configuration <code>patches</code>
+					<pre><code>&lt;div id=&quot;jmexample1&quot; data-wb-jsonmanager='{
+			&quot;url&quot;: &quot;data/data-1.json&quot;,
+			&quot;name&quot;: &quot;example1&quot;,
+			&quot;wait&quot;: true
+		}'&gt;&lt;/div&gt;</code></pre>
+				</li>
+			</ul>
+		</li>
+		<li>Configure your patches as per the supported operation bellow</li>
+	</ol>
+
+	<p>Note: The json manager can not be set on the same element that listen to <code>wb.jsonfetch</code> event, like data json.</p>
+
+</section>
+
+<section>
+<h2>Using Dataset</h2>
+
+<p>To refer at a dataset, it is quite similar to a JSON pointer. But you start with a bracket "[", followed by the dataset name, then by the closing bracket "]" and the rest is the JSON pointer to navigate in the dataset. You can find read about JSON Pointer in the <a href="https://tools.ietf.org/html/rfc6901">RFC6901</a> spec or in the data-json plugin documentation.</p>
+<pre><code>#[DatasetName]/JSON/Pointer</code></pre>
+</section>
+
+
+<section>
+<h2 id="jsonpatchesops">JSON patches operation</h2>
+
+<p>JSON operation is defined as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002 - JavaScript Object Notation (JSON) Patch</a> with additional operation to fullfill the needs of the JSON manager. Described in the documentation, the following operation are supported: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>. The operation that start with "wb" are custom operation defined inside the JSON manager</p>
+
+
+<p>In the description bellow when it refering to :</p>
+<dl class="dl-horizontal">
+	<dt><code>&lt;path&gt;</code></dt>
+	<dd>That represents a string containing a valid <a href="https://tools.ietf.org/html/rfc6901">JavaScript Object Notation (JSON) Pointer [RFC6901]</a>. You can find JSON pointer example in the data-json working example under "Selecting data" heading.</dd>
+	<dt><code>&lt;value&gt;</code></dt>
+	<dd>A valid value, it could be a number, a string, a JSON object or a JSON array.</dd>
+</dl>
+
+<p>You will find a few examples in the <a href="https://tools.ietf.org/html/rfc6902#appendix-A">Appendix A of RFC6002</a></p>
+
+<table class="table table-bordered">
+	<tr>
+		<th>Operation</th>
+		<th>Syntax</th>
+		<th>What it's does</th>
+	</tr>
+	<tr>
+		<td>Add</td>
+		<td><code>{ "op": "add", "path": &lt;path&gt;, "value": &lt;value&gt; }</code></td>
+		<td><p>Performs one of the following functions, depending upon what the target location references:</p>
+			<ul>
+				<li>If the target location specifies an array index, a new value is inserted into the array at the specified index.</li>
+				<li>If the target location specifies an object member that does not already exist, a new member is added to the object.</li>
+				<li>If the target location specifies an object member that does exist, that member's value is replaced.</li>
+			</ul>
+
+			<p>For adding in an array, you may finish the path by <code>&quot;/0&quot;</code> to prepend and <code>&quot;/-&quot;</code> to append the value.</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>Remove</td>
+		<td><code>{ "op": "remove", "path": &lt;path&gt; }</code></td>
+		<td>Removes the value at the target location.</td>
+	</tr>
+
+	<tr>
+		<td>Replace</td>
+		<td><code>{ "op": "replace", "path": &lt;path&gt;", "path": &lt;value&gt;  }</code></td>
+		<td>Replaces the value at the target location with a new value.</td>
+	</tr>
+
+	<tr>
+		<td>Move</td>
+		<td><code>{ "op": "move", "from": &lt;path&gt;, "path": &lt;path&gt; }</code></td>
+		<td>Removes the value at a specified location and adds it to the target location.</td>
+	</tr>
+
+	<tr>
+		<td>Copy</td>
+		<td><code>{ "op": copy, "from": &lt;path&gt;, "path": &lt;path&gt; }</code></td>
+		<td>Copies the value at a specified location to the target location.</td>
+	</tr>
+
+	<tr>
+		<td>Test</td>
+		<td><code>{ "op": "test", "path": &lt;path&gt;, "value": &lt;value&gt; }</code></td>
+		<td>
+			<p>Tests that a value at the target location is equal to a specified value. On failing, it would result in no changes being made.</p>
+			<p>Note by using test operation, it makes the pathes atomic. So that means that is one test operation fail, nothing will be executed otherwise all operation get executed. The execution of any test operation are prioritized before any other operation.</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>Counting items</td>
+		<td><code>{ "op": "wb-count", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>
+			<p>Count the number of items in an array and copy the value at a specified location.</p>
+			<p>Filter can be used to count a specific subset.</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>Counting items with filter</td>
+		<td><code>{ "op": "wb-count", "path": &lt;path&gt;, "set": &lt;path&gt;, "filter": &lt;evaluation object&gt;, "filternot": &lt;evaluation object&gt; }</code></td>
+		<td>
+			<p>Both attribute <code>filter</code> and <code>filternot</code> are optional. They will contain an array of "evaluation object" or one evaluation object defined in the filtering sub section of "Configuration options" bellow.</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>First item</td>
+		<td><code>{ "op": "wb-first", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Copy the first item from an array at a specified location.</td>
+	</tr>
+
+	<tr>
+		<td>Last item</td>
+		<td><code>{ "op": "wb-last", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Copy the last item from an array at a specified location.</td>
+	</tr>
+
+	<tr>
+		<td>Formatting a number</td>
+		<td><code>{ "op": "wb-nbtolocal", "path": &lt;path&gt; }</code></td>
+		<td>
+			<p>Replace the number at the &lt;path&gt; location that represents the number value formatted according to the conventions of the host environment's current locale.</p>
+			<p>Additional setting:</p>
+			<dl>
+				<dt><code>locale</code></dt>
+				<dd>Default is the current page language. You can set any valid locale, except IE only support "en" and "fr" locale. <code>{ "op": "wb-nbtolocal", "path": &lt;path&gt; "locale": "fr-CA" }</code></dd>
+				<dt><code>prefix</code></dt>
+				<dd>Default: empty string. This prepend a string before the formatted number. <code>{ "op": "wb-nbtolocal", "path": &lt;path&gt; "suffix": "$CAN " }</code></dd>
+				<dt><code>suffix</code></dt>
+				<dd>Default: empty string. This append a string after the formatted number. <code>{ "op": "wb-nbtolocal", "path": &lt;path&gt; "suffix": "$ CAN" }</code></dd>
+			</dl>
+		</td>
+	</tr>
+
+	<tr>
+		<td>Formating a date to ISO (YYYY-MM-DD)</td>
+		<td><code>{ "op": "wb-toDateISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Format a date value to data ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
+	</tr>
+
+	<tr>
+		<td>Formating a date and time to ISO (YYYY-MM-DD HH:MM)</td>
+		<td><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Format a date value to date time ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
+	</tr>
+</table>
+
+<p>It's is possible to add your own custom operations, like:</p>
+
+<pre><code>window[ "wb-jsonmanager" ] = {
+	ops: [
+		{
+			name: "wb-count",
+			fn: function( obj, key, tree ) {
+				var countme = obj[ key ],
+					len = 0;
+				if ( $.isArray( countme ) ) {
+					len = countme.length;
+				}
+
+				jsonpatch.apply( tree, [
+					{ op: "add", path: this.set, value: len }
+				] );
+			}
+		},
+		{
+			name: "wb-first",
+			fn: function( obj, key, tree ) {
+				var currObj = obj[ key ];
+				if ( !$.isArray( currObj ) || currObj.length === 0 ) {
+					return;
+				}
+
+				jsonpatch.apply( tree, [
+					{ op: "add", path: this.set, value: currObj[ 0 ] }
+				] );
+			}
+		}
+	],
+	opsArray: [ ],
+	opsRoot: [ ],
+}</code></pre>
+
+<p>There is tree type of configuration where you can defined your custom operation depending on what the operation is executed.</p>
+<dl class="dl-horizontal">
+	<dt><code>ops</code></dt>
+	<dd>Basic operation on a JSON node.</dd>
+	<dt><code>opsArray</code></dt>
+	<dd>Operation made upon JSON array.</dd>
+	<dt><code>opsRoot</code></dt>
+	<dd>Operation that target the root of JSON object.</dd>
+</dl>
+</section>
+
+<section>
+<h2>Debugging</h2>
+
+<p>You can set the configuration option <code>&quot;debug&quot;: true</code> to show, added the element that call the JSON manager, the modified JSON object and his applied patches. The JSON are displayed without any formating.</p>
+
+<pre><code>&lt;div data-wb-jsonmanager='{
+	&quot;url&quot;: &quot;data-en.json&quot;,
+	&quot;name&quot;: &quot;example2&quot;,
+	<strong>&quot;debug&quot;: true</strong>
+}'&gt;&lt;/div&gt;</code></pre>
+</section>
+
+<section>
+	<h2 id="cachebusting">Cache busting</h2>
+	<p>Before to use the cache busting mechanism with your data json instance, it's highly recommended to configure your server properly instead.</p>
+	<p>Various strategy can be set on the server side and those are communicated to the browser through an http header as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>.</p>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<table class="table">
+	<thead>
+	<tr>
+		<th>Option</th>
+		<th>Description</th>
+		<th>How to configure</th>
+		<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><code>url</code></td>
+		<td><strong>Required</strong>. Define the url or the dataset name to use. When used in a template mode, the URL should point to an array object.</td>
+		<td>You can follow the url or the dataset name by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a>.</td>
+		<td>
+			<dl>
+				<dt><code>data-wb-jsonmanager='{ "url": "location/of/json/file.json#/" }'</code></dt>
+				<dd>The url are a json file</dd>
+				<dt><code>data-wb-jsonmanager='{ "url": "[datasetName]#/" }'</code></dt>
+				<dd>The url is a reference to a dataset managed by a json-manager defined in the same page</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>name</code></td>
+		<td><strong>Required</strong>. The dataset name that other plugin will be able to use as an alias to a JSON file.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName" }'</code></td>
+		<td>String</td>
+	</tr>
+	<tr>
+		<td><code>wait</code></td>
+		<td>Indicate if plugins that use the named dataset should wait to display information until all patches is received.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName", "wait": true }'</code></td>
+		<td>Boolean
+			<dl>
+				<dt>false (default)</dt>
+				<dd>Will execute the patches when the plugin is initialized</dd>
+				<dt>true</dt>
+				<dd>Will wait to notify plugins that use the named dataset, until patches is received throught the event <code>patches.wb-jsonmanager</code>.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>patches</code></td>
+		<td>Array of patches, operation object, to be applied to the JSON</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName", "patches": [ {operation object} ] }'</code></td>
+		<td>Array of operation object or a unique operation object</td>
+	</tr>
+	<tr>
+		<td><code>{Operation object}</code></td>
+		<td>Object structured as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002</a> specification.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName", "patches": [ { "op": "Name of the operation", (any additional parameter as per the operation) } ] }'</code></td>
+		<td>See <a href="https://tools.ietf.org/html/rfc6902#section-4">section 4 of RFC6902</a>. All the supported operation is defined above in the section <a href="#jsonpatchesops">JSON patches operation</a>.</td>
+	</tr>
+	<tr>
+		<td><code>wraproot</code></td>
+		<td>Name of a property where to move the JSON root into.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName", "wraproot": "root" }'</code></td>
+		<td>
+			<dl>
+				<dt>false (default)</dt>
+				<dd>Keep the JSON as it</dd>
+				<dt>String</dt>
+				<dd>Will create a new property, as named by the string value, then move the root into that property.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>filter</code></td>
+		<td>Available for when selecting array only. Item that is true will be kept and item that is false will be removed.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "filter": [ {evaluation object} ] }'</code></td>
+		<td>
+			<p>Evaluation object have the following property</p>
+			<dl>
+				<dt><code>path</code></dt>
+				<dd>Required. JSON pointer to the data being evaluated</dd>
+				<dt><code>value</code></dt>
+				<dd>Required. Value of witch the data would be evaluated</dd>
+				<dt><code>optional</code></dt>
+				<dd>Indicated if the evaluation is optional.</dd>
+			</dl>
+			<p>There is more details in the filter section bellow</p>
+		</td>
+	</tr>
+	<tr>
+		<td><code>filternot</code></td>
+		<td>Available for when selecting array only. Item that is true will be removed and item that is false will be kept. This filter happen after the configuration for the "filter" option has been evaluated.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "filternot": [ {evaluation object} ] }'</code></td>
+		<td>
+			<p>Evaluation object have the following property</p>
+			<dl>
+				<dt><code>path</code></dt>
+				<dd>Required. JSON pointer to the data being evaluated</dd>
+				<dt><code>value</code></dt>
+				<dd>Required. Value of witch the data would be evaluated</dd>
+				<dt><code>optional</code></dt>
+				<dd>Indicated if the evaluation is optional.</dd>
+			</dl>
+			<p>There is more details in the filter section bellow</p>
+		</td>
+	</tr>
+	<tr>
+		<td><code>debug</code></td>
+		<td>Show the modified JSON object and his applied patches after there are applied.</td>
+		<td><code>data-wb-jsonmanager='{ "url": "", "name": "ADataSetName", "wraproot": "root" }'</code></td>
+		<td>Boolean
+			<dl>
+				<dt>false (default)</dt>
+				<dd>There is no debug info that is displayed</dd>
+				<dt>true</dt>
+				<dd>Will display a unformated result.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>nocache</code></td>
+		<td>Prevent caching. Prior using the functionality, use the various caching strategies that can be set and communicated through http header from your server, as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>. Also, please note that some server may not like to have an query appended to his url and you may get an HTTP error like "400 Bad Request" or "404 Not Found". Like a page served by a domino server will return 404 error if the query string do not start with "<code>?open</code>", "<code>?openDocument</code>" or "<code>?readForm</code>".</td>
+		<td><code>data-wb-json='{ "url": "", "nocache": true }'</code> or <code>data-wb-json='{ "url": "", "nocache": "nocache" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>The browser will manage the cache based on how the server has sent the file.</dd>
+				<dt><code>true</code></dt>
+				<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+				<dt><code>nocache</code></dt>
+				<dd>String, A new id is generated everytime the file is fetched</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>nocachekey</code></td>
+		<td>Prevent caching. Optional, it defined what query parameter name to use for the cache busting.</td>
+		<td><code>data-wb-json='{ "url": "", "nocache": true, "nocachekey": "wbCacheBust" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>Will use "<code>wbCacheBust</code>" for the parameter name.</dd>
+				<dt>String</dt>
+				<dd>URL pre-encoded string</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>data</code></td>
+		<td>Add parameter in the request body.</td>
+		<td><code>data-wb-json='{ "url": "", "data": { "prop": "value" } }'</code> or <code>data-wb-json='{ "url": "", "data": "prop=value" } }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>No data are sent in the request body</dd>
+				<dt>String</dt>
+				<dd>The value is sent as is in the request body</dd>
+				<dt>Javascript Object</dt>
+				<dd>The value is stringify before to be added to the request body</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>contenttype</code></td>
+		<td>Set the content type of the request body when data are sent</td>
+		<td><code>data-wb-json='{ "url": "", "contenttype": "text/turtle", "data": "" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default</dt>
+				<dd>When data is added, application/json</dd>
+				<dt>String</dt>
+				<dd>A valid content type as defined in the <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">IANA media type registry</a>.</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
+		<td><code>method</code></td>
+		<td>Set the HTTP method to be use when fetching the resource.</td>
+		<td><code>data-wb-json='{ "url": "", "data": "", "method": "PUT" }'</code></td>
+		<td>
+			<dl>
+				<dt>Default (no data)</dt>
+				<dd>The method is "GET".</dd>
+				<dt>Default (with data)</dt>
+				<dd>The method is "POST".</dd>
+				<dt>String</dt>
+				<dd>A valid method allowed by the browser.</dd>
+			</dl>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+	<h3 id="evalobj">Filtering (evaluation object)</h3>
+	<p>The path selector must point to an valid JSON array object. All the option presented in the table bellow can be combined.</p>
+	<table class="table">
+	<thead>
+	<tr>
+		<th>Option</th>
+		<th>How to configure</th>
+		<th>Values and clarification</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><code>path</code></td>
+		<td><code>{ "filter": [ { "path": "/JSON Pointer" } ] &hellip;}</code> or <code>{ "filternot": [ { "path": "/JSON Pointer" } ] &hellip;}</code></td>
+		<td>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a> to the data being evaluated..  It's must start with an "/".</td>
+	</tr>
+	<tr>
+		<td><code>value</code></td>
+		<td><code>{ "filter": [ { "value": "A value" } ] &hellip;}</code> or <code>{ "filternot": [ { "value": "A value" } ] &hellip;}</code> </td>
+		<td>Any value that could be compared with the information retreived form the path. An exact match is performed.</td>
+	</tr>
+	<tr class="text-muted">
+		<td><code>optional</code></td>
+		<td><code>{ "filter": [ { "optional": true } ] &hellip;}'</code> or <code>{ "filternot": [ { "optional": true } ] &hellip;}'</code></td>
+		<td>True or false. If omited it will be false by default.</td>
+	</tr>
+	</tbody>
+	</table>
+
+</section>
+
+
+<section>
+	<h2>Events</h2>
+
+	<table id="events" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+
+
+			<tr>
+				<td><code>patches.wb-jsonmanager</code></td>
+				<td>
+					<p>Triggered manually via javascript or automatically via other plugin that interact with the JSON manager.</p>
+					<pre><code>$( "#MyJsonManager" ).trigger(  {
+	type: "patches.wb-jsonmanager",
+	patches: [ { JSON patached operation object } ]
+} );</code></pre>
+					<p>Where supporting the following event property:</p>
+					<dl>
+						<dt>patches</dt>
+						<dd><strong>(Required)</strong> Array of or a single <a href="#jsonpatchesops">JSON patches operation</a>.</dd>
+						<dt>cumulative</dt>
+						<dd>Boolean. Default (false) If true the patches applied for this one event will be cumulative and impact subsequent applied patches.</dd>
+					</dl>
+				</td>
+				<td>Apply patches to the dataset and will send a request to update the content of all plugin that are binded to this dataset.</td>
+			</tr>
+			<tr>
+				<td><code>postpone.wb-jsonmanager</code></td>
+				<td>Triggered automatically by the json fetch plugin to let the JSON manager that other plugin depends on it.</td>
+				<td>Postpone the json fetch call until the dataset is ready.</td>
+			</tr>
+			<tr>
+				<td><code>wb-init.wb-jsonmanager</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-jsonmanager" ).trigger( "wb-init.wb-jsonmanager" );</code>).</td>
+				<td>Used to manually initialize the wb-jsonmanager plugin. <strong>Note:</strong> The wb-jsonmanager plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+
+			<tr>
+				<td><code>wb-init.wb-jsonmanager</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-jsonmanager" ).trigger( "wb-init.wb-jsonmanager" );</code>).</td>
+				<td>Used to manually initialize the wb-jsonmanager plugin. <strong>Note:</strong> The wb-jsonmanager plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-jsonmanager</code></td>
+				<td>Triggered automatically after an wb-jsonmanager is initialized.</td>
+				<td>Used to identify when an wb-jsonmanager has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-jsonmanager", ".wb-jsonmanager", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-jsonmanager" ).on( "wb-ready.wb-jsonmanager", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code></td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+				<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/GCWeb/tree/master/src/plugins/jsonmanager">JSON manager plugin source code on GitHub</a></p>
+</section>
+</div>

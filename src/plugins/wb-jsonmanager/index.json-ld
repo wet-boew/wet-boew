@@ -1,0 +1,46 @@
+{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "JSON Manager",
+		"fr": "Gestionnaire JSON"
+	},
+	"description": {
+		"en": "Manage dataset and apply JSON Patch",
+		"fr": "Gérer des jeux de données et applique des correctifs JSON."
+	},
+	"modified": "2020-10-13",
+	"componentName": "wb-jsonmanager",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "JSON Manager",
+				"language": "en",
+				"path": "jsonmanager-en.html"
+			},
+			{
+				"title": "Gestionnaire JSON",
+				"language": "fr",
+				"path": "jsonmanager-fr.html"
+			},
+		],
+		"docs": [
+			{
+				"title": "JSON Manager",
+				"language": "en",
+				"path": "jsonmanager-doc-en.html"
+			},
+			{
+				"title": "Gestionnaire JSON",
+				"language": "fr",
+				"path": "jsonmanager-doc-fr.html"
+			}
+		]
+	}
+}

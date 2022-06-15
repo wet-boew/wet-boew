@@ -1,0 +1,52 @@
+{
+  "fees": {
+    "ABC": "20$"
+  },
+  "product": "Hello world",
+  "products": [
+    "My new product",
+    "My second product",
+    "My product number 3"
+  ],
+  "status": "text-muted",
+  "iamtrue": true,
+  "iamfalse": false,
+  "jour":"2016-11-05T01:42:31Z",
+  "anArray": [
+    { "name": "Item 1", "prop": "red" },
+    { "name": "Item 2", "prop": "blue" },
+    { "name": "Item 3", "prop": "yellow" },
+    { "name": "Item 4", "prop": "purple" }
+  ],
+  "offices": [
+  { "name": "Location name example 1", "num": 300, "street": "Slater", "city": "Ottawa", "css": "bg-success", "homeUrl": "https://github.com/wet-boew" },
+  { "name": "Location name example 2", "num": 50, "street": "Victoria", "city": "Gatineau", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew" }
+  ],
+  "addressList": [
+  { "name": "Location name example 1", "num": 100, "street": "Slater", "city": "Ottawa", "postalCode": "J8X 0I6", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info1@example.com" },
+  { "name": "Location name example 2", "num": 65, "street": "Victoria", "city": "Gatineau", "postalCode": "J8S 0M6", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew", "email": "info2@example.com" },
+  { "name": "Location name example 3", "num": 87, "street": "Slater", "city": "Ottawa", "postalCode": "J9X 0I9", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info3@example.com" },
+  { "name": "Location name example 4", "num": 34, "street": "Victoria", "city": "Gatineau", "postalCode": "J8P 0K6", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew", "email": "info4@example.com" },
+  { "name": "Location name example 5", "num": 980, "street": "Slater", "city": "Ottawa", "postalCode": "J8F 5P6", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info5@example.com" },
+  { "name": "Location name example 6", "num": 1123, "street": "Victoria", "city": "Gatineau", "postalCode": "J8H 4K6", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew", "email": "info6@example.com" },
+  { "name": "Location name example 7", "num": 543, "street": "Slater", "city": "Ottawa", "postalCode": "J8G 0N7", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info7@example.com" },
+  { "name": "Location name example 8", "num": 723, "street": "Victoria", "city": "Gatineau", "postalCode": "J8P 2I6", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew", "email": "info8@example.com" },
+  { "name": "Location name example 9", "num": 2345, "street": "Slater", "city": "Ottawa", "postalCode": "J8P 0I7", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info9@example.com" },
+  { "name": "Location name example 10", "num": 56, "street": "Victoria", "city": "Gatineau", "postalCode": "J8X 0N6", "css": "bg-danger", "homeUrl": "https://github.com/wet-boew", "email": "info10@example.com" },
+  { "name": "Location name example 11", "num": 200, "street": "Slater", "city": "Ottawa", "postalCode": "J8T 0I8", "css": "bg-success", "homeUrl": "https://github.com/wet-boew", "email": "info11@example.com" }
+  ],
+  "comments": {
+    "2017-1": {
+      "name": "Mr X",
+      "city": "Gatineau",
+      "somethingHTML": "<strong>Horay</strong> here rich HTML content",
+      "hobby": [ "Car", "Mechanic", "Race" ]
+    },
+    "2017-2": {
+      "name": "Mrs Y",
+      "city": "St-Pierre",
+      "somethingHTML": "<strong>Youpi</strong> word should be with emphasis",
+      "hobby": [ "Spa", "Nature", "Bike", "Reading" ]
+    }
+  }
+}
