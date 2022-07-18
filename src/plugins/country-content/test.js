@@ -23,10 +23,10 @@ describe( "Country Content test suite", function() {
 
 		before( function() {
 
-			// Stub the $.ajax method to return data.country_code = "CA" on success.
+			// Stub the $.ajax method to return data.country = "CA" on success.
 			// This must be used instead of Sinon's fakeServer because the plugin uses
 			// JSON-P for the request: https://sinonjs.org/docs/#json-p
-			stubs.ajax = sandbox.stub( $, "ajax" ).yieldsTo( "success", { country_code: "CA" } );
+			stubs.ajax = sandbox.stub( $, "ajax" ).yieldsTo( "success", { country: "CA" } );
 			stubs.load = sandbox.stub( $.prototype, "load" );
 
 			// Clear out any previously saved country code
@@ -57,7 +57,7 @@ describe( "Country Content test suite", function() {
 
 			for ( ; i !== len && !isLookup; i += 1 ) {
 				if ( args[ i ] instanceof Array ) {
-					isLookup = args[ i ].length && args[ i ][ 0 ].url === "https://freegeoip.app/json/";
+					isLookup = args[ i ].length && args[ i ][ 0 ].url === "https://api.country.is/";
 				}
 			}
 			expect( isLookup ).to.equal( true );
