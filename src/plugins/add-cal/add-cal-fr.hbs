@@ -7,7 +7,7 @@
 	"tag": "add-cal",
 	"parentdir": "add-cal",
 	"altLangPrefix": "add-cal",
-	"dateModified": "2021-05-07"
+	"dateModified": "2022-07-25"
 }
 ---
 <div lang="en" class="alert alert-warning">
@@ -16,6 +16,9 @@
 	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
 	<p><small><a href="../../docs/ref/provisional-fr.html">Check other provisional features available.</a></small></p>
 </div>
+
+<span class="wb-prettify all-pre"></span>
+
 <h2>Événement incluant un endroit détaillé</h2>
 <p>L'exemple suivant présente un événement incluant un emplacement détaillé (nom, adresse, région, province et code postale).</p>
 <div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
@@ -32,9 +35,9 @@
 	</p>
 	<dl>
 		<dt>Début</dt>
-		<dd><time property="startDate" datetime="2020-01-27 07:00Z">Le lundi 27 janvier 2020, 7:00am (HNE)</time></dd>
+		<dd><time property="startDate" datetime="2023-01-27 07:00-05:00">Le vendredi 27 janvier 2023, 7h (HNE)</time></dd>
 		<dt>Fin</dt>
-		<dd><time property="endDate" datetime="2020-01-29 12:00Z">Le mercredi 29 janvier 2020, 12:00pm (HNE)</time></dd>
+		<dd><time property="endDate" datetime="2023-01-29 12:00-05:00">Le dimanche 29 janvier 2023, 12h (HNE)</time></dd>
 	</dl>
 </div>
 
@@ -43,37 +46,54 @@
 <div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
 	<h3 property="name">Igloo Baratanga</h3>
 	<p property="description">Une activité de percussions pour toute la famille! Participez à un cercle de tambours et réchauffez-vous. Aucune expérience musicale requise et sourires garantis! Viens jouer avec nous!</p>
-	<p><strong>Quand</strong>&nbsp;: <time property="startDate" datetime="2020-02-08 13:00Z">Le dimanche 8 février 2021 | de 13:00 (HNE)</time> à <time property="endDate" datetime="2020-02-08 13:30Z">13:30 (HNE)</time></p>
-	<p property="location"><strong>Où</strong>&nbsp;: Le Domaine des flocons au parc Jacques-Cartier (Gatineau)</p>
+	<p><strong>Quand</strong>&nbsp;: <time property="startDate" datetime="2023-02-08 13:00-05:00">Le mercredi 8 février 2023 | de 13h (HNE)</time> à <time property="endDate" datetime="2023-02-08 13:30-05:00">13h30 (HNE)</time></p>
+	<p><strong>Où</strong>&nbsp;: <span property="location">Le Domaine des flocons au parc Jacques-Cartier (Gatineau)</span></p>
+</div>
+
+<h2>Exemple d'un événement virtuel</h2>
+<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
+	<h3 property="name">Les choix de Marsai Martin pour un été social</h3>
+	<p property="description">Il n'y a pas de meilleur moment que l'été pour essayer de nouvelles choses et rencontrer de nouvelles personnes, surtout si vous vous sentez seul.</p>
+	<p><strong>Quand:</strong> <time property="startDate" datetime="2023-08-08 13:00-04:00">Le mardi 8 août, 2023 | 13h (HNE)</time> à <time property="endDate" datetime="2023-08-08 15:30-04:00">15h30 (HNE)</time></p>
+	<p><strong>Où:</strong> <span property="location" typeof="VirtualLocation">En ligne (<a href="https://evenement.virtuel" target="_blank" rel="noopener noreferrer" property="url">https://evenement.virtuel</a>)</span></p>
 </div>
 
 <h2>Code source</h2>
-<pre><code>&lt;h2&gt;Évènement incluant un endroit détaillé&lt;/h2&gt;
-&lt;p&gt;L'exemple suivant présente un événement incluant un emplacement détaillé (nom, adresse, région, province et code postale).&lt;/p&gt;
-&lt;div class="wb-addcal provisional mrgn-bttm-md" typeof="Event"&gt;
-	&lt;h3 property="name"&gt;Canux20&lt;/h3&gt;
-	&lt;p property="description"&gt;CanUX (prononcé «canucks», comme l&apos; équipe de hockey) est un événement indépendant, local, à but non lucratif et dirigé par des bénévoles, créé pour les personnes qui souhaitent apprendre et partager leur expertise sur l'expérience utilisateur et la façon dont notre profession contribue à faire les choses fonctionnent mieux pour tout le monde.&lt;/p&gt;
-	&lt;p property="location" typeof="Place"&gt;
-		&lt;span property="name"&gt;Centre Shaw&lt;/span&gt;&lt;br /&gt;
-		&lt;span class="address" property="address" typeof="PostalAddress"&gt;
-			&lt;span property="streetAddress"&gt;55, promenade du Colonel-By&lt;/span&gt;&lt;br /&gt;
-			&lt;span property="addressLocality"&gt;Ottawa&lt;/span&gt;,
-			&lt;span property="addressRegion"&gt;ON&lt;/span&gt;&lt;br /&gt;
-			&lt;span property="postalCode"&gt;K1N 9J2&lt;/span&gt;
+<pre><code>&lt;h2&gt;&Eacute;v&eacute;nement incluant un endroit d&eacute;taill&eacute;&lt;/h2&gt;
+&lt;p&gt;L'exemple suivant pr&eacute;sente un &eacute;v&eacute;nement incluant un emplacement d&eacute;taill&eacute; (nom, adresse, r&eacute;gion, province et code postale).&lt;/p&gt;
+&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
+	&lt;h3 property=&quot;name&quot;&gt;Canux20&lt;/h3&gt;
+	&lt;p property=&quot;description&quot;&gt;CanUX (prononc&eacute; &laquo;canucks&raquo;, comme l&amp;apos; &eacute;quipe de hockey) est un &eacute;v&eacute;nement ind&eacute;pendant, local, &agrave; but non lucratif et dirig&eacute; par des b&eacute;n&eacute;voles, cr&eacute;&eacute; pour les personnes qui souhaitent apprendre et partager leur expertise sur l'exp&eacute;rience utilisateur et la fa&ccedil;on dont notre profession contribue &agrave; faire les choses fonctionnent mieux pour tout le monde.&lt;/p&gt;
+	&lt;p property=&quot;location&quot; typeof=&quot;Place&quot;&gt;
+		&lt;span property=&quot;name&quot;&gt;Centre Shaw&lt;/span&gt;&lt;br /&gt;
+		&lt;span class=&quot;address&quot; property=&quot;address&quot; typeof=&quot;PostalAddress&quot;&gt;
+			&lt;span property=&quot;streetAddress&quot;&gt;55, promenade du Colonel-By&lt;/span&gt;&lt;br /&gt;
+			&lt;span property=&quot;addressLocality&quot;&gt;Ottawa&lt;/span&gt;,
+			&lt;span property=&quot;addressRegion&quot;&gt;ON&lt;/span&gt;&lt;br /&gt;
+			&lt;span property=&quot;postalCode&quot;&gt;K1N 9J2&lt;/span&gt;
 		&lt;/span&gt;
 	&lt;/p&gt;
 	&lt;dl&gt;
-		&lt;dt&gt;Début&lt;/dt&gt;
-		&lt;dl&gt;&lt;time property="startDate" datetime="2020-01-27 07:00Z"&gt;Le lundi 27 janvier 2020, 7:00am (HNE)&lt;/time&gt;&lt;/dl&gt;
+		&lt;dt&gt;D&eacute;but&lt;/dt&gt;
+		&lt;dd&gt;&lt;time property=&quot;startDate&quot; datetime=&quot;2023-01-27 07:00-05:00&quot;&gt;Le vendredi 27 janvier 2023, 7h (HNE)&lt;/time&gt;&lt;/dd&gt;
 		&lt;dt&gt;Fin&lt;/dt&gt;
-		&lt;dl&gt;&lt;time property="endDate" datetime="2020-01-29 12:00Z"&gt;Le mercredi 29 janvier 2020, 12:00pm (HNE)&lt;/time&gt;&lt;/dl&gt;
+		&lt;dd&gt;&lt;time property=&quot;endDate&quot; datetime=&quot;2023-01-29 12:00-05:00&quot;&gt;Le dimanche 29 janvier 2023, 12h (HNE)&lt;/time&gt;&lt;/dd&gt;
 	&lt;/dl&gt;
 &lt;/div&gt;
-&lt;h2&gt;Example d'événement incluant seulement un lieu&lt;/h2&gt;
-&lt;p&gt;L'exemple suivant présente un événement incluant le nom d'un lieu sans adresse complète.&lt;/p&gt;
-&lt;div class="wb-addcal provisional mrgn-bttm-md" typeof="Event"&gt;
-	&lt;h3 property="name"&gt;Igloo Baratanga&lt;/h3&gt;
-	&lt;p property="description"&gt;Une activité de percussions pour toute la famille! Participez à un cercle de tambours et réchauffez-vous. Aucune expérience musicale requise et sourires garantis! Viens jouer avec nous!&lt;/p&gt;
-	&lt;p&gt;&lt;strong&gt;Quand&lt;/strong&gt;&nbsp;: &lt;time property="startDate" datetime="2020-02-08 13:00Z"&gt;Le dimanche 8 février 2021 | de 13:00 (HNE)&lt;/time&gt; à &lt;time property="endDate" datetime="2020-02-08 13:30Z"&gt;13:30 (HNE)&lt;/time&gt;&lt;/p&gt;
-	&lt;p property="location"&gt;&lt;strong&gt;Où&lt;/strong&gt;&nbsp;: Le Domaine des flocons au parc Jacques-Cartier (Gatineau)&lt;/p&gt;
+
+&lt;h2&gt;Example d'&eacute;v&eacute;nement incluant seulement un lieu&lt;/h2&gt;
+&lt;p&gt;L'exemple suivant pr&eacute;sente un &eacute;v&eacute;nement incluant le nom d'un lieu sans adresse compl&egrave;te.&lt;/p&gt;
+&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
+	&lt;h3 property=&quot;name&quot;&gt;Igloo Baratanga&lt;/h3&gt;
+	&lt;p property=&quot;description&quot;&gt;Une activit&eacute; de percussions pour toute la famille! Participez &agrave; un cercle de tambours et r&eacute;chauffez-vous. Aucune exp&eacute;rience musicale requise et sourires garantis! Viens jouer avec nous!&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;Quand&lt;/strong&gt;&amp;nbsp;: &lt;time property=&quot;startDate&quot; datetime=&quot;2023-02-08 13:00-05:00&quot;&gt;Le mercredi 8 f&eacute;vrier 2023 | de 13h (HNE)&lt;/time&gt; &agrave; &lt;time property=&quot;endDate&quot; datetime=&quot;2023-02-08 13:30-05:00&quot;&gt;13h30 (HNE)&lt;/time&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;O&ugrave;&lt;/strong&gt;&amp;nbsp;: &lt;span property=&quot;location&quot;&gt;Le Domaine des flocons au parc Jacques-Cartier (Gatineau)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Exemple d'un &eacute;v&eacute;nement virtuel&lt;/h2&gt;
+&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
+	&lt;h3 property=&quot;name&quot;&gt;Les choix de Marsai Martin pour un &eacute;t&eacute; social&lt;/h3&gt;
+	&lt;p property=&quot;description&quot;&gt;Il n'y a pas de meilleur moment que l'&eacute;t&eacute; pour essayer de nouvelles choses et rencontrer de nouvelles personnes, surtout si vous vous sentez seul.&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;Quand:&lt;/strong&gt; &lt;time property=&quot;startDate&quot; datetime=&quot;2023-08-08 13:00-04:00&quot;&gt;&lt;/time&gt;Le mardi 8 ao&ucirc;t, 2023 | 13h (HNE)&lt;/time&gt; &agrave; &lt;time property=&quot;endDate&quot; datetime=&quot;2023-08-08 15:30-04:00&quot;&gt;15h30 (HNE)&lt;/time&gt;&lt;/p&gt;
+	&lt;p property=&quot;location&quot; typeof=&quot;VirtualLocation&quot;&gt;&lt;strong&gt;O&ugrave;:&lt;/strong&gt; En ligne (&lt;a href=&quot;https://evenement.virtuel&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; property=&quot;url&quot;&gt;https://evenement.virtuel&lt;/a&gt;)&lt;/p&gt;
 &lt;/div&gt;</code></pre>

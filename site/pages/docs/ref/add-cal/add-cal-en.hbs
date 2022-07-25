@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Add an event to a calendar (google, Apple, Android, Outlook and others).",
 	"altLangPrefix": "add-cal",
-	"dateModified": "2021-05-12"
+	"dateModified": "2022-07-25"
 }
 ---
 <div class="alert alert-warning">
@@ -16,8 +16,10 @@
 	<p><small><a href="../provisional-en.html">Check other provisional features available.</a></small></p>
 </div>
 
+<span class="wb-prettify all-pre"></span>
+
 <h2>Purpose</h2>
-<p>Add an event to a calendar (google, Apple, Android, Outlook and others).</p>
+<p>Add an event to a calendar (Google, Apple, Android, Outlook and others).</p>
 
 <h2>Working example</h2>
 <ul>
@@ -31,17 +33,17 @@
 <h2>API (Version 1.0)</h2>
 <dl class="dl-horizontal">
 	<dt>Function</dt>
-	<dd>provisional</dd>
+	<dd>Provisional</dd>
 	<dt>Configuration</dt>
 	<dd>Not applicable</dd>
 	<dt>User interface (Template)</dt>
-	<dd>provisional</dd>
+	<dd>Provisional</dd>
 	<dt>Data source</dt>
-	<dd>provisional</dd>
+	<dd>Provisional</dd>
 	<dt>View and style</dt>
-	<dd>provisional</dd>
+	<dd>Provisional</dd>
 	<dt>i18n string</dt>
-	<dd>provisional</dd>
+	<dd>Provisional</dd>
 </dl>
 
 <h3>Function</h3>
@@ -57,7 +59,7 @@
 		<td>jQuery Event</td>
 		<td><code>wb-init.wb-addcal</code></td>
 		<td>Triggered manually (e.g., <code>$( ".wb-addcal" ).trigger( "wb-init.wb-addcal" );</code>).</td>
-		<td>Initializes the bg-img plugin. This plugin will be initialized automatically unless the <code>.wb-wb-addcal</code> element is added after the page load and wet-boew was initialized.</td>
+		<td>Initializes the <code>.wb-addcal</code> plugin. This plugin will be initialized automatically unless the <code>.wb-addcal</code> element is added after the page load and wet-boew was initialized.</td>
 	</tr>
 	<tr>
 		<td>jQuery Event</td>
@@ -89,7 +91,7 @@
 	<dt><code>endDate</code> (Event)</dt>
 	<dd>Required - Specifies the end date and or end time of the event. It needs to be used in a <code>&lt;time&gt;</code> element and the value must be defined in text or by adding the <code>datetime</code> attribute either following this pattern: "YYYY-MM-DD HH:MMZ"</dd>
 	<dt><code>location</code> (Event)</dt>
-	<dd>Recommended - Short text that identifies the place of the event or can be refined with type <strong>Place</strong> to provide a detailed address.</dd>
+	<dd>Recommended - Short text that identifies the place of the event or can be refined with type <strong>Place</strong> to provide a detailed address or <strong>VirtualLocation</strong> for an online event.</dd>
 	<dt><code>name</code> (Place)</dt>
 	<dd>Optional - Short text that identifies the name of a location for the event.</dd>
 	<dt><code>address</code> (Place)</dt>
@@ -102,6 +104,8 @@
 	<dd>Optional - Text that specifies the region (province) of the event.</dd>
 	<dt><code>postalCode</code> (PostalAddress)</dt>
 	<dd>Optional - Text that specifies the postal code.</dd>
+	<dt><code>url</code> (VirtualLocation)</dt>
+	<dd>Optional - URL of the online event.</dd>
 </dl>
 
 <p>The HTML element <code>time</code> must be used when specifying a date and or time in machine readable format or when adding the <code>datetime</code> attribute when using text. The following ISO date pattern noted in RDFa must be applied when using the machine readable format in the time element or as a value for the datetime attribute: "YYYY-MM-DD HH:MMZ".</p>

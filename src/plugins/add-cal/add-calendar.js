@@ -46,12 +46,12 @@ var componentName = "wb-addcal",
 					en: {
 						"addcal-addto": "Add to",
 						"addcal-calendar": "calendar",
-						"addcal-ical": "iCal format (iPhone, Outlook...)"
+						"addcal-other": "Other (Outlook, Apple, etc.)"
 					},
 					fr: {
 						"addcal-addto": "Ajouter au",
 						"addcal-calendar": "calendrier",
-						"addcal-ical": "Format iCal (iPhone, Outlook....)"
+						"addcal-other": "Autre (Outlook, Apple, etc.)"
 					}
 				};
 
@@ -60,7 +60,7 @@ var componentName = "wb-addcal",
 			i18nDict = {
 				addto: i18nDict[ "addcal-addto" ],
 				calendar: i18nDict[ "addcal-calendar" ],
-				ical: i18nDict[ "addcal-ical" ]
+				ical: i18nDict[ "addcal-other" ]
 			};
 
 			// Set date stamp with the date modified
@@ -71,6 +71,8 @@ var componentName = "wb-addcal",
 				prop_cache = properties[ i ];
 				switch ( prop_cache.getAttribute( "property" ) ) {
 				case "name":
+
+					// If the property=name is inside an element with typeof=Place defined
 					if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[typeof=Place]" ).length ) {
 						event_details.placeName = prop_cache.textContent;
 					} else {
@@ -81,13 +83,15 @@ var componentName = "wb-addcal",
 					event_details.description = prop_cache.textContent.replace( /(\r\n|\n|\r)/gm, " " );
 					break;
 				case "startDate":
-					event_details.sDate = dtToISOString( $( "time[property='startDate']" ) );
+					event_details.sDate = dtToISOString( $( "time[property='startDate']", $elm ) );
 					break;
 				case "endDate":
-					event_details.eDate = dtToISOString( $( "time[property='endDate']" ) );
+					event_details.eDate = dtToISOString( $( "time[property='endDate']", $elm ) );
 					break;
 				case "location":
-					if ( !prop_cache.getAttribute( "typeof" ) ) {
+
+					// If the location doesn't have typeof defined OR has typeof=VirtualLocation without URL inside.
+					if ( !prop_cache.getAttribute( "typeof" ) || ( prop_cache.getAttribute( "typeof" ) === "VirtualLocation" && !$( prop_cache ).find( "[property=url]" ).length ) ) {
 						event_details.placeName = prop_cache.textContent;
 					}
 					break;
@@ -102,6 +106,13 @@ var componentName = "wb-addcal",
 					break;
 				case "postalCode":
 					event_details.placePostalCode = prop_cache.textContent;
+					break;
+				case "url":
+
+					// If the property=url is inside a property=location
+					if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[property=location]" ).length ) {
+						event_details.placeName = prop_cache.textContent;
+					}
 					break;
 				}
 			}
@@ -131,8 +142,8 @@ var componentName = "wb-addcal",
 
 			// Create and add details summary to the wb-addcal event and initiate the unordered list
 			$elm.append( "<details class='max-content " + componentName + "-buttons'><summary>" + i18nDict.addto + " " + i18nDict.calendar +
-			"</summary><ul class='list-unstyled mrgn-bttm-0 mrgn-tp-sm'><li><a class='btn btn-link btn-lg mrgn-top-lg' href='" + googleLink.replace( /'/g, "%27" ) + "'>Google<span class='sr-only'>" + i18nDict.calendar + "</span></a></li><li><button class='btn btn-link btn-lg download-ics'>" + i18nDict.ical +
-			"<span class='sr-only'>Calendar</span></button></li></ul></details>" );
+			"</summary><ul class='list-unstyled mrgn-bttm-0'><li><a class='btn btn-link' href='" + googleLink.replace( /'/g, "%27" ) + "' target='_blank' rel='noreferrer noopener'>Google<span class='wb-inv'>" + i18nDict.calendar + "</span></a></li><li><button class='btn btn-link download-ics'>" + i18nDict.ical +
+			"<span class='wb-inv'>Calendar</span></button></li></ul></details>" );
 		}
 
 		wb.ready( $( elm ), componentName );
