@@ -65,12 +65,12 @@ var componentName = "wb-ctrycnt",
 
 			// From https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js#L89-L127
 			$.ajax( {
-				url: "https://freegeoip.app/json/",
+				url: "https://api.country.is/",
 				dataType: "json",
 				cache: true,
 				success: function( data ) {
 					if ( data ) {
-						countryCode = data.country_code;
+						countryCode = data.country;
 						try {
 							localStorage.setItem( "countryCode", countryCode );
 						} catch ( error ) {
