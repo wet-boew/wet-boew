@@ -1,0 +1,1216 @@
+---
+{
+"title": "Filtre de balise",
+"language": "fr",
+"category": "Plugiciels",
+"description": "Filtre le contenu et affiche/masque le contenu qui correspond à certaines balises.",
+"tag": "filter",
+"parentdir": "tagfilter",
+"altLangPrefix": "tagfilter",
+"dateModified": "2022-09-10"
+}
+---
+
+<div class="alert alert-warning">
+	<h2>Fonctionnalité instable</h2>
+	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
+	<p><small><a href="../../docs/ref/provisional-fr.html">Jetez un coup d'oeil aux autres fonctionnalités provisoires disponibles.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<h2>Sur cette page:</h2>
+<ul>
+	<li><a href="#filteredEventsList">Exemple 1 - liste d'événements</a></li>
+	<li><a href="#filteredAppsList">Exemple 2 - liste d'applications</a></li>
+	<li><a href="#filteredFAQ">Exemple 3 - FAQ utilisant le plugiciel Filtre</a></li>
+	<li><a href="#filteredTable">Exemple 4 - tableau</a></li>
+</ul>
+
+<section id="filteredEventsList" class="wb-tagfilter provisional">
+	<h2>Exemple 1 - Liste d'événements</h2>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-lg-3">
+			<details open>
+				<summary>
+					<h3>Options de filtre</h3>
+				</summary>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Langue</span></legend>
+						<ul class="list-unstyled">
+							<li class="radio">
+								<label>
+									<input type="radio" name="langue" class="wb-tagfilter-ctrl" value="" checked> Toutes
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="langue" class="wb-tagfilter-ctrl" value="langue__francais"> Français
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="langue" class="wb-tagfilter-ctrl" value="langue__anglais"> Anglais
+								</label>
+							</li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Emplacement</span></legend>
+						<ul class="list-unstyled">
+							<li class="checkbox">
+								<label for="location__montreal">
+									<input type="checkbox" name="location" id="location__montreal" class="wb-tagfilter-ctrl" value="location__montreal"> Montréal
+								</label>
+							</li>
+							<li class="checkbox">
+								<label for="location__enline">
+									<input type="checkbox" name="location" id="location__enline" class="wb-tagfilter-ctrl" value="location__enline"> En ligne
+								</label>
+							</li>
+							<li class="checkbox">
+								<label for="location__ottawa">
+									<input type="checkbox" name="location" id="location__ottawa" class="wb-tagfilter-ctrl" value="location__ottawa"> Ottawa
+								</label>
+							</li>
+							<li class="checkbox">
+								<label for="location__toronto">
+									<input type="checkbox" name="location" id="location__toronto" class="wb-tagfilter-ctrl" value="location__toronto"> Toronto
+								</label>
+							</li>
+							<li class="checkbox">
+								<label for="location__vancouver">
+									<input type="checkbox" name="location" id="location__vancouver" class="wb-tagfilter-ctrl" value="location__vancouver"> Vancouver
+								</label>
+							</li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="jourListe">Jour de la semaine</label>
+					<select id="jourListe" name="jour" class="form-control full-width wb-tagfilter-ctrl">
+						<option value="">Tous</option>
+						<option value="jour_lundi">Lundi</option>
+						<option value="jour_mardi">Mardi</option>
+						<option value="jour_mercredi">Mercredi</option>
+						<option value="jour_jeudi">Jeudi</option>
+						<option value="jour_vendredi">Vendredi</option>
+						<option value="jour_samedi">Samedi</option>
+						<option value="jour_dimanche">Dimanche</option>
+					</select>
+				</div>
+			</details>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-lg-9">
+			<ul class="list-unstyled events-list wb-tagfilter-items">
+				<li data-wb-tags="langue__anglais langue__francais location__enline jour_vendredi">
+					<h3>Ask PAC Anything!</h3>
+					<p>Vendredi le 5 août 2022 | 12h à 13h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> En ligne</span> <strong>Langue</strong>: Anglais, Français</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__vancouver jour_mercredi">
+					<h3>Bidding on Opportunities</h3>
+					<p>Mercredi le 10 août 2022 | 14h à 15h30</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Vancouver</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__ottawa jour_jeudi">
+					<h3>Doing business with the Government of Canada (Webinar)</h3>
+					<p>Jeudi le 11 août 2022 | 12h à 14h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Ottawa</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					<h3>Ask PAC Anything!</h3>
+					<p>Vendredi le 12 août 2022 | 12h à 13h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> En ligne</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__ottawa jour_jeudi">
+					<h3>Bidding on opportunities (Webinar)</h3>
+					<p>Jeudi le 18 août 2022 | 12h à 14h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Ottawa</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					<h3>Ask PAC Anything!</h3>
+					<p>Vendredi le 19 août 2022 | 12h à 13h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> En ligne</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__francais location__ottawa jour_jeudi">
+					<h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses</h3>
+					<p>Jeudi le 25 août 2022 | 9h30 à 11h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Ottawa</span> <strong>Langue</strong>: Français</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__ottawa location__montreal jour_jeudi">
+					<h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses</h3>
+					<p>Jeudi le 25 août 2022 | 13h à 14h30</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Ottawa et Montréal</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__francais location__montreal jour_jeudi">
+					<h3>Doing Business with the Government of Canada</h3>
+					<p>Jeudi le 25 août 2022 | 13h30 à 15h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Montréal</span> <strong>Langue</strong>: Français</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__vancouver jour_jeudi">
+					<h3>Doing Business with the Government of Canada</h3>
+					<p>Jeudi le 25 août 2022 | 14h à 15h30</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Vancouver</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					<h3>Ask PAC Anything!</h3>
+					<p>Vendredi le 26 août 2022 | 12h à 13h30</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> En ligne</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__toronto jour_mardi">
+					<h3>Mythbusting Federal Government Procurement and Overview of Innovation for Defence, Excellence and rity (IDEaS)</h3>
+					<p>Mardi le 30 août 2022 | 10h à 11h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Toronto</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+				<li data-wb-tags="langue__francais location__montreal jour_mardi">
+					<h3>Register as supplier and find opportunities on BuyAndSell.gc.ca</h3>
+					<p>Mardi le 30 août 2022 | 13h30 à 15h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Montréal</span> <strong>Langue</strong>: Français</p>
+				</li>
+				<li data-wb-tags="langue__anglais location__toronto jour_mercredi">
+					<h3>Federal Procurement Virtual Drop-in Café</h3>
+					<p>Mercredi le 31 août 2022 | 15h à 16h</p>
+					<p><span><strong>Emplacement&nbsp;:</strong> Toronto</span> <strong>Langue</strong>: Anglais</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;section id="filteredEventsList" class="wb-tagfilter provisional">
+	&lt;h2>Exemple 1 - Liste d'événements&lt;/h2>
+	&lt;div class="row">
+		&lt;div class="col-xs-12 col-sm-4 col-lg-3">
+			&lt;details open>
+				&lt;summary>
+					&lt;h3>Options de filtre&lt;/h3>
+				&lt;/summary>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;fieldset>
+						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Langue&lt;/span>&lt;/legend>
+						&lt;ul class="list-unstyled">
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="" checked> Toutes
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="langue__francais"> Français
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="langue__anglais"> Anglais
+								&lt;/label>
+							&lt;/li>
+						&lt;/ul>
+					&lt;/fieldset>
+				&lt;/div>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;fieldset>
+						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Emplacement&lt;/span>&lt;/legend>
+						&lt;ul class="list-unstyled">
+							&lt;li class="checkbox">
+								&lt;label for="location__montreal">
+									&lt;input type="checkbox" name="location" id="location__montreal" class="wb-tagfilter-ctrl" value="location__montreal"> Montréal
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label for="location__enline">
+									&lt;input type="checkbox" name="location" id="location__enline" class="wb-tagfilter-ctrl" value="location__enline"> En ligne
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label for="location__ottawa">
+									&lt;input type="checkbox" name="location" id="location__ottawa" class="wb-tagfilter-ctrl" value="location__ottawa"> Ottawa
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label for="location__toronto">
+									&lt;input type="checkbox" name="location" id="location__toronto" class="wb-tagfilter-ctrl" value="location__toronto"> Toronto
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label for="location__vancouver">
+									&lt;input type="checkbox" name="location" id="location__vancouver" class="wb-tagfilter-ctrl" value="location__vancouver"> Vancouver
+								&lt;/label>
+							&lt;/li>
+						&lt;/ul>
+					&lt;/fieldset>
+				&lt;/div>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;label for="jourListe">Jour de la semaine&lt;/label>
+					&lt;select id="jourListe" name="jour" class="form-control full-width wb-tagfilter-ctrl">
+						&lt;option value="">Tous&lt;/option>
+						&lt;option value="jour_lundi">Lundi&lt;/option>
+						&lt;option value="jour_mardi">Mardi&lt;/option>
+						&lt;option value="jour_mercredi">Mercredi&lt;/option>
+						&lt;option value="jour_jeudi">Jeudi&lt;/option>
+						&lt;option value="jour_vendredi">Vendredi&lt;/option>
+						&lt;option value="jour_samedi">Samedi&lt;/option>
+						&lt;option value="jour_dimanche">Dimanche&lt;/option>
+					&lt;/select>
+				&lt;/div>
+			&lt;/details>
+		&lt;/div>
+		&lt;div class="col-xs-12 col-sm-8 col-lg-9">
+			&lt;ul class="list-unstyled events-list wb-tagfilter-items">
+				&lt;li data-wb-tags="langue__anglais langue__francais location__enline jour_vendredi">
+					&lt;h3>Ask PAC Anything!&lt;/h3>
+					&lt;p>Vendredi le 5 août 2022 | 12h à 13h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> En ligne&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais, Français&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__vancouver jour_mercredi">
+					&lt;h3>Bidding on Opportunities&lt;/h3>
+					&lt;p>Mercredi le 10 août 2022 | 14h à 15h30&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Vancouver&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__ottawa jour_jeudi">
+					&lt;h3>Doing business with the Government of Canada (Webinar)&lt;/h3>
+					&lt;p>Jeudi le 11 août 2022 | 12h à 14h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Ottawa&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					&lt;h3>Ask PAC Anything!&lt;/h3>
+					&lt;p>Vendredi le 12 août 2022 | 12h à 13h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> En ligne&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__ottawa jour_jeudi">
+					&lt;h3>Bidding on opportunities (Webinar)&lt;/h3>
+					&lt;p>Jeudi le 18 août 2022 | 12h à 14h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Ottawa&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					&lt;h3>Ask PAC Anything!&lt;/h3>
+					&lt;p>Vendredi le 19 août 2022 | 12h à 13h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> En ligne&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__francais location__ottawa jour_jeudi">
+					&lt;h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
+					&lt;p>Jeudi le 25 août 2022 | 9h30 à 11h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Ottawa&lt;/span> &lt;strong>Langue&lt;/strong>: Français&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__ottawa location__montreal jour_jeudi">
+					&lt;h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
+					&lt;p>Jeudi le 25 août 2022 | 13h à 14h30&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Ottawa et Montréal&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__francais location__montreal jour_jeudi">
+					&lt;h3>Doing Business with the Government of Canada&lt;/h3>
+					&lt;p>Jeudi le 25 août 2022 | 13h30 à 15h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Montréal&lt;/span> &lt;strong>Langue&lt;/strong>: Français&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__vancouver jour_jeudi">
+					&lt;h3>Doing Business with the Government of Canada&lt;/h3>
+					&lt;p>Jeudi le 25 août 2022 | 14h à 15h30&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Vancouver&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__enline jour_vendredi">
+					&lt;h3>Ask PAC Anything!&lt;/h3>
+					&lt;p>Vendredi le 26 août 2022 | 12h à 13h30&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> En ligne&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__toronto jour_mardi">
+					&lt;h3>Mythbusting Federal Government Procurement and Overview of Innovation for Defence, Excellence and rity (IDEaS)&lt;/a> &lt;/h3>
+					&lt;p>Mardi le 30 août 2022 | 10h à 11h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Toronto&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__francais location__montreal jour_mardi">
+					&lt;h3>Register as supplier and find opportunities on BuyAndSell.gc.ca&lt;/h3>
+					&lt;p>Mardi le 30 août 2022 | 13h30 à 15h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Montréal&lt;/span> &lt;strong>Langue&lt;/strong>: Français&lt;/p>
+				&lt;/li>
+				&lt;li data-wb-tags="langue__anglais location__toronto jour_mercredi">
+					&lt;h3>Federal Procurement Virtual Drop-in Café&lt;/h3>
+					&lt;p>Mercredi le 31 août 2022 | 15h à 16h&lt;/p>
+					&lt;p>&lt;span>&lt;strong>Emplacement&nbsp;:&lt;/strong> Toronto&lt;/span> &lt;strong>Langue&lt;/strong>: Anglais&lt;/p>
+				&lt;/li>
+			&lt;/ul>
+		&lt;/div>
+	&lt;/div>
+&lt;/section></code></pre>
+</details>
+
+<section id="filteredAppsList" class="wb-tagfilter provisional">
+	<h2>Exemple 2 - Liste d'applications</h2>
+	<div class="row">
+		<div class="col-sm-4 col-md-5 col-lg-6">
+			<div class="form-group">
+				<fieldset>
+					<legend><label for="institutionListe" class="fnt-nrml">Institution</label></legend>
+					<select id="institutionListe" name="institution" class="full-width form-control wb-tagfilter-ctrl">
+						<option value="">Toutes</option>
+						<option value="inst__EDC">Sciences et Développement économique Canada</option>
+						<option value="inst__AAFC">Agriculture et Agroalimentaire Canada</option>
+						<option value="inst__CBSA">Agence des services frontaliers du Canada</option>
+						<option value="inst__CBSAandPHAC">Agence des services frontaliers du Canada et Agence de la santé publique du Canada</option>
+						<option value="inst__CRA">Agence du revenu du Canada</option>
+						<option value="inst__CSPS">École de la fonction publique du Canada</option>
+						<option value="inst__ESDC">Emploi et Développement social Canada</option>
+						<option value="inst__ECCC">Environnement et Changement climatique Canada</option>
+						<option value="inst__FOC">Pêches et Océans Canada</option>
+						<option value="inst__GAC">Affaires mondiales Canada</option>
+						<option value="inst__HC">Santé Canada</option>
+						<option value="inst__IRCC">Immigration, Réfugiés, et Citoyenneté Canada</option>
+						<option value="inst__ISC">Services aux Autochtones Canada</option>
+						<option value="inst__Innovation">Innovation</option>
+						<option value="inst__NDandCAF">Défense nationale et les Forces armées canadiennes</option>
+						<option value="inst__NFBC">Office national du film du Canada</option>
+						<option value="inst__NRC">Ressources Naturelles Canada</option>
+						<option value="inst__PC">Parcs Canada</option>
+						<option value="inst__PHAC">Agence de la santé publique du Canada</option>
+						<option value="inst__PSPC">Services publics et Approvisionnement Canada</option>
+						<option value="inst__RCMP">Gendarmerie royale du Canada</option>
+						<option value="inst__SC">Statistique Canada</option>
+						<option value="inst__VAC">Anciens Combattants Canada</option>
+					</select>
+				</fieldset>
+			</div>
+		</div>
+		<div class="col-sm-8 col-md-7 col-lg-6">
+			<div class="form-group mrgn-bttm-0">
+				<fieldset>
+					<legend>Plateforme</legend>
+					<ul class="list-unstyled list-inline">
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__ios"> iOS
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__android"> Android
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__bb"> Blackberry
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__amazon"> Amazon
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__windows"> Windows
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="row wb-eqht-grd wb-tagfilter-items">
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__CBSA inst__CBSAandPHAC inst__HC inst__PHAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">ArriveCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Use ArriveCAN to provide mandatory travel information on and after your entry into Canada.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags=" plat__android inst__NRC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Auto$mart</h3>
+				<p><span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Auto$mart mobile application helps drivers track their fuel consumption, learn how to be more fuel-efficient and save money.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__RCMP">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">B.C. RCMP</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">B.C. RCMP connects you to information for the latest news, missing and wanted persons, how to report a crime and more.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__FOC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Baitfish Primer</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Developed by Fisheries and Oceans Canada, The Baitfish Primer mobile app is a guide that allows users identify and protect Ontario’s baitfishes wherever they go!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">BarCode.tv</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">BARCODE is a simple and fun documentary app that gives voice to the objects around you.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__EDC inst__Innovation">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canada Business</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Your mobile business partner. A simplified all-access point for businesses to find essential information, directly interact with government resources and use tools to build your business.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canada COVID-19</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The app will support you to track your symptoms, receive the latest updates, and access trusted resources.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canadian Armed Forces App</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">A new look for 2021! Get the latest updates from CAF leadership, access CANFORGENS, browse social media feeds, view Defence imagery and discover a variety of resources such as health, pay and pension</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC inst__PHAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canadian Guidelines on Sexually Transmitted Infections</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">If you are a health professional, you will want to download our new Canadian Guidelines on Sexually Transmitted Infections mobile app.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb plat__amazon inst__CBSA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">CBSA CanBorder</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-warning">Amazon</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">The CanBorder app provides estimated wait times at select ports of entry in Canada and the United States. In addition to current wait times listed by port, you’ll also find forecasted wait times, based on historical data, trends and patterns.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__AAFC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Cereal Aphids Manager</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Easy-to-use app for controlling cereal aphids</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__CRA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">CRA Business Tax Reminders</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">CRA Business Tax Reminders lets business users create custom reminders and alerts for key CRA due dates related to instalment payments, returns, and remittances.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__CBSA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">eDeclaration</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">Looking for a better border experience? Download the eDeclaration mobile app to save time upon arrival in Canada. Using eDeclaration is quick, simple and secure.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__IRCC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">How Canadian are you, eh?</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">How much do you know about Canada? Test your knowledge with the official Immigration, Refugees and Citizenship Canada application aptly named ‘How Canadian are you, Eh?’</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">HR GO</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The HR GO App provides critical HR information to public service managers and staff including; articles, contacts, walkthroughs, links to En ligne resources and calculators.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ESDC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Job Bank – Job Search</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Job search made easy with Job Bank. Search for work and find a job in Canada.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__PC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Louisbourg Guided Tour</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Enhance your experience visiting Fortress of Louisbourg National Historic Site with the self-guided tour app!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Ludovic</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">Guided by Ludovic, a lovable teddy bear, children can learn about the passage of time by participating in simple, creative and educational activities.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">McLaren's Workshop</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">A free iPad app that provides access to 51 works by animation pioneer Norman McLaren and lets users create their own films, exploring three animation techniques made famous by McLaren.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">My Transition App</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Canadian Armed Forces Transition app has been designed to assist all military members in their transition to civilian life and the civilian workforce.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__NRC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">My Tree</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">My Tree provides a list of selected trees of Canada and their hardiness zones to allow Canadians to choose a suitable tree for their environment.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb plat__windows inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">NFB Films</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span> <span class="label label-default">Windows</span></p>
+				<p class="mrgn-bttm-0">Watch over 2,000 documentaries, animations and feature films for free.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">OSI Connect</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">OSI Connect is a free mental health learning and self-management mobile app developed to help OSI patients and their families understand the nature of operational stress injuries (OSIs).</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__bb inst__PSPC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">ourlangues.gc.ca on the go!</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">The ourlangues.gc.ca on the go! mobile application lets users search TERMIUM Plus®, the Government of Canada's terminology and linguistic data bank, and quickly find equivalents for nearly 4 million Anglais and Français terms in various fields.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__amazon inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Pesticide Labels</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-warning">Amazon</span></p>
+				<p class="mrgn-bttm-0">Mobile version of PMRA's Label Search. Search and download registered pesticide labels.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">PTSD Coach Canada</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">PTSD Coach Canada can help you learn about and manage symptoms that can occur after trauma.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Recalls and Safety Alerts</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">Get Government of Canada Recalls and Safety Alerts on the go!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__CSPS">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Reconciliation: A Starting Point</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Reconciliation: A Starting Point app is a reference tool for learning about First Nations, Inuit and Métis Peoples, including key historical events and reconciliation initiatives.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Respect in the CAF</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">The Respect in the Canadian Armed Forces app provides support and guidance to victims of sexual misconduct, bystanders, and those in a position of leadership.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__PC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Restigouche Guided Tour</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Enhance your experience visiting Restigouche National Historic Site with the self-guided tour app!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Road to Mental Readiness (R2MR)</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Road to Mental Readiness (R2MR) Mobile Application is a mobile training tool developed to improve short-term performance and long-term mental health outcomes.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ISC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">SCIS Photo app</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Take and send your photo for your secure status card for free</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__SC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">StatsCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">StatsCAN: Data for a better Canada! Explore the stories behind the numbers with facts, visuals and our latest Eh Sayers podcasts.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">The Last Hunt</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The first made-for-tablet story that challenges the conventions of the tablet reading experience.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__GAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Travel Smart</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Travel smarter with the Government of Canada’s Travel Smart app, your one-stop-shop for international travel information and advice.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Veterans Matter</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Veterans Matter will help you find information about remembrance and the services and benefits offered to Veterans and their families.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">War of 1812</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">This interactive graphic novel follows a fictional family from Upper Canada that is torn apart by the conflict with the United States.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ECCC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">WeatherCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Available on Apple and Android smartphones, WeatherCAN draws its weather data and information directly from Environment and Climate Change Canada, the official source for Canadian weather alerts.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;section id=&quot;filteredAppsList&quot; class=&quot;wb-tagfilter provisional&quot;&gt;
+	&lt;h2&gt;Exemple 2 (liste d'applications)&lt;/h2&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;div class="col-sm-4 col-md-5 col-lg-6">
+			&lt;div class="form-group">
+				&lt;fieldset>
+					&lt;legend>&lt;label for="institutionListe" class="fnt-nrml">Institution&lt;/label>&lt;/legend>
+					&lt;select id="institutionListe" name="institution" class="full-width form-control wb-tagfilter-ctrl">
+						&lt;option value="">Toutes&lt;/option>
+						&lt;option value="inst__EDC">Sciences et Développement économique Canada&lt;/option>
+						&lt;option value="inst__AAFC">Agriculture et Agroalimentaire Canada&lt;/option>
+						&lt;option value="inst__CBSA">Agence des services frontaliers du Canada&lt;/option>
+						&lt;option value="inst__CBSAandPHAC">Agence des services frontaliers du Canada et Agence de la santé publique du Canada&lt;/option>
+						&lt;option value="inst__CRA">Agence du revenu du Canada&lt;/option>
+						&lt;option value="inst__CSPS">École de la fonction publique du Canada&lt;/option>
+						&lt;option value="inst__ESDC">Emploi et Développement social Canada&lt;/option>
+						&lt;option value="inst__ECCC">Environnement et Changement climatique Canada&lt;/option>
+						&lt;option value="inst__FOC">Pêches et Océans Canada&lt;/option>
+						&lt;option value="inst__GAC">Affaires mondiales Canada&lt;/option>
+						&lt;option value="inst__HC">Santé Canada&lt;/option>
+						&lt;option value="inst__IRCC">Immigration, Réfugiés, et Citoyenneté Canada&lt;/option>
+						&lt;option value="inst__ISC">Services aux Autochtones Canada&lt;/option>
+						&lt;option value="inst__Innovation">Innovation&lt;/option>
+						&lt;option value="inst__NDandCAF">Défense nationale et les Forces armées canadiennes&lt;/option>
+						&lt;option value="inst__NFBC">Office national du film du Canada&lt;/option>
+						&lt;option value="inst__NRC">Ressources Naturelles Canada&lt;/option>
+						&lt;option value="inst__PC">Parcs Canada&lt;/option>
+						&lt;option value="inst__PHAC">Agence de la santé publique du Canada&lt;/option>
+						&lt;option value="inst__PSPC">Services publics et Approvisionnement Canada&lt;/option>
+						&lt;option value="inst__RCMP">Gendarmerie royale du Canada&lt;/option>
+						&lt;option value="inst__SC">Statistique Canada&lt;/option>
+						&lt;option value="inst__VAC">Anciens Combattants Canada&lt;/option>
+					&lt;/select>
+				&lt;/fieldset>
+			&lt;/div>
+		&lt;/div>
+		&lt;div class=&quot;col-sm-8 col-md-7 col-lg-6&quot;&gt;
+			&lt;div class=&quot;form-group mrgn-bttm-0&quot;&gt;
+				&lt;fieldset&gt;
+					&lt;legend&gt;&lt;span class=&quot;field-name&quot;&gt;Plateforme&lt;/span&gt;&lt;/legend&gt;
+					&lt;ul class=&quot;list-unstyled list-inline&quot;&gt;
+						&lt;li class=&quot;checkbox&quot;&gt;
+							&lt;label&gt;
+								&lt;input type=&quot;checkbox&quot; name=&quot;platform&quot; class=&quot;wb-tagfilter-ctrl&quot; value=&quot;plat__ios&quot;&gt; iOS
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class=&quot;checkbox&quot;&gt;
+							&lt;label&gt;
+								&lt;input type=&quot;checkbox&quot; name=&quot;platform&quot; class=&quot;wb-tagfilter-ctrl&quot; value=&quot;plat__android&quot;&gt; Android
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class=&quot;checkbox&quot;&gt;
+							&lt;label&gt;
+								&lt;input type=&quot;checkbox&quot; name=&quot;platform&quot; class=&quot;wb-tagfilter-ctrl&quot; value=&quot;plat__bb&quot;&gt; Blackberry
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class=&quot;checkbox&quot;&gt;
+							&lt;label&gt;
+								&lt;input type=&quot;checkbox&quot; name=&quot;platform&quot; class=&quot;wb-tagfilter-ctrl&quot; value=&quot;plat__amazon&quot;&gt; Amazon
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class=&quot;checkbox&quot;&gt;
+							&lt;label&gt;
+								&lt;input type=&quot;checkbox&quot; name=&quot;platform&quot; class=&quot;wb-tagfilter-ctrl&quot; value=&quot;plat__windows&quot;&gt; Windows
+							&lt;/label&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/fieldset&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;row wb-eqht-grd wb-tagfilter-items&quot;&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__CBSA inst__CBSAandPHAC inst__HC inst__PHAC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;ArriveCAN&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;Use ArriveCAN to provide mandatory travel information on and after your entry into Canada.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot; plat__android inst__NRC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Auto$mart&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;The Auto$mart mobile application helps drivers track their fuel consumption, learn how to be more fuel-efficient and save money.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android plat__bb inst__RCMP&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;B.C. RCMP&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt; &lt;span class=&quot;label label-primary&quot;&gt;Blackberry&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;B.C. RCMP connects you to information for the latest news, missing and wanted persons, how to report a crime and more.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__FOC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Baitfish Primer&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;Developed by Fisheries and Oceans Canada, The Baitfish Primer mobile app is a guide that allows users identify and protect Ontario&rsquo;s baitfishes wherever they go!&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios inst__NFBC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;BarCode.tv&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;BARCODE is a simple and fun documentary app that gives voice to the objects around you.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__EDC inst__Innovation&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Canada Business&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;Your mobile business partner. A simplified all-access point for businesses to find essential information, directly interact with government resources and use tools to build your business.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__HC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Canada COVID-19&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;The app will support you to track your symptoms, receive the latest updates, and access trusted resources.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__NDandCAF&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Canadian Armed Forces App&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;A new look for 2021! Get the latest updates from CAF leadership, access CANFORGENS, browse social media feeds, view Defence imagery and discover a variety of resources such as health, pay and pension&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__HC inst__PHAC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Canadian Guidelines on Sexually Transmitted Infections&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;If you are a health professional, you will want to download our new Canadian Guidelines on Sexually Transmitted Infections mobile app.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android plat__bb plat__amazon inst__CBSA&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;CBSA CanBorder&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt; &lt;span class=&quot;label label-warning&quot;&gt;Amazon&lt;/span&gt; &lt;span class=&quot;label label-primary&quot;&gt;Blackberry&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;The CanBorder app provides estimated wait times at select ports of entry in Canada and the United States. In addition to current wait times listed by port, you&rsquo;ll also find forecasted wait times, based on historical data, trends and patterns.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android inst__AAFC&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;Cereal Aphids Manager&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;Easy-to-use app for controlling cereal aphids&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android plat__bb inst__CRA&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;CRA Business Tax Reminders&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt; &lt;span class=&quot;label label-primary&quot;&gt;BlackBerry&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;CRA Business Tax Reminders lets business users create custom reminders and alerts for key CRA due dates related to instalment payments, returns, and remittances.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-sm-6 col-lg-4&quot; data-wb-tags=&quot;plat__ios plat__android plat__bb inst__CBSA&quot;&gt;
+			&lt;div class=&quot;well&quot; style=&quot;height:100%&quot;&gt;
+				&lt;h3 class=&quot;mrgn-tp-0&quot;&gt;eDeclaration&lt;/h3&gt;
+				&lt;p&gt;&lt;span class=&quot;label label-default&quot;&gt;iOS&lt;/span&gt; &lt;span class=&quot;label label-success&quot;&gt;Android&lt;/span&gt; &lt;span class=&quot;label label-primary&quot;&gt;BlackBerry&lt;/span&gt;&lt;/p&gt;
+				&lt;p class=&quot;mrgn-bttm-0&quot;&gt;Looking for a better border experience? Download the eDeclaration mobile app to save time upon arrival in Canada. Using eDeclaration is quick, simple and secure.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</details>
+
+<section id="filteredFAQ" class="wb-tagfilter provisional wb-filter" data-wb-filter='{
+		"selector": "article",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter"
+	}'>
+	<h2>Exemple 3 - FAQ utilisant le plugiciel Filtre</h2>
+	<div id="searchFilter" class="row mrgn-tp-lg">
+		<div class="col-sm-12">
+			<p class="h3 wb-fltr-info mrgn-tp-0"><span data-nbitem></span> résultats sur <span data-total></span></p>
+		</div>
+		<div class="col-sm-4 col-md-5 col-lg-4">
+			<div class="form-group">
+				<label for="customSearchUI">Rechercher</label>
+				<input type="search" class="form-control full-width" id="customSearchUI">
+			</div>
+		</div>
+		<div class="col-sm-8 col-md-7 col-lg-8">
+			<div class="form-group mrgn-bttm-0">
+				<fieldset class="p-0">
+					<legend class="h5 mrgn-tp-0"><span class="field-name">Sujet</span></legend>
+					<ul class="list-unstyled list-inline">
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_mwa"> mesRégimesDeTravail (mRT)
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_hwm"> Modèle de travail hybride
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_fwa"> Entente de travail flexible
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="wb-tagfilter-items">
+		<article data-wb-tags="subject_mwa subject_hwm">
+			<h3>Les employés du MDN dont le régime de travail ne sera pas modifié par la mise en œuvre du nouveau modèle de travail hybride devront-ils tout de même soumettre une entente à l'aide de l'application mesRégimesDeTravail (mRT)?</h3>
+			<p>Tous les employés de la fonction publique doivent soumettre une entente de travail à l'aide de <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a> avant le <span class="nowrap">3 mars 2023</span>, y compris les employés qui travaillent sur place à temps plein et les employés dont le régime de travail n'a pas changé.</p>
+			<p>Toute entente soumise antérieurement à l'aide du formulaire du Programme civil de travail flexible n'est plus valide et doit être soumise de nouveau comme nouvelle entente à l'aide de <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a>.</p>
+		</article>
+		<article data-wb-tags="subject_mwa">
+			<h3>Les employés contractuels, les étudiants et les employés à temps partiel doivent-ils remplir un formulaire dans mesRégimesDeTravail?</h3>
+			<p>Tous les employés de la fonction publique, quelle que soit la durée de leur emploi (durée indéterminée ou déterminée, employés occasionnels et étudiants) et qu'ils aient été embauchés à temps plein ou à temps partiel, doivent entrer leur entente de travail dans <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a> au plus tard le <span class="nowrap">3 mars 2023</span>.</p>
+			<p>Les employés contractuels ne sont pas assujettis à cette exigence.</p>
+			<p>Une solution est prévue pour les personnes qui n'ont pas accès au <a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">Portail des applications du SCT (PAS)</a>, où est hébergée l'application <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a>. Des renseignements à ce sujet seront diffusés dès qu'ils seront disponibles.</p>
+		</article>
+		<article data-wb-tags="subject_hwm">
+			<h3>Les employés du MDN qui travaillent actuellement à temps plein dans le lieu de travail peuvent-ils adopter un modèle de travail hybride?</h3>
+			<p>Le travail hybride est une option de travail flexible qui peut être envisagée à l'échelle du MDN selon les directives de N1 et les exigences opérationnelles.</p>
+			<p>Les employés du MDN qui travaillent actuellement sur place à temps plein peuvent discuter avec leur gestionnaire pour voir si le travail hybride serait approprié. Cette décision est laissée à la discrétion des gestionnaires qui devraient tenir compte de plusieurs facteurs, notamment la mesure dans laquelle le travail de l'employé peut être exécuté efficacement à distance ou au bureau office.</p>
+		</article>
+		<article data-wb-tags="subject_hwm">
+			<h3>Est-il encore possible pour les gestionnaires d'embaucher une personne qui habite à plus de 125&nbsp;km du lieu de travail même si elle doit travailler à distance à temps plein?</h3>
+			<p>Selon l'<a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/orientation-concernant-presence-prescrite-lieu-travail.html">Orientation concernant la présence prescrite au lieu de travail – Canada.ca</a>, les N1 ont le pouvoir délégué d'approuver certains cas exceptionnels. Par conséquent, le N1 concerné déterminera si l'embauche d'une personne habitant à plus de 125&nbsp;km d'un lieu de travail désigné est faisable ou non. Cette décision peut être fondée sur divers facteurs comme les exigences opérationnelles, la difficulté de doter certains postes et la compatibilité du travail avec un lieu de travail virtuel. Même si l'exception est approuvée, les employés habitant à plus de 125&nbsp;km du lieu de travail peuvent être appelés à se présenter au lieu de travail désigné à l'occasion.</p>
+			<p>Un processus relatif aux exceptions au <a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/modele-travail-hybride-commun-fonction-publique-federale.html">modèle de travail hybride commun pour la fonction publique fédérale</a> avant l'emploi au sein du MDN est en cours d'élaboration et sera annoncé bientôt.</p>
+		</article>
+		<article data-wb-tags="subject_hwm">
+			<h3>Quel est le processus à suivre pour demander une exception au nouveau modèle de travail hybride, et quels sont les niveaux d'approbation nécessaires? Est-ce le régime (hybride, travail sur place à temps plein, télétravail à temps plein, etc.) qui détermine le niveau d'approbation?</h3>
+			<p>Les employés qui souhaitent faire l'objet d'une exception afin de faire du télétravail à temps plein tel qu'établi dans le <a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/modele-travail-hybride-commun-fonction-publique-federale.html">modèle de travail hybride commun pour la fonction publique fédérale</a> doivent informer leur gestionnaire de leur demande de mesure d'exception <strong>avant</strong> la date limite pour la soumission d'une entente de travail, à savoir le <span class="nowrap">3 mars 2023</span>. Il ne faut pas soumettre d'entente de télétravail à temps plein dans <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a> avant d'avoir obtenu une approbation de N1.</p>
+			<p>Le SMA(RH-Civ) travaille à l'élaboration d'un processus fondé sur les critères du Secrétariat du Conseil du Trésor qui permettra les exceptions; cependant, ces exceptions seront limitées et devront être approuvées au niveau de SMA.</p>
+			<p>D'autres renseignements seront diffusés dès qu'ils seront disponibles.</p>
+		</article>
+		<article data-wb-tags="subject_mwa">
+			<h3>Avec qui doivent communiquer les employés du MDN s'ils n'ont pas accès à l'application mesRégimesDeTravail sur le Portail des applications du SCT?</h3>
+			<p>Nous travaillons à la mise en place d'une solution pour les personnes qui n'ont pas accès au <a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">Portail des applications du Secrétariat du Conseil du Trésor du Canada (PAS)</a>, où est hébergée l'application <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a>.</p>
+			<p>Des renseignements supplémentaires à ce sujet seront diffusés dès qu'ils seront disponibles, y compris en ce qui concerne le report de la date limite pour soumettre les ententes de travail.</p>
+			<p>Les employés et les gestionnaires peuvent s'adresser à <a href="http://hrciv-rhciv.mil.ca/fr/s-rh-numeriques-hr-connect-rh.page">HR Connect RH</a> au besoin.</p>
+		</article>
+		<article data-wb-tags="subject_hwm">
+			<h3>Le modèle de travail hybride s'applique-t-il aux employés de la fonction publique et aux membres actifs des FAC?</h3>
+			<p>Même si cette directive s'adressait aux employés de la fonction publique, la mise en œuvre de la politique pourrait aussi avoir une incidence sur les membres des Forces armées canadiennes, particulièrement sur le plan de la GI-TI et des locaux. Les militaires sont encouragés à consulter leur chaîne de commandement pour obtenir des précisions.</p>
+		</article>
+		<article data-wb-tags="subject_mwa">
+			<h3>Quelle est la date limite pour soumettre une entente de travail dans mesRégimesDeTravail?</h3>
+			<p>Tous les employés de la fonction publique doivent soumettre une entente de travail dans <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT</a> <strong>au plus tard le <span class="nowrap">3 mars 2023</span></strong>, y compris les employés qui travaillent sur place à temps plein.</p>
+			<p>Avant d'approuver les ententes, les gestionnaires devraient discuter avec leurs équipes d'une approche générale à l'égard des ententes de travail individuelles dans le modèle de travail hybride. Les ententes peuvent être renouvelées et mises à jour à mesure que la mise en œuvre du modèle hybride commun progresse.</p>
+		</article>
+		<article data-wb-tags="subject_mwa subject_fwa">
+			<h3>Les militaires doivent-ils soumettre une entente de travail hybride?</h3>
+			<p>Même si cette directive s'adressait aux employés de la fonction publique, la mise en œuvre de la politique pourrait aussi avoir une incidence sur les membres des Forces armées canadiennes, particulièrement sur le plan de la GI-TI et des locaux.</p>
+			<p>Les membres des FAC ne sont pas tenus de remplir la nouvelle entente de travail flexible à l'aide de l'application mesRégimesDeTravail, contrairement aux employés de la fonction publique. Ils devraient plutôt discuter avec leur chaîne de commandement des possibilités d'une entente de travail hybride.</p>
+			<p>Les gestionnaires militaires d'employés civils doivent examiner et approuver les ententes dans l'application <a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mesRégimesDeTravail</a> hébergée sur le <a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">PAS</a> du Conseil du Trésor.</p>
+		</article>
+		<article data-wb-tags>
+			<h3>Le retour au bureau aura-t-il des répercussions fiscales?</h3>
+			<p>Non. Le retour au bureau n'aura aucune répercussion fiscale.</p>
+			<p>Les règles fiscales qui s'appliquent restent les mêmes; cependant, si vous réclamiez auparavant certaines dépenses à domicile en tant qu'employés travaillant à domicile, vous pourriez devoir modifier le montant en fonction du temps de travail à domicile à partir du moment où vous travaillez en mode hybride.</p>
+			<p>Les employés sont encouragés à consulter l'<a href="https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/tout-votre-declaration-revenus/declaration-revenus/remplir-declaration-revenus/deductions-credits-depenses/ligne-22900-autres-depenses-emploi/espace-travail-domicile-depenses.html">Agence du revenu du Canada</a> (ARC) pour en savoir plus sur les déductions et l'impôt.</p>
+		</article>
+		<article data-wb-tags>
+			<h3>Les personnes qui suivent une formation en langue seconde à temps plein devront-elles suivre la formation au bureau si elles la suivent présentement en mode virtuel?</h3>
+			<p>Les employés qui suivent présentement une formation en langue seconde à temps plein devraient la poursuivre selon les modalités déjà convenues avec le fournisseur de la formation, que ce soit en mode virtuel, hybride ou en personne.</p>
+			<p>S'il y a un changement aux modalités de la formation, le fournisseur de la formation devrait en informer directement les employés concernés.</p>
+		</article>
+		<article data-wb-tags="subject_fwa">
+			<h3>Si une personne croit avoir droit à une exemption, comment faut-il procéder pour présenter un formulaire d'entente de travail flexible et obtenir l'approbation de son SMA?</h3>
+			<p>L'information sur les modalités de travail se trouve sur la page Web sur les <a href="http://hrciv-rhciv.mil.ca/fr/avenir-du-travail-mtf.page">Modalités de travail (mil.ca)</a>.</p>
+			<p>À l'heure actuelle, le Ministère continue de travailler avec le Secrétariat du Conseil du Trésor (SCT) afin d'établir des critères clairs pour les ententes de télétravail à temps plein, les mesures d'adaptation et les exceptions, y compris la situation d'employés qui habitent à plus de 125&nbsp;km de leur lieu de travail désigné.</p>
+			<p>L'information sur ce processus sera diffusée lorsqu'elle sera disponible.</p>
+		</article>
+		<article data-wb-tags="subject_mwa">
+			<h3>Comment les gestionnaires assureront-ils le respect de l'horaire de travail hybride?</h3>
+			<p>Les employés et les gestionnaires doivent discuter de façon proactive afin d'aborder et de préciser les attentes à l'égard du travail hybride.</p>
+			<p>Les employés doivent présenter leur entente de travail à leur gestionnaire aux fins d'approbation à l'aide de la nouvelle application <a href="http://hrciv-rhciv.mil.ca/fr/avenir-du-travail-mtf.page">MesRégimesDeTravail</a> du Secrétariat du Conseil du Trésor (SCT).</p>
+			<p>D'autres directives seront fournies au cours des prochaines semaines afin que tout le monde puisse travailler efficacement dans ce milieu de travail hybride officiel.</p>
+		</article>
+	</div>
+</section>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;section id="filteredFAQ" class="wb-tagfilter provisional wb-filter" data-wb-filter='{
+		"selector": "article",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter"
+	}'>
+	&lt;h2>Exemple 3 - FAQ utilisant le plugiciel Filtre&lt;/h2>
+	&lt;div id="searchFilter" class="row mrgn-tp-lg">
+		&lt;div class="col-sm-12">
+			&lt;p class="h3 wb-fltr-info mrgn-tp-0">&lt;span data-nbitem>&lt;/span> résultats sur &lt;span data-total>&lt;/span>&lt;/p>
+		&lt;/div>
+		&lt;div class="col-sm-4 col-md-5 col-lg-4">
+			&lt;div class="form-group">
+				&lt;label for="customSearchUI">Rechercher&lt;/label>
+				&lt;input type="search" class="form-control full-width" id="customSearchUI">
+			&lt;/div>
+		&lt;/div>
+		&lt;div class="col-sm-8 col-md-7 col-lg-8">
+			&lt;div class="form-group mrgn-bttm-0">
+				&lt;fieldset class="p-0">
+					&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Sujet&lt;/span>&lt;/legend>
+					&lt;ul class="list-unstyled list-inline">
+						&lt;li class="checkbox">
+							&lt;label>
+								&lt;input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_mwa"> mesRégimesDeTravail (mRT)
+							&lt;/label>
+						&lt;/li>
+						&lt;li class="checkbox">
+							&lt;label>
+								&lt;input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_hwm"> Modèle de travail hybride
+							&lt;/label>
+						&lt;/li>
+						&lt;li class="checkbox">
+							&lt;label>
+								&lt;input type="checkbox" name="subject" class="wb-tagfilter-ctrl" value="subject_fwa"> Entente de travail flexible
+							&lt;/label>
+						&lt;/li>
+					&lt;/ul>
+				&lt;/fieldset>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;div class="wb-tagfilter-items">
+		&lt;article data-wb-tags="subject_mwa subject_hwm">
+			&lt;h3>Les employés du MDN dont le régime de travail ne sera pas modifié par la mise en œuvre du nouveau modèle de travail hybride devront-ils tout de même soumettre une entente à l'aide de l'application mesRégimesDeTravail (mRT)?&lt;/h3>
+			&lt;p>Tous les employés de la fonction publique doivent soumettre une entente de travail à l'aide de &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a> avant le &lt;span class="nowrap">3 mars 2023&lt;/span>, y compris les employés qui travaillent sur place à temps plein et les employés dont le régime de travail n'a pas changé.&lt;/p>
+			&lt;p>Toute entente soumise antérieurement à l'aide du formulaire du Programme civil de travail flexible n'est plus valide et doit être soumise de nouveau comme nouvelle entente à l'aide de &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a>.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_mwa">
+			&lt;h3>Les employés contractuels, les étudiants et les employés à temps partiel doivent-ils remplir un formulaire dans mesRégimesDeTravail?&lt;/h3>
+			&lt;p>Tous les employés de la fonction publique, quelle que soit la durée de leur emploi (durée indéterminée ou déterminée, employés occasionnels et étudiants) et qu'ils aient été embauchés à temps plein ou à temps partiel, doivent entrer leur entente de travail dans &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a> au plus tard le &lt;span class="nowrap">3 mars 2023&lt;/span>.&lt;/p>
+			&lt;p>Les employés contractuels ne sont pas assujettis à cette exigence.&lt;/p>
+			&lt;p>Une solution est prévue pour les personnes qui n'ont pas accès au &lt;a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">Portail des applications du SCT (PAS)&lt;/a>, où est hébergée l'application &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a>. Des renseignements à ce sujet seront diffusés dès qu'ils seront disponibles.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_hwm">
+			&lt;h3>Les employés du MDN qui travaillent actuellement à temps plein dans le lieu de travail peuvent-ils adopter un modèle de travail hybride?&lt;/h3>
+			&lt;p>Le travail hybride est une option de travail flexible qui peut être envisagée à l'échelle du MDN selon les directives de N1 et les exigences opérationnelles.&lt;/p>
+			&lt;p>Les employés du MDN qui travaillent actuellement sur place à temps plein peuvent discuter avec leur gestionnaire pour voir si le travail hybride serait approprié. Cette décision est laissée à la discrétion des gestionnaires qui devraient tenir compte de plusieurs facteurs, notamment la mesure dans laquelle le travail de l'employé peut être exécuté efficacement à distance ou au bureau office.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_hwm">
+			&lt;h3>Est-il encore possible pour les gestionnaires d'embaucher une personne qui habite à plus de 125&nbsp;km du lieu de travail même si elle doit travailler à distance à temps plein?&lt;/h3>
+			&lt;p>Selon l'&lt;a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/orientation-concernant-presence-prescrite-lieu-travail.html">Orientation concernant la présence prescrite au lieu de travail – Canada.ca&lt;/a>, les N1 ont le pouvoir délégué d'approuver certains cas exceptionnels. Par conséquent, le N1 concerné déterminera si l'embauche d'une personne habitant à plus de 125&nbsp;km d'un lieu de travail désigné est faisable ou non. Cette décision peut être fondée sur divers facteurs comme les exigences opérationnelles, la difficulté de doter certains postes et la compatibilité du travail avec un lieu de travail virtuel. Même si l'exception est approuvée, les employés habitant à plus de 125&nbsp;km du lieu de travail peuvent être appelés à se présenter au lieu de travail désigné à l'occasion.&lt;/p>
+			&lt;p>Un processus relatif aux exceptions au &lt;a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/modele-travail-hybride-commun-fonction-publique-federale.html">modèle de travail hybride commun pour la fonction publique fédérale&lt;/a> avant l'emploi au sein du MDN est en cours d'élaboration et sera annoncé bientôt.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_hwm">
+			&lt;h3>Quel est le processus à suivre pour demander une exception au nouveau modèle de travail hybride, et quels sont les niveaux d'approbation nécessaires? Est-ce le régime (hybride, travail sur place à temps plein, télétravail à temps plein, etc.) qui détermine le niveau d'approbation?&lt;/h3>
+			&lt;p>Les employés qui souhaitent faire l'objet d'une exception afin de faire du télétravail à temps plein tel qu'établi dans le &lt;a href="https://www.canada.ca/fr/gouvernement/fonctionpublique/dotation/modele-travail-hybride-commun-fonction-publique-federale.html">modèle de travail hybride commun pour la fonction publique fédérale&lt;/a> doivent informer leur gestionnaire de leur demande de mesure d'exception &lt;strong>avant&lt;/strong> la date limite pour la soumission d'une entente de travail, à savoir le &lt;span class="nowrap">3 mars 2023&lt;/span>. Il ne faut pas soumettre d'entente de télétravail à temps plein dans &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a> avant d'avoir obtenu une approbation de N1.&lt;/p>
+			&lt;p>Le SMA(RH-Civ) travaille à l'élaboration d'un processus fondé sur les critères du Secrétariat du Conseil du Trésor qui permettra les exceptions; cependant, ces exceptions seront limitées et devront être approuvées au niveau de SMA.&lt;/p>
+			&lt;p>D'autres renseignements seront diffusés dès qu'ils seront disponibles.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_mwa">
+			&lt;h3>Avec qui doivent communiquer les employés du MDN s'ils n'ont pas accès à l'application mesRégimesDeTravail sur le Portail des applications du SCT?&lt;/h3>
+			&lt;p>Nous travaillons à la mise en place d'une solution pour les personnes qui n'ont pas accès au &lt;a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">Portail des applications du Secrétariat du Conseil du Trésor du Canada (PAS)&lt;/a>, où est hébergée l'application &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a>.&lt;/p>
+			&lt;p>Des renseignements supplémentaires à ce sujet seront diffusés dès qu'ils seront disponibles, y compris en ce qui concerne le report de la date limite pour soumettre les ententes de travail.&lt;/p>
+			&lt;p>Les employés et les gestionnaires peuvent s'adresser à &lt;a href="http://hrciv-rhciv.mil.ca/fr/s-rh-numeriques-hr-connect-rh.page">HR Connect RH&lt;/a> au besoin.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_hwm">
+			&lt;h3>Le modèle de travail hybride s'applique-t-il aux employés de la fonction publique et aux membres actifs des FAC?&lt;/h3>
+			&lt;p>Même si cette directive s'adressait aux employés de la fonction publique, la mise en œuvre de la politique pourrait aussi avoir une incidence sur les membres des Forces armées canadiennes, particulièrement sur le plan de la GI-TI et des locaux. Les militaires sont encouragés à consulter leur chaîne de commandement pour obtenir des précisions.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_mwa">
+			&lt;h3>Quelle est la date limite pour soumettre une entente de travail dans mesRégimesDeTravail?&lt;/h3>
+			&lt;p>Tous les employés de la fonction publique doivent soumettre une entente de travail dans &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mRT&lt;/a> &lt;strong>au plus tard le &lt;span class="nowrap">3 mars 2023&lt;/span>&lt;/strong>, y compris les employés qui travaillent sur place à temps plein.&lt;/p>
+			&lt;p>Avant d'approuver les ententes, les gestionnaires devraient discuter avec leurs équipes d'une approche générale à l'égard des ententes de travail individuelles dans le modèle de travail hybride. Les ententes peuvent être renouvelées et mises à jour à mesure que la mise en œuvre du modèle hybride commun progresse.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_mwa subject_fwa">
+			&lt;h3>Les militaires doivent-ils soumettre une entente de travail hybride?&lt;/h3>
+			&lt;p>Même si cette directive s'adressait aux employés de la fonction publique, la mise en œuvre de la politique pourrait aussi avoir une incidence sur les membres des Forces armées canadiennes, particulièrement sur le plan de la GI-TI et des locaux.&lt;/p>
+			&lt;p>Les membres des FAC ne sont pas tenus de remplir la nouvelle entente de travail flexible à l'aide de l'application mesRégimesDeTravail, contrairement aux employés de la fonction publique. Ils devraient plutôt discuter avec leur chaîne de commandement des possibilités d'une entente de travail hybride.&lt;/p>
+			&lt;p>Les gestionnaires militaires d'employés civils doivent examiner et approuver les ententes dans l'application &lt;a href="https://portal-portail.tbs-sct.gc.ca/accessrequest-fra.aspx?url=https%3a%2f%2fmwa-mrt.tbs-sct.gc.ca&amp;systemid=mwa">mesRégimesDeTravail&lt;/a> hébergée sur le &lt;a href="https://portal-portail.tbs-sct.gc.ca/home-fra.aspx">PAS&lt;/a> du Conseil du Trésor.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags>
+			&lt;h3>Le retour au bureau aura-t-il des répercussions fiscales?&lt;/h3>
+			&lt;p>Non. Le retour au bureau n'aura aucune répercussion fiscale.&lt;/p>
+			&lt;p>Les règles fiscales qui s'appliquent restent les mêmes; cependant, si vous réclamiez auparavant certaines dépenses à domicile en tant qu'employés travaillant à domicile, vous pourriez devoir modifier le montant en fonction du temps de travail à domicile à partir du moment où vous travaillez en mode hybride.&lt;/p>
+			&lt;p>Les employés sont encouragés à consulter l'&lt;a href="https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/tout-votre-declaration-revenus/declaration-revenus/remplir-declaration-revenus/deductions-credits-depenses/ligne-22900-autres-depenses-emploi/espace-travail-domicile-depenses.html">Agence du revenu du Canada&lt;/a> (ARC) pour en savoir plus sur les déductions et l'impôt.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags>
+			&lt;h3>Les personnes qui suivent une formation en langue seconde à temps plein devront-elles suivre la formation au bureau si elles la suivent présentement en mode virtuel?&lt;/h3>
+			&lt;p>Les employés qui suivent présentement une formation en langue seconde à temps plein devraient la poursuivre selon les modalités déjà convenues avec le fournisseur de la formation, que ce soit en mode virtuel, hybride ou en personne.&lt;/p>
+			&lt;p>S'il y a un changement aux modalités de la formation, le fournisseur de la formation devrait en informer directement les employés concernés.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_fwa">
+			&lt;h3>Si une personne croit avoir droit à une exemption, comment faut-il procéder pour présenter un formulaire d'entente de travail flexible et obtenir l'approbation de son SMA?&lt;/h3>
+			&lt;p>L'information sur les modalités de travail se trouve sur la page Web sur les &lt;a href="http://hrciv-rhciv.mil.ca/fr/avenir-du-travail-mtf.page">Modalités de travail (mil.ca)&lt;/a>.&lt;/p>
+			&lt;p>À l'heure actuelle, le Ministère continue de travailler avec le Secrétariat du Conseil du Trésor (SCT) afin d'établir des critères clairs pour les ententes de télétravail à temps plein, les mesures d'adaptation et les exceptions, y compris la situation d'employés qui habitent à plus de 125&nbsp;km de leur lieu de travail désigné.&lt;/p>
+			&lt;p>L'information sur ce processus sera diffusée lorsqu'elle sera disponible.&lt;/p>
+		&lt;/article>
+		&lt;article data-wb-tags="subject_mwa">
+			&lt;h3>Comment les gestionnaires assureront-ils le respect de l'horaire de travail hybride?&lt;/h3>
+			&lt;p>Les employés et les gestionnaires doivent discuter de façon proactive afin d'aborder et de préciser les attentes à l'égard du travail hybride.&lt;/p>
+			&lt;p>Les employés doivent présenter leur entente de travail à leur gestionnaire aux fins d'approbation à l'aide de la nouvelle application &lt;a href="http://hrciv-rhciv.mil.ca/fr/avenir-du-travail-mtf.page">MesRégimesDeTravail&lt;/a> du Secrétariat du Conseil du Trésor (SCT).&lt;/p>
+			&lt;p>D'autres directives seront fournies au cours des prochaines semaines afin que tout le monde puisse travailler efficacement dans ce milieu de travail hybride officiel.&lt;/p>
+		&lt;/article>
+	&lt;/div>
+&lt;/section></code></pre>
+</details>
+
+<section id="filteredTable" class="wb-tagfilter provisional">
+	<h2>Exemple de tableau</h2>
+	<fieldset>
+		<legend class="h5 mrgn-tp-0"><span class="field-name">Sélectionnez la ou les colonne(s) à afficher</span></legend>
+		<ul class="list-unstyled">
+			<li class="checkbox">
+				<label>
+					<input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_1"> Colonne 1
+				</label>
+			</li>
+			<li class="checkbox">
+				<label>
+					<input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_2"> Colonne 2
+				</label>
+			</li>
+			<li class="checkbox">
+				<label>
+					<input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_3"> Colonne 3
+				</label>
+			</li>
+			<li class="checkbox">
+				<label>
+					<input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_4"> Colonne 4
+				</label>
+			</li>
+		</ul>
+	</fieldset>
+	<table class="wb-tagfilter-items table">
+		<thead>
+			<tr>
+				<td></td>
+				<th data-wb-tags="col_1">Colonne 1</th>
+				<th data-wb-tags="col_2">Colonne 2</th>
+				<th data-wb-tags="col_3">Colonne 3</th>
+				<th data-wb-tags="col_4">Colonne 4</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>En-tête de ligne A</th>
+				<td data-wb-tags="col_1">Colonne 1</td>
+				<td data-wb-tags="col_2">Colonne 2</td>
+				<td data-wb-tags="col_3">Colonne 3</td>
+				<td data-wb-tags="col_4">Colonne 4</td>
+			</tr>
+			<tr>
+				<th>En-tête de ligne B</th>
+				<td data-wb-tags="col_1">Colonne 1</td>
+				<td data-wb-tags="col_2">Colonne 2</td>
+				<td data-wb-tags="col_3">Colonne 3</td>
+				<td data-wb-tags="col_4">Colonne 4</td>
+			</tr>
+			<tr>
+				<th>En-tête de ligne C</th>
+				<td data-wb-tags="col_1">Colonne 1</td>
+				<td data-wb-tags="col_2">Colonne 2</td>
+				<td data-wb-tags="col_3">Colonne 3</td>
+				<td data-wb-tags="col_4">Colonne 4</td>
+			</tr>
+			<tr>
+				<th>En-tête de ligne D</th>
+				<td data-wb-tags="col_1">Colonne 1</td>
+				<td data-wb-tags="col_2">Colonne 2</td>
+				<td data-wb-tags="col_3">Colonne 3</td>
+				<td data-wb-tags="col_4">Colonne 4</td>
+			</tr>
+			<tr>
+				<th>En-tête de ligne E</th>
+				<td data-wb-tags="col_1">Colonne 1</td>
+				<td data-wb-tags="col_2">Colonne 2</td>
+				<td data-wb-tags="col_3">Colonne 3</td>
+				<td data-wb-tags="col_4">Colonne 4</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;section id="filteredTable" class="wb-tagfilter provisional">
+	&lt;h2>Exemple de tableau&lt;/h2>
+	&lt;fieldset>
+		&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Sélectionnez la ou les colonne(s) à afficher&lt;/span>&lt;/legend>
+		&lt;ul class="list-unstyled">
+			&lt;li class="checkbox">
+				&lt;label>
+					&lt;input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_1"> Colonne 1
+				&lt;/label>
+			&lt;/li>
+			&lt;li class="checkbox">
+				&lt;label>
+					&lt;input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_2"> Colonne 2
+				&lt;/label>
+			&lt;/li>
+			&lt;li class="checkbox">
+				&lt;label>
+					&lt;input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_3"> Colonne 3
+				&lt;/label>
+			&lt;/li>
+			&lt;li class="checkbox">
+				&lt;label>
+					&lt;input type="checkbox" name="colonnes" class="wb-tagfilter-ctrl" value="col_4"> Colonne 4
+				&lt;/label>
+			&lt;/li>
+		&lt;/ul>
+	&lt;/fieldset>
+	&lt;table class="wb-tagfilter-items table">
+		&lt;thead>
+			&lt;tr>
+				&lt;td>&lt;/td>
+				&lt;th data-wb-tags="col_1">Colonne 1&lt;/th>
+				&lt;th data-wb-tags="col_2">Colonne 2&lt;/th>
+				&lt;th data-wb-tags="col_3">Colonne 3&lt;/th>
+				&lt;th data-wb-tags="col_4">Colonne 4&lt;/th>
+			&lt;/tr>
+		&lt;/thead>
+		&lt;tbody>
+			&lt;tr>
+				&lt;th>En-tête de ligne A&lt;/th>
+				&lt;td data-wb-tags="col_1">Colonne 1&lt;/td>
+				&lt;td data-wb-tags="col_2">Colonne 2&lt;/td>
+				&lt;td data-wb-tags="col_3">Colonne 3&lt;/td>
+				&lt;td data-wb-tags="col_4">Colonne 4&lt;/td>
+			&lt;/tr>
+			...
+		&lt;/tbody>
+	&lt;/table>
+&lt;/section></code></pre>
+</details>
