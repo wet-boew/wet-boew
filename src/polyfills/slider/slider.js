@@ -25,7 +25,7 @@ var fdSlider = (function() {
             // Does a JSON (native or not) Object exist
             if(typeof JSON === "object" && typeof(JSON.parse) === "function") {
                 return JSON.parse(str);
-            // Genious code taken from: http://kentbrewster.com/badges/
+            // Genious code taken from: https://web.archive.org/web/20140715200301/http://kentbrewster.com/badges/
             } else if(/mousewheelenabled|fullaria|describedby|norangebar|html5animation|varsetrules/.test(str.toLowerCase())) {
                 var f = Function(['var document,top,self,window,parent,Number,Date,Object,Function,',
                     'Array,String,Math,RegExp,Image,ActiveXObject;',
