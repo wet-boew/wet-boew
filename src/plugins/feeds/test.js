@@ -42,7 +42,7 @@ describe( "Feeds test suite", function() {
 											},
 											{
 												title: "Test entry 2",
-												link: "http://bar.com",
+												link: "https://bar.com",
 												publishedDate: "Wed, 29 Jan 2014 21:00:00 -0500"
 											},
 											{
