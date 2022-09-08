@@ -1,0 +1,77 @@
+---
+{
+	"title": "Accessibility assessment #4 - Feeds",
+	"language": "en",
+	"description": "Partial. Evaluation of new Success Criteria at Level A and Level AA of WCAG 2.1 and WCAG 2.2",
+	"tag": "feeds",
+	"parentdir": "feeds",
+	"parentPage": "Feeds",
+	"parentPageURL": "feeds",
+	"altLangPage": "a11y-1-fr.html",
+	"dateModified": "2022-09-07"
+}
+---
+<div id="ds-a11y" data-wb-jsonmanager='{ "url": "a11y-1.json", "name": "a11y" }'></div>
+
+<dl class="dl-horizontal">
+	<dt>Evaluation Report Identifier</dt>
+	<dd data-json-replace="#[a11y]/id">Not Available</dd>
+	<dt>Type</dt>
+	<dd>Accessibility assessment</dd>
+	<dt>Asserted by:</dt>
+	<dd data-json-replace="#[a11y]/assertedBy">Not Available</dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/date">Not Available</dd>
+	<dt>Page:</dt>
+	<dd><a data-wb-json='[
+
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "attr",
+				"attr": "href"
+			},
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "replace"
+			}
+
+		]' href="#">Not Defined</a></dd>
+	<dt>Subject</dt>
+	<dd data-json-replace="#[a11y]/assessment">Not Defined</dd>
+	<dt>Notes:</dt>
+	<dd data-json-replace="#[a11y]/notes">No notes</dd>
+	<dt>Scores</dt>
+	<dd data-json-replace="#[a11y]/score">Not Calculated</dd>
+</dl>
+
+<h2>Assessment details</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Success Criteria</th>
+			<th>Result</th>
+			<th>Comments</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/results",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": ":nth-child(1)", "value": "/label" },
+			{ "selector": ":nth-child(2)", "value": "/outcome" },
+			{ "selector": ":nth-child(3)", "value": "/notes" }
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th></th>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</template>
