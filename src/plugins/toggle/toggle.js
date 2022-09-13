@@ -109,7 +109,7 @@ var componentName = "wb-toggle",
 					// Check if the element is toggled on based on the
 					// open attribute or "on" CSS class
 					isOpen = elm.nodeName.toLowerCase() === "details" ?
-						!!elm.getAttribute( "open" ) :
+						!!elm.hasAttribute( "open" ) :
 						( " " + tab.className + " " ).indexOf( " " + data.stateOn + " " );
 					if ( isOpen ) {
 						hasOpen = true;
