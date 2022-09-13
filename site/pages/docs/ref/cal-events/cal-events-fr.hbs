@@ -33,20 +33,23 @@
 	<h2>Mise en œuvre</h2>
 	<ol>
 		<li>Ajouter un élément div à la page Web avec un attribut <code>class</code> contenant "wb-calevt" et un nom unique dans un attribut <code>data-calevt-src</code> (e.g.: <code>&lt;div class="wb-calevt" data-calevt-src="unique-name"&gt;&lt;/div&gt;</code>).</li>
-		<li>Inclure dans l’élément div une liste ordonnée des événements (élément ol) en utilisant la structure suivante pour chaque événement :
+		<li>Inclure dans l’élément div une liste non-ordonnée des événements (élément ul) en utilisant la structure suivante pour chaque événement :
 			<ol>
 				<li>L’élément de liste doit commencer par un élément d’en-tête (de <code>h2</code> à <code>h6</code>, selon le contexte de la page).</li>
 				<li>L’élément d’en-tête doit inclure un lien vers la description de l’événement, avec le titre de l’événement comme hyperlien.</li>
 				<li>La date de l’événement doit être fournie dans un élément <code>time</code> en HTML5 contenu au sein d’un élément de paragraphe (à la suite de l’élément d’en-tête). La date à afficher est contenue dans l’élément <code>time</code> et une date de norme ISO-8601 (p. ex., 2010-03-11) est indiquée dans l’attribut <code>datetime</code>.</li>
+				<li>Remarque : pour empêcher un élément de s'afficher dans le calendrier ainsi que dans la liste, ajoutez simplement la classe CSS <code>wb-fltr-out</code> à l'élément de liste (<code>&lt;li&gt;</code>).</li>
 			</ol>
 		</li>
 		<li>Ajouter un deuxième élément <code>div</code> à la page Web avec le nom unique de l’attribut <code>data-calevt-src</code> ci-haut (p.ex., <code>&lt;div id="unique-name"&gt;&lt;/div&gt;</code>). Cela permettra de maintenir en place l’interface de calendrier.</li>
 	</ol>
+	<p><strong>Note</strong>: ce plugiciel prend toujours en charge <code>&lt;ul&gt;</code> et <code>&lt;ol&gt;</code>, mais, en date du 4 octobre 2022, nous recommandons d'utiliser un <code>&lt;ul&gt;</code> car les numéros d'éléments dans un <code>&lt;ol&gt;</code> commencerons toujours à 1, même lorsque certains éléments sont masqués.</p>
+
 	<p>Exemple code :</p>
 	<pre><code>&lt;div id="calendar1"&gt;&lt;/div&gt;
 
 &lt;div class="wb-calevt" data-calevt-src="calendar1"&gt;
-	&lt;ol&gt;
+	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;section&gt;
 				&lt;h4&gt;&lt;a href="https://www.canada.gc.ca"&gt;Événement de seul-jour&lt;/a&gt;&lt;/h4&gt;
@@ -61,7 +64,7 @@
 				&lt;p&gt;Description de l'événement&lt;/p&gt;
 			&lt;/section&gt;
 		&lt;/li&gt;
-	&lt;/ol&gt;
+	&lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 
 	<section>
@@ -70,7 +73,7 @@
 		<pre><code>&lt;div id="calendar2"&gt;&lt;/div&gt;
 
 &lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar2"&gt;
-	&lt;ol&gt;
+	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;section&gt;
 				&lt;h4&gt;Événement de seul-jour&lt;/h4&gt;
@@ -95,7 +98,7 @@
 				&lt;/ul&gt;
 			&lt;/section&gt;
 		&lt;/li&gt;
-	&lt;/ol&gt;
+	&lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 	</section>
 
@@ -108,7 +111,7 @@
 &lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar3"&gt;
 	&lt;section&gt;
 		&lt;h4&gt;Événements - Liste 1&lt;/h4&gt;
-		&lt;ol&gt;
+		&lt;ul&gt;
 			&lt;li class="cal-disp-onshow"&gt;
 				&lt;section&gt;
 					&lt;h5&gt;&lt;a href="https://www.ec.gc.ca"&gt;Événement 1&lt;/a&gt;&lt;/h5&gt;
@@ -153,7 +156,7 @@
 					&lt;p&gt;&lt;time datetime="2011-04-23"&gt;23 avril 2011&lt;/time&gt;&lt;/p&gt;
 				&lt;/section&gt;
 			&lt;/li&gt;
-		&lt;/ol&gt;
+		&lt;/ul&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 	</section>
@@ -203,6 +206,11 @@
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
+			</tr>
+			<tr>
+				<td><code>wb-redraw.wb-calevt</code> (v4.0.??)</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-redraw.wb-calevt" );</code>).</td>
+				<td>Used to manually redraw the Calendar widget. For example, when events have been changed dynamically after page load.</td>
 			</tr>
 		</tbody>
 	</table>
