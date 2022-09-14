@@ -7,20 +7,39 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-02-15"
+	"dateModified": "2022-09-14"
 }
 ---
 
 <p>Cette page présente certaines fonctionnalités utilitaires wet-boew, y compris certaines intégrations à partir de Bootstrap 4 telles que: <code>p-0</code>, <code>pl-2</code>, <code>text-white</code> et autres.</p>
+<p>Veuillez noter que certaines classes rétroportées de Bootstrap 4 ont été ajustées pour suivre les points d'arrêt de vue de Bootstrap 3.4. Par exemple, la largeur minimale de la petite (<code>sm</code>) vue est 768px dans Bootstrap 3.4, par rapport à 576px dans Boostrap 4.</p>
 
 <h2>Sur cette page:</h2>
 <ul>
+	<li><a href="#alignment">Alignement</a></li>
 	<li><a href="#arriere-plan">Arrière-plan</a></li>
 	<li><a href="#couleurs">Schémas de couleurs</a></li>
+	<li><a href="#flexbox" lang="en">Flexbox</a></li>
 	<li><a href="#espacement">Espacement</a></li>
 	<li><a href="#positionnement">Positionnement</a></li>
 	<li><a href="#divers">Divers</a></li>
 </ul>
+
+<h2 id="alignment">Alignement</h2>
+
+<h3><code>text-sm-left</code></h3>
+<p>Aligne le text vers la gauche dans la petite vue et plus.</p>
+<h4>Example pratique</h4>
+<p class="text-right text-sm-left">Aligné vers la gauche dans la petite vue et plus</p>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="text-right <strong>text-sm-left</strong>"&gt;Aligné vers la gauche dans la petite vue et plus&lt;/p&gt;</code></pre>
+
+<h3><code>text-sm-right</code></h3>
+<p>Aligne le text vers la droite dans la petite vue et plus.</p>
+<h4>Example pratique</h4>
+<p class="text-sm-right">Aligné vers la droite dans la petite vue et plus</p>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="<strong>text-sm-right</strong>"&gt;Aligné vers la droite dans la petite vue et plus&lt;/p&gt;</code></pre>
 
 <h2 id="arriere-plan">Arrière-plan</h2>
 
@@ -168,6 +187,72 @@
 <p class="pb-4 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code :</h4>
 <pre><code>&lt;p class="<strong>pb-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
+
+<div lang="en">
+<h2 id="flexbox" lang="en">Flexbox</h2>
+
+<h3><code>d-sm-flex</code></h3>
+<p>Set an element as a flexbox container and change its direct children into flex items in small view and over.</p>
+<p>Définissez un élément comme un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» et change ces enfants directs en éléments flex dans la petite vue et plus.</p>
+<h4>Example pratique</h4>
+<div class="d-sm-flex">
+	<p class="well">Élément flex</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="<strong>d-sm-flex</strong>"&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-sm-wrap</code></h3>
+<p>Permet les éléments flex d'un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» de retourner à travers plusieurs lignes dans la petite vue et plus. Utile pour les dispositions en grille.</p>
+<h4>Example pratique</h4>
+<div class="row d-sm-flex flex-sm-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row d-sm-flex <strong>flex-sm-wrap</strong>"&gt;
+	&lt;div class="col-sm-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-sm-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>align-items-sm-center</code></h3>
+<p>Aligner les éléments flex d'un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» dans la petite vue et plus. Utile pour aligner vers le milieu.</p>
+<h4>Example pratique</h4>
+<div class="row d-sm-flex align-items-sm-center">
+	<div class="col-xs-4">
+		<p class="well">Ligne 1<br />Ligne 2<br />Ligne 3<br />Ligne 4<br />Ligne 5</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Ligne 1<br />Ligne 2<br />Ligne 3</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Ligne 1</p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row d-sm-flex <strong>align-items-sm-center</strong>"&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Ligne 1&lt;br /&gt;Ligne 2&lt;br /&gt;Ligne 3&lt;br /&gt;Ligne 4&lt;br /&gt;Ligne 5&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Ligne 1&lt;br /&gt;Ligne 2&lt;br /&gt;Ligne 3&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Ligne 1&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
 
 <h2 id="positionnement">Positionnement</h2>
 <h3><code>position-relative</code></h3>

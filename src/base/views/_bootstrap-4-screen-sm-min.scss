@@ -3,6 +3,28 @@
   @title: Bootstrap 4 suplemental style for WET-BOEW - Small view and over (screen only)
  */
 
+/* Alignment */
+.text-sm-left {
+	text-align: left;
+}
+
+.text-sm-right {
+	text-align: right;
+}
+
+/* Flexbox */
+.d-sm-flex {
+	display: flex;
+}
+
+.flex-sm-wrap {
+	flex-wrap: wrap;
+}
+
+.align-items-sm-center {
+	align-items: center;
+}
+
 /* Margin */
 .mb-sm-5 {
 	margin-bottom: 50px;
