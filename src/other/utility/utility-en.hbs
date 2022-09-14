@@ -7,21 +7,40 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-02-15"
+	"dateModified": "2022-09-14"
 }
 ---
 
 <p>This page showcases wet-boew utility features including some integration from Bootstrap 4 such as: <code>p-0</code>, <code>pl-2</code>, <code>text-white</code> and others.</p>
+<p>Please note that some backported Bootstrap 4 classes have been adjusted to follow Bootstrap 3.4's view breakpoints. For example, small (<code>sm</code>) view's minimum width is 768px in Bootstrap 3.4, as opposed to 576px in Bootstrap 4.</p>
 
 <h2>On this page:</h2>
 
 <ul>
+	<li><a href="#alignment">Alignment</a></li>
 	<li><a href="#background">Background</a></li>
 	<li><a href="#colors">Color schemes</a></li>
+	<li><a href="#flexbox">Flexbox</a></li>
 	<li><a href="#spacing">Spacing</a></li>
 	<li><a href="#positioning">Positioning</a></li>
 	<li><a href="#miscellaneous">Miscellaneous</a></li>
 </ul>
+
+<h2 id="alignment">Alignment</h2>
+
+<h3><code>text-sm-left</code></h3>
+<p>Align text to the left in small view and over.</p>
+<h4>Working example</h4>
+<p class="text-right text-sm-left">Left-aligned in small view and over</p>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="text-right <strong>text-sm-left</strong>"&gt;Left-aligned in small view and over&lt;/p&gt;</code></pre>
+
+<h3><code>text-sm-right</code></h3>
+<p>Align text to the right in small view and over.</p>
+<h4>Working example</h4>
+<p class="text-sm-right">Right-aligned in small view and over</p>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="<strong>text-sm-right</strong>"&gt;Right-aligned in small view and over&lt;/p&gt;</code></pre>
 
 <h2 id="background">Background</h2>
 
@@ -171,6 +190,69 @@
 <p class="pb-4 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Code sample:</h4>
 <pre><code>&lt;p class="<strong>pb-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
+
+<h2 id="flexbox">Flexbox</h2>
+
+<h3><code>d-sm-flex</code></h3>
+<p>Set an element as a flexbox container and change its direct children into flex items in small view and over.</p>
+<h4>Working example</h4>
+<div class="d-sm-flex">
+	<p class="well">Flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="<strong>d-sm-flex</strong>"&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-sm-wrap</code></h3>
+<p>Allow a flexbox container's flex items to wrap across multiple lines in small view and over. Useful for grid layouts.</p>
+<h4>Working example</h4>
+<div class="row d-sm-flex flex-sm-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row d-sm-flex <strong>flex-sm-wrap</strong>"&gt;
+	&lt;div class="col-sm-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-sm-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>align-items-sm-center</code></h3>
+<p>Center-align a flexbox container's flex items in small view and over. Useful for middle-aligning.</p>
+<h4>Working example</h4>
+<div class="row d-sm-flex align-items-sm-center">
+	<div class="col-xs-4">
+		<p class="well">Line 1<br />Line 2<br />Line 3<br />Line 4<br />Line 5</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Line 1<br />Line 2<br />Line 3</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Line 1</p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row d-sm-flex <strong>align-items-sm-center</strong>"&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;br /&gt;Line 2&lt;br /&gt;Line 3&lt;br /&gt;Line 4&lt;br /&gt;Line 5&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;br /&gt;Line 2&lt;br /&gt;Line 3&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 <h2 id="positioning">Positioning</h2>
 
