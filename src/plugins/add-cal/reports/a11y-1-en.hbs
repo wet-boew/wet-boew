@@ -19,7 +19,7 @@
 	<dt>Type</dt>
 	<dd>Accessibility assessment</dd>
 	<dt>Asserted by:</dt>
-	<dd data-json-replace="#[a11y]/assertedBy">Not Available</dd>
+	<dd><span data-json-replace="#[a11y]/assertedBy/producedBy/name">Unknown</span> on behalf of <span data-json-replace="#[a11y]/assertedBy/name">Not Available</span></dd>
 	<dt>Date:</dt>
 	<dd data-json-replace="#[a11y]/date">Not Available</dd>
 	<dt>Page:</dt>
@@ -43,6 +43,43 @@
 	<dt>Scores</dt>
 	<dd data-json-replace="#[a11y]/score">Not Calculated</dd>
 </dl>
+
+<details>
+	<summary>Revision</summary>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Outcome</th>
+				<th>Comments</th>
+				<th>Reviewer</th>
+			</tr>
+		</thead>
+		<tbody data-wb-json='{
+			"url": "#[a11y]/review",
+			"tobeclone": "tr",
+			"source": "#tmpl-reviews",
+			"mapping": [
+				{ "selector": ":nth-child(1)", "value": "/date" },
+				{ "selector": ":nth-child(2)", "value": "/outcome" },
+				{ "selector": ":nth-child(3)", "value": "/notes" },
+				{ "selector": ":nth-child(4)", "value": "/name" }
+			]
+		}'>
+		</tbody>
+	</table>
+
+	<template id="tmpl-reviews">
+		<table>
+			<tr>
+				<th></th>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</template>
+</details>
 
 <h2>Assessment details</h2>
 <table class="table">
