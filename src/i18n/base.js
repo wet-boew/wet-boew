@@ -94,6 +94,8 @@ wb.i18nDict = {
 	},
 	pos: "@pos@",
 	dur: "@dur@",
+	msgYoutubeNotLoad: "@msgYoutubeNotLoad@",
+	msgYoutubeVdLoad: "@msgYoutubeVdLoad@",
 
 	/* Share widget */
 	"shr-txt": "@shr-txt@",
