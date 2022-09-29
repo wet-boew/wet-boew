@@ -43,9 +43,18 @@
 	}
 }
 
-/* Position relative */
+/* Positioning */
 .position-relative {
 	position: relative !important;
+}
+
+/* Flexbox */
+.d-flex {
+	display: flex !important;
+}
+
+.align-self-center {
+	align-self: center !important;
 }
 
 /* Vertical alignment */
