@@ -146,7 +146,8 @@ describe( "calendar test suite", function() {
 			expect( trigger.calledWith( {
 				type: "wb-navigate.wb-clndr",
 				year: 2012,
-				month: 1
+				month: 1,
+				initEvent: true
 			} ) ).to.be( true );
 		} );
 	} );
