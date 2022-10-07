@@ -42,7 +42,7 @@
     "bootstrap-sass": "3.4.1",
     "code-prettify": "^0.1.0",
     "datatables.net": "1.11.4",
-    "dompurify": "^2.3.5",
+    "dompurify": "^2.4.0",
     "es5-shim": "2.3.0",
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
     "html5shiv": "^3.7.3",
