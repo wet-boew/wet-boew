@@ -19,8 +19,9 @@
 	<li><a href="#alignment">Alignement</a></li>
 	<li><a href="#arriere-plan">Arrière-plan</a></li>
 	<li><a href="#couleurs">Schémas de couleurs</a></li>
-	<li><a href="#flexbox" lang="en">Flexbox</a></li>
 	<li><a href="#espacement">Espacement</a></li>
+	<li><a href="#dimension">Dimensionnement</a></li>
+	<li><a href="#flexbox" lang="en">Flexbox</a></li>
 	<li><a href="#positionnement">Positionnement</a></li>
 	<li><a href="#divers">Divers</a></li>
 </ul>
@@ -140,53 +141,99 @@
 
 <h2 id="espacement">Espacement</h2>
 <h3><code>p-0</code></h3>
-<p>Défini un remplaissage de 0px.</p>
+<p>Défini un remplissage de 0px.</p>
 <h4>Exemple pratique</h4>
 <p class="p-0 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>p-0</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>pl-2</code></h3>
-<p>Défini un remplaissage à gauche de 5px.</p>
+<p>Défini un remplissage à gauche de 5px.</p>
 <h4>Exemple pratique</h4>
 <p class="pl-2 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>pl-2</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>px-2</code></h3>
-<p>Défini un remplaissage à gauche et à droite de 5px.</p>
+<p>Défini un remplissage à gauche et à droite de 5px.</p>
 <h4>Exemple pratique</h4>
 <p class="px-2 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>px-2</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>pr-2</code></h3>
-<p>Défini un remplaissage à droite de 5px.</p>
+<p>Défini un remplissage à droite de 5px.</p>
 <h4>Exemple pratique</h4>
 <p class="pr-2 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>pr-2</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>pt-4</code></h3>
-<p>Défini un remplaissage au dessus de 30px.</p>
+<p>Défini un remplissage au-dessus de 30px.</p>
 <h4>Exemple pratique</h4>
 <p class="pt-4 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>pt-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>py-4</code></h3>
-<p>Défini un remplaissage au dessus et en dessous de 30px.</p>
+<p>Défini un remplissage au-dessus et en-dessous de 30px.</p>
 <h4>Exemple pratique</h4>
 <p class="py-4 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>py-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
 <h3><code>pb-4</code></h3>
-<p>Défini un remplaissage en dessous de 30px.</p>
+<p>Défini un remplissage en-dessous de 30px.</p>
 <h4>Exemple pratique</h4>
 <p class="pb-4 bg-primary max-content">Suspendisse faucibus nisl at consectetur.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>pb-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
+
+<h3><code>mt-auto</code></h3>
+<p>Défini une marge au-dessus automatique. Lorsque utilisé conjointement avec "flex", l'élément ira se coller au bas de son conteneur.</p>
+<h4>Exemple pratique</h4>
+<p>Veuillez tester sur tablette ou ordinateur de bureau afin d'obtenir l'effet escompté de cet utilitaire.</p>
+<div class="row wb-eqht-grd">
+	<div class="col-xs-6">
+		<p class="mt-auto mrgn-bttm-0 bg-primary">Exemple de texte.</p>
+	</div>
+	<div class="col-xs-6">
+			<p class="mrgn-bttm-0 bg-primary">Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.<span class="hidden-xs hidden-sm"> Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</span></p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row wb-eqht-grd"&gt;
+	&lt;div class="col-xs-6"&gt;
+		&lt;p class="<strong>mt-auto</strong> mrgn-bttm-0 bg-primary"&gt;Exemple de texte.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-6"&gt;
+			&lt;p class="mrgn-bttm-0 bg-primary"&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;span class="hidden-xs hidden-sm"&gt; Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/span&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="dimension">Dimensionnement</h2>
+
+<h3><code>h-100</code></h3>
+<p>Défini une grandeur de 100&nbsp;% sur l'élément. Lorsque utilisé dans le contexte de "flex", cela forcera l'élément a avoir la grandeur de son parent.</p>
+<h4>Exemple pratique</h4>
+<p>Veuillez tester sur tablette ou ordinateur de bureau afin d'obtenir l'effet escompté de cet utilitaire.</p>
+<div class="row wb-eqht-grd">
+	<div class="col-xs-6">
+		<p class="h-100 mrgn-bttm-0 bg-primary">Exemple de texte.</p>
+	</div>
+	<div class="col-xs-6">
+			<p class="mrgn-bttm-0 bg-primary">Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.<span class="hidden-xs hidden-sm"> Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</span></p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row wb-eqht-grd"&gt;
+	&lt;div class="col-xs-6"&gt;
+		&lt;p class="<strong>h-100</strong> mrgn-bttm-0 bg-primary"&gt;Exemple de texte.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-6"&gt;
+			&lt;p class="mrgn-bttm-0 bg-primary"&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;span class="hidden-xs hidden-sm"&gt; Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/span&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
 <h2 id="flexbox" lang="en">Flexbox</h2>
 
@@ -236,6 +283,19 @@
 	&lt;div class="col-sm-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-column"><code>flex-column</code></h3>
+<p>Défini la direction d'un conteneur "flex" à la vertical au lieu de l'horizontal.</p>
+<h4>Exemple pratique</h4>
+<div class="d-flex flex-column">
+	<p class="well">Élément flex</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="d-flex <strong>flex-column</strong>"&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h3><code>align-self-center</code></h3>

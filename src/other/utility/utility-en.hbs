@@ -20,8 +20,9 @@
 	<li><a href="#alignment">Alignment</a></li>
 	<li><a href="#background">Background</a></li>
 	<li><a href="#colors">Color schemes</a></li>
-	<li><a href="#flexbox">Flexbox</a></li>
 	<li><a href="#spacing">Spacing</a></li>
+	<li><a href="#sizing">Sizing</a></li>
+	<li><a href="#flexbox">Flexbox</a></li>
 	<li><a href="#positioning">Positioning</a></li>
 	<li><a href="#miscellaneous">Miscellaneous</a></li>
 </ul>
@@ -191,6 +192,52 @@
 <h4>Code sample</h4>
 <pre><code>&lt;p class="<strong>pb-4</strong> bg-primary max-content"&gt;Suspendisse faucibus nisl at consectetur.&lt;/p&gt;</code></pre>
 
+<h3><code>mt-auto</code></h3>
+<p>Set a top margin to auto. When used jointly with flexbox, it will stick an element to the bottom.</p>
+<h4>Working example</h4>
+<p>Please test on a tablet or desktop to get the full picture of this utility.</p>
+<div class="row wb-eqht-grd">
+	<div class="col-xs-6">
+		<p class="mt-auto mrgn-bttm-0 bg-primary">I'm at the bottom.</p>
+	</div>
+	<div class="col-xs-6">
+			<p class="mrgn-bttm-0 bg-primary">Example text. Example text. Example text. Example text.<span class="hidden-xs hidden-sm"> Example text. Example text. Example text. Example text.</span></p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row wb-eqht-grd"&gt;
+	&lt;div class="col-xs-6"&gt;
+		&lt;p class="<strong>mt-auto</strong> mrgn-bttm-0 bg-primary"&gt;Example text.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-6"&gt;
+			&lt;p class="mrgn-bttm-0 bg-primary"&gt;Example text. Example text. Example text. Example text.&lt;span class="hidden-xs hidden-sm"&gt; Example text. Example text. Example text. Example text.&lt;/span&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="sizing">Sizing</h2>
+
+<h3><code>h-100</code></h3>
+<p>Set an element to 100% height. When used in flexbox context, it will force a child element to match its parent height.</p>
+<h4>Working example</h4>
+<p>Please test on a tablet or desktop to get the full picture of this utility.</p>
+<div class="row wb-eqht-grd">
+	<div class="col-xs-6">
+		<p class="h-100 mrgn-bttm-0 bg-primary">I'm taking the full height.</p>
+	</div>
+	<div class="col-xs-6">
+			<p class="mrgn-bttm-0 bg-primary">Example text. Example text. Example text. Example text.<span class="hidden-xs hidden-sm"> Example text. Example text. Example text. Example text.</span></p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row wb-eqht-grd"&gt;
+	&lt;div class="col-xs-6"&gt;
+		&lt;p class="<strong>h-100</strong> mrgn-bttm-0 bg-primary"&gt;Example text.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-6"&gt;
+			&lt;p class="mrgn-bttm-0 bg-primary"&gt;Example text. Example text. Example text. Example text.&lt;span class="hidden-xs hidden-sm"&gt; Example text. Example text. Example text. Example text.&lt;/span&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h2 id="flexbox">Flexbox</h2>
 
 <h3 id="d-flex"><code>d-flex</code></h3>
@@ -238,6 +285,19 @@
 	&lt;div class="col-sm-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-column"><code>flex-column</code></h3>
+<p>Set a flexbox container's direction to vertical instead of horizontal.</p>
+<h4>Working example</h4>
+<div class="d-flex flex-column">
+	<p class="well">Flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-flex <strong>flex-column</strong>"&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
 <h3><code>align-self-center</code></h3>
