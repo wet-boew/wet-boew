@@ -6,7 +6,7 @@
 ( function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
+wb.doc.on( "click", "#overlay-open-btn", function( event ) {
 	if ( event.stopPropagation ) {
 		event.stopImmediatePropagation();
 	} else {

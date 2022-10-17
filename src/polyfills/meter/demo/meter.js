@@ -6,7 +6,7 @@
 ( function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", "#increaseMeter, #decreaseMeter", function( event ) {
+wb.doc.on( "click", "#increaseMeter, #decreaseMeter", function( event ) {
 	var $elm = $( "#updateTest" ),
 		increase = event.currentTarget.id === "increaseMeter",
 		valuenow = parseInt( $elm.attr( "value" ), 10 ),

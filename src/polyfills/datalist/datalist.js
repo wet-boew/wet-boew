@@ -318,7 +318,7 @@ var componentName = "wb-datalist",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click vclick touchstart", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
 		which = event.which,
@@ -343,8 +343,6 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 		break;
 
 	case "click":
-	case "vclick":
-	case "touchstart":
 
 		if ( initialized ) {
 
@@ -367,7 +365,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	return true;
 } );
 
-$document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", function( event ) {
+$document.on( "keydown click", ".wb-al a, .wb-al span", function( event ) {
 	var link = event.target,
 		eventType = event.type,
 		which = event.which;
@@ -379,8 +377,6 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 		}
 		break;
 	case "click":
-	case "vclick":
-	case "touchstart":
 
 		// Ignore middle/right mouse buttons
 		if ( !which || which === 1 ) {
