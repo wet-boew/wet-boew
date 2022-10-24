@@ -40,13 +40,33 @@
       "name": "Mr X",
       "city": "Gatineau",
       "somethingHTML": "<strong>Horay</strong> here rich HTML content",
-      "hobby": [ "Car", "Mechanic", "Race" ]
+      "hobby": [ "Car", "Mechanic", "Race" ],
+      "language": {
+        "en": {
+          "description": "description of Mr X",
+          "about": "About Mr X"
+        },
+        "fr": {
+          "description": "description de M. X",
+          "about": "À propos de M. X"
+        }
+      }
     },
     "2017-2": {
       "name": "Mrs Y",
       "city": "St-Pierre",
       "somethingHTML": "<strong>Youpi</strong> word should be with emphasis",
-      "hobby": [ "Spa", "Nature", "Bike", "Reading" ]
+      "hobby": [ "Spa", "Nature", "Bike", "Reading" ],
+      "language": {
+        "en": {
+          "description": "description of Mrs Y",
+          "about": "About Mrs Y"
+        },
+        "fr": {
+          "description": "description de Mme. Y",
+          "about": "À propos de Mme. Y"
+        }
+      }
     }
   }
 }

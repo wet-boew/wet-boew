@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Insertion de contenu extrait d'un fichier JSON et prends avantage de l'élément template du HTML 5.",
 	"altLangPage": "wb-data-json-en.html",
-	"dateModified": "2017-01-31"
+	"dateModified": "2022-10-12"
 }
 ---
 <div class="wb-prettify all-pre"></div>
@@ -385,6 +385,7 @@
 </div></div>
 
 <h3>When the array key information will be lost</h3>
+<p>Because the object already contains a field named <code>@id</code></p>
 <div class="row">
 <div class="col-sm-6">
 <p>Source</p>
@@ -508,7 +509,7 @@
 		<td><code>attr</code></td>
 		<td>Specify the element attribute name. Only required when <code>type="attr"</code>.</td>
 		<td><code>data-wb-json='{ "url": "", "type": "attr", "attr": "href" }'</code></td>
-		<td>A valid attribute name supported by the element and be one of the following <code>href, src, data-*, aria-*, role, pattern, min, max, step, low, high</code>.</td>
+		<td>A valid attribute name supported by the element and be one of the following <code>href, src, data-*, aria-*, role, pattern, min, max, step, low, high, lang, hreflang, action</code>.</td>
 	</tr>
 	<tr>
 		<td><code>prop</code></td>

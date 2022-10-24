@@ -7,7 +7,7 @@
 	"tag": "data-json",
 	"parentdir": "wb-data-json",
 	"altLangPage": "template-en.html",
-	"dateModified": "2022-03-02"
+	"dateModified": "2022-10-12"
 }
 ---
 <!--
@@ -66,13 +66,33 @@
 			&quot;nom&quot;: &quot;M. X&quot;,
 			&quot;ville&quot;: &quot;Gatineau&quot;,
 			&quot;quelquesChoseHTML&quot;: &quot;&lt;strong&gt;Horay&lt;/strong&gt; ici du contenu HTML enrichie&quot;,
-			&quot;passetemps&quot;: [ &quot;Voiture&quot;, &quot;Mécanique&quot;, &quot;Course&quot; ]
+			&quot;passetemps&quot;: [ &quot;Voiture&quot;, &quot;Mécanique&quot;, &quot;Course&quot; ],
+			"language": {
+				"fr": {
+					"description": "description de M. X",
+					"about": "À propos de M. X"
+				},
+				"en": {
+					"description": "description of Mr X",
+					"about": "About Mr X"
+				}
+			}
 		},
 		&quot;2017-2&quot;: {
 			&quot;nom&quot;: &quot;Mme. Y&quot;,
 			&quot;ville&quot;: &quot;St-Pierre&quot;,
 			&quot;quelquesChoseHTML&quot;: &quot;le mot &lt;strong&gt;Youpi&lt;/strong&gt; devrais avoir de la mise en évidence&quot;,
-			&quot;passetemps&quot;: [ &quot;Spa&quot;, &quot;Nature&quot;, &quot;Bicyclette&quot;, &quot;Lecture&quot; ]
+			&quot;passetemps&quot;: [ &quot;Spa&quot;, &quot;Nature&quot;, &quot;Bicyclette&quot;, &quot;Lecture&quot; ],
+			"language": {
+				"fr": {
+					"description": "description de Mme. Y",
+					"about": "À propos de Mme. Y"
+				},
+				"en": {
+					"description": "description of Mrs Y",
+					"about": "About Mrs Y"
+				}
+			}
 		}
 	}
 }</code></pre>
@@ -339,6 +359,15 @@
 			{ "selector": ":nth-child(2)", "value": "/ville", "placeholder": "[[ville]]" },
 			{ "selector": ":nth-child(3)", "value": "/quelquesChoseHTML", "isHTML": true },
 
+			{ "selector": "ul[data-object]", "value": "/language",
+				"source": "#gabaritExterneSousModele",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-about]", "value": "/about" },
+					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
+				]
+			},
+
 			{ "selector": "ul", "value": "/passetemps", "queryall": "li" }
 		]
 	}'>
@@ -347,41 +376,64 @@
 			<h3></h3> <!-- Nom -->
 			<p>De: [[ville]]</p>
 			<p></p> <!-- Description -->
+			<!-- Sous-modèle (Itération d'object) -->
+			<p>About:</p>
+			<ul data-object>
+			</ul>
 			<h4>Hobby:</h4>
-			<ul class="lst-spcd"> <!-- Conteneur du sous-modèle -->
+			<ul class="lst-spcd"> <!-- Sous-modèle (Itération de liste) -->
 				<template>
 					<li></li>
 				</template>
 			</ul>
 		</div>
 	</template>
+	<template id="gabaritExterneSousModele">
+		<li>(<span data-language></span>) <span data-about lang></span></li>
+	</template>
 </div>
 
 
 <details>
 	<summary>Source code</summary>
-	<pre><code>&lt;div class=&quot;row&quot; data-wb-json='{
-		&quot;url&quot;: &quot;demo/data-fr.json#/commentaire&quot;,
-		&quot;mapping&quot;: [
-			{ &quot;selector&quot;: &quot;h3&quot;, &quot;value&quot;: &quot;/nom&quot; },
-			{ &quot;selector&quot;: &quot;:nth-child(2)&quot;, &quot;value&quot;: &quot;/ville&quot;, &quot;placeholder&quot;: &quot;[[ville]]&quot; },
-			{ &quot;selector&quot;: &quot;:nth-child(3)&quot;, &quot;value&quot;: &quot;/quelquesChoseHTML&quot;, &quot;isHTML&quot;: true },
+	<pre><code>&lt;div class="row" data-wb-json='{
+		"url": "demo/data-fr.json#/commentaire",
+		"mapping": [
+			{ "selector": "h3", "value": "/nom" },
+			{ "selector": ":nth-child(2)", "value": "/ville", "placeholder": "[[ville]]" },
+			{ "selector": ":nth-child(3)", "value": "/quelquesChoseHTML", "isHTML": true },
 
-			{ &quot;selector&quot;: &quot;ul&quot;, &quot;value&quot;: &quot;/passetemps&quot;, &quot;queryall&quot;: &quot;li&quot; }
+			{ "selector": "ul[data-object]", "value": "/language",
+				"source": "#gabaritExterneSousModele",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-about]", "value": "/about" },
+					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
+				]
+			},
+
+			{ "selector": "ul", "value": "/passetemps", "queryall": "li" }
 		]
 	}'&gt;
 	&lt;template&gt;
-		&lt;div class=&quot;col-md-6&quot;&gt;
+		&lt;div class="col-md-6"&gt;
 			&lt;h3&gt;&lt;/h3&gt; &lt;!-- Nom --&gt;
 			&lt;p&gt;De: [[ville]]&lt;/p&gt;
 			&lt;p&gt;&lt;/p&gt; &lt;!-- Description --&gt;
+			&lt;!-- Sous-modèle (Itération d'object) --&gt;
+			&lt;p&gt;About:&lt;/p&gt;
+			&lt;ul data-object&gt;
+			&lt;/ul&gt;
 			&lt;h4&gt;Hobby:&lt;/h4&gt;
-			&lt;ul class=&quot;lst-spcd&quot;&gt; &lt;!-- Conteneur du sous-modèle --&gt;
+			&lt;ul class="lst-spcd"&gt; &lt;!-- Sous-modèle (Itération de liste) --&gt;
 				&lt;template&gt;
 					&lt;li&gt;&lt;/li&gt;
 				&lt;/template&gt;
 			&lt;/ul&gt;
 		&lt;/div&gt;
+	&lt;/template&gt;
+	&lt;template id="gabaritExterneSousModele"&gt;
+		&lt;li&gt;(&lt;span data-language&gt;&lt;/span&gt;) &lt;span data-about lang&gt;&lt;/span&gt;&lt;/li&gt;
 	&lt;/template&gt;
 &lt;/div&gt;</code></pre>
 </details>

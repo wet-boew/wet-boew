@@ -7,7 +7,7 @@
 	"tag": "data-json",
 	"parentdir": "wb-data-json",
 	"altLangPage": "template-fr.html",
-	"dateModified": "2020-03-02"
+	"dateModified": "2022-10-12"
 }
 ---
 <!--
@@ -60,18 +60,38 @@
 	{ &quot;name&quot;: &quot;Location name example 10&quot;, &quot;num&quot;: 56, &quot;street&quot;: &quot;Victoria&quot;, &quot;city&quot;: &quot;Gatineau&quot;, &quot;postalCode&quot;: &quot;J8X 0N6&quot;, &quot;css&quot;: &quot;bg-danger&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;email&quot;: &quot;info10@example.com&quot; },
 	{ &quot;name&quot;: &quot;Location name example 11&quot;, &quot;num&quot;: 200, &quot;street&quot;: &quot;Slater&quot;, &quot;city&quot;: &quot;Ottawa&quot;, &quot;postalCode&quot;: &quot;J8T 0I8&quot;, &quot;css&quot;: &quot;bg-success&quot;, &quot;homeUrl&quot;: &quot;https://github.com/wet-boew&quot;, &quot;email&quot;: &quot;info11@example.com&quot; }
 	],
-	&quot;comments&quot;: {
-		&quot;2017-1&quot;: {
-			&quot;name&quot;: &quot;Mr X&quot;,
-			&quot;city&quot;: &quot;Gatineau&quot;,
-			&quot;somethingHTML&quot;: &quot;&lt;strong&gt;Horay&lt;/strong&gt; here rich HTML content&quot;,
-			&quot;hobby&quot;: [ &quot;Car&quot;, &quot;Mechanic&quot;, &quot;Race&quot; ]
+	"comments": {
+		"2017-1": {
+			"name": "Mr X",
+			"city": "Gatineau",
+			"somethingHTML": "&lt;strong&gt;Horay&lt;/strong&gt; here rich HTML content",
+			"hobby": [ "Car", "Mechanic", "Race" ],
+			"language": {
+				"en": {
+					"description": "description of Mr X",
+					"about": "About Mr X"
+				},
+				"fr": {
+					"description": "description de M. X",
+					"about": "À propos de M. X"
+				}
+			}
 		},
-		&quot;2017-2&quot;: {
-			&quot;name&quot;: &quot;Mrs Y&quot;,
-			&quot;city&quot;: &quot;St-Pierre&quot;,
-			&quot;somethingHTML&quot;: &quot;&lt;strong&gt;Youpi&lt;/strong&gt; word should be with emphasis&quot;,
-			&quot;hobby&quot;: [ &quot;Spa&quot;, &quot;Nature&quot;, &quot;Bike&quot;, &quot;Reading&quot; ]
+		"2017-2": {
+			"name": "Mrs Y",
+			"city": "St-Pierre",
+			"somethingHTML": "&lt;strong&gt;Youpi&lt;/strong&gt; word should be with emphasis",
+			"hobby": [ "Spa", "Nature", "Bike", "Reading" ],
+			"language": {
+				"en": {
+					"description": "description of Mrs Y",
+					"about": "About Mrs Y"
+				},
+				"fr": {
+					"description": "description de Mme. Y",
+					"about": "À propos de Mme. Y"
+				}
+			}
 		}
 	}
 }</code></pre>
@@ -336,7 +356,17 @@
 			{ "selector": ":nth-child(2)", "value": "/city", "placeholder": "[[city]]" },
 			{ "selector": ":nth-child(3)", "value": "/somethingHTML", "isHTML": true },
 
-			{ "selector": "ul", "value": "/hobby", "queryall": "li" }
+			{ "selector": "ul[data-object]", "value": "/language",
+				"source": "#externalSubTemplateExample",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-about]", "value": "/about" },
+					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
+				]
+			},
+
+			{ "selector": "ul[data-array]", "value": "/hobby", "queryall": "li" }
+
 		]
 	}'>
 	<template>
@@ -344,41 +374,65 @@
 			<h3></h3> <!-- Name -->
 			<p>From: [[city]]</p>
 			<p></p> <!-- Description -->
+			<!-- Sub-template (iterate object) -->
+			<p>About:</p>
+			<ul data-object>
+			</ul>
 			<h4>Hobby:</h4>
-			<ul class="lst-spcd"> <!-- Sub-template container -->
+			<ul class="lst-spcd" data-array> <!-- Sub-template (iterate array) -->
 				<template>
 					<li></li>
 				</template>
 			</ul>
 		</div>
 	</template>
+	<template id="externalSubTemplateExample">
+		<li>(<span data-language></span>) <span data-about lang></span></li>
+	</template>
 </div>
 
 
 <details>
 	<summary>Source code</summary>
-	<pre><code>&lt;div class=&quot;row&quot; data-wb-json='{
-		&quot;url&quot;: &quot;demo/data-en.json#/comments&quot;,
-		&quot;mapping&quot;: [
-			{ &quot;selector&quot;: &quot;h3&quot;, &quot;value&quot;: &quot;/name&quot; },
-			{ &quot;selector&quot;: &quot;:nth-child(2)&quot;, &quot;value&quot;: &quot;/city&quot;, &quot;placeholder&quot;: &quot;[[city]]&quot; },
-			{ &quot;selector&quot;: &quot;:nth-child(3)&quot;, &quot;value&quot;: &quot;/somethingHTML&quot;, &quot;isHTML&quot;: true },
+	<pre><code>&lt;div class="row" data-wb-json='{
+		"url": "demo/data-en.json#/comments",
+		"mapping": [
+			{ "selector": "h3", "value": "/name" },
+			{ "selector": ":nth-child(2)", "value": "/city", "placeholder": "[[city]]" },
+			{ "selector": ":nth-child(3)", "value": "/somethingHTML", "isHTML": true },
 
-			{ &quot;selector&quot;: &quot;ul&quot;, &quot;value&quot;: &quot;/hobby&quot;, &quot;queryall&quot;: &quot;li&quot; }
+			{ "selector": "ul[data-object]", "value": "/language",
+				"source": "#externalSubTemplateExample",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-about]", "value": "/about" },
+					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
+				]
+			},
+
+			{ "selector": "ul[data-array]", "value": "/hobby", "queryall": "li" }
+
 		]
 	}'&gt;
 	&lt;template&gt;
-		&lt;div class=&quot;col-md-6&quot;&gt;
+		&lt;div class="col-md-6"&gt;
 			&lt;h3&gt;&lt;/h3&gt; &lt;!-- Name --&gt;
 			&lt;p&gt;From: [[city]]&lt;/p&gt;
 			&lt;p&gt;&lt;/p&gt; &lt;!-- Description --&gt;
+			&lt;!-- Sub-template (iterate object) --&gt;
+			&lt;p&gt;About:&lt;/p&gt;
+			&lt;ul data-object&gt;
+			&lt;/ul&gt;
 			&lt;h4&gt;Hobby:&lt;/h4&gt;
-			&lt;ul class=&quot;lst-spcd&quot;&gt; &lt;!-- Sub-template container --&gt;
+			&lt;ul class="lst-spcd" data-array&gt; &lt;!-- Sub-template (iterate array) --&gt;
 				&lt;template&gt;
 					&lt;li&gt;&lt;/li&gt;
 				&lt;/template&gt;
 			&lt;/ul&gt;
 		&lt;/div&gt;
+	&lt;/template&gt;
+	&lt;template id="externalSubTemplateExample"&gt;
+		&lt;li&gt;(&lt;span data-language&gt;&lt;/span&gt;) &lt;span data-about lang&gt;&lt;/span&gt;&lt;/li&gt;
 	&lt;/template&gt;
 &lt;/div&gt;</code></pre>
 </details>
