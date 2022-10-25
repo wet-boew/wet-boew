@@ -254,7 +254,7 @@
 &lt;/div&gt;</code></pre>
 
 <h3><code>d-sm-flex</code></h3>
-<p>Set an element as a flexbox container and change its direct children into flex items in small view and over.</p>
+<p>Set an element as a flexbox container and change its direct children into flex items. To use when you only want the style applied for <code>sm</code> breakpoint and up.</p>
 <h4>Working example</h4>
 <div class="d-sm-flex">
 	<p class="well">Flex item</p>
@@ -313,8 +313,48 @@
 	&lt;p class="d-flex <strong>align-self-center</strong> mrgn-lft-md"&gt;Paragraph is vertically aligned with sibling image.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h3><code>align-self-end</code></h3>
+<p>Vertically moves an element to the bottom. This is to be used jointly with the <a href="#d-flex"><code>d-flex</code> utility</a>.</p>
+<h4>Working example</h4>
+<div class="d-flex">
+	<img src="https://via.placeholder.com/100" alt="" class="d-flex mrgn-rght-md" />
+	<p class="d-flex align-self-end mrgn-lft-md">Paragraph is vertically moved to the bottom.</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-flex"&gt;
+	&lt;img src="https://via.placeholder.com/80" alt="" class="d-flex mrgn-rght-md" /&gt;
+	&lt;p class="d-flex <strong>align-self-end</strong> mrgn-lft-md"&gt;Paragraph is vertically moved to the bottom.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>align-items-center</code></h3>
+<p>Center-align a flexbox container's flex items. Useful for middle-aligning.</p>
+<h4>Working example</h4>
+<div class="row d-flex align-items-center">
+	<div class="col-xs-4">
+		<p class="well">Line 1<br />Line 2<br />Line 3<br />Line 4<br />Line 5</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Line 1<br />Line 2<br />Line 3</p>
+	</div>
+	<div class="col-xs-4">
+		<p class="well">Line 1</p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row d-flex <strong>align-items-center</strong>"&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;br /&gt;Line 2&lt;br /&gt;Line 3&lt;br /&gt;Line 4&lt;br /&gt;Line 5&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;br /&gt;Line 2&lt;br /&gt;Line 3&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-4"&gt;
+		&lt;p class="well"&gt;Line 1&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h3><code>align-items-sm-center</code></h3>
-<p>Center-align a flexbox container's flex items in small view and over. Useful for middle-aligning.</p>
+<p>Center-align a flexbox container's flex items. Useful for middle-aligning. To use when you only want the style applied for <code>sm</code> breakpoint and up.</p>
 <h4>Working example</h4>
 <div class="row d-sm-flex align-items-sm-center">
 	<div class="col-xs-4">
