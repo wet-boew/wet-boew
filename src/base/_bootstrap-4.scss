@@ -3,7 +3,7 @@
   @title: Bootstrap 4 suplemental style for WET-BOEW
  */
 
-/* Padding */
+/* Spacing */
 .p-0 {
 	padding: 0 !important;
 }
@@ -28,6 +28,10 @@
 	padding-bottom: 30px !important;
 }
 
+.mt-auto {
+	margin-top: auto !important;
+}
+
 /* Stretched link */
 .stretched-link {
 	&:after {
@@ -43,6 +47,11 @@
 	}
 }
 
+/* Sizing */
+.h-100 {
+	height: 100% !important;
+}
+
 /* Positioning */
 .position-relative {
 	position: relative !important;
@@ -51,6 +60,10 @@
 /* Flexbox */
 .d-flex {
 	display: flex !important;
+}
+
+.flex-column {
+	flex-direction: column !important;
 }
 
 .align-self-center {
