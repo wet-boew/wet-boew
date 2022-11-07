@@ -143,6 +143,7 @@ var componentName = "wb-steps",
 
 		// set default attributes
 		control.className = ( type === "prev" ? "btn btn-md btn-default" : "btn btn-md btn-primary" ) + " " + style;
+		control.setAttribute( "type", "button" );
 		control.innerHTML = text;
 
 		return control;
