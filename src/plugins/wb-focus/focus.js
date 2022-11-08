@@ -10,6 +10,8 @@
 var $document = wb.doc,
 	$window = wb.win,
 	clickEvents = "click vclick",
+	hash,
+	jumpToHash = false,
 	setFocusEvent = "setfocus.wb",
 	linkSelector = "a[href]",
 	$linkTarget,
@@ -18,9 +20,10 @@ var $document = wb.doc,
 	 * @method processHash
 	 */
 	processHash = function() {
-		var hash = wb.pageUrlParts.hash;
+		hash = wb.pageUrlParts.hash;
 
 		if ( hash && ( $linkTarget = $( "#" + wb.jqEscape( hash.substring( 1 ) ) ) ).length !== 0 ) {
+			jumpToHash = true;
 			$linkTarget.trigger( setFocusEvent );
 		}
 	};
@@ -55,6 +58,13 @@ $document.on( setFocusEvent, function( event ) {
 
 		// Assigns focus to an element (delay allows for revealing of hidden content)
 		setTimeout( function() {
+
+			//Navigate to the URL hash to trigger the browser's natural link jumping behaviour
+			if ( jumpToHash ) {
+				window.location.assign( hash );
+				jumpToHash = false;
+			}
+
 			$elm.trigger( "focus" );
 
 			var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
