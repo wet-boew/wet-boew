@@ -66,8 +66,16 @@
 	flex-direction: column !important;
 }
 
+.align-items-center {
+	align-items: center !important;
+}
+
 .align-self-center {
 	align-self: center !important;
+}
+
+.align-self-end {
+	align-self: flex-end !important;
 }
 
 /* Vertical alignment */
