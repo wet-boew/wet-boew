@@ -286,9 +286,44 @@
 	</template>
 </ul>
 
+<h3>Content of a GitHub file</h3>
+<p>Calling a file through GitHub API has to be crafted as such:</p>
+<pre><code>http://api.github.com/repos/[Organisation-Name]/[Repository-Name]/contents/[Path-to-file]</code></pre>
+<p><strong>Note:</strong> Take into consideration that GitHub has a rate limit for API usage, which is currently set to 60 per hour (without authentication).</p>
+<div data-wb-jsonmanager='{
+		"url": "http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html",
+		"name": "githubCode",
+		"patches": [
+			{ "op": "wb-decodeUTF8Base64", "path": "/content", "set": "/raw" },
+			{ "op": "copy", "from": "/raw", "path": "/escape" },
+			{ "op": "wb-escapeHTML", "path": "/escape" }
+		]
+	}'>
+	<div data-json-replace="#[githubCode]/raw">Content here...</div>
+	<h4>Escaped HTML content</h4>
+	<pre><code data-json-append="#[githubCode]/escape"></code></pre>
+</div>
+
+<details>
+<summary>View source code</summary>
+<pre><code>&lt;div data-wb-jsonmanager=&apos;{
+	&quot;url&quot;: &quot;http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html&quot;,
+	&quot;name&quot;: &quot;githubCode&quot;,
+	&quot;patches&quot;: [
+		{ &quot;op&quot;: &quot;wb-decodeUTF8Base64&quot;, &quot;path&quot;: &quot;/content&quot;, &quot;set&quot;: &quot;/raw&quot; },
+		{ &quot;op&quot;: &quot;copy&quot;, &quot;from&quot;: &quot;/raw&quot;, &quot;path&quot;: &quot;/escape&quot; },
+		{ &quot;op&quot;: &quot;wb-escapeHTML&quot;, &quot;path&quot;: &quot;/escape&quot; }
+	]
+}&apos;&gt;
+&lt;div data-json-replace=&quot;#[githubCode]/raw&quot;&gt;Content here...&lt;/div&gt;
+&lt;h4&gt;Escaped HTML version&lt;/h4&gt;
+&lt;pre&gt;&lt;code data-json-append=&quot;#[githubCode]/escape&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
 <h2>JSON patches operation</h2>
 
-<p>JSON operation is defined as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002 - JavaScript Object Notation (JSON) Patch</a> with additional operation to fullfill the needs of the JSON manager. Described in the documentation, the following operation are supported by default: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>.</p>
+<p>JSON operation is defined as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002 - JavaScript Object Notation (JSON) Patch</a> with additional operation to fullfill the needs of the JSON manager. Described in the documentation, the following operation are supported by default: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-decodeUTF8Base64</code>, <code>wb-escapeHTML</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>.</p>
 
 <h2>Debugging</h2>
 

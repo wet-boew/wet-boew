@@ -205,6 +205,18 @@
 	</tr>
 
 	<tr>
+		<td>Get output from Base64 (UTF-8)</td>
+		<td><code>{ "op": "wb-decodeUTF8Base64", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-decodeUTF8Base64", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Decodes Base64 content to raw format according to the source at the <code>path</code> location and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
+	</tr>
+
+	<tr>
+		<td>Escape HTML</td>
+		<td><code>{ "op": "wb-escapeHTML", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-escapeHTML", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
+		<td>Escapes HTML characters from content located in the <code>path</code> and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
+	</tr>
+
+	<tr>
 		<td>Formating a date to ISO (YYYY-MM-DD)</td>
 		<td><code>{ "op": "wb-toDateISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
 		<td>Format a date value to data ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
