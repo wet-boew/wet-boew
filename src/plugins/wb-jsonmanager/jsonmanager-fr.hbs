@@ -285,9 +285,44 @@
 	</template>
 </ul>
 
+<h3>Contenu d'un fichier provenant de GitHub</h3>
+<p>L'appel à l'API GitHub pour obtenir le contenu d'un fichier doit être effectué de la sorte&nbsp;:</p>
+<pre><code>http://api.github.com/repos/[Nom-Organisation]/[Nom-Répertoire]/contents/[Chemin-Vers-Fichier]</code></pre>
+<p><strong>Remarque&nbsp;:</strong> Veuillez prendre en considération que GitHub a une limite d'utilisation de son API, qui est présentement réglée à 60 par heure (sans identifiant).</p>
+<div data-wb-jsonmanager='{
+		"url": "http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html",
+		"name": "githubCode",
+		"patches": [
+			{ "op": "wb-decodeUTF8Base64", "path": "/content", "set": "/raw" },
+			{ "op": "copy", "from": "/raw", "path": "/escape" },
+			{ "op": "wb-escapeHTML", "path": "/escape" }
+		]
+	}'>
+	<div data-json-replace="#[githubCode]/raw">Contenu ici...</div>
+	<h4>Contenu HTML échappé</h4>
+	<pre><code data-json-append="#[githubCode]/escape"></code></pre>
+</div>
+
+<details>
+<summary>Code source</summary>
+<pre><code>&lt;div data-wb-jsonmanager=&apos;{
+	&quot;url&quot;: &quot;http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html&quot;,
+	&quot;name&quot;: &quot;githubCode&quot;,
+	&quot;patches&quot;: [
+		{ &quot;op&quot;: &quot;wb-decodeUTF8Base64&quot;, &quot;path&quot;: &quot;/content&quot;, &quot;set&quot;: &quot;/raw&quot; },
+		{ &quot;op&quot;: &quot;copy&quot;, &quot;from&quot;: &quot;/raw&quot;, &quot;path&quot;: &quot;/escape&quot; },
+		{ &quot;op&quot;: &quot;wb-escapeHTML&quot;, &quot;path&quot;: &quot;/escape&quot; }
+	]
+}&apos;&gt;
+&lt;div data-json-replace=&quot;#[githubCode]/raw&quot;&gt;Contenu ici...&lt;/div&gt;
+&lt;h4&gt;Contenu HTML échappé&lt;/h4&gt;
+&lt;pre&gt;&lt;code data-json-append=&quot;#[githubCode]/escape&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
 <h2>Opération de correctifs JSON</h2>
 
-<p>Les opération de correctifs JSON sont définie par <a href="https://tools.ietf.org/html/rfc6902" lang="en" hreflang="en">RFC6002 - JavaScript Object Notation (JSON) Patch</a> avec quelques ajout d'opération afin de combler les besoins du gestionnaire JSON. Détaillé dans la documentations, les opérations suivant sont supporté par défaut: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>.</p>
+<p>Les opération de correctifs JSON sont définie par <a href="https://tools.ietf.org/html/rfc6902" lang="en" hreflang="en">RFC6002 - JavaScript Object Notation (JSON) Patch</a> avec quelques ajout d'opération afin de combler les besoins du gestionnaire JSON. Détaillé dans la documentations, les opérations suivant sont supporté par défaut: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-decodeUTF8Base64</code>, <code>wb-escapeHTML</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>.</p>
 
 <h2>Débogage</h2>
 

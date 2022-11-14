@@ -109,6 +109,38 @@ var componentName = "wb-jsonmanager",
 				}
 			},
 			{
+				name: "wb-decodeUTF8Base64",
+				fn: function( obj, key, tree ) {
+					var val = obj[ key ];
+
+					if ( !this.set ) {
+						jsonpatch.apply( tree, [
+							{ op: "replace", path: this.path, value: wb.decodeUTF8Base64( val ) }
+						] );
+					} else {
+						jsonpatch.apply( tree, [
+							{ op: "add", path: this.set, value: wb.decodeUTF8Base64( val ) }
+						] );
+					}
+				}
+			},
+			{
+				name: "wb-escapeHTML",
+				fn: function( obj, key, tree ) {
+					var val = obj[ key ];
+
+					if ( !this.set ) {
+						jsonpatch.apply( tree, [
+							{ op: "replace", path: this.path, value: wb.escapeHTML( val ) }
+						] );
+					} else {
+						jsonpatch.apply( tree, [
+							{ op: "add", path: this.set, value: wb.escapeHTML( val ) }
+						] );
+					}
+				}
+			},
+			{
 				name: "wb-toDateISO",
 				fn: function( obj, key, tree ) {
 					if ( !this.set ) {

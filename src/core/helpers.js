@@ -1251,6 +1251,24 @@ wb.escapeAttribute = function( str ) {
 };
 
 /*
+ * Returns an escaped HTML string
+ */
+wb.escapeHTML = function( str ) {
+	return wb.escapeAttribute( str
+		.replace( /&/g, "&#38;" )
+		.replace( /</g, "&#60;" )
+		.replace( />/g, "&#62;" ) );
+};
+
+/*
+ * Returns a UTF-8 output from Base64
+ * Reference: https://developer.mozilla.org/fr/docs/Glossary/Base64 (To be reviewed later because escape function is deprecated)
+ */
+wb.decodeUTF8Base64 = function( str ) {
+	return decodeURIComponent( escape( atob( str ) ) );
+};
+
+/*
 * Find most common Personal Identifiable Information (PII) in a string and return either the cleaned string either true/false
 * @param {string} str (required) - the content that needs to be verified
 *
