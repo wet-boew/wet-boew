@@ -16,6 +16,7 @@
 	<li><a href="#flt-list">List filtering</a></li>
 	<li><a href="#flt-table">Table filtering</a></li>
 	<li><a href="#flt-search">Applying additional search filters</a></li>
+	<li><a href="#flt-uicontainer">Move UI to specific container</a></li>
 </ul>
 
 <h2 id="flt-section">Filtering items in sections</h2>
@@ -781,3 +782,44 @@
 	&lt;li&gt;Alberta&lt;/li&gt;
 	...
 &lt;/ul&gt;</code></pre>
+
+<h3 id="flt-uicontainer">Move UI to specific container</h3>
+
+<p>Set the <code>source</code> parameter to a jQuery selector that you want to hold the filter's UI. The UI will be added to the top (prepend) of said element.</p>
+
+<div class="row">
+	<div class="col-md-4">
+		<div id="filterUIContainer"></div>
+	</div>
+	<div class="col-md-8">
+		<ul class="wb-filter" data-wb-filter='{ "source": "#filterUIContainer" }'>
+			<li>Alberta</li>
+			<li>British Columbia</li>
+			<li>Manitoba</li>
+			<li>New Brunswick</li>
+			<li>Newfoundland &amp; Labrador</li>
+			<li>Northwest Territories</li>
+			<li>Nova Scotia</li>
+			<li>Nunavut</li>
+			<li>Ontario</li>
+			<li>Prince Edward Island</li>
+			<li>Quebec</li>
+			<li>Saskatchewan</li>
+			<li>Yukon</li>
+		</ul>
+	</div>
+</div>
+
+<h4>Source code</h4>
+
+<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;col-md-4&quot;&gt;
+		&lt;div id=&quot;filterUIContainer&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-md-8&quot;&gt;
+		&lt;ul class=&quot;wb-filter&quot; data-wb-filter=&apos;{ &quot;source&quot;: &quot;#filterUIContainer&quot; }&apos;&gt;
+			&lt;li&gt;Alberta&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>

@@ -15,7 +15,8 @@
 	<li><a href="#flt-section">Filtrer des items par section</a></li>
 	<li><a href="#flt-list">Filtrer une liste</a></li>
 	<li><a href="#flt-table">Filtrer un tableau</a></li>
-	<li lang="en"><strong>Needs translation: </strong><a href="#flt-search">Applying additional search filters</a></li>
+	<li><a href="#flt-search">Application de filtres de recherche supplémentaires</a></li>
+	<li><a href="#flt-uicontainer">Déplacer l'interface vers un élément sécifique</a></li>
 </ul>
 
 <h2 id="flt-section">Filtrer des items par section</h2>
@@ -319,7 +320,7 @@
 	<li>Yukon</li>
 </ul>
 
-<h3>Source code</h3>
+<h3>Code source</h3>
 <pre><code>&lt;ul class=&quot;wb-filter&quot;&gt;
 	&lt;li&gt;Alberta&lt;/li&gt;
 	&lt;li&gt;Colombie-Britannique&lt;/li&gt;
@@ -609,7 +610,7 @@
 	</tbody>
 </table>
 
-<h3>Source code</h3>
+<h3>Code source</h3>
 <pre><code>&lt;table class=&quot;wb-filter table&quot;&gt;
 	&lt;caption&gt;Population de grande municipalité par provinces&lt;/caption&gt;
 	&lt;thead&gt;
@@ -662,95 +663,134 @@
 	...
 &lt;/table&gt;</code></pre>
 
-<div lang="en">
-	<h2 id="flt-search">Applying additional search filters</h2>
+<h2 id="flt-search">Application de filtres de recherche supplémentaires</h2>
 
-	<p>The filter plugin has three types of search methods available: exact pattern match (default), AND operator, and OR operator.</p>
+<p>Le plugiciel de filtre propose trois types de méthodes de recherche&nbsp;: correspondance exacte du modèle (par défaut), opérateur AND et opérateur OR.</p>
 
-	<h3>Exact pattern match (default)</h3>
+<h3>Correspondance exacte du modèle (par défaut)</h3>
 
-	<p>Finds items that contain exactly what the user has specified.</p>
+<p>Recherche les éléments qui contiennent exactement ce que l'utilisateur a spécifié.</p>
 
-	<p>Not setting the <code>filterType</code> will tell the filter plugin to apply the default search pattern which is an exact pattern match to the search terms. Only items that contain the full and exact pattern that the user enters will be shown.</p>
+<p>En ne définissant pas le paramètre <code>filterType</code>, on indiquera au plugiciel de filtre d'appliquer le modèle de recherche par défaut qui correspond exactement au modèle des termes de recherche. Seuls les éléments contenant le modèle complet et exact saisi par l'utilisateur seront affichés.</p>
 
-	<ul class="wb-filter">
-		<li>Alberta</li>
-		<li>British Columbia</li>
-		<li>Manitoba</li>
-		<li>New Brunswick</li>
-		<li>Newfoundland &amp; Labrador</li>
-		<li>Northwest Territories</li>
-		<li>Nova Scotia</li>
-		<li>Nunavut</li>
-		<li>Ontario</li>
-		<li>Prince Edward Island</li>
-		<li>Quebec</li>
-		<li>Saskatchewan</li>
-		<li>Yukon</li>
-	</ul>
+<ul class="wb-filter">
+	<li>Alberta</li>
+	<li>Colombie-Britannique</li>
+	<li>Île-du-Prince-Édouard</li>
+	<li>Manitoba</li>
+	<li>Nouveau-Brunswick</li>
+	<li>Nouvelle-Écosse</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Québec</li>
+	<li>Saskatchewan</li>
+	<li>Terre-Neuve-et-Labrador</li>
+	<li>Territoires du Nord-Ouest</li>
+	<li>Yukon</li>
+</ul>
 
-	<h4>Source code</h4>
+<h4>Code source</h4>
 
-	<pre><code>&lt;ul class=&quot;wb-filter&quot;&gt;
+<pre><code>&lt;ul class=&quot;wb-filter&quot;&gt;
 	&lt;li&gt;Alberta&lt;/li&gt;
 	...
 &lt;/ul&gt;</code></pre>
 
-	<h3>AND operator</h3>
+<h3>Opérateur AND</h3>
 
-	<p>Finds items that contain all of the specified words.</p>
+<p>Recherche les éléments qui contiennent tous les mots spécifiés.</p>
 
-	<p>Setting the <code>filterType</code> to the <code>and</code> option will tell the filter plugin to apply an AND operator between search terms. Only items that contain all search terms will be shown.</p>
+<p>En définissant le paramètre <code>filterType</code> à <code>and</code>, on indiquera au plugiciel de filtre d'appliquer un opérateur AND entre les termes de recherche. Seuls les éléments contenant tous les termes de recherche seront affichés.</p>
 
-	<ul class="wb-filter" data-wb-filter='{ "filterType": "and" }'>
-		<li>Alberta</li>
-		<li>British Columbia</li>
-		<li>Manitoba</li>
-		<li>New Brunswick</li>
-		<li>Newfoundland &amp; Labrador</li>
-		<li>Northwest Territories</li>
-		<li>Nova Scotia</li>
-		<li>Nunavut</li>
-		<li>Ontario</li>
-		<li>Prince Edward Island</li>
-		<li>Quebec</li>
-		<li>Saskatchewan</li>
-		<li>Yukon</li>
-	</ul>
+<ul class="wb-filter" data-wb-filter='{ "filterType": "and" }'>
+	<li>Alberta</li>
+	<li>Colombie-Britannique</li>
+	<li>Île-du-Prince-Édouard</li>
+	<li>Manitoba</li>
+	<li>Nouveau-Brunswick</li>
+	<li>Nouvelle-Écosse</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Québec</li>
+	<li>Saskatchewan</li>
+	<li>Terre-Neuve-et-Labrador</li>
+	<li>Territoires du Nord-Ouest</li>
+	<li>Yukon</li>
+</ul>
 
-	<h4>Source code</h4>
+<h4>Code source</h4>
 
-	<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "and" }'&gt;
+<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "and" }'&gt;
 	&lt;li&gt;Alberta&lt;/li&gt;
 	...
 &lt;/ul&gt;</code></pre>
 
-	<h3>OR operator</h3>
+<h3>Opérateur OR</h3>
 
-	<p>Finds items that contain at least one of the specified words.</p>
+<p>Recherche les éléments qui contiennent au moins un des mots spécifiés.</p>
 
-	<p>Setting the <code>filterType</code> to the <code>or</code> option will tell the filter plugin to apply an OR operator between search terms. All items that contain any of the supplied search terms will be shown.</p>
+<p>En définissant le paramètre <code>filterType</code> à <code>or</code>, on indiquera au plugiciel de filtre d'appliquer un opérateur OR entre les termes de recherche. Tous les éléments contenant l'un des termes de recherche fournis seront affichés.</p>
 
-	<ul class="wb-filter" data-wb-filter='{ "filterType": "or" }'>
-		<li>Alberta</li>
-		<li>British Columbia</li>
-		<li>Manitoba</li>
-		<li>New Brunswick</li>
-		<li>Newfoundland &amp; Labrador</li>
-		<li>Northwest Territories</li>
-		<li>Nova Scotia</li>
-		<li>Nunavut</li>
-		<li>Ontario</li>
-		<li>Prince Edward Island</li>
-		<li>Quebec</li>
-		<li>Saskatchewan</li>
-		<li>Yukon</li>
-	</ul>
+<ul class="wb-filter" data-wb-filter='{ "filterType": "or" }'>
+	<li>Alberta</li>
+	<li>Colombie-Britannique</li>
+	<li>Île-du-Prince-Édouard</li>
+	<li>Manitoba</li>
+	<li>Nouveau-Brunswick</li>
+	<li>Nouvelle-Écosse</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Québec</li>
+	<li>Saskatchewan</li>
+	<li>Terre-Neuve-et-Labrador</li>
+	<li>Territoires du Nord-Ouest</li>
+	<li>Yukon</li>
+</ul>
 
-	<h4>Source code</h4>
+<h4>Code source</h4>
 
-	<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "or" }'&gt;
+<pre><code>&lt;ul class=&quot;wb-filter&quot; data-wb-filter='{ "filterType": "or" }'&gt;
 	&lt;li&gt;Alberta&lt;/li&gt;
 	...
 &lt;/ul&gt;</code></pre>
+
+<h3 id="flt-uicontainer">Déplacer l'interface vers un élément sécifique</h3>
+
+<p>Définissez le paramètre <code>source</code> à un sélecteur jQuery dans lequel vous souhaitez contenir l'interface utilisateur du filtre. L'interface utilisateur sera ajoutée en haut (préfixe) de l'élément défini.</p>
+
+<div class="row">
+	<div class="col-md-4">
+		<div id="filterUIContainer"></div>
+	</div>
+	<div class="col-md-8">
+		<ul class="wb-filter" data-wb-filter='{ "source": "#filterUIContainer" }'>
+			<li>Alberta</li>
+			<li>Colombie-Britannique</li>
+			<li>Île-du-Prince-Édouard</li>
+			<li>Manitoba</li>
+			<li>Nouveau-Brunswick</li>
+			<li>Nouvelle-Écosse</li>
+			<li>Nunavut</li>
+			<li>Ontario</li>
+			<li>Québec</li>
+			<li>Saskatchewan</li>
+			<li>Terre-Neuve-et-Labrador</li>
+			<li>Territoires du Nord-Ouest</li>
+			<li>Yukon</li>
+		</ul>
+	</div>
 </div>
+
+<h4>Code source</h4>
+
+<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;col-md-4&quot;&gt;
+		&lt;div id=&quot;filterUIContainer&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-md-8&quot;&gt;
+		&lt;ul class=&quot;wb-filter&quot; data-wb-filter=&apos;{ &quot;source&quot;: &quot;#filterUIContainer&quot; }&apos;&gt;
+			&lt;li&gt;Alberta&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
