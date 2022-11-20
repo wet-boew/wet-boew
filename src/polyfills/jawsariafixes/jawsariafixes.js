@@ -24,7 +24,7 @@ for ( i = 0; i !== len; i += 1 ) {
 	node = nodes[ i ];
 	heading = node;
 	while ( ( heading = ( heading.firstElementChild || heading.firstChild ) ) !== null ) {
-		if ( heading.nodeName.match( /h[1-6]/i ) !== null ) {
+		if ( /h[1-6]/i.test( heading.nodeName ) ) {
 			id = heading.id;
 			if ( id.length === 0 ) {
 				id = idPrefix + i;
