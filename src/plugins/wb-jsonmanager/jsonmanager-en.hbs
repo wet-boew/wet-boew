@@ -288,10 +288,10 @@
 
 <h3>Content of a GitHub file</h3>
 <p>Calling a file through GitHub API has to be crafted as such:</p>
-<pre><code>http://api.github.com/repos/[Organisation-Name]/[Repository-Name]/contents/[Path-to-file]</code></pre>
+<pre><code>https://api.github.com/repos/[Organisation-Name]/[Repository-Name]/contents/[Path-to-file]</code></pre>
 <p><strong>Note:</strong> Take into consideration that GitHub has a rate limit for API usage, which is currently set to 60 per hour (without authentication).</p>
 <div data-wb-jsonmanager='{
-		"url": "http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html",
+		"url": "https://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html",
 		"name": "githubCode",
 		"patches": [
 			{ "op": "wb-decodeUTF8Base64", "path": "/content", "set": "/raw" },
@@ -307,7 +307,7 @@
 <details>
 <summary>View source code</summary>
 <pre><code>&lt;div data-wb-jsonmanager=&apos;{
-	&quot;url&quot;: &quot;http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html&quot;,
+	&quot;url&quot;: &quot;https://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-en.html&quot;,
 	&quot;name&quot;: &quot;githubCode&quot;,
 	&quot;patches&quot;: [
 		{ &quot;op&quot;: &quot;wb-decodeUTF8Base64&quot;, &quot;path&quot;: &quot;/content&quot;, &quot;set&quot;: &quot;/raw&quot; },

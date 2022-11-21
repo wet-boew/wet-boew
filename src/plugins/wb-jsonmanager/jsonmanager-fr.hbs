@@ -287,10 +287,10 @@
 
 <h3>Contenu d'un fichier provenant de GitHub</h3>
 <p>L'appel à l'API GitHub pour obtenir le contenu d'un fichier doit être effectué de la sorte&nbsp;:</p>
-<pre><code>http://api.github.com/repos/[Nom-Organisation]/[Nom-Répertoire]/contents/[Chemin-Vers-Fichier]</code></pre>
+<pre><code>https://api.github.com/repos/[Nom-Organisation]/[Nom-Répertoire]/contents/[Chemin-Vers-Fichier]</code></pre>
 <p><strong>Remarque&nbsp;:</strong> Veuillez prendre en considération que GitHub a une limite d'utilisation de son API, qui est présentement réglée à 60 par heure (sans identifiant).</p>
 <div data-wb-jsonmanager='{
-		"url": "http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html",
+		"url": "https://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html",
 		"name": "githubCode",
 		"patches": [
 			{ "op": "wb-decodeUTF8Base64", "path": "/content", "set": "/raw" },
@@ -306,7 +306,7 @@
 <details>
 <summary>Code source</summary>
 <pre><code>&lt;div data-wb-jsonmanager=&apos;{
-	&quot;url&quot;: &quot;http://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html&quot;,
+	&quot;url&quot;: &quot;https://api.github.com/repos/wet-boew/wet-boew/contents/src/plugins/data-ajax/ajax/data-ajax-extra-fr.html&quot;,
 	&quot;name&quot;: &quot;githubCode&quot;,
 	&quot;patches&quot;: [
 		{ &quot;op&quot;: &quot;wb-decodeUTF8Base64&quot;, &quot;path&quot;: &quot;/content&quot;, &quot;set&quot;: &quot;/raw&quot; },
