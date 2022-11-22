@@ -221,9 +221,10 @@ $document.on( "init.dt", function( event ) {
 		$elm.find( "th" ).each( function() {
 			var $th = $( this ),
 				label = ( $th.attr( "aria-sort" ) === "ascending" ) ? i18nText.aria.sortDescending : i18nText.aria.sortAscending;
-
-			$th.html( "<button type='button' aria-controls='" + $th.attr( "aria-controls" ) +  "' title='" + $th.text().replace( /'/g, "&#39;" ) + label + "'>" + $th.html() + "<span class='sorting-cnt'><span class='sorting-icons' aria-hidden='true'></span></span></button>" );
-			$th.removeAttr( "aria-label tabindex aria-controls" );
+			if ( $th.attr( "data-orderable" ) !== "false" ) {
+				$th.html( "<button type='button' aria-controls='" + $th.attr( "aria-controls" ) +  "' title='" + $th.text().replace( /'/g, "&#39;" ) + label + "'>" + $th.html() + "<span class='sorting-cnt'><span class='sorting-icons' aria-hidden='true'></span></span></button>" );
+				$th.removeAttr( "aria-label tabindex aria-controls" );
+			}
 		} );
 		$elm.attr( "aria-label", i18nText.tblFilterInstruction );
 	}
