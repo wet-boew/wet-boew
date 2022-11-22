@@ -89,7 +89,7 @@ var componentName = "wb-inview",
 		// Link the overlay close button to the dismiss action if the inview content is dismissable
 		if ( $elm.hasClass( "wb-dismissable" ) ) {
 			if ( $dataInView.hasClass( "wb-overlay" ) ) {
-				$dataInView.children( ".overlay-close" ).on( "click vclick", function( event ) {
+				$dataInView.children( ".overlay-close" ).on( "click", function( event ) {
 					var which = event.which;
 
 					// Ignore middle/right mouse buttons

@@ -562,13 +562,12 @@ $document.on( "mouseenter", selector + " .sm", function() {
 } );
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
-$document.on( "touchstart click", selector + " .item[aria-haspopup=true]", function( event ) {
-	var isTouchstart = event.type === "touchstart",
-		which = event.which,
+$document.on( "click", selector + " .item[aria-haspopup=true]", function( event ) {
+	var which = event.which,
 		$this, $parent;
 
 	// Ignore middle and right mouse buttons
-	if ( isTouchstart || ( !which || which === 1 ) ) {
+	if ( !which || which === 1 ) {
 		event.preventDefault();
 		$this = $( this );
 		$parent = $this.parent();
@@ -576,10 +575,6 @@ $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", funct
 		// Open the submenu if it is closed
 		if ( !$parent.hasClass( "sm-open" ) ) {
 			$this.trigger( "focusin" );
-
-		// Close the open submenu for a touch event
-		} else if ( isTouchstart ) {
-			menuClose( $parent, true );
 		}
 	}
 } );
@@ -617,12 +612,12 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 } );
 
 // Clicks and touches outside of menus should close any open menus
-$document.on( "click touchstart", function( event ) {
+$document.on( "click", function( event ) {
 	var $openMenus,
 		which = event.which;
 
 	// Ignore middle and right mouse buttons
-	if ( event.type === "touchstart" || ( !which || which === 1 ) ) {
+	if ( event.type === "" || ( !which || which === 1 ) ) {
 		$openMenus = $( selector + " .sm-open" );
 		if ( $openMenus.length !== 0 &&
 			$( event.target ).closest( selector ).length === 0 ) {

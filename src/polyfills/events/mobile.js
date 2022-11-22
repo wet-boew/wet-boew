@@ -1,4 +1,5 @@
 /*
+* This file is to enable touch on browser
 * jQuery Mobile v1.3.2
 * https://jquerymobile.com
 *

@@ -94,7 +94,7 @@
 			<pre><code>(function( $, wb ) {
 &quot;use strict&quot;;
 
-$( document ).on( &quot;click vclick&quot;, &quot;#update-progress&quot;, function() {
+$( document ).on( &quot;click&quot;, &quot;#update-progress&quot;, function() {
 	var $elm = $( &quot;#updateTest&quot; ),
 		valuenow = parseInt( $elm.attr( &quot;value&quot; ), 10 ),
 		newValue = valuenow === parseInt( $elm.attr( &quot;max&quot; ), 10 ) ? 0 : valuenow + 1;

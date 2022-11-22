@@ -136,7 +136,7 @@
 			<pre><code>(function( $, wb ) {
 &quot;use strict&quot;;
 
-$( document ).on( &quot;click vclick&quot;, &quot;#increaseMeter, #decreaseMeter&quot;, function( event ) {
+$( document ).on( &quot;click&quot;, &quot;#increaseMeter, #decreaseMeter&quot;, function( event ) {
 	var $elm = $( &quot;#updateTest&quot; ),
 		increase = event.currentTarget.id === &quot;increaseMeter&quot;,
 		valuenow = parseInt( $elm.attr( &quot;value&quot; ), 10 ),

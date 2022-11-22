@@ -9,7 +9,7 @@
 
 var $document = wb.doc,
 	$window = wb.win,
-	clickEvents = "click vclick",
+	clickEvents = "click",
 	setFocusEvent = "setfocus.wb",
 	linkSelector = "a[href]",
 	$linkTarget,

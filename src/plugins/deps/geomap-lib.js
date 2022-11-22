@@ -1645,7 +1645,7 @@ var componentName = "wb-geomap",
 
 						// bind events to the options
 						// TODO: do this in the wb-update event
-						$( ".al-opt a" ).on( "keydown click vclick", function( event ) {
+						$( ".al-opt a" ).on( "keydown click", function( event ) {
 							var link = event.target,
 								eventType = event.type,
 								which = event.which;
@@ -1657,8 +1657,6 @@ var componentName = "wb-geomap",
 								}
 								break;
 							case "click":
-							case "vclick":
-							case "touchstart":
 
 								// Ignore middle/right mouse buttons
 								if ( !which || which === 1 ) {
