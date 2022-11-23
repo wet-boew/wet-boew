@@ -282,7 +282,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 		if ( $elm.is( "select" ) ) {
 			$value = $elm.find( "option:selected" ).val();
 		} else if ( $elm.is( "input[type='number']" ) ) {
-			var $minNum, $maxNum = "-0";
+			var $minNum, $maxNum = null;
 
 			// Retain minimum number (always the first number input)
 			if ( $cachedVal === "" ) {
@@ -306,7 +306,9 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 								return true;
 							}
 						} else {
-							if ( $maxNum === $cachedVal && $cachedVal === "-0" ) { // both are empty
+							if ( $maxNum === null ) { // only one input number
+								return $minNum === "-0" || $minNum === $num;
+							} else if ( $maxNum === $cachedVal && $cachedVal === "-0" ) { // both are empty
 								return true;
 							} else if ( $maxNum !== "-0" && $minNum === $maxNum && $num === $maxNum ) { // min and max are the same
 								return true;
