@@ -7,7 +7,7 @@
 	"tag": "table filters",
 	"parentdir": "tables",
 	"altLangPrefix": "tables-fltrs",
-	"dateModified": "2020-10-22"
+	"dateModified": "2022-11-29"
 }
 ---
 <section>
@@ -382,6 +382,78 @@
 				<li>Column is the number range that the filter well apply too (must match there 'data-column').</li>
 			</ol>
 			<pre><code>&lt;label for="dt_age_aopts1"&gt;&lt;input type="radio" name="dt_age_aopts" id="dt_age_aopts1" data-aopts='{"type": "either", "column": "5"}' checked /&gt;Either&lt;/label&gt;</code></pre>
+		</div>
+	</div>
+	<h3>Other Filters</h3>
+	<p>It is also possible to filter using text or numbers</p>
+	<div class="row">
+		<div class="col-md-3">
+			<h4 class="wb-inv">Filtering Options</h4>
+			<details open>
+				<summary><h4 class="h4">Filter Options</h4></summary>
+				<p class="mrgn-tp-md">Use filters to below options to change the focus of your results in following data table</p>
+				<form class="wb-tables-filter" data-bind-to="dataset-filter3">
+					<div class="form-group">
+						<fieldset>
+							<legend><span class="field-name">Age</span></legend>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="dt_age" class="small">Age</label>
+									<input type="number" class="form-control" id="dt_age" name="dt_age" min="0" data-column="3"/>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group">
+						<fieldset>
+							<legend><span class="field-name">Name</span></legend>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="dt_fname" class="small">First Name</label>
+									<input type="text" class="form-control" id="dt_fname" name="dt_fname" data-column="1"/>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="dt_lname" class="small">Last Name</label>
+									<input type="text" class="form-control" id="dt_lname" name="dt_lname" data-column="2"/>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary" aria-controls="dataset-filter2">Filter</button>
+					</div>
+					<div class="form-group">
+						<button type="reset" class="btn btn-link btn-sm p-0">Reset to defaults</button>
+					</div>
+				</form>
+			</details>
+		</div>
+		<div class="col-md-9">
+			<table class="wb-tables table table-striped table-hover" id="dataset-filter3" data-wb-tables='{
+			"bDeferRender": true,
+			"ajaxSource": "ajax/mockdata.json",
+			"order": [3, "desc"],
+			"columns": [
+				{ "data": "id", "visible": false },
+				{ "data": "first_name" },
+				{ "data": "last_name" },
+				{ "data": "age" },
+				{ "data": "salary", "visible": false },
+				{ "data": "taxes", "visible": false }
+			]}'>
+				<thead>
+				<tr>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Age</th>
+					<th>Salary</th>
+					<th>Taxes</th>
+				</tr>
+				</thead>
+			</table>
 		</div>
 	</div>
 </section>
