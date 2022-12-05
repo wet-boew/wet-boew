@@ -12,3 +12,9 @@ caption {
 	}
 	text-align: center;
 }
+
+
+// Not ported from, but inline with Bootstrap 4: Makes the table to scroll horizontally and makes the content wrap in any viewport including small devices (under 768px)
+.table-responsive > .table, th, td {
+	white-space: normal;
+}

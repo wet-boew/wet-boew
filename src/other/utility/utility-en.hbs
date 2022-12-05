@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-11-21"
+	"dateModified": "2022-12-13"
 }
 ---
 
@@ -24,6 +24,7 @@
 	<li><a href="#sizing">Sizing</a></li>
 	<li><a href="#flexbox">Flexbox</a></li>
 	<li><a href="#positioning">Positioning</a></li>
+	<li><a href="#tables">Tables</a></li>
 	<li><a href="#miscellaneous">Miscellaneous</a></li>
 </ul>
 
@@ -416,6 +417,54 @@
 <p class="position-relative">This is a paragraph relatively positioned.</p>
 <h4>Code sample</h4>
 <pre><code>&lt;p class="<strong>position-relative</strong>"&gt;This is a paragraph relatively positioned.&lt;/p&gt;</code></pre>
+
+<h2 id="tables">Tables</h2>
+<h3><code>table-responsive</code></h3>
+<p>Not ported from, but inline with Bootstrap 4: Makes the content wrap in any viewport including small devices (under 768px).</p>
+<h4>Working example</h4>
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Rendering engine</th>
+				<th>Browser</th>
+				<th>Platform(s)</th>
+				<th>Engine version</th>
+				<th>CSS grade</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="gradeX">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 4.0</td>
+				<td>Win 95+</td>
+				<td class="center">4</td>
+				<td class="center">X</td>
+			</tr>
+			<tr class="gradeC">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.0</td>
+				<td>Win 95+</td>
+				<td class="center">5</td>
+				<td class="center">C</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.5</td>
+				<td>Win 95+</td>
+				<td class="center">5.5</td>
+				<td class="center">A</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="<strong>table-responsive</strong>"&gt;
+	&lt;!-- Table here --&gt;
+&lt;/div&gt;</code></pre>
 
 <h2 id="miscellaneous">Miscellaneous</h2>
 
