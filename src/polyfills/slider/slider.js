@@ -506,7 +506,7 @@ var fdSlider = (function() {
                         func.call(inp, cbObj);
                     }
                 }
-            } else if(type.match(/^(blur|focus|change)$/i)) {
+            } else if((/^(blur|focus|change)$/i.test( type ))) {
                 var e;
                 if(typeof(document.createEvent) != 'undefined') {
                     e = document.createEvent('HTMLEvents');

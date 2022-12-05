@@ -255,7 +255,7 @@ var getUrlParts = function( url ) {
 		ielt8: ( oldie < 8 ),
 		ielt9: ( oldie < 9 ),
 		ielt10: ( oldie < 10 ),
-		ie11: ( !!navigator.userAgent.match( /Trident\/7\./ ) ),
+		ie11: ( navigator.userAgent.includes( "Trident/7." ) ),
 
 		selectors: [],
 
