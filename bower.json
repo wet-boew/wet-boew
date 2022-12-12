@@ -1,18 +1,5 @@
 {
   "name": "wet-boew",
-  "version": "4.0.56.2",
-  "homepage": "https://wet-boew.github.io",
-  "authors": [
-    "WET-BOEW Team"
-  ],
-  "description": "Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)",
-  "keywords": [
-    "i18n",
-    "a11y",
-    "wet-boew",
-    "bootstrap"
-  ],
-  "license": "MIT",
   "ignore": [
     ".git*",
     ".travis.yml",
