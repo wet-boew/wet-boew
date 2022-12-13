@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-11-21"
+	"dateModified": "2022-12-13"
 }
 ---
 
@@ -23,6 +23,7 @@
 	<li><a href="#dimension">Dimensionnement</a></li>
 	<li><a href="#flexbox" lang="en">Flexbox</a></li>
 	<li><a href="#positionnement">Positionnement</a></li>
+	<li><a href="#tables">Tables</a></li>
 	<li><a href="#divers">Divers</a></li>
 </ul>
 
@@ -406,13 +407,60 @@
 &lt;/div&gt;</code></pre>
 
 <h2 id="positionnement">Positionnement</h2>
-
 <h3><code>position-relative</code></h3>
 <p>Défini une position relative pour un élément. Ceci a été créée afin de supporter l'utilitaire <code>stretched-link</code>. Afin d'obtenir un meilleur effet visuel, référez vous à la <a href="#sl">section de l'utilitaire 'streched-link'</a> ci-desous.  </p>
 <h4>Exemple pratique</h4>
 <p class="position-relative">Ceci est un paragraphe relativement positionné.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>position-relative</strong>"&gt;Ceci est un paragraphe relativement positionné.&lt;/p&gt;</code></pre>
+
+<h2 id="tables">Tables</h2>
+<h3><code>table-responsive</code></h3>
+<p>Non porté de, mais en ligne avec Bootstrap 4: renvoie le texte automatiquement à la ligne suivante dans n'importe quelle fenêtre d'affichage incluant les petits appareils (sous 768px)</p>
+<h4>Exemple pratique</h4>
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Moteur de rendu</th>
+				<th>Navigateur</th>
+				<th>Platformes</th>
+				<th>Version de moteur</th>
+				<th>Niveau de CSS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="gradeX">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 4.0</td>
+				<td>Win 95+</td>
+				<td class="center">4</td>
+				<td class="center">X</td>
+			</tr>
+			<tr class="gradeC">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.0</td>
+				<td>Win 95+</td>
+				<td class="center">5</td>
+				<td class="center">C</td>
+			</tr>
+			<tr class="gradeA">
+				<td>Trident</td>
+				<td>Internet
+					Explorer 5.5</td>
+				<td>Win 95+</td>
+				<td class="center">5.5</td>
+				<td class="center">A</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="<strong>table-responsive</strong>"&gt;
+	&lt;!-- Tableau ici --&gt;
+&lt;/div&gt;</code></pre>
 
 <h2 id="divers">Divers</h2>
 <h3><code>max-content</code></h3>
