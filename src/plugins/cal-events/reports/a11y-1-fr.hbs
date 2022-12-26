@@ -1,0 +1,77 @@
+---
+{
+	"title": "Assessment d'accessibilité #6 - Calendrier d'événements",
+	"language": "fr",
+	"description": "Partielle. Évaluation des nouveaux critères de succès aux niveaux A et AA de WCAG 2.1 et WCAG 2.2",
+	"tag": "cal-events",
+	"parentdir": "cal-events",
+	"parentPage": "Calendrier d'événements",
+	"parentPageURL": "cal-events",
+	"altLangPage": "a11y-1-en.html",
+	"dateModified": "2022-12-26"
+}
+---
+<div id="ds-a11y" data-wb-jsonmanager='{ "url": "a11y-1.json", "name": "a11y" }'></div>
+
+<dl class="dl-horizontal">
+	<dt>Identifiant du rapport d'évaluation</dt>
+	<dd data-json-replace="#[a11y]/id" lang="en"><span lang="fr">Non disponible</span></dd>
+	<dt>Type</dt>
+	<dd>Évaluation de l'accessibilité</dd>
+	<dt>Évalué par:</dt>
+	<dd data-json-replace="#[a11y]/assertedBy" lang="en"><span lang="fr">Non disponible</span></dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/date" lang="en"><span lang="fr">Non disponible</span></dd>
+	<dt>Page:</dt>
+	<dd><a data-wb-json='[
+
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "attr",
+				"attr": "href"
+			},
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "replace"
+			}
+
+		]' href="#" lang="en"><span lang="fr">Non Définie</span></a></dd>
+	<dt>Subject</dt>
+	<dd data-json-replace="#[a11y]/assessment" lang="en"><span lang="fr">Non Définie</span></dd>
+	<dt>Notes:</dt>
+	<dd data-json-replace="#[a11y]/notes" lang="en"><span lang="fr">Aucune note</span></dd>
+	<dt>Scores</dt>
+	<dd data-json-replace="#[a11y]/score" lang="en"><span lang="fr">Non calculé</span></dd>
+</dl>
+
+<h2>Détails de l'évaluation</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Critères de succès</th>
+			<th>Résultat</th>
+			<th>Commentaire</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/results",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": ":nth-child(1)", "value": "/label" },
+			{ "selector": ":nth-child(2)", "value": "/outcome" },
+			{ "selector": ":nth-child(3)", "value": "/notes" }
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th lang="en"></th>
+			<td lang="en"></td>
+			<td lang="en"></td>
+		</tr>
+	</table>
+</template>
