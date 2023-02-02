@@ -364,8 +364,21 @@
 		</td>
 	</tr>
 	<tr>
+		<td><code>fpath</code></td>
+		<td>Base JSON pointer path to an array <code>[]</code> where the specified filter must be applied</td>
+		<td><code>data-wb-jsonmanager='{ "url": "file.json", "name": "ADataSetName", "fpath": "/myArray", "filter": [ ... ]'</code></td>
+		<td>
+			<dl>
+				<dt>false (default)</dt>
+				<dd>No filtering will be applied</dd>
+				<dt>String</dt>
+				<dd>JSON pointer to the array where the data filtering must be applied</dd>
+			</dl>
+		</td>
+	</tr>
+	<tr>
 		<td><code>filter</code></td>
-		<td>Available for when selecting array only. Item that is true will be kept and item that is false will be removed.</td>
+		<td>Available for when selecting array only. Item that is true will be kept and item that is false will be removed. The <code>fpath</code> configuration must be set also.</td>
 		<td><code>data-wb-jsonmanager='{ "url": "", "filter": [ {evaluation object} ] }'</code></td>
 		<td>
 			<p>Evaluation object have the following property</p>
@@ -382,7 +395,7 @@
 	</tr>
 	<tr>
 		<td><code>filternot</code></td>
-		<td>Available for when selecting array only. Item that is true will be removed and item that is false will be kept. This filter happen after the configuration for the "filter" option has been evaluated.</td>
+		<td>Available for when selecting array only. Item that is true will be removed and item that is false will be kept. This filter happen after the configuration for the "filter" option has been evaluated. The <code>fpath</code> configuration must be set also.</td>
 		<td><code>data-wb-jsonmanager='{ "url": "", "filternot": [ {evaluation object} ] }'</code></td>
 		<td>
 			<p>Evaluation object have the following property</p>
@@ -486,6 +499,7 @@
 
 	<h3 id="evalobj">Filtering (evaluation object)</h3>
 	<p>The path selector must point to an valid JSON array object. All the option presented in the table bellow can be combined.</p>
+	<p>The configuration option <code>fpath</code> <strong>must be set</strong> in the JSON manager configuration in order to apply any filtering.</p>
 	<table class="table">
 	<thead>
 	<tr>

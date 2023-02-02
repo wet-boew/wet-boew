@@ -511,9 +511,9 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 		}
 
 		if ( isArrayResponse ) {
-			JSONresponse = $.extend( [], JSONresponse );
+			JSONresponse = $.extend( true, [], JSONresponse );
 		} else {
-			JSONresponse = $.extend( {}, JSONresponse );
+			JSONresponse = $.extend( true, {}, JSONresponse );
 		}
 
 		// Apply a filtering
