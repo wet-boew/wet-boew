@@ -456,6 +456,28 @@
 			</dl>
 		</td>
 	</tr>
+	<tr>
+		<td><code>extractor</code></td>
+		<td>To be used when the dataset is build from the curent page and no JSON <code>url</code> is provided. Array of objects containing html selectors with their specific paths.</td>
+		<td><code>data-wb-jsonmanager='{ "name": "ex1",	"extractor": ' [ { selector object, (any additional parameter as per the extraction type) } ] }'</code></td>
+		<td>
+			<p>The selector object can have the following properties</p>
+			<dl>
+			<dt><code>selector</code></dt>
+			<dd>Indicate what html element to be selected from the page</dd>
+			<dt><code>path</code></dt>
+			<dd>Required. JSON pointer to the data being evaluated</dd>
+			<dt><code>selectAll</code></dt>
+			<dd>Indicate if should extract all html elements specified in the <code>selector</code>. If not used, it will extract only the first founded.</dd>
+			<dt><code>attr</code></dt>
+			<dd>Indicate if the value should be extracted from the specified tag attribute instead of the specified tag text</dd>
+			<dt><code>interface</code></dt>
+			<dd>Predefined properties that will store the values from: the <code>document.referrer</code> for <code>referer</code>", <code>location.href</code> for <code>locationHref</code></dd>
+			<dt><code>extractor</code></dt>
+			<dd>Used for combined selectors e.g. description lists. Same principle as for <code>extractor</code> configuration option, it is an array of objects containing html selectors with their specific paths.</dd>
+			</dl>
+		</td>
+	</tr>
 </tbody>
 </table>
 <h3 id="evalobj">Filtering (evaluation object)</h3>
@@ -484,6 +506,58 @@
 <td><code>optional</code></td>
 <td><code>{ "filter": [ { "optional": true } ] &hellip;}'</code> or <code>{ "filternot": [ { "optional": true } ] &hellip;}'</code></td>
 <td>True or false. If omited it will be false by default.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="extractobj">Extractor (selector object)</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Option</th>
+<th>How to configure</th>
+<th>Values and clarification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selector</code></td>
+<td><code>{ "extractor": [ { "selector": "h2" } ] &hellip;}</code> or <code>{ "extractor": [ { "selector": "dl[data-dl]" } ] &hellip;}</code></td>
+<td>A valid css selector for any html element from the page </td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td><code>{ "extractor": [ { "path": "firstH2" } ] &hellip;}</code> or <code>{ "extractor": [ { "path": "myGroup" } ] &hellip;}</code></td>
+<td>The value of this property will be the pointer in the JSON object dataset that will be created</td>
+</tr>
+<tr>
+<td><code>selectAll</code></td>
+<td><code>{ "extractor": [ { "selectAll": true } ] &hellip;}</code> </td>
+<td>If true, it will search in the page for  all the html elements indicated in the <code>selector</code> property</td>
+</tr>
+<tr>
+<td><code>attr</code></td>
+<td><code>{ "extractor": [ { "attr":"data-td" } ] &hellip;}</code> </td>
+<td>If present, it will collect the value from the specified attribute for the mentioned selector instead of the text value of the <code>selector</code> property</td>
+</tr>
+<tr>
+<td><code>interface</code></td>
+<td><code>{ "extractor": [ { "interface":"referer" } ] &hellip;}</code> or <code>{ "extractor": [ { "interface":"locationHref" } ] &hellip;}</code> </td>
+<td>If present, it will collect the value from predefined properties as follows <span class="text-muted">(This list is not exhaustive):</span>
+	<ul><li><code>referer</code> is assigned for the <code>document.referrer</code> value</li><li><code>locationHref</code> is assigned for <code>location.href</code> value</li></ul></td>
+</tr>
+<tr>
+<td><code>extractor</code></td>
+<td><code>{ "extractor": [ { "extractor":[ {
+									"selector": "dt",
+									"path": "title",
+									"attr":"data-td"
+								},
+								{
+									"selector": "dd",
+									"path": "desc"
+								}] } ] &hellip;}</code> </td>
+<td>Used for combined selectors e.g. description lists. Same configuration as for outer <code>extractor</code> option, it is an array of objects containing html selectors with their specific paths.
+
 </tr>
 </tbody>
 </table>

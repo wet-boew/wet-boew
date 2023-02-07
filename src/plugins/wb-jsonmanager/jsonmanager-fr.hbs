@@ -7,7 +7,7 @@
 	"tag": "jsonmanager",
 	"parentdir": "wb-jsonmanager",
 	"altLangPage": "jsonmanager-en.html",
-	"dateModified": "2017-02-02"
+	"dateModified": "2022-10-31"
 }
 ---
 <!--
@@ -343,4 +343,286 @@
 	&quot;patches&quot;: { &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/produits&quot;, &quot;set&quot;: &quot;/nbproduit&quot; },
 	&quot;debug&quot;: true
 }'&gt;Nombre de produits: &lt;span data-json-replace=&quot;#[exemple3]/nbproduit&quot;&gt;Non disponible&lt;/span&gt;&lt;/p&gt;</code></pre>
+</details>
+
+<h2>Extraire les données des nœuds DOM pour créer l'objet JSON de la source de données</h2>
+	<p>Utilisez <code>replace</code> et <code>mappage</code> sur la même source de données JSON</p>
+<div data-wb-jsonmanager='{
+	"name": "ex1",
+	"extractor": [
+					{ "selector": "title", "path": "pageTitle" },
+					{ "selector": "h2", "path": "firstH2" },
+					{ "selector": "h4", "path": "allH4", "selectAll": true }
+				],
+	"wraproot": "rootArray"
+}'>
+	<p> Le titre de la page est : <span data-json-replace="#[ex1]/rootArray/pageTitle">Non disponible</span></p>
+	<p> Le premier H2 est : <span data-json-replace="#[ex1]/rootArray/firstH2">Non disponible</span></p>
+	<p>Tous les H4 de la page :</p>
+	<ul data-wb-json='{
+						"url": "#[ex1]/rootArray/allH4",
+						"mapping": [
+							{ "selector": "li" }
+						]
+					}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+</div>
+
+<details>
+<summary>Afficher le code source</summary>
+<pre><code>
+&lt;p&gt;Utilisez &lt;code&gt;replace&lt;/code&gt; et &lt;code&gt;mapping&lt;/code&gt; sur la même source de données JSON&lt;/p&gt;
+
+&lt;div data-wb-jsonmanager='{
+		&quot;name&quot; : &quot;ex1&quot;,
+		&quot;extractor&quot; : [
+			{ &quot;selector&quot; : &quot;title&quot;, &quot;path&quot; : &quot;pageTitle&quot; },
+			{ &quot;selector&quot; : &quot;h2&quot;, &quot;path&quot; : &quot;firstH2&quot;},
+			{ &quot;selector&quot; : &quot;h4&quot;, &quot;path&quot; : &quot;allH4&quot;, &quot;selectAll&quot; : true}
+		],
+		&quot;wraproot&quot;: &quot;rootArray&quot;
+	}'>
+	&lt;p&gt;Le titre de la page est : &lt;span data-json-replace=&quot;#[ex1]/rootArray/pageTitle&quot;&gt;Non disponible&lt;/span&gt;&lt;/p&gt;
+	&lt;p&gt;Le premier H2 est : &lt;span data-json-replace="#[ex1]/rootArray/firstH2&quot;&gt;Non disponible&lt;/span&gt;&lt;/p&gt;
+	&lt;p&gt;Tous les H4 de la page :&lt;/p&gt;
+	&lt;ul data-wb-json='{
+			&quot;url&quot; : &quot;#[ex1]/rootArray/allH4&quot;,
+				&quot;mapping&quot; : [
+					{ &quot;selector&quot; : &quot;li&quot; }
+				]
+		}'>
+		&lt;template&gt;
+			&lt;li&gt;&lt;/li&gt;
+		&lt;/template&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h3>Regrouper les sélecteurs sur la même source de données JSON</h3>
+<p>La liste de description ci-dessous est la source des sélecteurs combinés :</p>
+<dl data-dl="test">
+	<dt data-td="data-title-1">Titre 1</dt>
+	<dd>Description 1</dd>
+
+	<dt data-td="data-title-2">Titre 2</dt>
+	<dd>Description 2</dd>
+
+	<dt>Titre 3</dt>
+	<dd>Description 3</dd>
+</dl>
+
+<div data-wb-jsonmanager='{
+		"name": "ex2",
+		"url": "demo/data-en.json",
+		"extractor": [
+			{ "selector": "title", "path": "pageTitle" },
+			{ "selector": "h2", "path": "firstH2" },
+			{
+				"selector": "dl[data-dl]",
+				"path": "monGroup",
+				"extractor": [
+					{
+						"selector": "dt",
+						"path": "title",
+						"attr":"data-td"
+					},
+					{
+						"selector": "dd",
+						"path": "desc"
+					}
+
+				]
+			}
+		]
+}'>
+	<p>Afficher dans un tableau les valeurs combinées des sélecteurs :</p>
+	<table class="table table-striped">
+		<thead>
+			<tr data-wb-json='{
+				"url": "#[ex2]/monGroup",
+				"mapping": [
+					{ "selector": "th", "value": "/title" }
+				]
+				}'>
+				<template>
+					<th></th>
+				</template>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-wb-json='{
+				"url": "#[ex2]/monGroup",
+				"mapping": [
+					{ "selector": "td", "value": "/desc" }
+				]
+				}'>
+				<template>
+					<td></td>
+				</template>
+			</tr>
+		</tbody>
+	</table>
+	<p> Le titre de la page est: <span data-json-replace="#[ex2]/pageTitle">Indisponible</span></p>
+	<p> Le premier H2 est: <span data-json-replace="#[ex2]/firstH2">Indisponible</span></p>
+</div>
+<details>
+	<summary>Afficher le code source</summary>
+
+	<h3>HTML</h3>
+	<pre><code>
+&lt;div data-wb-jsonmanager='{
+		&quot;name&quot;: &quot;ex2&quot;,
+		&quot;extractor&quot;: [
+			{ &quot;selector&quot;: &quot;title&quot;, &quot;path&quot;: &quot;pageTitle&quot; },
+			{ &quot;selector&quot;: &quot;h2&quot;, &quot;path&quot;: &quot;firstH2&quot; },
+			{ &quot;selector&quot;: &quot;dl&#91;data-dl&#93;&quot;, &quot;path&quot;: &quot;monGroup&quot;, &quot;extractor&quot;: &#91;
+				{
+					&quot;selector&quot;: &quot;dt&quot;,
+					&quot;path&quot;: &quot;title&quot;,
+					&quot;attr&quot;:&quot;data-td&quot;
+				},
+				{
+					&quot;selector&quot;: &quot;dd&quot;,
+					&quot;path&quot;: &quot;desc&quot;
+				} &#93;&quot;}
+		]
+	}'&gt;
+
+	&lt;table class=&quot;table table-striped&quot;&gt;
+		&lt;thead&gt;
+			&lt;tr data-wb-json='{
+				&quot;url&quot;: &quot;#[ex2]/monGroup&quot;,
+				&quot;mapping&quot;: [
+					{ &quot;selector&quot;: &quot;th&quot;, &quot;value&quot;: &quot;/title&quot; }
+				]
+				}'&gt;
+				&lt;template&gt;
+					&lt;th&gt;&lt;/th&gt;
+				&lt;/template&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr data-wb-json='{
+				&quot;url&quot;: &quot;#[ex2]/monGroup&quot;,
+				&quot;mapping&quot;: [
+					{ &quot;selector&quot;: &quot;td&quot;, &quot;value&quot;: &quot;/desc&quot; }
+				]
+				}'&gt;
+				&lt;template&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/template&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;p&gt; Le titre de la page est: &lt;span data-json-replace=&quot;#[ex2]/pageTitle&quot;&gt;Indisponible&lt;/span&gt;&lt;/p&gt;
+	&lt;p&gt; Le premier H2 est: &lt;span data-json-replace=&quot;#[ex2]/firstH2&quot;&gt;Indisponible&lt;/span&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;</code></pre>
+</details>
+
+
+<h3>Extraire les valeurs des attributs de balises ou extraire toutes les valeurs de balises spécifiques :</h3>
+<div data-wb-jsonmanager='{
+		"name": "ex3",
+		"extractor": [
+						{ "path": "/formfields/pageTitle", "selector": "title" },
+						{ "path": "/formfields/lang", "attr":"lang", "selector": "html" },
+						{ "path": "/formfields/externalReferer", "interface": "referer" },
+						{ "path": "/formfields/submissionPage", "interface": "locationHref" },
+						{ "selector": "h2", "path": "allH2", "selectAll":true },
+						{ "selector": "h3", "path": "allH3", "selectAll":true }
+					],
+		"patches": { "op": "wb-count", "path": "/allH3", "set": "/nbH3Total" }
+	}'>
+	<div data-wb-json='{
+						"url": "#[ex3]/formfields",
+						"mapping": [
+								{ "selector": "input", "attr": "name", "value": "/@id" },
+								{ "selector": "input", "attr": "value", "value": "/@value" }
+						]
+					}'>
+		<template>
+			<input type="text" name="" value="">
+		</template>
+	</div>
+	<p>Tous les H2 de la page :</p>
+	<ul data-wb-json='{
+		"url": "#[ex3]/allH2",
+		"mapping": [
+			{ "selector": "li" }
+		]
+	}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+	<p>Tous les H3 de la page (<span data-json-replace="#[ex3]/nbH3Total">inconnu</span> instances) :</p>
+	<ul data-wb-json='{
+		"url": "#[ex3]/allH3",
+		"mapping": [
+					{ "selector": "li" }
+				]
+		}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+</div>
+
+<details>
+<summary>Afficher le code source</summary>
+
+<h3>HTML</h3>
+<pre><code>
+&lt;div data-wb-jsonmanager='{
+		&quot;name&quot;: &quot;ex3&quot;,
+		&quot;extractor&quot;: [
+			{ &quot;path&quot;: &quot;/formfields/pageTitle&quot;, &quot;selector&quot;: &quot;title&quot; },
+			{ &quot;path&quot;: &quot;/formfields/lang&quot;, &quot;attr&quot;:&quot;lang&quot;, &quot;selector&quot;: &quot;html&quot; },
+			{ &quot;path&quot;: &quot;/formfields/externalReferer&quot;, &quot;interface&quot;: &quot;referer&quot; },
+			{ &quot;path&quot;: &quot;/formfields/submissionPage&quot;, &quot;interface&quot;: &quot;locationHref&quot; },
+			{ &quot;selector&quot;: &quot;h2&quot;, &quot;path&quot;: &quot;allH2&quot;, &quot;selectAll&quot;:true },
+			{ &quot;selector&quot;: &quot;h3&quot;, &quot;path&quot;: &quot;allH3&quot;, &quot;selectAll&quot;:true }
+		],
+		&quot;patches&quot;: { &quot;op&quot;: &quot;wb-count&quot;, &quot;path&quot;: &quot;/allH3&quot;, &quot;set&quot;: &quot;/nbH3Total&quot; }
+	}'&gt;
+
+	&lt;div data-wb-json='{
+		&quot;url&quot; : &quot;#[ex3]/formfields&quot;,
+		&quot;mapping&quot; : [
+			{ &quot;selector&quot; : &quot;input&quot;, &quot;attr&quot; : &quot;name&quot;, &quot;value&quot; : &quot;/@id&quot; },
+			{ &quot;selector&quot; : &quot;input&quot;, &quot;attr&quot; : &quot;name&quot;, &quot;value&quot; : &quot;/@value&quot; }
+		]
+	}'>
+		&lt;template&gt;
+			&lt;input type=&quot;text&quot; name="" value=&quot;&quot; &gt;
+		&lt;/template&gt;
+	&lt;/div&gt;
+	&lt;p&gt;Tous les H2 de la page :&lt;/p&gt;
+	&lt;ul data-wb-json='{
+			&quot;url&quot; : &quot;#[ex3]/allH2&quot;,
+			&quot;mapping&quot; : [
+			{ &quot;selector&quot; : &quot;li&quot; }
+			]
+		}'>
+		&lt;template&gt;
+			&lt;li&gt;&lt;/li&gt;
+		&lt;/template&gt;
+	&lt;/ul&gt;
+	&lt;p&gt;Tous les H3 de la page (&lt;span data-json-replace=&quot;#[ex3]/nbH3Total&quot;&gt;inconnu&lt;/span&gt; instances):&lt;/p&gt;
+	&lt;ul data-wb-json='{
+		&quot;url&quot; : &quot;#[ex3]/allH3&quot;,
+		&quot;mapping&quot; : [
+			{ &quot;selector&quot;: &quot;li&quot; }
+		]
+		}'>
+		&lt;template&gt;
+			&lt;li&gt;&lt;/li&gt;
+		&lt;/template&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
 </details>

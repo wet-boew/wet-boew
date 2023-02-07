@@ -210,12 +210,14 @@ var componentName = "wb-jsonmanager",
 			}
 		],
 		opsRoot: [],
-		settings: { }
+		settings: { },
+		docMapKeys: { "referer": document.referrer, "locationHref": location.href }
 	},
 
 	// Add debug information after the JSON manager element
 	debugPrintOut = function( $elm, name, json, patches ) {
 		$elm.after( "<p lang=\"en\"><strong>JSON Manager Debug</strong> (" +  name + ")</p><ul lang=\"en\"><li>JSON: <pre><code>" + JSON.stringify( json ) + "</code></pre></li><li>Patches: <pre><code>" + JSON.stringify( patches ) + "</code></pre>" );
+		console.log( json );
 	},
 
 	/**
@@ -243,7 +245,7 @@ var componentName = "wb-jsonmanager",
 				// For loading multiple dependencies
 				load: "site!deps/json-patch" + wb.getMode() + ".js",
 				testReady: function() {
-					return window.jsonpatch;
+					return window.jsonpatch && window.jsonpointer;
 				},
 				complete: function() {
 					var elmData = wb.getData( $elm, componentName );
@@ -276,7 +278,6 @@ var componentName = "wb-jsonmanager",
 					}
 
 					dsName = elmData.name;
-
 					if ( !dsName || dsName in dsNameRegistered ) {
 						throw "Dataset name must be unique";
 					}
@@ -303,19 +304,157 @@ var componentName = "wb-jsonmanager",
 						if ( url.charCodeAt( 0 ) === 35 && url.charCodeAt( 1 ) === 91 ) {
 							wb.ready( $elm, componentName );
 						}
+					} else if ( !url && elmData.extractor ) {
+						$elm.trigger( {
+							type: "json-fetched.wb",
+							fetch: {
+								response: {}
+							}
+						} );
+						wb.ready( $elm, componentName );
+
 					} else {
 
-						// Do an empty fetch to ensure jsonPointer is loaded and correctly initialized
 						$elm.trigger( {
 							type: "json-fetch.wb"
 						} );
 						wb.ready( $elm, componentName );
 					}
+
 				}
 			} );
 		}
 	},
+	extractData = function( elmObj ) {
 
+		var isGroup = false,
+			selectedTag,
+			targetTag,
+			lastIndex = [],
+			j_tag = "",
+			group = {},
+			arrMap = [],
+			node_children = [],
+			j_node = 0,
+			arrRepeatPath = [],
+			combineToObj = function( cur_obj ) {
+				if ( cur_obj.selector === j_tag ) {
+					if ( !lastIndex.includes( j_tag ) ) {
+						group[ cur_obj.path ] = cur_obj.attr && node_children[ j_node ].getAttributeNode( cur_obj.attr ) ?
+							node_children[ j_node ].getAttributeNode( cur_obj.attr ).textContent :
+							node_children[ j_node ].textContent;
+						lastIndex.push( j_tag );
+					}
+				}
+			},
+			manageObjDir = function( selector, selectedValue, json_return ) {
+				var arrPath = selector.path.split( "/" ).filter( Boolean );
+				if ( arrPath.length > 1 ) {
+					var pointer = "";
+					pointer = arrPath.pop();
+
+					if ( arrPath[ 0 ] && arrPath[ 0 ] !== "" ) {
+
+						if ( !json_return[ arrPath[ 0 ] ] && !arrRepeatPath.includes( arrPath[ 0 ] ) ) {
+							arrRepeatPath.push( arrPath[ 0 ] );
+							json_return[ arrPath[ 0 ] ] = {};
+						}
+						if ( selector.selectAll && !json_return[ arrPath[ 0 ] ] [ pointer ]  ) {
+							json_return[ arrPath[ 0 ] ] [ pointer ] = [];
+						}
+						if ( selector.selectAll ) {
+							json_return[ arrPath[ 0 ] ] [ pointer ].push( selectedValue );
+						} else {
+							json_return[ arrPath[ 0 ] ] [ pointer ] = selectedValue;
+						}
+
+					} else {
+
+						if ( selector.selectAll ) {
+							json_return[ arrPath[ 0 ] ].push( selectedValue );
+						} else {
+							json_return[ pointer ] = selectedValue;
+						}
+					}
+				} else {
+
+					if ( selector.selectAll ) {
+						if ( !json_return[ selectedTag.path ] ) {
+							json_return[ selectedTag.path ] = [];
+						}
+						json_return[ selectedTag.path ].push( selectedValue );
+					} else {
+						json_return[ selectedTag.path ] = selectedValue;
+					}
+				}
+			},
+			jsonSource = {};
+
+
+		for ( var tag = 0; tag <= elmObj.length - 1; tag++ ) {
+
+			selectedTag = elmObj[ tag ];
+
+			if ( !selectedTag.interface ) {
+
+				targetTag = document.querySelectorAll( selectedTag.selector || "" );
+				isGroup = selectedTag.extractor && selectedTag.extractor.length >= 1 ? true : false;
+
+				if ( selectedTag.selectAll ) {
+
+					for ( var i_node = 0; i_node <= targetTag.length - 1; i_node++ ) {
+
+						var selectedTagValue = selectedTag.attr && targetTag [ i_node ].getAttributeNode( selectedTag.attr ) ?
+							targetTag [ i_node ].getAttributeNode( selectedTag.attr ).textContent :
+							targetTag [ i_node ].textContent;
+
+						manageObjDir( selectedTag, selectedTagValue, jsonSource );
+					}
+				}
+
+				// extract from combined selectors and group the values e.g dt with dd
+				if ( isGroup ) {
+
+					jsonSource[ selectedTag.path ] = [];
+
+					node_children = targetTag[ 0 ].children;
+
+					var extractorLength = Object.keys( selectedTag.extractor ).length;
+
+					for ( j_node = 0; j_node <= node_children.length - 1; j_node++ ) {
+
+						j_tag = node_children[ j_node ].tagName.toLowerCase();
+
+						selectedTag.extractor.find( combineToObj );
+						if ( Object.keys( group ).length === extractorLength ) {
+							arrMap.push( group );
+							group = {};
+							lastIndex = [];
+						}
+					}
+					$.extend( jsonSource[ selectedTag.path ], arrMap );
+				}
+
+				targetTag = selectedTag.attr && targetTag [ 0 ].getAttributeNode( selectedTag.attr ) ?
+					targetTag [ 0 ].getAttributeNode( selectedTag.attr ).textContent :
+					targetTag [ 0 ].textContent;
+
+			} else {
+
+				targetTag = defaults.docMapKeys[ selectedTag.interface ];
+
+				manageObjDir( selectedTag, targetTag, jsonSource );
+			}
+
+			if ( !selectedTag.selectAll  ) {
+				if ( isGroup === false ) {
+					manageObjDir( selectedTag, targetTag, jsonSource );
+				}
+			}
+		}
+
+		return jsonSource;
+	},
 
 	// Filtering a JSON
 	// Return true if trueness && falseness
@@ -494,12 +633,20 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 		isArrayResponse = $.isArray( JSONresponse ),
 		resultSet,
 		i, i_len, i_cache, backlog, selector,
-		patches, filterTrueness, filterFaslseness, filterPath;
-
+		patches, filterTrueness, filterFaslseness, filterPath, extractor;
 
 	if ( elm === event.currentTarget ) {
-
 		settings = wb.getData( $elm, componentName );
+
+		extractor = settings.extractor;
+		if ( extractor ) {
+			if ( !$.isArray( extractor ) ) {
+				extractor = [ extractor ];
+			}
+			JSONresponse = $.extend( JSONresponse, extractData( extractor ) );
+
+		}
+
 		dsName = "[" + settings.name + "]";
 		patches = settings.patches || [];
 		filterPath = settings.fpath;
@@ -521,16 +668,17 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 			JSONresponse = getPatchesToFilter( JSONresponse, filterPath, filterTrueness, filterFaslseness );
 		}
 
-		// Apply the patches
-		if ( patches.length ) {
-			if ( isArrayResponse && settings.wraproot ) {
-				i_cache = { };
-				i_cache[ settings.wraproot ] = JSONresponse;
-				JSONresponse = i_cache;
-			}
-			jsonpatch.apply( JSONresponse, patches );
+		// Apply the wraproot
+		if ( settings.wraproot  ) {
+			i_cache = { };
+			i_cache[ settings.wraproot ] = JSONresponse;
+			JSONresponse = i_cache;
 		}
 
+		// Apply the patches
+		if ( patches.length ) {
+			jsonpatch.apply( JSONresponse, patches );
+		}
 		if ( settings.debug ) {
 			debugPrintOut( $elm, "initEvent", JSONresponse, patches );
 		}
