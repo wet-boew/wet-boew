@@ -1,0 +1,43 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+.dropdown {
+	display: inline-block;
+}
+
+.dropdown-menu {
+	> li {
+		> button {
+			background: none;
+			border: none;
+			padding: .375em 1em;
+			text-align: left;
+			width: 100%;
+
+			&:focus { background-color: #f5f5f5; }
+			&:focus-visible { @include tab-focus(); }
+		}
+
+		> a {
+			padding: .375em 1em;
+			text-decoration: none;
+
+			&:focus { outline: none; }
+			&:focus-visible { @include tab-focus(); }
+		}
+	}
+
+	.wb-disable & {
+		display: block;
+		float: none;
+		position: static;
+	}
+}
+
+.dropdown-toggle {
+	&:focus-visible {
+		@include tab-focus();
+	}
+}
