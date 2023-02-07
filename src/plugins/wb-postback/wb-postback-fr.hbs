@@ -7,9 +7,10 @@
 	"tag": "wb-postback",
 	"parentdir": "wb-postback",
 	"altLangPrefix": "wb-postback",
-	"dateModified": "2022-04-13"
+	"dateModified": "2023-02-01"
 }
 ---
+<div class="wb-prettify all-pre hide"></div>
 
 <p>Soumission de formulaire via une requête Ajax.</p>
 
@@ -38,10 +39,9 @@
 </form>
 <p class="success-message hide">Merci!</p>
 <p class="failure-message hide">Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.</p>
-
 <details class="mrgn-tp-md mrgn-bttm-md">
 	<summary>View code</summary>
-	<pre><code>&lt;form action="wb-postback-fr.html" class="wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message&amp;quot;}"&gt;
+	<pre><code>&lt;form action="wb-postback-fr.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'&gt;
 	&lt;div class="form-content"&gt;
 		&lt;div class="form-group"&gt;
 			&lt;label for="firstname1"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt;&lt;/label&gt;
@@ -69,59 +69,58 @@
 <p>Soumission de formulaire via une requête Ajax en utilisant aussi le plugiciel <a href="https://wet-boew.github.io/wet-boew/demos/formvalid/formvalid-fr.html">Validation de formulaires</a> .</p>
 
 <p>Pour voir cet example en action, vérifier l'onglet réseaux de la console du fureteur afin de voir la requête Ajax envoyé.</p>
+
 <div class="wb-frmvld">
-<form action="wb-postback-fr.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
-	<div class="form-content">
-		<div class="form-group">
-			<label for="firstname2" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
-			<input class="form-control" id="firstname2" name="firstname" type="text" data-rule-minlength="2" required="required" />
+	<form action="wb-postback-fr.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+		<div class="form-content">
+			<div class="form-group">
+				<label for="firstname2" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
+				<input class="form-control" id="firstname2" name="firstname" type="text" data-rule-minlength="2" required="required" />
+			</div>
+			<div class="form-group">
+				<label for="lastname2" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
+				<input class="form-control" id="lastname2" name="lastname" type="text" data-rule-minlength="2" required="required" />
+			</div>
+			<div class="form-group">
+				<label for="preferredNumber2"><span class="field-name">Numéro de téléphone</span></label>
+				<input class="form-control" id="preferredNumber2" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+			</div>
+			<div class="form-group">
+				<label for="email2"><span class="field-name">Addresse courriel</span> (test@domaine)</label>
+				<input class="form-control" id="email2" name="email" type="email" />
+			</div>
+			<button type="submit" class="btn btn-primary">Soumettre</button>
 		</div>
-		<div class="form-group">
-			<label for="lastname2" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
-			<input class="form-control" id="lastname2" name="lastname" type="text" data-rule-minlength="2" required="required" />
-		</div>
-		<div class="form-group">
-			<label for="preferredNumber2"><span class="field-name">Numéro de téléphone</span></label>
-			<input class="form-control" id="preferredNumber2" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
-		</div>
-		<div class="form-group">
-			<label for="email2"><span class="field-name">Addresse courriel</span> (test@domaine)</label>
-			<input class="form-control" id="email2" name="email" type="email" />
-		</div>
-		<button type="submit" class="btn btn-primary">Soumettre</button>
-	</div>
-</form>
-<p class="success-message-2 hide">Merci!</p>
-<p class="failure-message-2 hide">Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.</p>
+	</form>
+	<p class="success-message-2 hide">Merci!</p>
+	<p class="failure-message-2 hide">Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.</p>
 </div>
 <details class="mrgn-tp-md mrgn-bttm-md">
 	<summary>View code</summary>
 	{{>alertariahidden}}
-	<pre><code>
-		&lt;div class="wb-frmvld"&gt;
-		&lt;form action="wb-postback-fr.html" class="wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message-2&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message-2&amp;quot;}"&gt;
-	&lt;div class="form-content"&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="firstname2" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="firstname2" name="firstname" type="text" data-rule-minlength="2" required="required" /&gt;
+	<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="wb-postback-fr.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'&gt;
+		&lt;div class="form-content"&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="firstname2" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+				&lt;input class="form-control" id="firstname2" name="firstname" type="text" data-rule-minlength="2" required="required" /&gt;
+			&lt;/div&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="lastname2" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+				&lt;input class="form-control" id="lastname2" name="lastname" type="text" data-rule-minlength="2" required="required" /&gt;
+			&lt;/div&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="preferredNumber2"&gt;&lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
+				&lt;input class="form-control" id="preferredNumber2" name="preferredNumber" type="tel" data-rule-phoneUS="true" /&gt;
+			&lt;/div&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="email2"&gt;&lt;span class="field-name"&gt;Addresse courriel&lt;/span&gt; (test@domaine)&lt;/label&gt;
+				&lt;input class="form-control" id="email2" name="email" type="email" /&gt;
+			&lt;/div&gt;
+			&lt;button type="submit" class="btn btn-primary"&gt;Soumettre&lt;/button&gt;
 		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="lastname2" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="lastname2" name="lastname" type="text" data-rule-minlength="2" required="required" /&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="preferredNumber2"&gt;&lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="preferredNumber2" name="preferredNumber" type="tel" data-rule-phoneUS="true" /&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="email2"&gt;&lt;span class="field-name"&gt;Addresse courriel&lt;/span&gt; (test@domaine)&lt;/label&gt;
-			&lt;input class="form-control" id="email2" name="email" type="email" /&gt;
-		&lt;/div&gt;
-		&lt;button type="submit" class="btn btn-primary"&gt;Soumettre&lt;/button&gt;
-	&lt;/div&gt;
-&lt;/form&gt;
-&lt;p class="success-message-2 hide"&gt;Merci!&lt;/p&gt;
-&lt;p class="failure-message-2 hide"&gt;Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
+	&lt;/form&gt;
+	&lt;p class="success-message-2 hide"&gt;Merci!&lt;/p&gt;
+	&lt;p class="failure-message-2 hide"&gt;Nous somme désolé, un problème est survenu lors de la soumission de votre formulaire. Veuillez nous envoyer l'information via une méthode alternative.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 </details>

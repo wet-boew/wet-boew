@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Soumission de formulaire via une requête Ajax.",
 	"altLangPrefix": "wb-postback",
-	"dateModified": "2020-12-09"
+	"dateModified": "2023-02-01"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -135,12 +135,11 @@
 
 <h3>User interface (Template)</h3>
 <p>(Version 1.0)</p>
-<pre><code>&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback="{&amp;quot;success&amp;quot;:&amp;quot;success-message&amp;quot;,&amp;quot;failure&amp;quot;:&amp;quot;failure-message&amp;quot;}"&gt;
+<pre><code>&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'&gt;
 	... form content ...
 &lt;/form&gt;
 &lt;p class="success-message hide"&gt;Thank you!&lt;/p&gt;
-&lt;p class="failure-message hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;
-</code></pre>
+&lt;p class="failure-message hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;</code></pre>
 
 <h2>Source code</h2>
 <p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/wb-postback">Postback source code on GitHub</a></p>
