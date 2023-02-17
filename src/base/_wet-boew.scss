@@ -45,7 +45,6 @@
 /*! Components (CSS type only) */
 @import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
 @import "transitions/base";
-@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
@@ -97,6 +96,8 @@
 @import "../plugins/charts/base";
 @import "../plugins/collapsible-alerts/base";
 @import "../plugins/dismissable-content/base";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "../plugins/dropdown/base";
 @import "../plugins/eqht-css/base";
 @import "../plugins/equalheight/base";
 @import "../plugins/filter/base";

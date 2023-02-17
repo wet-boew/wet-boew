@@ -1,0 +1,212 @@
+---
+{
+	"title": "Bouton de menu déroulant",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Bouton affichant un menu déroulant d'actions ou de liens au clic",
+	"tag": "dropdown",
+	"parentdir": "dropdown",
+	"altLangPrefix": "dropdown",
+	"dateModified": "2023-02-14"
+}
+---
+
+<span class="wb-prettify all-pre"></span>
+
+<p>Remarque : les menus déroulants imbriqués ne sont actuellement pas pris en charge.</p>
+
+<h2>Bouton de menu déroulant avec des liens</h2>
+<div class="wb-dropdown">
+	<button class="btn btn-default">Menu déroulant</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<details class="mrgn-tp-md">
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="wb-dropdown"&gt;
+	&lt;button class="btn btn-default"&gt;Menu déroulant&lt;/button&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un autre lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Autre chose&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Bouton de menu déroulant avec des boutons d'action</h2>
+<div class="wb-dropdown">
+	<button class="btn btn-default">Menu déroulant</button>
+	<ul>
+		<li><button type="button" onclick="alert('Vous avez cliqué sur le bouton Bouton d\'action')">Bouton d'action</button></li>
+		<li><button type="button">Autre bouton d'action</button></li>
+		<li><button type="button">Bouton pour autre chose</button></li>
+	</ul>
+</div>
+<details class="mrgn-tp-md">
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="wb-dropdown"&gt;
+	&lt;button class="btn btn-default"&gt;Menu déroulant&lt;/button&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;button type="button" onclick="alert('Vous avez cliqué sur le bouton Bouton d\'action')"&gt;Action&lt;/button&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;button type="button"&gt;Autre action&lt;/button&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;button type="button"&gt;Autre chose&lt;/button&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Dimensions</h2>
+<div class="wb-dropdown">
+	<button class="btn btn-default btn-lg">Menu déroulant (grand)</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-default btn-sm">Menu déroulant (petit)</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-default btn-xs">Menu déroulant (très petit)</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<details class="mrgn-tp-md">
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="wb-dropdown"&gt;
+	&lt;button class="btn btn-default btn-lg"&gt;Menu déroulant (grand)&lt;/button&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un autre lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Autre chose&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="wb-dropdown"&gt;
+	&lt;button class="btn btn-default btn-sm"&gt;Menu déroulant (petit)&lt;/button&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un autre lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Autre chose&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="wb-dropdown"&gt;
+	&lt;button class="btn btn-default btn-xs"&gt;Menu déroulant (très petit)&lt;/button&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Un autre lien&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Autre chose&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Menu déroulant basé sur un état</h2>
+<div class="wb-dropdown">
+	<button class="btn btn-default">Menu déroulant</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-primary">Menu déroulant primaire</button>
+	<ul>
+		<li><a href="#">Un lien</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-success">Actions/liens de succès</button>
+	<ul>
+		<li><a href="#">A link</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-info">Actions/liens informatifs</button>
+	<ul>
+		<li><a href="#">A link</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-warning">Actions/liens risqués</button>
+	<ul>
+		<li><a href="#">A link</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<div class="wb-dropdown">
+	<button class="btn btn-danger">Actions/liens dangereux</button>
+	<ul>
+		<li><a href="#">A link</a></li>
+		<li><a href="#">Un autre lien</a></li>
+		<li><a href="#">Autre chose</a></li>
+	</ul>
+</div>
+<details class="mrgn-tp-md">
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-default">Menu déroulant&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">Un lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-primary">Menu déroulant primaire&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">Un lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-success">Actions/liens de succès&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">A link&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-info">Actions/liens informatifs&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">A link&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-warning">Actions/liens risqués&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">A link&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+&lt;div class="wb-dropdown">
+	&lt;button class="btn btn-danger">Actions/liens dangereux&lt;/button>
+	&lt;ul>
+		&lt;li>&lt;a href="#">A link&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Un autre lien&lt;/a>&lt;/li>
+		&lt;li>&lt;a href="#">Autre chose&lt;/a>&lt;/li>
+	&lt;/ul>
+&lt;/div></code></pre>
+</details>
