@@ -178,6 +178,7 @@ var getUrlParts = function( url ) {
 		isReady: false,
 		ignoreHashChange: false,
 		initQueue: 0,
+		initType: disabled ? "wb-basic-init" : "wb-init",
 
 		getPath: function( property ) {
 			return Object.prototype.hasOwnProperty.call( this, property ) ? this[ property ] : undef;
@@ -195,7 +196,7 @@ var getUrlParts = function( url ) {
 			var	eventTarget = event.target,
 				isEvent = !!eventTarget,
 				node = isEvent ? eventTarget : event,
-				initedClass = componentName + "-inited",
+				initedClass = this.isDisabled ? componentName + "-basic-inited" : componentName + "-inited",
 				isDocumentNode = node === document;
 
 			// Filter out any events triggered by descendants and only initializes
@@ -225,8 +226,8 @@ var getUrlParts = function( url ) {
 				// Trigger any nested elements (excluding nested within nested)
 				$elm
 					.find( wb.allSelectors )
-					.addClass( "wb-init" )
-					.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
+					.addClass( this.initType )
+					.filter( ":not(#" + $elm.attr( "id" ) + " ." + this.initType + " ." + this.initType + ")" )
 					.trigger( "timerpoke.wb" );
 
 				// Identify that the component is ready
@@ -294,11 +295,6 @@ var getUrlParts = function( url ) {
 				len = wb.selectors.length,
 				i;
 
-			// Lets ensure we are not running if things are disabled
-			if ( wb.isDisabled && selector !== "#wb-tphp" ) {
-				return 0;
-			}
-
 			// Check to see if the selector is already targeted
 			for ( i = 0; i !== len; i += 1 ) {
 				if ( wb.selectors[ i ] === selector ) {
@@ -347,7 +343,7 @@ var getUrlParts = function( url ) {
 				}
 
 				// Keep only the non-nested plugin/polyfill elements
-				$elms = $foundElms.filter( ":not(.wb-init .wb-init)" ).addClass( "wb-init" );
+				$elms = $foundElms.filter( ":not(." + this.initType + " ." + this.initType + ")" ).addClass( this.initType );
 			} else {
 				$elms = $( selectorsLocal.join( ", " ) );
 			}
@@ -586,7 +582,7 @@ Modernizr.load( [
 				let isTrident = new Boolean( window.navigator.msSaveOrOpenBlob );
 
 				// Bind the init event of the plugin
-				$document.one( "timerpoke.wb wb-init." + componentName, selector, function() {
+				$document.one( "timerpoke.wb " + this.initType + "." + componentName, selector, function() {
 
 					// Start initialization
 					wb.init( document, componentName, selector );

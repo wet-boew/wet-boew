@@ -364,3 +364,31 @@
 &lt;/div&gt;</code></pre>
 		</details>
 </section>
+
+<section>
+	<h2>Activer le plugiciel en version HTML simplifiée (<code>data-ajax-after</code>)</h2>
+	<section>
+		<h3>Exemple</h3>
+		<section data-wb-basic-ajax=true data-ajax-after="ajax/data-ajax-extra-fr.html" class="original">
+			<h4>Bonjour tout le monde</h4>
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+		</section>
+		<details>
+			<summary>Visualiser le code</summary>
+			<section>
+				<h4>HTML dans la page</h4>
+				<pre><code>&lt;section data-wb-basic-ajax=true data-ajax-after="ajax/data-ajax-extra-fr.html" class="original"&gt;
+	&lt;h4&gt;Bonjour tout le monde&lt;/h4&gt;
+	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+<section>
+		<h4>data-ajax-extra-fr.html</h4>
+		<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+&lt;h4&gt;J'ai été affiché via Ajax&lt;/h4&gt;
+&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+	</section>
+			</section>
+		</details>
+	</section>
+</section>

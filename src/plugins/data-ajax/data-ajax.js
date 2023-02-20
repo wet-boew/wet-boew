@@ -34,11 +34,34 @@ var componentName = "wb-data-ajax",
 	],
 	selectorsLength = selectors.length,
 	selector = selectors.join( "," ),
-	initEvent = "wb-init." + componentName,
+	initEvent = wb.isDisabled ? "wb-basic-init" + selector : "wb-init" + selector,
 	updateEvent = "wb-update." + componentName,
 	contentUpdatedEvent = "wb-contentupdated",
 	$document = wb.doc,
 	s,
+	basicInit = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var ajxInfo = getAjxInfo( event.target ),
+			ajaxType = ajxInfo.type,
+			elm = wb.init( event, componentName + "-" + ajaxType, selector );
+
+		// Run the plugin only if data-wb-basic-ajax attribute is present
+		if ( $( elm ).data( "wbBasicAjax" ) ) {
+			if ( elm && ajxInfo.url ) {
+
+				ajax.call( this, event, ajxInfo );
+
+				// Identify that initialization has completed
+				wb.ready( $( elm ), componentName, [ ajaxType ] );
+			}
+		} else {
+			wb.ready( $( elm ), componentName );
+		}
+	},
+
 
 	/**
 	 * @method init
@@ -209,7 +232,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 
 	case "timerpoke":
 	case "wb-init":
-		init( event );
+		( wb.isDisabled ) ? basicInit( event ) : init( event );
 		break;
 	case "wb-update":
 		ajax( event );
