@@ -50,11 +50,11 @@ describe( "findPotentialPII test suite", function() {
 		} );
 
 		it( "should match username = value", function() {
-			expect( wb.findPotentialPII( "username:John, username=John, user:John, user=John", true ) ).to.equal( ", , , " );
+			expect( wb.findPotentialPII( "username:John, username=John, user:John, user=John", true ) ).to.equal( "   " );
 		} );
 
 		it( "should match password = value", function() {
-			expect( wb.findPotentialPII( "password:P123456, password=P123456, pass:P123456, pass=P123456", true ) ).to.equal( ", , , " );
+			expect( wb.findPotentialPII( "password:P123456, password=P123456, pass:P123456, pass=P123456", true ) ).to.equal( "   " );
 		} );
 
 		it( "should return true", function() {
