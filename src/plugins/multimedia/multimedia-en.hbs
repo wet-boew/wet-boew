@@ -124,10 +124,10 @@
 
 	<div class="row">
 		<section class="col-md-6">
-			<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
+			<h3>Muted MPEG4 (H264 + AAC) source with inline HTML captions</h3>
 			<p>This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
 			<figure class="wb-mltmd">
-				<video poster="demo/video1-en.jpg" title="Looking for a Job">
+				<video poster="demo/video1-en.jpg" title="Looking for a Job" muted>
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="English" />
 				</video>
@@ -197,7 +197,7 @@
 			<details class="mrgn-tp-md">
 				<summary>View code</summary>
 				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
-	&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+	&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot; muted&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4&quot; /&gt;
 		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
 	&lt;/video&gt;

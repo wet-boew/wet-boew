@@ -488,6 +488,7 @@ var componentName = "wb-mltmd",
 
 		switch ( fn ) {
 		case "play":
+			this.object.wasMutedPlay = this.object.isMuted();
 			return this.object.playVideo();
 		case "pause":
 			return this.object.pauseVideo();
@@ -505,7 +506,13 @@ var componentName = "wb-mltmd",
 		case "setCurrentTime":
 			return this.object.seekTo( args, true );
 		case "getMuted":
-			return this.object.isMuted();
+			if ( !this.object.playedOnce && this.object.wasMutedPlay ) {
+				state = this.object.wasMutedPlay;
+				this.object.playedOnce = true;
+				return state;
+			} else {
+				return this.object.isMuted();
+			}
 		case "setMuted":
 			if ( args ) {
 				this.object.mute();
@@ -514,7 +521,7 @@ var componentName = "wb-mltmd",
 			}
 			setTimeout( function() {
 				$media.trigger( "volumechange" );
-			}, 50 );
+			}, ( wb.isReady ? 50 : 500 ) );
 			break;
 		case "getVolume":
 			return this.object.getVolume() / 100;
@@ -556,13 +563,24 @@ var componentName = "wb-mltmd",
 			timeline = function() {
 				$media.trigger( "timeupdate" );
 			},
-			$mltmPlayerElm;
+			$mltmPlayerElm,
+			mltmPlayerElm,
+			isMuted;
 
 		switch ( event.data ) {
-		case null:
+		case null: // init
 			$media
 				.trigger( "canplay" )
 				.trigger( "durationchange" );
+
+			// Put video on mute if the video is muted on init, run once
+			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+
+			// Mute the player, GUI
+			if ( $mltmPlayerElm.data( "putMutedOnInit" ) ) {
+				youTubeApi.call( $mltmPlayerElm.get( 0 ), "setMuted", true );
+				$mltmPlayerElm.data( "putMutedOnInit", false );
+			}
 			break;
 		case -1:
 			event.target.unMute();
@@ -572,17 +590,31 @@ var componentName = "wb-mltmd",
 			$media.trigger( "ended" );
 			media.timeline = clearInterval( media.timeline );
 			break;
-		case 1:
-			if ( media.dataset.L2 ) {
+		case 1: // play
 
-				// Reset the close caption state when iframe was reloaded
-				$mltmPlayerElm = $media.parentsUntil( selector ).parent();
-				youTubeApi.call( $mltmPlayerElm.get( 0 ), "setCaptionsVisible", $mltmPlayerElm.hasClass( captionClass ) );
+			// Get the media player
+			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+			mltmPlayerElm = $mltmPlayerElm.get( 0 );
+
+			// Need to be muted here
+			isMuted = mltmPlayerElm.player( "getMuted" );
+
+			// Reset the close caption state when iframe was reloaded
+			if ( media.dataset.L2 ) {
+				youTubeApi.call( mltmPlayerElm, "setCaptionsVisible", $mltmPlayerElm.hasClass( captionClass ) );
 			}
+
+			// Play
 			$media
 				.trigger( "canplay" )
 				.trigger( "play" )
 				.trigger( "playing" );
+
+			// Reset muted as needed because youtube onMute by default when playing
+			if ( isMuted ) {
+				youTubeApi.call( mltmPlayerElm, "setMuted", true );
+			}
+
 			media.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
@@ -670,6 +702,9 @@ $document.on( initializedEvent, selector, function( event ) {
 
 			// lets set the flag for the call back
 			data.youTubeId = url.params.v ? url.params.v : url.pathname.substr( 1 );
+
+			// Defaults config set on the video element
+			data.isInitMuted = $media.get( 0 ).muted;
 
 			if ( youTube.ready === false ) {
 				$document.one( youtubeReadyEvent, function() {
@@ -842,6 +877,12 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 				"\", \"pnlId\": \"" + data.id + "-shr\"}'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
+		}
+
+		if ( data.isInitMuted ) {
+			$this.data( "putMutedOnInit", true );
+		} else if ( !data.ytPlayer && this.object.muted ) {
+			$media.trigger( "volumechange" );
 		}
 
 		if ( data.captions === undef ) {

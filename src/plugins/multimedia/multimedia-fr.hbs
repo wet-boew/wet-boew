@@ -125,10 +125,10 @@
 
 	<div class="row">
 		<section class="col-md-6">
-			<h3>MPEG4 (H264 + AAC) Source avec sous-titre intégré au HTML</h3>
+			<h3>MPEG4 (H264 + AAC) Source en sourdine avec sous-titre intégré au HTML</h3>
 			<p>Cet exemple illustre l'utilisation d'un relevé de notes en ligne pour fournir des légendes. Cet exemple peut également démontrer le mécanisme de secours dans les navigateurs Web qui ne supporte pas les vidéos HTML5.</p>
 			<figure class="wb-mltmd">
-				<video poster="demo/video1-fr.jpg" title="Trouver un emploi">
+				<video poster="demo/video1-fr.jpg" title="Trouver un emploi" muted>
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-fr.mp4" />
 					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="fr" label="Français" />
 				</video>
@@ -204,7 +204,7 @@
 			<details class="mrgn-tp-md">
 				<summary>Visualiser le code</summary>
 				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
-	&lt;video poster=&quot;demo/video1-fr.jpg&quot; title=&quot;Trouver un emploi&quot;&gt;
+	&lt;video poster=&quot;demo/video1-fr.jpg&quot; title=&quot;Trouver un emploi&quot; muted&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-fr.mp4&quot; /&gt;
 		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;fr&quot; label=&quot;Français&quot; /&gt;
 	&lt;/video&gt;
