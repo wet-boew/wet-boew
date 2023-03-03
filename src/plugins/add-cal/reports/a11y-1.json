@@ -480,8 +480,8 @@
     {
       "label": "SC 2.4.2 Page Titled (Level A)",
       "earl:test": "WCAG20:pause-stop-hide",
-      "outcome": "Pass",
-      "earl:outcome": "earl:passed",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
       "notes": "",
       "techniques": ["WCAG21Tech:general/G88", "WCAG21Tech:failures/F25"],
       "earl:mode": "earl:manual",
@@ -537,8 +537,8 @@
     {
       "label": "SC 2.4.6 Headings and Labels (Level AA)",
       "earl:test": "WCAG20:headings-and-labels",
-      "outcome": "Inapplicable",
-      "earl:outcome": "earl:inapplicable",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
       "notes": "",
       "techniques": ["WCAG21Tech:general/G130", "WCAG21Tech:general/G131"],
       "earl:mode": "earl:manual",
@@ -547,8 +547,8 @@
     {
       "label": "SC 2.4.7 Focus Visible (Level AA)",
       "earl:test": "WCAG20:pause-stop-hide",
-      "outcome": "Inapplicable",
-      "earl:outcome": "earl:inapplicable",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
       "notes": "",
       "techniques": [
         "WCAG21Tech:general/G149",
@@ -661,8 +661,8 @@
     {
       "label": "SC 3.1.1 Language of Page (Level A)",
       "earl:test": "WCAG20:language-of-page",
-      "outcome": "Pass",
-      "earl:outcome": "earl:passed",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
       "notes": "",
       "techniques": ["WCAG21Tech:html/H57"],
       "earl:mode": "earl:manual",
@@ -765,8 +765,8 @@
     {
       "label": "SC 3.3.2 Labels or Instructions (Level A)",
       "earl:test": "WCAG20:labels-or-instructions",
-      "outcome": "Pass",
-      "earl:outcome": "earl:passed",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
       "notes": "",
       "techniques": [
         "WCAG21Tech:general/G131",
