@@ -27,7 +27,7 @@ var $document = wb.doc,
 					wb.getData( $elm, componentName )
 				),
 				attrEngaged = "data-wb-engaged",
-				$buttons = $( "[type=submit]", $elm ),
+				$buttons = $( "[type=submit], button:not([type])", $elm ),
 				multiple = typeof $elm.data( componentName + "-multiple" ) !== "undefined",
 				classToggle = settings.toggle || "hide",
 				selectorSuccess = settings.success,
@@ -48,15 +48,15 @@ var $document = wb.doc,
 				if ( elm.parentElement.classList.contains( "wb-frmvld" ) ) {
 					if ( !$elm.valid() ) {
 						$( this ).attr( attrEngaged, true );
-					} else {
 						$buttons.removeAttr( attrEngaged );
+					} else {
 						$( this ).attr( attrEngaged, "" );
 					}
 				}
 
 				if ( !$( this ).attr( attrEngaged ) ) {
 					var data = $elm.serializeArray(),
-						$btn = $( "[type=submit][name][" + attrEngaged + "]", $elm ),
+						$btn = $( "[name][" + attrEngaged + "]", $elm ),
 						$selectorSuccess = $( selectorSuccess ),
 						$selectorFailure = $( selectorFailure );
 
