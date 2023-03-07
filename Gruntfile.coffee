@@ -149,7 +149,7 @@ module.exports = (grunt) ->
 		[
 			"sass"
 			"postcss"
-			"csslint:unmin"
+			"stylelint:unmin"
 			"usebanner:css"
 		]
 	)
@@ -177,7 +177,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
-			"csslint:demos"
+			"stylelint:demos"
 			"pages:demos"
 			"pages:ajax"
 		]
@@ -779,17 +779,11 @@ module.exports = (grunt) ->
 				dest: "dist/"
 				expand: true
 
-		csslint:
+		stylelint:
 			options:
-				csslintrc: ".csslintrc"
+				configFile: ".stylelintrc.yml"
 
 			unmin:
-				options:
-					absoluteFilePathsForFormatters: true
-					formatters: [
-						id: "csslint-xml"
-						dest: "csslint-unmin.log"
-					]
 				src: [
 					"<%= coreDist %>/**/*.css"
 					"<%= themeDist %>/**/*.css"
@@ -797,12 +791,6 @@ module.exports = (grunt) ->
 				]
 
 			demos:
-				options:
-					absoluteFilePathsForFormatters: true
-					formatters: [
-						id: "csslint-xml"
-						dest: "csslint-demos.log"
-					]
 				src: "dist/unmin/demos/**/*.css"
 
 		# Minify
