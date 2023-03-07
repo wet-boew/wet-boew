@@ -30,14 +30,16 @@ var componentName = "wb-filter",
 		}
 	},
 	i18n, i18nText,
-	infoText,
 	wait,
 
 	init = function( event ) {
 		var elm = wb.init( event, componentName, selector ),
 			$elm, elmTagName, filterUI, prependUI,
 			settings, setDefault,
-			inptId, totalEntries;
+			itemsObserver,
+			inptId, totalEntries,
+			secSelector,
+			uiTemplate, uiInpt, uiInfo;
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -65,8 +67,6 @@ var componentName = "wb-filter",
 					filter_label: i18n( "fltr-lbl" ),
 					fltr_info: i18n( "fltr-info" )
 				};
-
-				infoText = i18nText.fltr_info;
 			}
 
 			Modernizr.addTest( "stringnormalize", "normalize" in String );
@@ -82,29 +82,64 @@ var componentName = "wb-filter",
 			}
 			inptId = elm.id + "-inpt";
 
-			totalEntries = $elm.find( ( settings.section || "" ) + " " + settings.selector ).length;
+			secSelector = ( settings.section || "" ) + " ";
+			totalEntries = $elm.find( secSelector + settings.selector ).length;
+			uiTemplate = settings.uiTemplate ? document.querySelector( settings.uiTemplate ) : "";
 
-			filterUI = $( "<div class=\"input-group\">" +
-				"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label>" +
-				"<input id=\"" + inptId + "\" class=\"form-control " + inputClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\" aria-controls=\"" + elm.id + "\" type=\"search\">" +
-				"</div>" +
-				"<p aria-live=\"polite\" id=\"" + elm.id + "-info\">" + infoFormater( totalEntries, totalEntries ) + "</p>" );
+			if ( uiTemplate ) {
+				uiInpt = uiTemplate.querySelector( "input[type=search]" );
 
-			if ( settings.source ) {
-				$( settings.source ).prepend( filterUI );
-			} else if ( prependUI ) {
-				$elm.prepend( filterUI );
+				if ( uiInpt ) {
+					uiInfo = uiTemplate.querySelector( ".wb-fltr-info" );
+
+					uiInpt.classList.add( inputClass );
+					uiInpt.setAttribute( "data-" + dtNameFltrArea, elm.id );
+					uiInpt.setAttribute( "aria-controls", elm.id );
+
+					if ( uiInfo ) {
+						elm.infoText = uiInfo.textContent;
+						uiInfo.id = uiInfo.id || elm.id + "-info";
+						uiInfo.setAttribute( "role", "status" );
+					}
+				} else {
+					console.error( componentName + ": " + "an <input type=\"search\"> is required in your UI template." );
+				}
 			} else {
-				$elm.before( filterUI );
+				elm.infoText = i18nText.fltr_info;
+				filterUI = $( "<div class=\"input-group\">" +
+					"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label>" +
+					"<input id=\"" + inptId + "\" class=\"form-control " + inputClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\" aria-controls=\"" + elm.id + "\" type=\"search\">" +
+					"</div>" +
+					"<p role=\"status\" id=\"" + elm.id + "-info\">" + i18nText.fltr_info + "</p>" );
 			}
+
+			if ( !settings.uiTemplate ) {
+				if ( settings.source ) {
+					$( settings.source ).prepend( filterUI );
+				} else if ( prependUI ) {
+					$elm.prepend( filterUI );
+				} else {
+					$elm.before( filterUI );
+				}
+			}
+
+			document.querySelector( "#" + elm.id + "-info [data-nbitem]" ).textContent = totalEntries;
+			document.querySelector( "#" + elm.id + "-info [data-total]" ).textContent = totalEntries;
+
+			itemsObserver = new MutationObserver( function() {
+				let itemsVisible = $elm.find( secSelector + notFilterClassSel + settings.selector + visibleSelector ).length,
+					infoElm = $( "#" + elm.id + "-info" );
+
+				if ( infoElm ) {
+					document.querySelector( "#" + elm.id + "-info [data-nbitem]" ).textContent = itemsVisible;
+					document.querySelector( "#" + elm.id + "-info [data-total]" ).textContent = totalEntries;
+				}
+			} );
+
+			itemsObserver.observe( elm, { attributes: true, subtree: true } );
 
 			wb.ready( $elm, componentName );
 		}
-	},
-	infoFormater = function( nbItem, total ) {
-		return infoText.
-			replace( /_NBITEM_/g, nbItem ).
-			replace( /_TOTAL_/g, total );
 	},
 
 	/*
@@ -200,8 +235,6 @@ var componentName = "wb-filter",
 			fCallBack = filterCallback;
 		}
 		fCallBack.apply( this, arguments );
-
-		$( "#" + $elm.get( 0 ).id + "-info" ).html( infoFormater( $elm.find( secSelector + notFilterClassSel + settings.selector + visibleSelector ).length, itemsLength ) );
 	},
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section + visibleSelector ),

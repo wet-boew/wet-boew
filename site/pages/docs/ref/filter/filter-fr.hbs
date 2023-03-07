@@ -200,6 +200,12 @@
 					</dl>
 				</td>
 			</tr>
+			<tr>
+				<td><code>uiTemplate</code></td>
+				<td>Pointer to the element wrapping your UI template. For more information, see the <a href="#uiTemplateEB">uiTemplate's essential behaviour</a></td>
+				<td><code>data-wb-filter='{"uiTemplate": "<em>#idToMyTemplate</em>"}'</code></td>
+				<td>JQuery selector that represent the template element on the current page.</td>
+			</tr>
 		</tbody>
 	</table>
 </section>
@@ -241,6 +247,28 @@
 			</tr>
 		</tbody>
 	</table>
+</section>
+
+<section>
+	<h2>Essential component behaviour</h2>
+	<h3 id="uiTemplateEB">uiTemplate</h3>
+	<ul>
+		<li>The template <strong>must</strong> include an <code>&lt;input type="search"></code>.</li>
+		<li>The template <strong>can</strong> display the amount of visible items and total items. To do so, add an element with the class <code>.wb-fltr-info</code>. Within this element, the following elements can be added to display information:
+			<ul>
+				<li><code>&lt;span data-nbitem>&lt;/span></code> will display the amount of visible items.</li>
+				<li><code>&lt;span data-total>&lt;/span></code> will display the total amount of items.</li>
+			</ul>
+		</li>
+	</ul>
+	<h4>Code example</h4>
+	<pre><code>&lt;div id="filterTemplate">
+	&lt;div class="form-group">
+		&lt;label for="customSearchUI">Search&lt;/label>
+		&lt;input type="search" class="form-control" placeholder="Type a province name..." id="customSearchUI">
+	&lt;/div>
+	&lt;p class="wb-fltr-info">&lt;span data-nbitem>&lt;/span> / &lt;span data-total>&lt;/span> provinces&lt;/p>
+&lt;/div></code></pre>
 </section>
 
 <section>
