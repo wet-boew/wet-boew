@@ -1196,7 +1196,7 @@ module.exports = (grunt) ->
 				files: [
 					cwd: "src/plugins"
 					src: [
-						"**/*.{jpg,html,xml}"
+						"**/*.{jpg,html,xml,json}"
 						"**/demo/*.*"
 						"**/ajax/*.*"
 						"**/img/*.*"
@@ -1234,7 +1234,7 @@ module.exports = (grunt) ->
 			demos_min:
 				cwd: "dist/unmin/demos"
 				src: [
-					"**/*.{jpg,html,xml}"
+					"**/*.{jpg,html,xml,json}"
 					"**/demo/*.*"
 					"**/ajax/*.*"
 					"**/img/*.*"

@@ -1,0 +1,905 @@
+{
+  "@context": "https://wet-boew.github.io/vocab/context/2022/acr-new-wcag-sc.json-ld",
+
+  "@id": "https://wet-boew.github.io/wet-boew/demos/add-cal/test/a11y-1.json",
+  "id": "1",
+  "@type": "earl:Assertion",
+  "earl:test": ["WCAG20", "WCAG21", "WCAG22"],
+
+  "subjectUrl": "https://wet-boew.github.io/wet-boew/demos/add-cal/add-cal-en.html",
+
+  "assertedBy": {
+    "name": "Service Canada - Principal Publisher",
+    "@id": "https://github.com/ServiceCanada",
+    "@type": ["earl:Assertor", "foaf:Organization"],
+    "producedBy": {
+      "name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
+      "@id": "https://github.com/BrahimMahadi",
+      "@type": ["earl:Assertor", "foaf:Person"]
+    }
+  },
+  "date": "2022-07-06",
+
+  "assessment": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
+  "notes": "",
+  "score": "100%",
+
+  "review": [
+    {
+      "name": "Pierre Dubois (Github: @duboisp)",
+      "page": "https://github.com/duboisp",
+      "@type": ["wb-arc:Revision", "foaf:Person"],
+      "earl:mode": "earl:manual",
+      "earl:outcome": "earl:untested",
+      "outcome": "Untested",
+      "notes": "",
+      "date": "2022-09-22"
+    }
+  ],
+
+  "results": [
+    {
+      "label": "SC 1.1.1 Non-text content (Level A)",
+      "earl:test": "WCAG20:non-text-content",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G94",
+        "WCAG21Tech:general/G95",
+        "WCAG21Tech:general/G82",
+        "WCAG21Tech:failures/F3",
+        "WCAG21Tech:failures/F13",
+        "WCAG21Tech:failures/F20"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.2.1 Audio-only and Video-only (Prerecorded) (Level A)",
+      "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G158",
+        "WCAG21Tech:general/G159",
+        "WCAG21Tech:general/G166",
+        "WCAG21Tech:failures/F30",
+        "WCAG21Tech:failures/F67"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.2.2 Captions (Prerecorded) (Level A)",
+      "earl:test": "WCAG20:captions-prerecorded",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G93",
+        "WCAG21Tech:general/G87",
+        "WCAG21Tech:failures/F8",
+        "WCAG21Tech:failures/F75",
+        "WCAG21Tech:failures/F74"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.2.3 Audio Description or Media Alternative (Prerecorded) (Level A)",
+      "earl:test": "WCAG20:audio-description-or-media-alternative-prerecorded",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G69",
+        "WCAG21Tech:general/G68",
+        "WCAG21Tech:general/G78",
+        "WCAG21Tech:general/G173",
+        "WCAG21Tech:general/G8",
+        "WCAG21Tech:general/G203"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.2.4 Captions (Live) (Level AA)",
+      "earl:test": "WCAG20:captions-live",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G9",
+        "WCAG21Tech:general/G93",
+        "WCAG21Tech:general/G87"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.2.5 Audio Description (Prerecorded) (Level AA)",
+      "earl:test": "WCAG20:captions-live",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G78",
+        "WCAG21Tech:general/G173",
+        "WCAG21Tech:general/G8",
+        "WCAG21Tech:general/G203"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.3.1 Info and Relationships (Level A)",
+      "earl:test": "WCAG20:info-and-relationships",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G115",
+        "WCAG21Tech:general/G117",
+        "WCAG21Tech:general/G140",
+        "WCAG21Tech:failures/F2",
+        "WCAG21Tech:failures/F33",
+        "WCAG21Tech:failures/F34",
+        "WCAG21Tech:failures/F42",
+        "WCAG21Tech:failures/F43",
+        "WCAG21Tech:failures/F46",
+        "WCAG21Tech:failures/F48",
+        "WCAG21Tech:failures/F87",
+        "WCAG21Tech:failures/F90",
+        "WCAG21Tech:failures/F91",
+        "WCAG21Tech:failures/F92"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.3.2 Meaningful Sequence (Level A)",
+      "earl:test": "WCAG20:meaningful-sequence",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G57",
+        "WCAG21Tech:html/H34",
+        "WCAG21Tech:html/H56",
+        "WCAG21Tech:css/C6",
+        "WCAG21Tech:css/C8",
+        "WCAG21Tech:css/C27",
+        "WCAG21Tech:failures/F1",
+        "WCAG21Tech:failures/F32",
+        "WCAG21Tech:failures/F33",
+        "WCAG21Tech:failures/F34",
+        "WCAG21Tech:failures/F49"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.3.3 Sensory Characteristics (Level A)",
+      "earl:test": "WCAG20:sensory-characteristics",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G96",
+        "WCAG21Tech:failures/F14",
+        "WCAG21Tech:failures/F26"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.3.4 Orientation (Level AA)",
+      "earl:test": "WCAG21:orientation",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G214",
+        "WCAG21Tech:failures/F97",
+        "WCAG21Tech:failures/F100"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.3.5 Identify Input Purpose (Level AA)",
+      "earl:test": "WCAG21:identify-input-purpose",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:html/H98", "WCAG21Tech:failures/F107"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.1 Use of Color (Level A)",
+      "earl:test": "WCAG20:use-of-color",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G14",
+        "WCAG21Tech:general/G111",
+        "WCAG21Tech:general/G182",
+        "WCAG21Tech:general/G183",
+        "WCAG21Tech:general/G205",
+        "WCAG21Tech:css/C15",
+        "WCAG21Tech:failures/F13",
+        "WCAG21Tech:failures/F73",
+        "WCAG21Tech:failures/F81"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.2 Audio Control (Level A)",
+      "earl:test": "WCAG20:audio-control",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G60",
+        "WCAG21Tech:general/G170",
+        "WCAG21Tech:general/G171",
+        "WCAG21Tech:failures/F23",
+        "WCAG21Tech:failures/F93"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.3 Contrast (Minimum) (Level AA)",
+      "earl:test": "WCAG20:contrast-minimum",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G18",
+        "WCAG21Tech:general/G145",
+        "WCAG21Tech:general/G148",
+        "WCAG21Tech:general/G174",
+        "WCAG21Tech:general/G156",
+        "WCAG21Tech:failures/F24",
+        "WCAG21Tech:failures/F83"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.4 Resize text (Level AA)",
+      "earl:test": "WCAG20:resize-text",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G142",
+        "WCAG21Tech:general/G146",
+        "WCAG21Tech:general/G178",
+        "WCAG21Tech:general/G179",
+        "WCAG21Tech:failures/F69",
+        "WCAG21Tech:failures/F80",
+        "WCAG21Tech:failures/F94"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.5 Images of Text (Level AA)",
+      "earl:test": "WCAG20:image-of-text",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G140",
+        "WCAG21Tech:css/C22",
+        "WCAG21Tech:css/C30"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.10 Reflow (Level AA)",
+      "earl:test": "WCAG21:reflow",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:css/C32",
+        "WCAG21Tech:css/C31",
+        "WCAG21Tech:css/C33",
+        "WCAG21Tech:css/C38",
+        "WCAG21Tech:client-side-script/SCR34",
+        "WCAG21Tech:general/G206",
+        "WCAG21Tech:failures/F102"
+      ],
+      "advisory": ["WCAG21Tech:css/C34", "WCAG21Tech:css/C37"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.11 Non-text Contrast (Level AA)",
+      "earl:test": "WCAG21:non-text-contrast",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G195",
+        "WCAG21Tech:general/G174",
+
+        "WCAG21Tech:general/G207",
+        "WCAG21Tech:general/G209",
+
+        "WCAG21Tech:failures/F78"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.12 Text Spacing (Level AA)",
+      "earl:test": "WCAG21:text-spacing",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:css/C36",
+        "WCAG21Tech:css/C35",
+        "WCAG21Tech:failures/F104"
+      ],
+      "advisory": [
+        "WCAG21Tech:css/C8",
+        "WCAG21Tech:css/C21",
+        "WCAG21Tech:css/C28"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 1.4.13 Content on Hover or Focus (Level AA)",
+      "earl:test": "WCAG21:content-on-hover-or-focus",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:client-side-script/SCR39",
+        "WCAG21Tech:failures/F95"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.1.1 Keyboard (Level A)",
+      "earl:test": "WCAG20:keyboard",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G202",
+        "WCAG21Tech:general/G90",
+        "WCAG21Tech:failures/F54",
+        "WCAG21Tech:failures/F55",
+        "WCAG21Tech:failures/F42"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.1.2 No Keyboard Trap (Level A)",
+      "earl:test": "WCAG20:no-keyboard-trap",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G21", "WCAG21Tech:failures/F10"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.1.4 Character Key Shortcuts (Level A)",
+      "earl:test": "WCAG21:character-key-shortcuts",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G217", "WCAG21Tech:failures/F99"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.2.1 Timing Adjustable (Level A)",
+      "earl:test": "WCAG20:timing-adjustable",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G133",
+        "WCAG21Tech:general/G198",
+        "WCAG21Tech:general/G180",
+        "WCAG21Tech:general/G4",
+        "WCAG21Tech:failures/F40",
+        "WCAG21Tech:failures/F41",
+        "WCAG21Tech:failures/F58"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.2.2 Pause, Stop, Hide (Level A)",
+      "earl:test": "WCAG20:pause-stop-hide",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G4",
+        "WCAG21Tech:general/G11",
+        "WCAG21Tech:general/G187",
+        "WCAG21Tech:general/G152",
+        "WCAG21Tech:general/G186",
+        "WCAG21Tech:general/G191",
+        "WCAG21Tech:failures/F16",
+        "WCAG21Tech:failures/F47",
+        "WCAG21Tech:failures/F4",
+        "WCAG21Tech:failures/F50",
+        "WCAG21Tech:failures/F7"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.3.1 Three Flashes or Below Threshold (Level A)",
+      "earl:test": "WCAG20:three-flashes-or-below-threshold",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G19",
+        "WCAG21Tech:general/G176",
+        "WCAG21Tech:general/G15"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.1 Bypass Blocks (Level A)",
+      "earl:test": "WCAG20:bypass-blocks",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G1",
+        "WCAG21Tech:general/G123",
+        "WCAG21Tech:general/G124"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.2 Page Titled (Level A)",
+      "earl:test": "WCAG20:pause-stop-hide",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G88", "WCAG21Tech:failures/F25"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.3 Focus Order (Level A)",
+      "earl:test": "WCAG20:focus-order",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G59",
+        "WCAG21Tech:failures/F44",
+        "WCAG21Tech:failures/F85"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.4 Link Purpose (In Context) (Level A)",
+      "earl:test": "WCAG20:link-purpose-in-context",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G91",
+        "WCAG21Tech:general/G189",
+        "WCAG21Tech:general/G53",
+        "WCAG21Tech:failures/F63",
+        "WCAG21Tech:failures/F89"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.5 Multiple Ways (Level AA)",
+      "earl:test": "WCAG20:multiple-ways",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G125",
+        "WCAG21Tech:general/G64",
+        "WCAG21Tech:general/G63",
+        "WCAG21Tech:general/G161",
+        "WCAG21Tech:general/G126",
+        "WCAG21Tech:general/G185"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.6 Headings and Labels (Level AA)",
+      "earl:test": "WCAG20:headings-and-labels",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G130", "WCAG21Tech:general/G131"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.7 Focus Visible (Level AA)",
+      "earl:test": "WCAG20:pause-stop-hide",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G149",
+        "WCAG21Tech:general/G15",
+        "WCAG21Tech:general/G165",
+        "WCAG21Tech:general/G195",
+        "WCAG21Tech:failures/F55",
+        "WCAG21Tech:failures/F78"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.11 Focus Appearance (Minimum) (Level AA)",
+      "earl:test": "WCAG22:focus-appearance-minimum",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG22Tech:general/G195",
+        "WCAG22Tech:css/C40",
+        "WCAG22Tech:css/C41"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.4.13 Page Break Navigation (Level A)",
+      "earl:test": "WCAG22:page-break-navigation",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG22Tech:html/H99"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.1 Pointer Gestures (Level A)",
+      "earl:test": "WCAG21:pointer-gestures",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G215",
+        "WCAG21Tech:general/G216",
+        "WCAG21Tech:failures/F105"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.2 Pointer Cancellation (Level A)",
+      "earl:test": "WCAG21:pointer-cancellation",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G210",
+        "WCAG21Tech:general/G212",
+        "WCAG21Tech:failures/F101"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.3 Label in Name (Level A)",
+      "earl:test": "WCAG21:label-in-name",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G208",
+        "WCAG21Tech:general/G211",
+        "WCAG21Tech:failures/F96"
+      ],
+      "advisory": ["WCAG21Tech:general/G162"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.4 Motion Actuation (Level A)",
+      "earl:test": "WCAG21:motion-actuation",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G213", "WCAG21Tech:failures/F106"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.7 Dragging Movements (Level AA)",
+      "earl:test": "WCAG22:dragging-movements",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG22Tech:general/G219", "WCAG22Tech:failures/F108"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 2.5.8 Target Size (Minimum) (Level AA)",
+      "earl:test": "WCAG22:target-size-minimum",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG22Tech:css/C42"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.1.1 Language of Page (Level A)",
+      "earl:test": "WCAG20:language-of-page",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:html/H57"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.1.2 Language of Parts (Level AA)",
+      "earl:test": "WCAG20:language-of-parts",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG21Tech:html/H58"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.1 On Focus (Level A)",
+      "earl:test": "WCAG20:on-focus",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G107", "WCAG21Tech:failures/F55"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.2 On Input (Level A)",
+      "earl:test": "WCAG20:on-input",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G80",
+        "WCAG21Tech:general/G13",
+        "WCAG21Tech:failures/F36",
+        "WCAG21Tech:failures/F37"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.3 Consistent Navigation (Level AA)",
+      "earl:test": "WCAG20:consistent-navigation",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G61", "WCAG21Tech:failures/F66"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.4 Consistent Identification (Level AA)",
+      "earl:test": "WCAG20:consistent-identification",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG21Tech:general/G197", "WCAG21Tech:failures/F31"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.6 Consistent Help (Level A)",
+      "earl:test": "WCAG22:consistent-help",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG22Tech:general/G220"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.2.7 Visible Controls (Level AA)",
+      "earl:test": "WCAG22:visible-controls",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": ["WCAG22Tech:general/G222"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.1 Error Identification (Level A)",
+      "earl:test": "WCAG20:error-identification",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G83",
+        "WCAG21Tech:aria/ARIA21",
+        "WCAG21Tech:client-side-script/SCR18",
+        "WCAG21Tech:aria/ARIA18",
+        "WCAG21Tech:aria/ARIA19",
+        "WCAG21Tech:general/G84",
+        "WCAG21Tech:general/G85",
+        "WCAG21Tech:client-side-script/SCR32"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.2 Labels or Instructions (Level A)",
+      "earl:test": "WCAG20:labels-or-instructions",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G131",
+        "WCAG21Tech:html/H44",
+        "WCAG21Tech:html/H71",
+        "WCAG21Tech:general/G167",
+        "WCAG21Tech:failures/F82"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.3 Error Suggestion (Level AA)",
+      "earl:test": "WCAG20:error-suggestion",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G83",
+        "WCAG21Tech:aria/ARIA2",
+        "WCAG21Tech:aria/ARIA18",
+        "WCAG21Tech:general/G85",
+        "WCAG21Tech:general/G177",
+        "WCAG21Tech:client-side-script/SCR18",
+        "WCAG21Tech:client-side-script/SCR32",
+        "WCAG21Tech:general/G84"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.4 Error Prevention (Legal, Financial, Data) (Level AA)",
+      "earl:test": "WCAG20:error-prevention-legal-financial-data)",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G164",
+        "WCAG21Tech:general/G98",
+        "WCAG21Tech:general/G155",
+        "WCAG21Tech:general/G99",
+        "WCAG21Tech:general/G168"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.7 Accessible Authentication (Level A)",
+      "earl:test": "WCAG22:accessible-authentication",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG22Tech:general/G218"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 3.3.8 Redundant entry (Level A)",
+      "earl:test": "WCAG22:redundant-entry",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": ["WCAG22Tech:general/G221"],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 4.1.1 Parsing (Level A)",
+      "earl:test": "WCAG20:parsing",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/G134",
+        "WCAG21Tech:general/G192",
+        "WCAG21Tech:html/H88",
+        "WCAG21Tech:failures/F70",
+        "WCAG21Tech:failures/F77"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 4.1.2 Name, Role, Value (Level A)",
+      "earl:test": "WCAG20:name-role-value",
+      "outcome": "Pass",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:aria/ARIA14",
+        "WCAG21Tech:aria/ARIA16",
+        "WCAG21Tech:general/G108",
+        "WCAG21Tech:general/G135",
+        "WCAG21Tech:general/G10",
+        "WCAG21Tech:failures/F59",
+        "WCAG21Tech:failures/F15",
+        "WCAG21Tech:failures/F20",
+        "WCAG21Tech:failures/F68",
+        "WCAG21Tech:failures/F79",
+        "WCAG21Tech:failures/F86",
+        "WCAG21Tech:failures/F89"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    },
+    {
+      "label": "SC 4.1.3 Status Messages (Level AA)",
+      "earl:test": "WCAG21:status-messages",
+      "outcome": "Inapplicable",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:aria/ARIA22",
+        "WCAG21Tech:general/G199",
+
+        "WCAG21Tech:aria/ARIA19",
+        "WCAG21Tech:general/G83",
+        "WCAG21Tech:general/G84",
+        "WCAG21Tech:general/G85",
+        "WCAG21Tech:general/G177",
+        "WCAG21Tech:general/G194",
+
+        "WCAG21Tech:aria/ARIA23",
+        "WCAG21Tech:general/G193",
+
+        "WCAG21Tech:failures/F103"
+      ],
+      "advisory": [
+        "WCAG21Tech:aria/ARIA18",
+        "WCAG21Tech:client-side-script/SCR14"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    }
+  ]
+}
