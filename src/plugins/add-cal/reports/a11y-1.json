@@ -30,10 +30,10 @@
       "page": "https://github.com/duboisp",
       "@type": ["wb-arc:Revision", "foaf:Person"],
       "earl:mode": "earl:manual",
-      "earl:outcome": "earl:untested",
-      "outcome": "Untested",
-      "notes": "",
-      "date": "2022-09-22"
+      "earl:outcome": "earl:passed",
+      "outcome": "Pass",
+      "notes": "Confirm the score of 100%. There is no work items and the WCAG 2.2 numbering, as today, has changed since but I didn't modified them. I removed the techniques identified per SC according to our new guidance for that property.",
+      "date": "2023-03-02"
     }
   ],
 
@@ -44,14 +44,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G94",
-        "WCAG21Tech:general/G95",
-        "WCAG21Tech:general/G82",
-        "WCAG21Tech:failures/F3",
-        "WCAG21Tech:failures/F13",
-        "WCAG21Tech:failures/F20"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -61,13 +54,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G158",
-        "WCAG21Tech:general/G159",
-        "WCAG21Tech:general/G166",
-        "WCAG21Tech:failures/F30",
-        "WCAG21Tech:failures/F67"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -77,13 +64,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G93",
-        "WCAG21Tech:general/G87",
-        "WCAG21Tech:failures/F8",
-        "WCAG21Tech:failures/F75",
-        "WCAG21Tech:failures/F74"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -93,14 +74,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G69",
-        "WCAG21Tech:general/G68",
-        "WCAG21Tech:general/G78",
-        "WCAG21Tech:general/G173",
-        "WCAG21Tech:general/G8",
-        "WCAG21Tech:general/G203"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -110,11 +84,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G9",
-        "WCAG21Tech:general/G93",
-        "WCAG21Tech:general/G87"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -124,12 +94,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G78",
-        "WCAG21Tech:general/G173",
-        "WCAG21Tech:general/G8",
-        "WCAG21Tech:general/G203"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -139,22 +104,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G115",
-        "WCAG21Tech:general/G117",
-        "WCAG21Tech:general/G140",
-        "WCAG21Tech:failures/F2",
-        "WCAG21Tech:failures/F33",
-        "WCAG21Tech:failures/F34",
-        "WCAG21Tech:failures/F42",
-        "WCAG21Tech:failures/F43",
-        "WCAG21Tech:failures/F46",
-        "WCAG21Tech:failures/F48",
-        "WCAG21Tech:failures/F87",
-        "WCAG21Tech:failures/F90",
-        "WCAG21Tech:failures/F91",
-        "WCAG21Tech:failures/F92"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -164,19 +114,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G57",
-        "WCAG21Tech:html/H34",
-        "WCAG21Tech:html/H56",
-        "WCAG21Tech:css/C6",
-        "WCAG21Tech:css/C8",
-        "WCAG21Tech:css/C27",
-        "WCAG21Tech:failures/F1",
-        "WCAG21Tech:failures/F32",
-        "WCAG21Tech:failures/F33",
-        "WCAG21Tech:failures/F34",
-        "WCAG21Tech:failures/F49"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -186,11 +124,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G96",
-        "WCAG21Tech:failures/F14",
-        "WCAG21Tech:failures/F26"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -200,11 +134,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G214",
-        "WCAG21Tech:failures/F97",
-        "WCAG21Tech:failures/F100"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -214,7 +144,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:html/H98", "WCAG21Tech:failures/F107"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -224,17 +154,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G14",
-        "WCAG21Tech:general/G111",
-        "WCAG21Tech:general/G182",
-        "WCAG21Tech:general/G183",
-        "WCAG21Tech:general/G205",
-        "WCAG21Tech:css/C15",
-        "WCAG21Tech:failures/F13",
-        "WCAG21Tech:failures/F73",
-        "WCAG21Tech:failures/F81"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -244,13 +164,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G60",
-        "WCAG21Tech:general/G170",
-        "WCAG21Tech:general/G171",
-        "WCAG21Tech:failures/F23",
-        "WCAG21Tech:failures/F93"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -260,15 +174,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G18",
-        "WCAG21Tech:general/G145",
-        "WCAG21Tech:general/G148",
-        "WCAG21Tech:general/G174",
-        "WCAG21Tech:general/G156",
-        "WCAG21Tech:failures/F24",
-        "WCAG21Tech:failures/F83"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -278,15 +184,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G142",
-        "WCAG21Tech:general/G146",
-        "WCAG21Tech:general/G178",
-        "WCAG21Tech:general/G179",
-        "WCAG21Tech:failures/F69",
-        "WCAG21Tech:failures/F80",
-        "WCAG21Tech:failures/F94"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -296,11 +194,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G140",
-        "WCAG21Tech:css/C22",
-        "WCAG21Tech:css/C30"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -310,16 +204,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:css/C32",
-        "WCAG21Tech:css/C31",
-        "WCAG21Tech:css/C33",
-        "WCAG21Tech:css/C38",
-        "WCAG21Tech:client-side-script/SCR34",
-        "WCAG21Tech:general/G206",
-        "WCAG21Tech:failures/F102"
-      ],
-      "advisory": ["WCAG21Tech:css/C34", "WCAG21Tech:css/C37"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -329,15 +214,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G195",
-        "WCAG21Tech:general/G174",
-
-        "WCAG21Tech:general/G207",
-        "WCAG21Tech:general/G209",
-
-        "WCAG21Tech:failures/F78"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -347,16 +224,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:css/C36",
-        "WCAG21Tech:css/C35",
-        "WCAG21Tech:failures/F104"
-      ],
-      "advisory": [
-        "WCAG21Tech:css/C8",
-        "WCAG21Tech:css/C21",
-        "WCAG21Tech:css/C28"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -366,10 +234,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:client-side-script/SCR39",
-        "WCAG21Tech:failures/F95"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -379,13 +244,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G202",
-        "WCAG21Tech:general/G90",
-        "WCAG21Tech:failures/F54",
-        "WCAG21Tech:failures/F55",
-        "WCAG21Tech:failures/F42"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -395,7 +254,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G21", "WCAG21Tech:failures/F10"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -405,7 +264,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G217", "WCAG21Tech:failures/F99"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -415,15 +274,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G133",
-        "WCAG21Tech:general/G198",
-        "WCAG21Tech:general/G180",
-        "WCAG21Tech:general/G4",
-        "WCAG21Tech:failures/F40",
-        "WCAG21Tech:failures/F41",
-        "WCAG21Tech:failures/F58"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -433,19 +284,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G4",
-        "WCAG21Tech:general/G11",
-        "WCAG21Tech:general/G187",
-        "WCAG21Tech:general/G152",
-        "WCAG21Tech:general/G186",
-        "WCAG21Tech:general/G191",
-        "WCAG21Tech:failures/F16",
-        "WCAG21Tech:failures/F47",
-        "WCAG21Tech:failures/F4",
-        "WCAG21Tech:failures/F50",
-        "WCAG21Tech:failures/F7"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -455,11 +294,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G19",
-        "WCAG21Tech:general/G176",
-        "WCAG21Tech:general/G15"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -469,11 +304,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G1",
-        "WCAG21Tech:general/G123",
-        "WCAG21Tech:general/G124"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -483,7 +314,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G88", "WCAG21Tech:failures/F25"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -493,11 +324,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G59",
-        "WCAG21Tech:failures/F44",
-        "WCAG21Tech:failures/F85"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -507,13 +334,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G91",
-        "WCAG21Tech:general/G189",
-        "WCAG21Tech:general/G53",
-        "WCAG21Tech:failures/F63",
-        "WCAG21Tech:failures/F89"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -523,14 +344,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G125",
-        "WCAG21Tech:general/G64",
-        "WCAG21Tech:general/G63",
-        "WCAG21Tech:general/G161",
-        "WCAG21Tech:general/G126",
-        "WCAG21Tech:general/G185"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -540,7 +354,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G130", "WCAG21Tech:general/G131"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -550,14 +364,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G149",
-        "WCAG21Tech:general/G15",
-        "WCAG21Tech:general/G165",
-        "WCAG21Tech:general/G195",
-        "WCAG21Tech:failures/F55",
-        "WCAG21Tech:failures/F78"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -567,11 +374,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG22Tech:general/G195",
-        "WCAG22Tech:css/C40",
-        "WCAG22Tech:css/C41"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -581,7 +384,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG22Tech:html/H99"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -591,11 +394,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G215",
-        "WCAG21Tech:general/G216",
-        "WCAG21Tech:failures/F105"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -605,11 +404,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G210",
-        "WCAG21Tech:general/G212",
-        "WCAG21Tech:failures/F101"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -619,12 +414,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G208",
-        "WCAG21Tech:general/G211",
-        "WCAG21Tech:failures/F96"
-      ],
-      "advisory": ["WCAG21Tech:general/G162"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -634,7 +424,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G213", "WCAG21Tech:failures/F106"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -644,7 +434,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG22Tech:general/G219", "WCAG22Tech:failures/F108"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -654,7 +444,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG22Tech:css/C42"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -664,7 +454,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:html/H57"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -674,7 +464,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG21Tech:html/H58"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -684,7 +474,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G107", "WCAG21Tech:failures/F55"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -694,12 +484,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G80",
-        "WCAG21Tech:general/G13",
-        "WCAG21Tech:failures/F36",
-        "WCAG21Tech:failures/F37"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -709,7 +494,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G61", "WCAG21Tech:failures/F66"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -719,7 +504,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG21Tech:general/G197", "WCAG21Tech:failures/F31"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -729,7 +514,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG22Tech:general/G220"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -739,7 +524,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": ["WCAG22Tech:general/G222"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -749,16 +534,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:aria/ARIA21",
-        "WCAG21Tech:client-side-script/SCR18",
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:aria/ARIA19",
-        "WCAG21Tech:general/G84",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:client-side-script/SCR32"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -768,13 +544,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G131",
-        "WCAG21Tech:html/H44",
-        "WCAG21Tech:html/H71",
-        "WCAG21Tech:general/G167",
-        "WCAG21Tech:failures/F82"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -784,16 +554,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:aria/ARIA2",
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:general/G177",
-        "WCAG21Tech:client-side-script/SCR18",
-        "WCAG21Tech:client-side-script/SCR32",
-        "WCAG21Tech:general/G84"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -803,13 +564,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G164",
-        "WCAG21Tech:general/G98",
-        "WCAG21Tech:general/G155",
-        "WCAG21Tech:general/G99",
-        "WCAG21Tech:general/G168"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -819,7 +574,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG22Tech:general/G218"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -829,7 +584,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": ["WCAG22Tech:general/G221"],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -839,13 +594,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G134",
-        "WCAG21Tech:general/G192",
-        "WCAG21Tech:html/H88",
-        "WCAG21Tech:failures/F70",
-        "WCAG21Tech:failures/F77"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -855,20 +604,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:aria/ARIA14",
-        "WCAG21Tech:aria/ARIA16",
-        "WCAG21Tech:general/G108",
-        "WCAG21Tech:general/G135",
-        "WCAG21Tech:general/G10",
-        "WCAG21Tech:failures/F59",
-        "WCAG21Tech:failures/F15",
-        "WCAG21Tech:failures/F20",
-        "WCAG21Tech:failures/F68",
-        "WCAG21Tech:failures/F79",
-        "WCAG21Tech:failures/F86",
-        "WCAG21Tech:failures/F89"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
@@ -878,26 +614,7 @@
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:aria/ARIA22",
-        "WCAG21Tech:general/G199",
-
-        "WCAG21Tech:aria/ARIA19",
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:general/G84",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:general/G177",
-        "WCAG21Tech:general/G194",
-
-        "WCAG21Tech:aria/ARIA23",
-        "WCAG21Tech:general/G193",
-
-        "WCAG21Tech:failures/F103"
-      ],
-      "advisory": [
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:client-side-script/SCR14"
-      ],
+      "techniques": [ ],
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     }
