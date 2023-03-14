@@ -7,7 +7,7 @@
 	"tag": "wb-postback",
 	"parentdir": "wb-postback",
 	"altLangPrefix": "wb-postback",
-	"dateModified": "2023-02-01"
+	"dateModified": "2023-03-06"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -34,7 +34,7 @@
 			<label for="email1"><span class="field-name">Email Address</span> (test@domaine)</label>
 			<input class="form-control" id="email1" name="email" type="email" />
 		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button class="btn btn-primary">Submit</button>
 	</div>
 </form>
 <p class="success-message hide">Thank you!</p>
@@ -59,19 +59,48 @@
 			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (test@domaine)&lt;/label&gt;
 			&lt;input class="form-control" id="email1" name="email" type="email" /&gt;
 		&lt;/div&gt;
-		&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+		&lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
 	&lt;/div&gt;
 &lt;/form&gt;
 &lt;p class="success-message hide"&gt;Thank you!&lt;/p&gt;
 &lt;p class="failure-message hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;</code></pre>
 </details>
 
-<p>Submit web form through AJAX call using also the <a href="https://wet-boew.github.io/wet-boew/demos/formvalid/formvalid-en.html">Form Validation</a> plugin.</p>
+<section>
+<h2>Submit button variable</h2>
+
+<p>Submit web form through AJAX call using a submit button variable.</p>
+
+<p>To see this example in action, check the network tab of browser console to see AJAX request sent.</p>
+
+<form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+	<div class="form-content">
+		<button class="btn btn-primary" name="submitBtn" value="submitBtnValue">Submit</button>
+	</div>
+</form>
+<p class="success-message-2 hide">Thank you!</p>
+<p class="failure-message-2 hide">Something went wrong. Please submit your information via an alternative method.</p>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'&gt;
+	&lt;div class="form-content"&gt;
+		&lt;button class="btn btn-primary" name="submitBtn" value="submitBtnValue"&gt;Submit&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+&lt;p class="success-message-2 hide"&gt;Thank you!&lt;/p&gt;
+&lt;p class="failure-message-2 hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;</code></pre>
+</details>
+</section>
+
+<section>
+<h2>Form validation plugin</h2>
+
+<p>Submit web form through AJAX call using the <a href="https://wet-boew.github.io/wet-boew/demos/formvalid/formvalid-en.html">form validation</a> plugin.</p>
 
 <p>To see this example in action, check the network tab of browser console to see AJAX request sent.</p>
 
 <div class="wb-frmvld">
-	<form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+	<form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-3","failure":".failure-message-3"}'>
 		<div class="form-content">
 			<div class="form-group">
 				<label for="firstname2" class="required"><span class="field-name">First Name</span> <strong class="required">(required)</strong></label>
@@ -89,17 +118,17 @@
 				<label for="email2"><span class="field-name">Email Address</span> (test@domaine)</label>
 				<input class="form-control" id="email2" name="email" type="email" />
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button class="btn btn-primary">Submit</button>
 		</div>
 	</form>
-	<p class="success-message-2 hide">Thank you!</p>
-	<p class="failure-message-2 hide">Something went wrong. Please submit your information via an alternative method.</p>
+	<p class="success-message-3 hide">Thank you!</p>
+	<p class="failure-message-3 hide">Something went wrong. Please submit your information via an alternative method.</p>
 </div>
 <details class="mrgn-tp-md mrgn-bttm-md">
 	<summary>View code</summary>
 	{{>alertariahidden}}
 	<pre><code>&lt;div class="wb-frmvld"&gt;
-	&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'&gt;
+	&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-3","failure":".failure-message-3"}'&gt;
 		&lt;div class="form-content"&gt;
 			&lt;div class="form-group"&gt;
 				&lt;label for="firstname2" class="required"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
@@ -117,10 +146,50 @@
 				&lt;label for="email2"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (test@domaine)&lt;/label&gt;
 				&lt;input class="form-control" id="email2" name="email" type="email" /&gt;
 			&lt;/div&gt;
-			&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+			&lt;button class="btn btn-primary"&gt;Submit&lt;/button&gt;
 		&lt;/div&gt;
 	&lt;/form&gt;
-	&lt;p class="success-message-2 hide"&gt;Thank you!&lt;/p&gt;
-	&lt;p class="failure-message-2 hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;
+	&lt;p class="success-message-3 hide"&gt;Thank you!&lt;/p&gt;
+	&lt;p class="failure-message-3 hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </details>
+</section>
+
+<section>
+<h2>Form validation plugin with submit button variable</h2>
+
+<p>Submit web form through AJAX call using the <a href="https://wet-boew.github.io/wet-boew/demos/formvalid/formvalid-en.html">form validation</a> plugin with a submit button variable.</p>
+
+<p>To see this example in action, check the network tab of browser console to see AJAX request sent.</p>
+
+<div class="wb-frmvld">
+	<form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-4","failure":".failure-message-4"}'>
+		<div class="form-content">
+			<div class="form-group">
+				<label for="firstname3" class="required"><span class="field-name">First Name</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="firstname3" name="firstname" type="text" data-rule-minlength="2" required="required" />
+			</div>
+			<button class="btn btn-primary" name="submitBtn" value="submitBtnValue">Submit</button>
+		</div>
+	</form>
+	<p class="success-message-4 hide">Thank you!</p>
+	<p class="failure-message-4 hide">Something went wrong. Please submit your information via an alternative method.</p>
+</div>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	{{>alertariahidden}}
+	<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="wb-postback-en.html" class="wb-postback" data-wb-postback='{"success":".success-message-4","failure":".failure-message-4"}'&gt;
+		&lt;div class="form-content"&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="firstname3" class="required"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+				&lt;input class="form-control" id="firstname3" name="firstname" type="text" data-rule-minlength="2" required="required" /&gt;
+			&lt;/div&gt;
+			&lt;button class="btn btn-primary" name="submitBtn" value="submitBtnValue"&gt;Submit&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+	&lt;p class="success-message-4 hide"&gt;Thank you!&lt;/p&gt;
+	&lt;p class="failure-message-4 hide"&gt;Something went wrong. Please submit your information via an alternative method.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</details>
+</section>
