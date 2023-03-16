@@ -13,27 +13,72 @@
     "@id": "https://github.com/ServiceCanada",
     "@type": ["earl:Assertor", "foaf:Organization"],
     "producedBy": {
-      "name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
-      "@id": "https://github.com/BrahimMahadi",
+      "name": "Full name of the accessor (Github: @GithubHandle)",
+      "@id": "https://github.com/GithubHandle",
       "@type": ["earl:Assertor", "foaf:Person"]
     }
   },
-  "date": "2022-07-06",
+  "date": "2023-03-16",
 
-  "assessment": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
+  "assessment": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.1",
   "notes": "",
   "score": "100%",
 
   "review": [
     {
-      "name": "Pierre Dubois (Github: @duboisp)",
-      "page": "https://github.com/duboisp",
+      "name": "Reviewer full name (Github: @GithubHandle)",
+      "page": "https://github.com/GithubHandle",
       "@type": ["wb-arc:Revision", "foaf:Person"],
       "earl:mode": "earl:manual",
       "earl:outcome": "earl:passed",
       "outcome": "Pass",
       "notes": "Confirm the score of 100%. There is no work items and the WCAG 2.2 numbering, as today, has changed since but I didn't modified them. I removed the techniques identified per SC according to our new guidance for that property.",
-      "date": "2023-03-02"
+      "date": "2023-03-02",
+      "results": [
+        {
+          "label": "SC 1.1.1 Non-text content (Level A)",
+          "earl:test": "WCAG20:non-text-content",
+          "outcome": "Pass",
+          "earl:outcome": "earl:passed",
+          "notes": "A more specific note",
+          "techniques": [ ],
+          "wb-acr:severity": "wb-acr:noSeverity",
+          "wb-acr:relevancy": "wb-acr:noRelevancy",
+          "earl:mode": "earl:manual",
+          "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+          "label": "SC 1.2.1 Audio-only and Video-only (Prerecorded) (Level A)",
+          "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
+          "outcome": "Inapplicable",
+          "earl:outcome": "earl:inapplicable",
+          "notes": "A more specific note.",
+          "techniques": [ "WCAG20:audio-only-and-video-only-prerecorded" ],
+          "wb-acr:severity": "wb-acr:noSeverity",
+          "wb-acr:relevancy": "wb-acr:noRelevancy",
+          "earl:mode": "earl:manual",
+          "@type": ["earl:TestResult", "earl:Assertion"]
+        }
+      ]
+    }
+  ],
+
+  "workitems": [
+    {
+      "title": "Name of the work item",
+      "description": "Description of the work items, describe what need to be completed",
+      "issue": "https://github.com/wet-boew/wet-boew/issues/0",
+      "techniques": [ "WCAG21Tech:failures/F97" ],
+      "wb-acr:severity": "wb-acr:noSeverity",
+      "wb-acr:relevancy": "wb-acr:noRelevancy"
+    },
+    {
+      "title": "Second work items",
+      "description": "Description of the work items, describe what need to be completed",
+      "issue": "https://github.com/wet-boew/wet-boew/issues/0",
+      "techniques": [ "WCAG20:non-text-content" ],
+      "wb-acr:severity": "wb-acr:noSeverity",
+      "wb-acr:relevancy": "wb-acr:noRelevancy"
     }
   ],
 
@@ -57,6 +102,35 @@
       "earl:outcome": "earl:inapplicable",
       "notes": "",
       "techniques": [ ],
+      "results": [
+        {
+          "label": "G214 - Using a control to allow access to content in different orientations which is otherwise restricted",
+          "earl:test": "WCAG21Tech:general/G214",
+          "outcome": "Pass",
+          "earl:outcome": "earl:passed",
+          "notes": "",
+          "earl:mode": "earl:manual",
+          "@type": [ "earl:TestResult", "earl:Assertion" ]
+        },
+        {
+          "label": "F97 - Failure due to locking the orientation to landscape or portrait view",
+          "earl:test": "WCAG21Tech:failures/F97",
+          "outcome": "Pass",
+          "earl:outcome": "earl:passed",
+          "notes": "",
+          "earl:mode": "earl:manual",
+          "@type": [ "earl:TestResult", "earl:Assertion" ]
+        },
+        {
+          "label": "F100 - Failure of Success Criterion 1.3.4 due to showing a message asking to reorient device",
+          "earl:test": "WCAG21Tech:failures/F100",
+          "outcome": "Failed",
+          "earl:outcome": "earl:failed",
+          "notes": "A message popup when we orient the page in portrait view to re-orient in landscape",
+          "earl:mode": "earl:manual",
+          "@type": [ "earl:TestResult", "earl:Assertion" ]
+        }
+      ],
       "wb-acr:severity": "wb-acr:noSeverity",
       "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
@@ -152,7 +226,9 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [ ],
+      "techniques": [
+        "WCAG21Tech:failures/F100"
+      ],
       "wb-acr:severity": "wb-acr:noSeverity",
       "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
@@ -173,12 +249,12 @@
     {
       "label": "SC 1.4.1 Use of Color (Level A)",
       "earl:test": "WCAG20:use-of-color",
+      "wb-acr:severity": "wb-acr:moderate",
+      "wb-acr:relevancy": "wb-acr:usability",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
       "techniques": [ ],
-      "wb-acr:severity": "wb-acr:noSeverity",
-      "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },

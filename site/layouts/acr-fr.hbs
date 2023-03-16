@@ -1,0 +1,229 @@
+---
+{
+	"layout": "default.hbs"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+{{>body}}
+
+<nav>
+	<h2>Sur cette page</h2>
+	<ul>
+		<li><a href="#sommaire">Sommaire</a></li>
+		<li><a href="#revision">Révision</a></li>
+		<li><a href="#travaux">Travaux</a></li>
+		<li><a href="#acr">Détails de l'évaluation</a></li>
+	</ul>
+</nav>
+
+<div id="ds-a11y" data-wb-jsonmanager='{ "url": "{{ page.reportURL }}", "name": "a11y" }'></div>
+
+<h2 id="sommaire">Sommaire</h2>
+<p>(<a href="{{ page.reportURL }}" type="application/ld+json" rel="alternate">Consulter le rapport dans son état d'origine en JSON-LD</a>)</p>
+<dl class="dl-horizontal">
+	<dt>Identifiant du rapport d'évaluation</dt>
+	<dd data-json-replace="#[a11y]/id" lang="en"><span lang="fr">Non disponible</span></dd>
+	<dt>Type</dt>
+	<dd>Évaluation de l'accessibilité</dd>
+	<dt>Évalué par:</dt>
+	<dd><span data-json-replace="#[a11y]/assertedBy/producedBy/name" lang="en"><span lang="fr">Inconnu</span></span> sous <span data-json-replace="#[a11y]/assertedBy/name" lang="en"><span lang="fr">Non disponible</span></span></dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/date" lang="en"><span lang="fr">Non disponible</span></dd>
+	<dt>Page:</dt>
+	<dd><a data-wb-json='[
+
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "attr",
+				"attr": "href"
+			},
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "replace"
+			}
+
+		]' href="#" lang="en"><span lang="fr">Non Définie</span></a></dd>
+	<dt>Sujet</dt>
+	<dd data-json-replace="#[a11y]/assessment" lang="en"><span lang="fr">Non Définie</span></dd>
+	<dt>Notes:</dt>
+	<dd data-json-replace="#[a11y]/notes" lang="en"><span lang="fr">Aucune note</span></dd>
+	<dt>Résultat</dt>
+	<dd data-json-replace="#[a11y]/score" lang="en"><span lang="fr">Non calculé</span></dd>
+</dl>
+
+<section class="panel panel-primary">
+	<header class="panel-heading">
+		<h2 class="panel-title" id="revision">Révision</h2>
+	</header>
+	<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Résultat</th>
+					<th>Commentaire</th>
+					<th>Réviseur</th>
+				</tr>
+			</thead>
+			<tbody data-wb-json='{
+				"url": "#[a11y]/review",
+				"tobeclone": "tr",
+				"source": "#tmpl-reviews",
+				"mapping": [
+					{ "selector": ":nth-child(1)", "value": "/date" },
+					{ "selector": ":nth-child(2)", "value": "/outcome" },
+					{ "selector": "[data-notes]", "value": "/notes" },
+					{ "selector": "[data-mode]", "value": "/earl:mode" },
+					{
+						"selector": ":nth-child(3) > dl",
+						"value": "/results",
+						"mapping": [
+							{ "selector": "span", "value": "/label" },
+							{ "selector": "em", "value": "/outcome" },
+							{ "selector": "dd > p", "value": "/notes" },
+							{
+								"selector": "[data-techniques]",
+								"value": "/techniques",
+								"mapping": { "selector": "code", "value": "@value" }
+							}
+						]
+					},
+					{ "selector": "[data-reviewer]", "value": "/name" }
+				]
+			}'>
+			</tbody>
+		</table>
+
+		<template id="tmpl-reviews">
+			<table>
+				<tr>
+					<th></th>
+					<td lang="en"></td>
+					<td>
+						<p>Vérification: <code><strong data-mode></strong></code></p>
+						<p data-notes lang="en"></p>
+						<dl>
+							<template>
+								<dt lang="en"><em></em> - <span></span></dt>
+								<dd>
+									<p lang="en"></p>
+									<ul data-techniques>
+										<template>
+											<li><code></code></li>
+										</template>
+									</ul>
+								</dd>
+							</template>
+						</dl>
+					</td>
+					<td data-reviewer></td>
+				</tr>
+			</table>
+		</template>
+	</div>
+</section>
+
+<h2 id="travaux">Travaux</h2>
+
+<dl data-wb-json='{
+		"url": "#[a11y]/workitems",
+		"mapping": [
+			{ "selector": ":nth-child(1) > a", "value": "/title" },
+			{ "selector": ":nth-child(1) > a", "value": "/issue", "attr": "href" },
+			{ "selector": ":nth-child(2) > p", "value": "/description" },
+			{ "selector": "[data-severity]", "value": "/wb-acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/wb-acr:relevancy" },
+			{
+				"selector": ":nth-child(2) > ul",
+				"value": "/techniques",
+				"mapping": { "selector": "code", "value": "@value" }
+			}
+		]
+	}'>
+	<template>
+		<dt><a href lang="en"></a></dt>
+		<dd>
+			<ul class="list-inline">
+				<li>Importance: <code data-severity></code></li>
+				<li>Pertinence: <code data-relevancy></code></li>
+			</ul>
+			<p lang="en"></p>
+			<ul>
+				<template>
+					<li><code></code></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
+</dl>
+
+<h2 id="acr">Détails de l'évaluation</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Critères de succès</th>
+			<th>Résultat</th>
+			<th>Commentaire</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/results",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": "[data-label]", "value": "/label" },
+			{ "selector": "[data-outcome]", "value": "/outcome" },
+			{ "selector": "[data-notes]", "value": "/notes" },
+			{ "selector": "[data-mode]", "value": "/earl:mode" },
+			{ "selector": "[data-severity]", "value": "/wb-acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/wb-acr:relevancy" },
+			{
+				"selector": "[data-specific-results]",
+				"value": "/results",
+				"mapping": [
+					{ "selector": "span", "value": "/label" },
+					{ "selector": "em", "value": "/outcome" },
+					{ "selector": "dd", "value": "/notes" }
+				]
+			},
+			{
+				"selector": "[data-techniques]",
+				"value": "/techniques",
+				"mapping": { "selector": "code", "value": "@value" }
+			}
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th data-label lang="en"></th>
+			<td><span data-outcome lang="en"></span></td>
+			<td>
+				<ul class="list-inline clearfix">
+					<li>Vérification: <code><strong data-mode></strong></code></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Importance: <code data-severity></code></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Pertinence: <code data-relevancy></code></li>
+				</ul>
+				<p data-notes lang="en"></p>
+				<dl data-specific-results lang="en">
+					<template>
+						<dt><em></em> - <span></span></dt>
+						<dd></dd>
+					</template>
+				</dl>
+				<ul data-techniques>
+					<template>
+						<li><code></code></li>
+					</template>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</template>

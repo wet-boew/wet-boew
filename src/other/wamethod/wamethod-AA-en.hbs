@@ -12,14 +12,12 @@
 	"dateModified": "2019-08-06"
 }
 ---
-<section>
-	<h2>Purpose:</h2>
-	<p>Assist with measuring conformance to the <a href="https://www.w3.org/TR/WCAG21/" rel="external">Web Content Accessibility Guidelines (WCAG)&#160;2.1</a> Level&#160;A and Level&#160;AA <a href="#success">Success Criteria</a></p>.
-</section>
+<p>This tool's purpose is to assist with measuring conformance to the <a href="https://www.w3.org/TR/WCAG21/" rel="external">Web Content Accessibility Guidelines (WCAG)&#160;2.1</a> Level&#160;A and Level&#160;AA <a href="#success">Success Criteria</a>.</p>
 
-<nav role="navigation">
-	<h2>Table of Contents</h2>
+<nav>
+	<h2>On this page</h2>
 	<ul>
+		<li><a href="#json-ld-acr">JSON-LD reporting (Experimental)</a></li>
 		<li><a href="#wcag"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr>&#160;2.1 Success Criteria Checklist</a>
 			<ul>
 				<li><a href="#wcag1">Principle: Perceivable</a></li>
@@ -42,6 +40,23 @@
 			<li>Specific to each <a href="#technologydef">technology</a> that is <a href="#reliedupondef">relied upon</a> to satisfy the Success Criterion (except where only general techniques are documented)</li>
 		</ol>
 	</li>
+</ol>
+
+<h2 id="json-ld-acr">JSON-LD reporting (Experimental)</h2>
+<p>We are actively working to produce a JSON-LD format which are machine readible and ease the process of publishing the report on the web. Our intend is to update this tools to allow the creation of JSON-LD ACR (Accessibility Conformance Report). You can contribute at our discussion on <a href="https://github.com/wet-boew/wet-boew/issues/9271">Github via the issue #9271</a> or during at any of our regular meeting.</p>
+
+<ul>
+	<li><a href="demo-acr/a11y-1.json" type="application/ld+json">Experimental JSON-LD report sample</a></li>
+	<li><a href="demo-acr/a11y-1-en.html">English version of the report sample</a></li>
+	<li><a href="demo-acr/a11y-1-fr.html" hreflang="fr">French version of the report sample</a></li>
+	<li><a href="https://wet-boew.github.io/vocab/acr">Additional vocabulary terms to support the accessibility conformance reporting</a></li>
+</ul>
+
+<p>Intended reporting process:</p>
+<ol>
+	<li>The accessor create the report, add the assessements general information and log its assessement for each Success Criterion results.</li>
+	<li>A reviewer re-open the assement, self-indentify in the review section, review the original assesment and put any remark along with the review. Once the review completed, the reviewer will create as many work items as needed. This step can be repeated as needed but when there is more than 3 reviews you should consider to produce a new ACR and start over this process.</li>
+	<li>Closing - A contributor submit a change to make the assesemen no longer valid or being superseeded by another ACR</li>
 </ol>
 
 <section class="wb-wamethod">
