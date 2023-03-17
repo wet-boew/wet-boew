@@ -1,10 +1,10 @@
 {
-  "@context": "https://wet-boew.github.io/vocab/context/2022/acr-new-wcag-sc.json-ld",
+  "@context": "https://wet-boew.github.io/vocab/context/2023/acr.json-ld",
 
-  "@id": "https://wet-boew.github.io/wet-boew/demos/add-cal/test/a11y-1.json",
-  "id": "1",
+  "@id": "https://wet-boew.github.io/wet-boew/demos/add-cal/reports/acr-1.json",
+  "reportId": "1",
   "@type": "earl:Assertion",
-  "earl:test": ["WCAG20", "WCAG21", "WCAG22"],
+  "earl:test": "WCAG21",
 
   "subjectUrl": "https://wet-boew.github.io/wet-boew/demos/add-cal/add-cal-en.html",
 
@@ -13,79 +13,34 @@
     "@id": "https://github.com/ServiceCanada",
     "@type": ["earl:Assertor", "foaf:Organization"],
     "producedBy": {
-      "name": "Full name of the accessor (Github: @GithubHandle)",
-      "@id": "https://github.com/GithubHandle",
+      "name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
+      "@id": "https://github.com/BrahimMahadi",
       "@type": ["earl:Assertor", "foaf:Person"]
     }
   },
-  "date": "2023-03-16",
+  "date": "2022-07-06",
 
-  "assessment": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.1",
-  "notes": "",
-  "score": "100%",
+  "scope": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
+  "summary": "",
+  "aggregatedScore": "100%",
 
   "review": [
     {
-      "name": "Reviewer full name (Github: @GithubHandle)",
-      "page": "https://github.com/GithubHandle",
+      "name": "Pierre Dubois (Github: @duboisp)",
+      "page": "https://github.com/duboisp",
       "@type": ["wb-arc:Revision", "foaf:Person"],
       "earl:mode": "earl:manual",
       "earl:outcome": "earl:passed",
       "outcome": "Pass",
-      "notes": "Confirm the score of 100%. There is no work items and the WCAG 2.2 numbering, as today, has changed since but I didn't modified them. I removed the techniques identified per SC according to our new guidance for that property.",
-      "date": "2023-03-02",
-      "results": [
-        {
-          "label": "SC 1.1.1 Non-text content (Level A)",
-          "earl:test": "WCAG20:non-text-content",
-          "outcome": "Pass",
-          "earl:outcome": "earl:passed",
-          "notes": "A more specific note",
-          "techniques": [ ],
-          "wb-acr:severity": "wb-acr:noSeverity",
-          "wb-acr:relevancy": "wb-acr:noRelevancy",
-          "earl:mode": "earl:manual",
-          "@type": ["earl:TestResult", "earl:Assertion"]
-        },
-        {
-          "label": "SC 1.2.1 Audio-only and Video-only (Prerecorded) (Level A)",
-          "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
-          "outcome": "Inapplicable",
-          "earl:outcome": "earl:inapplicable",
-          "notes": "A more specific note.",
-          "techniques": [ "WCAG20:audio-only-and-video-only-prerecorded" ],
-          "wb-acr:severity": "wb-acr:noSeverity",
-          "wb-acr:relevancy": "wb-acr:noRelevancy",
-          "earl:mode": "earl:manual",
-          "@type": ["earl:TestResult", "earl:Assertion"]
-        }
-      ]
-    }
-  ],
-
-  "workitems": [
-    {
-      "title": "Name of the work item",
-      "description": "Description of the work items, describe what need to be completed",
-      "issue": "https://github.com/wet-boew/wet-boew/issues/0",
-      "techniques": [ "WCAG21Tech:failures/F97" ],
-      "wb-acr:severity": "wb-acr:noSeverity",
-      "wb-acr:relevancy": "wb-acr:noRelevancy"
-    },
-    {
-      "title": "Second work items",
-      "description": "Description of the work items, describe what need to be completed",
-      "issue": "https://github.com/wet-boew/wet-boew/issues/0",
-      "techniques": [ "WCAG20:non-text-content" ],
-      "wb-acr:severity": "wb-acr:noSeverity",
-      "wb-acr:relevancy": "wb-acr:noRelevancy"
+      "summary": "Confirm the score of 100%. There is no work items and the WCAG 2.2 numbering, as today, has changed since but I didn't modified them. I removed the techniques identified per SC according to our new guidance for that property.",
+      "date": "2023-03-02"
     }
   ],
 
   "results": [
     {
       "label": "SC 1.1.1 Non-text content (Level A)",
-      "earl:test": "WCAG20:non-text-content",
+      "earl:test": "WCAG21:non-text-content",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -97,40 +52,11 @@
     },
     {
       "label": "SC 1.2.1 Audio-only and Video-only (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
+      "earl:test": "WCAG21:audio-only-and-video-only-prerecorded",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
       "techniques": [ ],
-      "results": [
-        {
-          "label": "G214 - Using a control to allow access to content in different orientations which is otherwise restricted",
-          "earl:test": "WCAG21Tech:general/G214",
-          "outcome": "Pass",
-          "earl:outcome": "earl:passed",
-          "notes": "",
-          "earl:mode": "earl:manual",
-          "@type": [ "earl:TestResult", "earl:Assertion" ]
-        },
-        {
-          "label": "F97 - Failure due to locking the orientation to landscape or portrait view",
-          "earl:test": "WCAG21Tech:failures/F97",
-          "outcome": "Pass",
-          "earl:outcome": "earl:passed",
-          "notes": "",
-          "earl:mode": "earl:manual",
-          "@type": [ "earl:TestResult", "earl:Assertion" ]
-        },
-        {
-          "label": "F100 - Failure of Success Criterion 1.3.4 due to showing a message asking to reorient device",
-          "earl:test": "WCAG21Tech:failures/F100",
-          "outcome": "Failed",
-          "earl:outcome": "earl:failed",
-          "notes": "A message popup when we orient the page in portrait view to re-orient in landscape",
-          "earl:mode": "earl:manual",
-          "@type": [ "earl:TestResult", "earl:Assertion" ]
-        }
-      ],
       "wb-acr:severity": "wb-acr:noSeverity",
       "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
@@ -138,7 +64,7 @@
     },
     {
       "label": "SC 1.2.2 Captions (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:captions-prerecorded",
+      "earl:test": "WCAG21:captions-prerecorded",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -150,7 +76,7 @@
     },
     {
       "label": "SC 1.2.3 Audio Description or Media Alternative (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:audio-description-or-media-alternative-prerecorded",
+      "earl:test": "WCAG21:audio-description-or-media-alternative-prerecorded",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -162,7 +88,7 @@
     },
     {
       "label": "SC 1.2.4 Captions (Live) (Level AA)",
-      "earl:test": "WCAG20:captions-live",
+      "earl:test": "WCAG21:captions-live",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -174,7 +100,7 @@
     },
     {
       "label": "SC 1.2.5 Audio Description (Prerecorded) (Level AA)",
-      "earl:test": "WCAG20:captions-live",
+      "earl:test": "WCAG21:audio-description-prerecorded",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -186,7 +112,7 @@
     },
     {
       "label": "SC 1.3.1 Info and Relationships (Level A)",
-      "earl:test": "WCAG20:info-and-relationships",
+      "earl:test": "WCAG21:info-and-relationships",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -198,7 +124,7 @@
     },
     {
       "label": "SC 1.3.2 Meaningful Sequence (Level A)",
-      "earl:test": "WCAG20:meaningful-sequence",
+      "earl:test": "WCAG21:meaningful-sequence",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -210,7 +136,7 @@
     },
     {
       "label": "SC 1.3.3 Sensory Characteristics (Level A)",
-      "earl:test": "WCAG20:sensory-characteristics",
+      "earl:test": "WCAG21:sensory-characteristics",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -226,9 +152,7 @@
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
-      "techniques": [
-        "WCAG21Tech:failures/F100"
-      ],
+      "techniques": [ ],
       "wb-acr:severity": "wb-acr:noSeverity",
       "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
@@ -248,19 +172,19 @@
     },
     {
       "label": "SC 1.4.1 Use of Color (Level A)",
-      "earl:test": "WCAG20:use-of-color",
-      "wb-acr:severity": "wb-acr:moderate",
-      "wb-acr:relevancy": "wb-acr:usability",
+      "earl:test": "WCAG21:use-of-color",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
       "techniques": [ ],
+      "wb-acr:severity": "wb-acr:noSeverity",
+      "wb-acr:relevancy": "wb-acr:noRelevancy",
       "earl:mode": "earl:manual",
       "@type": ["earl:TestResult", "earl:Assertion"]
     },
     {
       "label": "SC 1.4.2 Audio Control (Level A)",
-      "earl:test": "WCAG20:audio-control",
+      "earl:test": "WCAG21:audio-control",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -272,7 +196,7 @@
     },
     {
       "label": "SC 1.4.3 Contrast (Minimum) (Level AA)",
-      "earl:test": "WCAG20:contrast-minimum",
+      "earl:test": "WCAG21:contrast-minimum",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -284,7 +208,7 @@
     },
     {
       "label": "SC 1.4.4 Resize text (Level AA)",
-      "earl:test": "WCAG20:resize-text",
+      "earl:test": "WCAG21:resize-text",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -296,7 +220,7 @@
     },
     {
       "label": "SC 1.4.5 Images of Text (Level AA)",
-      "earl:test": "WCAG20:image-of-text",
+      "earl:test": "WCAG21:image-of-text",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -356,7 +280,7 @@
     },
     {
       "label": "SC 2.1.1 Keyboard (Level A)",
-      "earl:test": "WCAG20:keyboard",
+      "earl:test": "WCAG21:keyboard",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -368,7 +292,7 @@
     },
     {
       "label": "SC 2.1.2 No Keyboard Trap (Level A)",
-      "earl:test": "WCAG20:no-keyboard-trap",
+      "earl:test": "WCAG21:no-keyboard-trap",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -392,7 +316,7 @@
     },
     {
       "label": "SC 2.2.1 Timing Adjustable (Level A)",
-      "earl:test": "WCAG20:timing-adjustable",
+      "earl:test": "WCAG21:timing-adjustable",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -404,7 +328,7 @@
     },
     {
       "label": "SC 2.2.2 Pause, Stop, Hide (Level A)",
-      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:test": "WCAG21:pause-stop-hide",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -416,7 +340,7 @@
     },
     {
       "label": "SC 2.3.1 Three Flashes or Below Threshold (Level A)",
-      "earl:test": "WCAG20:three-flashes-or-below-threshold",
+      "earl:test": "WCAG21:three-flashes-or-below-threshold",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -428,7 +352,7 @@
     },
     {
       "label": "SC 2.4.1 Bypass Blocks (Level A)",
-      "earl:test": "WCAG20:bypass-blocks",
+      "earl:test": "WCAG21:bypass-blocks",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -440,7 +364,7 @@
     },
     {
       "label": "SC 2.4.2 Page Titled (Level A)",
-      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:test": "WCAG21:page-titled",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -452,7 +376,7 @@
     },
     {
       "label": "SC 2.4.3 Focus Order (Level A)",
-      "earl:test": "WCAG20:focus-order",
+      "earl:test": "WCAG21:focus-order",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -464,7 +388,7 @@
     },
     {
       "label": "SC 2.4.4 Link Purpose (In Context) (Level A)",
-      "earl:test": "WCAG20:link-purpose-in-context",
+      "earl:test": "WCAG21:link-purpose-in-context",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -476,7 +400,7 @@
     },
     {
       "label": "SC 2.4.5 Multiple Ways (Level AA)",
-      "earl:test": "WCAG20:multiple-ways",
+      "earl:test": "WCAG21:multiple-ways",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -488,7 +412,7 @@
     },
     {
       "label": "SC 2.4.6 Headings and Labels (Level AA)",
-      "earl:test": "WCAG20:headings-and-labels",
+      "earl:test": "WCAG21:headings-and-labels",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -500,7 +424,7 @@
     },
     {
       "label": "SC 2.4.7 Focus Visible (Level AA)",
-      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:test": "WCAG21:focus-visible",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -608,7 +532,7 @@
     },
     {
       "label": "SC 3.1.1 Language of Page (Level A)",
-      "earl:test": "WCAG20:language-of-page",
+      "earl:test": "WCAG21:language-of-page",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -620,7 +544,7 @@
     },
     {
       "label": "SC 3.1.2 Language of Parts (Level AA)",
-      "earl:test": "WCAG20:language-of-parts",
+      "earl:test": "WCAG21:language-of-parts",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -632,7 +556,7 @@
     },
     {
       "label": "SC 3.2.1 On Focus (Level A)",
-      "earl:test": "WCAG20:on-focus",
+      "earl:test": "WCAG21:on-focus",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -644,7 +568,7 @@
     },
     {
       "label": "SC 3.2.2 On Input (Level A)",
-      "earl:test": "WCAG20:on-input",
+      "earl:test": "WCAG21:on-input",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -656,7 +580,7 @@
     },
     {
       "label": "SC 3.2.3 Consistent Navigation (Level AA)",
-      "earl:test": "WCAG20:consistent-navigation",
+      "earl:test": "WCAG21:consistent-navigation",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -668,7 +592,7 @@
     },
     {
       "label": "SC 3.2.4 Consistent Identification (Level AA)",
-      "earl:test": "WCAG20:consistent-identification",
+      "earl:test": "WCAG21:consistent-identification",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -704,7 +628,7 @@
     },
     {
       "label": "SC 3.3.1 Error Identification (Level A)",
-      "earl:test": "WCAG20:error-identification",
+      "earl:test": "WCAG21:error-identification",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -716,7 +640,7 @@
     },
     {
       "label": "SC 3.3.2 Labels or Instructions (Level A)",
-      "earl:test": "WCAG20:labels-or-instructions",
+      "earl:test": "WCAG21:labels-or-instructions",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -728,7 +652,7 @@
     },
     {
       "label": "SC 3.3.3 Error Suggestion (Level AA)",
-      "earl:test": "WCAG20:error-suggestion",
+      "earl:test": "WCAG21:error-suggestion",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -740,7 +664,7 @@
     },
     {
       "label": "SC 3.3.4 Error Prevention (Legal, Financial, Data) (Level AA)",
-      "earl:test": "WCAG20:error-prevention-legal-financial-data)",
+      "earl:test": "WCAG21:error-prevention-legal-financial-data)",
       "outcome": "Inapplicable",
       "earl:outcome": "earl:inapplicable",
       "notes": "",
@@ -776,7 +700,7 @@
     },
     {
       "label": "SC 4.1.1 Parsing (Level A)",
-      "earl:test": "WCAG20:parsing",
+      "earl:test": "WCAG21:parsing",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
@@ -788,7 +712,7 @@
     },
     {
       "label": "SC 4.1.2 Name, Role, Value (Level A)",
-      "earl:test": "WCAG20:name-role-value",
+      "earl:test": "WCAG21:name-role-value",
       "outcome": "Pass",
       "earl:outcome": "earl:passed",
       "notes": "",
