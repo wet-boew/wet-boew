@@ -12,14 +12,12 @@
 	"dateModified": "2019-08-06"
 }
 ---
-<section>
-	<h2>But</h2>
-	<p>Aider à mesurer les <a href="#success">critères de succès</a> de niveau A et AA des <a href="https://www.w3.org/TR/WCAG21/" rel="external">Règles&#160;pour&#160;l’accessibilité des contenus Web (WCAG)&#160;2.1 (anglais seulement)</a>.</p>
-</section>
+<p>Cet outil a pour but de vous aider à mesurer les <a href="#success">critères de succès</a> de niveau A et AA des <a href="https://www.w3.org/TR/WCAG21/" rel="external">Règles&#160;pour&#160;l’accessibilité des contenus Web (WCAG)&#160;2.1 (anglais seulement)</a>.</p>
 
-<section>
-	<h2>Table des matières</h2>
+<nav>
+	<h2>Sur cette page</h2>
 	<ul>
+		<li><a href="#json-ld-acr">Rapport expérimental en JSON-LD</a></li>
 		<li><a href="#wcag">Liste de vérification des critères de succès des <abbr title="Règles pour l’accessibilité des contenus Web">WCAG</abbr>&#160;2.1</a>
 			<ul>
 				<li><a href="#wcag1">Principe&#160;: Perceptible</a></li>
@@ -31,7 +29,7 @@
 		</li>
 		<li><a href="#gl">Glossaire</a></li>
 	</ul>
-</section>
+</nav>
 
 <p>Les suivantes sont requises pour qu’une <a href="#webpagedef">page Web</a> réponde à un critère de succès des <abbr title="Règles pour l’accessibilité des contenus Web">WCAG</abbr>&#160;2.1&#160;:</p>
 <ol>
@@ -42,6 +40,22 @@
 			<li>propres à chaque <a href="#technologydef">technologie</a> dont on <a href="#reliedupondef">dépend</a> pour la satisfaction au critère de succès (sauf où seulement les techniques générales sont documentées).</li>
 		</ol>
 	</li>
+</ol>
+
+<h2 id="json-ld-acr">Rapport expérimental en JSON-LD</h2>
+<p>Nous travaillons activement sur la production d'un raport en format JSON-LD qui est lisible par les machine et qui facilite le processus de publication des rapports sur le web. Notre intention est de mettre à jour cet outils afin de permettre la création de raport ACR (Rapport de Conformance d'Accessibilité) JSON-LD. Vous pouvez contribuer à notre discussion sur <a href="https://github.com/wet-boew/wet-boew/issues/9271" lang="en">le billet GitHub #9271</a> ou durant nos rencontres régulières.
+<ul>
+	<li><a href="demo-acr/a11y-1.json" type="application/ld+json">Example de rapport expérimental en format JSON-LD</a></li>
+	<li><a href="demo-acr/a11y-1-fr.html">Version française du raport d'example</a></li>
+	<li><a href="demo-acr/a11y-1-en.html" hreflang="en">Version anglaise du raport d'example</a></li>
+	<li><a href="https://wet-boew.github.io/vocab/acr">Complément de vocabulaire pour la production du rapport de conformance d'acessibilité</a></li>
+</ul>
+
+<p>Intention du processus d'évaluation:</p>
+<ol>
+	<li>L'évaluateur crée le rapport, fournis les informations sur l'évaluation et consigne les détails de son évaluation et ce pour chaque critère de succès.</li>
+	<li>Un réviseur réouvre l'évaluation, s'auto identifie dans la section de revue, fait la revision de l'évaluation d'origine et ajoute ses notes à cette même revue. Lorsque complété, le réviseur poura créer les travaux requis tel que nécessaire. Cet étape pourra être répété tel que nécessaire mais lorsqu'il y aura plus de 3 révision nous vous conseillons de considérer d'amorcer la production d'un nouveau rapport de conformation d'accessibilité et de recommencer ce processus.</li>
+	<li>Fermeture - Un contributeur peut soumettre un changment afin d'identifier l'évaluation comme étant non-valide or comme étant remplacé par un rapport plus récent.</li>
 </ol>
 
 <section class="wb-wamethod">

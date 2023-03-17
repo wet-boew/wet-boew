@@ -978,6 +978,22 @@ module.exports = (grunt) ->
 					"dist/unmin/demos/lightbox/*.html"
 				]
 
+			reports:
+				options:
+					ignore: [
+						# TODO: Should be removed and fixed now that HTML5 specs updated
+						"The “main” role is unnecessary for element “main”."
+						"The “contentinfo” role is unnecessary for element “footer”."
+						"The “navigation” role is unnecessary for element “nav”."
+						"The “banner” role is unnecessary for element “header”."
+						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
+					]
+				src: [
+					"dist/unmin/**/reports/*.html"
+					"dist/unmin/**/demo/*.html"
+					"dist/unmin/**/demo-*/*.html"
+				]
+
 			all:
 				options:
 					ignore: [
@@ -994,6 +1010,9 @@ module.exports = (grunt) ->
 					"!dist/unmin/demos/lightbox/*.html"
 					"!dist/unmin/demos/menu/demo/*.html"
 					"!dist/unmin/test/**/*.html"
+					"!dist/unmin/**/reports/*.html"
+					"!dist/unmin/**/demo/*.html"
+					"!dist/unmin/**/demo-*/*.html"
 				]
 
 		bootlint:
@@ -1221,6 +1240,7 @@ module.exports = (grunt) ->
 					cwd: "src/other"
 					src: [
 						"**/demo/*.*"
+						"**/demo*/*.*"
 						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
@@ -1333,6 +1353,9 @@ module.exports = (grunt) ->
 					"theme/**/*.scss"
 				]
 				tasks: "css"
+			json:
+				files: "src/**/*.json*"
+				tasks: "copy:demos"
 
 			demos:
 				files: "src/**/*.hbs"

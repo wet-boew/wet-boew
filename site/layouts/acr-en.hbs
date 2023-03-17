@@ -1,0 +1,229 @@
+---
+{
+	"layout": "default.hbs"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+{{>body}}
+
+<nav>
+	<h2>On this page</h2>
+	<ul>
+		<li><a href="#summary">Summary</a></li>
+		<li><a href="#revision">Revision</a></li>
+		<li><a href="#workitem">Work items</a></li>
+		<li><a href="#acr">Assessement details</a></li>
+	</ul>
+</nav>
+
+<div id="ds-a11y" data-wb-jsonmanager='{ "url": "{{ page.reportURL }}", "name": "a11y" }'></div>
+
+<h2 id="summary">Summary</h2>
+<p>(<a href="{{ page.reportURL }}" type="application/ld+json" rel="alternate">Consult the report in its native JSON-LD format</a>)</p>
+<dl class="dl-horizontal">
+	<dt>Evaluation Report Identifier</dt>
+	<dd data-json-replace="#[a11y]/id">Not Available</dd>
+	<dt>Type</dt>
+	<dd>Accessibility assessment</dd>
+	<dt>Asserted by:</dt>
+	<dd><span data-json-replace="#[a11y]/assertedBy/producedBy/name">Unknown</span> on behalf of <span data-json-replace="#[a11y]/assertedBy/name">Not Available</span></dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/date">Not Available</dd>
+	<dt>Page:</dt>
+	<dd><a data-wb-json='[
+
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "attr",
+				"attr": "href"
+			},
+			{
+				"url": "#[a11y]/subjectUrl",
+				"type": "replace"
+			}
+
+		]' href="#">Not Defined</a></dd>
+	<dt>Subject</dt>
+	<dd data-json-replace="#[a11y]/assessment">Not Defined</dd>
+	<dt>Notes:</dt>
+	<dd data-json-replace="#[a11y]/notes">No notes</dd>
+	<dt>Scores</dt>
+	<dd data-json-replace="#[a11y]/score">Not Calculated</dd>
+</dl>
+
+<section class="panel panel-primary">
+	<header class="panel-heading">
+		<h2 class="panel-title" id="revision">Revision</h2>
+	</header>
+	<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Outcome</th>
+					<th>Comment</th>
+					<th>Reviewer</th>
+				</tr>
+			</thead>
+			<tbody data-wb-json='{
+				"url": "#[a11y]/review",
+				"tobeclone": "tr",
+				"source": "#tmpl-reviews",
+				"mapping": [
+					{ "selector": ":nth-child(1)", "value": "/date" },
+					{ "selector": ":nth-child(2)", "value": "/outcome" },
+					{ "selector": "[data-notes]", "value": "/notes" },
+					{ "selector": "[data-mode]", "value": "/earl:mode" },
+					{
+						"selector": ":nth-child(3) > dl",
+						"value": "/results",
+						"mapping": [
+							{ "selector": "span", "value": "/label" },
+							{ "selector": "em", "value": "/outcome" },
+							{ "selector": "dd > p", "value": "/notes" },
+							{
+								"selector": "[data-techniques]",
+								"value": "/techniques",
+								"mapping": { "selector": "code", "value": "@value" }
+							}
+						]
+					},
+					{ "selector": "[data-reviewer]", "value": "/name" }
+				]
+			}'>
+			</tbody>
+		</table>
+
+		<template id="tmpl-reviews">
+			<table>
+				<tr>
+					<th></th>
+					<td></td>
+					<td>
+						<p>Tested mode: <code><strong data-mode></strong></code></p>
+						<p data-notes></p>
+						<dl>
+							<template>
+								<dt><em></em> - <span></span></dt>
+								<dd>
+									<p></p>
+									<ul data-techniques>
+										<template>
+											<li><code></code></li>
+										</template>
+									</ul>
+								</dd>
+							</template>
+						</dl>
+					</td>
+					<td data-reviewer></td>
+				</tr>
+			</table>
+		</template>
+	</div>
+</section>
+
+<h2 id="workitem">Work items</h2>
+
+<dl data-wb-json='{
+		"url": "#[a11y]/workitems",
+		"mapping": [
+			{ "selector": ":nth-child(1) > a", "value": "/title" },
+			{ "selector": ":nth-child(1) > a", "value": "/issue", "attr": "href" },
+			{ "selector": ":nth-child(2) > p", "value": "/description" },
+			{ "selector": "[data-severity]", "value": "/wb-acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/wb-acr:relevancy" },
+			{
+				"selector": ":nth-child(2) > ul",
+				"value": "/techniques",
+				"mapping": { "selector": "code", "value": "@value" }
+			}
+		]
+	}'>
+	<template>
+		<dt><a href></a></dt>
+		<dd>
+			<ul class="list-inline">
+				<li>Severity: <code data-severity></code></li>
+				<li>Relevance: <code data-relevancy></code></li>
+			</ul>
+			<p></p>
+			<ul>
+				<template>
+					<li><code></code></li>
+				</template>
+			</ul>
+		</dd>
+	</template>
+</dl>
+
+<h2 id="acr">Assessment details</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Success Criteria</th>
+			<th>Result</th>
+			<th>Comment</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/results",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": "[data-label]", "value": "/label" },
+			{ "selector": "[data-outcome]", "value": "/outcome" },
+			{ "selector": "[data-notes]", "value": "/notes" },
+			{ "selector": "[data-mode]", "value": "/earl:mode" },
+			{ "selector": "[data-severity]", "value": "/wb-acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/wb-acr:relevancy" },
+			{
+				"selector": "[data-specific-results]",
+				"value": "/results",
+				"mapping": [
+					{ "selector": "span", "value": "/label" },
+					{ "selector": "em", "value": "/outcome" },
+					{ "selector": "dd", "value": "/notes" }
+				]
+			},
+			{
+				"selector": "[data-techniques]",
+				"value": "/techniques",
+				"mapping": { "selector": "code", "value": "@value" }
+			}
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th data-label></th>
+			<td><span data-outcome></span></td>
+			<td>
+				<ul class="list-inline clearfix">
+					<li>Test mode: <code><strong data-mode></strong></code></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Severity: <code data-severity></code></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Relevance: <code data-relevancy></code></li>
+				</ul>
+				<p data-notes></p>
+				<dl data-specific-results>
+					<template>
+						<dt><em></em> - <span></span></dt>
+						<dd></dd>
+					</template>
+				</dl>
+				<ul data-techniques>
+					<template>
+						<li><code></code></li>
+					</template>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</template>

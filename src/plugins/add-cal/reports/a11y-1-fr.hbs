@@ -2,113 +2,13 @@
 {
 	"title": "Assessment d'accessibilité #1 - Ajout au calendrier",
 	"language": "fr",
-	"description": "Partielle. Évaluation des nouveaux critères de succès aux niveaux A et AA de WCAG 2.1 et WCAG 2.2",
 	"tag": "add-cal",
 	"parentdir": "add-cal",
 	"parentPage": "Ajout au calendrier",
 	"parentPageURL": "add-cal",
-	"altLangPage": "a11y-1-fr.html",
-	"dateModified": "2022-06-22"
+	"altLangPage": "a11y-1-en.html",
+	"dateModified": "2022-06-22",
+	"layout": "acr-fr.hbs",
+	"reportURL": "a11y-1.json"
 }
 ---
-<div id="ds-a11y" data-wb-jsonmanager='{ "url": "a11y-1.json", "name": "a11y" }'></div>
-
-<dl class="dl-horizontal">
-	<dt>Identifiant du rapport d'évaluation</dt>
-	<dd data-json-replace="#[a11y]/id" lang="en"><span lang="fr">Non disponible</span></dd>
-	<dt>Type</dt>
-	<dd>Évaluation de l'accessibilité</dd>
-	<dt>Évalué par:</dt>
-	<dd><span data-json-replace="#[a11y]/assertedBy/producedBy/name" lang="en"><span lang="fr">Inconue</span></span> sous <span data-json-replace="#[a11y]/assertedBy/name" lang="en"><span lang="fr">Non disponible</span></span></dd>
-	<dt>Date:</dt>
-	<dd data-json-replace="#[a11y]/date" lang="en"><span lang="fr">Non disponible</span></dd>
-	<dt>Page:</dt>
-	<dd><a data-wb-json='[
-
-			{
-				"url": "#[a11y]/subjectUrl",
-				"type": "attr",
-				"attr": "href"
-			},
-			{
-				"url": "#[a11y]/subjectUrl",
-				"type": "replace"
-			}
-
-		]' href="#" lang="en"><span lang="fr">Non Définie</span></a></dd>
-	<dt>Sujet</dt>
-	<dd data-json-replace="#[a11y]/assessment" lang="en"><span lang="fr">Non Définie</span></dd>
-	<dt>Notes:</dt>
-	<dd data-json-replace="#[a11y]/notes" lang="en"><span lang="fr">Aucune note</span></dd>
-	<dt>Résultat</dt>
-	<dd data-json-replace="#[a11y]/score" lang="en"><span lang="fr">Non calculé</span></dd>
-</dl>
-
-<details>
-	<summary>Révision</summary>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Date</th>
-				<th>Résultat</th>
-				<th>Commentaire</th>
-				<th>Réviseur</th>
-			</tr>
-		</thead>
-		<tbody data-wb-json='{
-			"url": "#[a11y]/review",
-			"tobeclone": "tr",
-			"source": "#tmpl-reviews",
-			"mapping": [
-				{ "selector": ":nth-child(1)", "value": "/date" },
-				{ "selector": ":nth-child(2)", "value": "/outcome" },
-				{ "selector": ":nth-child(3)", "value": "/notes" },
-				{ "selector": ":nth-child(4)", "value": "/name" }
-			]
-		}'>
-		</tbody>
-	</table>
-
-	<template id="tmpl-reviews">
-		<table>
-			<tr>
-				<th></th>
-				<td lang="en"></td>
-				<td lang="en"></td>
-				<td></td>
-			</tr>
-		</table>
-	</template>
-</details>
-
-<h2>Détails de l'évaluation</h2>
-<table class="table">
-	<thead>
-		<tr>
-			<th>Critères de succès</th>
-			<th>Résultat</th>
-			<th>Commentaire</th>
-		</tr>
-	</thead>
-	<tbody data-wb-json='{
-		"url": "#[a11y]/results",
-		"tobeclone": "tr",
-		"source": "#tmpl-result",
-		"mapping": [
-			{ "selector": ":nth-child(1)", "value": "/label" },
-			{ "selector": ":nth-child(2)", "value": "/outcome" },
-			{ "selector": ":nth-child(3)", "value": "/notes" }
-		]
-	}'>
-	</tbody>
-</table>
-
-<template id="tmpl-result">
-	<table>
-		<tr>
-			<th lang="en"></th>
-			<td lang="en"></td>
-			<td lang="en"></td>
-		</tr>
-	</table>
-</template>
