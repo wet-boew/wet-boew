@@ -31,7 +31,8 @@ var $document = wb.doc,
 				multiple = typeof $elm.data( componentName + "-multiple" ) !== "undefined",
 				classToggle = settings.toggle || "hide",
 				selectorSuccess = settings.success,
-				selectorFailure = settings.failure || selectorSuccess;
+				selectorFailure = settings.failure || selectorSuccess,
+				configuredMethod = settings.method;
 
 			// Set "clicked" attribute on element that initiated the form submit
 			$buttons.on( "click", function() {
@@ -71,7 +72,7 @@ var $document = wb.doc,
 
 					// Send the form through ajax and ignore the response body.
 					$.ajax( {
-						type: this.method,
+						type: configuredMethod || this.method,
 						url: this.action,
 						data: $.param( data )
 					} )
