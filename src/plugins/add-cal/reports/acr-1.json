@@ -32,7 +32,7 @@
       "earl:mode": "earl:manual",
       "earl:outcome": "earl:passed",
       "outcome": "Pass",
-      "summary": "Confirm the score of 100%. There is no work items and the WCAG 2.2 numbering, as today, has changed since but I didn't modified them. I removed the techniques identified per SC according to our new guidance for that property.",
+      "summary": "Confirm the score of 100%. As of today, there is no work item and, although the WCAG 2.2 numbering was updated, no change was made. I removed the techniques identified per SC according to our new guidance for that property.",
       "date": "2023-03-02"
     }
   ],
