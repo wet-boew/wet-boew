@@ -10,11 +10,10 @@
 }
 ---
 
-Instruction for publishing/creating the ACR
 
 <section class="alert alert-info">
 	<h2>Sample page - Baseline template</h2>
-	<p>This page is the initial template with the fillable instructions to produce an ACR (Accessibility Conformance Report) showing the conformance state of the evaluated web page subject. This template report is pre-configured to aim an ACR toward a full conformance with every WCAG 2.1 Level AA Success Criterion.</p>
+	<p>This page is the initial template with the fillable instructions to produce an ACR (Accessibility Conformance Report) showing the conformance state of the evaluated web page subject. This template report is pre-configured to aim an ACR towards a full conformance with every WCAG 2.1 Level AA Success Criterion.</p>
 </section>
 
 <p>Here the instruction before and recommended to complete the assessment of each success criterion according the proposed methodology:</p>
@@ -22,16 +21,16 @@ Instruction for publishing/creating the ACR
 	<li>Copy the baseline JSON-LD file. (<a href="demo-acr/acr-initial.json" type="application/ld+json" download>Download the baseline template</a>)</li>
 	<li>
 		<p>File name requirement</p>
-		<p>The propose naming convention start with the type of report (like acr which means Accessibility Conformance Report), followed by a dash, followed by a unique identifier and then:</p>
+		<p>The proposed naming convention starts with the type of report (like acr which means Accessibility Conformance Report), followed by a dash, followed by a unique identifier and then:</p>
 		<dl>
 			<dt>JSON-LD report</dt>
-			<dd>Followed by a file extension suggesting the JSON file format. The pattern is : <code>acr-{identifier}.json</code>. Here some example: <code>acr-1.json</code>, <code>acr-2023-03-16.json</code></dd>
+			<dd>Followed by a file extension suggesting the JSON file format. The pattern is : <code>acr-{identifier}.json</code>. Here are some examples: <code>acr-1.json</code>, <code>acr-2023-03-16.json</code></dd>
 
 			<dt>WET-BOEW - Report publication page</dt>
-			<dd>Followed by a dash, followed by the 2 letter language code and followed by the file extension <code>hbs</code>. The pattern is : <code>acr-{identifier}-{language}.hbs</code>. Here some example: <code>acr-1-en.hbs</code>, <code>acr-1-fr.hbs</code>, <code>acr-2023-03-16-en.hbs</code>, <code>acr-2023-03-16-fr.hbs</code></dd>
+			<dd>Followed by a dash, followed by the 2 letters language code and followed by the file extension <code>hbs</code>. The pattern is : <code>acr-{identifier}-{language}.hbs</code>. Here are some examples: <code>acr-1-en.hbs</code>, <code>acr-1-fr.hbs</code>, <code>acr-2023-03-16-en.hbs</code>, <code>acr-2023-03-16-fr.hbs</code></dd>
 
 			<dt>GCWeb - Report publication page</dt>
-			<dd>Followed by a dash, followed by the 2 letter language code and followed by the file extension <code>html</code>. The pattern is : <code>acr-{identifier}-{language}.html</code>. Here some example: <code>acr-1-en.html</code>, <code>acr-1-fr.html</code>, <code>acr-2023-03-16-en.html</code>, <code>acr-2023-03-16-fr.html</code></dd>
+			<dd>Followed by a dash, followed by the 2 letters language code and followed by the file extension <code>html</code>. The pattern is : <code>acr-{identifier}-{language}.html</code>. Here are some examples: <code>acr-1-en.html</code>, <code>acr-1-fr.html</code>, <code>acr-2023-03-16-en.html</code>, <code>acr-2023-03-16-fr.html</code></dd>
 		</dl>
 	</li>
 	<li>
@@ -55,7 +54,7 @@ Instruction for publishing/creating the ACR
 					<dt><code>title</code></dt>
 					<dd>Title of the Accessibility Conformance Report</dd>
 					<dt><code>language</code></dt>
-					<dd>2 letter language code of this published report</dd>
+					<dd>2 letters language code of this published report</dd>
 					<dt><code>altLangPage</code></dt>
 					<dd>Filename of the language alternate page</dd>
 					<dt><code>dateModified</code></dt>
@@ -68,7 +67,7 @@ Instruction for publishing/creating the ACR
 				</dl>
 			</dd>
 			<dt>GCWeb - Report publication page</dt>
-			<dd>Specific configuration are not published yet</dd>
+			<dd>Specific configurations are not published yet</dd>
 		</dl>
 	</li>
 	<li>
@@ -86,12 +85,12 @@ Instruction for publishing/creating the ACR
 		<p>Update the following meta information required for your ACR report by using the baseline JSON-LD ACR:</p>
 		<dl>
 			<dt class="brdr-tp">Report permanent URL (<code>@id</code>)</dt>
-			<dd>Final URL of where this report are going to be published</dd>
+			<dd>Final URL of where this report is going to be published</dd>
 			<dd>Pattern: <code>{url}</code></dd>
 			<dd>Example: <code>https://wet-boew.github.io/wet-boew/demos/wamethod/demo-acr/acr-1.json</code></dd>
 
 			<dt class="brdr-tp">Report identifier (<code>reportId</code>)</dt>
-			<dd>Identifier for the report which make it unique among the other ACR report in the same location.</dd>
+			<dd>Identifier for the report which makes it unique among the other ACR reports in the same location.</dd>
 			<dd>Pattern: <code>{identifier}</code></dd>
 			<dd>Example: <code>1</code></dd>
 
@@ -101,27 +100,27 @@ Instruction for publishing/creating the ACR
 			<dd>Example: <code>https://example.com/url/of/the/page/being/assessed</code></dd>
 
 			<dt class="brdr-tp">Assessor name (<code>assertedBy/producedBy/name</code>)</dt>
-			<dd>Full name of the assessor optionally followed by its GitHub handle</dd>
+			<dd>Full name of the assessor, optionally followed by their GitHub handle</dd>
 			<dd>Pattern: <code>{Full Name} ({Social media name}: @{Social media handle})</code></dd>
 			<dd>Example: <code>The Octocat  (GitHub: @octocat)</code></dd>
 
 			<dt class="brdr-tp">Assessor identifier (<code>assertedBy/producedBy/@id</code>)</dt>
-			<dd>Identifier URL to the assessor social media profile page</dd>
+			<dd>Identifier URL to the assessor's social media profile page</dd>
 			<dd>Pattern: <code>{URL}</code></dd>
 			<dd>Example: <code>https://github.com/octocat</code></dd>
 
 			<dt class="brdr-tp">Organization of the assessor (<code>assertedBy/name</code>)</dt>
-			<dd>Name of organization optionally preceded by the department name</dd>
+			<dd>Name of the organization, optionally preceded by the department name</dd>
 			<dd>Pattern: <code>{Department name} - {Organization name}</code></dd>
 			<dd>Example: <code>Service Canada - Principal Publisher</code></dd>
 
 			<dt class="brdr-tp">Organization identifier (<code>assertedBy/@id</code>)</dt>
-			<dd>Identifier URL to the assessor organization profile page</dd>
+			<dd>Identifier URL to the assessor's organization profile page</dd>
 			<dd>Pattern: <code>{URL}</code></dd>
 			<dd>Example: <code>https://github.com/ServiceCanada</code></dd>
 
 			<dt class="brdr-tp">Assessment scope (<code>scope</code>)</dt>
-			<dd>Scope of the assessment defining what is being assessed and what is out of scope. Also an human readable note about what success criteria are going to be assessed against which standard which must match the property <code>earl:test</code> defined at the root of this report</dd>
+			<dd>Scope of the assessment defining what is being assessed and what is out of scope. Also, a human readable note about what success criteria are going to be assessed against which standard which must match the property <code>earl:test</code> defined at the root of this report</dd>
 			<dd>Pattern: <code>{Description of the scope}</code></dd>
 			<dd>Example: Partial evaluation focused only on the component {name of the component} and not its container. Evaluated all Success Criteria at Level AA of WCAG 2.1</dd>
 		</dl>
@@ -129,7 +128,7 @@ Instruction for publishing/creating the ACR
 	<li>
 		<p>Record the assessment of each individual success criteria. For each success criteria in the <code>results</code> property:</p>
 
-		<p>The property <code>label</code> contain a human readable version of the success criterion title and the property <code>earl:test</code> is a programmatic determined reference to the success criterion item in the WCAG (Web Content Accessibility Guidance) published standard.</p>
+		<p>The property <code>label</code> contains a human readable version of the success criterion title and the property <code>earl:test</code> is a programmatically determined reference to the success criterion item in the WCAG (Web Content Accessibility Guidance) published standard.</p>
 
 		<dl>
 			<dt class="brdr-tp">Outcome in human readable format (<code>outcome</code>)</dt>
@@ -145,11 +144,11 @@ Instruction for publishing/creating the ACR
 			<dd>Example: <code>earl:passed</code>; <code>earl:failed</code>; <code>earl:cantTell</code>; <code>earl:inapplicable</code>; <code>earl:untested</code></dd>
 
 			<dt class="brdr-tp">SC assessment notes (<code>notes</code>)</dt>
-			<dd>Any notes about the assessment of this success criterion and complement by adding the discussed technique or the one that is clearly fully applied in the 'technique' property to set a reference to its matching 'earl:TestRequirement'</dd>
+			<dd>Any notes about the assessment of this success criterion. Complement by adding the discussed technique or the one that is clearly fully applied in the 'technique' property to set a reference to its matching 'earl:TestRequirement'</dd>
 			<dd>Pattern: <code>{Human readable note}</code></dd>
 
 			<dt class="brdr-tp">Referenced and applied techniques (<code>techniques</code>)</dt>
-			<dd>List of machine readable reference to the referenced technique in the note and the technique that was clearly applied. The reference consist into a prefix followed by the technique identifier which we easily can deduct from the two (2) last section of the technique URL.</dd>
+			<dd>List of machine readable reference to the referenced technique in the note and the technique that was clearly applied. The reference consist into a prefix followed by the technique identifier which we can easily deduct from the two (2) last sections of the technique URL.</dd>
 			<dd>Pattern: <code>WCAG2xTech:{ Technique identifier }</code></dd>
 			<dd>Example: <code>WCAG2xTech:failures/F100</code>; <code>WCAG2xTech:general/G94</code>; <code>WCAG2xTech:html/H42</code>; <code>WCAG2xTech:css/C6</code>; <code>WCAG2xTech:aria/ARIA13</code>; <code>WCAG2xTech:failures/client-side-script/SCR19</code>; <code>WCAG2xTech:server-side-script/SVR1</code>; <code>WCAG2xTech:pdf/PDF1</code>; <code>WCAG2xTech:smil/SM7</code>; <code>WCAG2xTech:text/T2</code></dd>
 
@@ -157,9 +156,9 @@ Instruction for publishing/creating the ACR
 			<dd>
 				<p>Machine readable data indicating how the success criteria assessment has been performed.</p>
 				<ul>
-					<li><strong>Automated</strong> means the assessment was completed by an automated tool (like <a href="https://wave.webaim.org/">WAVE</a>, <a href="https://www.deque.com/axe/">axe</a>, <a href="https://accessibilityinsights.io/">Accessibility Insights</a>...) which has analysed the subject page and the assessor are only logging the result <em>without validating</em> from the page source code or the page rendered view if that information are fully accurate.</li>
-					<li><strong>Semi-automated</strong> means the assessment was completed with the assistance of some automated tool which has analysed the subject page to help the assessor to identify quickly some common issue and <em>the assessor did validated</em> from the source code and the rendered view the issue or comment are valuable and applicable.</li>
-					<li><strong>Manual</strong> means the assessment was completed <em>by manually validating</em> from the source code and the rendered view which didn't required a tool that has read from the source page but might have involved the use of helper tool such as a color contrast online checker.</li>
+					<li><strong>Automated</strong> means the assessment was completed by an automated tool (like <a href="https://wave.webaim.org/">WAVE</a>, <a href="https://www.deque.com/axe/">axe</a>, <a href="https://accessibilityinsights.io/">Accessibility Insights</a>...) which has analyzed the subject page. The assessor is only logging the result <em>without validating</em> from the page source code or the page rendered view if that information is fully accurate.</li>
+					<li><strong>Semi-automated</strong> means the assessment was completed with the assistance of some automated tool which has analyzed the subject page to help the assessor quickly identify some common issues and <em>the assessor did validate</em> from the source code and the rendered view the issues or comments valuable and applicable.</li>
+					<li><strong>Manual</strong> means the assessment was completed <em>by manually validating</em> from the source code and the rendered view which didn't require a tool that has read from the source page but might have involved the use of a helper tool such as a color contrast online checker.</li>
 				</ul>
 			</dd>
 			<dd>Pattern: <code>earl:{ Mode of the testing }</code></dd>
@@ -167,21 +166,21 @@ Instruction for publishing/creating the ACR
 			<dd class="brdr-bttm">Example: <code>earl:automatic</code>; <code>earl:manual</code>; <code>earl:semiAuto</code>; <code>earl:undisclosed</code>; <code>earl:unknownMode</code></dd>
 		</dl>
 
-		<p>Note:</p>
+		<p>Notes:</p>
 		<ul class="mrgn-bttm-md">
-			<li>Sample and specific instruction based on the type of assessment result are going publisher later.</li>
-			<li>More information about the use and the definition of some properties in the <a href="https://wet-boew.github.io/vocab/acr/">wet-boew accessibility conformation report vocabulary extension</a>.</li>
+			<li>Sample and specific instructions based on the type of assessment result are going to be published later.</li>
+			<li>More information about the use and the definition of some properties can be found in the <a href="https://wet-boew.github.io/vocab/acr/">WET-BOEW accessibility conformation report vocabulary extension</a>.</li>
 		</ul>
 	</li>
 	<li>
 		<p>Closing the initial assessment conformance report by adding the following meta information.</p>
 		<dl>
 			<dt class="brdr-tp">Summary or/and general notes about the assessment (<code>summary</code>)</dt>
-			<dd>A summary or/and a general notes made by the assertor regarding this assessment, observation or/and comments which will help to provide more context and improve the understanding of the assessment result itself. Also it may contains any note that impact the conformance beyond the tested success criteria like assessment comment related to section '5. Conformance' in WCAG 2.x.</dd>
+			<dd>A summary or/and a general notes made by the assertor regarding this assessment, observation or/and comments which will help to provide more context and improve the understanding of the assessment result itself. Also, it may contain any note that impact the conformance beyond the tested success criteria, like assessment comment related to section '5. Conformance' in WCAG 2.x.</dd>
 			<dd>Pattern: <code>{General note}</code></dd>
 
 			<dt class="brdr-tp">Assessment conformance score (<code>aggregatedScore</code>)</dt>
-			<dd>Percentage (%) manually calculated representing all the success criteria that has passed compared to the total of tested success criteria</dd>
+			<dd>Percentage (%) manually calculated representing all the success criteria that have passed compared to the total of tested success criteria</dd>
 			<dd>Pattern: <code>{Success rate} %</code></dd>
 			<dd>Example: <code>74%</code></dd>
 		</dl>

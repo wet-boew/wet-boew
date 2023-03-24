@@ -20,9 +20,9 @@
   },
   "date": "2023-12-31",
 
-  "scope": "{Scope of the assessment defining what is being assessed and what is out of scope. Also an human readable note about what success criteria are going to be assessed against which standard which must match the property 'earl:test' defined at the root of this report}.",
-  "summary": "{General summary or/and notes made by the assertor regarding this assessment, observation or/and comments which will help to provide more context and improve the understanding of the assessment result itself. Also any note that impact the conformance beyond the tested success criteria which are defined under '5. Conformance' in WCAG 2.x}",
-  "aggregatedScore": "{Percentage (%) manually calculated representing all the success criteria that has passed compared to the total of tested success criteria}",
+  "scope": "{Scope of the assessment defining what is being assessed and what is out of scope. Also, a human readable note about what success criteria are going to be assessed against which standard must match the property 'earl:test' defined at the root of this report}.",
+  "summary": "{General summary or/and notes made by the assertor regarding this assessment, observation or/and comments which will help provide more context and improve the understanding of the assessment result itself. Also, any note that impact the conformance beyond the tested success criteria which are defined under '5. Conformance' in WCAG 2.x}",
+  "aggregatedScore": "{Percentage (%) manually calculated representing all the success criteria that have passed compared to the total of tested success criteria}",
 
   "results": [
     {
