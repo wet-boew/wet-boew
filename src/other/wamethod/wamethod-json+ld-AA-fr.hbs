@@ -1,0 +1,188 @@
+---
+{
+	"title": "Méthodologie d’évaluation sur l’accessibilité des sites We en format JSON-LD (niveau AA)",
+	"language": "fr",
+	"description": "Instructions préalable et recommendé pour compléter l'évaluation en format JSON-LD de chaque critère de succès",
+	"tag": "wamethod",
+	"parentdir": "wamethod",
+	"altLangPage": "wamethod-json+ld-AA-en.html",
+	"dateModified": "2023-06-16"
+}
+---
+
+<section class="alert alert-info">
+	<h2>Page d'exemple - Gabarit de référence initial</h2>
+	<p>Cette page contient les instructions afin de remplir le gabarit de référence en format JSON-LD pour l'initiation d'une évaluation et de la production d'un rapport ACR (Rapport de Conformance d'Accessibilité) illustrant la conformité du sujet web évalué.</p>
+</section>
+
+<p>Voici les instructions pour compléter l'évaluation en format JSON-LD pour chaque critère de succès selon la <a href="wamethod-AA-fr.html">méthodologie proposée</a>:</p>
+
+<ol>
+	<li>Copier le fichier JSON-LD de référence (<a href="demo-acr/acr-initial.json" type="application/ld+json" download>Téléchargement du gabarit de référence</a>)</li>
+	<li>
+		<p>Nom de fichier recommandé</p>
+		<p>La convention de nom proposée débute avec le type de rapport (comme « acr », qui représente « Rapport de conformance d'accessibilité »), suivi d'un tiret, suivi d'un identifiant unique, puis:</p>
+		<dl>
+			<dt>Rapport JSON-LD</dt>
+			<dd>Suivi par une extension de fichier suggérant que le fichier est en format JSON. Le modèle est : <code>acr-{identifiant}.json</code>. Voici quelques exemples: <code>acr-1.json</code>, <code>acr-2023-03-16.json</code></dd>
+
+			<dt>WET-BOEW - Page du rapport publié</dt>
+			<dd>Suivi par un tiret, suivi par les 2 lettres représentant le code de la langue et suivi par l'extension de fichier <code>hbs</code>. Le modèle est : <code>acr-{identifiant}-{langue}.hbs</code>. Voici quelques exemples: <code>acr-1-en.hbs</code>, <code>acr-1-fr.hbs</code>, <code>acr-2023-03-16-en.hbs</code>, <code>acr-2023-03-16-fr.hbs</code></dd>
+
+			<dt>GCWeb - Page du rapport publié</dt>
+			<dd>Suivi par un tiret, suivi par les 2 lettres représentant le code de la langue et suivi par l'extension de fichier <code>html</code>. Le modèle est : <code>acr-{identifiant}-{langue}.html</code>. Voici quelques exemples: <code>acr-1-en.html</code>, <code>acr-1-fr.html</code>, <code>acr-2023-03-16-en.html</code>, <code>acr-2023-03-16-fr.html</code></dd>
+		</dl>
+	</li>
+	<li>
+		<p>Configuration du gabarit pour la page de rapport en HTML</p>
+		<dl>
+			<dt>WET-BOEW - Page du rapport publié</dt>
+			<dd>
+				<p>Utilisez cette préface (front-matter) et adaptez les métadonnées pour correspondre au contexte du rapport ACR.</p>
+				<pre><code>---
+{
+	"title": "Évaluation de conformance d'accessibilité #{identifiant} - Sujet",
+	"language": "{langue}",
+	"altLangPage": "acr-{identifiant}-en.html",
+	"dateModified": "AAAA-MM-JJ",
+	"layout": "acr-{langue}.hbs",
+	"reportURL": "acr-{identifiant}.json"
+}
+---</code></pre>
+				<p>Mettez à jour les propriétés suivantes:</p>
+				<dl class="dl-horizontal">
+					<dt><code>title</code></dt>
+					<dd>Titre du rapport d'évaluation de la conformité d'accessibilité (ACR)</dd>
+					<dt><code>language</code></dt>
+					<dd>Code de 2 lettres représentant la langue du rapport publié</dd>
+					<dt><code>altLangPage</code></dt>
+					<dd>Nom de fichier de la page tranduite et alternative.</dd>
+					<dt><code>dateModified</code></dt>
+					<dd>Date de modification</dd>
+					<dt><code>layout</code></dt>
+					<dd>Gabarit pour le rapport en français: <code>acr-fr.hbs</code></dd>
+					<dd>Gabarit pour le rapport en anglais: <code>acr-en.hbs</code></dd>
+					<dt><code>reportURL</code></dt>
+					<dd>Lien vers le document en format JSON du rapport d'évaluation de la conformité en accessibilité</dd>
+				</dl>
+			</dd>
+			<dt>GCWeb - Page du rapport publié</dt>
+			<dd>Les configurations spécifiques ne sont pas encore publiées</dd>
+		</dl>
+	</li>
+	<li>
+		<p>Sauvegarde et référencement du rapport</p>
+		<p>Ajouter les fichiers modifiés dans un nouveau sous-dossier nommé <code>reports</code> dans le dossier principal du plugiciel ou du composant.</p>
+		<dl>
+			<dt>WET-BOEW - Page du rapport publié</dt>
+			<dd>Ajouter un lien vers le rapport en anglais et celui en français dans la documentation du plugiciel ou dans une section dédiée dans l'example pratique.</dd>
+			<dt>GCWeb - Page du rapport publié</dt>
+			<dd>Ajouter un lien vers le rapport en anglais et celui en français à partir du fichier pivot json-ld du composant et optionnellement des liens à partir de la page de documentation du composant.</dd>
+		</dl>
+	</li>
+
+	<li>
+		<p>Mettez à jour le modèle JSON-LD avec les métadonnées suivantes afin de pouvoir produire une évaluation de conformance d'accessibilitéité (ACR):</p>
+		<dl>
+			<dt class="brdr-tp">Lien permanent du rapport (<code>@id</code>)</dt>
+			<dd>Lien final d'où le rapport sera publié</dd>
+			<dd>Modèle: <code>{url}</code></dd>
+			<dd>Exemple: <code>https://wet-boew.github.io/wet-boew/demos/wamethod/demo-acr/acr-1.json</code></dd>
+
+			<dt class="brdr-tp">Identifiant du rapport (<code>reportId</code>)</dt>
+			<dd>Identifiant du rapport qui le rend unique par rapport aux autres rapports ACR dans le même emplacement.</dd>
+			<dd>Modèle: <code>{identifiant}</code></dd>
+			<dd>Exemple: <code>1</code></dd>
+
+			<dt class="brdr-tp">Lien du sujet (<code>subjectUrl</code>)</dt>
+			<dd>Lien du sujet évalué.</dd>
+			<dd>Modèle: <code>{URL}</code></dd>
+			<dd>Exemple: <code>https://example.com/line/de/la/page/évaluer</code></dd>
+
+			<dt class="brdr-tp">Nom de l'évaluateur (<code>assertedBy/producedBy/name</code>)</dt>
+			<dd>Nom complet de l'évaluateur suivi optionellement de son identifiant GitHub.</dd>
+			<dd>Modèle: <code>{Nom complet} ({Nom du média social}: @{Identifiant du média social})</code></dd>
+			<dd>Exemple: <code>The Octocat  (GitHub: @octocat)</code></dd>
+
+			<dt class="brdr-tp">Identifiant de l'évaluateur (<code>assertedBy/producedBy/@id</code>)</dt>
+			<dd>Lien menant à la page de média social de l'évaluateur.</dd>
+			<dd>Modèle: <code>{URL}</code></dd>
+			<dd>Exemple: <code>https://github.com/octocat</code></dd>
+
+			<dt class="brdr-tp">Organisation de l'évaluateur (<code>assertedBy/name</code>)</dt>
+			<dd>Nom de l'organisation optionnellement précédé par le nom de son département</dd>
+			<dd>Modèle: <code>{Nom du département} - {Nom de l'organisation}</code></dd>
+			<dd>Exemple: <code>Service Canada - Éditeur principal</code></dd>
+
+			<dt class="brdr-tp">Identifiant de l'organisation (<code>assertedBy/@id</code>)</dt>
+			<dd>Lien menant au profil de l'organisation de l'évaluateur</dd>
+			<dd>Modèle: <code>{URL}</code></dd>
+			<dd>Exemple: <code>https://github.com/ServiceCanada</code></dd>
+
+			<dt class="brdr-tp">Portée de l'évaluation (<code>scope</code>)</dt>
+			<dd>Portée de l'évaluation <span lang="en">(scope)</span> qui défini ce qui sera évalué et ce qui sera hors de portée. Il peut inclure une note lisible indiquant le type ainsi que le niveau de conformité envisagé. Cette note lisible doit correspondre à la valeur assignée à la propriété <code>earl:test</code> définie à la racine de ce rapport.</dd>
+			<dd>Modèle: <code>{Description de la porté}</code></dd>
+			<dd>Exemple: Évaluation partielle orientée uniquement sur le composant {nom du composant}, excluant le code conteneur. Évaluation de tous les critères de succès au niveau AA du WCAG 2.1</dd>
+		</dl>
+	</li>
+	<li>
+		<p>Journalisation de l'évaluation pour chaque critère de succès. Voici les propriétés pour chaque critère de succès énuméré dans la propriété racine <code>results</code>.</p>
+
+		<p>La propriété <code>label</code> contient le titre du critère de succès représentant une version compréhensible par l'humain et la propriété <code>earl:test</code> représente la version lisible par les machines qui font référence au critère de succès dans le standard publié du <span lang="en">WCAG (Web Content Accessibility Guidance) published standard</span>.</p>
+
+		<dl>
+			<dt class="brdr-tp">Résultat en format lisible par l'humain (<code>outcome</code>)</dt>
+			<dd>Un texte lisible par l'humain indiquant l'état du résultat de l'évaluation du critère de succès.</dd>
+			<dd>Modèle: <code>{Résultat en mots}</code></dd>
+			<dd>Référence: <a href="https://www.w3.org/TR/EARL/#OutcomeValue">https://www.w3.org/TR/EARL/#OutcomeValue</a></dd>
+			<dd>Exemple: Passé; Échoué; Ne peut être défini; Non applicable; Non vérifié</dd>
+
+			<dt class="brdr-tp">Résultat en format lisible par la machine (<code>earl:outcome</code>)</dt>
+			<dd>Résultat compréhensible par la machine indiquant le résultat de l'évaluation du critère de succès. La valeur doit correspondre à la propriété <code>outcome</code>.</dd>
+			<dd>Modèle: <code>{Référence au type de résultat}</code></dd>
+			<dd>Référence: <a href="https://www.w3.org/TR/EARL/#OutcomeValue">https://www.w3.org/TR/EARL/#OutcomeValue</a></dd>
+			<dd>Exemple: <code>earl:passed</code>; <code>earl:failed</code>; <code>earl:cantTell</code>; <code>earl:inapplicable</code>; <code>earl:untested</code></dd>
+
+			<dt class="brdr-tp">Note de l'évaluateur (<code>notes</code>)</dt>
+			<dd>Toutes notes à propos de l'évaluation de ce critère de succès et toutes notes complémentaires en identifiant les techniques concernées ou celles qui sont appliquées au contenu de manière évidente.</dd>
+			<dd>Modèle: <code>{Note lisible par l'humain}</code></dd>
+
+			<dt class="brdr-tp">Technique référencées et appliquées (<code>techniques</code>)</dt>
+			<dd>Liste des techniques en format lisible par machine référencées dans la note d'évaluation ainsi que les techniques étant clairement appliquées. La référence consiste en un préfix suivi de l'identifiant de la technique qui peut être facilement obtenu par la déduction des deux (2) dernières sections de l'URL de la page web.</dd>
+			<dd>Modèle: <code>WCAG2xTech:{ Identifiant de la technique }</code></dd>
+			<dd>Exemple: <code>WCAG2xTech:failures/F100</code>; <code>WCAG2xTech:general/G94</code>; <code>WCAG2xTech:html/H42</code>; <code>WCAG2xTech:css/C6</code>; <code>WCAG2xTech:aria/ARIA13</code>; <code>WCAG2xTech:failures/client-side-script/SCR19</code>; <code>WCAG2xTech:server-side-script/SVR1</code>; <code>WCAG2xTech:pdf/PDF1</code>; <code>WCAG2xTech:smil/SM7</code>; <code>WCAG2xTech:text/T2</code></dd>
+
+			<dt class="brdr-tp">Mode d'évaluation (<code>earl:mode</code>)</dt>
+			<dd>
+				<p>Donnée lisible par la machine indiquant le type de méthode utilisé afin de compléter l'évaluation du critère de succès.</p>
+				<ul>
+					<li><strong>Automatisé</strong> signifie que l'évaluation a entièrement été faite à l'aide d'outils automatisés (comme <a href="https://wave.webaim.org/">WAVE</a>, <a href="https://www.deque.com/axe/">axe</a>, <a href="https://accessibilityinsights.io/" lang="en">Accessibility Insights</a>...) qui ont analysé la page à évaluer et l'évaluateur a seulement journalisé les résultats <em>sans le valider</em> du code source de la page ou du rendu visuel de la page pour vérifier si l'information est adéquate.</li>
+					<li><strong>Semi-automatisé</strong> signifie que l'évaluation a été complétée à l'aide d'outils automatisés qui ont fait des analyses afin de guider l'évaluateur à identifier rapidement les erreurs communes ou des points d'intérêt et <em>l'évaluateur a vérifié l'exactitude</em> à partir du code source de la page et du rendu visuel.</li>
+					<li><strong>Manuel</strong> signifie que l'évaluation a été complétée en employant une méthode de <em>vérification manuelle</em> à partir du code source de la page et du rendu visuel. L'utilisation d'outils est limitée à des outils d'appoint qui n'analysent pas directement la page en question sur la conformance du critère de succès. Par exemple l'évaluateur du contraste de couleur ou un validateur de balisage HTML.</li>
+				</ul>
+			</dd>
+			<dd>Modèle: <code>earl:{ Mode d'évaluation }</code></dd>
+			<dd>Référence: <a href="https://www.w3.org/TR/EARL/#TestMode">https://www.w3.org/TR/EARL/#TestMode</a></dd>
+			<dd class="brdr-bttm">Example: <code>earl:automatic</code>; <code>earl:manual</code>; <code>earl:semiAuto</code>; <code>earl:undisclosed</code>; <code>earl:unknownMode</code></dd>
+		</dl>
+
+		<p>Note:</p>
+		<ul class="mrgn-bttm-md">
+			<li>Des exemples et des instructions spécifiques basées sur le type de résultat d'évaluation seront publiés prochainement.</li>
+			<li>Pour de plus amples renseignements sur l'utilisation et la définition de certaines propriétés, veuillez vous référer à <a href="https://wet-boew.github.io/vocab/acr/">l'extension WET-BOEW du vocabulaire de la conformation à l'accessibilité (ACR)</a>.</li>
+		</ul>
+	</li>
+	<li>
+		<p>Fermeture du rapport de conformance initial en ajoutant les métadonnées suivantes:</p>
+		<dl>
+			<dt class="brdr-tp">Sommaire et/ou note générale à propos de l'évaluation (<code>summary</code>)</dt>
+			<dd>Un sommaire et/ou une note générale fait par l'évaluateur concernant l'évaluation en cours, des observations ou/et commentaires qui aideront à fournir plus de contexte et améliorera la compréhension du résultat de l'évaluation. Il pourrait également contenir toutes notes qui doivent être prises en considération au-delà des critères de succès, comme ceux de la section 5 sur la conformance du WCAG 2.x.</dd>
+			<dd>Modèle: <code>{Note générale}</code></dd>
+
+			<dt class="brdr-tp">Note de conformité de l'évaluation (<code>aggregatedScore</code>)</dt>
+			<dd>Poucentage (%) calculé manuellement représentant tous les critères de succès réussis sur le nombre total de critères de succès</dd>
+			<dd>Modèle: <code>{Taux de succès} %</code></dd>
+			<dd>Exemple: <code>74%</code></dd>
+		</dl>
+	<li>Publication du rapport ACR via l'ouverture d'une <a href="https://github.com/wet-boew/wet-boew/pulls">demande GitHub de fusion (<span lang="en">Pull Request</span>)</a> conformément à nos <a href="https://github.com/wet-boew/wet-boew/blob/master/CONTRIBUTING.md#comment-contribuer">lignes directrices de contribution</a>.</li>
+</ol>
