@@ -3,33 +3,78 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-.wb-disable {
-	.wb-twitter {
-		.twitter-timeline {
-			text-indent: 0 !important;
-		}
-	}
-}
-
 .wb-twitter {
-	.twitter-timeline {
-		display: block;
+	/* Align the loading icon relative to the center of the Twitter link in browsers that support :has() */
+	&:has( a.twitter-timeline + .twitter-timeline-loading ) {
+		display: inline-block;
+
+		a {
+			&.twitter-timeline {
+				+ {
+					.twitter-timeline-loading {
+						&::before {
+							left: 0;
+							right: 0;
+						}
+
+						&::after {
+							margin: auto;
+						}
+					}
+				}
+			}
+		}
 	}
 
-	iframe {
-		&[style] {
-			width: 100% !important;
+	/* Display the loading icon as normal content */
+	a {
+		&.twitter-timeline {
+			+ {
+				.twitter-timeline-loading {
+					@extend %global-loading;
+					margin-top: 5px;
+					min: {
+						height: 100px;
+						width: 100px;
+					}
+					position: relative;
+
+					/* Align the loading icon leftwards by default */
+					&::before {
+						right: auto;
+					}
+
+					&::after {
+						margin-left: calc((100px - 1em) / 2);
+					}
+				}
+			}
 		}
 	}
 }
 
-.wb-enable {
+[dir=rtl] {
 	.wb-twitter {
-		.twitter-timeline {
-			@extend %global-loading;
-			min-height: 100px;
-			min-width: 100px;
-			position: relative;
+		a {
+			&.twitter-timeline {
+				+ {
+					.twitter-timeline-loading {
+
+						/* Align the loading icon rightwards by default */
+						&::before {
+							left: auto;
+							right: 0;
+						}
+
+						&::after {
+							margin: {
+								left: auto;
+								right: calc((100px - 1em) / 2);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
