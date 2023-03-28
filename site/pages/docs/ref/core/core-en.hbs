@@ -6,7 +6,7 @@
 	"categoryfile": "other",
 	"description": "Core WET object.",
 	"altLangPrefix": "core",
-	"dateModified": "2022-04-20"
+	"dateModified": "2023-03-28"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -25,7 +25,7 @@
 	<h2>Language (<code>wb.lang</code>)</h2>
 	<p>WET's language is derived from the <code>html</code> element's <code>lang</code> attribute. A formatted version of the page's language code is stored in the <code>wb.lang</code> variable.</p>
 	<p>By default, the variable's value will be derived from the first two characters of the page's language code. If a longer code is specified, it'll be re-used as the variable's value so long as it corresponds to one of WET's built-in languages (i.e. <code>pt-BR</code> for Portuguese [Brazilian] or <code>zh-Hans</code> for Chinese [Simplified]).</p>
-	<p>Implementations that want to provide custom i18n files for longer language codes (e.g. <code>en-CA</code>, <code>en-US</code>, etc) can do so by adding <code>data-wb-core</code> and <code>lang-lang-long=""</code> attributes to WET's <code>script</code> element.</p>
+	<p>Implementations that want to provide custom i18n files for longer language codes (e.g. <code>en-CA</code>, <code>en-US</code>, etc) can do so by adding <code>data-wb-core</code> and <code>data-lang-long=""</code> attributes to WET's <code>script</code> element.</p>
 	<p>WET will also attempt to load an i18n file named after the variable. Plugins won't initialize if the i18n file fails to load.</p>
 </section>
 
