@@ -31,6 +31,49 @@ var componentName = "wb-twitter",
 			protocol = wb.pageUrlParts.protocol;
 
 		if ( eventTarget ) {
+			const twitterLink = eventTarget.firstElementChild;
+
+			// Ignore IE11
+			// Note: Twitter's widget no longer supports it...
+			if ( wb.ie11 ) {
+				wb.ready( $( eventTarget ), componentName );
+				return;
+			}
+
+			// If the plugin container's first child element is a Twitter link...
+			if ( twitterLink && twitterLink.matches( "a.twitter-timeline" ) ) {
+				const loadingDiv = document.createElement( "div" );
+				let observer;
+
+				// Add a loading icon below the link
+				loadingDiv.className = "twitter-timeline-loading";
+				twitterLink.after( loadingDiv );
+
+				// Remove the loading icon after the timeline widget appears
+				// Note: Twitter's widget script removes "a.twitter-timeline" upon filling-in the timeline's content... at which point the loading icon is no longer useful
+				observer = new MutationObserver( function( mutations ) {
+
+					// Check for DOM mutations
+					mutations.forEach( function( mutation ) {
+
+						// Deal only with removed HTML nodes
+						mutation.removedNodes.forEach( function( removedNode ) {
+
+							// If the removed node was a Twitter link, remove its adjacent loading icon and stop observing
+							if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+								loadingDiv.remove();
+								observer.disconnect();
+							}
+						} );
+					} );
+				} );
+
+				// Observe changes to the plugin container's direct child elements
+				observer.observe( eventTarget, {
+					childList: true
+				} );
+			}
+
 			Modernizr.load( {
 				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
 				complete: function() {
