@@ -1371,9 +1371,9 @@ module.exports = (grunt) ->
 				quiet: true
 			all:
 				src: [
+					"site/**/*.js"
 					"src/**/*.js"
 					"theme/**/*.js"
-					"tasks/*.js"
 				]
 
 		connect:
