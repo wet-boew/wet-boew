@@ -479,7 +479,10 @@ module.exports = (grunt) ->
 				production: false
 				data: "site/data/**/*.{yml,json}"
 				helpers: "site/helpers/helper{,s}-*.js"
-				partials: "site/includes/**/*.hbs"
+				partials: [
+					"site/includes/**/*.hbs"
+					"src/polyfills/datalist/demo/datalist_dynamic.js"
+				]
 				layoutdir: "site/layouts"
 				layout: "default.hbs"
 				environment:

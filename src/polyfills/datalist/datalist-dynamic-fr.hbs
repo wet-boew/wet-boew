@@ -8,7 +8,7 @@
 	"parentdir": "datalist",
 	"altLangPrefix": "datalist-dynamic",
 	"js": ["demo/datalist_dynamic"],
-	"dateModified": "2014-07-20"
+	"dateModified": "2023-04-14"
 }
 ---
 <section>
@@ -69,54 +69,7 @@
 
 		<section>
 			<h3>JavaScript</h3>
-			<pre><code>(function( $, wb ) {
-&quot;use strict&quot;;
-
-var $document = wb.doc,
-	pluginSelector = &quot;#plugin&quot;,
-	issueInput = $( &quot;#issue&quot; );
-
-$document.on( &quot;change&quot;, pluginSelector, function( event ) {
-	var pluginName = event.target.value;
-
-	$document.trigger({
-		type: &quot;ajax-fetch.wb&quot;,
-		element: this,
-		fetch: {
-			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Feature: &quot; + pluginName ),
-			dataType: wb.ielt10 ? &quot;jsonp&quot; : &quot;json&quot;,
-			jsonp: wb.ielt10 ? &quot;callback&quot; : null
-		}
-	});
-
-	issueInput.get( 0 ).value = &quot;&quot;;
-});
-
-$document.on( &quot;ajax-fetched.wb&quot;, pluginSelector, function( event ) {
-	var dataList = $( &quot;#&quot; + issueInput.attr( &quot;list&quot; ) ),
-		issues = wb.ielt10 ? event.fetch.response.data : event.fetch.response,
-		lenIssues = issues.length,
-		options = &quot;&quot;,
-		indIssue, issue;
-
-	dataList.empty();
-
-	for ( indIssue = 0; indIssue !== lenIssues; indIssue += 1 ) {
-		issue = issues[ indIssue ];
-
-		options += &quot;&lt;option label=\&quot;&quot; + issue.title + &quot;\&quot; value=\&quot;&quot; + issue.title + &quot;\&quot;&gt;&lt;/option&gt;&quot;;
-	}
-
-	if ( wb.ielt10 ) {
-		options = &quot;&lt;select&gt;&quot; + options + &quot;&lt;/select&gt;&quot;;
-	}
-
-	dataList.append( options );
-
-	issueInput.trigger( &quot;wb-update.wb-datalist&quot; );
-});
-
-})( jQuery, wb );</code></pre>
+			<pre><code>{{#escape}}{{#stripbanner}}{{> datalist_dynamic }}{{/stripbanner}}{{/escape}}</code></pre>
 		</section>
 	</details>
 </section>
