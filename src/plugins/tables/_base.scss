@@ -926,6 +926,22 @@ table {
 		}
 	}
 
+	&.filterEmphasis.provisional {
+		.dataTables_filter {
+			background-color: #D9EDF7;
+			float: none;
+			margin-bottom:7px;
+			padding: 10px;
+		}
+
+		.dataTables_info {
+			padding-left: 7px;
+			&:after {
+				content: "";
+			}
+		}
+	}
+
 	.dataTables_length {
 		@extend %tables-color-333;
 		@extend %tables-font-weight-400;
