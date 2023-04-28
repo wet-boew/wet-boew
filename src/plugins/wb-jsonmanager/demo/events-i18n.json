@@ -1,0 +1,56 @@
+{
+    "reference": {
+        "language": {
+            "en": {
+                "english": "English",
+                "french": "French"
+            },
+            "fr": {
+                "english": "Anglais",
+                "french": "Français"
+            }
+        },
+        "province": {
+            "en": {
+                "alberta": "Alberta",
+                "british_columbia": "British Columbia",
+                "manitoba": "Manitoba",
+                "new_brunswick": "New Brunswick",
+                "newfoundland_labrador": "Newfoundland & Labrador",
+                "northwest_territories": "Northwest Territories",
+                "nova_scotia": "Nova Scotia",
+                "nunavut": "Nunavut",
+                "ontario": "Ontario",
+                "prince_edward_island": "Prince Edward Island",
+                "quebec": "Quebec",
+                "saskatchewan": "Saskatchewan",
+                "yukon": "Yukon"
+            },
+            "fr": {
+                "alberta": "Alberta",
+                "british_columbia": "Colombie-Britannique",
+                "prince_edward_island": "Île-du-Prince-Édouard",
+                "manitoba": "Manitoba",
+                "new_brunswick": "Nouveau-Brunswick",
+                "nova_scotia": "Nouvelle-Écosse",
+                "nunavut": "Nunavut",
+                "ontario": "Ontario",
+                "quebec": "Québec",
+                "saskatchewan": "Saskatchewan",
+                "newfoundland_labrador": "Terre-Neuve-et-Labrador",
+                "northwest_territories": "Territoires du Nord-Ouest",
+                "yukon": "Yukon"
+            }
+        },
+        "registrationStatus": {
+            "en": {
+                "open": "Open",
+                "closed": "Closed"
+            },
+            "fr": {
+                "open": "Ouvert",
+                "closed": "Fermé"
+            }
+        }
+    }
+}

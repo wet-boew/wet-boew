@@ -26,9 +26,26 @@ var componentName = "wb-jsonmanager",
 	datasetCacheSettings = {},
 	dsDelayed = {},
 	dsPostponePatches = {},
+	dsFetching = {},
+	dsFetchIsArray = {},
+	dsFetchMerged = {},
 	$document = wb.doc,
 	defaults = {
 		ops: [
+			{
+				name: "patches",
+				fn: function( obj, key, tree ) {
+					var path = this.path,
+						patches = this.patches,
+						newTree = jsonpointer.get( tree, path );
+
+					patches.forEach( ( patchConf ) => {
+						patchConf.mainTree = tree;
+						patchConf.pathParent = path;
+						jsonpatch.apply( newTree, [ patchConf ] );
+					} );
+				}
+			},
 			{
 				name: "wb-count",
 				fn: function( obj, key, tree ) {
@@ -37,14 +54,14 @@ var componentName = "wb-jsonmanager",
 						filter = this.filter || [ ],
 						filternot = this.filternot || [ ];
 
-					if ( !$.isArray( filter ) ) {
+					if ( !Array.isArray( filter ) ) {
 						filter = [ filter ];
 					}
-					if ( !$.isArray( filternot ) ) {
+					if ( !Array.isArray( filternot ) ) {
 						filternot = [ filternot ];
 					}
 
-					if ( ( filter.length || filternot.length ) && $.isArray( countme ) ) {
+					if ( ( filter.length || filternot.length ) && Array.isArray( countme ) ) {
 
 						// Iterate in obj[key] / item and check if is true for the given path is any.
 						i_len = countme.length;
@@ -54,38 +71,32 @@ var componentName = "wb-jsonmanager",
 								len = len + 1;
 							}
 						}
-					} else if ( $.isArray( countme ) ) {
+					} else if ( Array.isArray( countme ) ) {
 						len = countme.length;
 					}
-					jsonpatch.apply( tree, [
-						{ op: "add", path: this.set, value: len }
-					] );
+					applyPatch( tree, "add", this.set, len );
 				}
 			},
 			{
 				name: "wb-first",
 				fn: function( obj, key, tree ) {
 					var currObj = obj[ key ];
-					if ( !$.isArray( currObj ) || currObj.length === 0 ) {
+					if ( !Array.isArray( currObj ) || currObj.length === 0 ) {
 						return;
 					}
 
-					jsonpatch.apply( tree, [
-						{ op: "add", path: this.set, value: currObj[ 0 ] }
-					] );
+					applyPatch( tree, "add", this.set, currObj[ 0 ] );
 				}
 			},
 			{
 				name: "wb-last",
 				fn: function( obj, key, tree ) {
 					var currObj = obj[ key ];
-					if ( !$.isArray( currObj ) || currObj.length === 0 ) {
+					if ( !Array.isArray( currObj ) || currObj.length === 0 ) {
 						return;
 					}
 
-					jsonpatch.apply( tree, [
-						{ op: "add", path: this.set, value: currObj[ currObj.length - 1 ] }
-					] );
+					applyPatch( tree, "add", this.set, currObj[ currObj.length - 1 ] );
 				}
 			},
 			{
@@ -103,9 +114,7 @@ var componentName = "wb-jsonmanager",
 						}
 					}
 
-					jsonpatch.apply( tree, [
-						{ op: "replace", path: this.path, value: prefix + val.toLocaleString( loc ) + suffix  }
-					] );
+					applyPatch( tree, "replace", this.path, prefix + val.toLocaleString( loc ) + suffix );
 				}
 			},
 			{
@@ -114,13 +123,9 @@ var componentName = "wb-jsonmanager",
 					var val = obj[ key ];
 
 					if ( !this.set ) {
-						jsonpatch.apply( tree, [
-							{ op: "replace", path: this.path, value: wb.decodeUTF8Base64( val ) }
-						] );
+						applyPatch( tree, "replace", this.path, wb.decodeUTF8Base64( val ) );
 					} else {
-						jsonpatch.apply( tree, [
-							{ op: "add", path: this.set, value: wb.decodeUTF8Base64( val ) }
-						] );
+						applyPatch( tree, "add", this.set, wb.decodeUTF8Base64( val ) );
 					}
 				}
 			},
@@ -130,13 +135,9 @@ var componentName = "wb-jsonmanager",
 					var val = obj[ key ];
 
 					if ( !this.set ) {
-						jsonpatch.apply( tree, [
-							{ op: "replace", path: this.path, value: wb.escapeHTML( val ) }
-						] );
+						applyPatch( tree, "replace", this.path, wb.escapeHTML( val ) );
 					} else {
-						jsonpatch.apply( tree, [
-							{ op: "add", path: this.set, value: wb.escapeHTML( val ) }
-						] );
+						applyPatch( tree, "add", this.set, wb.escapeHTML( val ) );
 					}
 				}
 			},
@@ -144,13 +145,9 @@ var componentName = "wb-jsonmanager",
 				name: "wb-toDateISO",
 				fn: function( obj, key, tree ) {
 					if ( !this.set ) {
-						jsonpatch.apply( tree, [
-							{ op: "replace", path: this.path, value: wb.date.toDateISO( obj[ key ] ) }
-						] );
+						applyPatch( tree, "replace", this.path, wb.date.toDateISO( obj[ key ] ) );
 					} else {
-						jsonpatch.apply( tree, [
-							{ op: "add", path: this.set, value: wb.date.toDateISO( obj[ key ] ) }
-						] );
+						applyPatch( tree, "add", this.set, wb.date.toDateISO( obj[ key ] ) );
 					}
 				}
 			},
@@ -158,13 +155,37 @@ var componentName = "wb-jsonmanager",
 				name: "wb-toDateTimeISO",
 				fn: function( obj, key, tree ) {
 					if ( !this.set ) {
-						jsonpatch.apply( tree, [
-							{ op: "replace", path: this.path, value: wb.date.toDateISO( obj[ key ], true ) }
-						] );
+						applyPatch( tree, "replace", this.path, wb.date.toDateISO( obj[ key ], true ) );
 					} else {
-						jsonpatch.apply( tree, [
-							{ op: "add", path: this.set, value: wb.date.toDateISO( obj[ key ], true ) }
-						] );
+						applyPatch( tree, "add", this.set, wb.date.toDateISO( obj[ key ], true ) );
+					}
+				}
+			},
+			{
+				name: "wb-swap",
+				fn: function( obj, key, tree ) {
+					var val = obj[ key ],
+						ref = this.ref,
+						mainTree = this.mainTree,
+						path = this.path,
+						newVal;
+
+					if ( val ) {
+						if ( Array.isArray( val ) ) {
+							val.forEach( ( item, i ) => {
+								item = item.replaceAll( "~", "~0" ).replaceAll( "/", "~1" ); // Escape slashed and tilde in val when the key is an IRI
+								newVal = mainTree ? jsonpointer.get( mainTree, ref + "/" + item ) : jsonpointer.get( tree, ref + "/" + item );
+								if ( newVal ) {
+									applyPatch( tree, "replace", path + "/" + i, newVal );
+								}
+							} );
+						} else if ( typeof val === "string" ) {
+							val = val.replaceAll( "~", "~0" ).replaceAll( "/", "~1" ); // Escape slashed and tilde in val when the key is an IRI
+							newVal = mainTree ? jsonpointer.get( mainTree, ref + "/" + val ) : jsonpointer.get( tree, ref + "/" + val );
+							if ( newVal ) {
+								applyPatch( tree, "replace", path, newVal );
+							}
+						}
 					}
 				}
 			}
@@ -206,6 +227,26 @@ var componentName = "wb-jsonmanager",
 							] );
 						}
 					}
+				}
+			},
+			{
+				name: "wb-swap",
+				fn: function( arr ) {
+					arr.forEach( ( item, i ) => {
+						jsonpatch.apply( arr, [
+							{ op: "wb-swap", path: "/" + i + this.path, ref: this.ref, mainTree: this.mainTree }
+						] );
+					} );
+				}
+			},
+			{
+				name: "patches",
+				fn: function( arr ) {
+					arr.forEach( ( item, i ) => {
+						jsonpatch.apply( this.mainTree || arr, [
+							{ op: "patches", path: ( this.pathParent || "" ) + "/" + i + this.path, patches: this.patches }
+						] );
+					} );
 				}
 			}
 		],
@@ -290,22 +331,30 @@ var componentName = "wb-jsonmanager",
 
 					if ( url ) {
 
-						// Fetch the JSON
-						$elm.trigger( {
-							type: "json-fetch.wb",
-							fetch: {
-								url: url,
-								nocache: elmData.nocache,
-								nocachekey: elmData.nocachekey,
-								data: elmData.data,
-								contentType: elmData.contenttype,
-								method: elmData.method
-							}
-						} );
+						url = typeof url === "string" ? [ url ] : url;
+						i_len = url.length;
 
-						// If the URL is a dataset, make it ready
-						if ( url.charCodeAt( 0 ) === 35 && url.charCodeAt( 1 ) === 91 ) {
-							wb.ready( $elm, componentName );
+						dsFetching[ dsName ] = i_len;
+
+						for ( i = 0; i !== i_len; i++ ) {
+
+							// Fetch the JSON
+							$elm.trigger( {
+								type: "json-fetch.wb",
+								fetch: {
+									url: url[ i ],
+									nocache: elmData.nocache,
+									nocachekey: elmData.nocachekey,
+									data: elmData.data,
+									contentType: elmData.contenttype,
+									method: elmData.method
+								}
+							} );
+
+							// If the URL is a dataset, make it ready
+							if ( url[ i ].charCodeAt( 0 ) === 35 && url[ i ].charCodeAt( 1 ) === 91 ) {
+								wb.ready( $elm, componentName );
+							}
 						}
 					} else if ( !url && elmData.extractor ) {
 						$elm.trigger( {
@@ -517,8 +566,8 @@ var componentName = "wb-jsonmanager",
 				return b === null;
 			}
 			var i, l;
-			if ( $.isArray( a ) ) {
-				if (  $.isArray( b ) || a.length !== b.length ) {
+			if ( Array.isArray( a ) ) {
+				if (  Array.isArray( b ) || a.length !== b.length ) {
 					return false;
 				}
 				for ( i = 0, l = a.length; i < l; i++ ) {
@@ -545,7 +594,7 @@ var componentName = "wb-jsonmanager",
 	},
 	_objectKeys = function( obj ) {
 		var keys;
-		if ( $.isArray( obj ) ) {
+		if ( Array.isArray( obj ) ) {
 			keys = new Array( obj.length );
 			for ( var k = 0; k < keys.length; k++ ) {
 				keys[ k ] = "" + k;
@@ -564,20 +613,27 @@ var componentName = "wb-jsonmanager",
 		return keys;
 	},
 
+	// Utility function to apply a JSON patch
+	applyPatch = function( tree, op, path, value ) {
+		jsonpatch.apply( tree, [
+			{ op: op, path: path, value: value }
+		] );
+	},
+
 	// Create series of patches for filtering
 	getPatchesToFilter = function( JSONsource, filterPath, filterTrueness, filterFaslseness ) {
 		var filterObj,
 			i, i_len;
 
-		if ( !$.isArray( filterTrueness ) ) {
+		if ( !Array.isArray( filterTrueness ) ) {
 			filterTrueness = [ filterTrueness ];
 		}
-		if ( !$.isArray( filterFaslseness ) ) {
+		if ( !Array.isArray( filterFaslseness ) ) {
 			filterFaslseness = [ filterFaslseness ];
 		}
 
 		filterObj = jsonpointer.get( JSONsource, filterPath );
-		if ( $.isArray( filterObj ) ) {
+		if ( Array.isArray( filterObj ) ) {
 			i_len = filterObj.length - 1;
 			for ( i = i_len; i !== -1; i -= 1 ) {
 				if ( !filterPassJSON( filterObj[ i ], filterTrueness, filterFaslseness ) ) {
@@ -635,7 +691,7 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 		settings,
 		dsName,
 		JSONresponse = event.fetch.response,
-		isArrayResponse = $.isArray( JSONresponse ),
+		isArrayResponse = Array.isArray( JSONresponse ),
 		resultSet,
 		i, i_len, i_cache, backlog, selector,
 		patches, filterTrueness, filterFaslseness, filterPath, extractor;
@@ -643,29 +699,55 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 	if ( elm === event.currentTarget ) {
 		settings = wb.getData( $elm, componentName );
 
+		// Ensure the response is an independant clone
+		if ( isArrayResponse ) {
+			JSONresponse = $.extend( true, [], JSONresponse );
+		} else {
+			JSONresponse = $.extend( true, {}, JSONresponse );
+		}
+
+		dsName = settings.name;
+		dsFetching[ dsName ]--;
+
+		// Ensure that we do have fetched and merged all urls everything before to move ahead
+		dsFetchIsArray[ dsName ] = dsFetchIsArray[ dsName ] ? dsFetchIsArray[ dsName ] : isArrayResponse;
+
+		if ( dsFetchIsArray[ dsName ] !== isArrayResponse ) {
+			throw "Can't merge, incompatible JSON type (array vs object)";
+		}
+
+		if ( !dsFetchMerged[ dsName ] ) {
+			dsFetchMerged[ dsName ] = JSONresponse;
+		} else if ( dsFetchMerged[ dsName ] && isArrayResponse ) {
+			dsFetchMerged[ dsName ] = dsFetchMerged[ dsName ].concat( JSONresponse );
+		} else {
+			dsFetchMerged[ dsName ] = $.extend( dsFetchMerged[ dsName ], JSONresponse );
+		}
+
+		// Quit and wait for the next fetch
+		if ( dsFetching[ dsName ] ) {
+			return;
+		}
+
+		JSONresponse = dsFetchMerged[ dsName ];
+
 		extractor = settings.extractor;
 		if ( extractor ) {
-			if ( !$.isArray( extractor ) ) {
+			if ( !Array.isArray( extractor ) ) {
 				extractor = [ extractor ];
 			}
 			JSONresponse = $.extend( JSONresponse, extractData( extractor ) );
 
 		}
 
-		dsName = "[" + settings.name + "]";
+		dsName = "[" + dsName + "]";
 		patches = settings.patches || [];
 		filterPath = settings.fpath;
 		filterTrueness = settings.filter || [];
 		filterFaslseness = settings.filternot || [];
 
-		if ( !$.isArray( patches ) ) {
+		if ( !Array.isArray( patches ) ) {
 			patches = [ patches ];
-		}
-
-		if ( isArrayResponse ) {
-			JSONresponse = $.extend( true, [], JSONresponse );
-		} else {
-			JSONresponse = $.extend( true, {}, JSONresponse );
 		}
 
 		// Apply a filtering
@@ -684,6 +766,7 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 		if ( patches.length ) {
 			jsonpatch.apply( JSONresponse, patches );
 		}
+
 		if ( settings.debug ) {
 			debugPrintOut( $elm, "initEvent", JSONresponse, patches );
 		}
@@ -750,7 +833,7 @@ $document.on( patchesEvent, selector, function( event ) {
 		delayedLst,
 		i, i_len, i_cache, pntrSelector;
 
-	if ( elm === event.currentTarget && $.isArray( patches ) ) {
+	if ( elm === event.currentTarget && Array.isArray( patches ) ) {
 		settings = wb.getData( $elm, componentName );
 
 		if ( !settings ) {
@@ -770,7 +853,7 @@ $document.on( patchesEvent, selector, function( event ) {
 
 		dsJSON = datasetCache[ dsName ];
 		if ( !isCumulative ) {
-			dsJSON = $.extend( true, ( $.isArray( dsJSON ) ? [] : {} ), dsJSON );
+			dsJSON = $.extend( true, ( Array.isArray( dsJSON ) ? [] : {} ), dsJSON );
 		}
 
 		// Apply a filtering
@@ -892,7 +975,7 @@ $document.on( "op.submit.wb-fieldflow", ".wb-fieldflow", function( event, data )
 		return true;
 	}
 
-	if ( !$.isArray( op ) ) {
+	if ( !Array.isArray( op ) ) {
 		ops = [];
 		ops.push( op );
 	} else {
