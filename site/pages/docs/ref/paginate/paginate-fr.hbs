@@ -1,0 +1,171 @@
+---
+{
+"title": "Paginer",
+"language": "fr",
+"category": "Plugiciels",
+"categoryfile": "plugins",
+"description": "Ajoute une pagination à la fin d'une liste d'items.",
+"altLangPrefix": "paginate",
+"dateModified": "2023-05-15"
+}
+---
+
+<div class="alert alert-warning">
+	<h2>Fonctionnalité instable</h2>
+	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
+	<p><small><a href="../../../docs/ref/provisional-fr.html">Jetez un coup d'oeil aux autres fonctionnalités provisoires disponibles.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>Objectif</h2>
+	<p property="description">Ajoute une pagination au bas d'une liste d'éléments.</p>
+</section>
+
+<section>
+	<h2>Utiliser quand</h2>
+	<p>Vous souhaitez diviser en plusieurs pages une longue liste d'éléments.</p>
+</section>
+
+<section>
+	<h2>Exemple fonctionnel</h2>
+	<p><a href="../../../demos/paginate/paginate-fr.html">Exemple français</a></p>
+	<p><a href="../../../demos/paginate/paginate-en.html">Exemple en anglais</a></p>
+</section>
+
+<section>
+	<h2>Comment mettre en œuvre</h2>
+	<ol>
+		<li>
+			<p>Ajoutez les classes CSS <code>wb-paginate</code> et <code>provisional</code> à un élément ou un groupe d'éléments à paginer.</p>
+			<dl>
+				<dt>Si défini sur un <code>&lt;table&gt;</code></dt>
+				<dd>À moins d'être spécifié autrement, il sélectionnera toutes les lignes (<code>&lt;tr></code>).</dd>
+				<dt>Si défini sur un <code>&lt;ul&gt;</code></dt>
+				<dd>À moins d'être spécifié autrement, il sélectionnera tous les <code>&lt;li></code></dd>
+				<dt>Si défini sur tout autre élément, tel que <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> ou <code>&lt;div&gt;</code></dt>
+				<dd>À moins d'être spécifié autrement, il sélectionnera tous les enfants directs de l'élément.</dd>
+			</dl>
+		</li>
+		<li>Pour éviter un scintillement au chargement de la page, vous pouvez ajouter la classe CSS <code>wb-pgfltr-out</code> à tous vos éléments.</li>
+		<li>Testez la fonctionnalité pour voir si elle est correctement configurée et affiche correctement la pagination.</li>
+		<li>Si vous avez une structure HTML complexe ou si vous avez besoin d'un résultat différent, consultez les options de configuration ci-dessous et faites vos propres ajustements.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Options de configuration</h2>
+	<p>Toutes les options de configuration du plugiciel sont contrôlées par l'attribut <code>data-wb-paginate</code>. Ajoutez simplement un objet JSON comme valeur, par exemple&nbsp;:</p>
+	<pre><code>&lt;div class="wb-paginate provisional" data-wb-paginate='{
+	"appendUI": false,
+	"itemsPerPage": 12
+}'></code></pre>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Valeur par défaut</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>appendUI</code></td>
+				<td>Définit le sélecteur de l'élément qui contiendra la pagination. Si elle n'est pas définie, l'IU sera insérée après la <code>section</code> (si elle est définie) ou après l'élément. Dans le cas d'un <code>&lt;table></code> ou d'un <code>&lt;ul></code>, le code sera inséré après l'élément même si la propriété <code>section</code> est définie.</td>
+				<td>Booléen</td>
+				<td>
+					<dl>
+						<dt>Pour un élément <code>&lt;table></code> ou <code>&lt;ul></code></dt>
+						<dd><code>false</code></dd>
+					</dl>
+					<dl>
+						<dt>Pour tout autre élément</dt>
+						<dd><code>true</code></dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>itemsPerPage</code></td>
+				<td>Définit le nombre d'éléments visibles par page.</td>
+				<td>Nombre</td>
+				<td><code>25</code></td>
+			</tr>
+			<tr>
+				<td><code>section</code></td>
+				<td>Définit le sélecteur de l'élément qui regroupera les items.</td>
+				<td>Chaîne de caractère (sélecteur CSS)</td>
+				<td>
+					<dl>
+						<dt>Pour un élément <code>&lt;table></code></dt>
+						<dd><code>tbody</code></dd>
+					</dl>
+					<dl>
+						<dt>Pour tout autre élément</dt>
+						<dd>non-défini</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>selector</code></td>
+				<td>Définit le sélecteur des éléments qui seront masqués ou affichés en fonction de la page.</td>
+				<td>Chaîne de caractère (sélecteur CSS)</td>
+				<td>
+					<dl>
+						<dt>Pour un élément <code>&lt;table></code></dt>
+						<dd><code>tr</code></dd>
+					</dl>
+					<dl>
+						<dt>Pour un élément <code>&lt;ul></code></dt>
+						<dd><code>li</code></dd>
+					</dl>
+					<dl>
+						<dt>Pour tout autre élément</dt>
+						<dd><code>> *</code></dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Événements</h2>
+	<p>Les événements suivants peuvent être utilisés pour interagir avec le plugiciel.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Ce qu'il fait</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-paginate</code></td>
+				<td>Déclenché manuellement (par exemple&nbsp;: <code>$( ".wb-paginate" ).trigger( "wb-init.wb-paginate" );</code>).</td>
+				<td>Initialise le plugiciel de pagination et crée l'interface utilisateur (IU). Remarque&nbsp;: le plugiciel de pagination sera initialisé automatiquement à moins que l'élément <code>.wb-paginate</code> ne soit ajouté après le chargement de la page.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-paginate</code></td>
+				<td>Déclenché automatiquement après l'initialisation du plugiciel de pagination.</td>
+				<td>Utilisé pour identifier quand et où le plugiciel de pagination s'initialise (cible de l'événement).
+					<pre><code>$( document ).on( "wb-ready.wb-filter", ".wb-filter", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-filter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code></td>
+				<td>Déclenché automatiquement lorsque BOEW a terminé le chargement et l'exécution.</td>
+				<td>Utilisé pour identifier quand tous les plugiciels et polyfills BOEW ont fini de se charger et de s'exécuter.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>

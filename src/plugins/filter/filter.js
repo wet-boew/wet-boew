@@ -6,10 +6,10 @@ var componentName = "wb-filter",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	filterClass = "wb-fltr-out",
-	notFilterClassSel = ":not(." + filterClass + ")",
+	tagFilterClass = "wb-tgfltr-out",
+	notFilterClassSel = ":not(." + filterClass + "):not(." + tagFilterClass + ")",
 	inputClass = "wb-fltr-inpt",
 	dtNameFltrArea = "wbfltrid",
-	visibleSelector = ":visible",
 	selectorInput = "." + inputClass,
 	defaults = {
 		std: {
@@ -24,7 +24,7 @@ var componentName = "wb-filter",
 			section: ">tbody"
 		},
 		tblgrp: {
-			selector: "th:not([scope])",
+			selector: " th:not([scope])" + notFilterClassSel,
 			hdnparentuntil: "tbody",
 			section: ">tbody"
 		}
@@ -132,7 +132,7 @@ var componentName = "wb-filter",
 				uiNbItems.textContent = totalEntries;
 
 				itemsObserver = new MutationObserver( function() {
-					uiNbItems.textContent = $elm.find( secSelector + notFilterClassSel + settings.selector + visibleSelector ).length;
+					uiNbItems.textContent = $elm.find( secSelector + notFilterClassSel + settings.selector ).length;
 				} );
 
 				itemsObserver.observe( elm, { attributes: true, subtree: true } );
@@ -239,11 +239,13 @@ var componentName = "wb-filter",
 			fCallBack = filterCallback;
 		}
 		fCallBack.apply( this, arguments );
+
+		$elm.trigger( "wb-contentupdated" );
 	},
 	filterCallback = function( $field, $elm, settings ) {
-		var $sections =	$elm.find( settings.section + visibleSelector ),
+		var $sections =	$elm.find( settings.section ),
 			sectionsLength = $sections.length,
-			fndSelector = notFilterClassSel + settings.selector + visibleSelector,
+			fndSelector = notFilterClassSel + settings.selector,
 			s, $section;
 
 		for ( s = 0; s < sectionsLength; s += 1 ) {
