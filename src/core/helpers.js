@@ -17,6 +17,7 @@ wb.getData = function( element, dataName ) {
 			dataObj = JSON.parse( dataAttr );
 			$.data( elm, dataName, dataObj );
 		} catch ( error ) {
+			console.info( elm );
 			$.error( "Bad JSON array in data-" + dataName + " attribute" );
 		}
 	}

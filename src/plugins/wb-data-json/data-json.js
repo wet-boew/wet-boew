@@ -477,6 +477,7 @@ var componentName = "wb-data-json",
 	};
 
 $document.on( "json-failed.wb", selector, function( event ) {
+	console.info( event.currentTarget );
 	throw "Bad JSON Fetched from url in " + componentName;
 } );
 
