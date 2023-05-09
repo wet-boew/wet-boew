@@ -1,0 +1,339 @@
+---
+{
+	"title": "Accessibility Conformance Report Methodology",
+	"language": "en",
+	"category": "Other",
+	"description": "This method describes an iterative approach for performing multiple specialized assessments and producing an Accessibility Conformance Report (ACR).",
+	"tag": "acr",
+	"parentdir": "acr",
+	"altLangPage": "acr-fr.html",
+	"dateModified": "2023-05-05"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+<p>This methodology is designed to produce an accessibility conformance report that provides a way to record multiple assessment iterations and is compatible with multiple standards, such as WCAG 2.1 Level AA, EN 301 549, or any subset of requirements.<p>
+
+<p>The method consists of the following phases:</p>
+<ol>
+	<li><strong>Analyzing and exploring the subject</strong> involves identifying inapplicable success criteria, determining the necessary expertise domain for producing the accessibility conformance report (ACR), and, if applicable, identifying different parts of the test subject.</li>
+	<li><strong>Producing assessments</strong> involves evaluating a test subject based on a set of Accessibility Testing Rules (ACT).
+</li>
+	<li><strong>Maintaining a living accessibility conformance report (ACR)</strong>, until <em>no further testing</em> is required to establish conformance or until the test subject undergoes a major backward incompatible change that invalidates some or all related assessments included in the ACR.</li>
+	<li><strong>Issuing the ACR</strong>, indicating when the report is final and represents the state of the test subject. When issued, the ACR shall not reference any additional assessments or be edited except for archiving.</li>
+	<li><strong>Archiving the ACR</strong>, indicating that the report does not represent the current accessibility state of the test subject and suggesting that a new ACR report should be produced with a set of new assessments.</li>
+</ol>
+
+<h2>Type of documents</h2>
+<p>There are two major types of documents: <strong>assessments</strong>, which are considered <em>informal</em>, and <strong>accessibility conformance reports</strong>, which are considered <em>formal</em>. This means that while assessments may report various states about success criteria testing (fail, pass, not applicable), these results may be audited differently for accuracy, false positives, or false negatives when producing the accessibility conformance report.</p>
+
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Assessments</h3>
+			<p>Informal report</p>
+			<p>Outcome:</p>
+			<ul>
+				<li>Pass</li>
+				<li>Fail</li>
+				<li>Inapplicable</li>
+			</ul>
+			<p>Evaluate <a href="https://www.w3.org/TR/EARL10-Schema/#TestCase">test cases</a></p>
+			<p>Leverage a set of <em><a href="https://www.w3.org/WAI/standards-guidelines/act/">Accessibility conformance testing (ACT) rules</a></em> to establish the result.</p>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Accessibility conformance report (ACR)</h3>
+			<p>Formal report when there is an issued date</p>
+			<p>Outcome:</p>
+			<ul>
+				<li>Satisfied</li>
+				<li>Not satisfied</li>
+				<li>Further testing is needed</li>
+			</ul>
+			<p>Evaluate <a href="https://www.w3.org/TR/EARL10-Schema/#TestRequirement">test requirements</a></p>
+			<p>Leverage a set of <em>assessments</em> to establish the conformance.</p>
+		</section>
+	</div>
+</div>
+
+<h2>Theoretical complete example</h2>
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Assessments</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>All SC WCAG 2.1 level AA
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+				<li>Pre-assessment of WCAG 2.1 level AA
+					<ul>
+						<li><a href="demo-wcag21/pre-assessment-wcag21-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/pre-assessment-wcag21-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/pre-assessment-wcag21.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+				<li>SC 1.1.1 Non-text content
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+
+				<li>Situation A, short text alternative - SC 1.1.1 Non-text content
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+
+				<li>Situation B, long text alternative - SC 1.1.1 Non-text content
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Accessibility conformance report (ACR)</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Conformance report to WCAG 2.1 Level AA
+					<ul>
+						<li><a href="demo-wcag21/acr-wcag21-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/acr-wcag21-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/acr-wcag21.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+</div>
+
+<h2>Practical working example</h2>
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Assessments</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Specific to "Add to calendar" plugin
+					<ul>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Accessibility conformance report (ACR)</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Specific to "Add to calendar" plugin
+					<ul>
+						<li><a href="demo-wcag21/addcal-acr-wcag21-en.html">English generated report</a></li>
+						<li><a href="demo-wcag21/addcal-acr-wcag21-fr.html" hreflang="fr">French generated report</a></li>
+						<li><a href="demo-wcag21/addcal-acr-wcag21.json" type="application/ld+json">JSON report, commented in English</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+</div>
+
+<h2>Accessibility assessment</h2>
+<p>Instructions:</p>
+<ol>
+	<li>Define the evaluation scope.</li>
+	<li>Choose a conformance accessibility testing ruleset published in the <a href="https://github.com/wet-boew/act-rules/">WET-BOEW ACT rules repository</a>.</li>
+	<li>Complete the following information in the assessment report template:
+		<ul>
+			<li>Subject: <code>earl:subject</code></li>
+			<li>Your name and your organization: <code>earl:assertedBy</code></li>
+			<li>Date: <code>dct:date</code></li>
+			<li>Standard targeted: <code>acr:ConformanceStandard</code> (Official URL of the standard)</li>
+			<li>Standard option targeted: <code>acr:conformanceOption</code> (Instances can be found in <a href="https://github.com/wet-boew/act-rules/tree/main/src/standard/profiles">act:standard/profiles/</a>)</li>
+		</ul>
+	</li>
+	<li>(Optional) Identify the following when applicable:
+		<ul>
+			<li>Subject parts: <code>earl:subject/dct:hasPart/</code></li>
+			<li>Expertise fields involvment: <code>acr:involvesExpertise/</code></li>
+		</ul>
+	</li>
+	<li>Set the selected ruleset JSON template as the baseline in <code>earl:result</code>.</li>
+	<li>For each <code>earl:result</code>, test, assess, and note the result according to the associated accessibility conformance testing rule <code>earl:test</code>.</li>
+	<li>Finalize the assessment by adding an assessment summary in <code>dct:description</code>.</li>
+</ol>
+
+<h2>Accessibility conformance report production</h2>
+<ol>
+	<li><a href="#acr-init">Report initialization</a></li>
+	<li><a href="#acr-audit">Auditing and referencing an assessment</a></li>
+	<li><a href="#acr-issuing">Issuing and formalizing the ACR report</a></li>
+	<li><a href="#acr-archiving">Archiving</a></li>
+</ol>
+
+<h3 id="acr-init">Report initialization</h3>
+<ol>
+	<li>Define the scope of the accessibility evaluation.</li>
+	<li>Choose a conformance criteria ruleset from the <a href="https://github.com/wet-boew/act-rules/">WET-BOEW ACT rules repository</a>.</li>
+	<li>Fill out the assessment report template with the following information:
+		<ul>
+			<li>Subject: <code>earl:subject</code>.</li>
+			<li>Your name and your organization: <code>earl:assertedBy</code>.</li>
+			<li>Date created: <code>dct:created</code>.</li>
+			<li>Conformance to standard: <code>acr:standard</code>.</li>
+			<li>Conformance option: <code>acr:conformanceOption</code>.</li>
+		</ul>
+	</li>
+	<li>Set the selected ruleset JSON template as a baseline in <code>acr:conformity</code></li>
+</ol>
+
+<h3 id="acr-audit">Auditing and referencing an assessment</h3>
+<ol>
+	<li>Edit the living ACR to include the new assessment that is in scope of the tested subject.</li>
+	<li>Add the referenced assessment in <code>acr:assessment</code>:
+		<ul>
+			<li>The key is the URL where the assessment in JSON can be retrieved.</li>
+			<li>Add the assessment title in <code>dct:title</code>.</li>
+			<li>Add a link to the HTML equivalent report in <code>dct:references</code>.</li>
+			<li>Define the main language used for that assessment (2 letter code) <code>dct:language</code>.</li>
+			<li>Set the date of when the assessment was added into this ACR <code>dct:date</code>.</li>
+		</ul>
+	</li>
+	<li>Audit the assessment <code>acr:audits</code>:
+		<ul>
+			<li>Your name: <code>earl:assertedBy</code>.</li>
+			<li>Define the testing mode: <code>earl:mode</code>.</li>
+			<li>Add a reference to the assessment: <code>acr:assessment</code>.</li>
+			<li>Audit each evaluated test case and record your finding if applicable in <code>acr:auditNote</code>:
+				<ul>
+					<li>Define the accuracy (False negative, False positive, Accurate) in <code>acr:accuracy</code>.</li>
+					<li>Set the date of this note in <code>dct:date</code>.</li>
+					<li>Set the title of this note in <code>dct:title</code>.</li>
+					<li>Associate the applicable test case in <code>earl:test</code>.</li>
+					<li>Describe the concern expressed by this note in <code>dct:description</code>.</li>
+					<li>Optionally, describe the error message in <code>earl:info</code>.</li>
+					<li>Optionally, define a severity level in <code>acr:severity</code>.</li>
+					<li>Optionally, define a relevancy subject in <code>acr:relevancy</code>.</li>
+					<li>Optionally, include an attachment encoded in data URL in <code>acr:asset</code>.</li>
+				</ul>
+			</li>
+			<li>If applicable, create a work item in <code>wf:task</code> and for each work item:
+				<ul>
+					<li>Set the title in <code>dct:title</code>.</li>
+					<li>Describe the work goal and additional description to provide enough context in <code>wf:goalDescription</code>.</li>
+					<li>Add a reference to the discussion page in <code>dct:references</code>.</li>
+					<li>Set the work item creation date in <code>dct:created</code>.</li>
+					<li>Define the test requirement this work item is about in <code>acr:requirement</code>.</li>
+					<li>Define the specific test case this work item is about in <code>earl:test</code>.</li>
+					<li>Optionally, define a severity level in <code>acr:severity</code>.</li>
+					<li>Optionally, define a relevancy subject in <code>acr:relevancy</code>.</li>
+				</ul>
+			</li>
+			<li>Update the conformity of the criteria affected by the assessment and for each updated conformance requirement:
+				<ul>
+					<li>Update the conformance state (Satisfied, Not satisfied, Further test needed) in <code>acr:conformance</code>.</li>
+					<li>Add a reference to the applicable assessment in <code>acr:assessment</code>.</li>
+					<li>Add a description about its latest conformance state or the current state if applicable in <code>dct:description</code>.</li>
+					<li>Update the modified date in <code>dct:modified</code>.</li>
+					<li>Define the cumulative testing mode for this conformance requirement conformity in <code>earl:mode</code>.</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>If possible, add your verifiable credential.</li>
+</ol>
+
+<h3 id="acr-issuing">Issuing and formalizing the ACR report</h3>
+<ol>
+	<li>Edit the living ACR for which we want to set the conformance status for the tested subject.</li>
+	<li>Validate the integrity of the test subject for all related assessments and audits. If this is not satisfied, the ACR must be archived.</li>
+	<li>Revise audits, work items and all conformance requirements to ensure they are accurate.</li>
+	<li>Validate each conformance requirement. None of them should be marked as "Further test needed"</li>
+	<li>Set your name and your organization's name as the main assertor name for the conformance report using <code>earl:assertedBy</code>.</li>
+	<li>Define the conformance report's conformance as "satisfied" only if all the conformance requirements are also "satisfied." Otherwise it is "not satisfied."</li>
+	<li>Set the current date as the issue date using <code>dct:issued</code>.</li>
+	<li>If possible, add your verifiable credentials.</li>
+</ol>
+
+<h3 id="acr-archiving">Archiving</h3>
+<ul>
+	<li>When we don't know its replacement:
+		<ol>
+			<li>Edit the ACR report to archived.</li>
+			<li>Set the expiry date of when the ACR was officially acknowledged to be outdated in <code>schema:expires</code>.</li>
+			<li>If possible, add your verifiable credentials.</li>
+		</ol>
+	</li>
+	<li>When it is being replaced by a new report:
+		<ol>
+			<li>Edit the ACR report to archived.</li>
+			<li>If not defined, set the expiry date of when the ACR was superseded in <code>schema:expires</code>.</li>
+			<li>Set the URL of the replacement ACR report in <code>dct:isReplacedBy</code>.</li>
+			<li>If possible, add your verifiable credentials.</li>
+		</ol>
+	</li>
+	<li>
+		<p>When the ACR report is reissued:</p>
+		<p>Note: A reissued accessibility conformance report must have its own identities, which must be different from the issued accessibility conformance report. In practice, this means creating a new JSON file for the reissued ACR report.</p>
+		<ol>
+			<li>Issue the reissued ACR as an independent report by including a reference to its previous version in <code>dct:isVersionOf</code>.</li>
+			<li>Edit the original ACR report to archive it.</li>
+			<li>If the expiry date of the original ACR report is not defined, set it as the date when the ACR was reissued in <code>schema:expires</code>.</li>
+			<li>Set the URL of the reissued ACR report in <code>dct:hasVersion</code>.</li>
+			<li>If possible, add your verifiable credentials.</li>
+		</ol>
+	</li>
+</ul>
+
+<h2>Resources</h2>
+<ul>
+	<li><a href="demo-wcag21/labels.json" type="application/ld+json">Bilingual labels used as replacements for technical references</a></li>
+	<li><a href="https://github.com/wet-boew/act-rules">GitHub repository for rulesets and rules</a></li>
+	<li><a href="https://wet-boew.github.io/vocab/acr">Additional and complementary vocabulary terms</a></li>
+</ul>
+
+<details id="json-ld-acr" class="mrgn-tp-lg">
+	<summary><h2>Archived instructions of the first experimental version of the ACR reporting in JSON-LD</h2></summary>
+
+	<p>We are actively working on producing a JSON-LD format which is machine readable and ease the process of publishing the report on the web by leveraging <a href="https://wet-boew.github.io/vocab/acr">additional vocabulary terms to support the accessibility conformance reporting</a>. Our intent is to update this tool to allow the creation of JSON-LD ACR (Accessibility Conformance Report). You can contribute to our discussion on <a href="https://github.com/wet-boew/wet-boew/issues/9271">Github via the issue #9271</a> or during any of our regular meetings.</p>
+
+	<p>Step 1 of 3 - Instructions and sample for publishing/creating the ACR</p>
+	<ul>
+		<li><a href="wamethod-json+ld-AA-en.html">English instructions for publishing/creating the ACR</a></li>
+		<li><a href="wamethod-json+ld-AA-fr.html" hreflang="fr">French instructions for publishing/creating the ACR</a></li>
+		<li><a href="demo-acr/acr-initial.json" type="application/ld+json">Experimental JSON-LD report sample</a></li>
+		<li><a href="demo-acr/acr-initial-en.html">English version of the report sample</a></li>
+		<li><a href="demo-acr/acr-initial-fr.html" hreflang="fr">French version of the report sample</a></li>
+	</ul>
+
+	<p>Complete theoretical example</p>
+	<ul>
+		<li><a href="demo-acr/acr-1.json" type="application/ld+json">Experimental JSON-LD report sample</a></li>
+		<li><a href="demo-acr/acr-1-en.html">English version of the report sample</a></li>
+		<li><a href="demo-acr/acr-1-fr.html" hreflang="fr">French version of the report sample</a></li>
+	</ul>
+
+	<p>Intended reporting process:</p>
+	<ol>
+		<li>The assessor creates the report, adds the assessment's general information and logs their assessment for each Success Criterion result.</li>
+		<li>A reviewer re-opens the assessment, identifies themselves in the review section, reviews the original assessment and puts any remark along with the review. Once the review is completed, the reviewer will create as many work items as needed. This step can be repeated as often as needed, but when there is more than 3 reviews, you should consider producing a new ACR and start over this process.</li>
+		<li>Closing - A contributor submits a change to make the assessment no longer valid or being superseded by another ACR.</li>
+	</ol>
+</details>

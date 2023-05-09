@@ -1,0 +1,201 @@
+{
+  "@context": "https://wet-boew.github.io/vocab/context/2023/conformance-report-en.json",
+
+  "@type": [ "earl:Assertion", "acr:AssessmentReport" ],
+
+  "earl:subject": {
+    "@id": "_:subject",
+    "dct:hasPart": [
+      "_:non-text-content_itm1"
+    ],
+    "dct:references": "https://example.com/web/page/url.html",
+    "@type": [
+      "earl:TestSubject",
+      "schema:WebPage"
+    ],
+    "dct:description": "Describe what is being assessed, such as the full page or a component inside the page. Provide a pointer when applicable (earl:pointer)."
+  },
+
+  "earl:assertedBy": {
+    "foaf:name": "Service Canada - Principal Publisher",
+    "foaf:homepage": "https://github.com/ServiceCanada",
+    "@type": ["earl:Assertor", "foaf:Organization"],
+    "earl:mainAssertor": {
+      "foaf:name": "Full name of the accessor (Github: @GithubHandle)",
+      "foaf:homepage": "https://github.com/GithubHandle",
+      "@type": ["earl:Assertor", "foaf:Person"]
+    }
+  },
+
+  "dct:date": "2023-04-26",
+
+  "dct:description": "Evaluation of specifically the situation B applicable for SC 1.1.1 Non-text Content.",
+
+  "dct:source": "act:rulesets/wcag2x/sc/1_1_1b.json",
+  "acr:standard": "https://www.w3.org/TR/WCAG21",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+
+  "earl:result": [
+    {
+      "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_b",
+      "subject": {
+        "@id": "_:non-text-content_itm1",
+        "dct:isPartOf": "_:subject",
+        "@type": [ "earl:TestSubject", "schema:WebPageElement" ],
+        "dct:description": "Textual identification of the web page element that is being evaluated, like: 'Figure 2, a bar chart'. Provide a pointer when applicable (earl:pointer)"
+      },
+      "earl:outcome": "earl:untested",
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
+      "earl:mode": "earl:manual",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G95",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:aria/ARIA6",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:aria/ARIA10",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G196",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:html/H2",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:html/H35",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:html/H37",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:html/H53",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:html/H86",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:pdf/PDF1",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:aria/ARIA15",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G73",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G74",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G92",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F3",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F13",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F20",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F30",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F38",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F39",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F65",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F67",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F71",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F72",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        }
+      ],
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    }
+  ]
+}

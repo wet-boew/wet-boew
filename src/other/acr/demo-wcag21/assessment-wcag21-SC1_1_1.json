@@ -1,0 +1,92 @@
+{
+  "@context": "https://wet-boew.github.io/vocab/context/2023/conformance-report.json",
+
+  "@type": [ "earl:Assertion", "acr:AssessmentReport" ],
+
+  "earl:subject": {
+    "@id": "_:subject",
+    "dct:references": "https://example.com/web/page/url.html",
+    "dct:hasPart": [
+      "_:non-text-content_itm1"
+    ],
+    "@type": [
+      "earl:TestSubject",
+      "schema:WebPage"
+    ],
+    "dct:description": "Describe what is being assessed, such as the full page or a component inside the page. Provide a pointer when applicable (earl:pointer)."
+  },
+
+  "earl:assertedBy": {
+    "foaf:name": "Service Canada - Principal Publisher",
+    "foaf:homepage": "https://github.com/ServiceCanada",
+    "@type": ["earl:Assertor", "foaf:Organization"],
+    "earl:mainAssertor": {
+      "foaf:name": "Full name of the accessor (Github: @GithubHandle)",
+      "foaf:homepage": "https://github.com/GithubHandle",
+      "@type": ["earl:Assertor", "foaf:Person"]
+    }
+  },
+
+  "dct:date": "2023-04-26",
+
+  "dct:description": "Evaluation of each situation (compound ruleset) applicable for SC 1.1.1 Non-text Content.",
+
+  "dct:source": "act:rulesets/wcag2x/sc/1_1_1.json",
+  "acr:standard": "https://www.w3.org/TR/WCAG21",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+
+  "earl:result": [
+    {
+      "earl:test": "WCAG21:non-text-content",
+      "earl:subject": {
+        "@id": "_:non-text-content_itm1",
+        "dct:isPartOf": "_:subject",
+        "@type": [ "earl:TestSubject", "schema:WebPageElement" ],
+        "dct:description": "Textual identification of the web page element that is being evaluated, like: 'expand/collapse arrow'. Provide a pointer when applicable (earl:pointer)"
+      },
+      "earl:outcome": "earl:untested",
+      "dct:description": "",
+      "earl:mode": "earl:manual",
+      "earl:result": [
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_a",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+
+        },
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_b",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_c",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_d",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_e",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        },
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_1_1_situation_f",
+          "earl:outcome": "earl:untested",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_:non-text-content_itm1"
+        }
+      ],
+      "@type": ["earl:TestResult", "earl:Assertion"]
+    }
+  ]
+}

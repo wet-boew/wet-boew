@@ -1,0 +1,344 @@
+---
+{
+	"title": "Méthodologie du rapport de conformité à l'accessibilité",
+	"language": "fr",
+	"category": "Autre",
+	"description": "Méthode utilisant une approche itérative afin de produire plusieurs évaluations spécialisées et de produire par la suite un rapport de conformité à l'accessibilité.",
+	"tag": "acr",
+	"parentdir": "acr",
+	"altLangPage": "acr-en.html",
+	"dateModified": "2023-05-05"
+}
+---
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+<p>Cette méthodologie a été conçue pour la production de rapports de conformité à l'accessibilité. Elle permet la création de plusieurs évaluations itératives et est compatible avec plusieurs normes telles que WCAG 2.1 Level AA, EN 301 549 ou tout autre sous-ensemble d'exigences.<p>
+
+<p>La méthode comprend les grandes étapes suivantes :</p>
+<ol>
+	<li><strong>Analyser et explorer le sujet</strong> implique d'identifier les critères de réussite non applicables, de déterminer les champs de compétence nécessaire pour produire le rapport de conformité à l'accessibilité (RCA) et, le cas échéant, d'identifier les différentes parties du sujet de test.</li>
+	<li><strong>Produire des évaluations</strong> implique d'évaluer un sujet de test en fonction d'un ensemble de Règles de Test d'Accessibilité (ACT).</li>
+	<li><strong>Maintenir un rapport de conformité d'accessibilité (RCA) actif</strong> jusqu'à ce qu'<em>aucun nouveau test</em> ne soit nécessaire pour le sujet évalué afin d'établir si la conformité est satisfaite ou jusqu'à ce que le sujet évalué subisse un changement majeur qui aura pour incidence d'invalider en tout ou en partie les évaluations qui ont été considérées pour la production dudit rapport RCA.</li>
+	<li><strong>Émission du RCA</strong>, identification du rapport lorsqu'il est complet, reconnu final et représente l'état du sujet évalué. Lorsqu'il est émis, le rapport RCA ne doit pas inclure de nouvelle évaluation ni être modifié, à l'exception de son archivage.</li>
+	<li><strong>Archivage du rapport RCA</strong>, identification du rapport qu'il ne représente plus l'état d'accessibilité actuel du sujet évalué et cet archivage suggère qu'un nouveau rapport de conformité à l'accessibilité devrait être produit avec de nouvelles évaluations.</li>
+</ol>
+
+<h2>Type de document</h2>
+<p>Il y a deux types principaux de documents : l'<strong>évaluation</strong> qui est considérée <em>informelle</em> et le <strong>rapport de conformité à l'accessibilité</strong> qui est considéré <em>formel</em>. Les évaluations vont faire état du résultat des tests effectués à propos des critères de mérite (échoue, passe, pas applicable), ce qui peut être vérifié avec des états tels que adéquat, faux positif ou faux négatif durant la production du rapport de conformité à l'accessibilité.</p>
+
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Évaluation</h3>
+			<p>Rapport informel</p>
+			<p>Résultat:</p>
+			<ul>
+				<li>Passe</li>
+				<li>Échoue</li>
+				<li>Pas applicable</li>
+			</ul>
+			<p>Évalue des <a href="https://www.w3.org/TR/EARL10-Schema/#TestCase" hreflang="en">cas d'essai</a></p>
+			<p>Utilise un ensemble de <em><a href="https://www.w3.org/WAI/standards-guidelines/act/">règles d'essai à la conformité de l'accessibilité (ACT)</a></em> afin d'établir le résultat.</p>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Rapport de conformité à l'accessibilité (RCA)</h3>
+			<p>Rapport formel lorsqu'il inclut une date d'émission</p>
+			<p>Résultat:</p>
+			<ul>
+				<li>Satisfait</li>
+				<li>Pas satisfait</li>
+				<li>Davantage de tests sont requis</li>
+			</ul>
+			<p>Évalue des <a href="https://www.w3.org/TR/EARL10-Schema/#TestRequirement">exigences</a></p>
+			<p>Utilise un ensemble d'<em>évaluations</em> afin d'établir la conformité.</p>
+		</section>
+	</div>
+</div>
+
+<h2>Exemple théorique complet</h2>
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Évaluation</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Tous les critère de succès du WCAG 2.1 niveau AA
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+				<li>Pré-évaluation du WCAG 2.1 niveau AA
+					<ul>
+						<li><a href="demo-wcag21/pre-assessment-wcag21-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/pre-assessment-wcag21-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/pre-assessment-wcag21.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+				<li>SC 1.1.1 Contenu non textuel
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+
+				<li>Situation A, court texte alternatif - SC 1.1.1 Contenu non textuel
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-a.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+
+				<li>Situation B, long texte alternatif - SC 1.1.1 Contenu non textuel
+					<ul>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/assessment-wcag21-SC1_1_1-b.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Rapport de conformité à l'accessibilité (RCA)</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Rapport de conformité au WCAG 2.1 niveau AA
+					<ul>
+						<li><a href="demo-wcag21/acr-wcag21-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/acr-wcag21-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/acr-wcag21.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+</div>
+
+<h2>Exemple pratique concret</h2>
+<div class="row wb-eqht-grd">
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Évaluation</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Spécifique au plugiciel "Ajout de calendrier"
+					<ul>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/addcal-assessment-wcag21.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="well well-lg">
+			<h3 class="mrgn-tp-0">Rapport de conformité à l'accessibilité (RCA)</h3>
+			<ul class="lst-spcd list-unstyled">
+				<li>Spécifique au plugiciel "Ajout de calendrier"
+					<ul>
+						<li><a href="demo-wcag21/addcal-acr-wcag21-fr.html">Rapport francophone généré</a></li>
+						<li><a href="demo-wcag21/addcal-acr-wcag21-en.html" hreflang="en">Rapport anglophone généré</a></li>
+						<li><a href="demo-wcag21/addcal-acr-wcag21.json" type="application/ld+json">Rapport en format JSON, commenté en anglais</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</div>
+</div>
+
+<h2>Évaluation de l'accessibilité</h2>
+
+<p>Instructions :</p>
+<ol>
+	<li>Définir la portée de l'évaluation.</li>
+	<li>Choisir un ensemble de règles pour la conformité à l'accessibilité, tel que disponible dans le <a href="https://github.com/wet-boew/act-rules/">dépôt des règles ACT de WET-BOEW</a>.</li>
+	<li>Compléter les informations suivantes dans le gabarit d'évaluation utilisé :
+		<ul>
+			<li>Sujet : <code>earl:subject</code></li>
+			<li>Votre nom et votre organisation : <code>earl:assertedBy</code></li>
+			<li>Date : <code>dct:date</code></li>
+			<li>Norme ciblé: <code>acr:ConformanceStandard</code> (URL official de la norme)</li>
+			<li>Option de la norme ciblé: <code>acr:conformanceOption</code> (Les instances peuvent être trouvé dans <a href="https://github.com/wet-boew/act-rules/tree/main/src/standard/profiles">act:standard/profiles/</a>)</li>
+		</ul>
+	</li>
+	<li>(Optionel) Identifier, si applicable, les informations suivantes :
+		<ul>
+			<li>Parties du sujet: <code>earl:subject/dct:hasPart/</code></li>
+			<li>Implication des champs d'expertise: <code>acr:involvesExpertise/</code></li>
+		</ul>
+	</li>
+	<li>Ajouter l'ensemble du gabarit JSON des règles dans la propriété <code>earl:result</code>.</li>
+	<li>Pour chaque <code>earl:result</code>, tester, évaluer et noter le résultat obtenu par rapport au test associé à la règle d'essai de conformité à l'accessibilité <code>earl:test</code>.</li>
+	<li>Finaliser l'évaluation en y ajoutant une note sommaire : <code>dct:description</code>.</li>
+</ol>
+
+<h2>Production du rapport de conformance à l'accessibilité</h2>
+
+<p>Cette section et ses sous-sections nécessitent une traduction.</p>
+<div lang="en">
+	<ol>
+		<li><a href="#acr-init">Report initialization</a></li>
+		<li><a href="#acr-audit">Auditing and referencing an assessment</a></li>
+		<li><a href="#acr-issuing">Issuing and formalizing the ACR report</a></li>
+		<li><a href="#acr-archiving">Archiving</a></li>
+	</ol>
+
+	<h3 id="acr-init">Report initialization</h3>
+	<ol>
+		<li>Define the scope of the accessibility evaluation.</li>
+		<li>Choose a conformance criteria ruleset from the <a href="https://github.com/wet-boew/act-rules/">WET-BOEW ACT rules repository</a>.</li>
+		<li>Fill out the assessment report template with the following information:
+			<ul>
+				<li>Subject: <code>earl:subject</code>.</li>
+				<li>Your name and your organization: <code>earl:assertedBy</code>.</li>
+				<li>Date created: <code>dct:created</code>.</li>
+				<li>Conformance to standard: <code>acr:standard</code>.</li>
+				<li>Conformance option: <code>acr:conformanceOption</code>.</li>
+			</ul>
+		</li>
+		<li>Set the selected ruleset JSON template as a baseline in <code>acr:conformity</code></li>
+	</ol>
+
+	<h3 id="acr-audit">Auditing and referencing an assessment</h3>
+	<ol>
+		<li>Edit the living ACR to include the new assessment that is in scope of the tested subject.</li>
+		<li>Add the referenced assessment in <code>acr:assessment</code>:
+			<ul>
+				<li>The key is the URL where the assessment in JSON can be retrieved.</li>
+				<li>Add the assessment title in <code>dct:title</code>.</li>
+				<li>Add a link to the HTML equivalent report in <code>dct:references</code>.</li>
+				<li>Define the main language used for that assessment (2 letter code) <code>dct:language</code>.</li>
+				<li>Set the date of when the assessment was added into this ACR <code>dct:date</code>.</li>
+			</ul>
+		</li>
+		<li>Audit the assessment <code>acr:audits</code>:
+			<ul>
+				<li>Your name: <code>earl:assertedBy</code>.</li>
+				<li>Define the testing mode: <code>earl:mode</code>.</li>
+				<li>Add a reference to the assessment: <code>acr:assessment</code>.</li>
+				<li>Audit each evaluated test case and record your finding if applicable in <code>acr:auditNote</code>:
+					<ul>
+						<li>Define the accuracy (False negative, False positive, Accurate) in <code>acr:accuracy</code>.</li>
+						<li>Set the date of this note in <code>dct:date</code>.</li>
+						<li>Set the title of this note in <code>dct:title</code>.</li>
+						<li>Associate the applicable test case in <code>earl:test</code>.</li>
+						<li>Describe the concern expressed by this note in <code>dct:description</code>.</li>
+						<li>Optionally, describe the error message in <code>earl:info</code>.</li>
+						<li>Optionally, define a severity level in <code>acr:severity</code>.</li>
+						<li>Optionally, define a relevancy subject in <code>acr:relevancy</code>.</li>
+						<li>Optionally, include an attachment encoded in data URL in <code>acr:asset</code>.</li>
+					</ul>
+				</li>
+				<li>If applicable, create a work item in <code>wf:task</code> and for each work item:
+					<ul>
+						<li>Set the title in <code>dct:title</code>.</li>
+						<li>Describe the work goal and additional description to provide enough context in <code>wf:goalDescription</code>.</li>
+						<li>Add a reference to the discussion page in <code>dct:references</code>.</li>
+						<li>Set the work item creation date in <code>dct:created</code>.</li>
+						<li>Define the test requirement this work item is about in <code>acr:requirement</code>.</li>
+						<li>Define the specific test case this work item is about in <code>earl:test</code>.</li>
+						<li>Optionally, define a severity level in <code>acr:severity</code>.</li>
+						<li>Optionally, define a relevancy subject in <code>acr:relevancy</code>.</li>
+					</ul>
+				</li>
+				<li>Update the conformity of the criteria affected by the assessment and for each updated conformance requirement:
+					<ul>
+						<li>Update the conformance state (Satisfied, Not satisfied, Further test needed) in <code>acr:conformance</code>.</li>
+						<li>Add a reference to the applicable assessment in <code>acr:assessment</code>.</li>
+						<li>Add a description about its latest conformance state or the current state if applicable in <code>dct:description</code>.</li>
+						<li>Update the modified date in <code>dct:modified</code>.</li>
+						<li>Define the cumulative testing mode for this conformance requirement conformity in <code>earl:mode</code>.</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>If possible, add your verifiable credential.</li>
+	</ol>
+
+	<h3 id="acr-issuing">Issuing and formalizing the ACR report</h3>
+	<ol>
+		<li>Edit the living ACR for which we want to set the conformance status for the tested subject.</li>
+		<li>Validate the integrity of the test subject for all related assessments and audits. If this is not satisfied, the ACR must be archived.</li>
+		<li>Revise audits, work items and all conformance requirements to ensure they are accurate.</li>
+		<li>Validate each conformance requirement. None of them should be marked as "Further test needed"</li>
+		<li>Set your name and your organization's name as the main assertor name for the conformance report using <code>earl:assertedBy</code>.</li>
+		<li>Define the conformance report's conformance as "satisfied" only if all the conformance requirements are also "satisfied." Otherwise it is "not satisfied."</li>
+		<li>Set the current date as the issue date using <code>dct:issued</code>.</li>
+		<li>If possible, add your verifiable credentials.</li>
+	</ol>
+
+	<h3 id="acr-archiving">Archiving</h3>
+	<ul>
+		<li>When we don't know its replacement:
+			<ol>
+				<li>Edit the ACR report to archived.</li>
+				<li>Set the expiry date of when the ACR was officially acknowledged to be outdated in <code>schema:expires</code>.</li>
+				<li>If possible, add your verifiable credentials.</li>
+			</ol>
+		</li>
+		<li>When it is being replaced by a new report:
+			<ol>
+				<li>Edit the ACR report to archived.</li>
+				<li>If not defined, set the expiry date of when the ACR was superseded in <code>schema:expires</code>.</li>
+				<li>Set the URL of the replacement ACR report in <code>dct:isReplacedBy</code>.</li>
+				<li>If possible, add your verifiable credentials.</li>
+			</ol>
+		</li>
+		<li>
+			<p>When the ACR report is reissued:</p>
+			<p>Note: A reissued accessibility conformance report must have its own identities, which must be different from the issued accessibility conformance report. In practice, this means creating a new JSON file for the reissued ACR report.</p>
+			<ol>
+				<li>Issue the reissued ACR as an independent report by including a reference to its previous version in <code>dct:isVersionOf</code>.</li>
+				<li>Edit the original ACR report to archive it.</li>
+				<li>If the expiry date of the original ACR report is not defined, set it as the date when the ACR was reissued in <code>schema:expires</code>.</li>
+				<li>Set the URL of the reissued ACR report in <code>dct:hasVersion</code>.</li>
+				<li>If possible, add your verifiable credentials.</li>
+			</ol>
+		</li>
+	</ul>
+</div>
+
+<h2>Ressources</h2>
+
+<ul>
+	<li><a href="demo-wcag21/labels.json" type="application/ld+json">Libellés bilingues utilisés comme remplacement de texte pour les références techniques</a></li>
+	<li><a href="https://github.com/wet-boew/act-rules">Dépôt GitHub des ensembles de règles et des règles</a></li>
+	<li><a href="https://wet-boew.github.io/vocab/acr">Termes de vocabulaire supplémentaires et complémentaires</a></li>
+</ul>
+
+
+<details id="json-ld-acr" class="mrgn-tp-lg">
+	<summary><h2>Archivé - Instruction de la première version du rapport expérimental en JSON-LD</h2></summary>
+
+	<p>Nous travaillons activement sur la production d'un rapport en format JSON-LD qui est lisible par les machines et qui facilite le processus de publication des rapports sur le web à l'aide d'un <a href="https://wet-boew.github.io/vocab/acr">complément de vocabulaire pour la production du rapport de conformance d'accessibilité</a>. Notre intention est de mettre à jour cet outil afin de permettre la création de rapports RCA (Rapport de Conformance d'Accessibilité) JSON-LD. Vous pouvez contribuer à notre discussion sur <a href="https://github.com/wet-boew/wet-boew/issues/9271" lang="en">le billet GitHub #9271</a> ou durant nos rencontres régulières.</p>
+
+	<p>Étape 1 de 3 - Instructions et exemple pour la publication/création d'un rapport RCA</p>
+	<ul>
+		<li><a href="wamethod-json+ld-AA-fr.html">Instructions francophones pour la publication et la création d'un rapport RCA</a></li>
+		<li><a href="wamethod-json+ld-AA-en.html" hreflang="en">Instructions anglophones pour la publication et la création d'un rapport RCA</a></li>
+		<li><a href="demo-acr/acr-initial.json" type="application/ld+json">Rapport expérimental en format JSON-LD</a></li>
+		<li><a href="demo-acr/acr-initial-fr.html">Version française de l'exemple de rapport</a></li>
+		<li><a href="demo-acr/acr-initial-en.html" hreflang="en">Version anglaise de l'exemple de rapport</a></li>
+	</ul>
+
+	<p>Exemple théorique complet.</p>
+	<ul>
+		<li><a href="demo-acr/acr-1.json" type="application/ld+json">Exemple complet de rapport actif expérimental en format JSON-LD</a></li>
+		<li><a href="demo-acr/acr-1-fr.html">Version française de l'exemple complet de rapport actif</a></li>
+		<li><a href="demo-acr/acr-1-en.html" hreflang="en">Version anglaise de l'exemple complet de rapport actif</a></li>
+	</ul>
+
+	<p>Intention du processus d'évaluation:</p>
+	<ol>
+		<li>L'évaluateur crée le rapport, fournit les informations sur l'évaluation et consigne les détails de son évaluation et ce pour chaque critère de succès.</li>
+		<li>Un réviseur réouvre l'évaluation, s'auto identifie dans la section de revue, fait la revision de l'évaluation d'origine et ajoute ses notes à cette même revue. Lorsque complété, le réviseur pourra créer les travaux requis tel que nécessaire. Cet étape pourra être répétée aussi souvent que nécessaire mais lorsqu'il y aura plus de 3 révisions nous vous conseillons de considérer d'amorcer la production d'un nouveau rapport de conformance d'accessibilité et de recommencer ce processus.</li>
+		<li>Fermeture - Un contributeur peut soumettre un changement afin d'identifier l'évaluation comme étant non-valide ou comme étant remplacée par un rapport plus récent.</li>
+	</ol>
+</details>

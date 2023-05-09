@@ -1,0 +1,206 @@
+---
+{
+	"layout": "default.hbs"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+{{>body}}
+
+<nav>
+	<h2>Sur cette page</h2>
+	<ul>
+		<li><a href="#sommaire">Sommaire</a></li>
+		<li><a href="#acr">Détails de l'évaluation</a></li>
+	</ul>
+</nav>
+
+<div id="ds-a11y" data-wb-jsonmanager='{
+	"url": [
+		"../../acr/demo-wcag21/labels.json",
+		"{{ page.reportURL }}"
+	],
+	"name": "a11y",
+	"patches": [
+		{ "op": "wb-swap", "path": "/acr:standard", "ref": "/labels/acr:ConformanceStandard/en" },
+		{ "op": "wb-swap", "path": "/acr:conformanceOption", "ref": "/labels/acr:ConformanceOption/en" },
+		{ "op": "wb-swap", "path": "/acr:involvesExpertise", "ref": "/labels/acr:Topic/fr" },
+		{
+			"op": "patches", "path": "/earl:result", "patches": [
+				{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/fr" },
+				{ "op": "wb-swap", "path": "/earl:outcome", "ref": "/labels/earl:OutcomeValue/fr" },
+				{ "op": "wb-swap", "path": "/earl:mode", "ref": "/labels/earl:TestMode/fr" },
+				{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/fr" },
+				{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/fr" },
+				{
+					"op": "patches", "path": "/earl:result", "patches": [
+						{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/fr" },
+						{ "op": "wb-swap", "path": "/earl:outcome", "ref": "/labels/earl:OutcomeValue/fr" },
+						{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/fr" },
+						{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/fr" }
+					]
+				}
+			]
+		}
+	]
+}'></div>
+
+<h2 id="sommaire">Sommaire</h2>
+<p>Ce document est une évaluation informelle basée sur un ensemble de règles de mise à l'essai de l'accessibilité. Ceci ne doit pas être interprété comme un rapport de conformité à l'accessibilité. Ce dernier est publié séparément de l'évaluation et indiquera seulement si les exigences sont satisfaites, non satisfaites ou si des tests supplémentaires sont nécessaires, tel que décrit dans l'établissement de la conformité du WCAG 2.1. Cette évaluation pourrait contenir des faux positifs, des faux négatifs ou être adéquat. L'interprétation de l'évaluation, via le rapport de conformité à l'accessibilité, pourrait prendre en compte d'autres évaluations indépendantes afin d'établir la conformité s'il y a lieu.</p>
+<p>(<a href="{{ page.reportURL }}" type="application/ld+json" rel="alternate">Consulter le rapport dans son état d'origine en JSON-LD</a>)</p>
+<dl class="dl-horizontal">
+	<dt>Type</dt>
+	<dd>Évaluation de l'accessibilité</dd>
+	<dt>Évalué par:</dt>
+	<dd><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#">Inconnu</a> sous <a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#" data-json-replace="#[a11y]/earl:assertedBy/foaf:name">Non disponible</a></dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/dct:date">Non disponible</dd>
+	<dt>Sujet:</dt>
+	<dd>
+		<ul class="list-unstyled">
+			<li><strong>À propos</strong>:
+				<span><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "replace"
+					}
+
+				]' href="#">Non spécifié</a></span>
+			</li>
+			<li><strong>Portée</strong>:
+				<span data-json-replace="#[a11y]/earl:subject/dct:description" lang="en"><span lang="fr">Non Définie</span></span>
+			</li>
+			<li><strong>Sélecteur CSS</strong>:
+				<code data-json-replace="#[a11y]/earl:subject/earl:pointer/@value">Pas applicable</code>
+			</li>
+		</ul>
+		<details>
+			<summary>Partie du sujet et implication des champs d'expertise</summary>
+			<p>Liste des parties du sujet qui pourraient être évaluées indépendamment du sujet principal identifié. Par exemple, un menu, une image, une vidéo... Note: la liste suivante pourrait être vide si ce n'est pas applicable.</p>
+			<ul data-wb-json='{
+					"url": "#[a11y]/earl:subject/dct:hasPart",
+					"mapping": [
+						{ "selector": "[data-about]", "value": "/dct:description" },
+						{ "selector": "[data-css]", "value": "/earl:pointer/@value" }
+					]
+				}'>
+				<template>
+					<li><span data-about lang="en"></span> (Sélecteur CSS: <code data-css>Pas applicable</code>)</li>
+				</template>
+			</ul>
+			<p>Liste suggérée de sujets d'expertise qui pourraient nécessiter une implication dans l'évaluation du sujet afin de produire un rapport complet de conformité à l'accessibilité. Note: la liste suivante pourrait être vide si ce n'est pas applicable.</p>
+			<ul data-wb-json='{
+					"url": "#[a11y]/acr:involvesExpertise",
+					"mapping": { "selector": "[data-expertise]" }
+				}'>
+				<template>
+					<li><span data-expertise></span></li>
+				</template>
+			</ul>
+		</details>
+	</dd>
+	<dt>Vers une conformité à:</dt>
+	<dd><span data-json-replace="#[a11y]/acr:standard">Pas spécifié</span> (Option: <span data-json-replace="#[a11y]/acr:conformanceOption">Pas spécifié</span>)</dd>
+	<dt>Sommaire:</dt>
+	<dd data-json-replace="#[a11y]/dct:description" lang="en"><span lang="fr">Aucune note</span></dd>
+</dl>
+
+<h2 id="acr">Détails de l'évaluation</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th class="col-md-3">Critères de succès</th>
+			<th class="col-md-2">Résultat</th>
+			<th>Commentaire</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/earl:result",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": "[data-label]", "value": "/earl:test" },
+			{ "selector": "[data-outcome]", "value": "/earl:outcome" },
+			{ "selector": "[data-applicability]", "value": "/earl:subject/dct:description" },
+			{ "selector": "[data-notes]", "value": "/dct:description" },
+			{ "selector": "[data-mode]", "value": "/earl:mode" },
+			{ "selector": "[data-severity]", "value": "/acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/acr:relevancy" },
+			{
+				"selector": "[data-specific-results]",
+				"value": "/earl:result",
+				"mapping": [
+					{ "selector": "[data-result-label]", "value": "/earl:test" },
+					{ "selector": "[data-result-outcome]", "value": "/earl:outcome" },
+					{ "selector": "[data-result-severity]", "value": "/acr:severity" },
+					{ "selector": "[data-result-relevancy]", "value": "/acr:relevancy" },
+					{ "selector": "[data-result-notes", "value": "/dct:description" }
+				]
+			}
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th data-label lang="en"></th>
+			<td><span data-outcome lang="en"></span></td>
+			<td>
+				<p><strong>Portée</strong>: <span data-applicability lang="en"><span lang="fr">Telle que définie</span></span></p>
+				<ul class="list-inline clearfix">
+					<li>Mode de vérification: <span data-mode>Inconnu</span></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Importance: <span data-severity>Non précisé</span></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Pertinence: <span data-relevancy>Non précisé</span></li>
+				</ul>
+				<p data-notes lang="en"></p>
+				<dl data-specific-results lang="en">
+					<template>
+						<dt data-result-label></dt>
+						<dd>( <em data-result-outcome></em> <span data-result-severity></span> <span data-result-relevancy></span> ) <span data-result-notes></span></dd>
+					</template>
+				</dl>
+				<ul data-techniques>
+					<template>
+						<li><code></code></li>
+					</template>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</template>
+<p>Note: basé sur l'ensemble de règles suivant: <code data-json-replace="#[a11y]/dct:source">Non disponible</code></p>

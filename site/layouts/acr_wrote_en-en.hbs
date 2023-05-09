@@ -1,0 +1,338 @@
+---
+{
+	"layout": "default.hbs"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+{{>body}}
+
+<nav>
+	<h2>On this page</h2>
+	<ul>
+		<li><a href="#summary">Summary</a></li>
+		<li><a href="#rel-assessment">Related assessment</a></li>
+		<li><a href="#audits">Assessment audits</a></li>
+		<li><a href="#conformity">Conformity criteria satisfaction</a></li>
+	</ul>
+</nav>
+
+<div id="ds-a11y" data-wb-jsonmanager='{
+	"url": [
+		"../../acr/demo-wcag21/labels.json",
+		"{{ page.reportURL }}"
+	],
+	"name": "a11y",
+	"patches": [
+		{ "op": "wb-swap", "path": "/acr:standard", "ref": "/labels/acr:ConformanceStandard/en" },
+		{ "op": "wb-swap", "path": "/acr:conformanceOption", "ref": "/labels/acr:ConformanceOption/en" },
+		{ "op": "wb-swap", "path": "/acr:conformance", "ref": "/labels/acr:ConformanceState/en" },
+		{
+			"op": "patches", "path": "/acr:audit", "patches": [
+				{ "op": "wb-swap", "path": "/acr:assessment", "ref": "/assessments" },
+				{ "op": "wb-swap", "path": "/acr:accuracy", "ref": "/labels/acr:AccuracyState/en" },
+				{ "op": "wb-swap", "path": "/earl:mode", "ref": "/labels/earl:TestMode/en" },
+				{
+					"op": "patches", "path": "/acr:auditNote", "patches": [
+						{ "op": "wb-swap", "path": "/acr:accuracy", "ref": "/labels/acr:AccuracyState/en" },
+						{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/en" },
+						{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/en" },
+						{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/en" },
+						{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/en" }
+					]
+				}
+
+			]
+		},
+		{
+			"op": "patches", "path": "/wf:task", "patches": [
+				{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/en" },
+				{ "op": "wb-swap", "path": "/acr:requirement", "ref": "/labels/earl:TestCriterion/en" },
+				{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/en" },
+				{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/en" }
+			]
+		},
+		{
+			"op": "patches", "path": "/acr:conformity", "patches": [
+				{ "op": "wb-swap", "path": "/acr:requirement", "ref": "/labels/earl:TestCriterion/en" },
+				{ "op": "wb-swap", "path": "/earl:mode", "ref": "/labels/earl:TestMode/en" },
+				{ "op": "wb-swap", "path": "/acr:conformance", "ref": "/labels/acr:ConformanceState/en" },
+				{ "op": "wb-swap", "path": "/acr:assessment", "ref": "/assessments" }
+			]
+		}
+
+	]
+}'></div>
+
+<h2 id="summary">Summary</h2>
+<p>(<a href="{{ page.reportURL }}" type="application/ld+json" rel="alternate">Consult the report in its native JSON-LD format</a>)</p>
+<dl class="dl-horizontal">
+	<dt>Type</dt>
+	<dd>Accessibility conformance report</dd>
+	<dt>Audited by:</dt>
+	<dd><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#">Unknown</a> on behalf of <a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#" data-json-replace="#[a11y]/earl:assertedBy/foaf:name">Not Available</a></dd>
+	<dt>Created on:</dt>
+	<dd data-json-replace="#[a11y]/dct:created">Not Available</dd>
+	<dt>Modified on:</dt>
+	<dd data-json-replace="#[a11y]/dct:modified">Not Available</dd>
+	<dt>Issued on:</dt>
+	<dd data-json-replace="#[a11y]/dct:issued">Report still in progress</dd>
+	<dt>Subject:</dt>
+	<dd>
+		<ul class="list-unstyled">
+			<li><strong>About</strong>:
+				<span><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "replace"
+					}
+
+				]' href="#">Not Defined</a></span>
+			</li>
+			<li><strong>Applicability</strong>:
+				<span data-json-replace="#[a11y]/earl:subject/dct:description">Not defined</span>
+			</li>
+			<li><strong>CSS selector</strong>:
+				<code data-json-replace="#[a11y]/earl:subject/earl:pointer/@value">Not applicable</code>
+			</li>
+		</ul>
+	</dd>
+	<dt>Summary:</dt>
+	<dd data-json-replace="#[a11y]/dct:description">No notes</dd>
+	<dt>Conformance to stardard:</dt>
+	<dd data-json-replace="#[a11y]/acr:standard">Not specified</dd>
+	<dt>Conformance option:</dt>
+	<dd data-json-replace="#[a11y]/acr:conformanceOption">Not specified</dd>
+	<dt>Conformance state:</dt>
+	<dd data-json-replace="#[a11y]/acr:conformance">Not specified</dd>
+	<dt>Calculated score:</dt>
+	<dd data-json-replace="#[a11y]/acr:aggregatedScore">Not calculated</dd>
+</dl>
+
+<section id="rel-assessment" class="brdr-bttm">
+	<h2>Related assessment</h2>
+	<p>List of related assessments, referenced by date, which have been used and influenced the production of this conformance report.</p>
+	<ul data-wb-json='{
+			"url": "#[a11y]/assessments",
+			"mapping": [
+				{ "selector": "[data-rel-json]", "value": "/@id", "attr": "data-rel-json" },
+				{ "selector": "[lang]", "value": "/dct:language", "attr": "lang" },
+				{ "selector": "a", "value": "/dct:title" },
+				{ "selector": "a", "value": "/dct:references", "attr": "href" },
+				{ "selector": "time", "value": "/dct:date" }
+			]
+		}'>
+		<template>
+			<li data-rel-json lang><time></time> - <a href></a></li>
+		</template>
+	</ul>
+</section>
+
+<section id="workitem" class="brdr-bttm">
+	<h2>Work items</h2>
+	<p>This section is informative. The completion of the following work items may or may not be required to satisfy the main requirement. The intention is to refer to and identify related work items as they could be pertinent in the interpretation of this accessibility conformance report. Tracking their progress is out of scope.</p>
+	<dl data-wb-json='{
+			"url": "#[a11y]/wf:task",
+			"mapping": [
+				{ "selector": "a[data-title]", "value": "/dct:title" },
+				{ "selector": "a[data-title]", "value": "/dct:references", "attr": "href" },
+				{ "selector": "[data-requirement]", "value": "/acr:requirement" },
+				{ "selector": "[data-created]", "value": "/dct:created" },
+				{ "selector": "[data-severity]", "value": "/acr:severity" },
+				{ "selector": "[data-relevancy]", "value": "/acr:relevancy" },
+				{ "selector": "[data-description]", "value": "/wf:goalDescription" }
+			]
+		}'>
+		<template>
+			<dt class="h3"><a data-title href></a></dt>
+			<dd>
+				<p class="clearboth"><strong>Related to requirement:</strong> <span data-requirement>Not specified</span></p>
+				<ul class="list-inline">
+					<li><em>Date:</em> <span data-created>Not specified</span></li>
+					<li><em>Severity:</em> <span data-severity>Not specified</span></li>
+					<li><em>Relevance:</em> <span data-relevancy>Not specified</span></li>
+				</ul>
+				<p data-description></p>
+			</dd>
+		</template>
+	</dl>
+</section>
+
+<section id="audits" class="brdr-bttm">
+	<h2>Assessment audits</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Accuracy</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		<tbody data-wb-json='{
+			"url": "#[a11y]/acr:audit",
+			"tobeclone": "tr",
+			"source": "#tmpl-audits",
+			"mapping": [
+				{ "selector": "[data-reviewon]", "value": "/dct:issued" },
+				{ "selector": "[data-accuracy]", "value": "/acr:accuracy" },
+
+				{ "selector": "[data-reviewer]", "value": "/earl:assertedBy/foaf:name" },
+				{ "selector": "[data-reviewer]", "value": "/earl:assertedBy/foaf:homepage", "attr": "href" },
+
+				{ "selector": "[data-assessment]", "value": "/acr:assessment/dct:language", "attr": "lang" },
+				{ "selector": "a[data-assessment-ref]", "value": "/acr:assessment/dct:title" },
+				{ "selector": "a[data-assessment-ref]", "value": "/acr:assessment/dct:references", "attr": "href" },
+				{ "selector": "[data-assessment-date]", "value": "/acr:assessment/dct:date" },
+
+				{ "selector": "[data-mode]", "value": "/earl:mode" },
+				{ "selector": "[data-applicability]", "value": "/earl:subject/dct:description" },
+				{ "selector": "[data-summary]", "value": "/dct:description" },
+				{ "selector": "[data-audit-notes]", "value": "/acr:auditNote",
+					"mapping": [
+						{ "selector": "[data-note-accuracy]", "value": "/acr:accuracy" },
+						{ "selector": "[data-note-severity]", "value": "/acr:severity" },
+						{ "selector": "[data-note-relevancy]", "value": "/acr:relevancy" },
+						{ "selector": "[data-note-title]", "value": "/dct:title" },
+						{ "selector": "[data-note-test]", "value": "/earl:test" },
+						{ "selector": "[data-note-description]", "value": "/dct:description" }
+					]
+				}
+			]
+		}'>
+		</tbody>
+	</table>
+
+	<template id="tmpl-audits">
+		<table>
+			<tr>
+				<th data-reviewon></th>
+				<td data-accuracy></td>
+				<td>
+					<dl class="dl-horizontal">
+						<dt>By:</dt>
+						<dd><a data-reviewer href>Unknown</a></dd>
+						<dt>Audit of assessment:</dt>
+						<dd data-assessment lang>
+							<time data-assessment-date></time> - <a data-assessment-ref href></a>
+						</dd>
+						<dt>Tested mode:</dt>
+						<dd><code data-mode></code></dd>
+						<dt>Applicability:</dt>
+						<dd data-applicability>As defined</dd>
+						<dt>Note:</dt>
+						<dd>
+							<p data-summary></p>
+							<div data-audit-notes>
+								<template>
+									<details>
+										<summary><strong data-note-accuracy></strong> - <span data-note-title>Title</span></summary>
+										<p>About test: <span data-note-test></span></p>
+										<p>Severity: <span data-note-severity></span>; Relevancy <span data-note-relevancy></span></p>
+										<p data-note-description></p>
+									</details>
+								</template>
+							</div>
+						</dd>
+					</dl>
+				</td>
+			</tr>
+		</table>
+	</template>
+
+</section>
+
+<section id="conformity" class="brdr-bttm">
+	<h2>Conformity requirement satisfaction</h2>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-md-3">Requirement</th>
+				<th class="col-md-2">Conformance</th>
+				<th>Comment</th>
+			</tr>
+		</thead>
+		<tbody data-wb-json='{
+			"url": "#[a11y]/acr:conformity",
+			"tobeclone": "tr",
+			"source": "#tmpl-requirements",
+			"mapping": [
+				{ "selector": "[data-requirement-label]", "value": "/acr:requirement" },
+				{ "selector": "[data-conformance]", "value": "/acr:conformance" },
+				{ "selector": "[data-notes]", "value": "/notes" },
+				{ "selector": "[data-mode]", "value": "/earl:mode" },
+				{
+					"selector": "[data-assessment]",
+					"value": "/acr:assessment",
+					"mapping": [
+						{ "selector": "[lang]", "value": "/dct:language", "attr": "lang" },
+						{ "selector": "a", "value": "/dct:title" },
+						{ "selector": "a", "value": "/dct:references", "attr": "href" },
+						{ "selector": "time", "value": "/dct:date" }
+					]
+				}
+			]
+		}'>
+		</tbody>
+	</table>
+
+	<template id="tmpl-requirements">
+		<table>
+			<tr>
+				<th data-requirement-label></th>
+				<td><span data-conformance></span></td>
+				<td>
+					<dl class="dl-horizontal">
+						<dt>Test mode:</dt>
+						<dd data-mode>Unknown</dd>
+						<dt>Notes:</dt>
+						<dd data-notes></dd>
+					</dl>
+					<details>
+						<summary>Related assessment</summary>
+							<ul class="list-unstyled" data-assessment>
+								<template>
+									<li lang><time></time> - <a href></a></li>
+								</template>
+							</ul>
+					</details>
+				</td>
+			</tr>
+		</table>
+	</template>
+	<p>Note: Based on the following ruleset: <code data-json-replace="#[a11y]/dct:source">Not available</code></p>
+
+</section>
