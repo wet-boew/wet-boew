@@ -48,9 +48,11 @@ a {
 
 		dt {
 			border-top: 1px solid $clrMedium;
+			hyphens: auto;
 			padding: 10px 10px 10px 0;
 			text-align: left;
 			white-space: normal;
+			word-break: break-word;
 		}
 
 		dd {
