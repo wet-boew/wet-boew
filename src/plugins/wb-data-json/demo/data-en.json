@@ -44,7 +44,8 @@
       "language": {
         "en": {
           "description": "description of Mr X",
-          "about": "About Mr X"
+          "about": "About Mr X",
+          "test_undefined_override": ","
         },
         "fr": {
           "description": "description de M. X",
