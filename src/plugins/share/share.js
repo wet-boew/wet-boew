@@ -140,7 +140,7 @@ var componentName = "wb-share",
 				// Add an email mailto option
 				defaults.sites.email = {
 					name: i18nText.email,
-					url: "mailto:?to=&subject={t}&body={u}%0A{d}",
+					url: "mailto:?subject={t}&body={u}%0A{d}",
 					isMailto: true
 				};
 			}
