@@ -104,26 +104,26 @@ var componentName = "wb-eqht",
 			}
 			$elm = reattachElement( $anchor );
 
-			// set the top and tallest to the first element
-			rowTop = $children[ 0 ] ? $children[ 0 ].offsetTop : 0;
+			// set the top offset and tallest height to the first element
+			rowTop = $children[ 0 ] ? $children[ 0 ].getBoundingClientRect().top + window.pageYOffset : 0;
 			tallestHeight = $children[ 0 ] ? $children[ 0 ].offsetHeight : 0;
 
 			// first, the loop MUST be from start to end to work.
 			for ( j = 0; j < $children.length; j++ ) {
 				currentChild = $children[ j ];
 
-				currentChildTop = currentChild.offsetTop;
+				currentChildTop = currentChild.getBoundingClientRect().top + window.pageYOffset;
 				currentChildHeight = currentChild.offsetHeight;
 
 				if ( currentChildTop !== rowTop ) {
 
-					// as soon as we find an element not on this row (not the same offsetTop)
+					// as soon as we find an element not on this row (not the same top offset)
 					// we need to equalize each items in that row to align the next row.
 					equalize( row, tallestHeight );
 
 					// since the elements of the previous row was equalized
-					// we need to get the new offsetTop of the current element
-					currentChildTop = currentChild.offsetTop;
+					// we need to get the new top offset of the current element
+					currentChildTop = currentChild.getBoundingClientRect().top + window.pageYOffset;
 
 					// reset the row, rowTop and tallestHeight
 					row.length = 0;
