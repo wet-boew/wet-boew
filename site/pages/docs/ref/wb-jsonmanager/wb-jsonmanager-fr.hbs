@@ -227,6 +227,16 @@
 		<td><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
 		<td>Format a date value to date time ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
 	</tr>
+	<tr>
+		<td>Swap data with reference</td>
+		<td><code>{ "op": "wb-swap", "path": &lt;path to current value&gt;, "ref": &lt;path to reference value&gt; }</code></td>
+		<td>Swaps data from "path" with data from "ref" using the value as a key in the reference. The value from "path" can either be a string or an array.</td>
+	</tr>
+	<tr>
+		<td>Patches</td>
+		<td><code>{ "op": "patches", "path": &lt;path&gt;, "patches": [Array of patches] }</code></td>
+		<td>Executes list of patches defined in the "patches" array using a newly defined "path". This "path" must be located inside the JSON object defined at "url". Use if you need to execute patches to an array of objects but still need to have access to the global JSON object. For example, when using "wb-swap"</td>
+	</tr>
 </table>
 
 <p>It's is possible to add your own custom operations, like:</p>
@@ -309,13 +319,15 @@
 	<tr>
 		<td><code>url</code></td>
 		<td><strong>Required</strong>. Define the url or the dataset name to use. When used in a template mode, the URL should point to an array object.</td>
-		<td>You can follow the url or the dataset name by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a>.</td>
+		<td>You can follow the url or the dataset name by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a>. The value can be either a string or an array of strings. If all references are arrays, the arrays will be concatenated into one array. If all references are objects, the objects will be extended into a single object. If there are references of multiple types, the plugin will throw an error.</td>
 		<td>
 			<dl>
 				<dt><code>data-wb-jsonmanager='{ "url": "location/of/json/file.json#/" }'</code></dt>
-				<dd>The url are a json file</dd>
+				<dd>The url is a json file.</dd>
 				<dt><code>data-wb-jsonmanager='{ "url": "[datasetName]#/" }'</code></dt>
-				<dd>The url is a reference to a dataset managed by a json-manager defined in the same page</dd>
+				<dd>The url is a reference to a dataset managed by a json-manager defined in the same page.</dd>
+				<dt><code>data-wb-jsonmanager='{ "url": [ "location/of/json/file.json#/", "[datasetName]#/" ] }'</code></dt>
+				<dd>The url is a json file and a reference to a dataset managed by a json-manager defined in the same page. The dataset will be a combination of both references.</dd>
 			</dl>
 		</td>
 	</tr>

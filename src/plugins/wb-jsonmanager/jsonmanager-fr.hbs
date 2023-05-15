@@ -22,6 +22,8 @@
 
 <h2>Appliquer des correctifs</h2>
 
+<h3>Exemple 1</h3>
+
 <div data-wb-jsonmanager='{
 		"url": "demo/data-fr.json",
 		"name": "exemple1",
@@ -57,7 +59,7 @@
 <details>
 	<summary>Code source</summary>
 
-	<h3>HTML</h3>
+	<h4>HTML</h4>
 	<pre><code>&lt;div data-wb-jsonmanager='{
 		&quot;url&quot;: &quot;demo/data-fr.json&quot;,
 		&quot;name&quot;: &quot;exemple1&quot;,
@@ -90,7 +92,7 @@
 	&lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 
-	<h3>Fichier <code>demo/data-fr.json</code></h3>
+	<h4>Fichier <code>demo/data-fr.json</code></h4>
 	<pre><code>{
 	"produit": "Bonjour le monde",
 	"produits": [
@@ -113,6 +115,405 @@
 		]
 	},
 	"prix": 1234.98
+}</code></pre>
+</details>
+
+<h3>Exemple 2</h3>
+<p>Cet exemple exploite les correctifs suivants&nbsp;: <code>patches</code>, <code>wb-swap</code> et <code>wb-toDateISO</code>.</p>
+
+<div data-wb-jsonmanager='{
+	"name": "swapEx",
+	"url": [ "demo/events.json#/data/eventList", "demo/events-i18n.json" ],
+	"patches": [
+		{ "op": "patches", "path": "/items", "patches": [
+			{ "op": "wb-swap", "path": "/eventLanguage", "ref": "/reference/language/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/province", "ref": "/reference/province/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus/{{page.language}}" },
+			{ "op": "wb-toDateISO", "path": "/startDate" },
+			{ "op": "wb-toDateISO", "path": "/endDate" },
+			{ "op": "patches", "path": "/registeredPeople", "patches": [
+				{ "op": "wb-swap", "path": "/prefLang", "ref": "/reference/language/{{page.language}}" }
+			] }
+		] }
+	]
+}'>
+	<div data-wb-json='{
+		"url": "#[swapEx]/items",
+		"mapping": [
+			{ "selector": "h4", "value": "/{{page.language}}title" },
+			{ "selector": ".event-description", "value": "/{{page.language}}description/html", "isHTML": "true" },
+			{ "selector": ".event-language", "value": "/eventLanguage" },
+			{ "selector": ".event-start", "value": "/startDate" },
+			{ "selector": ".event-end", "value": "/endDate" },
+			{ "selector": ".event-location", "value": "/city" },
+			{ "selector": ".event-status", "value": "/registrationStatus" },
+			{ "selector": ".event-provinces", "value": "/province", "queryall": "li" },
+			{ "selector": ".event-registered", "value": "/registeredPeople",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/prefLang" },
+					{ "selector": "[data-name]", "value": "/name" }
+				]
+			}
+		]
+	}'>
+		<template>
+			<div>
+				<h4></h4>
+				<div class="event-description"></div>
+				<p>Langue: <span class="event-language"></span></p>
+				<p>De <span class="event-start"></span> à <span class="event-end"></span></p>
+				<p>Emplacement: <span class="event-location"></span></p>
+				<p>Statut: <span class="event-status"></span></p>
+				<p>Province(s):</p>
+				<ul class="event-provinces">
+					<template>
+						<li></li>
+					</template>
+				</ul>
+				<p>Enregistré(s):</p>
+				<ul class="event-registered">
+					<template>
+						<li><span data-name></span> (<span data-language></span>)</li>
+					</template>
+				</ul>
+			</div>
+		</template>
+	</div>
+</div>
+
+<details>
+	<summary>Code source</summary>
+
+	<h4>HTML</h4>
+	<pre><code>&lt;div data-wb-jsonmanager='{
+	"name": "swapEx",
+	"url": [ "demo/events.json#/data/eventList", "demo/events-i18n.json" ],
+	"patches": [
+		{ "op": "patches", "path": "/items", "patches": [
+			{ "op": "wb-swap", "path": "/eventLanguage", "ref": "/reference/language/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/province", "ref": "/reference/province/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus/{{page.language}}" },
+			{ "op": "wb-toDateISO", "path": "/startDate" },
+			{ "op": "wb-toDateISO", "path": "/endDate" },
+			{ "op": "patches", "path": "/registeredPeople", "patches": [
+				{ "op": "wb-swap", "path": "/prefLang", "ref": "/reference/language/{{page.language}}" }
+			] }
+		] }
+	]
+}'>
+	&lt;div data-wb-json='{
+		"url": "#[swapEx]/items",
+		"mapping": [
+			{ "selector": "h4", "value": "/{{page.language}}title" },
+			{ "selector": ".event-description", "value": "/{{page.language}}description/html", "isHTML": "true" },
+			{ "selector": ".event-language", "value": "/eventLanguage" },
+			{ "selector": ".event-start", "value": "/startDate" },
+			{ "selector": ".event-end", "value": "/endDate" },
+			{ "selector": ".event-location", "value": "/city" },
+			{ "selector": ".event-status", "value": "/registrationStatus" },
+			{ "selector": ".event-provinces", "value": "/province", "queryall": "li" },
+			{ "selector": ".event-registered", "value": "/registeredPeople",
+				"mapping": [
+					{ "selector": "[data-language]", "value": "/prefLang" },
+					{ "selector": "[data-name]", "value": "/name" }
+				]
+			}
+		]
+	}'>
+		&lt;template>
+			&lt;div>
+				&lt;h4>&lt;/h4>
+				&lt;div class="event-description">&lt;/div>
+				&lt;p>Langue: &lt;span class="event-language">&lt;/span>&lt;/p>
+				&lt;p>De &lt;span class="event-start">&lt;/span> à &lt;span class="event-end">&lt;/span>&lt;/p>
+				&lt;p>Emplacement: &lt;span class="event-location">&lt;/span>&lt;/p>
+				&lt;p>Statut: &lt;span class="event-status">&lt;/span>&lt;/p>
+				&lt;ul class="event-provinces">
+					&lt;template>
+						&lt;li>&lt;/li>
+					&lt;/template>
+				&lt;/ul>
+				&lt;p>Enregistré(s):&lt;/p>
+				&lt;ul class="event-registered">
+					&lt;template>
+						&lt;li>&lt;span data-name>&lt;/span> (&lt;span data-language>&lt;/span>)&lt;/li>
+					&lt;/template>
+				&lt;/ul>
+			&lt;/div>
+		&lt;/template>
+	&lt;/div>
+&lt;/div></code></pre>
+
+	<h4>Fichier <code>demo/events.json</code></h4>
+	<pre><code>{
+	"data": {
+		"eventList": {
+			"items": [
+				{
+					"entitle": "Event #1",
+					"frtitle": "Évènement #1",
+					"endescription": {
+						"html": "&lt;p>This is a big description&lt;/p>\n"
+					},
+					"frdescription": {
+						"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+					},
+					"startDate": "2023-04-04T10:30:00.000-04:00",
+					"endDate": "2023-04-06T10:30:06.000-04:00",
+					"eventLanguage": "english",
+					"province": [
+						"alberta",
+						"manitoba",
+						"new_brunswick",
+						"ontario"
+					],
+					"city": "Online",
+					"registrationStatus": "open",
+					"registeredPeople": [
+						{
+							"name": "John Smith",
+							"prefLang": "english"
+						},
+						{
+							"name": "Jimmy Neutron",
+							"prefLang": "english"
+						}
+					]
+				},
+				{
+					"entitle": "Event #2",
+					"frtitle": "Évènement #2",
+					"endescription": {
+						"html": "&lt;p>This is a big description&lt;/p>\n"
+					},
+					"frdescription": {
+						"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+					},
+					"startDate": "2023-04-04T10:30:00.000-04:00",
+					"endDate": "2023-04-06T10:30:06.000-04:00",
+					"eventLanguage": "english",
+					"province": [
+						"british_columbia"
+					],
+					"city": "Vancouver",
+					"registrationStatus": "open",
+					"registeredPeople": [
+						{
+							"name": "Debbie Stark",
+							"prefLang": "english"
+						}
+					]
+				},
+				{
+					"entitle": "Event #3",
+					"frtitle": "Évènement #3",
+					"endescription": {
+						"html": "&lt;p>This is a big description&lt;/p>\n"
+					},
+					"frdescription": {
+						"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+					},
+					"startDate": "2023-04-04T10:30:00.000-04:00",
+					"endDate": "2023-04-06T10:30:06.000-04:00",
+					"eventLanguage": "french",
+					"province": [
+						"quebec"
+					],
+					"city": "Ottawa",
+					"registrationStatus": "closed",
+					"registeredPeople": [
+						{
+							"name": "Pierre Tremblay",
+							"prefLang": "french"
+						},
+						{
+							"name": "Marc Gagnon",
+							"prefLang": "french"
+						},
+						{
+							"name": "Robert Côté",
+							"prefLang": "french"
+						}
+					]
+				}
+			]
+		}
+	}
+}</code></pre>
+
+	<h4>Fichier <code>demo/events-i18n.json</code></h4>
+	<pre><code>{
+	"reference": {
+		"language": {
+			"en": {
+				"english": "English",
+				"french": "French"
+			},
+			"fr": {
+				"english": "Anglais",
+				"french": "Français"
+			}
+		},
+		"province": {
+			"en": {
+				"alberta": "Alberta",
+				"british_columbia": "British Columbia",
+				"manitoba": "Manitoba",
+				"new_brunswick": "New Brunswick",
+				"newfoundland_labrador": "Newfoundland &amp; Labrador",
+				"northwest_territories": "Northwest Territories",
+				"nova_scotia": "Nova Scotia",
+				"nunavut": "Nunavut",
+				"ontario": "Ontario",
+				"prince_edward_island": "Prince Edward Island",
+				"quebec": "Quebec",
+				"saskatchewan": "Saskatchewan",
+				"yukon": "Yukon"
+			},
+			"fr": {
+				"alberta": "Alberta",
+				"british_columbia": "Colombie-Britannique",
+				"prince_edward_island": "Île-du-Prince-Édouard",
+				"manitoba": "Manitoba",
+				"new_brunswick": "Nouveau-Brunswick",
+				"nova_scotia": "Nouvelle-Écosse",
+				"nunavut": "Nunavut",
+				"ontario": "Ontario",
+				"quebec": "Québec",
+				"saskatchewan": "Saskatchewan",
+				"newfoundland_labrador": "Terre-Neuve-et-Labrador",
+				"northwest_territories": "Territoires du Nord-Ouest",
+				"yukon": "Yukon"
+			}
+		},
+		"registrationStatus": {
+			"en": {
+				"open": "Open",
+				"closed": "Closed"
+			},
+			"fr": {
+				"open": "Ouvert",
+				"closed": "Fermé"
+			}
+		}
+	}
+}</code></pre>
+
+	<h4>Résultat JSON</h4>
+	<pre><code>{
+	"items": [
+		{
+			"entitle": "Event #1",
+			"frtitle": "Évènement #1",
+			"endescription": {
+				"html": "&lt;p>This is a big description&lt;/p>\n"
+			},
+			"frdescription": {
+				"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+			},
+			"startDate": "2023-04-04",
+			"endDate": "2023-04-06",
+			"eventLanguage": "English",
+			"province": [
+				"Alberta",
+				"Manitoba",
+				"New Brunswick",
+				"Ontario"
+			],
+			"city": "Online",
+			"registrationStatus": "Open"
+		},
+		{
+			"entitle": "Event #2",
+			"frtitle": "Évènement #2",
+			"endescription": {
+				"html": "&lt;p>This is a big description&lt;/p>\n"
+			},
+			"frdescription": {
+				"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+			},
+			"startDate": "2023-04-04",
+			"endDate": "2023-04-06",
+			"eventLanguage": "English",
+			"province": [
+				"British Columbia"
+			],
+			"city": "Vancouver",
+			"registrationStatus": "Open"
+		},
+		{
+			"entitle": "Event #3",
+			"frtitle": "Évènement #3",
+			"endescription": {
+				"html": "&lt;p>This is a big description&lt;/p>\n"
+			},
+			"frdescription": {
+				"html": "&lt;p>Ceci est une grosse description&lt;/p>\n"
+			},
+			"startDate": "2023-04-04",
+			"endDate": "2023-04-06",
+			"eventLanguage": "French",
+			"province": [
+				"Quebec"
+			],
+			"city": "Ottawa",
+			"registrationStatus": "Closed"
+		}
+	],
+	"reference": {
+		"language": {
+			"en": {
+				"english": "English",
+				"french": "French"
+			},
+			"fr": {
+				"english": "Anglais",
+				"french": "Français"
+			}
+		},
+		"province": {
+			"en": {
+				"alberta": "Alberta",
+				"british_columbia": "British Columbia",
+				"manitoba": "Manitoba",
+				"new_brunswick": "New Brunswick",
+				"newfoundland_labrador": "Newfoundland &amp; Labrador",
+				"northwest_territories": "Northwest Territories",
+				"nova_scotia": "Nova Scotia",
+				"nunavut": "Nunavut",
+				"ontario": "Ontario",
+				"prince_edward_island": "Prince Edward Island",
+				"quebec": "Quebec",
+				"saskatchewan": "Saskatchewan",
+				"yukon": "Yukon"
+			},
+			"fr": {
+				"alberta": "Alberta",
+				"british_columbia": "Colombie-Britannique",
+				"prince_edward_island": "Île-du-Prince-Édouard",
+				"manitoba": "Manitoba",
+				"new_brunswick": "Nouveau-Brunswick",
+				"nova_scotia": "Nouvelle-Écosse",
+				"nunavut": "Nunavut",
+				"ontario": "Ontario",
+				"quebec": "Québec",
+				"saskatchewan": "Saskatchewan",
+				"newfoundland_labrador": "Terre-Neuve-et-Labrador",
+				"northwest_territories": "Territoires du Nord-Ouest",
+				"yukon": "Yukon"
+			}
+		},
+		"registrationStatus": {
+			"en": {
+				"open": "Open",
+				"closed": "Closed"
+			},
+			"fr": {
+				"open": "Ouvert",
+				"closed": "Fermé"
+			}
+		}
+	}
 }</code></pre>
 </details>
 

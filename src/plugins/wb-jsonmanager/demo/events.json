@@ -1,0 +1,95 @@
+{
+    "data": {
+        "eventList": {
+            "items": [
+                {
+                    "entitle": "Event #1",
+                    "frtitle": "Évènement #1",
+                    "endescription": {
+                        "html": "<p>This is a big description</p>\n"
+                    },
+                    "frdescription": {
+                        "html": "<p>Ceci est une grosse description</p>\n"
+                    },
+                    "startDate": "2023-04-04T10:30:00.000-04:00",
+                    "endDate": "2023-04-06T10:30:06.000-04:00",
+                    "eventLanguage": "english",
+                    "province": [
+                        "alberta",
+                        "manitoba",
+                        "new_brunswick",
+                        "ontario"
+                    ],
+                    "city": "Online",
+                    "registrationStatus": "open",
+                    "registeredPeople": [
+                        {
+                            "name": "John Smith",
+                            "prefLang": "english"
+                        },
+                        {
+                            "name": "Jimmy Neutron",
+                            "prefLang": "english"
+                        }
+                    ]
+                },
+                {
+                    "entitle": "Event #2",
+                    "frtitle": "Évènement #2",
+                    "endescription": {
+                        "html": "<p>This is a big description</p>\n"
+                    },
+                    "frdescription": {
+                        "html": "<p>Ceci est une grosse description</p>\n"
+                    },
+                    "startDate": "2023-04-04T10:30:00.000-04:00",
+                    "endDate": "2023-04-06T10:30:06.000-04:00",
+                    "eventLanguage": "english",
+                    "province": [
+                        "british_columbia"
+                    ],
+                    "city": "Vancouver",
+                    "registrationStatus": "open",
+                    "registeredPeople": [
+                        {
+                            "name": "Debbie Stark",
+                            "prefLang": "english"
+                        }
+                    ]
+                },
+                {
+                    "entitle": "Event #3",
+                    "frtitle": "Évènement #3",
+                    "endescription": {
+                        "html": "<p>This is a big description</p>\n"
+                    },
+                    "frdescription": {
+                        "html": "<p>Ceci est une grosse description</p>\n"
+                    },
+                    "startDate": "2023-04-04T10:30:00.000-04:00",
+                    "endDate": "2023-04-06T10:30:06.000-04:00",
+                    "eventLanguage": "french",
+                    "province": [
+                        "quebec"
+                    ],
+                    "city": "Ottawa",
+                    "registrationStatus": "closed",
+                    "registeredPeople": [
+                        {
+                            "name": "Pierre Tremblay",
+                            "prefLang": "french"
+                        },
+                        {
+                            "name": "Marc Gagnon",
+                            "prefLang": "french"
+                        },
+                        {
+                            "name": "Robert Côté",
+                            "prefLang": "french"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
