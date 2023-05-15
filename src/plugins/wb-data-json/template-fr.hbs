@@ -70,7 +70,8 @@
 			"language": {
 				"fr": {
 					"description": "description de M. X",
-					"about": "À propos de M. X"
+					"about": "À propos de M. X",
+					"test_undefined_override": ","
 				},
 				"en": {
 					"description": "description of Mr X",
@@ -363,6 +364,7 @@
 				"source": "#gabaritExterneSousModele",
 				"mapping": [
 					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-test-undefined-override]", "value": "/test_undefined_override" },
 					{ "selector": "[data-about]", "value": "/about" },
 					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
 				]
@@ -389,7 +391,7 @@
 		</div>
 	</template>
 	<template id="gabaritExterneSousModele">
-		<li>(<span data-language></span>) <span data-about lang></span></li>
+		<li>(<span data-language></span>) <span data-about lang></span><span data-test-undefined-override>.</span></li>
 	</template>
 </div>
 
@@ -407,6 +409,7 @@
 				"source": "#gabaritExterneSousModele",
 				"mapping": [
 					{ "selector": "[data-language]", "value": "/@id" },
+					{ "selector": "[data-test-undefined-override]", "value": "/test_undefined_override" },
 					{ "selector": "[data-about]", "value": "/about" },
 					{ "selector": "[data-about]", "value": "/@id", "attr": "lang" }
 				]
@@ -433,7 +436,7 @@
 		&lt;/div&gt;
 	&lt;/template&gt;
 	&lt;template id="gabaritExterneSousModele"&gt;
-		&lt;li&gt;(&lt;span data-language&gt;&lt;/span&gt;) &lt;span data-about lang&gt;&lt;/span&gt;&lt;/li&gt;
+		&lt;li&gt;(&lt;span data-language&gt;&lt;/span&gt;) &lt;span data-about lang&gt;&lt;/span&gt;&lt;span data-test-undefined-override>.&lt;/span>&lt;/li&gt;
 	&lt;/template&gt;
 &lt;/div&gt;</code></pre>
 </details>
