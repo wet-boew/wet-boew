@@ -148,6 +148,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sass"
+			"concat:supports"
 			"postcss"
 			"stylelint:unmin"
 			"usebanner:css"
@@ -456,6 +457,15 @@ module.exports = (grunt) ->
 				]
 				dest: "<%= coreDist %>/js/i18n"
 				expand: true
+
+			supports:
+				options:
+					stripBanners: false
+				src: [
+					"<%= themeDist %>/css/theme.css"
+					"src/polyfills/supports/*.css"
+				]
+				dest: "<%= themeDist %>/css/theme.css"
 
 		usebanner:
 			css:

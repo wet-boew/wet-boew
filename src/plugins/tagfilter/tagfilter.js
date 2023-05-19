@@ -14,20 +14,23 @@ const componentName = "wb-tagfilter",
 	selectorCtrl = "." + componentName + "-ctrl",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
-	filterOutClass = "wb-tgfltr-out",
+	filterOutClass = "wb-fltr-out",
+	tgFilterOutClass = "wb-tgfltr-out",
+	itemsWrapperClass = "wb-tagfilter-items",
+	noResultWrapperClass = "wb-tagfilter-noresult",
 
 	init = function( event ) {
 		const elm = wb.init( event, componentName, selector );
 
 		if ( elm ) {
+			const filterControls = elm.querySelectorAll( selectorCtrl ),
+				taggedItems = elm.querySelectorAll( "[data-wb-tags]" ),
+				taggedItemsWrapper = elm.querySelector( "." + itemsWrapperClass ),
+				noResultWrapper = elm.querySelector( "." + noResultWrapperClass );
+
 			elm.items = [];
 			elm.filters = {};
 			elm.activeFilters = [];
-
-			// Get all form inputs (radio buttons, checkboxes and select) within filters form
-			const filterControls = document.querySelectorAll( "#" + elm.id + " .wb-tagfilter-ctrl" ),
-				taggedItems = document.querySelectorAll( "#" + elm.id + " [data-wb-tags]" ),
-				taggedItemsWrapper = document.querySelector( "#" + elm.id + " .wb-tagfilter-items" );
 
 			if ( taggedItemsWrapper ) {
 				taggedItemsWrapper.id = taggedItemsWrapper.id || wb.getId(); // Ensure the element has an ID
@@ -46,6 +49,11 @@ const componentName = "wb-tagfilter",
 			// Handle tagged items
 			if ( taggedItems.length ) {
 				elm.items = buildTaggedItemsArr( taggedItems );
+			}
+
+			// Add accessibility to no result element
+			if ( noResultWrapper ) {
+				noResultWrapper.setAttribute( "role", "status" );
 			}
 
 			// Update list of visible items (in case of predefined filters)
@@ -192,12 +200,12 @@ const componentName = "wb-tagfilter",
 				matched = item.isMatched;
 
 			if ( matched ) {
-				if ( domItem.classList.contains( filterOutClass ) ) {
-					domItem.classList.remove( filterOutClass );
+				if ( domItem.classList.contains( tgFilterOutClass ) ) {
+					domItem.classList.remove( tgFilterOutClass );
 				}
 			} else {
-				if ( !domItem.classList.contains( filterOutClass ) ) {
-					domItem.classList.add( filterOutClass );
+				if ( !domItem.classList.contains( tgFilterOutClass ) ) {
+					domItem.classList.add( tgFilterOutClass );
 				}
 			}
 		} );
@@ -210,6 +218,8 @@ const componentName = "wb-tagfilter",
 		refineFilters( instance );
 		matchItemsToFilters( instance );
 		updateDOMItems( instance );
+
+		$( instance ).trigger( componentName + "-updated" );
 	};
 
 // When a filter is updated
@@ -219,7 +229,6 @@ $document.on( "change", selectorCtrl, function( event )  {
 		filterName = control.name,
 		filterValue = control.value,
 		elm = control.closest( selector ),
-		$elm = $( elm ),
 		filterGroup = elm.filters[ filterName ];
 
 	switch ( filterType ) {
@@ -253,12 +262,10 @@ $document.on( "change", selectorCtrl, function( event )  {
 
 	// Update list of visible items
 	update( elm );
-
-	$elm.trigger( "wb-contentupdated" );
 } );
 
 // Reinitialize tagfilter if content on the page has been updated
-$document.on( "wb-contentupdated", selector, function() {
+$document.on( "wb-contentupdated", selector, function()  {
 	let that = this;
 
 	if ( wait ) {
@@ -269,6 +276,25 @@ $document.on( "wb-contentupdated", selector, function() {
 		that.classList.remove( "wb-init", componentName + "-inited" );
 		$( that ).trigger( "wb-init." + componentName );
 	}, 100 );
+} );
+
+// Show no result message if on Firefox -- Remove once Firefox supports ":has()"
+$document.on( componentName + "-updated", selector, function() {
+	let supportsHas = window.getComputedStyle( document.documentElement ).getPropertyValue( "--supports-has" ); // Get "--supports-has" CSS property
+
+	if ( supportsHas === "false" ) {
+		let noResultItem = this.querySelector( "." + noResultWrapperClass );
+
+		if ( noResultItem ) {
+			let visibleItems = this.querySelectorAll( "." + itemsWrapperClass + " " + "[data-wb-tags]:not(." + tgFilterOutClass + ", ." + filterOutClass + ")" );
+
+			if ( visibleItems.length < 1 ) {
+				noResultItem.style.display = "block";
+			} else {
+				noResultItem.style.display = "none";
+			}
+		}
+	}
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );

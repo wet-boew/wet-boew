@@ -33,21 +33,22 @@
 <p><a href="../../../demos/tagfilter/tagfilter-fr.html">Exemple français</a></p>
 
 <h2>Comment mettre en œuvre</h2>
-<h3>Enveloppez votre section et ajoutez les balises à vos éléments.</h3>
+<h3>Enveloppez votre section et ajoutez les balises à vos items.</h3>
 <ol>
-	<li>Enveloppez toute la section qui va être filtrée par balises dans un <code>&lt;div class="wb-tagfilter provisional"&gt;</code>.</li>
-	<li>Ajoutez l'attribut <code>data-wb-tags</code> à chaque élément dont vous souhaitez contrôler la visibilité, et définissez une ou plusieurs balises comme valeur. Utilisez un espace régulier entre chaque balise, par exemple, <code>data-wb-tags="balise1 balise2 balise3"</code>.</li>
+	<li>Enveloppez toute la section qui va être filtrée par balises dans un <code>&lt;div class="wb-tagfilter provisional"></code>.</li>
+	<li>Ajoutez l'attribut <code>data-wb-tags</code> à chaque item dont vous souhaitez contrôler la visibilité, et définissez une ou plusieurs balises comme valeur. Utilisez un espace régulier entre chaque balise, par exemple, <code>data-wb-tags="balise1 balise2 balise3"</code>.</li>
 </ol>
-<h3>Identifiez le conteneur de vos éléments</h3>
-<p>Ajoutez la classe <code>.wb-tagfilter-items</code> à l'élément enveloppant vos éléments avec balises. Par exemple:</p>
-<pre><code>&lt;ul class=&quot;wb-tagfilter-items&quot;&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 1&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag2&quot;&gt;Item 2&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 3&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag2&quot;&gt;Item 4&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 5&lt;/li&gt;
+
+<h3>Identifiez le conteneur de vos items</h3>
+<p>Ajoutez la classe <code>.wb-tagfilter-items</code> à l'élément enveloppant vos items avec balises. Par exemple:</p>
+<pre><code>&lt;ul class="wb-tagfilter-items">
+	&lt;li data-wb-tags="tag1">Item 1&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 2&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 3&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 4&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
 	...
-&lt;/ul&gt;</code></pre>
+&lt;/ul></code></pre>
 
 <h3>Ajoutez vos contrôles de filtre</h3>
 <h4>Pour les cases à cocher</h4>
@@ -57,7 +58,7 @@
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
 </ol>
 <p>Votre case à cocher finale devrait ressembler à ceci&nbsp;:</p>
-<pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="maBalise" /&gt;</code></pre>
+<pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="maBalise" /></code></pre>
 
 <h4>Pour les boutons radio</h4>
 <ol>
@@ -66,7 +67,7 @@
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
 </ol>
 <p>Votre bouton radio final devrait ressembler à ceci&nbsp;:</p>
-<pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="maBalise" /&gt;</code></pre>
+<pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="maBalise" /></code></pre>
 
 <h4>Pour les listes déroulantes</h4>
 <ol>
@@ -75,13 +76,29 @@
 	<li>Ajoutez vos autres options et définissez l'attribut <code>value</code>. Remarque&nbsp;: la valeur de cet attribut doit être la même que celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contôlés, par exemple, <code>value="maBalise"</code>.</li>
 </ol>
 <p>Votre liste déroulante finale devrait ressembler à ceci&nbsp;:</p>
-<pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl"&gt;
-	&lt;option value=""&gt;Tous&lt;/option&gt;
-	&lt;option value="maBalise"&gt;Ma balise&lt;/option&gt;
-	&lt;option value="maBalise2"&gt;Ma balise 2&lt;/option&gt;
-	&lt;option value="maBalise3"&gt;Ma balise 3&lt;/option&gt;
-&lt;/select&gt;</code></pre>
-<p><strong>Remarque&nbsp;:</strong> ajoutez une <code>valeur</code> vide à votre option afin d'afficher tous les éléments.</p>
+<pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
+	&lt;option value="">Tous&lt;/option>
+	&lt;option value="maBalise">Ma balise&lt;/option>
+	&lt;option value="maBalise2">Ma balise 2&lt;/option>
+	&lt;option value="maBalise3">Ma balise 3&lt;/option>
+&lt;/select></code></pre>
+<p><strong>Remarque&nbsp;:</strong> ajoutez une <code>valeur</code> vide à votre option afin d'afficher tous les items.</p>
+
+<h3>Ajoutez votre élément pour aucun résultat</h3>
+<p>En option, vous pouvez ajouter un élément qui s'affichera lorsqu'aucun item n'est visible. Identifiez cet élément avec la classe CSS <code>wb-tagfilter-noresult</code>.</p>
+<p>Cet élément doit être ajouté <strong>directement</strong> après l'élément enveloppant votre liste d'items (<code>.wb-tagfilter-items</code>).</p>
+<p>Par exemple&nbsp;:</p>
+<pre><code>&lt;ul class="wb-tagfilter-items">
+	&lt;li data-wb-tags="tag1">Item 1&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 2&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 3&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 4&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
+	...
+&lt;/ul>
+&lt;div class="wb-tagilfter-noresult">
+	&lt;p>Aucun élément ne correspond à cette combinaison de filtres.&lt;/p>
+&lt;/div></code></pre>
 
 <h3>Comportement essentiel de la composante</h3>
 <ul>
@@ -90,4 +107,4 @@
 </ul>
 
 <h3>Remarques</h3>
-<p>Pour des raisons sémantiques, chaque groupe logique de filtres devrait être enveloppé par un élément <code>&lt;fieldset&gt;</code>.</p>
+<p>Pour des raisons sémantiques, chaque groupe logique de filtres devrait être enveloppé par un élément <code>&lt;fieldset></code>.</p>

@@ -26,62 +26,78 @@
 <p>You want to filter through an extensive list of items.</p>
 
 <h2>Accessibility guidance</h2>
-<p>The filter controls (checkboxes, radio buttons, dropdowns) <strong>must</strong> appear before the list of elements they control.</p>
+<p>The filter controls (checkboxes, radio buttons, dropdowns) <strong>must</strong> appear before the list of items they control.</p>
 
 <h2>Working example</h2>
 <p><a href="../../../demos/tagfilter/tagfilter-en.html">English example</a></p>
 <p><a href="../../../demos/tagfilter/tagfilter-fr.html">French example</a></p>
 
 <h2>How to implement</h2>
-<h3>Wrap your section and tag your elements.</h3>
+<h3>Wrap your section and tag your items.</h3>
 <ol>
-	<li>Wrap the whole section that is going to be filtered by tags in a <code>&lt;div class="wb-tagfilter provisional"&gt;</code>.</li>
-	<li>Add the attribute <code>data-wb-tags</code> to each element or section that you want to control the visibility of, and define one or multiple tags as its value. Use a regular space between each tag, e.g., <code>data-wb-tags="tag1 tag2 tag3"</code>.</li>
+	<li>Wrap the whole section that is going to be filtered by tags in a <code>&lt;div class="wb-tagfilter provisional"></code>.</li>
+	<li>Add the attribute <code>data-wb-tags</code> to each item or section that you want to control the visibility of, and define one or multiple tags as its value. Use a regular space between each tag, e.g., <code>data-wb-tags="tag1 tag2 tag3"</code>.</li>
 </ol>
-<h3>Identify your elements wrapper</h3>
-<p>Add the class <code>.wb-tagfilter-items</code> to the element wrapping your tagged elements. For example:</p>
-<pre><code>&lt;ul class=&quot;wb-tagfilter-items&quot;&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 1&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag2&quot;&gt;Item 2&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 3&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag2&quot;&gt;Item 4&lt;/li&gt;
-	&lt;li data-wb-tags=&quot;tag1&quot;&gt;Item 5&lt;/li&gt;
+<h3>Identify your items wrapper</h3>
+<p>Add the class <code>.wb-tagfilter-items</code> to the element wrapping your tagged items. For example:</p>
+<pre><code>&lt;ul class="wb-tagfilter-items">
+	&lt;li data-wb-tags="tag1">Item 1&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 2&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 3&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 4&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
 	...
-&lt;/ul&gt;</code></pre>
+&lt;/ul></code></pre>
 
 <h3>Add your filter controls</h3>
 <h4>For checkboxes</h4>
 <ol>
 	<li>Create your checkbox. <strong>The attribute <code>name</code> is mandatory for checkboxes</strong>.</li>
-	<li>Add the attribute <code>value</code> to the checkbox. Note: the value of this attribute must be the same as the tag added to the element(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
+	<li>Add the attribute <code>value</code> to the checkbox. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the checkbox.</li>
 </ol>
 <p>Your final checkbox should look like this:</p>
-<pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="myTag" /&gt;</code></pre>
+<pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="myTag" /></code></pre>
 
 <h4>For radio buttons</h4>
 <ol>
 	<li>Create your radio button. <strong>The attribute <code>name</code> is mandatory for radio buttons</strong>.</li>
-	<li>Add the attribute <code>value</code> to the radio button. Note: the value of this attribute must be the same as the tag added to the element(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
+	<li>Add the attribute <code>value</code> to the radio button. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the radio button.</li>
 </ol>
 <p>Your final radio button should look like this:</p>
-<pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="myTag" /&gt;</code></pre>
+<pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="myTag" /></code></pre>
 
 <h4>For dropdowns</h4>
 <ol>
 	<li>Create your dropdown with your default option. <strong>The attribute <code>name</code> is mandatory for dropdowns</strong>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the dropdown.</li>
-	<li>Add your other options and define the attribute <code>value</code>. Note: the value of this attribute must be the same as the tag added to the element(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
+	<li>Add your other options and define the attribute <code>value</code>. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 </ol>
 <p>Your final dropdown should look like this:</p>
-<pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl"&gt;
-	&lt;option value=""&gt;All&lt;/option&gt;
-	&lt;option value="myTag"&gt;My tag&lt;/option&gt;
-	&lt;option value="myTag2"&gt;My tag 2&lt;/option&gt;
-	&lt;option value="myTag3"&gt;My tag 3&lt;/option&gt;
-&lt;/select&gt;</code></pre>
-<p><strong>Note:</strong> add an empty <code>value</code> to your default option in order to show all elements.</p>
+<pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
+	&lt;option value="">All&lt;/option>
+	&lt;option value="myTag">My tag&lt;/option>
+	&lt;option value="myTag2">My tag 2&lt;/option>
+	&lt;option value="myTag3">My tag 3&lt;/option>
+&lt;/select></code></pre>
+<p><strong>Note:</strong> add an empty <code>value</code> to your default option in order to show all items.</p>
+
+<h3>Add your no result element</h3>
+<p>Optionally, you can add an element that will show when there are no item visible. Identify this element with the CSS class <code>wb-tagfilter-noresult</code>.</p>
+<p>This element needs to be added <strong>directly</strong> after the items wrapper (<code>.wb-tagfilter-items</code>).</p>
+<p>For example:</p>
+<pre><code>&lt;ul class="wb-tagfilter-items">
+	&lt;li data-wb-tags="tag1">Item 1&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 2&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 3&lt;/li>
+	&lt;li data-wb-tags="tag2">Item 4&lt;/li>
+	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
+	...
+&lt;/ul>
+&lt;div class="wb-tagilfter-noresult">
+	&lt;p>No item match this combination of filters.&lt;/p>
+&lt;/div></code></pre>
 
 <h3>Essential component behavior</h3>
 <ul>
@@ -90,4 +106,4 @@
 </ul>
 
 <h3>Notes</h3>
-<p>For semantic purposes, every logical group of filters should be wrapped by a <code>&lt;fieldset&gt;</code> element.</p>
+<p>For semantic purposes, every logical group of filters should be wrapped by a <code>&lt;fieldset></code> element.</p>
