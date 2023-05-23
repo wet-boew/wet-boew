@@ -216,7 +216,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 } );
 
 // Identify that initialization has completed
-$document.on( "init.dt", function( event ) {
+$document.on( "init.dt ", ".wb-tables", function( event ) {
 	var $elm = $( event.target ),
 		settings = $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) );
 
