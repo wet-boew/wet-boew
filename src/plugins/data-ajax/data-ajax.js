@@ -230,6 +230,19 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 	return true;
 } );
 
+// Re-run WET for elements that have just been loaded if WET is already done initializing
+$document.on( contentUpdatedEvent, function( event ) {
+	if ( wb.isReady && !wb.isDisabled ) {
+		let updtElm = event.currentTarget;
+
+		$( updtElm )
+			.find( wb.allSelectors )
+			.addClass( "wb-init" )
+			.filter( ":not(#" + updtElm.id + " .wb-init .wb-init)" )
+			.trigger( "timerpoke.wb" );
+	}
+} );
+
 // Add the timerpoke to initialize the plugin
 for ( s = 0; s !== selectorsLength; s += 1 ) {
 	wb.add( selectors[ s ] );
