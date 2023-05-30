@@ -990,6 +990,7 @@ module.exports = (grunt) ->
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
+						"The text content of element “time” was not in the required format: The literal did not satisfy the time-datetime format."
 					]
 				src: [
 					"dist/unmin/**/reports/*.html"

@@ -1,0 +1,202 @@
+---
+{
+	"layout": "default.hbs"
+}
+---
+
+{{#if page.description }}
+	<p property="description">{{ page.description }}</p>
+{{/if}}
+
+{{>body}}
+
+<nav>
+	<h2>On this page</h2>
+	<ul>
+		<li><a href="#summary">Summary</a></li>
+		<li><a href="#acr">Assessement details</a></li>
+	</ul>
+</nav>
+
+<div id="ds-a11y" data-wb-jsonmanager='{
+	"url": [
+		"../../acr/demo-wcag21/labels.json",
+		"{{ page.reportURL }}"
+	],
+	"name": "a11y",
+	"patches": [
+		{ "op": "wb-swap", "path": "/acr:standard", "ref": "/labels/acr:ConformanceStandard/en" },
+		{ "op": "wb-swap", "path": "/acr:conformanceOption", "ref": "/labels/acr:ConformanceOption/en" },
+		{ "op": "wb-swap", "path": "/acr:involvesExpertise", "ref": "/labels/acr:Topic/en" },
+		{
+			"op": "patches", "path": "/earl:result", "patches": [
+				{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/en" },
+				{ "op": "wb-swap", "path": "/earl:outcome", "ref": "/labels/earl:OutcomeValue/en" },
+				{ "op": "wb-swap", "path": "/earl:mode", "ref": "/labels/earl:TestMode/en" },
+				{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/en" },
+				{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/en" },
+				{
+					"op": "patches", "path": "/earl:result", "patches": [
+						{ "op": "wb-swap", "path": "/earl:test", "ref": "/labels/earl:TestCriterion/en" },
+						{ "op": "wb-swap", "path": "/earl:outcome", "ref": "/labels/earl:OutcomeValue/en" },
+						{ "op": "wb-swap", "path": "/acr:relevancy", "ref": "/labels/acr:RelevancyValue/en" },
+						{ "op": "wb-swap", "path": "/acr:severity", "ref": "/labels/acr:SeverityValue/en" }
+					]
+				}
+			]
+		}
+	]
+}'></div>
+
+<h2 id="summary">Summary</h2>
+<p>This is an informal assessment based on an accessibility testing rule set. It cannot be seen as an accessibility conformance report. The latter is published separately from the assessment and only indicates if the requirements are satisfied, not satisfied, or if further testing is needed as specified by establishing the conformity described in WCAG 2.1. This assessment can contain false positives, false negatives, or be accurate. The assessment interpretation, via the accessibility conformance report, can consider other independent assessments in order to establish the conformance.</p>
+
+<p>(<a href="{{ page.reportURL }}" type="application/ld+json" rel="alternate">Consult the report in its native JSON-LD format</a>)</p>
+<dl class="dl-horizontal">
+	<dt>Type</dt>
+	<dd>Accessibility assessment</dd>
+	<dt>Asserted by:</dt>
+	<dd><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/earl:mainAssertor/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#">Unknown</a> on behalf of <a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:homepage",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:assertedBy/foaf:name",
+						"type": "replace"
+					}
+
+				]' href="#" data-json-replace="#[a11y]/earl:assertedBy/foaf:name">Not Available</a></dd>
+	<dt>Date:</dt>
+	<dd data-json-replace="#[a11y]/dct:date">Not Available</dd>
+	<dt>Subject:</dt>
+	<dd>
+		<ul class="list-unstyled">
+			<li><strong>About</strong>:
+				<span><a data-wb-json='[
+
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "attr",
+						"attr": "href"
+					},
+					{
+						"url": "#[a11y]/earl:subject/dct:references",
+						"type": "replace"
+					}
+
+				]' href="#">Not Defined</a></span>
+			</li>
+			<li><strong>Applicability</strong>:
+				<span data-json-replace="#[a11y]/earl:subject/dct:description">Not defined</span>
+			</li>
+			<li><strong>CSS selector</strong>:
+				<code data-json-replace="#[a11y]/earl:subject/earl:pointer/@value">Not applicable</code>
+			</li>
+		</ul>
+		<details>
+			<summary>Subpart of the subject and expertise field involvment</summary>
+			<p>List of subparts that might be assessed independently of the main identified subject. For example: a menu, an image, a video... Note: the following list may be empty if not applicable.</p>
+			<ul data-wb-json='{
+					"url": "#[a11y]/earl:subject/dct:hasPart",
+					"mapping": [
+						{ "selector": "[data-about]", "value": "/dct:description" },
+						{ "selector": "[data-css]", "value": "/earl:pointer/@value" }
+					]
+				}'>
+				<template>
+					<li><span data-about></span> (CSS selector: <code data-css>Not applicable</code>)</li>
+				</template>
+			</ul>
+			<p>Suggested list of expertise topics that might need to be involved in the subject assessment in order to produce a complete accessibility conformance report. Note: the following list may be empty if not applicable.</p>
+			<ul data-wb-json='{
+					"url": "#[a11y]/acr:involvesExpertise",
+					"mapping": { "selector": "[data-expertise]" }
+				}'>
+				<template>
+					<li><span data-expertise></span></li>
+				</template>
+			</ul>
+		</details>
+	</dd>
+	<dt>Toward a conformity at:</dt>
+	<dd><span data-json-replace="#[a11y]/acr:standard">Not specified</span> (Option: <span data-json-replace="#[a11y]/acr:conformanceOption">Not specified</span>)</dd>
+	<dt>Summary:</dt>
+	<dd data-json-replace="#[a11y]/dct:description">No note</dd>
+</dl>
+
+<h2 id="acr">Assessment details</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th class="col-md-3">Success Criteria</th>
+			<th class="col-md-2">Result</th>
+			<th>Comment</th>
+		</tr>
+	</thead>
+	<tbody data-wb-json='{
+		"url": "#[a11y]/earl:result",
+		"tobeclone": "tr",
+		"source": "#tmpl-result",
+		"mapping": [
+			{ "selector": "[data-label]", "value": "/earl:test" },
+			{ "selector": "[data-outcome]", "value": "/earl:outcome" },
+			{ "selector": "[data-applicability]", "value": "/earl:subject/dct:description" },
+			{ "selector": "[data-notes]", "value": "/dct:description" },
+			{ "selector": "[data-mode]", "value": "/earl:mode" },
+			{ "selector": "[data-severity]", "value": "/acr:severity" },
+			{ "selector": "[data-relevancy]", "value": "/acr:relevancy" },
+			{
+				"selector": "[data-specific-results]",
+				"value": "/earl:result",
+				"mapping": [
+					{ "selector": "[data-result-label]", "value": "/earl:test" },
+					{ "selector": "[data-result-outcome]", "value": "/earl:outcome" },
+					{ "selector": "[data-result-severity]", "value": "/acr:severity" },
+					{ "selector": "[data-result-relevancy]", "value": "/acr:relevancy" },
+					{ "selector": "[data-result-notes", "value": "/dct:description" }
+				]
+			}
+		]
+	}'>
+	</tbody>
+</table>
+
+<template id="tmpl-result">
+	<table>
+		<tr>
+			<th data-label></th>
+			<td><span data-outcome></span></td>
+			<td>
+				<p><strong>Applicability</strong>: <span data-applicability>As defined</span></p>
+				<ul class="list-inline clearfix">
+					<li>Test mode: <span data-mode>Unknown</span></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Severity: <span data-severity>Not specified</span></li>
+					<li class="pull-right clr-rght-md clr-rght-lg">Relevance: <span data-relevancy>Not specified</span></li>
+				</ul>
+				<p data-notes></p>
+				<dl data-specific-results>
+					<template>
+						<dt data-result-label></dt>
+						<dd>( <em data-result-outcome></em> <span data-result-severity></span> <span data-result-relevancy></span> ) <span data-result-notes></span></dd>
+					</template>
+				</dl>
+			</td>
+		</tr>
+	</table>
+</template>
+<p>Note: Based on the following ruleset: <code data-json-replace="#[a11y]/dct:source">Not available</code></p>
