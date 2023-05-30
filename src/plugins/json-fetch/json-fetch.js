@@ -19,17 +19,23 @@ var $document = wb.doc,
 	fetchEvent = component + ".wb",
 	jsonCache = { },
 	jsonCacheBacklog = { },
-	completeJsonFetch = function( callerId, refId, response, status, xhr, selector ) {
+	completeJsonFetch = function( callerId, refId, response, status, xhr, selector, fetchedOpts ) {
 		if ( !window.jsonpointer ) {
 
 			// JSON pointer library is loaded but not executed in memory yet, we need to wait a tick before to continue
 			setTimeout( function() {
-				completeJsonFetch( callerId, refId, response, status, xhr, selector );
+				completeJsonFetch( callerId, refId, response, status, xhr, selector, fetchedOpts );
 			}, 100 );
 			return false;
 		}
 		if ( selector ) {
-			response = jsonpointer.get( response, selector );
+			try {
+				response = jsonpointer.get( response, selector );
+			} catch ( ex ) {
+				console.error( "JSON fetch - Bad JSON selector: " + selector );
+				console.error( response );
+				console.error( $( "#" + callerId ).get( 0 ) );
+			}
 		}
 		$( "#" + callerId ).trigger( {
 			type: "json-fetched.wb",
@@ -37,7 +43,8 @@ var $document = wb.doc,
 				response: response,
 				status: status,
 				xhr: xhr,
-				refId: refId
+				refId: refId,
+				fetchedOpts: fetchedOpts
 			}
 		}, this );
 	};
@@ -120,7 +127,7 @@ $document.on( fetchEvent, function( event ) {
 					cachedResponse = jsonCache[ url ];
 
 					if ( cachedResponse ) {
-						completeJsonFetch( callerId, refId, cachedResponse, "success", undefined, selector );
+						completeJsonFetch( callerId, refId, cachedResponse, "success", undefined, selector, fetchOpts );
 						return;
 					} else {
 						if ( !jsonCacheBacklog[ url ] ) {
@@ -167,7 +174,7 @@ $document.on( fetchEvent, function( event ) {
 							}
 						}
 
-						completeJsonFetch( callerId, refId, response, status, xhr, selector );
+						completeJsonFetch( callerId, refId, response, status, xhr, selector, fetchOpts );
 
 						if ( jsonCacheBacklog[ url ] ) {
 							backlog = jsonCacheBacklog[ url ];
@@ -176,7 +183,7 @@ $document.on( fetchEvent, function( event ) {
 
 							for ( i = 0; i !== i_len; i += 1 ) {
 								i_cache = backlog[ i ];
-								completeJsonFetch( i_cache.callerId, i_cache.refId, response, status, xhr, i_cache.selector );
+								completeJsonFetch( i_cache.callerId, i_cache.refId, response, status, xhr, i_cache.selector, fetchOpts );
 							}
 						}
 
@@ -188,7 +195,8 @@ $document.on( fetchEvent, function( event ) {
 								xhr: xhr,
 								status: status,
 								error: error,
-								refId: refId
+								refId: refId,
+								fetchOpts: fetchOpts
 							}
 						}, this );
 					}, this );

@@ -291,6 +291,11 @@
 						<dd>The url is a reference to a dataset managed by a json-manager defined in the same page.</dd>
 						<dt><code>data-wb-jsonmanager='{ "url": [ "location/of/json/file.json#/", "[datasetName]#/" ] }'</code></dt>
 						<dd>The url is a json file and a reference to a dataset managed by a json-manager defined in the same page. The dataset will be a combination of both references.</dd>
+						<dt><code>data-wb-jsonmanager='{ "url": {Url fetch object} }'</code></dt>
+						<dd>
+							<p>An object defining advanced configuration on how to fetch and merge the file specified by the URL into the JSON manager.</p>
+							<p>There is more details in the <a href="#urlobj">section below</a>.</p>
+						</dd>
 					</dl>
 				</td>
 			</tr>
@@ -493,6 +498,34 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<h3 id="urlobj">URL advanced configuration (Url fetch object)</h3>
+	<p>An object representing the URL to be fetch with some advanced configuration on how to fetch and merge the file specified by the URL into the JSON manager.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th class="col-md-6">How to configure</th>
+				<th>Values and clarification</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>url</code></td>
+				<td><code>{ "url": "location/of/json/file.json#/" &hellip;}</code> or <code>{ "url": "[datasetName]#/" &hellip;}</code></td>
+				<td>
+					<p><strong>Required</strong>. Define the url or the dataset name to use. When used in a template mode, the URL should point to an array object.</p>
+					<p>You can follow the url or the dataset name by a <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a>. The value can be either a string or an array of strings. If all references are arrays, the arrays will be concatenated into one array. If all references are objects, the objects will be extended into a single object. If there are references of multiple types, the plugin will throw an error.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><code>path</code></td>
+				<td><code>{ "url": "location/of/json/file.json#/", "path": "/JSON Pointer" }</code></td>
+				<td>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a> to where the data would be inserted. It's must start with an "/".</td>
+			</tr>
+		</tbody>
+	</table>
+
 	<h3 id="evalobj">Filtering (evaluation object)</h3>
 	<p>The path selector must point to an valid JSON array object. All the option presented in the table bellow can be combined.</p>
 	<p>The configuration option <code>fpath</code> <strong>must be set</strong> in the JSON manager configuration in order to apply any filtering.</p>

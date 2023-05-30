@@ -517,6 +517,92 @@
 }</code></pre>
 </details>
 
+<h3>Exemple 3</h3>
+<p>Cet exemple démontre une configuration avancée pour le chargement de fichiers sources multiples, avec la possibilité de spécifier l'emplacement de l'insertion du contenu dans l'ensemble de données du gestionnaire JSON.</p>
+
+<div data-wb-jsonmanager='{
+	"name": "mappingDataSource",
+	"url": [
+		"demo/data-fr.json",
+		{
+			"url": "demo/data-en.json#/products",
+			"path": "/english/list"
+		}
+	]
+}'></div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Liste des produits français</p>
+		<ul data-wb-json='{
+			"url": "#[mappingDataSource]/produits",
+			"mapping": [
+				{ "selector": "li" }
+			]
+		}'>
+			<template>
+				<li></li>
+			</template>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Liste des produits anglais</p>
+		<ul lang="en" data-wb-json='{
+			"url": "#[mappingDataSource]/english/list",
+			"mapping": [
+				{ "selector": "li" }
+			]
+		}'>
+			<template>
+				<li></li>
+			</template>
+		</ul>
+	</div>
+</div>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;div data-wb-jsonmanager='{
+	"name": "mappingDataSource",
+	"url": [
+		"demo/data-fr.json",
+		{
+			"url": "demo/data-en.json#/products",
+			"path": "/english/list"
+		}
+	]
+}'>&lt;/div>
+
+&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Liste des produits français&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "#[mappingDataSource]/produits",
+			"mapping": [
+				{ "selector": "li" }
+			]
+		}'>
+			&lt;template>
+				&lt;li>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Liste des produits anglais&lt;/p>
+		&lt;ul lang="en" data-wb-json='{
+			"url": "#[mappingDataSource]/english/list",
+			"mapping": [
+				{ "selector": "li" }
+			]
+		}'>
+			&lt;template>
+				&lt;li>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
 <h2>Afficher des résultats à partir d'un JSON RESTful API</h2>
 
 <details>
