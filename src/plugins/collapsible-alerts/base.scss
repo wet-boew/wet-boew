@@ -22,9 +22,25 @@ details {
 			margin-right: 15px;
 			padding-left: 5px;
 
+			&.h2,
+			&.h3,
+			&.h4,
+			&.h5,
+			&.h6 {
+				color: $headings-color;
+			}
+
 			&:focus,
 			&:hover {
 				text-decoration: none;
+
+				&.h2,
+				&.h3,
+				&.h4,
+				&.h5,
+				&.h6 {
+					color: $link-hover-color;
+				}
 
 				h2,
 				h3,

@@ -4,11 +4,11 @@
  */
 .lt-ie9 {
 	details {
-		padding-left: $details-identation;
+		padding-left: $details-indentation;
 
 		> {
 			summary {
-				margin-left: -$details-identation;
+				margin-left: -$details-indentation;
 			}
 		}
 	}
@@ -16,12 +16,12 @@
 	[dir=rtl] {
 		details {
 			padding-left: 0;
-			padding-right: $details-identation;
+			padding-right: $details-indentation;
 
 			> {
 				summary {
 					margin-left: 0 !important;
-					margin-right: -$details-identation;
+					margin-right: -$details-indentation;
 				}
 			}
 		}

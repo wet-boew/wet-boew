@@ -19,19 +19,59 @@ summary {
 	}
 }
 
+%summary-goodies {
+	color: $link-color;
+	text-decoration: inherit;
+}
+
+%summary-heading-goodies {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+/*
+TODOS:
+-Give the placeholder selectors better names
+-Are any of the extends below unnecessary? Not sure if I might be overdoing it and duplicating stuff at lower levels than what's actually needed
+*/
+
 details {
 	margin-bottom: .25em;
 
 	summary {
+		@extend %summary-goodies;
 		border: 1px solid #ddd;
 		border-radius: 4px;
-		color: #295376;
 		padding: 5px 15px;
+
+		&,
+		&.h2,
+		&.h3,
+		&.h4,
+		&.h5,
+		&.h6 {
+			@extend %summary-goodies;
+			@extend %summary-heading-goodies;
+		}
+
+		&.summary-title {
+			@extend %summary-goodies;
+			@extend h3;
+			@extend %summary-heading-goodies;
+
+			h2,
+			h4,
+			h5,
+			h6 {
+				@extend h3;
+				@extend %summary-goodies;
+			}
+		}
 
 		&:focus,
 		&:hover {
 			background-color: transparent;
-			color: #0535d2;
+			color: $link-hover-color;
 			text-decoration: underline;
 		}
 
