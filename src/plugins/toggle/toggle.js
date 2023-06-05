@@ -220,7 +220,9 @@ var componentName = "wb-toggle",
 		var $link = $( event.currentTarget );
 
 		$link.trigger( toggleEvent, $link.data( "toggle" ) );
-		event.preventDefault();
+		if ( $link.attr( "type" ) !== "checkbox" ) {
+			event.preventDefault();
+		}
 
 		// Assign focus to eventTarget
 		$link.trigger( setFocusEvent );
@@ -474,12 +476,15 @@ $document.on( "keydown", selectorTab, function( event ) {
 		data, $elm, $parent, $group, $newPanel, index;
 
 	if ( !event.ctrlKey && which > 34 && which < 41 ) {
-		event.preventDefault();
 		$elm = $( event.currentTarget );
 		data = $elm.data( "toggle" );
 		$parent = $document.find( data.parent );
 		$group = $parent.find( data.group );
 		index = $group.index( $elm.parent() );
+
+		if ( $elm.attr( "type" ) !== "checkbox" ) {
+			event.preventDefault();
+		}
 
 		switch ( which ) {
 
