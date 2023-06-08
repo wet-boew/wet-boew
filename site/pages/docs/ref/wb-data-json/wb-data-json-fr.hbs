@@ -37,11 +37,13 @@
 	<ul>
 		<li><a href="../../../demos/wb-data-json/data-json-en.html">Data JSON</a></li>
 		<li><a href="../../../demos/wb-data-json/template-en.html">HTML 5 template</a></li>
+		<li><a href="../../../demos/wb-data-json/conditional-en.html">Conditional template</a></li>
 	</ul>
 	<p>French:</p>
 	<ul>
 		<li><a href="../../../demos/wb-data-json/data-json-fr.html" hreflang="fr">Data JSON</a></li>
 		<li><a href="../../../demos/wb-data-json/template-fr.html" hreflang="fr" lang="fr">Gabarit HTML 5</a></li>
+		<li><a href="../../../demos/wb-data-json/conditional-fr.html" hreflang="fr" lang="fr">Gabarit conditionel</a></li>
 	</ul>
 </section>
 <section>
@@ -270,7 +272,7 @@
 <section>
 <h2 id="jsonObjToArr">Template - Transforming JSON object into an array</h2>
 
-<p>Since WET 4.0.27 it is now possible to iterate anything that is not an array to render content through a <code>&lt;template&gt;</code>. It simply get transformed into a array. There is a low risk of lost of information, only one specific use case. It's quite similar to the JSON-LD Expanded Form. In this transformation process, it assume the array key is an IRI. Then the will result include some property from JSON-LD such as <code>@id</code> and <code>@value</code>. The <code>@id</code> wont be overwritten, in those such case the array key will be discard after the transformation.</p>
+<p>Since WET 4.0.27 or without the <code>streamline</code> flag since WET 4.0.64 it is possible to iterate anything that is not an array to render content through a <code>&lt;template&gt;</code>. It simply get transformed into a array. There is a low risk of lost of information, only one specific use case. It's quite similar to the JSON-LD Expanded Form. In this transformation process, it assume the array key is an <a href="https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>. Then the will result include some property from JSON-LD such as <code>@id</code> and <code>@value</code>. The <code>@id</code> wont be overwritten, in those such case the array key will be discard after the transformation.</p>
 
 <h3>When the value is a sub-object</h3>
 <div class="row">
@@ -424,6 +426,60 @@
 <h2>Cache busting</h2>
 <p>Before to use the cache busting mechanism with your data json instance, it's highly recommended to configure your server properly instead.</p>
 <p>Various strategy can be set on the server side and those are communicated to the browser through an http header as defined in <a href="https://tools.ietf.org/html/rfc7234#section-5">section 5 of RFC7234</a>.</p>
+</section>
+
+<section>
+<h2 id="test-function">Test functions that extract a testable value</h2>
+<p>Those test require a data pointer either provided with the <code>value</code> property which would also iterate or with <code>assess</code> which don't iterate.</p>
+
+<dl class="dl-horizontal">
+	<dt><code>fn:isArray</code></dt>
+	<dd>Boolean returning if the tested value is an array or not.</dd>
+
+	<dt><code>fn:isLiteral</code></dt>
+	<dd>Boolean returning if the tested value is an literal or not. A literal value is considered to be defined and not an object.</dd>
+
+	<dt><code>fn:getType</code></dt>
+	<dd>Return type of the value set via the <code>@type</code> property or its corresponding javascript typeof value.</dd>
+
+	<dt><code>fn:guessType</code></dt>
+	<dd>
+		<p>The template parser will try to guess the data type of the tested value.</p>
+		<p>This test function will return:</p>
+		<ul>
+			<li><code>rdfs:Container</code> when the value is an array.</li>
+			<li><code>rdfs:Literal</code> for any value that is literal. A literal value is considered to be defined and not an object.</li>
+			<li><code>rdfs:Resource</code> when the value is an JSON object without any defined type.</li>
+			<li><code>xsd:anyURI</code> when the value is a string which start with non-spaced letter and digit immediately followed by colon ":" like <code>https://example.com</code></li>
+			<li><code>xsd:string</code> when the value is a string and don't look to be an URI.</li>
+			<li><code>xsd:boolean</code> when the value is a boolean with the value set to <code>true</code> or <code>false</code></li>
+			<li><code>xsd:double</code> when the value is a JSON number</li>
+			<li>The value set via the <code>@type</code> sub property</li>
+			<li><code>undefined</code> when the value is undefined</li>
+		</ul>
+	</dd>
+
+	<dt><code>fn:getValue</code></dt>
+	<dd>Return value as the testable value.</dd>
+</dl>
+</section>
+
+<section>
+<h2 id="operand-function">Operand function</h2>
+<p>Operand functions that check the testable value.</p>
+
+<dl class="dl-horizontal">
+	<dt><code>softEq</code> (default)</dt>
+	<dd>Check if the value is <strong>equivalent equal</strong> to the expectation optionally either in an array value. When no expectation provide, return true if the testable value exist.</dd>
+	<dt><code>eq</code></dt>
+	<dd>Check if the value <strong>equal</strong> the expectation. Including when the value is an object.</dd>
+	<dt><code>neq</code></dt>
+	<dd>Check if the value is <strong>not equal</strong> the expectation. Including when the value is an object.</dd>
+	<dt><code>in</code></dt>
+	<dd>Check if the value (or array of value) <strong>is in</strong> the expectation (or array of expectation)</dd>
+	<dt><code>nin</code></dt>
+	<dd>Check if the value (or array of value) <strong>is not in</strong> the expectation (or array of expectation)</dd>
+</dl>
 </section>
 
 <section>
@@ -608,6 +664,12 @@
 		<td>JQuery selector that represent the template element on the current page.</td>
 	</tr>
 	<tr>
+		<td><code>streamline</code></td>
+		<td>Template only. Indicate not to initiate the process of iterating the data and instead execute the mapping object directly</td>
+		<td><code>data-wb-json='{ "url": "", "streamline": true|false }'</code></td>
+		<td>JQuery selector that represent the template element on the current page.</td>
+	</tr>
+	<tr>
 		<td><code>mapping</code></td>
 		<td>Template only. Array of string represeting a JSON pointer or object where it specify how to bind the data with the template content. If the configuration <code>queryall</code> is used, the number of items in the mapping must match the number of returning result of the queryall. In the other hand, if <code>queryall</code> configuration is not specified, than each mapping object must define a <code>selector</code> configuration.</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ "JSON Pointer", "JSON Pointer" ] }'</code> or <code>data-wb-json='{ "url": "", "mapping": [ {mapping object}, {mapping object} ] }'</code></td>
@@ -646,6 +708,48 @@
 		<td>Template only, for mapping object and optional when <code>queryall</code> is not specified. Flag indicating if the content to be mapped is a string HTML.</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ { "isHTML": "true" } ] }'</code></td>
 		<td>A valid attribute of the selected element.</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>test</code></td>
+		<td>Test functions that extract a testable value. It requires a JSON pointer provided by either the mapping property <code>assess</code> or <code>value</code>.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "test": "Test-Technical-Name" } ] }'</code></td>
+		<td>A valid technical test name like <code>fn:guessType</code>. See the <a href="#test-function">predefined list of test function</a></td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>assess</code></td>
+		<td>(JSON Pointer) This the value to take for performing the conditional evaluation. Alternatively, it will take the value from the <code>value</code> property. Another difference is the <code>assess</code> would not be iterated compared to <code>value</code> which would be iterated for the inner mapping.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "assess": "A JSON Pointer", "test": "Test-Technical-Name" } ] }'</code></td>
+		<td>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a></td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>expect</code></td>
+		<td>The value which is going to be compared by the operand. If not provided it will use the trueness state of the testable value return by the test function.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "expect": "A value", "assess": "A JSON Pointer", "test": "Test-Technical-Name" } ] }'</code></td>
+		<td>A string or an JSON object use for comparison by the operand.</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>operand</code></td>
+		<td>Operand functions that evaluate the testable value against the expected value.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "operand": "Operand-Technical-Name", "assess": "A JSON Pointer", "test": "Test-Technical-Name" } ] }'</code></td>
+		<td>A valid operand name like <code>fn:eq</code>. See the <a href="#operand-function">predefined list of operand function</a></td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>@type</code></td>
+		<td>Mapping function to use in order to process the data and the configuration.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "@type": "rdf:Alt", "mapping": [ ... ] } ] }'</code></td>
+		<td>
+			<dl>
+				<dt><code>rdf:Alt</code></dt>
+				<dd>Allow to configure a list of mapping where it's going to execute only the first children passing its test condition. The rdf:Alt type require the mapping property <code>mapping</code>.</dd>
+			</dl>
+
+		</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>append</code></td>
+		<td>Force the content created via the template to be append from the template parent element instead of being inserted in-place.</td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "append": "true" } ] }'</code></td>
+		<td>Boolean indicating if the content need to be append.</td>
 	</tr>
 	<tr>
 		<td><code>appendto</code></td>

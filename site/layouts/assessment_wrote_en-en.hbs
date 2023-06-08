@@ -170,6 +170,111 @@
 					{ "selector": "[data-result-relevancy]", "value": "/acr:relevancy" },
 					{ "selector": "[data-result-notes", "value": "/dct:description" }
 				]
+			},
+			{
+				"@type": "rdf:Alt",
+				"mapping": [
+					{
+						"test": "fn:isLiteral",
+						"assess": "/acr:asset",
+						"mapping": [
+							{
+								"@type": "rdf:Alt",
+								"mapping": [
+									{
+										"template": "[data-asset-literal]",
+										"test": "fn:guessType",
+										"value": "/acr:asset",
+										"expect": "xsd:anyURI",
+										"mapping": [
+											{ "selector": "a", "value": "/acr:asset", "attr": "href" }
+										]
+									},
+									{
+										"template": "[data-asset-code]",
+										"test": "fn:guessType",
+										"value": "/acr:asset",
+										"expect": "xsd:string",
+										"mapping": [
+											{ "selector": "code", "value": "/acr:asset" }
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"template": "[data-asset-image]",
+						"test": "fn:guessType",
+						"assess": "/acr:asset",
+						"expect": "acr:AttachmentImage",
+						"mapping": [
+							{ "selector": "img", "value": "/acr:asset/acr:content/@value", "attr": "src" },
+							{ "selector": "a", "value": "/acr:asset/acr:content/@value", "attr": "href" },
+							{ "selector": "img", "value": "/acr:asset/dct:title", "attr": "alt" }
+
+						]
+					},
+					{
+						"template": "[data-asset-literal]",
+						"test": "fn:guessType",
+						"value": "/acr:asset",
+						"expect": "xsd:anyURI",
+						"mapping": [
+							{ "selector": "a", "value": "/acr:asset", "attr": "href" }
+						]
+					},
+					{
+						"template": "[data-asset-code]",
+						"test": "fn:guessType",
+						"value": "/acr:asset",
+						"expect": "xsd:string",
+						"mapping": [
+							{ "selector": "code", "value": "/acr:asset" }
+						]
+					},
+					{
+						"about": "When the value is an array of items",
+						"template": "[data-asset-array]",
+						"test": "fn:isArray",
+						"value": "/acr:asset",
+						"mapping": [
+								{
+									"template": "[data-download-link]",
+									"test": "fn:guessType",
+									"value": "/",
+									"expect": "xsd:anyURI",
+									"append": true,
+									"mapping": [
+										{ "selector": "a", "value": "/@value", "attr": "href" }
+									]
+								},
+								{
+									"template": "[data-source-code]",
+									"test": "fn:guessType",
+									"value": "/",
+									"expect": "xsd:string",
+									"append": true,
+									"mapping": [
+										{ "selector": "code", "value": "/@value" }
+									]
+								},
+								{
+									"template": "[data-asset-image]",
+									"test": "fn:guessType",
+									"value": "/",
+									"expect": "acr:AttachmentImage",
+									"append": true,
+									"mapping": [
+										{ "selector": "img", "value": "/acr:content/@value", "attr": "src" },
+										{ "selector": "a", "value": "/acr:content/@value", "attr": "href" },
+										{ "selector": "img", "value": "/dct:title", "attr": "alt" }
+
+									]
+								}
+						]
+					}
+				]
 			}
 		]
 	}'>
@@ -189,6 +294,33 @@
 					<li class="pull-right clr-rght-md clr-rght-lg">Relevance: <span data-relevancy>Not specified</span></li>
 				</ul>
 				<p data-notes></p>
+				<template data-asset-literal>
+					<p><a href download>Download attachment</a></p>
+				</template>
+				<template data-asset-code>
+					<pre><code></code></pre>
+				</template>
+				<template data-asset-image data-proofer-ignore>
+					<p>Image (<a href download>Download</a>):</p>
+					<img class="img-responsive" src="" alt lang="en">
+				</template>
+				<template data-asset-array>
+					<p>Attachments:</p>
+					<ul>
+						<template data-download-link>
+							<li><a href download>Download attachment</a></li>
+						</template>
+						<template data-source-code>
+							<li><pre><code></code></pre></li>
+						</template>
+						<template data-asset-image data-proofer-ignore>
+							<li>
+								<p>Image (<a href download>Download</a>):</p>
+								<img class="img-responsive" src="" alt lang="en">
+							</li>
+						</template>
+					</ul>
+				</template>
 				<dl data-specific-results>
 					<template>
 						<dt data-result-label></dt>
