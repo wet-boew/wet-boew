@@ -11,6 +11,8 @@
 }
 ---
 
+<div class="wb-prettify all-pre hide"></div>
+
 <p>Cette page présente certaines fonctionnalités utilitaires wet-boew, y compris certaines intégrations à partir de Bootstrap 4 telles que: <code>p-0</code>, <code>pl-2</code>, <code>text-white</code> et autres.</p>
 <p>Veuillez noter que certaines classes rétroportées de Bootstrap 4 ont été ajustées pour suivre les points d'arrêt de vue de Bootstrap 3.4. Par exemple, la largeur minimale de la petite (<code>sm</code>) vue est 768px dans Bootstrap 3.4, par rapport à 576px dans Boostrap 4.</p>
 
@@ -493,19 +495,55 @@
 <h4>Exemple pratique</h4>
 <div class="row">
 	<div class="col-md-4">
-		<h3 class="h5"><a href="#" class="stretched-link">[Lien hypertexte]</a></h3>
-		<img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		<section>
+			<img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+			<h3 class="h5"><a href="#" class="stretched-link">[Lien hypertexte]</a></h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</section>
+	</div>
+	<div class="col-md-4">
+		<section class="panel panel-default position-relative">
+			<header class="panel-heading">
+				<h3 class="panel-title"><a href="#" class="stretched-link">[Lien hypertexte]</a></h3>
+			</header>
+			<div class="panel-body">
+				<img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-md-4">
+		<section class="well position-relative">
+			<img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+			<h3 class="h5"><a href="#" class="stretched-link">[Lien hypertexte]</a></h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</section>
 	</div>
 </div>
 <h4>Exemple de code</h4>
-<pre><code>&lt;div class="row"&gt;
-	&lt;div class="col-md-4"&gt;
-		&lt;h3 class="h5"&gt;&lt;a href="#" class="<strong>stretched-link</strong>"&gt;[Lien hypertexte]&lt;/a&gt;&lt;/h3&gt;
-		&lt;img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm"&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre><code>&lt;div class="row">
+	&lt;div class="col-md-4">
+		&lt;img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+		&lt;h3 class="h5">&lt;a href="#" class="stretched-link">[Lien hypertexte]&lt;/a>&lt;/h3>
+		&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p>
+	&lt;/div>
+	&lt;div class="col-md-4">
+		&lt;div class="panel panel-default position-relative">
+			&lt;div class="panel-body">
+				&lt;img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+				&lt;h3 class="h5">&lt;a href="#" class="stretched-link">[Lien hypertexte]&lt;/a>&lt;/h3>
+				&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;div class="col-md-4">
+		&lt;div class="well position-relative">
+			&lt;img src="https://via.placeholder.com/360x203/000000/FFFFFF.png" alt="" class="img-responsive thumbnail mrgn-bttm-sm">
+			&lt;h3 class="h5">&lt;a href="#" class="stretched-link">[Lien hypertexte]&lt;/a>&lt;/h3>
+			&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p>
+		&lt;/div>
+	&lt;/div>
+&lt;/div></code></pre>
 
 <h3><code>test-textSpacing</code></h3>
 <div class="test-textSpacing">

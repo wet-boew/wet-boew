@@ -38,6 +38,17 @@ button {
 }
 
 /*
+Panels
+ */
+.panel, .well {
+	&:not(:has(.panel, .well)) {
+		&:has(.stretched-link):hover, &:has(.stretched-link:focus) {
+			box-shadow: 1px 5px 7px rgba(0,0,0,.15);
+		}
+	}
+}
+
+/*
 Miscellaneous Utiliy CSS
  */
 .max-content {
