@@ -132,7 +132,7 @@ var componentName = "wb-filter",
 				uiNbItems.textContent = totalEntries;
 
 				itemsObserver = new MutationObserver( function() {
-					uiNbItems.textContent = $elm.find( secSelector + notFilterClassSel + settings.selector ).length;
+					uiNbItems.textContent = $elm.find( secSelector + settings.selector + notFilterClassSel ).length;
 				} );
 
 				itemsObserver.observe( elm, { attributes: true, subtree: true } );
