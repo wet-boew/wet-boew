@@ -48,7 +48,7 @@ var componentName = "wb-disable",
 			}
 
 			try {
-				if ( wb.isDisabled || ( wb.ie && wb.ielt7 ) ) {
+				if ( wb.isDisabled || wb.ie ) {
 					$html.addClass( "wb-disable" );
 
 					try {

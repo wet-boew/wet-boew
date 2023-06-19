@@ -38,7 +38,7 @@
 ### Interoperability
 
 * [HTML5](https://www.w3.org/TR/html5/)-first approach (leveraging native HTML5 support and filling support gaps with “polyfills”)
-* Supporting a wide variety of browsers (IE, Firefox, Chrome, Safari, Opera)
+* Supporting a wide variety of browsers (Edge, Firefox, Chrome, Safari, Opera)
 * Building support for HTML data ([RDFa 1.1 Lite](https://www.w3.org/TR/rdfa-lite/), [Schema.org](https://www.schema.org/))
 
 ### Mobile friendly responsive design
@@ -157,7 +157,7 @@ The Canada wordmark and related graphics associated with this distribution are p
 ### Interopérabilité
 
 * Approche centrée sur le [HTML5](https://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
-* Soutien pour plusieurs navigateurs (IE, Firefox, Chrome, Safari, Opera)
+* Soutien pour plusieurs navigateurs (Edge, Firefox, Chrome, Safari, Opera)
 * Soutien en développement pour les données HTML ([RDFa 1.1 Lite](https://www.w3.org/TR/rdfa-lite/), [Schema.org](https://www.schema.org/))
 
 ### Conception optimisée pour les appareils mobiles et réactive

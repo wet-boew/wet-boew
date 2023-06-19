@@ -756,10 +756,6 @@ $document.on( initializedEvent, selector, function( event ) {
 
 			// Identify that initialization has completed
 			wb.ready( $this, componentName );
-		} else {
-
-			// Do nothing since IE8 support is no longer required
-			return;
 		}
 	}
 } );
