@@ -1,0 +1,116 @@
+{
+    "events": [
+        {
+            "tags": "language__english language__french location__online dayOTW_friday",
+            "title": "Demandez tout à PAC",
+            "date": "Vendredi 5 août, 2022",
+            "time": "12h à 13h",
+            "location": "En ligne",
+            "language": "Français et anglais"
+        },
+        {
+            "tags": "language__english location__vancouver dayOTW_wednesday",
+            "title": "Misez sur des opportunités",
+            "date": "Mercredi 10 août, 2022",
+            "time": "14h à 15h30",
+            "location": "Vancouver",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__ottawa dayOTW_thursday",
+            "title": "Faire affaire avec le gouvernement du Canada (Webinaire)",
+            "date": "Jeudi 11 août, 2022",
+            "time": "12h à 14h",
+            "location": "Ottawa",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__online dayOTW_friday",
+            "title": "Demandez tout à PAC",
+            "date": "Vendredi 12 août, 2022",
+            "time": "12h à 13h",
+            "location": "Online",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__ottawa dayOTW_thursday",
+            "title": "Misez sur des opportunités (Webinaire)",
+            "date": "Jeudi 18 août, 2022",
+            "time": "12h à 14h",
+            "location": "Ottawa",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__online dayOTW_friday",
+            "title": "Demandez tout à PAC",
+            "date": "Vendredi 19 août, 2022",
+            "time": "12h à 13h",
+            "location": "En ligne",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__french location__ottawa dayOTW_thursday",
+            "title": "Atelier pour s'inscrire au système d'information sur l'inscription des fournisseurs (SRI) et au Répertoire des Autochtones (IBD) pour les entreprises dirigées par des Autochtones",
+            "date": "Jeudi 25 août, 2022",
+            "time": "9h30 à 11h",
+            "location": "Ottawa",
+            "language": "Français"
+        },
+        {
+            "tags": "language__english location__ottawa location__montreal dayOTW_thursday",
+            "title": "Atelier pour s'inscrire au système d'information sur l'inscription des fournisseurs (SRI) et au Répertoire des Autochtones (IBD) pour les entreprises dirigées par des Autochtones",
+            "date": "Jeudi 25 août, 2022",
+            "time": "13h à 14h30",
+            "location": "Ottawa et Montréal",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__french location__montreal dayOTW_thursday",
+            "title": "Faire affaire avec le gouvernement du Canada",
+            "date": "Jeudi 25 août, 2022",
+            "time": "13h30 à 15h",
+            "location": "Montréal",
+            "language": "Français"
+        },
+        {
+            "tags": "language__english location__vancouver dayOTW_thursday",
+            "title": "Faire affaire avec le gouvernement du Canada",
+            "date": "Jeudi 25 août, 2022",
+            "time": "14h à 15h30",
+            "location": "Vancouver",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__online dayOTW_friday",
+            "title": "Demandez tout à PAC",
+            "date": "Vendredi 26 août, 2022",
+            "time": "12h à 13h30",
+            "location": "En ligne",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__english location__toronto dayOTW_tuesday",
+            "title": "Démystifier les marchés publics fédéraux et aperçu de l'innovation pour la défense, l'excellence et la rité (IDEaS)",
+            "date": "Mardi 30 août, 2022",
+            "time": "10h à 11h",
+            "location": "Toronto",
+            "language": "Anglais"
+        },
+        {
+            "tags": "language__french location__montreal dayOTW_tuesday",
+            "title": "Inscrivez-vous en tant que fournisseur et trouvez des opportunités sur Achatsetventes.gc.ca",
+            "date": "Mardi 30 août, 2022",
+            "time": "13h30 à 15h",
+            "location": "Montréal",
+            "language": "Français"
+        },
+        {
+            "tags": "language__english location__toronto dayOTW_wednesday",
+            "title": "Café virtuel sans rendez-vous sur l'approvisionnement fédéral",
+            "date": "Mercredi 31 août, 2022",
+            "time": "15h à 16h",
+            "location": "Toronto",
+            "language": "Anglais"
+        }
+    ]
+}

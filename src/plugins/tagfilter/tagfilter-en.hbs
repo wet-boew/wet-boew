@@ -109,77 +109,24 @@
 			</details>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-lg-9">
-			<ul class="list-unstyled events-list wb-tagfilter-items">
-				<li data-wb-tags="language__english language__french location__online dayOTW_friday">
-					<h3>Ask PAC Anything!</h3>
-					<p>Friday August 5th, 2022 | 12:00 PM to 1:00 PM</p>
-					<p><span><strong>Location:</strong> Online</span> <strong>Language</strong>: English, French</p>
-				</li>
-				<li data-wb-tags="language__english location__vancouver dayOTW_wednesday">
-					<h3>Bidding on Opportunities</h3>
-					<p>Wednesday August 10th, 2022 | 2:00 PM to 3:30 PM</p>
-					<p><span><strong>Location:</strong> Vancouver</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__ottawa dayOTW_thursday">
-					<h3>Doing business with the Government of Canada (Webinar)</h3>
-					<p>Thursday August 11th, 2022 | 12:00 PM to 2:00 PM</p>
-					<p><span><strong>Location:</strong> Ottawa</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__online dayOTW_friday">
-					<h3>Ask PAC Anything!</h3>
-					<p>Friday August 12th, 2022 | 12:00 PM to 1:00 PM</p>
-					<p><span><strong>Location:</strong> Online</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__ottawa dayOTW_thursday">
-					<h3>Bidding on opportunities (Webinar)</h3>
-					<p>Thursday August 18th, 2022 | 12:00 PM to 2:00 PM</p>
-					<p><span><strong>Location:</strong> Ottawa</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__online dayOTW_friday">
-					<h3>Ask PAC Anything!</h3>
-					<p>Friday August 19th, 2022 | 12:00 PM to 1:00 PM</p>
-					<p><span><strong>Location:</strong> Online</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__french location__ottawa dayOTW_thursday">
-					<h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses</h3>
-					<p>Thursday August 25th, 2022 | 9:30 AM to 11:00 AM</p>
-					<p><span><strong>Location:</strong> Ottawa</span> <strong>Language</strong>: French</p>
-				</li>
-				<li data-wb-tags="language__english location__ottawa location__montreal dayOTW_thursday">
-					<h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses</h3>
-					<p>Thursday August 25th, 2022 | 1:00 PM to 2:30 PM</p>
-					<p><span><strong>Location:</strong> Ottawa and Montreal</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__french location__montreal dayOTW_thursday">
-					<h3>Doing Business with the Government of Canada</h3>
-					<p>Thursday August 25th, 2022 | 1:30 PM to 3:00 PM</p>
-					<p><span><strong>Location:</strong> Montreal</span> <strong>Language</strong>: French</p>
-				</li>
-				<li data-wb-tags="language__english location__vancouver dayOTW_thursday">
-					<h3>Doing Business with the Government of Canada</h3>
-					<p>Thursday August 25th, 2022 | 2:00 PM to 3:30 PM</p>
-					<p><span><strong>Location:</strong> Vancouver</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__online dayOTW_friday">
-					<h3>Ask PAC Anything!</h3>
-					<p>Friday August 26th, 2022 | 12:00 PM to 1:30 PM</p>
-					<p><span><strong>Location:</strong> Online</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__english location__toronto dayOTW_tuesday">
-					<h3>Mythbusting Federal Government Procurement and Overview of Innovation for Defence, Excellence and rity (IDEaS) </h3>
-					<p>Tuesday August 30th, 2022 | 10:00 AM to 11:00 AM</p>
-					<p><span><strong>Location:</strong> Toronto</span> <strong>Language</strong>: English</p>
-				</li>
-				<li data-wb-tags="language__french location__montreal dayOTW_tuesday">
-					<h3>Register as supplier and find opportunities on BuyAndSell.gc.ca</h3>
-					<p>Tuesday August 30th, 2022 | 1:30 PM to 3:00 PM</p>
-					<p><span><strong>Location:</strong> Montreal</span> <strong>Language</strong>: French</p>
-				</li>
-				<li data-wb-tags="language__english location__toronto dayOTW_wednesday">
-					<h3>Federal Procurement Virtual Drop-in Café</h3>
-					<p>Wednesday August 31th, 2022 | 3:00 PM to 4:00 PM</p>
-					<p><span><strong>Location:</strong> Toronto</span> <strong>Language</strong>: English</p>
-				</li>
+			<ul class="list-unstyled events-list wb-tagfilter-items" data-wb-json='{
+				"url": "data_en.json#/events",
+				"mapping": [
+					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
+					{ "selector": "h3", "value": "/title" },
+					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": ".event-time", "value": "/time" },
+					{ "selector": ".event-location", "value": "/location" },
+					{ "selector": ".event-language", "value": "/language" }
+				]
+			}'>
+				<template>
+					<li data-wb-tags="">
+						<h3></h3>
+						<p><span class="event-date"></span> | <span class="event-time"></span></p>
+						<p><strong>Location:</strong> <span class="event-location"></span>, <strong>Language</strong>: <span class="event-language"></span></p>
+					</li>
+				</template>
 			</ul>
 		</div>
 	</div>
@@ -265,77 +212,24 @@
 			&lt;/details>
 		&lt;/div>
 		&lt;div class="col-xs-12 col-sm-8 col-lg-9">
-			&lt;ul class="list-unstyled events-list wb-tagfilter-items">
-				&lt;li data-wb-tags="language__english language__french location__online dayOTW_friday">
-					&lt;h3>Ask PAC Anything!&lt;/h3>
-					&lt;p>Friday August 5th, 2022 | 12:00 PM to 1:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Online&lt;/span> &lt;strong>Language&lt;/strong>: English, French&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__vancouver dayOTW_wednesday">
-					&lt;h3>Bidding on Opportunities&lt;/h3>
-					&lt;p>Wednesday August 10th, 2022 | 2:00 PM to 3:30 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Vancouver&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__ottawa dayOTW_thursday">
-					&lt;h3>Doing business with the Government of Canada (Webinar)&lt;/h3>
-					&lt;p>Thursday August 11th, 2022 | 12:00 PM to 2:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Ottawa&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__online dayOTW_friday">
-					&lt;h3>Ask PAC Anything!&lt;/h3>
-					&lt;p>Friday August 12th, 2022 | 12:00 PM to 1:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Online&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__ottawa dayOTW_thursday">
-					&lt;h3>Bidding on opportunities (Webinar)&lt;/h3>
-					&lt;p>Thursday August 18th, 2022 | 12:00 PM to 2:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Ottawa&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__online dayOTW_friday">
-					&lt;h3>Ask PAC Anything!&lt;/h3>
-					&lt;p>Friday August 19th, 2022 | 12:00 PM to 1:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Online&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__french location__ottawa dayOTW_thursday">
-					&lt;h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigusiness Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
-					&lt;p>Thursday August 25th, 2022 | 9:30 AM to 11:00 AM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Ottawa&lt;/span> &lt;strong>Language&lt;/strong>: French&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__ottawa location__montreal dayOTW_thursday">
-					&lt;h3>Workshop to register in the Supplier Registration Information (SRI) system and in the Indigusiness Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
-					&lt;p>Thursday August 25th, 2022 | 1:00 PM to 2:30 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Ottawa and Montreal&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__french location__montreal dayOTW_thursday">
-					&lt;h3>Doing Business with the Government of Canada&lt;/h3>
-					&lt;p>Thursday August 25th, 2022 | 1:30 PM to 3:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Montreal&lt;/span> &lt;strong>Language&lt;/strong>: French&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__vancouver dayOTW_thursday">
-					&lt;h3>Doing Business with the Government of Canada&lt;/h3>
-					&lt;p>Thursday August 25th, 2022 | 2:00 PM to 3:30 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Vancouver&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__online dayOTW_friday">
-					&lt;h3>Ask PAC Anything!&lt;/h3>
-					&lt;p>Friday August 26th, 2022 | 12:00 PM to 1:30 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Online&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__toronto dayOTW_tuesday">
-					&lt;h3>Mythbusting Federal Government Procurement and Overview of Innovation for Defence, Excellencecurity (IDEaS)&lt;/a> &lt;/h3>
-					&lt;p>Tuesday August 30th, 2022 | 10:00 AM to 11:00 AM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Toronto&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__french location__montreal dayOTW_tuesday">
-					&lt;h3>Register as supplier and find opportunities on BuyAndSell.gc.ca&lt;/h3>
-					&lt;p>Tuesday August 30th, 2022 | 1:30 PM to 3:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Montreal&lt;/span> &lt;strong>Language&lt;/strong>: French&lt;/p>
-				&lt;/li>
-				&lt;li data-wb-tags="language__english location__toronto dayOTW_wednesday">
-					&lt;h3>Federal Procurement Virtual Drop-in Café&lt;/h3>
-					&lt;p>Wednesday August 31th, 2022 | 3:00 PM to 4:00 PM&lt;/p>
-					&lt;p>&lt;span>&lt;strong>Location:&lt;/strong> Toronto&lt;/span> &lt;strong>Language&lt;/strong>: English&lt;/p>
-				&lt;/li>
+			&lt;ul class="list-unstyled events-list wb-tagfilter-items" data-wb-json='{
+				"url": "data_en.json#/events",
+				"mapping": [
+					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
+					{ "selector": "h3", "value": "/title" },
+					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": ".event-time", "value": "/time" },
+					{ "selector": ".event-location", "value": "/location" },
+					{ "selector": ".event-language", "value": "/language" }
+				]
+			}'>
+				&lt;template>
+					&lt;li data-wb-tags="">
+						&lt;h3>&lt;/h3>
+						&lt;p>&lt;span class="event-date">&lt;/span> | &lt;span class="event-time">&lt;/span>&lt;/p>
+						&lt;p>&lt;strong>Location:&lt;/strong> &lt;span class="event-location">&lt;/span>, &lt;strong>Language&lt;/strong>: &lt;span class="event-language">&lt;/span>&lt;/p>
+					&lt;/li>
+				&lt;/template>
 			&lt;/ul>
 		&lt;/div>
 	&lt;/div>
