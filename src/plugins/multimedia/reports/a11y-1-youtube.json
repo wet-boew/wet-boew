@@ -1,905 +1,1962 @@
 {
-  "@context": "https://wet-boew.github.io/vocab/context/2022/acr-new-wcag-sc.json-ld",
-
-  "@id": "https://wet-boew.github.io/wet-boew/demos/multimedia/reports/a11y-1-youtube.json",
-  "id": "7",
-  "@type": "earl:Assertion",
-  "earl:test": ["WCAG20", "WCAG21", "WCAG22"],
-
-  "subjectUrl": "https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-youtube-en.html",
-
-  "assertedBy": {
-    "name": "Service Canada - Principal Publisher",
-    "@id": "https://github.com/ServiceCanada",
-    "@type": ["earl:Assertor", "foaf:Organization"],
-    "producedBy": {
-      "name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
-      "@id": "https://github.com/BrahimMahadi",
-      "@type": ["earl:Assertor", "foaf:Person"]
+  "@context": "https://wet-boew.github.io/vocab/context/2023/conformance-report-en.json",
+  "@type": [
+    "earl:Assertion",
+    "acr:AssessmentReport"
+  ],
+  "earl:subject": {
+    "@id": "_:subject",
+    "dct:references": "https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-youtube-en.html",
+    "@type": [
+      "earl:TestSubject",
+      "schema:WebPage"
+    ],
+    "dct:description": "Only on the component 'Multimedia (Youtube)', not its container neither any other sibling component.",
+    "earl:pointer": {
+      "@type": "oa:CssSelector",
+      "@value": ".wb-mltmd .video .youtube"
     }
   },
-  "date": "2023-02-07",
-
-  "assessment": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
-  "notes": "",
-  "score": "98.3%",
-
-  "review": [
-    {
-      "name": "Pierre Dubois (Github: @duboisp)",
-      "page": "https://github.com/duboisp",
-      "@type": ["wb-arc:Revision", "foaf:Person"],
-      "earl:mode": "earl:manual",
-      "earl:outcome": "earl:untested",
-      "outcome": "Untested",
-      "notes": "",
-      "date": "2022-09-22"
+  "earl:assertedBy": {
+    "foaf:name": "Service Canada - Principal Publisher",
+    "foaf:homepage": "https://github.com/ServiceCanada",
+    "@type": [
+      "earl:Assertor",
+      "foaf:Organization"
+    ],
+    "earl:mainAssertor": {
+      "foaf:name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
+      "foaf:homepage": "https://github.com/BrahimMahadi",
+      "@type": [
+        "earl:Assertor",
+        "foaf:Person"
+      ]
     }
-  ],
-
-  "results": [
+  },
+  "dct:date": "2022-07-27",
+  "dct:description": "Partial evaluation focused on the 'multimedia (Youtube)' component. Evaluation of all Success Criteria at Level AA of WCAG 2.1",
+  "dct:source": "act:rulesets/wcag2x/wcag21_all_levelAA.json",
+  "acr:standard": "https://www.w3.org/TR/WCAG21",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+  "earl:result": [
     {
-      "label": "SC 1.1.1 Non-text content (Level A)",
-      "earl:test": "WCAG20:non-text-content",
-      "outcome": "Pass",
+      "@id": "_:assessment_tool_result",
+      "earl:test": "act:rules/automated/accessibility_insights_web",
+      "earl:subject": "_:subject",
+      "earl:assertedBy": "_:accessibility_insights",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G94",
-        "WCAG21Tech:general/G95",
-        "WCAG21Tech:general/G82",
-        "WCAG21Tech:failures/F3",
-        "WCAG21Tech:failures/F13",
-        "WCAG21Tech:failures/F20"
-      ],
+      "dct:description": "",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "acr:asset": {
+        "@type": "acr:AttachementJson",
+        "dct:title": "JSON report saved from the Accessibility Insight tool",
+        "acr:content": {
+          "@type": "@json",
+          "@value": {
+            "url": "https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-youtube-en.html",
+            "title": "Multimedia Player - YouTube - Working examples - Web Experience Toolkit",
+            "date": "2023-01-27T16:28:30.260Z",
+            "comment": "",
+            "version": "2.36.1",
+            "results": [
+              {
+                "wcagNumber": "1.1.1",
+                "wcagName": "Non-text Content",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "area-alt",
+                    "requirementDescription": "Active <area> elements must have alternate text"
+                  },
+                  {
+                    "requirementKey": "aria-meter-name",
+                    "requirementDescription": "ARIA meter nodes must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "aria-progressbar-name",
+                    "requirementDescription": "ARIA progressbar nodes must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "image-alt",
+                    "requirementDescription": "Images must have alternate text"
+                  },
+                  {
+                    "requirementKey": "input-image-alt",
+                    "requirementDescription": "Image buttons must have alternate text"
+                  },
+                  {
+                    "requirementKey": "object-alt",
+                    "requirementDescription": "<object> elements must have alternate text"
+                  },
+                  {
+                    "requirementKey": "role-img-alt",
+                    "requirementDescription": "[role='img'] elements must have an alternative text"
+                  },
+                  {
+                    "requirementKey": "svg-img-alt",
+                    "requirementDescription": "<svg> elements with an img role must have an alternative text"
+                  },
+                  {
+                    "requirementKey": "imageFunction",
+                    "requirementDescription": "Every image must be coded as either meaningful or decorative"
+                  },
+                  {
+                    "requirementKey": "textAlternative",
+                    "requirementDescription": "A meaningful image must have a text alternative that serves the equivalent purpose"
+                  },
+                  {
+                    "requirementKey": "captcha",
+                    "requirementDescription": "If a CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing"
+                  },
+                  {
+                    "requirementKey": "auditoryCues",
+                    "requirementDescription": "Auditory cues must be accompanied by visual cues"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.2.1",
+                "wcagName": "Audio-only and Video-only (Prerecorded)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "audio-caption",
+                    "requirementDescription": "<audio> elements must have a captions track"
+                  },
+                  {
+                    "requirementKey": "audioOnlyEquivalent",
+                    "requirementDescription": "Pre-recorded audio-only content must be accompanied by an equivalent text alternative"
+                  },
+                  {
+                    "requirementKey": "videoOnlyEquivalent",
+                    "requirementDescription": "Pre-recorded video-only content must be accompanied by an equivalent text or audio alternative"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.2.2",
+                "wcagName": "Captions (Prerecorded)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "video-caption",
+                    "requirementDescription": "<video> elements must have captions"
+                  },
+                  {
+                    "requirementKey": "captions",
+                    "requirementDescription": "Pre-recorded multimedia content must have captions"
+                  },
+                  {
+                    "requirementKey": "noObstruction",
+                    "requirementDescription": "Captions must not obscure or obstruct relevant information in the video"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.2.3",
+                "wcagName": "Audio Description or Media Alternative (Prerecorded)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "audioDescription",
+                    "requirementDescription": "Pre-recorded video with audio must have an audio description"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.2.4",
+                "wcagName": "Captions (Live)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "liveCaptions",
+                    "requirementDescription": "Captions must be provided for live (streaming) video with audio"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.2.5",
+                "wcagName": "Audio Description (Prerecorded)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "audioDescription",
+                    "requirementDescription": "Pre-recorded video with audio must have an audio description"
+                  },
+                  {
+                    "requirementKey": "synchronization",
+                    "requirementDescription": "An audio description must be synchronized with the video content"
+                  },
+                  {
+                    "requirementKey": "noConflict",
+                    "requirementDescription": "An audio description must not conflict with audible information in the sound track"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.3.1",
+                "wcagName": "Info and Relationships",
+                "status": "fail",
+                "requirementsFailed": [
+                  {
+                    "requirementKey": "aria-required-children",
+                    "requirementDescription": "Certain ARIA roles must contain particular children",
+                    "instances": [
+                      {
+                        "path": ".menu",
+                        "snippet": "<ul role=\"menubar\" class=\"list-inline menu\">"
+                      }
+                    ]
+                  },
+                  {
+                    "requirementKey": "aria-required-parent",
+                    "requirementDescription": "Certain ARIA roles must be contained by particular parents",
+                    "instances": [
+                      {
+                        "path": "a[href$=\"#project\"]",
+                        "snippet": "<a class=\"item\" href=\"#project\" tabindex=\"0\" aria-posinset=\"1\" aria-setsize=\"3\" role=\"menuitem\" aria-haspopup=\"true\">WET project<span class=\"expicon glyphicon glyphicon-chevron-down\"></span></a>"
+                      },
+                      {
+                        "path": "a[href$=\"#implement\"]",
+                        "snippet": "<a class=\"item\" href=\"#implement\" tabindex=\"-1\" aria-posinset=\"2\" aria-setsize=\"3\" role=\"menuitem\" aria-haspopup=\"true\">Implement WET<span class=\"expicon glyphicon glyphicon-chevron-down\"></span></a>"
+                      },
+                      {
+                        "path": "a[href$=\"#contribute\"]",
+                        "snippet": "<a class=\"item\" href=\"#contribute\" tabindex=\"-1\" aria-posinset=\"3\" aria-setsize=\"3\" role=\"menuitem\" aria-haspopup=\"true\">Contribute to WET<span class=\"expicon glyphicon glyphicon-chevron-down\"></span></a>"
+                      }
+                    ]
+                  },
+                  {
+                    "requirementKey": "listitem",
+                    "requirementDescription": "<li> elements must be contained in a <ul> or <ol>",
+                    "instances": [
+                      {
+                        "path": ".menu > li:nth-child(1)",
+                        "snippet": "<li>"
+                      },
+                      {
+                        "path": ".menu > li:nth-child(2)",
+                        "snippet": "<li>"
+                      },
+                      {
+                        "path": ".menu > li:nth-child(3)",
+                        "snippet": "<li>"
+                      }
+                    ]
+                  }
+                ],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "aria-allowed-role",
+                    "requirementDescription": "ARIA role should be appropriate for the element"
+                  },
+                  {
+                    "requirementKey": "aria-hidden-focus",
+                    "requirementDescription": "ARIA hidden element must not contain focusable elements"
+                  },
+                  {
+                    "requirementKey": "definition-list",
+                    "requirementDescription": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements"
+                  },
+                  {
+                    "requirementKey": "dlitem",
+                    "requirementDescription": "<dt> and <dd> elements must be contained by a <dl>"
+                  },
+                  {
+                    "requirementKey": "label",
+                    "requirementDescription": "Form elements must have labels"
+                  },
+                  {
+                    "requirementKey": "list",
+                    "requirementDescription": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements"
+                  },
+                  {
+                    "requirementKey": "presentation-role-conflict",
+                    "requirementDescription": "Elements of role none or presentation should be flagged"
+                  },
+                  {
+                    "requirementKey": "select-name",
+                    "requirementDescription": "Select element must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "td-headers-attr",
+                    "requirementDescription": "Table cells that use the headers attribute must only refer to cells in the same table"
+                  },
+                  {
+                    "requirementKey": "th-has-data-cells",
+                    "requirementDescription": "Table headers in a data table must refer to data cells"
+                  },
+                  {
+                    "requirementKey": "landmark-roles",
+                    "requirementDescription": "A landmark region must have the role that best describes its content"
+                  },
+                  {
+                    "requirementKey": "primary-content",
+                    "requirementDescription": "The main landmark must contain all of the page's primary content"
+                  },
+                  {
+                    "requirementKey": "no-repeating-content",
+                    "requirementDescription": "The main landmark must not contain any blocks of content that repeat across pages"
+                  },
+                  {
+                    "requirementKey": "headingFunction",
+                    "requirementDescription": "An element coded as a heading must function as a heading"
+                  },
+                  {
+                    "requirementKey": "missingHeadings",
+                    "requirementDescription": "Text that looks like a heading must be coded as a heading"
+                  },
+                  {
+                    "requirementKey": "headingLevel",
+                    "requirementDescription": "A heading's programmatic level must match the level that's presented visually"
+                  },
+                  {
+                    "requirementKey": "nativeInstructions",
+                    "requirementDescription": "If a native widget has a visible label or instructions, they must be programmatically determinable"
+                  },
+                  {
+                    "requirementKey": "nativeCues",
+                    "requirementDescription": "If a native widget adopts certain interactive states, it must provide appropriate cues"
+                  },
+                  {
+                    "requirementKey": "customWidgetsInstructions",
+                    "requirementDescription": "If a custom widget has a visible label or instructions, they must be programmatically determinable"
+                  },
+                  {
+                    "requirementKey": "customWidgetsCues",
+                    "requirementDescription": "If a custom widget adopts certain interactive states, it must communicate those states programmatically"
+                  },
+                  {
+                    "requirementKey": "columns",
+                    "requirementDescription": "Content presented in multi-column format must support a correct reading sequence"
+                  },
+                  {
+                    "requirementKey": "cssContent",
+                    "requirementDescription": "Meaningful content must not be implemented using only CSS :before or :after"
+                  },
+                  {
+                    "requirementKey": "tableSemantics",
+                    "requirementDescription": "A table element must be coded correctly as a data table or a layout table"
+                  },
+                  {
+                    "requirementKey": "headers",
+                    "requirementDescription": "Coded headers must be used correctly"
+                  },
+                  {
+                    "requirementKey": "headersAttribute",
+                    "requirementDescription": "The headers attribute of a td element must reference the correct th element(s)"
+                  },
+                  {
+                    "requirementKey": "lists",
+                    "requirementDescription": "Lists must be contained within semantically correct containers"
+                  },
+                  {
+                    "requirementKey": "emphasis",
+                    "requirementDescription": "Words and phrases that are visually emphasized must be contained within semantically correct containers"
+                  },
+                  {
+                    "requirementKey": "quotes",
+                    "requirementDescription": "The blockquote element must not be used to style non-quote text"
+                  },
+                  {
+                    "requirementKey": "letterSpacing",
+                    "requirementDescription": "Spacing characters must not be used to increase the space between letters in a word"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.3.2",
+                "wcagName": "Meaningful Sequence",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "textDirection",
+                    "requirementDescription": "If a page or a passage uses a script that is read right-to-left, it must have the correct text direction"
+                  },
+                  {
+                    "requirementKey": "cssPositioning",
+                    "requirementDescription": "Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled"
+                  },
+                  {
+                    "requirementKey": "layoutTables",
+                    "requirementDescription": "The content in an HTML layout table must make sense when the table is linearized"
+                  },
+                  {
+                    "requirementKey": "columns",
+                    "requirementDescription": "Content presented in multi-column format must support a correct reading sequence"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.3.3",
+                "wcagName": "Sensory Characteristics",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "sensoryCharacteristics",
+                    "requirementDescription": "Instructions must not rely solely on color or other sensory characteristics"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.3.4",
+                "wcagName": "Orientation",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "orientation",
+                    "requirementDescription": "Web content must not be locked to a particular screen orientation"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.3.5",
+                "wcagName": "Identify Input Purpose",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "autocomplete-valid",
+                    "requirementDescription": "autocomplete attribute must be used correctly"
+                  },
+                  {
+                    "requirementKey": "nativeAutocomplete",
+                    "requirementDescription": "Text fields that serve certain purposes must have the correct HTML5 autocomplete attribute"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.1",
+                "wcagName": "Use of Color",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "useOfColor",
+                    "requirementDescription": "Color must not be used as the only visual means for conveying meaning"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.10",
+                "wcagName": "Reflow",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "reflow",
+                    "requirementDescription": "Content must be visible without having to scroll in two dimensions"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.11",
+                "wcagName": "Non-text Contrast",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "ui-components",
+                    "requirementDescription": "Visual information used to identify active user interface components and their states must have sufficient contrast"
+                  },
+                  {
+                    "requirementKey": "state-changes",
+                    "requirementDescription": "Any visual information that indicates a component's state must have sufficient contrast"
+                  },
+                  {
+                    "requirementKey": "graphics",
+                    "requirementDescription": "Graphics must have sufficient contrast"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.12",
+                "wcagName": "Text Spacing",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "avoid-inline-spacing",
+                    "requirementDescription": "Inline text spacing must be adjustable with custom stylesheets"
+                  },
+                  {
+                    "requirementKey": "textSpacing",
+                    "requirementDescription": "Users must be able to adjust text spacing with no loss of content or functionality"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.13",
+                "wcagName": "Content on Hover or Focus",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "hoverFocusContent",
+                    "requirementDescription": "Content that appears on focus or hover must be dismissible, hoverable, and persistent"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.2",
+                "wcagName": "Audio Control",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "audio-control",
+                    "requirementDescription": "If audio content plays automatically for longer than three seconds, users must be able to pause or mute it"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.3",
+                "wcagName": "Contrast (Minimum)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "color-contrast",
+                    "requirementDescription": "Elements must have sufficient color contrast"
+                  },
+                  {
+                    "requirementKey": "contrast",
+                    "requirementDescription": "Text elements must have sufficient contrast"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.4",
+                "wcagName": "Resize text",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "resizeText",
+                    "requirementDescription": "Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "1.4.5",
+                "wcagName": "Images of Text",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "imageOfText",
+                    "requirementDescription": "Images of text are allowed only where a specific appearance is required (e.g., logotypes)"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.1.1",
+                "wcagName": "Keyboard",
+                "status": "fail",
+                "requirementsFailed": [
+                  {
+                    "requirementKey": "frame-focusable-content",
+                    "requirementDescription": "Frames with focusable content must not have tabindex=-1",
+                    "instances": [
+                      {
+                        "path": "#wb-auto-2-md, html",
+                        "snippet": "<html lang=\"en-GB\" dir=\"ltr\" data-cast-api-enabled=\"true\">"
+                      }
+                    ]
+                  }
+                ],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "server-side-image-map",
+                    "requirementDescription": "Server-side image maps must not be used"
+                  },
+                  {
+                    "requirementKey": "keyboard-navigation",
+                    "requirementDescription": "Users must be able to navigate to all interactive interface components using a keyboard"
+                  },
+                  {
+                    "requirementKey": "on-keystroke-timing",
+                    "requirementDescription": "Components must not require specific timings for individual keystrokes"
+                  },
+                  {
+                    "requirementKey": "keyboardInteraction",
+                    "requirementDescription": "A custom widget must support the keyboard interaction specified by its design pattern"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.1.2",
+                "wcagName": "No Keyboard Trap",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "no-keyboard-traps",
+                    "requirementDescription": "Users must be able to navigate away from all components using a keyboard"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.1.4",
+                "wcagName": "Character Key Shortcuts",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "character-key-shortcuts",
+                    "requirementDescription": "Users must be able to turn off or remap character key shortcuts"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.2.1",
+                "wcagName": "Timing Adjustable",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "meta-refresh",
+                    "requirementDescription": "Timed refresh must not exist"
+                  },
+                  {
+                    "requirementKey": "time-limits",
+                    "requirementDescription": "If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.2.2",
+                "wcagName": "Pause, Stop, Hide",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "blink",
+                    "requirementDescription": "<blink> elements are deprecated and must not be used"
+                  },
+                  {
+                    "requirementKey": "marquee",
+                    "requirementDescription": "<marquee> elements are deprecated and must not be used"
+                  },
+                  {
+                    "requirementKey": "moving-content",
+                    "requirementDescription": "If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it"
+                  },
+                  {
+                    "requirementKey": "auto-updating-content",
+                    "requirementDescription": "If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.3.1",
+                "wcagName": "Three Flashes or Below Threshold",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "flashing",
+                    "requirementDescription": "Web pages must not have content that flashes more than three times per second"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.1",
+                "wcagName": "Bypass Blocks",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "bypass",
+                    "requirementDescription": "Page must have means to bypass repeated blocks"
+                  },
+                  {
+                    "requirementKey": "frame-title",
+                    "requirementDescription": "Frames must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "primary-content",
+                    "requirementDescription": "The main landmark must contain all of the page's primary content"
+                  },
+                  {
+                    "requirementKey": "no-repeating-content",
+                    "requirementDescription": "The main landmark must not contain any blocks of content that repeat across pages"
+                  },
+                  {
+                    "requirementKey": "bypassBlocks",
+                    "requirementDescription": "A page must provide a keyboard-accessible method to bypass repetitive content"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.2",
+                "wcagName": "Page Titled",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "document-title",
+                    "requirementDescription": "Documents must have <title> element to aid in navigation"
+                  },
+                  {
+                    "requirementKey": "pageTitle",
+                    "requirementDescription": "A web page must have a title that describes its topic or purpose"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.3",
+                "wcagName": "Focus Order",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "revealing-content",
+                    "requirementDescription": "Activating a component that reveals hidden content must move input focus into the revealed content"
+                  },
+                  {
+                    "requirementKey": "modal-dialogs",
+                    "requirementDescription": "Users must not be able to Tab away from a modal dialog without explicitly dismissing it"
+                  },
+                  {
+                    "requirementKey": "closing-content",
+                    "requirementDescription": "Closing revealed content must return input focus to the component that revealed it"
+                  },
+                  {
+                    "requirementKey": "focus-order",
+                    "requirementDescription": "Components must receive focus in an order that preserves meaning and operability"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.4",
+                "wcagName": "Link Purpose (In Context)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "area-alt",
+                    "requirementDescription": "Active <area> elements must have alternate text"
+                  },
+                  {
+                    "requirementKey": "link-name",
+                    "requirementDescription": "Links must have discernible text"
+                  },
+                  {
+                    "requirementKey": "linkPurpose",
+                    "requirementDescription": "The purpose of a link must be described by its link text alone, or by the link text together with preceding page context"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.5",
+                "wcagName": "Multiple Ways",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "generalNavigation",
+                    "requirementDescription": "Users must have multiple ways to navigate to a page"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.6",
+                "wcagName": "Headings and Labels",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "headingFunction",
+                    "requirementDescription": "An element coded as a heading must function as a heading"
+                  },
+                  {
+                    "requirementKey": "missingHeadings",
+                    "requirementDescription": "Text that looks like a heading must be coded as a heading"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.4.7",
+                "wcagName": "Focus Visible",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "visible-focus",
+                    "requirementDescription": "Components must provide a visible indication when they have the input focus"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.5.1",
+                "wcagName": "Pointer Gestures",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "pointer-gestures",
+                    "requirementDescription": "Functions must be operable without requiring multipoint or path-based gestures"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.5.2",
+                "wcagName": "Pointer Cancellation",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "pointer-cancellation",
+                    "requirementDescription": "Users must be able to cancel functions that can be operated using a single pointer"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.5.3",
+                "wcagName": "Label in Name",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "labelInName",
+                    "requirementDescription": "A link's accessible name must contain its visible text label"
+                  },
+                  {
+                    "requirementKey": "nativeInstructions",
+                    "requirementDescription": "If a native widget has a visible label or instructions, they must be programmatically determinable"
+                  },
+                  {
+                    "requirementKey": "customWidgetsInstructions",
+                    "requirementDescription": "If a custom widget has a visible label or instructions, they must be programmatically determinable"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "2.5.4",
+                "wcagName": "Motion Actuation",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "motion-operation",
+                    "requirementDescription": "If a function can be operated through motion, it must also be operable through user interface components"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.1.1",
+                "wcagName": "Language of Page",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "html-has-lang",
+                    "requirementDescription": "<html> element must have a lang attribute"
+                  },
+                  {
+                    "requirementKey": "html-lang-valid",
+                    "requirementDescription": "<html> element must have a valid value for the lang attribute"
+                  },
+                  {
+                    "requirementKey": "html-xml-lang-mismatch",
+                    "requirementDescription": "HTML elements with lang and xml:lang must have the same base language"
+                  },
+                  {
+                    "requirementKey": "languageOfPage",
+                    "requirementDescription": "A page must have the correct default language"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.1.2",
+                "wcagName": "Language of Parts",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "valid-lang",
+                    "requirementDescription": "lang attribute must have a valid value"
+                  },
+                  {
+                    "requirementKey": "languageOfParts",
+                    "requirementDescription": "If the language of a passage differs from the default language of the page, the passage must have its own language attribute"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.2.1",
+                "wcagName": "On Focus",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "on-focus",
+                    "requirementDescription": "Navigating to a component must not trigger any unexpected change of context"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.2.2",
+                "wcagName": "On Input",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "on-input",
+                    "requirementDescription": "Changing a component's settings must not trigger any unexpected change of context"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.2.3",
+                "wcagName": "Consistent Navigation",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "consistentNavigation",
+                    "requirementDescription": "Navigational mechanisms that appear on multiple pages must be presented in the same relative order"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.2.4",
+                "wcagName": "Consistent Identification",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "consistentIdentification",
+                    "requirementDescription": "Functional components that appear on multiple pages must be identified consistently"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.3.1",
+                "wcagName": "Error Identification",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "errorIdentification",
+                    "requirementDescription": "If an input error is automatically detected, the item in error must be identified, and the error described, in text"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.3.2",
+                "wcagName": "Labels or Instructions",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "nativeLabel",
+                    "requirementDescription": "A native widget must have a label and/or instructions that identify the expected input"
+                  },
+                  {
+                    "requirementKey": "customWidgetsLabel",
+                    "requirementDescription": "A custom widget must have a label and/or instructions that identify the expected input"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.3.3",
+                "wcagName": "Error Suggestion",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "errorSuggestion",
+                    "requirementDescription": "If an input error is automatically detected, guidance for correcting the error must be provided"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "3.3.4",
+                "wcagName": "Error Prevention (Legal, Financial, Data)",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "errorPrevention",
+                    "requirementDescription": "If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "4.1.1",
+                "wcagName": "Parsing",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "duplicate-id-active",
+                    "requirementDescription": "IDs of active elements must be unique"
+                  },
+                  {
+                    "requirementKey": "duplicate-id-aria",
+                    "requirementDescription": "IDs used in ARIA and labels must be unique"
+                  },
+                  {
+                    "requirementKey": "parsing",
+                    "requirementDescription": "Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their specifications"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "4.1.2",
+                "wcagName": "Name, Role, Value",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "area-alt",
+                    "requirementDescription": "Active <area> elements must have alternate text"
+                  },
+                  {
+                    "requirementKey": "aria-allowed-attr",
+                    "requirementDescription": "Elements must only use allowed ARIA attributes"
+                  },
+                  {
+                    "requirementKey": "aria-allowed-role",
+                    "requirementDescription": "ARIA role should be appropriate for the element"
+                  },
+                  {
+                    "requirementKey": "aria-command-name",
+                    "requirementDescription": "ARIA commands must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "aria-hidden-body",
+                    "requirementDescription": "aria-hidden='true' must not be present on the document body"
+                  },
+                  {
+                    "requirementKey": "aria-hidden-focus",
+                    "requirementDescription": "ARIA hidden element must not contain focusable elements"
+                  },
+                  {
+                    "requirementKey": "aria-input-field-name",
+                    "requirementDescription": "ARIA input fields must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "aria-required-attr",
+                    "requirementDescription": "Required ARIA attributes must be provided"
+                  },
+                  {
+                    "requirementKey": "aria-roledescription",
+                    "requirementDescription": "aria-roledescription must be on elements with a semantic role"
+                  },
+                  {
+                    "requirementKey": "aria-roles",
+                    "requirementDescription": "ARIA roles used must conform to valid values"
+                  },
+                  {
+                    "requirementKey": "aria-toggle-field-name",
+                    "requirementDescription": "ARIA toggle fields must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "aria-tooltip-name",
+                    "requirementDescription": "ARIA tooltip nodes must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "aria-valid-attr-value",
+                    "requirementDescription": "ARIA attributes must conform to valid values"
+                  },
+                  {
+                    "requirementKey": "aria-valid-attr",
+                    "requirementDescription": "ARIA attributes must conform to valid names"
+                  },
+                  {
+                    "requirementKey": "button-name",
+                    "requirementDescription": "Buttons must have discernible text"
+                  },
+                  {
+                    "requirementKey": "frame-title",
+                    "requirementDescription": "Frames must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "input-button-name",
+                    "requirementDescription": "Input buttons must have discernible text"
+                  },
+                  {
+                    "requirementKey": "label",
+                    "requirementDescription": "Form elements must have labels"
+                  },
+                  {
+                    "requirementKey": "link-name",
+                    "requirementDescription": "Links must have discernible text"
+                  },
+                  {
+                    "requirementKey": "nested-interactive",
+                    "requirementDescription": "Interactive controls must not be nested"
+                  },
+                  {
+                    "requirementKey": "select-name",
+                    "requirementDescription": "Select element must have an accessible name"
+                  },
+                  {
+                    "requirementKey": "linkFunction",
+                    "requirementDescription": "If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role"
+                  },
+                  {
+                    "requirementKey": "widgetFunction",
+                    "requirementDescription": "If a native widget functions as a custom widget, it must have the appropriate ARIA widget role"
+                  },
+                  {
+                    "requirementKey": "nativeCues",
+                    "requirementDescription": "If a native widget adopts certain interactive states, it must provide appropriate cues"
+                  },
+                  {
+                    "requirementKey": "designPattern",
+                    "requirementDescription": "A custom widget must have the appropriate ARIA widget role for its design pattern"
+                  },
+                  {
+                    "requirementKey": "roleStateProperty",
+                    "requirementDescription": "A custom widget must support the ARIA roles, states, and properties specified by its design pattern"
+                  },
+                  {
+                    "requirementKey": "customWidgetsCues",
+                    "requirementDescription": "If a custom widget adopts certain interactive states, it must communicate those states programmatically"
+                  },
+                  {
+                    "requirementKey": "frameTitle",
+                    "requirementDescription": "A frame or iframe must have a title that describes its content"
+                  }
+                ],
+                "requirementsIncomplete": []
+              },
+              {
+                "wcagNumber": "4.1.3",
+                "wcagName": "Status Messages",
+                "status": "pass",
+                "requirementsFailed": [],
+                "requirementsPassed": [
+                  {
+                    "requirementKey": "statusMessages",
+                    "requirementDescription": "Status messages must be programmatically determinable without receiving focus"
+                  }
+                ],
+                "requirementsIncomplete": []
+              }
+            ]
+          }
+        }
+      },
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.2.1 Audio-only and Video-only (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:non-text-content",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G158",
-        "WCAG21Tech:general/G159",
-        "WCAG21Tech:general/G166",
-        "WCAG21Tech:failures/F30",
-        "WCAG21Tech:failures/F67"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.2.2 Captions (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:captions-prerecorded",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:audio-only-and-video-only-prerecorded",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G93",
-        "WCAG21Tech:general/G87",
-        "WCAG21Tech:failures/F8",
-        "WCAG21Tech:failures/F75",
-        "WCAG21Tech:failures/F74"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.2.3 Audio Description or Media Alternative (Prerecorded) (Level A)",
-      "earl:test": "WCAG20:audio-description-or-media-alternative-prerecorded",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:captions-prerecorded",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G69",
-        "WCAG21Tech:general/G68",
-        "WCAG21Tech:general/G78",
-        "WCAG21Tech:general/G173",
-        "WCAG21Tech:general/G8",
-        "WCAG21Tech:general/G203"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.2.4 Captions (Live) (Level AA)",
-      "earl:test": "WCAG20:captions-live",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:audio-description-or-media-alternative-prerecorded",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G9",
-        "WCAG21Tech:general/G93",
-        "WCAG21Tech:general/G87"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.2.5 Audio Description (Prerecorded) (Level AA)",
-      "earl:test": "WCAG20:captions-live",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:captions-live",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G78",
-        "WCAG21Tech:general/G173",
-        "WCAG21Tech:general/G8",
-        "WCAG21Tech:general/G203"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.3.1 Info and Relationships (Level A)",
-      "earl:test": "WCAG20:info-and-relationships",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:audio-description-prerecorded",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G115",
-        "WCAG21Tech:general/G117",
-        "WCAG21Tech:general/G140",
-        "WCAG21Tech:failures/F2",
-        "WCAG21Tech:failures/F33",
-        "WCAG21Tech:failures/F34",
-        "WCAG21Tech:failures/F42",
-        "WCAG21Tech:failures/F43",
-        "WCAG21Tech:failures/F46",
-        "WCAG21Tech:failures/F48",
-        "WCAG21Tech:failures/F87",
-        "WCAG21Tech:failures/F90",
-        "WCAG21Tech:failures/F91",
-        "WCAG21Tech:failures/F92"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.3.2 Meaningful Sequence (Level A)",
-      "earl:test": "WCAG20:meaningful-sequence",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:info-and-relationships",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G57",
-        "WCAG21Tech:html/H34",
-        "WCAG21Tech:html/H56",
-        "WCAG21Tech:css/C6",
-        "WCAG21Tech:css/C8",
-        "WCAG21Tech:css/C27",
-        "WCAG21Tech:failures/F1",
-        "WCAG21Tech:failures/F32",
-        "WCAG21Tech:failures/F33",
-        "WCAG21Tech:failures/F34",
-        "WCAG21Tech:failures/F49"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.3.3 Sensory Characteristics (Level A)",
-      "earl:test": "WCAG20:sensory-characteristics",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:meaningful-sequence",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G96",
-        "WCAG21Tech:failures/F14",
-        "WCAG21Tech:failures/F26"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.3.4 Orientation (Level AA)",
+      "earl:test": "WCAG21:sensory-characteristics",
+      "earl:subject": "_:subject",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
+      "earl:mode": "earl:automatic",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
       "earl:test": "WCAG21:orientation",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G214",
-        "WCAG21Tech:failures/F97",
-        "WCAG21Tech:failures/F100"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.3.5 Identify Input Purpose (Level AA)",
       "earl:test": "WCAG21:identify-input-purpose",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:html/H98", "WCAG21Tech:failures/F107"],
-      "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
+      "earl:mode": "earl:semiAuto",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.1 Use of Color (Level A)",
-      "earl:test": "WCAG20:use-of-color",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:use-of-color",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G14",
-        "WCAG21Tech:general/G111",
-        "WCAG21Tech:general/G182",
-        "WCAG21Tech:general/G183",
-        "WCAG21Tech:general/G205",
-        "WCAG21Tech:css/C15",
-        "WCAG21Tech:failures/F13",
-        "WCAG21Tech:failures/F73",
-        "WCAG21Tech:failures/F81"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.2 Audio Control (Level A)",
-      "earl:test": "WCAG20:audio-control",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:audio-control",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G60",
-        "WCAG21Tech:general/G170",
-        "WCAG21Tech:general/G171",
-        "WCAG21Tech:failures/F23",
-        "WCAG21Tech:failures/F93"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.3 Contrast (Minimum) (Level AA)",
-      "earl:test": "WCAG20:contrast-minimum",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:contrast-minimum",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G18",
-        "WCAG21Tech:general/G145",
-        "WCAG21Tech:general/G148",
-        "WCAG21Tech:general/G174",
-        "WCAG21Tech:general/G156",
-        "WCAG21Tech:failures/F24",
-        "WCAG21Tech:failures/F83"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.4 Resize text (Level AA)",
-      "earl:test": "WCAG20:resize-text",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:resize-text",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G142",
-        "WCAG21Tech:general/G146",
-        "WCAG21Tech:general/G178",
-        "WCAG21Tech:general/G179",
-        "WCAG21Tech:failures/F69",
-        "WCAG21Tech:failures/F80",
-        "WCAG21Tech:failures/F94"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.5 Images of Text (Level AA)",
-      "earl:test": "WCAG20:image-of-text",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:image-of-text",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G140",
-        "WCAG21Tech:css/C22",
-        "WCAG21Tech:css/C30"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.10 Reflow (Level AA)",
       "earl:test": "WCAG21:reflow",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:css/C32",
-        "WCAG21Tech:css/C31",
-        "WCAG21Tech:css/C33",
-        "WCAG21Tech:css/C38",
-        "WCAG21Tech:client-side-script/SCR34",
-        "WCAG21Tech:general/G206",
-        "WCAG21Tech:failures/F102"
-      ],
-      "advisory": ["WCAG21Tech:css/C34", "WCAG21Tech:css/C37"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.11 Non-text Contrast (Level AA)",
       "earl:test": "WCAG21:non-text-contrast",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G195",
-        "WCAG21Tech:general/G174",
-
-        "WCAG21Tech:general/G207",
-        "WCAG21Tech:general/G209",
-
-        "WCAG21Tech:failures/F78"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.12 Text Spacing (Level AA)",
       "earl:test": "WCAG21:text-spacing",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:css/C36",
-        "WCAG21Tech:css/C35",
-        "WCAG21Tech:failures/F104"
-      ],
-      "advisory": [
-        "WCAG21Tech:css/C8",
-        "WCAG21Tech:css/C21",
-        "WCAG21Tech:css/C28"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 1.4.13 Content on Hover or Focus (Level AA)",
       "earl:test": "WCAG21:content-on-hover-or-focus",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:client-side-script/SCR39",
-        "WCAG21Tech:failures/F95"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.1.1 Keyboard (Level A)",
-      "earl:test": "WCAG20:keyboard",
-      "outcome": "Fail",
+      "earl:test": "WCAG21:keyboard",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:fail",
-      "notes": "Frames with focusable content must not have tabindex=-1",
-      "techniques": [
-        "WCAG21Tech:general/G202",
-        "WCAG21Tech:general/G90",
-        "WCAG21Tech:failures/F54",
-        "WCAG21Tech:failures/F55",
-        "WCAG21Tech:failures/F42"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.1.2 No Keyboard Trap (Level A)",
-      "earl:test": "WCAG20:no-keyboard-trap",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:no-keyboard-trap",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G21", "WCAG21Tech:failures/F10"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.1.4 Character Key Shortcuts (Level A)",
       "earl:test": "WCAG21:character-key-shortcuts",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G217", "WCAG21Tech:failures/F99"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.2.1 Timing Adjustable (Level A)",
-      "earl:test": "WCAG20:timing-adjustable",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:timing-adjustable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G133",
-        "WCAG21Tech:general/G198",
-        "WCAG21Tech:general/G180",
-        "WCAG21Tech:general/G4",
-        "WCAG21Tech:failures/F40",
-        "WCAG21Tech:failures/F41",
-        "WCAG21Tech:failures/F58"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.2.2 Pause, Stop, Hide (Level A)",
-      "earl:test": "WCAG20:pause-stop-hide",
-      "outcome": "Pass",
-      "earl:outcome": "earl:pass",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G4",
-        "WCAG21Tech:general/G11",
-        "WCAG21Tech:general/G187",
-        "WCAG21Tech:general/G152",
-        "WCAG21Tech:general/G186",
-        "WCAG21Tech:general/G191",
-        "WCAG21Tech:failures/F16",
-        "WCAG21Tech:failures/F47",
-        "WCAG21Tech:failures/F4",
-        "WCAG21Tech:failures/F50",
-        "WCAG21Tech:failures/F7"
-      ],
+      "earl:test": "WCAG21:pause-stop-hide",
+      "earl:subject": "_:subject",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.3.1 Three Flashes or Below Threshold (Level A)",
-      "earl:test": "WCAG20:three-flashes-or-below-threshold",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:three-flashes-or-below-threshold",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G19",
-        "WCAG21Tech:general/G176",
-        "WCAG21Tech:general/G15"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.1 Bypass Blocks (Level A)",
-      "earl:test": "WCAG20:bypass-blocks",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:bypass-blocks",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G1",
-        "WCAG21Tech:general/G123",
-        "WCAG21Tech:general/G124"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.2 Page Titled (Level A)",
-      "earl:test": "WCAG20:pause-stop-hide",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:page-titled",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G88", "WCAG21Tech:failures/F25"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.3 Focus Order (Level A)",
-      "earl:test": "WCAG20:focus-order",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:focus-order",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G59",
-        "WCAG21Tech:failures/F44",
-        "WCAG21Tech:failures/F85"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.4 Link Purpose (In Context) (Level A)",
-      "earl:test": "WCAG20:link-purpose-in-context",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:link-purpose-in-context",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G91",
-        "WCAG21Tech:general/G189",
-        "WCAG21Tech:general/G53",
-        "WCAG21Tech:failures/F63",
-        "WCAG21Tech:failures/F89"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.5 Multiple Ways (Level AA)",
-      "earl:test": "WCAG20:multiple-ways",
-      "outcome": "Pass",
-      "earl:outcome": "earl:pass",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G125",
-        "WCAG21Tech:general/G64",
-        "WCAG21Tech:general/G63",
-        "WCAG21Tech:general/G161",
-        "WCAG21Tech:general/G126",
-        "WCAG21Tech:general/G185"
-      ],
+      "earl:test": "WCAG21:multiple-ways",
+      "earl:subject": "_:subject",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.6 Headings and Labels (Level AA)",
-      "earl:test": "WCAG20:headings-and-labels",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:headings-and-labels",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G130", "WCAG21Tech:general/G131"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.7 Focus Visible (Level AA)",
-      "earl:test": "WCAG20:pause-stop-hide",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:focus-visible",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G149",
-        "WCAG21Tech:general/G15",
-        "WCAG21Tech:general/G165",
-        "WCAG21Tech:general/G195",
-        "WCAG21Tech:failures/F55",
-        "WCAG21Tech:failures/F78"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.11 Focus Appearance (Minimum) (Level AA)",
       "earl:test": "WCAG22:focus-appearance-minimum",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG22Tech:general/G195",
-        "WCAG22Tech:css/C40",
-        "WCAG22Tech:css/C41"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.4.14 Page Break Navigation (Level A)",
       "earl:test": "WCAG22:page-break-navigation",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG22Tech:html/H99"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.1 Pointer Gestures (Level A)",
       "earl:test": "WCAG21:pointer-gestures",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G215",
-        "WCAG21Tech:general/G216",
-        "WCAG21Tech:failures/F105"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.2 Pointer Cancellation (Level A)",
       "earl:test": "WCAG21:pointer-cancellation",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G210",
-        "WCAG21Tech:general/G212",
-        "WCAG21Tech:failures/F101"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.3 Label in Name (Level A)",
       "earl:test": "WCAG21:label-in-name",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G208",
-        "WCAG21Tech:general/G211",
-        "WCAG21Tech:failures/F96"
-      ],
-      "advisory": ["WCAG21Tech:general/G162"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.4 Motion Actuation (Level A)",
       "earl:test": "WCAG21:motion-actuation",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G213", "WCAG21Tech:failures/F106"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.7 Dragging Movements (Level AA)",
       "earl:test": "WCAG22:dragging-movements",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG22Tech:general/G219", "WCAG22Tech:failures/F108"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 2.5.8 Target Size (Minimum) (Level AA)",
       "earl:test": "WCAG22:target-size-minimum",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG22Tech:css/C42"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.1.1 Language of Page (Level A)",
-      "earl:test": "WCAG20:language-of-page",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:language-of-page",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:html/H57"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.1.2 Language of Parts (Level AA)",
-      "earl:test": "WCAG20:language-of-parts",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:language-of-parts",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:html/H58"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.1 On Focus (Level A)",
-      "earl:test": "WCAG20:on-focus",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:on-focus",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G107", "WCAG21Tech:failures/F55"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:semiAuto",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.2 On Input (Level A)",
-      "earl:test": "WCAG20:on-input",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:on-input",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G80",
-        "WCAG21Tech:general/G13",
-        "WCAG21Tech:failures/F36",
-        "WCAG21Tech:failures/F37"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.3 Consistent Navigation (Level AA)",
-      "earl:test": "WCAG20:consistent-navigation",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:consistent-navigation",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G61", "WCAG21Tech:failures/F66"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.4 Consistent Identification (Level AA)",
-      "earl:test": "WCAG20:consistent-identification",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:consistent-identification",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG21Tech:general/G197", "WCAG21Tech:failures/F31"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.6 Consistent Help (Level A)",
       "earl:test": "WCAG22:consistent-help",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG22Tech:general/G220"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.2.7 Visible Controls (Level AA)",
       "earl:test": "WCAG22:visible-controls",
-      "outcome": "Pass",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": ["WCAG22Tech:general/G222"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.1 Error Identification (Level A)",
-      "earl:test": "WCAG20:error-identification",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:error-identification",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:aria/ARIA21",
-        "WCAG21Tech:client-side-script/SCR18",
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:aria/ARIA19",
-        "WCAG21Tech:general/G84",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:client-side-script/SCR32"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.2 Labels or Instructions (Level A)",
-      "earl:test": "WCAG20:labels-or-instructions",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:labels-or-instructions",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G131",
-        "WCAG21Tech:html/H44",
-        "WCAG21Tech:html/H71",
-        "WCAG21Tech:general/G167",
-        "WCAG21Tech:failures/F82"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.3 Error Suggestion (Level AA)",
-      "earl:test": "WCAG20:error-suggestion",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:error-suggestion",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:aria/ARIA2",
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:general/G177",
-        "WCAG21Tech:client-side-script/SCR18",
-        "WCAG21Tech:client-side-script/SCR32",
-        "WCAG21Tech:general/G84"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.4 Error Prevention (Legal, Financial, Data) (Level AA)",
-      "earl:test": "WCAG20:error-prevention-legal-financial-data)",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:error-prevention-legal-financial-data)",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G164",
-        "WCAG21Tech:general/G98",
-        "WCAG21Tech:general/G155",
-        "WCAG21Tech:general/G99",
-        "WCAG21Tech:general/G168"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.7 Accessible Authentication (Level A)",
       "earl:test": "WCAG22:accessible-authentication",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG22Tech:general/G218"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 3.3.8 Redundant entry (Level A)",
       "earl:test": "WCAG22:redundant-entry",
-      "outcome": "Inapplicable",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:inapplicable",
-      "notes": "",
-      "techniques": ["WCAG22Tech:general/G221"],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:manual",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 4.1.1 Parsing (Level A)",
-      "earl:test": "WCAG20:parsing",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:parsing",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:general/G134",
-        "WCAG21Tech:general/G192",
-        "WCAG21Tech:html/H88",
-        "WCAG21Tech:failures/F70",
-        "WCAG21Tech:failures/F77"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 4.1.2 Name, Role, Value (Level A)",
-      "earl:test": "WCAG20:name-role-value",
-      "outcome": "Pass",
+      "earl:test": "WCAG21:name-role-value",
+      "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:aria/ARIA14",
-        "WCAG21Tech:aria/ARIA16",
-        "WCAG21Tech:general/G108",
-        "WCAG21Tech:general/G135",
-        "WCAG21Tech:general/G10",
-        "WCAG21Tech:failures/F59",
-        "WCAG21Tech:failures/F15",
-        "WCAG21Tech:failures/F20",
-        "WCAG21Tech:failures/F68",
-        "WCAG21Tech:failures/F79",
-        "WCAG21Tech:failures/F86",
-        "WCAG21Tech:failures/F89"
-      ],
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     },
     {
-      "label": "SC 4.1.3 Status Messages (Level AA)",
       "earl:test": "WCAG21:status-messages",
-      "outcome": "Pass",
-      "earl:outcome": "earl:pass",
-      "notes": "",
-      "techniques": [
-        "WCAG21Tech:aria/ARIA22",
-        "WCAG21Tech:general/G199",
-
-        "WCAG21Tech:aria/ARIA19",
-        "WCAG21Tech:general/G83",
-        "WCAG21Tech:general/G84",
-        "WCAG21Tech:general/G85",
-        "WCAG21Tech:general/G177",
-        "WCAG21Tech:general/G194",
-
-        "WCAG21Tech:aria/ARIA23",
-        "WCAG21Tech:general/G193",
-
-        "WCAG21Tech:failures/F103"
-      ],
-      "advisory": [
-        "WCAG21Tech:aria/ARIA18",
-        "WCAG21Tech:client-side-script/SCR14"
-      ],
+      "earl:subject": "_:subject",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "acr:severity": "acr:noSeverity",
+      "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
-      "@type": ["earl:TestResult", "earl:Assertion"]
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
     }
   ]
 }
