@@ -1,0 +1,1184 @@
+---
+{
+"title": "Paginer",
+"language": "fr",
+"category": "Plugiciels",
+"description": "Ajoute une pagination à la fin d'une liste d'items",
+"tag": "paginate",
+"parentdir": "paginate",
+"altLangPrefix": "paginate",
+"dateModified": "2023-05-15"
+}
+---
+
+<div class="alert alert-warning">
+	<h2>Fonctionnalité instable</h2>
+	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
+	<p><small><a href="../../docs/ref/provisional-fr.html">Jetez un coup d'oeil aux autres fonctionnalités provisoires disponibles.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<h2>Sur cette page:</h2>
+<ul>
+	<li><a href="#paginatedList">Exemple 1 - Liste</a></li>
+	<li><a href="#paginatedTable">Exemple 2 - Tableau</a></li>
+	<li><a href="#paginatedArticles">Exemple 3 - Articles</a></li>
+	<li><a href="#filteredEventsList">Exemple 4 - Liste d'événements</a></li>
+</ul>
+
+<section id="paginatedList">
+	<h2>Exemple 1 - Liste</h2>
+	<ul class="wb-paginate provisional">
+		<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!</li>
+		<li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?</li>
+		<li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.</li>
+		<li>Corrupti est quos ad vero. Hic repellendus numquam officia beatae.</li>
+		<li>Amet ullam, ipsam adipisci ad nisi facere veritatis fuga pariatur?</li>
+		<li>Eum ipsum doloribus nisi natus dolorum maxime omnis, mollitia hic!</li>
+		<li>Aperiam odit, sapiente cum modi amet labore iste dolorum minima.</li>
+		<li>Sunt praesentium voluptatibus aliquid cumque quae eaque aspernatur incidunt sint?</li>
+		<li>Quae illo veritatis deserunt optio corporis repellendus! Qui, deleniti suscipit?</li>
+		<li>Expedita quae temporibus ex labore ipsa excepturi inventore deleniti magnam!</li>
+		<li>Facere reprehenderit natus voluptatibus perspiciatis. Ipsam id quam facilis maxime?</li>
+		<li>Provident assumenda fugiat, nulla temporibus accusantium incidunt laudantium ea consequuntur!</li>
+		<li>Nulla, non aspernatur ipsam provident libero ratione corrupti necessitatibus dicta.</li>
+		<li>Possimus minus autem voluptate suscipit porro non culpa officiis doloribus?</li>
+		<li>Alias modi eius repudiandae natus molestiae ad, unde aliquid praesentium.</li>
+		<li>Ut incidunt corporis quos vel accusantium non assumenda dolorum vitae?</li>
+		<li>Velit magnam laudantium expedita recusandae similique voluptates est, doloribus odit!</li>
+		<li>Officia quasi non, ex dolore fuga reiciendis unde alias blanditiis!</li>
+		<li>Repellendus, libero sint at nam tempore blanditiis recusandae ipsa cupiditate?</li>
+		<li>Maiores exercitationem ipsa fuga accusamus impedit dolorum cum voluptatum alias.</li>
+		<li>Nulla blanditiis ut ipsa nesciunt officiis error quisquam, reprehenderit quam!</li>
+		<li>Libero sint optio sunt beatae ex, quibusdam autem dignissimos et?</li>
+		<li>Mollitia cum tenetur sed blanditiis unde sint tempore quaerat ratione?</li>
+		<li>Optio dicta harum placeat tempore dolorem? Temporibus enim libero vel.</li>
+		<li>Quibusdam delectus, tenetur esse ut quos tempore consequatur iste odit!</li>
+		<li>Minima nesciunt laudantium cum vero ipsam temporibus reiciendis. Officiis, earum?</li>
+		<li>Veritatis perspiciatis eligendi earum assumenda deleniti quibusdam omnis cumque quisquam!</li>
+		<li>Libero molestias explicabo natus id aliquam veniam suscipit? Repudiandae, minima!</li>
+		<li>Labore nesciunt numquam modi minus nostrum eveniet temporibus expedita ea.</li>
+		<li>Neque, eveniet deserunt. Quasi suscipit nulla similique porro perferendis atque.</li>
+		<li>Quo laborum quos eos quas vitae eveniet expedita cupiditate incidunt?</li>
+		<li>Sit, at doloribus deserunt magnam quasi perferendis reprehenderit reiciendis eligendi?</li>
+		<li>Fugiat eos modi voluptatum sit amet voluptas fugit necessitatibus veniam!</li>
+		<li>Laudantium sunt earum voluptatum cupiditate aut rem tempore nam ea.</li>
+		<li>Odit expedita sunt distinctio reiciendis dolores magnam nobis non. Reiciendis.</li>
+		<li>Corrupti suscipit, sunt eligendi exercitationem distinctio consequatur repudiandae numquam dicta.</li>
+		<li>Dolore, saepe veritatis. Voluptatibus temporibus laboriosam impedit nisi quod perferendis?</li>
+		<li>Nesciunt, reprehenderit rem quis odio incidunt laborum aliquid dolorem nihil.</li>
+		<li>Cum fuga, maxime quod quos sit quidem odit atque rem!</li>
+		<li>Harum sint soluta veniam blanditiis laboriosam corporis repellendus aspernatur unde?</li>
+		<li>Exercitationem dolorem quas quae ab, praesentium obcaecati quis similique culpa!</li>
+		<li>Nesciunt ratione modi sit, placeat quo sint perspiciatis consequatur nam.</li>
+		<li>Saepe cumque, reprehenderit tempore neque dolores quo eum velit ullam?</li>
+		<li>Praesentium neque, quae molestias sed mollitia doloremque temporibus. Omnis, placeat?</li>
+		<li>Quos magni at exercitationem corporis nulla quae pariatur placeat blanditiis?</li>
+		<li>Sit, id? Beatae eveniet fugit ut sapiente accusamus modi nisi.</li>
+		<li>Quam, in tenetur dolore quis aspernatur ipsum adipisci officia perferendis.</li>
+		<li>Dicta sapiente non at, maiores sunt natus asperiores nihil ducimus.</li>
+		<li>Accusamus inventore ad explicabo earum quidem qui soluta iusto officia.</li>
+		<li>At rerum doloremque nostrum perspiciatis repellat velit nihil aperiam laborum!</li>
+		<li>Repellendus, libero sint at nam tempore blanditiis recusandae ipsa cupiditate?</li>
+		<li>Maiores exercitationem ipsa fuga accusamus impedit dolorum cum voluptatum alias.</li>
+		<li>Nulla blanditiis ut ipsa nesciunt officiis error quisquam, reprehenderit quam!</li>
+		<li>Libero sint optio sunt beatae ex, quibusdam autem dignissimos et?</li>
+		<li>Mollitia cum tenetur sed blanditiis unde sint tempore quaerat ratione?</li>
+		<li>Optio dicta harum placeat tempore dolorem? Temporibus enim libero vel.</li>
+		<li>Quibusdam delectus, tenetur esse ut quos tempore consequatur iste odit!</li>
+		<li>Minima nesciunt laudantium cum vero ipsam temporibus reiciendis. Officiis, earum?</li>
+		<li>Veritatis perspiciatis eligendi earum assumenda deleniti quibusdam omnis cumque quisquam!</li>
+		<li>Libero molestias explicabo natus id aliquam veniam suscipit? Repudiandae, minima!</li>
+		<li>Labore nesciunt numquam modi minus nostrum eveniet temporibus expedita ea.</li>
+		<li>Neque, eveniet deserunt. Quasi suscipit nulla similique porro perferendis atque.</li>
+		<li>Quo laborum quos eos quas vitae eveniet expedita cupiditate incidunt?</li>
+		<li>Sit, at doloribus deserunt magnam quasi perferendis reprehenderit reiciendis eligendi?</li>
+		<li>Fugiat eos modi voluptatum sit amet voluptas fugit necessitatibus veniam!</li>
+		<li>Laudantium sunt earum voluptatum cupiditate aut rem tempore nam ea.</li>
+		<li>Odit expedita sunt distinctio reiciendis dolores magnam nobis non. Reiciendis.</li>
+		<li>Corrupti suscipit, sunt eligendi exercitationem distinctio consequatur repudiandae numquam dicta.</li>
+		<li>Dolore, saepe veritatis. Voluptatibus temporibus laboriosam impedit nisi quod perferendis?</li>
+		<li>Nesciunt, reprehenderit rem quis odio incidunt laborum aliquid dolorem nihil.</li>
+		<li>Cum fuga, maxime quod quos sit quidem odit atque rem!</li>
+		<li>Harum sint soluta veniam blanditiis laboriosam corporis repellendus aspernatur unde?</li>
+		<li>Exercitationem dolorem quas quae ab, praesentium obcaecati quis similique culpa!</li>
+		<li>Nesciunt ratione modi sit, placeat quo sint perspiciatis consequatur nam.</li>
+		<li>Saepe cumque, reprehenderit tempore neque dolores quo eum velit ullam?</li>
+		<li>Praesentium neque, quae molestias sed mollitia doloremque temporibus. Omnis, placeat?</li>
+		<li>Quos magni at exercitationem corporis nulla quae pariatur placeat blanditiis?</li>
+		<li>Sit, id? Beatae eveniet fugit ut sapiente accusamus modi nisi.</li>
+		<li>Quam, in tenetur dolore quis aspernatur ipsum adipisci officia perferendis.</li>
+		<li>Dicta sapiente non at, maiores sunt natus asperiores nihil ducimus.</li>
+		<li>Accusamus inventore ad explicabo earum quidem qui soluta iusto officia.</li>
+		<li>At rerum doloremque nostrum perspiciatis repellat velit nihil aperiam laborum!</li>
+	</ul>
+	<details>
+		<summary>Code source</summary>
+		<pre><code>&lt;ul class="wb-paginate provisional">
+	&lt;li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li>
+	&lt;li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li>
+	&lt;li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li>
+	&lt;li>Corrupti est quos ad vero. Hic repellendus numquam officia beatae.&lt;/li>
+	&lt;li>Amet ullam, ipsam adipisci ad nisi facere veritatis fuga pariatur?&lt;/li>
+	&lt;li>Eum ipsum doloribus nisi natus dolorum maxime omnis, mollitia hic!&lt;/li>
+	&lt;li>Aperiam odit, sapiente cum modi amet labore iste dolorum minima.&lt;/li>
+	...
+&lt;/ul></code></pre>
+	</details>
+</section>
+
+<section id="paginatedTable">
+	<h2>Exemple 2 - Tableau</h2>
+	<table class="table wb-paginate provisional">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Texte</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Lorem.</td>
+				<td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, temporibus.</td>
+			</tr>
+			<tr>
+				<td>Odit!</td>
+				<td>Mollitia soluta est quia nihil itaque veritatis voluptatem minima dolorem.</td>
+			</tr>
+			<tr>
+				<td>At?</td>
+				<td>Magnam iure cupiditate tenetur? Dignissimos temporibus suscipit sed perspiciatis iste.</td>
+			</tr>
+			<tr>
+				<td>Accusamus.</td>
+				<td>Praesentium voluptatem architecto esse omnis tempore enim blanditiis, excepturi dicta.</td>
+			</tr>
+			<tr>
+				<td>Alias.</td>
+				<td>Illo, nobis accusantium quasi tempora asperiores veniam magni est sunt.</td>
+			</tr>
+			<tr>
+				<td>Animi?</td>
+				<td>Ratione deserunt ut amet tempora doloremque id dolorem officia dignissimos.</td>
+			</tr>
+			<tr>
+				<td>Ipsum.</td>
+				<td>Tempora omnis nisi sunt commodi natus aspernatur perferendis deleniti exercitationem?</td>
+			</tr>
+			<tr>
+				<td>Illo.</td>
+				<td>Vel earum corporis fugit adipisci commodi debitis ducimus blanditiis sapiente!</td>
+			</tr>
+			<tr>
+				<td>Fugit.</td>
+				<td>Architecto quam dolor ex reprehenderit at quas. Magnam, quos hic.</td>
+			</tr>
+			<tr>
+				<td>Inventore?</td>
+				<td>Porro ipsa a animi iure assumenda rerum fugit perferendis dicta.</td>
+			</tr>
+			<tr>
+				<td>Error?</td>
+				<td>Officiis earum sint architecto ea sapiente quas quae eligendi rerum.</td>
+			</tr>
+			<tr>
+				<td>Omnis.</td>
+				<td>Cumque non autem incidunt ullam illo rerum sit nemo dolorem.</td>
+			</tr>
+			<tr>
+				<td>Ut.</td>
+				<td>Provident libero hic voluptatum corporis atque nam dolor cupiditate accusamus.</td>
+			</tr>
+			<tr>
+				<td>Optio.</td>
+				<td>Magnam praesentium veritatis vero quas magni eius nemo, repellat quibusdam.</td>
+			</tr>
+			<tr>
+				<td>Sint.</td>
+				<td>Numquam iusto omnis sequi nemo a atque, voluptatem est! Dolorum.</td>
+			</tr>
+			<tr>
+				<td>Qui?</td>
+				<td>Veritatis, tempore. Consequatur aliquam repellendus quam atque natus voluptatem commodi?</td>
+			</tr>
+			<tr>
+				<td>Corrupti!</td>
+				<td>Cum, sunt quia blanditiis nulla obcaecati atque facere ea nemo.</td>
+			</tr>
+			<tr>
+				<td>Cumque.</td>
+				<td>Quisquam aperiam praesentium omnis illum iusto quia magnam modi totam.</td>
+			</tr>
+			<tr>
+				<td>Ea!</td>
+				<td>Provident expedita aspernatur dolorum architecto harum eos alias explicabo deserunt.</td>
+			</tr>
+			<tr>
+				<td>Voluptate.</td>
+				<td>Aspernatur, et aliquam? Explicabo, nostrum obcaecati porro eum totam ipsam.</td>
+			</tr>
+			<tr>
+				<td>Est?</td>
+				<td>Atque, dolores reprehenderit quibusdam et odio corrupti velit possimus repudiandae.</td>
+			</tr>
+			<tr>
+				<td>Id.</td>
+				<td>In culpa alias ducimus! Esse praesentium corrupti nihil vero sed.</td>
+			</tr>
+			<tr>
+				<td>Quisquam?</td>
+				<td>Magni accusantium voluptates sapiente doloribus rerum cum eaque maiores non?</td>
+			</tr>
+			<tr>
+				<td>Libero.</td>
+				<td>Et, sunt? Aliquam earum eius recusandae ea nobis, voluptas soluta.</td>
+			</tr>
+			<tr>
+				<td>Corporis.</td>
+				<td>Ipsa quisquam nesciunt pariatur rerum culpa. Aut voluptatum odit eum.</td>
+			</tr>
+			<tr>
+				<td>Id?</td>
+				<td>Enim recusandae animi, consequuntur minima illum vero magni natus ducimus.</td>
+			</tr>
+			<tr>
+				<td>Reiciendis.</td>
+				<td>Nemo ut nostrum alias eos sint pariatur nisi, earum sapiente?</td>
+			</tr>
+			<tr>
+				<td>Assumenda.</td>
+				<td>Mollitia quo sunt, consequuntur reiciendis tempore voluptatibus sequi libero tempora!</td>
+			</tr>
+			<tr>
+				<td>Sapiente.</td>
+				<td>Maxime est ratione adipisci sed odit veniam at blanditiis. Temporibus.</td>
+			</tr>
+			<tr>
+				<td>Ullam!</td>
+				<td>Voluptas, aliquam provident! Est omnis suscipit culpa! Perferendis, fuga possimus!</td>
+			</tr>
+			<tr>
+				<td>Lorem.</td>
+				<td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, temporibus.</td>
+			</tr>
+			<tr>
+				<td>Odit!</td>
+				<td>Mollitia soluta est quia nihil itaque veritatis voluptatem minima dolorem.</td>
+			</tr>
+			<tr>
+				<td>At?</td>
+				<td>Magnam iure cupiditate tenetur? Dignissimos temporibus suscipit sed perspiciatis iste.</td>
+			</tr>
+			<tr>
+				<td>Accusamus.</td>
+				<td>Praesentium voluptatem architecto esse omnis tempore enim blanditiis, excepturi dicta.</td>
+			</tr>
+			<tr>
+				<td>Alias.</td>
+				<td>Illo, nobis accusantium quasi tempora asperiores veniam magni est sunt.</td>
+			</tr>
+			<tr>
+				<td>Animi?</td>
+				<td>Ratione deserunt ut amet tempora doloremque id dolorem officia dignissimos.</td>
+			</tr>
+			<tr>
+				<td>Ipsum.</td>
+				<td>Tempora omnis nisi sunt commodi natus aspernatur perferendis deleniti exercitationem?</td>
+			</tr>
+			<tr>
+				<td>Illo.</td>
+				<td>Vel earum corporis fugit adipisci commodi debitis ducimus blanditiis sapiente!</td>
+			</tr>
+			<tr>
+				<td>Fugit.</td>
+				<td>Architecto quam dolor ex reprehenderit at quas. Magnam, quos hic.</td>
+			</tr>
+			<tr>
+				<td>Inventore?</td>
+				<td>Porro ipsa a animi iure assumenda rerum fugit perferendis dicta.</td>
+			</tr>
+			<tr>
+				<td>Error?</td>
+				<td>Officiis earum sint architecto ea sapiente quas quae eligendi rerum.</td>
+			</tr>
+			<tr>
+				<td>Omnis.</td>
+				<td>Cumque non autem incidunt ullam illo rerum sit nemo dolorem.</td>
+			</tr>
+			<tr>
+				<td>Ut.</td>
+				<td>Provident libero hic voluptatum corporis atque nam dolor cupiditate accusamus.</td>
+			</tr>
+			<tr>
+				<td>Optio.</td>
+				<td>Magnam praesentium veritatis vero quas magni eius nemo, repellat quibusdam.</td>
+			</tr>
+			<tr>
+				<td>Sint.</td>
+				<td>Numquam iusto omnis sequi nemo a atque, voluptatem est! Dolorum.</td>
+			</tr>
+			<tr>
+				<td>Qui?</td>
+				<td>Veritatis, tempore. Consequatur aliquam repellendus quam atque natus voluptatem commodi?</td>
+			</tr>
+			<tr>
+				<td>Corrupti!</td>
+				<td>Cum, sunt quia blanditiis nulla obcaecati atque facere ea nemo.</td>
+			</tr>
+			<tr>
+				<td>Cumque.</td>
+				<td>Quisquam aperiam praesentium omnis illum iusto quia magnam modi totam.</td>
+			</tr>
+			<tr>
+				<td>Ea!</td>
+				<td>Provident expedita aspernatur dolorum architecto harum eos alias explicabo deserunt.</td>
+			</tr>
+			<tr>
+				<td>Voluptate.</td>
+				<td>Aspernatur, et aliquam? Explicabo, nostrum obcaecati porro eum totam ipsam.</td>
+			</tr>
+			<tr>
+				<td>Est?</td>
+				<td>Atque, dolores reprehenderit quibusdam et odio corrupti velit possimus repudiandae.</td>
+			</tr>
+			<tr>
+				<td>Id.</td>
+				<td>In culpa alias ducimus! Esse praesentium corrupti nihil vero sed.</td>
+			</tr>
+			<tr>
+				<td>Quisquam?</td>
+				<td>Magni accusantium voluptates sapiente doloribus rerum cum eaque maiores non?</td>
+			</tr>
+			<tr>
+				<td>Libero.</td>
+				<td>Et, sunt? Aliquam earum eius recusandae ea nobis, voluptas soluta.</td>
+			</tr>
+			<tr>
+				<td>Corporis.</td>
+				<td>Ipsa quisquam nesciunt pariatur rerum culpa. Aut voluptatum odit eum.</td>
+			</tr>
+			<tr>
+				<td>Id?</td>
+				<td>Enim recusandae animi, consequuntur minima illum vero magni natus ducimus.</td>
+			</tr>
+			<tr>
+				<td>Reiciendis.</td>
+				<td>Nemo ut nostrum alias eos sint pariatur nisi, earum sapiente?</td>
+			</tr>
+			<tr>
+				<td>Assumenda.</td>
+				<td>Mollitia quo sunt, consequuntur reiciendis tempore voluptatibus sequi libero tempora!</td>
+			</tr>
+			<tr>
+				<td>Sapiente.</td>
+				<td>Maxime est ratione adipisci sed odit veniam at blanditiis. Temporibus.</td>
+			</tr>
+			<tr>
+				<td>Ullam!</td>
+				<td>Voluptas, aliquam provident! Est omnis suscipit culpa! Perferendis, fuga possimus!</td>
+			</tr>
+		</tbody>
+	</table>
+	<details>
+		<summary>Code source</summary>
+		<pre><code>&lt;table class="table wb-paginate provisional">
+	&lt;thead>
+		&lt;tr>
+			&lt;th>ID&lt;/th>
+			&lt;th>Texte&lt;/th>
+		&lt;/tr>
+	&lt;/thead>
+	&lt;tbody>
+		&lt;tr>
+			&lt;td>Lorem.&lt;/td>
+			&lt;td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, temporibus.&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>Odit!&lt;/td>
+			&lt;td>Mollitia soluta est quia nihil itaque veritatis voluptatem minima dolorem.&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>At?&lt;/td>
+			&lt;td>Magnam iure cupiditate tenetur? Dignissimos temporibus suscipit sed perspiciatis iste.&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>Accusamus.&lt;/td>
+			&lt;td>Praesentium voluptatem architecto esse omnis tempore enim blanditiis, excepturi dicta.&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>Alias.&lt;/td>
+			&lt;td>Illo, nobis accusantium quasi tempora asperiores veniam magni est sunt.&lt;/td>
+		&lt;/tr>
+		...
+	&lt;/tbody>
+&lt;/table></code></pre>
+	</details>
+</section>
+
+<section id="paginatedArticles">
+	<h2>Exemple 3 - Articles</h2>
+	<p>Cet exemple exploite l'option suivante&nbsp;: <code>itemsPerPage</code></p>
+	<div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+		"itemsPerPage": 12
+	}'>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Lorem ipsum dolor sit amet.</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore sequi eius molestiae, non rerum officia?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Unde ullam aliquid numquam laudantium!</h3>
+				<p>Facere modi possimus a hic voluptatum reiciendis, quod laboriosam, dolor voluptate praesentium alias inventore eveniet.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Corporis repellat nostrum inventore excepturi?</h3>
+				<p>Consequuntur nostrum suscipit nisi temporibus facere, explicabo inventore reiciendis maxime. Repudiandae consequuntur eligendi quod recusandae!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Voluptate explicabo architecto iste a?</h3>
+				<p>Dolores minus, provident nihil laudantium dicta nam, rerum doloremque ab nesciunt, vitae optio excepturi voluptas.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Impedit dignissimos cupiditate laudantium commodi.</h3>
+				<p>Possimus aperiam animi veniam hic voluptatem inventore veritatis odit nobis eum saepe? Numquam, incidunt sequi.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Quasi ipsam animi aliquam non?</h3>
+				<p>Sed quisquam officia placeat dolores similique quia sapiente obcaecati. Cum asperiores et ab inventore sint.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Facilis minima sequi autem fuga!</h3>
+				<p>Reprehenderit, nisi est fugiat optio adipisci voluptates accusamus nam aperiam rerum eligendi odit mollitia recusandae.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Repudiandae provident incidunt expedita fugit.</h3>
+				<p>Doloremque repellendus, soluta consequatur repudiandae iste minus eius quisquam nisi assumenda, dolore, at error autem.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Atque accusantium consequuntur voluptates labore.</h3>
+				<p>Ipsum voluptas distinctio ut tempora dolores sit impedit. Et atque vel quos laudantium minus unde!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Voluptas quas quod velit soluta.</h3>
+				<p>Voluptas rerum, commodi provident deserunt saepe magni impedit corporis illo repellat vitae quasi alias cupiditate?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Molestiae atque et accusantium voluptatum.</h3>
+				<p>Nobis officia, consectetur blanditiis quaerat dolorem cum accusamus eius iure fugit reprehenderit amet facere voluptatem?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Dolore aliquam optio laborum placeat.</h3>
+				<p>Iusto alias dolores facilis doloremque eveniet molestiae accusamus, maxime odio aspernatur consequatur similique. Vitae, quibusdam!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Maiores velit enim consequatur molestias?</h3>
+				<p>Corporis, quis dicta excepturi doloremque ad aut nesciunt animi, dolor aspernatur, ea cumque pariatur officiis.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Numquam placeat quod quia asperiores?</h3>
+				<p>Animi saepe repellendus ad voluptas error velit. Iusto obcaecati dicta mollitia rerum magnam asperiores odit.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Beatae reprehenderit tenetur perferendis soluta.</h3>
+				<p>Minus, suscipit laudantium quos ut totam deleniti rerum ipsa hic eaque nostrum quis dolorem aperiam.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Ipsum velit quisquam tempore illo.</h3>
+				<p>Magni odit, tenetur aut libero mollitia autem eligendi ullam consequatur inventore itaque, quis possimus ad.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Fuga necessitatibus distinctio molestiae eos?</h3>
+				<p>Optio non atque consequatur sapiente impedit assumenda quis iure adipisci dolores magnam! Error, deserunt voluptates.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Perspiciatis, ipsam doloribus? Voluptates, incidunt?</h3>
+				<p>Neque recusandae repellendus non libero consequuntur quos consectetur exercitationem, unde, provident temporibus impedit, architecto ut.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Alias totam officia iste eaque?</h3>
+				<p>Enim distinctio laudantium minima aperiam vero veritatis ipsum eum sint, facilis accusamus error similique libero!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Quo sunt magni a ullam.</h3>
+				<p>Ducimus quia sed dolore totam, porro ipsa voluptas? Sapiente, expedita. Quisquam cupiditate delectus laudantium soluta?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Accusantium quisquam ea fugiat optio!</h3>
+				<p>Repudiandae quisquam animi veritatis. Sit odio minus doloribus suscipit similique fugit voluptatem dicta sint. Alias!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Voluptas fuga officiis fugiat. Totam.</h3>
+				<p>Fugiat neque ipsa placeat harum eaque veniam. Molestiae esse dolore temporibus cum illum mollitia aliquid?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Accusantium nobis laudantium tempora repudiandae?</h3>
+				<p>Blanditiis, obcaecati quas sed consequuntur deserunt culpa odit, sint tempore soluta temporibus expedita veniam! Impedit?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Debitis sint vel voluptas illo.</h3>
+				<p>Autem nam rerum omnis praesentium dicta, maxime maiores rem, perferendis, possimus qui vero ad sapiente.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Quam dolores modi mollitia nesciunt.</h3>
+				<p>Suscipit rerum sunt, vel quam labore doloribus illo adipisci nam ea similique impedit maiores id.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Possimus dolore nulla velit doloribus!</h3>
+				<p>Officiis pariatur nobis sequi quod culpa enim natus est praesentium, dolor sint voluptas, dignissimos eum.</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Assumenda, praesentium id. Alias, sint.</h3>
+				<p>Mollitia tempora quae optio dicta obcaecati. Consectetur nisi iste sunt, eos perspiciatis maxime at dignissimos?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Earum officia saepe voluptatibus dolor!</h3>
+				<p>Eum non natus ullam, adipisci expedita, amet iusto quam, officiis ut error necessitatibus harum voluptatem?</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Impedit natus aperiam nemo adipisci?</h3>
+				<p>Illum dolore ipsam corporis atque quisquam cupiditate quod aliquid quaerat, saepe architecto aspernatur ratione autem!</p>
+			</div>
+		</article>
+		<article class="col-sm-6 col-md-4 col-lg-3">
+			<div class="well">
+				<h3 class="mrgn-tp-0">Assumenda dignissimos beatae doloremque dolores.</h3>
+				<p>Aliquid temporibus sunt quis illum, voluptatem atque. Blanditiis voluptatum iure cupiditate recusandae hic sint aperiam.</p>
+			</div>
+		</article>
+	</div>
+	<details>
+		<summary>Code source</summary>
+		<pre><code>&lt;div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+		"itemsPerPage": 12
+	}'>
+	&lt;article class="col-sm-6 col-md-4 col-lg-3">
+		&lt;div class="well">
+			&lt;h3 class="mrgn-tp-0">Lorem ipsum dolor sit amet.&lt;/h3>
+			&lt;p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore sequi eius molestiae, non rerum officia?&lt;/p>
+		&lt;/div>
+	&lt;/article>
+	&lt;article class="col-sm-6 col-md-4 col-lg-3">
+		&lt;div class="well">
+			&lt;h3 class="mrgn-tp-0">Unde ullam aliquid numquam laudantium!&lt;/h3>
+			&lt;p>Facere modi possimus a hic voluptatum reiciendis, quod laboriosam, dolor voluptate praesentium alias inventore eveniet.&lt;/p>
+		&lt;/div>
+	&lt;/article>
+	&lt;article class="col-sm-6 col-md-4 col-lg-3">
+		&lt;div class="well">
+			&lt;h3 class="mrgn-tp-0">Corporis repellat nostrum inventore excepturi?&lt;/h3>
+			&lt;p>Consequuntur nostrum suscipit nisi temporibus facere, explicabo inventore reiciendis maxime. Repudiandae consequuntur eligendi quod recusandae!&lt;/p>
+		&lt;/div>
+	&lt;/article>
+	&lt;article class="col-sm-6 col-md-4 col-lg-3">
+		&lt;div class="well">
+			&lt;h3 class="mrgn-tp-0">Voluptate explicabo architecto iste a?&lt;/h3>
+			&lt;p>Dolores minus, provident nihil laudantium dicta nam, rerum doloremque ab nesciunt, vitae optio excepturi voluptas.&lt;/p>
+		&lt;/div>
+	&lt;/article>
+	...
+&lt;/div></code></pre>
+	</details>
+</section>
+
+<section id="filteredEventsList">
+	<h2>Exemple 4 - Liste d'événements</h2>
+	<p>Cet exemple exploite les options suivantes&nbsp;: <code>itemsPerPage</code>, <code>section</code>, <code>selector</code> et <code>uiTarget</code></p>
+	<p>Ce exemple exploite également les deux autres plugiciels suivants&nbsp;: <b>Filtre</b> et <b>Filtre de balises</b>. Pour que les trois plugiciels fonctionnent ensemble, ils doivent être ajoutés au même élément HTML.</p>
+	<div class="wb-paginate wb-tagfilter provisional wb-filter"
+	data-wb-filter='{
+		"uiTemplate": "#filteredEventsList",
+		"section": ".events-list",
+		"selector": "article"
+	}'
+	data-wb-paginate='{
+		"itemsPerPage": 5,
+		"section": ".events-list",
+		"selector": "article",
+		"uiTarget": "#paginationCntnr"
+	}'>
+		<div class="row">
+			<div class="col-sm-6 col-md-5 col-lg-4">
+				<details open>
+					<summary>
+						<span class="h4">Filtrer les événements</span>
+					</summary>
+					<div class="form-group">
+						<label for="filterSearch">Rechercher</label>
+						<input type="search" id="filterSearch" class="form-control full-width" placeholder="Tapez un mot-clé, un jour ou un mois">
+					</div>
+					<div class="form-group">
+						<label for="filterMonth">Mois</label>
+						<select name="filterMonth" id="filterMonth" class="form-control full-width wb-tagfilter-ctrl">
+							<option value="">Tous</option>
+							<option value="month__january">Janvier</option>
+							<option value="month__february">Février</option>
+							<option value="month__march">Mars</option>
+							<option value="month__april">Avril</option>
+							<option value="month__may">Mai</option>
+							<option value="month__june">Juin</option>
+							<option value="month__july">Juillet</option>
+							<option value="month__august">Août</option>
+							<option value="month__september">Septembre</option>
+							<option value="month__october">Octobre</option>
+							<option value="month__november">Novembre</option>
+							<option value="month__december">Décembre</option>
+						</select>
+					</div>
+					<div class="form-group mrgn-bttm-0">
+						<fieldset class="p-0">
+							<legend class="mrgn-tp-0 h5">Format</legend>
+							<div class="checkbox">
+								<label for="format__online">
+									<input type="checkbox" name="format" id="format__online" class="wb-tagfilter-ctrl" value="format__online"> En ligne
+								</label>
+							</div>
+							<div class="checkbox">
+								<label for="format__inperson">
+									<input type="checkbox" name="format" id="format__inperson" class="wb-tagfilter-ctrl" value="format__inperson"> En personne
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group">
+						<label for="filterLocation">Emplacement</label>
+						<select name="filterLocation" id="filterLocation" class="form-control full-width wb-tagfilter-ctrl">
+							<option value="">Tous</option>
+							<option value="location__montreal">Montréal</option>
+							<option value="location__ottawa">Ottawa</option>
+							<option value="location__toronto">Toronto</option>
+							<option value="location__vancouver">Vancouver</option>
+						</select>
+					</div>
+					<div class="form-group mrgn-bttm-0">
+						<fieldset class="p-0">
+							<legend class="mrgn-tp-0 h5">Langue</legend>
+							<div class="checkbox">
+								<label for="language__english">
+									<input type="checkbox" name="language" id="language__english" class="wb-tagfilter-ctrl" value="language__english"> Anglais
+								</label>
+							</div>
+							<div class="checkbox">
+								<label for="language__french">
+									<input type="checkbox" name="language" id="language__french" class="wb-tagfilter-ctrl" value="language__french"> Français
+								</label>
+							</div>
+							<div class="checkbox">
+								<label for="language__bilingual">
+									<input type="checkbox" name="language" id="language__bilingual" class="wb-tagfilter-ctrl" value="language__bilingual"> Bilingue
+								</label>
+							</div>
+							<div class="checkbox">
+								<label for="language__other">
+									<input type="checkbox" name="language" id="language__other" class="wb-tagfilter-ctrl" value="language__other"> Autre
+								</label>
+							</div>
+						</fieldset>
+					</div>
+				</details>
+			</div>
+			<div class="col-sm-6 col-md-7 col-lg-8">
+				<p class="h4 wb-fltr-info mrgn-bttm-lg mrgn-tp-0"><span data-nbitem></span> évènement(s)</p>
+				<div class="events-list wb-tagfilter-items">
+					<article data-wb-tags="language__english format__online month__august">
+						<h3 class="h4"><a href="#">Demandez n'importe quoi à PAC !</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Vendredi, 5 août 2022, 12h - 13h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>En ligne</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__vancouver format__inperson month__august">
+						<h3 class="h4"><a href="#">Miser sur des opportunités</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Mercredi, 10 août 2022, 14h - 15h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Vancouver</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						<h3 class="h4"><a href="#">Faire affaire avec le gouvernement du Canada (webinaire)</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 11 août 2022, 14h - 15h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Ottawa</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english format__online month__august">
+						<h3 class="h4"><a href="#">Demandez n'importe quoi à PAC !</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Friday, 12 août 2022, 12h - 13h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>En ligne</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						<h3 class="h4"><a href="#">Miser sur des opportunités (Webinar)</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 18 août 2022, 14h - 15h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Ottawa</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english format__online month__august">
+						<h3 class="h4"><a href="#">Demandez n'importe quoi à PAC !</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Friday, 19 août 2022, 12h - 13h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>En ligne</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__french location__ottawa format__inperson month__august">
+						<h3 class="h4"><a href="#">Atelier pour s'inscrire au système d'information sur l'inscription des fournisseur3 (SRI) et au Répertoire des entreprises autochtones (IBD) pour les entreprises dirigées par des Autochtones</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 25 août 2022, 9h30 - 11h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Ottawa</dd>
+							<dt>Langue</dt>
+							<dd>Français</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						<h3 class="h4"><a href="#">Atelier pour s'inscrire au système d'information sur l'inscription des fournisseurs (SRI) et au Répertoire des entreprises autochtones (IBD) pour les entreprises dirigées par des Autochtones</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 25 août 2022, 13h - 14h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Ottawa</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__french location__montreal format__inperson month__august">
+						<h3 class="h4"><a href="#">Faire affaire avec le gouvernement du Canada</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 25 août 2022, 13h30 - 15h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Montréal</dd>
+							<dt>Langue</dt>
+							<dd>Français</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__vancouver format__inperson month__august">
+						<h3 class="h4"><a href="#">Faire affaire avec le gouvernement du Canada</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Jeudi, 25 août 2022, 14h - 15h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Vancouver</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english format__online month__august">
+						<h3 class="h4"><a href="#">Demandez n'importe quoi à PAC !</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Friday, 26 août 2022, 12h - 13h30 HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>En ligne</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__toronto format__inperson month__august">
+						<h3 class="h4"><a href="#">Démystifier les marchés publics fédéraux et aperçu de l'innovation pour la défense l'excellence et la sécurité</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Tuesday, 30 août 2022, 10h - 11h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Toronto</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__french location__montreal format__inperson month__august">
+						<h3 class="h4"><a href="#">Inscrivez-vous en tant que fournisseur et trouvez des opportunités BuyAndSell.gc.ca</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Tuesday, 30 août 2022, 13h30 - 15h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Montréal</dd>
+							<dt>Langue</dt>
+							<dd>Français</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+					<article data-wb-tags="language__english location__toronto format__inperson month__august">
+						<h3 class="h4"><a href="#">Café virtuel sans rendez-vous sur l'approvisionnement fédéral</a></h3>
+						<dl class="dl-horizontal brdr-0">
+							<dt>Date et heure</dt>
+							<dd>Wednesday, 31 août 2022, 15h - 16h HNE</dd>
+							<dt>Emplacement</dt>
+							<dd>Toronto</dd>
+							<dt>Langue</dt>
+							<dd>Anglais</dd>
+						</dl>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.</p>
+					</article>
+				</div>
+			</div>
+		</div>
+		<div id="paginationCntnr"></div>
+	</div>
+	<details>
+		<summary>Code source</summary>
+		<pre><code>&lt;div class="wb-paginate wb-tagfilter provisional wb-filter"
+	data-wb-filter='{
+		"uiTemplate": "#filteredEventsList",
+		"section": ".events-list",
+		"selector": "article"
+	}'
+	data-wb-paginate='{
+		"itemsPerPage": 5,
+		"section": ".events-list",
+		"selector": "article",
+		"uiTarget": "#paginationCntnr"
+	}'>
+		&lt;div class="row">
+			&lt;div class="col-sm-6 col-md-5 col-lg-4">
+				&lt;details open>
+					&lt;summary>
+						&lt;span class="h4">Filtrer les événements&lt;/span>
+					&lt;/summary>
+					&lt;div class="form-group">
+						&lt;label for="filterSearch">Rechercher&lt;/label>
+						&lt;input type="search" id="filterSearch" class="form-control full-width" placeholder="Tapez un mot-clé, un jour ou un mois">
+					&lt;/div>
+					&lt;div class="form-group">
+						&lt;label for="filterMonth">Mois&lt;/label>
+						&lt;select name="filterMonth" id="filterMonth" class="form-control full-width wb-tagfilter-ctrl">
+							&lt;option value="">Tous&lt;/option>
+							&lt;option value="month__january">Janvier&lt;/option>
+							&lt;option value="month__february">Février&lt;/option>
+							&lt;option value="month__march">Mars&lt;/option>
+							&lt;option value="month__april">Avril&lt;/option>
+							&lt;option value="month__may">Mai&lt;/option>
+							&lt;option value="month__june">Juin&lt;/option>
+							&lt;option value="month__july">Juillet&lt;/option>
+							&lt;option value="month__august">Août&lt;/option>
+							&lt;option value="month__september">Septembre&lt;/option>
+							&lt;option value="month__october">Octobre&lt;/option>
+							&lt;option value="month__november">Novembre&lt;/option>
+							&lt;option value="month__december">Décembre&lt;/option>
+						&lt;/select>
+					&lt;/div>
+					&lt;div class="form-group mrgn-bttm-0">
+						&lt;fieldset class="p-0">
+							&lt;legend class="mrgn-tp-0 h5">Format&lt;/legend>
+							&lt;div class="checkbox">
+								&lt;label for="format__online">
+									&lt;input type="checkbox" name="format" id="format__online" class="wb-tagfilter-ctrl" value="format__online"> En ligne
+								&lt;/label>
+							&lt;/div>
+							&lt;div class="checkbox">
+								&lt;label for="format__inperson">
+									&lt;input type="checkbox" name="format" id="format__inperson" class="wb-tagfilter-ctrl" value="format__inperson"> En personne
+								&lt;/label>
+							&lt;/div>
+						&lt;/fieldset>
+					&lt;/div>
+					&lt;div class="form-group">
+						&lt;label for="filterLocation">Emplacement&lt;/label>
+						&lt;select name="filterLocation" id="filterLocation" class="form-control full-width wb-tagfilter-ctrl">
+							&lt;option value="">Tous&lt;/option>
+							&lt;option value="location__montreal">Montréal&lt;/option>
+							&lt;option value="location__ottawa">Ottawa&lt;/option>
+							&lt;option value="location__toronto">Toronto&lt;/option>
+							&lt;option value="location__vancouver">Vancouver&lt;/option>
+						&lt;/select>
+					&lt;/div>
+					&lt;div class="form-group mrgn-bttm-0">
+						&lt;fieldset class="p-0">
+							&lt;legend class="mrgn-tp-0 h5">Langue&lt;/legend>
+							&lt;div class="checkbox">
+								&lt;label for="language__english">
+									&lt;input type="checkbox" name="language" id="language__english" class="wb-tagfilter-ctrl" value="language__english"> Anglais
+								&lt;/label>
+							&lt;/div>
+							&lt;div class="checkbox">
+								&lt;label for="language__french">
+									&lt;input type="checkbox" name="language" id="language__french" class="wb-tagfilter-ctrl" value="language__french"> Français
+								&lt;/label>
+							&lt;/div>
+							&lt;div class="checkbox">
+								&lt;label for="language__bilingual">
+									&lt;input type="checkbox" name="language" id="language__bilingual" class="wb-tagfilter-ctrl" value="language__bilingual"> Bilingue
+								&lt;/label>
+							&lt;/div>
+							&lt;div class="checkbox">
+								&lt;label for="language__other">
+									&lt;input type="checkbox" name="language" id="language__other" class="wb-tagfilter-ctrl" value="language__other"> Autre
+								&lt;/label>
+							&lt;/div>
+						&lt;/fieldset>
+					&lt;/div>
+				&lt;/details>
+			&lt;/div>
+			&lt;div class="col-sm-6 col-md-7 col-lg-8">
+				&lt;p class="h4 wb-fltr-info mrgn-bttm-lg mrgn-tp-0">&lt;span data-nbitem>&lt;/span> évènement(s)&lt;/p>
+				&lt;div class="events-list wb-tagfilter-items">
+					&lt;article data-wb-tags="language__english format__online month__august">
+						&lt;h3 class="h4">&lt;a href="#">Demandez n'importe quoi à PAC !&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Vendredi, 5 août 2022, 12h - 13h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>En ligne&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Miser sur des opportunités&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Mercredi, 10 août 2022, 14h - 15h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Vancouver&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Faire affaire avec le gouvernement du Canada (webinaire)&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 11 août 2022, 14h - 15h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Ottawa&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english format__online month__august">
+						&lt;h3 class="h4">&lt;a href="#">Demandez n'importe quoi à PAC !&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Friday, 12 août 2022, 12h - 13h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>En ligne&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Miser sur des opportunités (Webinar)&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 18 août 2022, 14h - 15h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Ottawa&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english format__online month__august">
+						&lt;h3 class="h4">&lt;a href="#">Demandez n'importe quoi à PAC !&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Friday, 19 août 2022, 12h - 13h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>En ligne&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__french location__ottawa format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Atelier pour s'inscrire au système d'information sur l'inscription des fournisseur3 (SRI) et au Répertoire des entreprises autochtones (IBD) pour les entreprises dirigées par des Autochtones&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 25 août 2022, 9h30 - 11h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Ottawa&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Français&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Atelier pour s'inscrire au système d'information sur l'inscription des fournisseurs (SRI) et au Répertoire des entreprises autochtones (IBD) pour les entreprises dirigées par des Autochtones&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 25 août 2022, 13h - 14h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Ottawa&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Faire affaire avec le gouvernement du Canada&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 25 août 2022, 13h30 - 15h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Montréal&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Français&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Faire affaire avec le gouvernement du Canada&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Jeudi, 25 août 2022, 14h - 15h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Vancouver&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english format__online month__august">
+						&lt;h3 class="h4">&lt;a href="#">Demandez n'importe quoi à PAC !&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Friday, 26 août 2022, 12h - 13h30 HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>En ligne&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Démystifier les marchés publics fédéraux et aperçu de l'innovation pour la défense l'excellence et la sécurité&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Tuesday, 30 août 2022, 10h - 11h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Toronto&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Inscrivez-vous en tant que fournisseur et trouvez des opportunités BuyAndSell.gc.ca&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Tuesday, 30 août 2022, 13h30 - 15h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Montréal&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Français&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august">
+						&lt;h3 class="h4">&lt;a href="#">Café virtuel sans rendez-vous sur l'approvisionnement fédéral&lt;/a>&lt;/h3>
+						&lt;dl class="dl-horizontal brdr-0">
+							&lt;dt>Date et heure&lt;/dt>
+							&lt;dd>Wednesday, 31 août 2022, 15h - 16h HNE&lt;/dd>
+							&lt;dt>Emplacement&lt;/dt>
+							&lt;dd>Toronto&lt;/dd>
+							&lt;dt>Langue&lt;/dt>
+							&lt;dd>Anglais&lt;/dd>
+						&lt;/dl>
+						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
+					&lt;/article>
+				&lt;/div>
+			&lt;/div>
+		&lt;/div>
+		&lt;div id="paginationCntnr">&lt;/div>
+	&lt;/div></code></pre>
+	</details>
+</section>

@@ -1,0 +1,162 @@
+---
+{
+	"title": "Paginate",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Adds pagination at the bottom of a list of items.",
+	"altLangPrefix": "paginate",
+	"dateModified": "2023-05-15"
+}
+---
+
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p property="description">Adds pagination at the bottom of a list of items.</p>
+</section>
+
+<section>
+	<h2>Use when</h2>
+	<p>You want to split into multiple pages an extensive list of items.</p>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<p><a href="../../../demos/paginate/paginate-en.html">English example</a></p>
+	<p><a href="../../../demos/paginate/paginate-fr.html">French example</a></p>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>
+			<p>Add the CSS classes <code>wb-paginate</code> and <code>provisional</code> to an element or a group of elements to be paginated. Simply add a JSON object as its value, i.e.:</p>
+			<pre><code>&lt;div class="wb-paginate provisional" data-wb-paginate='{
+	"appendUI": false,
+	"itemsPerPage": 12
+}'></code></pre>
+			<dl>
+				<dt>If set on a <code>&lt;table&gt;</code></dt>
+				<dd>Otherwise specified, it will select all rows (<code>&lt;tr></code>).</dd>
+				<dt>If set on a <code>&lt;ul&gt;</code></dt>
+				<dd>Otherwise specified, it will select all <code>&lt;li&gt;</code></dd>
+				<dt>If set on any other element, like <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> or <code>&lt;div&gt;</code></dt>
+				<dd>Otherwise specified, it will select all direct children of the element.</dd>
+			</dl>
+		</li>
+		<li>To avoid a flicker on page load, you can add the CSS class <code>wb-pgfltr-out</code> to all your items.</li>
+		<li>Test the feature to see if it is properly configured and shows the pagination correctly.</li>
+		<li>In the event that you have a complex HTML structure or need a different output, see the configuration options below and make your own adjustments.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>All configuration options of the plugin are controlled by the <code>data-wb-paginate</code> attribute.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Default</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>uiTarget</code></td>
+				<td>Sets the selector for the element that will hold the pagination. If not defined, the UI will be inserted after the <code>section</code> (if defined) or after the element. In the case of a <code>&lt;table></code> or a <code>&lt;ul></code>, the code will be inserted after the element even if the <code>section</code> property is defined.</td>
+				<td>String (CSS selector)</td>
+				<td>undefined</td>
+			</tr>
+			<tr>
+				<td><code>itemsPerPage</code></td>
+				<td>Defines the amount of items visible per page.</td>
+				<td>Number</td>
+				<td><code>25</code></td>
+			</tr>
+			<tr>
+				<td><code>section</code></td>
+				<td>Sets the selector for the element that will group the items.</td>
+				<td>String (CSS selector)</td>
+				<td>
+					<dl>
+						<dt>For <code>&lt;table></code> element</dt>
+						<dd><code>tbody</code></dd>
+					</dl>
+					<dl>
+						<dt>For any other element</dt>
+						<dd>undefined</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>selector</code></td>
+				<td>Sets the selector for the items that will be hidden or shown depending on the page.</td>
+				<td>String (CSS selector)</td>
+				<td>
+					<dl>
+						<dt>For <code>&lt;table></code> element</dt>
+						<dd><code>tr</code></dd>
+					</dl>
+					<dl>
+						<dt>For <code>&lt;ul></code> element</dt>
+						<dd><code>li</code></dd>
+					</dl>
+					<dl>
+						<dt>For any other element</dt>
+						<dd><code>> *</code></dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>The following events can be used to interact with the plugin.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-paginate</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-paginate" ).trigger( "wb-init.wb-paginate" );</code>).</td>
+				<td>Initializes the paginate plugin and creates the user interface (UI). Note: the pagination plugin will be initialized automatically unless the <code>.wb-paginate</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-paginate</code></td>
+				<td>Triggered automatically after the paginate plugin initializes.</td>
+				<td>Used to identify when and where the paginate plugin initializes (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-filter", ".wb-filter", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-filter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code></td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>

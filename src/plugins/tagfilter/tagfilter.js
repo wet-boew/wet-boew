@@ -222,8 +222,9 @@ $document.on( "change", selectorCtrl, function( event )  {
 		filterType = control.type,
 		filterName = control.name,
 		filterValue = control.value,
-		$elm = control.closest( selector ),
-		filterGroup = $elm.filters[ filterName ];
+		elm = control.closest( selector ),
+		$elm = $( elm ),
+		filterGroup = elm.filters[ filterName ];
 
 	switch ( filterType ) {
 	case "checkbox":
@@ -255,7 +256,9 @@ $document.on( "change", selectorCtrl, function( event )  {
 	}
 
 	// Update list of visible items
-	update( $elm );
+	update( elm );
+
+	$elm.trigger( "wb-contentupdated" );
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
