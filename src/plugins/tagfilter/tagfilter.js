@@ -7,6 +7,8 @@
 ( function( $, window, document, wb ) {
 "use strict";
 
+let wait;
+
 const componentName = "wb-tagfilter",
 	selector = ".provisional." + componentName,
 	selectorCtrl = "." + componentName + "-ctrl",
@@ -30,8 +32,6 @@ const componentName = "wb-tagfilter",
 			if ( taggedItemsWrapper ) {
 				taggedItemsWrapper.id = taggedItemsWrapper.id || wb.getId(); // Ensure the element has an ID
 				taggedItemsWrapper.setAttribute( "aria-live", "polite" );
-			} else {
-				console.warn( componentName + ": You have to identify the wrapper of your tagged elements using the class 'wb-tagfilter-items'." );
 			}
 
 			// Handle filters
@@ -41,15 +41,11 @@ const componentName = "wb-tagfilter",
 				filterControls.forEach( function( item ) {
 					item.setAttribute( "aria-controls", taggedItemsWrapper.id );
 				} );
-			} else {
-				console.warn( componentName + ": You have no defined filter." );
 			}
 
 			// Handle tagged items
 			if ( taggedItems.length ) {
 				elm.items = buildTaggedItemsArr( taggedItems );
-			} else {
-				console.warn( componentName + ": You have no tagged items. Please add tags using the 'data-wb-tags' attribute." );
 			}
 
 			// Update list of visible items (in case of predefined filters)
@@ -259,6 +255,20 @@ $document.on( "change", selectorCtrl, function( event )  {
 	update( elm );
 
 	$elm.trigger( "wb-contentupdated" );
+} );
+
+// Reinitialize tagfilter if content on the page has been updated
+$document.on( "wb-contentupdated", selector, function() {
+	let that = this;
+
+	if ( wait ) {
+		clearTimeout( wait );
+	}
+
+	wait = setTimeout( function() {
+		that.classList.remove( "wb-init", componentName + "-inited" );
+		$( that ).trigger( "wb-init." + componentName );
+	}, 100 );
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
