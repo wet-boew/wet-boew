@@ -1,3 +1,17 @@
 .wb-tgfltr-out {
 	display: none !important;
 }
+
+.wb-tagfilter-noresult {
+	display: none;
+}
+
+// Show no result element if the tagged items container shows no tagged items or filtered items
+.wb-tagfilter-items:not(:has([data-wb-tags]:not(.wb-tgfltr-out, .wb-fltr-out))) + .wb-tagfilter-noresult {
+	display: block;
+}
+
+// Hide the tagged items container if it shows no tagged items or filtered items and has a no result element next to it
+.wb-tagfilter-items:has(+ .wb-tagfilter-noresult):not(:has([data-wb-tags]:not(.wb-tgfltr-out, .wb-fltr-out))) {
+	display: none;
+}
