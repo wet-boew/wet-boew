@@ -1,0 +1,40 @@
+{
+  "subject": [
+    {
+      "foo": "bar",
+      "bar": "hello world"
+    },
+    {
+      "foo": "https://example.com",
+      "bar": "hello world"
+    }
+  ],
+  "list": [
+    {
+    "@type": "xsd:string",
+      "@value": "string"
+    },
+    {
+      "@type": "xsd:double",
+      "@value": 123.45
+    },
+    {
+      "@type": "xsd:boolean",
+      "@value": true
+    },
+    {
+      "@type": "xsd:anyURI",
+      "@value": "https://example.com"
+    },
+    {
+      "@type": "xsd:string",
+      "@value": "second string"
+    }
+  ],
+  "text": {
+    "alpha": "alpha",
+    "beta": "beta",
+    "gamma": "gamma",
+    "delta": "delta"
+  }
+}

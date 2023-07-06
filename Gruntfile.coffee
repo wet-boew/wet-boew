@@ -1016,6 +1016,7 @@ module.exports = (grunt) ->
 						"The “contentinfo” role is unnecessary for element “footer”."
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
+						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
 					]
 				src: [
 					"dist/unmin/**/*.html"

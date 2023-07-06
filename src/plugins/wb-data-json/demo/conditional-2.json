@@ -1,0 +1,45 @@
+{
+  "alpha": [ "alpha" ],
+  "beta": "beta",
+  "gamma": { "@value": "gamma" },
+  "delta": { "@type": "rdfs:Resource", "@value": "delta" },
+  "epsilon": "epsilon",
+  "zeta": true,
+  "eta": "http://example.com",
+  "theta": 123.45,
+  "iota": {
+    "@type": [ "rdfs:Resource", "xsd:string" ],
+    "@value": "iota"
+  },
+  "kappa": {
+    "lamdba": "mu"
+  },
+  "nu": {
+    "@type": "@json",
+    "@value": {
+      "xi": "xi",
+      "omicron": "omicron",
+      "pi": "pi"
+    }
+  },
+  "rho": {
+    "@type": "@json",
+    "@value": {
+      "sigma": "sigma",
+      "tau": "tau",
+      "upsilon": "upsilon"
+    }
+  },
+  "sigma": {
+    "alpha": "sigma",
+    "gamma": "sigma"
+  },
+  "undefined": "tau",
+
+  "text": {
+      "zeta": "zeta",
+      "eta": "eta",
+      "theta": "theta",
+      "kappa": "kappa"
+  }
+}

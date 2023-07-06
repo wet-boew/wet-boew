@@ -1,0 +1,1534 @@
+---
+{
+	"title": "Conditional template",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Map JSON content by following a conditional template.",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "conditional-fr.html",
+	"dateModified": "2023-06-07"
+}
+---
+
+<nav>
+	<ul>
+		<li><a href="data-json-en.html">Data JSON</a></li>
+		<li><a href="template-en.html">HTML 5 template</a></li>
+		<li>(This page) Conditional template</li>
+	</ul>
+</nav>
+
+<p>Map JSON content by following a conditional template.</p>
+
+
+<p>The following list is an example of a conditional mapping by guessing the data type.</p>
+
+<ul data-wb-json='{
+	"url": "demo/conditional-1.json#/subject",
+	"mapping": [
+		{
+			"template": "[data-text]",
+			"test": "fn:guessType",
+			"expect": "xsd:string",
+			"assess": "/foo",
+			"mapping": [
+				{ "selector": "[data-foo]", "value": "/foo" },
+				{ "selector": "[data-bar]", "value": "/bar" }
+			]
+		},
+		{
+			"template": "[data-link]",
+			"test": "fn:guessType",
+			"expect": "xsd:anyURI",
+			"assess": "/foo",
+			"mapping": [
+				{ "selector": "a", "value": "/foo", "attr": "href" },
+				{ "selector": "a", "value": "/bar" }
+			]
+		}
+	]
+}'>
+	<template data-text>
+		<li><span data-foo></span> - <span data-bar></span></li>
+	</template>
+	<template data-link>
+		<li><a href></a></li>
+	</template>
+</ul>
+
+<details>
+	<summary>Source code of the preceding working example</summary>
+	<p>Json:</p>
+	<pre><code>{
+	"subject": [
+		{
+			"foo": "bar",
+			"bar": "hello world"
+		},
+		{
+			"foo": "https://example.com",
+			"bar": "hello world"
+		}
+	]
+}</code></pre>
+
+<p>Html:</p>
+<pre><code>&lt;ul data-wb-json='{
+	"url": "demo/conditional-1.json#/subject",
+	"mapping": [
+		{
+			"template": "[data-text]",
+			"test": "fn:guessType",
+			"expect": "xsd:string",
+			"assess": "/foo",
+			"mapping": [
+				{ "selector": "[data-foo]", "value": "/foo" },
+				{ "selector": "[data-bar]", "value": "/bar" }
+			]
+		},
+		{
+			"template": "[data-link]",
+			"test": "fn:guessType",
+			"expect": "xsd:anyURI",
+			"assess": "/foo",
+			"mapping": [
+				{ "selector": "a", "value": "/foo", "attr": "href" },
+				{ "selector": "a", "value": "/bar" }
+			]
+		}
+	]
+}'>
+	&lt;template data-text>
+		&lt;li>&lt;span data-foo>&lt;/span> - &lt;span data-bar>&lt;/span>&lt;/li>
+	&lt;/template>
+	&lt;template data-link>
+		&lt;li>&lt;a href>&lt;/a>&lt;/li>
+	&lt;/template>
+&lt;/ul></code></pre>
+</details>
+
+
+<p>Through the following example, it also show the use of these, not limited to, configurations. A complete list of all configuration is available through the data-json plugin documentation.</p>
+<dl class="dl-horizontal">
+	<dt>Configuration <code>streamline</code></dt>
+	<dd>(Boolean: true or false) This flag indicate the data-json plugin will apply the template via the mapping object directly without trying to iterate the data source.</dd>
+
+	<dt>Mapping object <code>assess</code></dt>
+	<dd>(JSON Pointer) This the value to take for performing the conditional evaluation. Alternatively, it will take the value from the <code>value</code> property. Another difference is the <code>assess</code> would not be iterated compared to <code>value</code> which would be iterated for the inner mapping.</dd>
+</dl>
+
+<p>Note: The conditional template will consider the data associated to the property <code>@value</code> to be seen as the value of it's corresponding parent. Some of the example below to leverage that auto-mapping feature which do help for an interoperability with typed object as per defined in the JSON-LD standard.</p>
+
+<details>
+	<summary>Source code of the JSON file used by the working exmaple on this page</summary>
+	<div class="row">
+		<div class="col-md-6">
+			<p>File: conditional-1.json</p>
+			<pre><code>{
+	"subject": [
+		{
+			"foo": "bar",
+			"bar": "hello world"
+		},
+		{
+			"foo": "https://example.com",
+			"bar": "hello world"
+		}
+	],
+	"list": [
+		{
+			"@type": "xsd:string",
+			"@value": "string"
+		},
+		{
+			"@type": "xsd:double",
+			"@value": 123.45
+		},
+		{
+			"@type": "xsd:boolean",
+			"@value": true
+		},
+		{
+			"@type": "xsd:anyURI",
+			"@value": "https://example.com"
+		},
+		{
+			"@type": "xsd:string",
+			"@value": "second string"
+		}
+	],
+	"text": {
+		"alpha": "alpha",
+		"beta": "beta",
+		"gamma": "gamma",
+		"delta": "delta"
+	}
+}</code></pre>
+		</div>
+		<div class="col-md-6">
+			<p>File: conditional-2.json</p>
+			<pre><code>{
+	"alpha": [ "alpha" ],
+	"beta": "beta",
+	"gamma": { "@value": "gamma" },
+	"delta": { "@type": "rdfs:Resource", "@value": "delta" },
+	"epsilon": "epsilon",
+	"zeta": true,
+	"eta": "http://example.com",
+	"theta": 123.45,
+	"iota": {
+		"@type": [ "rdfs:Resource", "xsd:string" ],
+		"@value": "iota"
+	},
+	"kappa": {
+		"lamdba": "mu"
+	},
+	"nu": {
+		"@type": "@json",
+		"@value": {
+			"xi": "xi",
+			"omicron": "omicron",
+			"pi": "pi"
+		}
+	},
+	"rho": {
+		"@type": "@json",
+		"@value": {
+			"sigma": "sigma",
+			"tau": "tau",
+			"upsilon": "upsilon"
+		}
+	},
+	"sigma": {
+		"alpha": "sigma",
+		"gamma": "sigma"
+	},
+	"undefined": "tau",
+
+	"text": {
+		"zeta": "zeta",
+		"eta": "eta",
+		"theta": "theta",
+		"kappa": "kappa"
+	}
+}</code></pre>
+		</div>
+	</div>
+</details>
+
+<h2>Test functions that extract a testable value</h2>
+<p>Those test require a data pointer either provided with the <code>value</code> property which would also iterate or with <code>assess</code> which don't iterate.</p>
+
+<dl class="dl-horizontal">
+	<dt><code>fn:isArray</code></dt>
+	<dd>Boolean returning if the tested value is an array or not.</dd>
+
+	<dt><code>fn:isLiteral</code></dt>
+	<dd>Boolean returning if the tested value is an literal or not. A literal value is considered to be defined and not an object.</dd>
+
+	<dt><code>fn:getType</code></dt>
+	<dd>Return type of the value set via the <code>@type</code> property or its corresponding javascript typeof value.</dd>
+
+	<dt><code>fn:guessType</code></dt>
+	<dd>
+		<p>The template parser will try to guess the data type of the tested value.</p>
+		<p>This test function will return:</p>
+		<ul>
+			<li><code>rdfs:Container</code> when the value is an array.</li>
+			<li><code>rdfs:Literal</code> for any value that is literal. A literal value is considered to be defined and not an object.</li>
+			<li><code>rdfs:Resource</code> when the value is an JSON object without any defined type.</li>
+			<li><code>xsd:anyURI</code> when the value is a string which start with non-spaced letter and digit immediately followed by colon ":" like <code>https://example.com</code></li>
+			<li><code>xsd:string</code> when the value is a string and don't look to be an URI.</li>
+			<li><code>xsd:boolean</code> when the value is a boolean with the value set to <code>true</code> or <code>false</code></li>
+			<li><code>xsd:double</code> when the value is a JSON number</li>
+			<li>The value set via the <code>@type</code> sub property</li>
+			<li><code>undefined</code> when the value is undefined</li>
+		</ul>
+	</dd>
+
+	<dt><code>fn:getValue</code></dt>
+	<dd>Return value as the testable value.</dd>
+</dl>
+
+<h3>Example of each test function</h3>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo of each test function.</p>
+		<ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-isarray]",
+					"test": "fn:isArray",
+					"assess": "/alpha",
+					"mapping": [
+						{ "selector": "span", "value": "/alpha/0" }
+					]
+				},
+				{
+					"template": "[data-isliteral]",
+					"test": "fn:isLiteral",
+					"assess": "/beta",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-isliteral]",
+					"test": "fn:isLiteral",
+					"assess": "/gamma",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/delta",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/epsilon",
+					"expect": "string",
+					"mapping": [
+						{ "selector": "span", "value": "/epsilon" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/zeta",
+					"expect": "boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/text/zeta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/alpha",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{ "selector": "span", "value": "/alpha/0" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/eta",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/text/eta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/eta",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/text/eta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/zeta",
+					"expect": "xsd:boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/text/zeta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/theta",
+					"expect": "xsd:double",
+					"mapping": [
+						{ "selector": "span", "value": "/text/theta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/sigma",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/sigma/alpha" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/tau",
+					"expect": "undefined",
+					"mapping": [
+						{ "selector": "span", "value": "/undefined" }
+					]
+				},
+				{
+					"template": "[data-getvalue]",
+					"test": "fn:getValue",
+					"assess": "/kappa",
+					"operand": "eq",
+					"expect": { "lamdba": "mu" },
+					"mapping": [
+						{ "selector": "span", "value": "/text/kappa" }
+					]
+				}
+			]
+		}'>
+			<template data-isarray>
+				<li><code>fn:isArray</code>: <span></span></li>
+			</template>
+			<template data-isliteral>
+				<li><code>fn:isLiteral</code>: <span></span></li>
+			</template>
+			<template data-gettype>
+				<li><code>fn:getType</code>: <span></span></li>
+			</template>
+			<template data-guesstype>
+				<li><code>fn:guessType</code>: <span></span></li>
+			</template>
+			<template data-getvalue>
+				<li><code>fn:getValue</code>: <span></span></li>
+			</template>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<ul>
+			<li><code>fn:isArray</code>: alpha</li>
+			<li><code>fn:isLiteral</code>: beta</li>
+			<li><code>fn:isLiteral</code>: gamma</li>
+			<li><code>fn:getType</code>: delta</li>
+			<li><code>fn:getType</code>: epsilon</li>
+			<li><code>fn:getType</code>: zeta</li>
+			<li><code>fn:guessType</code>: alpha</li>
+			<li><code>fn:guessType</code>: beta</li>
+			<li><code>fn:guessType</code>: gamma</li>
+			<li><code>fn:guessType</code>: eta</li>
+			<li><code>fn:guessType</code>: beta</li>
+			<li><code>fn:guessType</code>: gamma</li>
+			<li><code>fn:guessType</code>: zeta</li>
+			<li><code>fn:guessType</code>: theta</li>
+			<li><code>fn:guessType</code>: delta</li>
+			<li><code>fn:guessType</code>: sigma</li>
+			<li><code>fn:guessType</code>: tau</li>
+			<li><code>fn:getValue</code>: kappa</li>
+		</ul>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo of each test function.&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-isarray]",
+					"test": "fn:isArray",
+					"assess": "/alpha",
+					"mapping": [
+						{ "selector": "span", "value": "/alpha/0" }
+					]
+				},
+				{
+					"template": "[data-isliteral]",
+					"test": "fn:isLiteral",
+					"assess": "/beta",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-isliteral]",
+					"test": "fn:isLiteral",
+					"assess": "/gamma",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/delta",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/epsilon",
+					"expect": "string",
+					"mapping": [
+						{ "selector": "span", "value": "/epsilon" }
+					]
+				},
+				{
+					"template": "[data-gettype]",
+					"test": "fn:getType",
+					"assess": "/zeta",
+					"expect": "boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/text/zeta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/alpha",
+					"expect": "rdfs:Container",
+					"mapping": [
+						{ "selector": "span", "value": "/alpha/0" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/eta",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/text/eta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/beta",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/beta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/gamma",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/gamma" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/eta",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/text/eta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/zeta",
+					"expect": "xsd:boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/text/zeta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/theta",
+					"expect": "xsd:double",
+					"mapping": [
+						{ "selector": "span", "value": "/text/theta" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/sigma",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/sigma/alpha" }
+					]
+				},
+				{
+					"template": "[data-guesstype]",
+					"test": "fn:guessType",
+					"assess": "/tau",
+					"expect": "undefined",
+					"mapping": [
+						{ "selector": "span", "value": "/undefined" }
+					]
+				},
+				{
+					"template": "[data-getvalue]",
+					"test": "fn:getValue",
+					"assess": "/kappa",
+					"operand": "eq",
+					"expect": { "lamdba": "mu" },
+					"mapping": [
+						{ "selector": "span", "value": "/text/kappa" }
+					]
+				}
+			]
+		}'>
+			&lt;template data-isarray>
+				&lt;li>&lt;code>fn:isArray&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-isliteral>
+				&lt;li>&lt;code>fn:isLiteral&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-gettype>
+				&lt;li>&lt;code>fn:getType&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-guesstype>
+				&lt;li>&lt;code>fn:guessType&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-getvalue>
+				&lt;li>&lt;code>fn:getValue&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;ul>
+			&lt;li>&lt;code>fn:isArray&lt;/code>: alpha&lt;/li>
+			&lt;li>&lt;code>fn:isLiteral&lt;/code>: beta&lt;/li>
+			&lt;li>&lt;code>fn:isLiteral&lt;/code>: gamma&lt;/li>
+			&lt;li>&lt;code>fn:getType&lt;/code>: delta&lt;/li>
+			&lt;li>&lt;code>fn:getType&lt;/code>: epsilon&lt;/li>
+			&lt;li>&lt;code>fn:getType&lt;/code>: zeta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: alpha&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: beta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: gamma&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: eta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: beta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: gamma&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: zeta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: theta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: delta&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: sigma&lt;/li>
+			&lt;li>&lt;code>fn:guessType&lt;/code>: tau&lt;/li>
+			&lt;li>&lt;code>fn:getValue&lt;/code>: kappa&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h2>Operand function</h2>
+<p>Operand functions that check the testable value.</p>
+
+<dl class="dl-horizontal">
+	<dt><code>softEq</code> (default)</dt>
+	<dd>Check if the value is <strong>equivalent equal</strong> to the expectation optionally either in an array value. When no expectation provide, return true if the testable value exist.</dd>
+	<dt><code>eq</code></dt>
+	<dd>Check if the value <strong>equal</strong> the expectation. Including when the value is an object.</dd>
+	<dt><code>neq</code></dt>
+	<dd>Check if the value is <strong>not equal</strong> the expectation. Including when the value is an object.</dd>
+	<dt><code>in</code></dt>
+	<dd>Check if the value (or array of value) <strong>is in</strong> the expectation (or array of expectation)</dd>
+	<dt><code>nin</code></dt>
+	<dd>Check if the value (or array of value) <strong>is not in</strong> the expectation (or array of expectation)</dd>
+</dl>
+
+
+<h3>Example of operand</h3>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo of each test function.</p>
+		<ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-eq]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"operand": "eq",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-eq]",
+					"test": "fn:getValue",
+					"assess": "/kappa",
+					"operand": "eq",
+					"expect":  { "lamdba": "mu" },
+					"mapping": [
+						{ "selector": "span", "value": "/text/kappa" }
+					]
+				},
+				{
+					"template": "[data-eq]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "eq",
+					"expect": [ "rdfs:Resource", "xsd:string" ],
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				},
+				{
+					"template": "[data-neq]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"operand": "neq",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-in]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "in",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				},
+				{
+					"template": "[data-nin]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "nin",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				}
+
+			]
+		}'>
+			<template data-eq>
+				<li><code>eq</code>: <span></span></li>
+			</template>
+			<template data-neq>
+				<li><code>neq</code>: <span></span></li>
+			</template>
+			<template data-in>
+				<li><code>in</code>: <span></span></li>
+			</template>
+			<template data-nin>
+				<li><code>nin</code>: <span></span></li>
+			</template>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<ul>
+			<li><code>eq</code>: delta</li>
+			<li><code>eq</code>: kappa</li>
+			<li><code>eq</code>: iota</li>
+			<li><code>neq</code>: delta</li>
+			<li><code>in</code>: iota</li>
+			<li><code>nin</code>: iota</li>
+		</ul>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo of each test function.&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-eq]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"operand": "eq",
+					"expect": "rdfs:Resource",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-eq]",
+					"test": "fn:getValue",
+					"assess": "/kappa",
+					"operand": "eq",
+					"expect":  { "lamdba": "mu" },
+					"mapping": [
+						{ "selector": "span", "value": "/text/kappa" }
+					]
+				},
+				{
+					"template": "[data-eq]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "eq",
+					"expect": [ "rdfs:Resource", "xsd:string" ],
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				},
+				{
+					"template": "[data-neq]",
+					"test": "fn:guessType",
+					"assess": "/delta",
+					"operand": "neq",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/delta/@value" }
+					]
+				},
+				{
+					"template": "[data-in]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "in",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				},
+				{
+					"template": "[data-nin]",
+					"test": "fn:guessType",
+					"assess": "/iota",
+					"operand": "nin",
+					"expect": "rdfs:Literal",
+					"mapping": [
+						{ "selector": "span", "value": "/iota/@value" }
+					]
+				}
+
+			]
+		}'>
+			&lt;template data-eq>
+				&lt;li>&lt;code>eq&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-neq>
+				&lt;li>&lt;code>neq&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-in>
+				&lt;li>&lt;code>in&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-nin>
+				&lt;li>&lt;code>nin&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;ul>
+			&lt;li>&lt;code>eq&lt;/code>: delta&lt;/li>
+			&lt;li>&lt;code>eq&lt;/code>: kappa&lt;/li>
+			&lt;li>&lt;code>eq&lt;/code>: iota&lt;/li>
+			&lt;li>&lt;code>neq&lt;/code>: delta&lt;/li>
+			&lt;li>&lt;code>in&lt;/code>: iota&lt;/li>
+			&lt;li>&lt;code>nin&lt;/code>: iota&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h2>The mapping function: Alternative</h2>
+
+<p>This special mapping function allow to configure a list of mapping where it's going to execute only the first children passing its test condition.</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo of the alternative function.</p>
+		<ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"@type": "rdf:Alt",
+					"mapping": [
+						{
+							"template": "[data-first]",
+							"test": "fn:guessType",
+							"assess": "/gamma",
+							"expect": "rdfs:Literal",
+							"mapping": [
+								{ "selector": "span", "value": "/gamma" }
+							]
+						},
+						{
+							"template": "[data-second]",
+							"test": "fn:guessType",
+							"assess": "/eta",
+							"expect": "xsd:anyURI",
+							"mapping": [
+								{ "selector": "span", "value": "/eta" }
+							]
+						}
+					]
+				}
+			]
+		}'>
+			<template data-first>
+				<li>First template: <span></span></li>
+			</template>
+			<template data-second>
+				<li>Second template: <span></span></li>
+			</template>
+
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<ul>
+			<li>First template: gamma</li>
+		</ul>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo of the alternative function.&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"@type": "rdf:Alt",
+					"mapping": [
+						{
+							"template": "[data-first]",
+							"test": "fn:guessType",
+							"assess": "/gamma",
+							"expect": "rdfs:Literal",
+							"mapping": [
+								{ "selector": "span", "value": "/gamma" }
+							]
+						},
+						{
+							"template": "[data-second]",
+							"test": "fn:guessType",
+							"assess": "/eta",
+							"expect": "xsd:anyURI",
+							"mapping": [
+								{ "selector": "span", "value": "/eta" }
+							]
+						}
+					]
+				}
+			]
+		}'>
+			&lt;template data-first>
+				&lt;li>First template: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-second>
+				&lt;li>Second template: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;ul>
+			&lt;li>First template: gamma&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h2>Location of the merged template</h2>
+
+<p>By default, when the configuration is not streamlined, the content created with the initial template are appended to the element.</p>
+<p>For inner template, through mapping configuration, and when the plugin configuration streamline flag is on, the content created with the template are added just before that template. However, you can use the flag "append" to append from the parent element of the template.</p>
+
+<p>Rendering example of a template specified via mapping by default.</p>
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo (Default, inserted in-place):</p>
+		<ul data-wb-json='{
+			"url": "demo/conditional-1.json#/list",
+			"mapping": [
+				{
+					"template": "[data-string]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-double]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:double",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-boolean]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-anyuri]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}'>
+			<template data-string>
+				<li><code>xsd:string</code>: <span></span></li>
+			</template>
+			<template data-double>
+				<li><code>xsd:double</code>: <span></span></li>
+			</template>
+			<template data-boolean>
+				<li><code>xsd:boolean</code>: <span></span></li>
+			</template>
+			<template data-anyuri>
+				<li><code>xsd:anyURI</code>: <span></span></li>
+			</template>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<ul>
+			<li><code>xsd:string</code>: string</li>
+			<li><code>xsd:string</code>: second string</li>
+			<li><code>xsd:double</code>: 123.45</li>
+			<li><code>xsd:boolean</code>: true</li>
+			<li><code>xsd:anyURI</code>: https://example.com</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo (With <code>append</code> flag):</p>
+		<ul data-wb-json='{
+			"url": "demo/conditional-1.json#/list",
+			"mapping": [
+				{
+					"template": "[data-string]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:string",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-double]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:double",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-boolean]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:boolean",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-anyuri]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:anyURI",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}'>
+			<template data-string>
+				<li><code>xsd:string</code>: <span></span></li>
+			</template>
+			<template data-double>
+				<li><code>xsd:double</code>: <span></span></li>
+			</template>
+			<template data-boolean>
+				<li><code>xsd:boolean</code>: <span></span></li>
+			</template>
+			<template data-anyuri>
+				<li><code>xsd:anyURI</code>: <span></span></li>
+			</template>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<ul>
+			<li><code>xsd:string</code>: string</li>
+			<li><code>xsd:double</code>: 123.45</li>
+			<li><code>xsd:boolean</code>: true</li>
+			<li><code>xsd:anyURI</code>: https://example.com</li>
+			<li><code>xsd:string</code>: second string</li>
+		</ul>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo (Default, inserted in-place):&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "demo/conditional-1.json#/list",
+			"mapping": [
+				{
+					"template": "[data-string]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:string",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-double]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:double",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-boolean]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:boolean",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-anyuri]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:anyURI",
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}'>
+			&lt;template data-string>
+				&lt;li>&lt;code>xsd:string&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-double>
+				&lt;li>&lt;code>xsd:double&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-boolean>
+				&lt;li>&lt;code>xsd:boolean&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-anyuri>
+				&lt;li>&lt;code>xsd:anyURI&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;ul>
+			&lt;li>&lt;code>xsd:string&lt;/code>: string&lt;/li>
+			&lt;li>&lt;code>xsd:string&lt;/code>: second string&lt;/li>
+			&lt;li>&lt;code>xsd:double&lt;/code>: 123.45&lt;/li>
+			&lt;li>&lt;code>xsd:boolean&lt;/code>: true&lt;/li>
+			&lt;li>&lt;code>xsd:anyURI&lt;/code>: https://example.com&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div>
+
+&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo (With &lt;code>append&lt;/code> flag):&lt;/p>
+		&lt;ul data-wb-json='{
+			"url": "demo/conditional-1.json#/list",
+			"mapping": [
+				{
+					"template": "[data-string]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:string",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-double]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:double",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-boolean]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:boolean",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				},
+				{
+					"template": "[data-anyuri]",
+					"test": "fn:guessType",
+					"assess": "/",
+					"expect": "xsd:anyURI",
+					"append": true,
+					"mapping": [
+						{ "selector": "span", "value": "/" }
+					]
+				}
+			]
+		}'>
+			&lt;template data-string>
+				&lt;li>&lt;code>xsd:string&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-double>
+				&lt;li>&lt;code>xsd:double&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-boolean>
+				&lt;li>&lt;code>xsd:boolean&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+			&lt;template data-anyuri>
+				&lt;li>&lt;code>xsd:anyURI&lt;/code>: &lt;span>&lt;/span>&lt;/li>
+			&lt;/template>
+		&lt;/ul>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;ul>
+			&lt;li>&lt;code>xsd:string&lt;/code>: string&lt;/li>
+			&lt;li>&lt;code>xsd:double&lt;/code>: 123.45&lt;/li>
+			&lt;li>&lt;code>xsd:boolean&lt;/code>: true&lt;/li>
+			&lt;li>&lt;code>xsd:anyURI&lt;/code>: https://example.com&lt;/li>
+			&lt;li>&lt;code>xsd:string&lt;/code>: second string&lt;/li>
+		&lt;/ul>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h2>Mapping of a <code>@json</code> (or <code>rdf:JSON</code>) value</h2>
+
+<p>Allow to display in a textual form <code>@json</code> typed value or <code>rdf:JSON</code> value which are the exact same. The test function for data type will always return the RDF form of the type <code>@json</code> which is <code>rdf:JSON</code></p>
+
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Demo of mapping <code>@json</code> and <code>rdf:JSON</code> data</p>
+		<div data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-json-content]",
+					"test": "fn:guessType",
+					"assess": "/nu",
+					"expect": "rdf:JSON",
+					"mapping": [
+						{ "selector": "data", "value": "/nu" },
+						{ "selector": "data", "value": "/nu", "attr": "value" }
+					]
+				},
+				{
+					"template": "[data-json-content]",
+					"test": "fn:guessType",
+					"assess": "/rho",
+					"expect": "rdf:JSON",
+					"mapping": [
+						{ "selector": "data", "value": "/rho" },
+						{ "selector": "data", "value": "/rho", "attr": "value" }
+					]
+				}
+			]
+		}'>
+			<template data-json-content>
+				<pre><code><data value></data></code></pre>
+			</template>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo.</p>
+		<pre><code><data value='{"xi":"xi","omicron":"omicron","pi":"pi"}'>{"xi":"xi","omicron":"omicron","pi":"pi"}</data></code></pre>
+		<pre><code><data value='{"sigma":"sigma","tau":"tau","upsilon":"upsilon"}'>{"sigma":"sigma","tau":"tau","upsilon":"upsilon"}</data></code></pre>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row">
+	&lt;div class="col-md-6">
+		&lt;p>Demo of mapping &lt;code>@json&lt;/code> and &lt;code>rdf:JSON&lt;/code> data&lt;/p>
+		&lt;div data-wb-json='{
+			"url": "demo/conditional-2.json",
+			"streamline": true,
+			"mapping": [
+				{
+					"template": "[data-json-content]",
+					"test": "fn:guessType",
+					"assess": "/nu",
+					"expect": "rdf:JSON",
+					"mapping": [
+						{ "selector": "data", "value": "/nu" },
+						{ "selector": "data", "value": "/nu", "attr": "value" }
+					]
+				},
+				{
+					"template": "[data-json-content]",
+					"test": "fn:guessType",
+					"assess": "/rho",
+					"expect": "rdf:JSON",
+					"mapping": [
+						{ "selector": "data", "value": "/rho" },
+						{ "selector": "data", "value": "/rho", "attr": "value" }
+					]
+				}
+			]
+		}'>
+			&lt;template data-json-content>
+				&lt;pre>&lt;code>&lt;data value>&lt;/data>&lt;/code>&lt;/pre>
+			&lt;/template>
+		&lt;/div>
+	&lt;/div>
+	&lt;div class="col-md-6">
+		&lt;p>Expectation of the preceding demo.&lt;/p>
+		&lt;pre>&lt;code>&lt;data value='{"xi":"xi","omicron":"omicron","pi":"pi"}'>{"xi":"xi","omicron":"omicron","pi":"pi"}&lt;/data>&lt;/code>&lt;/pre>
+		&lt;pre>&lt;code>&lt;data value='{"sigma":"sigma","tau":"tau","upsilon":"upsilon"}'>{"sigma":"sigma","tau":"tau","upsilon":"upsilon"}&lt;/data>&lt;/code>&lt;/pre>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h2>Extension of test function and operand</h2>
+
+<p>The data-json plugin has been adapted to allow extension of it's test function and list of operand. And it is not possible to override any existing one.</p>
+
+<script>
+window[ "wb-data-json" ] = {
+	functionForTest: {
+		"myCustomTest": function( value, rawValue ) {
+			if ( value === "beta" ) {
+				return "foo";
+			}
+			return value;
+		}
+	},
+	functionForOperand: {
+		"myCustomOperand": function( value, expect ) {
+			if ( value === "foo" && expect === "bar" ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+};
+</script>
+
+<p data-wb-json='{
+	"url": "demo/conditional-2.json",
+	"streamline": true,
+	"mapping": [
+		{
+			"template": "[data-custom]",
+			"test": "myCustomTest",
+			"value": "/beta",
+			"operand": "myCustomOperand",
+			"expect": "bar",
+			"mapping": [
+				{ "selector": "strong", "value": "/" }
+			]
+		}
+	]
+}'>If the custom test function and operand defined uniquely on this page are positive, the following will be emphasised text with the content set to "beta":
+	<template data-custom>
+		<strong></strong>
+	</template>
+</p>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;script>
+window[ "wb-data-json" ] = {
+	functionForTest: {
+		"myCustomTest": function( value, rawValue ) {
+			if ( value === "beta" ) {
+				return "foo";
+			}
+			return value;
+		}
+	},
+	functionForOperand: {
+		"myCustomOperand": function( value, expect ) {
+			if ( value === "foo" && expect === "bar" ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+};
+&lt;/script>
+
+&lt;p data-wb-json='{
+	"url": "demo/conditional-2.json",
+	"streamline": true,
+	"mapping": [
+		{
+			"template": "[data-custom]",
+			"test": "myCustomTest",
+			"value": "/beta",
+			"operand": "myCustomOperand",
+			"expect": "bar",
+			"mapping": [
+				{ "selector": "strong", "value": "/" }
+			]
+		}
+	]
+}'>If the custom test function and operand defined uniquely on this page are positive, the following will be emphasised text with the content set to "beta":
+	&lt;template data-custom>
+		&lt;strong>&lt;/strong>
+	&lt;/template>
+&lt;/p></code></pre>
+</details>
