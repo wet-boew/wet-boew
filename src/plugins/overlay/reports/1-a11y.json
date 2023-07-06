@@ -214,7 +214,7 @@
         }
       ],
       "acr:asset": {
-        "@type": "acr:AttachementImage",
+        "@type": "acr:AttachmentImage",
         "dct:title": "Screen capture of the error message",
         "acr:content": {
           "@type": "xsd:anyURI",
@@ -460,7 +460,7 @@
         }
       ],
       "acr:asset": {
-        "@type": "acr:AttachementImage",
+        "@type": "acr:AttachmentImage",
         "dct:title": "Screen capture of WAVE interface showing the contrast errors messages",
         "acr:content": {
           "@type": "xsd:anyURI",
@@ -902,7 +902,7 @@
         }
       ],
       "acr:asset": {
-        "@type": "acr:AttachementImage",
+        "@type": "acr:AttachmentImage",
         "dct:title": "Screen capture of the error message",
         "acr:content": {
           "@type": "xsd:anyURI",
@@ -1364,7 +1364,7 @@
         }
       ],
       "acr:asset": {
-        "@type": "acr:AttachementImage",
+        "@type": "acr:AttachmentImage",
         "dct:title": "Screen capture of the error message",
         "acr:content": {
           "@type": "xsd:anyURI",
@@ -1403,7 +1403,7 @@
       "dct:description": "Link not found",
       "earl:mode": "earl:semiAuto",
       "acr:asset": {
-        "@type": "acr:AttachementImage",
+        "@type": "acr:AttachmentImage",
         "dct:title": "Screen capture of the error message",
         "acr:content": {
           "@type": "xsd:anyURI",
