@@ -219,7 +219,7 @@ const componentName = "wb-tagfilter",
 		matchItemsToFilters( instance );
 		updateDOMItems( instance );
 
-		$( instance ).trigger( componentName + "-updated" );
+		$( instance ).trigger( "wb-contentupdated", [ { source: componentName } ] );
 	};
 
 // When a filter is updated
@@ -264,24 +264,23 @@ $document.on( "change", selectorCtrl, function( event )  {
 	update( elm );
 } );
 
-// Reinitialize tagfilter if content on the page has been updated
-$document.on( "wb-contentupdated", selector, function()  {
-	let that = this;
+$document.on( "wb-contentupdated", selector, function( event, data )  {
+	let that = this,
+		supportsHas = window.getComputedStyle( document.documentElement ).getPropertyValue( "--supports-has" ); // Get "--supports-has" CSS property
 
-	if ( wait ) {
-		clearTimeout( wait );
+	// Reinitialize tagfilter if content on the page has been updated by another plugin
+	if ( data.source !== componentName ) {
+		if ( wait ) {
+			clearTimeout( wait );
+		}
+
+		wait = setTimeout( function() {
+			that.classList.remove( "wb-init", componentName + "-inited" );
+			$( that ).trigger( "wb-init." + componentName );
+		}, 100 );
 	}
 
-	wait = setTimeout( function() {
-		that.classList.remove( "wb-init", componentName + "-inited" );
-		$( that ).trigger( "wb-init." + componentName );
-	}, 100 );
-} );
-
-// Show no result message if on Firefox -- Remove once Firefox supports ":has()"
-$document.on( componentName + "-updated", selector, function() {
-	let supportsHas = window.getComputedStyle( document.documentElement ).getPropertyValue( "--supports-has" ); // Get "--supports-has" CSS property
-
+	// Show no result message if on Firefox -- Remove once Firefox supports ":has()"
 	if ( supportsHas === "false" ) {
 		let noResultItem = this.querySelector( "." + noResultWrapperClass );
 

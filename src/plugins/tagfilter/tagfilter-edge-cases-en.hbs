@@ -1,0 +1,241 @@
+---
+{
+"title": "Tag filter edge cases",
+"language": "en",
+"description": "List of Tagfilter edge cases",
+"tag": "filter",
+"parentdir": "tagfilter",
+"altLangPrefix": "tagfilter-edge-cases",
+"dateModified": "2023-07-10"
+}
+---
+
+<span class="wb-prettify all-pre"></span>
+
+<h2>On this page:</h2>
+<ul>
+	<li><a href="#filteredEventsList">Example 1 - Events list with pagination and data-json</a></li>
+</ul>
+
+<section id="filteredEventsList" class="wb-tagfilter wb-paginate provisional" data-wb-paginate='{
+	"itemsPerPage": 5,
+	"section": ".events-list",
+	"selector": "li",
+	"uiTarget": "#filteredEventsListPagination"
+}'>
+	<h2>Example 1 - Events list</h2>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-lg-3">
+			<details open>
+				<summary>
+					<h3>Filter options</h3>
+				</summary>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Language</span></legend>
+						<ul class="list-unstyled">
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl" value="" checked> All
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl" value="language__french"> French
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl" value="language__english"> English
+								</label>
+							</li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Event location</span></legend>
+						<ul class="list-unstyled">
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__montreal"> Montreal
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__online"> Online
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__ottawa"> Ottawa
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__toronto"> Toronto
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__vancouver"> Vancouver
+								</label>
+							</li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="dayList">Day of the week</label>
+					<select id="dayList" name="dayOTW" class="form-control full-width wb-tagfilter-ctrl">
+						<option value="">All</option>
+						<option value="dayOTW_monday">Monday</option>
+						<option value="dayOTW_tuesday">Tuesday</option>
+						<option value="dayOTW_wednesday">Wednedsday</option>
+						<option value="dayOTW_thursday">Thursday</option>
+						<option value="dayOTW_friday">Friday</option>
+						<option value="dayOTW_saturday">Saturday</option>
+						<option value="dayOTW_sunday">Sunday</option>
+					</select>
+				</div>
+			</details>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-lg-9">
+			<ul class="list-unstyled events-list wb-tagfilter-items" data-wb-json='{
+				"url": "data_en.json#/events",
+				"mapping": [
+					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
+					{ "selector": "h3", "value": "/title" },
+					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": ".event-time", "value": "/time" },
+					{ "selector": ".event-location", "value": "/location" },
+					{ "selector": ".event-language", "value": "/language" }
+				]
+			}'>
+				<template>
+					<li data-wb-tags="">
+						<h3></h3>
+						<p><span class="event-date"></span> | <span class="event-time"></span></p>
+						<p><strong>Location:</strong> <span class="event-location"></span>, <strong>Language</strong>: <span class="event-language"></span></p>
+					</li>
+				</template>
+			</ul>
+			<div class="wb-tagfilter-noresult">
+				<p>No item match this combination of filters.</p>
+			</div>
+			<div id="filteredEventsListPagination"></div>
+		</div>
+	</div>
+</section>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;section id="filteredEventsList" class="wb-tagfilter wb-paginate provisional" data-wb-paginate='{
+	"itemsPerPage": 5,
+	"section": ".events-list",
+	"selector": "li",
+	"uiTarget": "#filteredEventsListPagination"
+}'>
+	&lt;h2>Example 1 - Events list&lt;/h2>
+	&lt;div class="row">
+		&lt;div class="col-xs-12 col-sm-4 col-lg-3">
+			&lt;details open>
+				&lt;summary>
+					&lt;h3>Filter options&lt;/h3>
+				&lt;/summary>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;fieldset>
+						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Language&lt;/span>&lt;/legend>
+						&lt;ul class="list-unstyled">
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="" checked> All
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="language__french"> French
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="radio">
+								&lt;label>
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="language__english"> English
+								&lt;/label>
+							&lt;/li>
+						&lt;/ul>
+					&lt;/fieldset>
+				&lt;/div>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;fieldset>
+						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Event location&lt;/span>&lt;/legend>
+						&lt;ul class="list-unstyled">
+							&lt;li class="checkbox">
+								&lt;label>
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__montreal"> Montreal
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label>
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__online"> Online
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label>
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__ottawa"> Ottawa
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label>
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__toronto"> Toronto
+								&lt;/label>
+							&lt;/li>
+							&lt;li class="checkbox">
+								&lt;label>
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="location__vancouver"> Vancouver
+								&lt;/label>
+							&lt;/li>
+						&lt;/ul>
+					&lt;/fieldset>
+				&lt;/div>
+				&lt;div class="form-group mrgn-bttm-0">
+					&lt;label for="dayList">Day of the week&lt;/label>
+					&lt;select id="dayList" name="dayOTW" class="form-control full-width wb-tagfilter-ctrl">
+						&lt;option value="">All&lt;/option>
+						&lt;option value="dayOTW_monday">Monday&lt;/option>
+						&lt;option value="dayOTW_tuesday">Tuesday&lt;/option>
+						&lt;option value="dayOTW_wednesday">Wednedsday&lt;/option>
+						&lt;option value="dayOTW_thursday">Thursday&lt;/option>
+						&lt;option value="dayOTW_friday">Friday&lt;/option>
+						&lt;option value="dayOTW_saturday">Saturday&lt;/option>
+						&lt;option value="dayOTW_sunday">Sunday&lt;/option>
+					&lt;/select>
+				&lt;/div>
+			&lt;/details>
+		&lt;/div>
+		&lt;div class="col-xs-12 col-sm-8 col-lg-9">
+			&lt;ul class="list-unstyled events-list wb-tagfilter-items" data-wb-json='{
+				"url": "data_en.json#/events",
+				"mapping": [
+					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
+					{ "selector": "h3", "value": "/title" },
+					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": ".event-time", "value": "/time" },
+					{ "selector": ".event-location", "value": "/location" },
+					{ "selector": ".event-language", "value": "/language" }
+				]
+			}'>
+				&lt;template>
+					&lt;li data-wb-tags="">
+						&lt;h3>&lt;/h3>
+						&lt;p>&lt;span class="event-date">&lt;/span> | &lt;span class="event-time">&lt;/span>&lt;/p>
+						&lt;p>&lt;strong>Location:&lt;/strong> &lt;span class="event-location">&lt;/span>, &lt;strong>Language&lt;/strong>: &lt;span class="event-language">&lt;/span>&lt;/p>
+					&lt;/li>
+				&lt;/template>
+			&lt;/ul>
+			&lt;div class="wb-tagfilter-noresult">
+				&lt;p>No item match this combination of filters.&lt;/p>
+			&lt;/div>
+			&lt;div id="filteredEventsListPagination">&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/section></code></pre>
+</details>

@@ -15,3 +15,8 @@
 .wb-tagfilter-items:has(+ .wb-tagfilter-noresult):not(:has([data-wb-tags]:not(.wb-tgfltr-out, .wb-fltr-out))) {
 	display: none;
 }
+
+// Hide no result element when no tagged items are defined
+html:not(.wb-disable) .wb-tagfilter-items:not(:has([data-wb-tags])) + .wb-tagfilter-noresult {
+	display: none !important;
+}
