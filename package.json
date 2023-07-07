@@ -97,7 +97,7 @@
     "postcss": "^8.2.13",
     "puppeteer": "^1.20.0",
     "sinon": "^9.2.4",
-    "stylelint": "^14.16.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^29.0.0",
     "time-grunt": "^2.0.0"
   }
