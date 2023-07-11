@@ -1,0 +1,46 @@
+{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Basic HTML",
+		"fr": "HTML simplifié"
+	},
+	"description": {
+		"en": "Enable Basic HTML Mode",
+		"fr": "Passer à la version HTML simplifiée"
+	},
+	"modified": "2023-07-11",
+	"componentName": "wb-disable",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Basic HTML",
+				"language": "en",
+				"path": "wb-disable-en.html"
+			},
+			{
+				"title": "HTML simplifié",
+				"language": "fr",
+				"path": "wb-disable-fr.html"
+			},
+		],
+		"docs": [
+			{
+				"title": "Basic HTML - Documentation",
+				"language": "en",
+				"path": "wb-disable-en.html"
+			},
+			{
+				"title": "HTML simplifié - Documentation",
+				"language": "fr",
+				"path": "wb-disable-fr.html"
+			}
+		]
+	}
+}

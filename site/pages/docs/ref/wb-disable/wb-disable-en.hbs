@@ -1,0 +1,39 @@
+---
+{
+"title": "Basic HTML",
+"language": "en",
+"category": "Plugins",
+"categoryfile": "plugins",
+"description": "Enable Basic HTML Mode",
+"altLangPrefix": "wb-disable",
+"dateModified": "2023-07-11"
+}
+---
+
+<div class="wb-prettify all-pre"></div>
+
+<h2>Purpose</h2>
+<p>Enable Basic HTML Mode on any given page to simplify the readability of the page by executing the bare minimum DOM manipulations.</p>
+
+<h2>How to implement</h2>
+<p>To enable the basic HTML mode, you only have to add the parameter <code>?wbdisable=true</code> to your URL. For example:</p>
+<pre><code>&lt;a href="https://canada.ca/en?wbdisable=true">Switch to basic HTML mode&lt;/a></code></pre>
+<p>To disable the basic HTML mode, you only have to add the parameter <code>?wbdisable=false</code> to your URL. For example:</p>
+<pre><code>&lt;a href="https://canada.ca/en?wbdisable=false">Switch to basic HTML mode&lt;/a></code></pre>
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/wb-disable/wb-disable-en.html">English example</a></li>
+	<li><a href="../../../demos/wb-disable/wb-disable-fr.html">French example</a></li>
+</ul>
+
+<h2>Plugins allowed to bypass basic HTML mode</h2>
+<p>Some WET-BOEW plugins can be executed normally when displaying the basic HTML version of a page. Here is the list:</p>
+<ul>
+	<li><a href="../data-ajax/data-ajax-en.html">Data Ajax</a></li>
+	<li><a href="../wb-data-json/wb-data-json-en.html">Data JSON</a></li>
+	<li><a href="../wb-jsonmanager/wb-jsonmanager-en.html">JSON Manager</a></li>
+	<li><a href="../wb-postback/wb-postback-en.html">Postback</a></li>
+</ul>
+<p>To authorize the execution of one of these plugins in basic HTML version, you only have to add the CSS class <code>.wb-disable-allow</code> on the element. For example:</p>
+<pre><code>&lt;div class="wb-disable-allow" data-wb-ajax='{ "url": "ajax/data-ajax-extra-en.html" }'&gt;&lt;/div&gt;</code></pre>

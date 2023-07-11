@@ -177,7 +177,7 @@ var componentName = "wb-data-json",
 				applyTemplate( elm, itmSettings, content );
 
 				// Trigger wet
-				if ( itmSettings.trigger ) {
+				if ( itmSettings.trigger && !wb.isDisabled ) {
 					$elm
 						.find( wb.allSelectors )
 						.addClass( "wb-init" )
