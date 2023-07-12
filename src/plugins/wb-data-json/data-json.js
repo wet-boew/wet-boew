@@ -628,6 +628,7 @@ var componentName = "wb-data-json",
 
 		var j, j_cache,
 			cached_node, cached_value,
+			cached_value_is_HTML, cached_value_is_JSON, cached_value_is_IRI,
 			queryAll = mappingConfig.queryall,
 			selElements,
 			mapping = mappingConfig.mapping,
@@ -733,6 +734,11 @@ var componentName = "wb-data-json",
 		for ( j = 0; j < mapping_len || j === 0; j += 1 ) {
 			j_cache = mapping[ j ];
 
+			// Reset the cache value special type flag
+			cached_value_is_IRI = false;
+			cached_value_is_HTML = false;
+			cached_value_is_JSON = false;
+
 			// Get the element to be updated
 			if ( j_cache.selector ) {
 				cached_node = clone.querySelector( j_cache.selector );
@@ -757,6 +763,16 @@ var componentName = "wb-data-json",
 				continue;
 			}
 
+			// Do the cache value contain special @type
+			if ( cached_value[ "@value" ] && cached_value[ "@type" ] ) {
+				if ( !$.isArray( cached_value[ "@type" ] ) ) {
+					cached_value[ "@type" ] = [ cached_value[ "@type" ] ];
+				}
+				cached_value_is_IRI = cached_value[ "@type" ].indexOf( "@id" ) !== -1;
+				cached_value_is_HTML = cached_value[ "@type" ].indexOf( "rdf:HTML" ) !== -1;
+				cached_value_is_JSON = cached_value[ "@type" ].indexOf( "rdf:JSON" ) !== -1 || cached_value[ "@type" ].indexOf( "@json" ) !== -1;
+			}
+
 			// Action the value
 			if ( $.isArray( cached_value ) && ( j_cache.mapping || j_cache.queryall ) ) {
 
@@ -778,6 +794,24 @@ var componentName = "wb-data-json",
 						throw ex;
 					}
 				}
+			} else if ( cached_value_is_IRI && cached_value_is_HTML ) {
+
+				// The import file type are expected to be HTML
+				// Add the data-ajax instruction so the content would be added once the JSON mapping is completed and added on the page.
+				cached_node.dataset.wbAjax = JSON.stringify( {
+					url: cached_value[ "@value" ],
+					type: "replace",
+					dataType: cached_value_is_JSON ? "json" : null,
+					encode: j_cache.encode
+				} );
+			} else if ( cached_value_is_HTML && cached_value_is_JSON && !cached_value_is_IRI ) {
+
+				// Get content from the "@value" property which contain JSON value and use it as a string value
+				cached_value = JSON.stringify( cached_value[ "@value" ] );
+
+				// Map the value in the element
+				mapValue( cached_node, cached_value, j_cache );
+
 			} else if ( !cached_node && typeof cached_value === "object" ) {
 				throw "cached_node: null";
 			} else {

@@ -1,0 +1,33 @@
+{
+  "html": {
+    "en": {
+      "@type": [ "@id", "rdf:HTML" ],
+      "@value": "ajax/data-ajax-extra-en.html"
+    },
+    "fr": {
+      "@type": [ "@id", "rdf:HTML" ],
+      "@value": "ajax/data-ajax-extra-fr.html"
+    }
+  },
+  "jsonimport": {
+    "@type": [ "@id", "rdf:HTML", "rdf:JSON" ],
+    "@value": "demo/import.json"
+  },
+  "data": {
+    "@type": [ "rdf:HTML", "rdf:JSON" ],
+    "@value": {
+      "foo": "bar",
+      "bar": "hello <strong>world</strong>"
+    }
+  },
+  "raw": {
+    "@type": [ "rdf:JSON" ],
+    "@value": [
+      "item 1",
+      "item 2",
+      "item 3",
+      "item 4",
+      "item 5"
+    ]
+  }
+}
