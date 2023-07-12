@@ -331,10 +331,11 @@
 
 			<section>
 				<h4>data-ajax-extra-fr.html</h4>
-				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
-	&lt;h4&gt;J'ai été affiché via Ajax&lt;/h4&gt;
-	&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
-&lt;/section&gt;</code></pre>
+				<pre id="encodeme"><code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-extra-fr.html", "type": "replace" }'></code></pre>
+
+				<h5>Code source de cet exemple</h5>
+				<p>Ceci est une démo qui illustre l'utilisation de la configuration <code>encode</code></p>
+				<pre><code data-wb-ajax='{ "encode": true, "url": "data-ajax-fr.html #encodeme", "type": "replace" }'></code></pre>
 			</section>
 		</details>
 </section>

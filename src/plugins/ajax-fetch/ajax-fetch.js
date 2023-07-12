@@ -84,6 +84,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				response = $( response );
 
 				fetchData.response = response;
+				fetchData.hasSelector = !!selector;
 				fetchData.status = status;
 				fetchData.xhr = xhr;
 
