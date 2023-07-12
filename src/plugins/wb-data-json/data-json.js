@@ -819,7 +819,7 @@ var componentName = "wb-data-json",
 		var value = getRawValue( source, pointer );
 
 		// for JSON-LD @value support
-		if ( typeof value === "object" && value[ "@value" ] ) {
+		if ( typeof value === "object" && value !== null && value[ "@value" ] ) {
 			value = value[ "@value" ];
 		}
 
