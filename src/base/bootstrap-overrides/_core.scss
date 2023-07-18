@@ -68,6 +68,16 @@ a {
 	}
 }
 
+.dl-inline {
+	dt, dd {
+		display: inline;
+	}
+
+	dd + dt {
+		margin-left: 15px;
+	}
+}
+
 /*
  *  Abbreviations with title attributes
  *  Workaround for abbreviations with titles using solid underlines in IE11/Edge in Bootstrap 3.4.0 (via normalize.css 4.0.1-8.0.1):
