@@ -1,0 +1,39 @@
+---
+{
+"title": "HTML simplifié",
+"language": "fr",
+"category": "Plugins",
+"categoryfile": "plugins",
+"description": "Passer à la version HTML simplifiée",
+"altLangPrefix": "wb-disable",
+"dateModified": "2023-07-11"
+}
+---
+
+<div class="wb-prettify all-pre"></div>
+
+<h2>But</h2>
+<p>Activer le mode HTML de base sur une page donnée pour simplifier la lisibilité de la page en exécutant le strict minimum de manipulations du DOM.</p>
+
+<h2>Comment implémenter</h2>
+<p>Pour activer le mode HTML simplifié, vous n'avez qu'à ajouter le paramètre <code>?wbdisable=true</code> à votre URL. Par exemple&nbsp;:</p>
+<pre><code>&lt;a href="https://canada.ca/fr?wbdisable=true">Basculer vers le mode HTML simplifié&lt;/a></code></pre>
+<p>Pour désactiver le mode HTML simplifié, vous n'avez qu'à ajouter le paramètre <code>?wbdisable=false</code> à votre URL. Par exemple&nbsp;:</p>
+<pre><code>&lt;a href="https://canada.ca/fr?wbdisable=false">Basculer vers le mode HTML simplifié&lt;/a></code></pre>
+
+<h2>Exemple pratique</h2>
+<ul>
+	<li><a href="../../../demos/wb-disable/wb-disable-fr.html">Exemple en français</a></li>
+	<li><a href="../../../demos/wb-disable/wb-disable-en.html">Exemple en anglais</a></li>
+</ul>
+
+<h2>Plugiciels autorisés à contourner le mode HTML simplifié</h2>
+<p>Certains plugins WET-BOEW peuvent être exécutés normalement lors de l'affichage de la version HTML simplifié d'une page. Voici la liste&nbsp;:</p>
+<ul>
+	<li><a href="../data-ajax/data-ajax-fr.html">Data Ajax</a></li>
+	<li><a href="../wb-data-json/wb-data-json-fr.html">Data JSON</a></li>
+	<li><a href="../wb-jsonmanager/wb-jsonmanager-fr.html">JSON Manager</a></li>
+	<li><a href="../wb-postback/wb-postback-fr.html">Envoie via Ajax</a></li>
+</ul>
+<p>Pour autoriser l'exécution de l'un de ces plugiciels en version HTML simplifié, vous n'avez qu'à rajouter la classe CSS <code>.wb-disable-allow</code> sur l'élément. Par exemple&nbsp;:</p>
+<pre><code>&lt;div class="wb-disable-allow" data-wb-ajax='{ "url": "ajax/data-ajax-extra-fr.html" }'&gt;&lt;/div&gt;</code></pre>
