@@ -491,6 +491,10 @@ module.exports = (grunt) ->
 				helpers: "site/helpers/helper{,s}-*.js"
 				partials: [
 					"site/includes/**/*.hbs"
+					"src/other/archived/demo/archived.scss"
+					"src/plugins/eqht-css/demo/eqht-css.scss"
+					"src/plugins/equalheight/demo/equalheight.scss"
+					"src/plugins/share/demo/share.scss"
 					"src/polyfills/datalist/demo/datalist_dynamic.js"
 				]
 				layoutdir: "site/layouts"

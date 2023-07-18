@@ -8,7 +8,7 @@
 	"parentdir": "equalheight",
 	"altLangPrefix": "equalheight",
 	"css": ["demo/equalheight"],
-	"dateModified": "2023-06-19"
+	"dateModified": "2023-07-17"
 }
 ---
 <section>
@@ -116,25 +116,8 @@
 		</section>
 
 		<section>
-			<h4>CSS</h4>
-			<pre><code>#simple .wb-eqht section {
-	display: inline-block;
-	margin-bottom: 15px;
-	padding: 15px;
-	width: 100%;
-}
-
-@media (min-width: 768px) {
-	#simple .wb-eqht section {
-		width: 49%;
-	}
-}
-
-@media (min-width: 1200px) {
-	#simple .wb-eqht section {
-		width: 33%;
-	}
-}</code></pre>
+			<h4>SCSS</h4>
+			<pre><code>{{#escape}}{{#stripbanner}}{{> equalheight }}{{/stripbanner}}{{/escape}}</code></pre>
 		</section>
 	</section>
 </section>

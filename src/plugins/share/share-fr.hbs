@@ -8,7 +8,7 @@
 	"parentdir": "share",
 	"altLangPrefix": "share",
 	"css": ["demo/share"],
-	"dateModified": "2015-05-27"
+	"dateModified": "2023-07-17"
 }
 ---
 <section>
@@ -121,10 +121,8 @@
 			<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl7", "sites": {"Site démo": {"name": "Site démo", "url": "https://www.example.org/?to=&amp;subject={t}&amp;body={u}%0A{d}"}}}'&gt;&lt;/div&gt;</code></pre>
 		</section>
 		<section>
-			<h3>CSS</h3>
-			<pre class="wb-prettify"><code>.wb-share .demosite:before {
-	background: url("demosite.png") no-repeat;
-}</code></pre>
+			<h3>SCSS</h3>
+			<pre><code>{{#escape}}{{#stripbanner}}{{> share }}{{/stripbanner}}{{/escape}}</code></pre>
 		</section>
 	</details>
 </section>
