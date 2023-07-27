@@ -115,24 +115,29 @@ var componentName = "wb-eqht",
 				currentChildTop = currentChild.getBoundingClientRect().top + window.pageYOffset;
 				currentChildHeight = currentChild.offsetHeight;
 
-				if ( currentChildTop !== rowTop ) {
+				// if the current element is visible...
+				// note: hidden elements need to be excluded since they have a different top offset than visible ones
+				if ( currentChildHeight ) {
 
-					// as soon as we find an element not on this row (not the same top offset)
-					// we need to equalize each items in that row to align the next row.
-					equalize( row, tallestHeight );
+					// as soon as we find an element not on this row (not the same top offset)...
+					if ( currentChildTop !== rowTop ) {
 
-					// since the elements of the previous row was equalized
-					// we need to get the new top offset of the current element
-					currentChildTop = currentChild.getBoundingClientRect().top + window.pageYOffset;
+						// we need to equalize each item in that row to align the next row
+						equalize( row, tallestHeight );
 
-					// reset the row, rowTop and tallestHeight
-					row.length = 0;
-					rowTop = currentChildTop;
-					tallestHeight = currentChildHeight;
+						// since the elements of the previous row was equalized
+						// we need to get the new top offset of the current element
+						currentChildTop = currentChild.getBoundingClientRect().top + window.pageYOffset;
+
+						// reset the row, rowTop and tallestHeight
+						row.length = 0;
+						rowTop = currentChildTop;
+						tallestHeight = currentChildHeight;
+					}
+
+					tallestHeight = Math.max( currentChildHeight, tallestHeight );
+					row.push( $children.eq( j ) );
 				}
-
-				tallestHeight = Math.max( currentChildHeight, tallestHeight );
-				row.push( $children.eq( j ) );
 			}
 
 			// equalize the last row
