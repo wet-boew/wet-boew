@@ -284,7 +284,7 @@ $document.on( "wb-contentupdated", selector, function( event, data )  {
 	if ( supportsHas === "false" ) {
 		let noResultItem = this.querySelector( "." + noResultWrapperClass );
 
-		if ( noResultItem ) {
+		if ( noResultItem && this.items.length > 0 ) {
 			let visibleItems = this.querySelectorAll( "." + itemsWrapperClass + " " + "[data-wb-tags]:not(." + tgFilterOutClass + ", ." + filterOutClass + ")" );
 
 			if ( visibleItems.length < 1 ) {
