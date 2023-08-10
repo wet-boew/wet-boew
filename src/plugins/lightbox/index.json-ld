@@ -1,0 +1,58 @@
+{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Lightbox",
+		"fr": "Lightbox"
+	},
+	"description": {
+		"en": "Documentation and working example on how to use the lightbox plugin.",
+		"fr": "Documentation et example pratique sur l'utilisation du plugin lightbox."
+	},
+	"modified": "2023-08-02",
+	"componentName": "lightbox",
+	"status": "stable",
+	"pages": {
+		"docs": [
+			{
+				"title": "Lightbox",
+				"language": "en",
+				"path": "lightbox-en.hbs"
+			},
+			{
+				"title": "Lightbox",
+				"language": "fr",
+				"path": "lightbox-fr.hbs"
+			}
+		],
+		"examples": [
+			{
+				"title": "Lightbox",
+				"language": "en",
+				"path": "lightbox-en.hbs"
+			},
+			{
+				"title": "Lightbox",
+				"language": "fr",
+				"path": "lightbox-fr.hbs"
+			}
+		],
+		"reports": [
+			{
+				"title": "Pre accessibility assessment #1 - Lightbox",
+				"language": "en",
+				"path": "reports/pre-ally-1-en.html"
+			},
+			{
+				"title": "Pre assessment d'accessibilité #1 - Lightbox",
+				"language": "fr",
+				"path": "reports/pre-ally-1-fr.html"
+			}
+		]
+	}
+}
