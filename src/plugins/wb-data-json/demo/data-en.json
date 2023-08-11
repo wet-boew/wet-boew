@@ -69,5 +69,11 @@
         }
       }
     }
-  }
+  },
+  "withNullAndHtml": [
+    { "name": "Item 1", "prop": "<strong>red</strong>" },
+    { "name": "Item with null value", "prop": null },
+    { "name": "Item 3", "prop": "yellow" },
+    { "name": "Item with null value", "prop": null }
+  ]
 }

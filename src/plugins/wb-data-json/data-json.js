@@ -784,8 +784,8 @@ var componentName = "wb-data-json",
 
 				cached_value = getValue( cached_value );
 
-				// Serialize the value if it is an JS object
-				if ( typeof cached_value === "object" ) {
+				// Serialize the value if it is an JS object and its not a null object
+				if ( typeof cached_value === "object" &&  cached_value !== null ) {
 					cached_value = JSON.stringify( cached_value );
 				}
 
@@ -865,11 +865,13 @@ var componentName = "wb-data-json",
 			value = placeholderText.replace( mappingConfig.placeholder, value );
 		}
 
-		// Set the value to the node
-		if ( mappingConfig.isHTML ) {
-			element.innerHTML = value;
-		} else {
-			element.textContent = value;
+		// Exclude null values and replace with default text
+		if ( value !== null ) {
+			if ( mappingConfig.isHTML ) {
+				element.innerHTML = value;
+			} else {
+				element.textContent = value;
+			}
 		}
 	},
 
