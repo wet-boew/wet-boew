@@ -1,0 +1,589 @@
+{
+    "@context": "https://wet-boew.github.io/vocab/context/2023/assessment-report-en.json-ld",
+
+    "@type": ["earl:Assertion", "acr:AssessmentReport"],
+
+    "earl:subject": {
+        "@id": "_:subject",
+        "dct:references": "https://wet-boew.github.io/gcweb-compiled-demos/wetboew-demos/tables/tables-en.html",
+        "@type": [
+            "earl:TestSubject",
+            "schema:WebPage"
+        ],
+        "dct:description": "DataTables provide searching, sorting, filtering, pagination and other advanced features for tables.",
+        "earl:pointer": {
+            "@type": "oa:CssSelector",
+            "@value": ".wb-tables"
+        }
+    },
+
+    "earl:assertedBy": {
+        "foaf:name": "Service Canada - Principal Publisher",
+        "foaf:homepage": "https://github.com/ServiceCanada",
+        "@type": ["earl:Assertor", "foaf:Organization"],
+        "earl:mainAssertor": {
+            "foaf:name": "Ilya Pak (Github: @ipaksc)",
+            "foaf:homepage": "https://github.com/ipaksc",
+            "@type": ["earl:Assertor", "foaf:Person"]
+        }
+    },
+
+    "dct:date": "2023-06-30",
+
+    "dct:description": "Pre-evaluation of all WCAG 2.1 SC at level AA.",
+
+    "dct:source": "act:rulesets/wcag2x/wcag21_all_levelAA.json",
+    "acr:standard": "https://www.w3.org/TR/WCAG21",
+    "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+
+    "earl:result": [{
+            "earl:test": "WCAG21:non-text-content",
+            "earl:outcome": "earl:untested",
+            "earl:subject": "_:subject",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:audio-only-and-video-only-prerecorded",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:captions-prerecorded",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:audio-description-or-media-alternative-prerecorded",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:captions-live",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:audio-description-prerecorded",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:info-and-relationships",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:meaningful-sequence",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:sensory-characteristics",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:orientation",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:identify-input-purpose",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:use-of-color",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:audio-control",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:contrast-minimum",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:resize-text",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:image-of-text",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:reflow",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:non-text-contrast",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:text-spacing",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:content-on-hover-or-focus",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:keyboard",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:no-keyboard-trap",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:character-key-shortcuts",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:timing-adjustable",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:pause-stop-hide",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:three-flashes-or-below-threshold",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:bypass-blocks",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:page-titled",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:focus-order",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:link-purpose-in-context",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:multiple-ways",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:headings-and-labels",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:focus-visible",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:pointer-gestures",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:pointer-cancellation",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:label-in-name",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:motion-actuation",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:language-of-page",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:language-of-parts",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:on-focus",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:on-input",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:consistent-navigation",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:consistent-identification",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:error-identification",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:labels-or-instructions",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:error-suggestion",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:error-prevention-legal-financial-data)",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:parsing",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:name-role-value",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:untested",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:status-messages",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:inapplicable",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        }
+    ]
+}
