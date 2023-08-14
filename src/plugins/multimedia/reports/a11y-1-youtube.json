@@ -33,7 +33,7 @@
       ]
     }
   },
-  "dct:date": "2022-07-27",
+  "dct:date": "2023-08-14",
   "dct:description": "Partial evaluation focused on the 'multimedia (Youtube)' component. Evaluation of all Success Criteria at Level AA of WCAG 2.1",
   "dct:source": "act:rulesets/wcag2x/wcag21_all_levelAA.json",
   "acr:standard": "https://www.w3.org/TR/WCAG21",
@@ -48,7 +48,7 @@
       "dct:description": "",
       "earl:mode": "earl:automatic",
       "acr:asset": {
-        "@type": "acr:AttachementJson",
+        "@type": "acr:AttachmentJson",
         "dct:title": "JSON report saved from the Accessibility Insight tool",
         "acr:content": {
           "@type": "@json",
@@ -1286,7 +1286,7 @@
       "earl:test": "WCAG21:info-and-relationships",
       "earl:subject": "_:subject",
       "earl:outcome": "earl:passed",
-      "dct:description": "",
+      "dct:description": "The automated assessment tool indicated a failure, however that was for the menu of the page and not the multimedia component itself. The component itself passes this test.",
       "acr:severity": "acr:noSeverity",
       "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
@@ -1468,7 +1468,7 @@
       "earl:test": "WCAG21:keyboard",
       "earl:subject": "_:subject",
       "earl:outcome": "earl:fail",
-      "dct:description": "",
+      "dct:description": "The Youtube multimedia plugin contains elements such as watch later and share which are not focusable through keyboard navigation only. Therefore the plugin fails the assessment.",
       "acr:severity": "acr:noSeverity",
       "acr:relevancy": "wbv:acr#noRelevancy",
       "earl:mode": "earl:automatic",
