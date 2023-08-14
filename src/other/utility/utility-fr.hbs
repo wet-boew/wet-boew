@@ -525,6 +525,10 @@
 
 <h2 id="dl-horizontal">Liste descriptive horizontale</h2>
 
+<---Translation required //-->
+<h3>Word wrap</h3>
+<!--Translation ended //-->
+	
 <p>Ceci est la mise à l'essaie d'un cas d'utilisation spécifique où le mot est tronqué dans le titre de la description lorsque ce dernier est long et prend toute l'espace disponible.</p>
 
 <dl class="dl-horizontal">
@@ -535,7 +539,21 @@
 	<dt>Quelques mots afin de remplir de l'espace</dt>
 	<dd>Quisque tristique dui in ante mattis, nec commodo tortor eleifend.</dd>
 </dl>
-
+<!--Translation required //-->
+<p>If the longest word is capitalized, some browsers may not display a hyphen.</p>  
+<p>If you wish to self work break to create a hyphen, you can use the soft hyphen (<code>&shy;</code>) entity.</p>
+<h3>Maximum term width</h3>
+<p>Add the class <code>dt-max</code> with the <code>dl-horizontal</code> class and the longest word in any of the term (<code>&lt;dt&gt;</code>) elements will determine the width of all the terms.</p>
+<dl class="dl-horizontal max-dt">
+	<dt>Description title</dt>
+	<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
+	<dt>Long word: incomprehensibilities</dt>
+	<dd>Etiam at erat et sapien tempus vulputate.</dd>
+	<dt>A fews filling words that take space</dt>
+	<dd>Quisque tristique dui in ante mattis, nec commodo tortor eleifend.</dd>
+</dl>
+<!--Translation ended //-->
+	
 <h2 id="dl-inline">Liste descriptive en ligne</h2>
 <p>List descriptive en ligne utilisée pour afficher des termes et descriptions courts.</p>
 
