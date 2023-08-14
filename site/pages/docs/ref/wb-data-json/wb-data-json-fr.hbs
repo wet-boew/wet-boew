@@ -763,6 +763,12 @@
 		<td>Boolean indicating if the content need to be append.</td>
 	</tr>
 	<tr>
+		<td>Mapping object <code>encode</code></td>
+		<td>Indicate to encode the content if its type is <code>rdf:HTML</code></td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "encode": true|false } ] }'</code></td>
+		<td>Boolean indicating if the content need to be encoded when the id reference are followed.</td>
+	</tr>
+	<tr>
 		<td><code>appendto</code></td>
 		<td>Template only. When the elements are outside the editing area, this specified the element to use to append the template. Specifying the data-json directly of the elements should remain how it is used. Note: Since WET 4.0.27 a bug fix has change the behavior of one usecase depending how the mapping is configured. Since WET 4.0.27, using the data-json template is always done against an JSON array.</td>
 		<td><code>data-wb-json='{ "url": "", "appendto": "title" }'</code></td>
