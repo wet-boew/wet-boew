@@ -21,7 +21,7 @@
                         "ontario"
                     ],
                     "city": "Online",
-                    "registrationStatus": "open",
+                    "registrationStatus": "_:open",
                     "registeredPeople": [
                         {
                             "name": "John Smith",
@@ -49,7 +49,7 @@
                         "british_columbia"
                     ],
                     "city": "Vancouver",
-                    "registrationStatus": "open",
+                    "registrationStatus": "_:open",
                     "registeredPeople": [
                         {
                             "name": "Debbie Stark",
@@ -73,7 +73,7 @@
                         "quebec"
                     ],
                     "city": "Ottawa",
-                    "registrationStatus": "closed",
+                    "registrationStatus": "_:closed",
                     "registeredPeople": [
                         {
                             "name": "Pierre Tremblay",
