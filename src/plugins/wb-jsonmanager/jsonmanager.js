@@ -441,6 +441,12 @@ var componentName = "wb-jsonmanager",
 			},
 			manageObjDir = function( selector, selectedValue, json_return ) {
 				var arrPath = selector.path.split( "/" ).filter( Boolean );
+
+				// Check if selectedValue is an empty value returned by querySelectorAll
+				if ( selectedValue && selectedValue instanceof NodeList && selectedValue.length === 0 ) {
+					selectedValue = null;
+				}
+
 				if ( arrPath.length > 1 ) {
 					var pointer = "";
 					pointer = arrPath.pop();

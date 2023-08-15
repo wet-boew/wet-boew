@@ -648,7 +648,7 @@ var componentName = "wb-data-json",
 		}
 
 		// Check if there is some mapping configuration
-		if ( !mapping && !queryAll && !mappingConfig.template ) {
+		if ( !mapping && !queryAll && !mappingConfig.template && typeof mapping !== "object" ) {
 			return;
 		}
 
@@ -779,7 +779,7 @@ var componentName = "wb-data-json",
 				// Deep dive into the content if a mapping exist
 				dataIterator( cached_node, cached_value, j_cache );
 
-			} else if ( j_cache.mapping || j_cache.queryall ) {
+			} else if ( j_cache.mapping || j_cache.queryall || !j_cache.mapping && typeof j_cache.mapping === "object" ) {
 				try {
 
 					// Map the inner mapping
@@ -814,7 +814,7 @@ var componentName = "wb-data-json",
 
 			} else if ( !cached_node && typeof cached_value === "object" ) {
 				throw "cached_node: null";
-			} else {
+			} else if ( mappingConfig.mapping !== null ) {
 
 				cached_value = getValue( cached_value );
 
