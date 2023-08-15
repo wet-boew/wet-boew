@@ -109,19 +109,15 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * @param {Object} settings Key-value object
 	 */
 	initEventTimeout = function( $elm, eventName, time, settings ) {
-		var startTime = getCurrentTime(),
-			duration = parseTime( time );
+		var duration = parseTime( time );
 
 		// Clear any existing timeout for the event
-		clearInterval( $elm.data( eventName ) );
+		clearTimeout( $elm.data( eventName ) );
 
 		// Create the new timeout that will trigger the event
-		$elm.data( eventName, setInterval( function() {
-			if ( getCurrentTime() - startTime >= duration ) {
-				$elm.trigger( eventName, settings );
-				clearInterval( $elm.data( eventName ) );
-			}
-		}, 500 ) );
+		$elm.data( eventName, setTimeout( function() {
+			$elm.trigger( eventName, settings );
+		}, duration ) );
 	},
 
 	/**
@@ -219,8 +215,8 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 					} else {
 
 						// End the inactivity timeouts since the session is already kaput
-						clearInterval( $elm.data( inactivityEvent ) );
-						clearInterval( $elm.data( keepaliveEvent ) );
+						clearTimeout( $elm.data( inactivityEvent ) );
+						clearTimeout( $elm.data( keepaliveEvent ) );
 
 						openModal( {
 							body: "<p>" + i18nText.timeoutAlready + "</p>",
