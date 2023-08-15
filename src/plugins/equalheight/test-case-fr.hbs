@@ -1,0 +1,90 @@
+---
+{
+	"title": "Égalisation des hauteurs - Exemple d'essaie spéciale",
+	"language": "fr",
+	"description": "Cas d'utilisation afin de s'assurer de la stabilité du plugiciel égalisation des hauteurs",
+	"tag": "equalheight",
+	"parentdir": "equalheight",
+	"altLangPrefix": "test-case",
+	"css": ["demo/equalheight"],
+	"dateModified": "2023-09-15"
+}
+---
+
+<p>Cette page est dédié à des cas d'essaie spéciale afin de s'assurer que le plugiciel égalisation des hauteurs fonctionne correctement.</p>
+
+<h2>Détection des ligne lorsqu'il y a des colonnes cachées</h2>
+<p>The following example is to validate and ensure the issue described in <a href="https://github.com/wet-boew/wet-boew/pull/9639">Github PR #9639</a> is fixed.</p>
+<p>L'example suivant est pour valider et de s'assurer que le problème décrit par la requête <a href="https://github.com/wet-boew/wet-boew/pull/9639" hreflang="en">Github #9639</a> est corrigé.</p>
+<div class="row wb-eqht">
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 1</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4" hidden>
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 2 (hidden)</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1<br>Ligne 2</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 3</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1<br>Ligne 2<br>Ligne 3</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 4</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1<br>Ligne 2<br>Ligne 3<br>Ligne 4<br>Ligne 5</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 5</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 6</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1<br>Ligne 2<br>Ligne 3</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grille 7</h3>
+			</div>
+			<div class="panel-body">
+				<p>Ligne 1<br>Ligne 2<br>Ligne 3<br>Ligne 4<br>Ligne 5</p>
+			</div>
+		</section>
+	</div>
+</div>

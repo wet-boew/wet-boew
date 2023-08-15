@@ -42,15 +42,17 @@
                 "yukon": "Yukon"
             }
         },
-        "registrationStatus": {
-            "en": {
-                "open": "Open",
-                "closed": "Closed"
-            },
-            "fr": {
-                "open": "Ouvert",
-                "closed": "Fermé"
-            }
-        }
+        "registrationStatus": [
+          {
+            "@id": "_:open",
+            "en": "Open",
+            "fr": "Ouvert"
+          },
+          {
+            "@id": "_:closed",
+            "en": "Closed",
+            "fr": "Fermé"
+          }
+        ]
     }
 }

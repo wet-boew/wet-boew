@@ -1021,7 +1021,8 @@
 						{ "path": "/formfields/externalReferer", "interface": "referer" },
 						{ "path": "/formfields/submissionPage", "interface": "locationHref" },
 						{ "selector": "h2", "path": "allH2", "selectAll":true },
-						{ "selector": "h3", "path": "allH3", "selectAll":true }
+						{ "selector": "h3", "path": "allH3", "selectAll":true },
+						{ "selector": "h1[data-not-found]", "path": "notfound" }
 					],
 		"patches": { "op": "wb-count", "path": "/allH3", "set": "/nbH3Total" }
 	}'>
@@ -1058,6 +1059,25 @@
 			<li></li>
 		</template>
 	</ul>
+	<p>Retourne une valeur <code>null</code> lorsque l'élément n'est pas trouvé par le sélecteur CSS. Test (attendu l'affichage du mot 'fonctionne'):
+		<span data-wb-json='{
+				"url": "#[ex3]",
+				"streamline": true,
+				"mapping": [
+					{
+						"template": "[data-not-found-result]",
+						"test": "fn:guessType",
+						"assess": "/notfound",
+						"expect": "undefined",
+						"mapping": null
+					}
+				]
+			}'>
+			<template data-not-found-result>
+				fonctionne
+			</template>
+		</span>
+	</p>
 </div>
 
 <details>
@@ -1111,5 +1131,24 @@
 			&lt;li&gt;&lt;/li&gt;
 		&lt;/template&gt;
 	&lt;/ul&gt;
+	&lt;p&gt;Retourne une valeur &lt;code&gt;null&lt;/code&gt; lorsque l'élément n'est pas trouvé par le sélecteur CSS. Test (attendu l'affichage du mot 'fonctionne'):
+		&lt;span data-wb-json='{
+				&quot;url&quot;: &quot;#[ex3]&quot;,
+				&quot;streamline&quot;: true,
+				&quot;mapping&quot;: [
+					{
+						&quot;template&quot;: &quot;[data-not-found-result]&quot;,
+						&quot;test&quot;: &quot;fn:guessType&quot;,
+						&quot;assess&quot;: &quot;/notfound&quot;,
+						&quot;expect&quot;: &quot;undefined&quot;,
+						&quot;mapping&quot;: null
+					}
+				]
+			}'&gt;
+			&lt;template data-not-found-result&gt;
+				fonctionne
+			&lt;/template&gt;
+		&lt;/span&gt;
+	&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </details>

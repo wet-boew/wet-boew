@@ -168,22 +168,49 @@ var componentName = "wb-jsonmanager",
 						ref = this.ref,
 						mainTree = this.mainTree,
 						path = this.path,
-						newVal;
+						newVal,
+						refObject, refIsArray, valWasArray,
+						i, i_len, i_item,
+						j, j_len, j_item;
 
 					if ( val ) {
-						if ( Array.isArray( val ) ) {
-							val.forEach( ( item, i ) => {
-								item = item.replaceAll( "~", "~0" ).replaceAll( "/", "~1" ); // Escape slashed and tilde in val when the key is an IRI
-								newVal = mainTree ? jsonpointer.get( mainTree, ref + "/" + item ) : jsonpointer.get( tree, ref + "/" + item );
-								if ( newVal ) {
-									applyPatch( tree, "replace", path + "/" + i, newVal );
+
+						refObject = jsonpointer.get( mainTree, ref );
+						refIsArray = Array.isArray( refObject );
+						valWasArray = Array.isArray( val );
+
+						if ( !valWasArray ) {
+							val =  [ val ];
+						}
+
+						i_len = val.length;
+
+						for ( i = 0; i !== i_len; i++ ) {
+							i_item = val[ i ];
+							newVal = undefined; // Reinit
+							if ( !refIsArray ) {
+								i_item = i_item.replaceAll( "~", "~0" ).replaceAll( "/", "~1" ); // Escape slashed and tilde in val when the key is an IRI for JSON pointer compatibility
+								newVal = mainTree ? jsonpointer.get( mainTree, ref + "/" + i_item ) : jsonpointer.get( tree, ref + "/" + i_item );
+							} else {
+
+								// Iterate until we found a corresponding value in the property "@id"
+								j_len = refObject.length;
+								for ( j = 0; j !== j_len; j++ ) {
+									j_item = refObject[ j ];
+									if ( j_item[ "@id" ] && j_item[ "@id" ] === i_item ) {
+										newVal = j_item;
+										break;
+									}
 								}
-							} );
-						} else if ( typeof val === "string" ) {
-							val = val.replaceAll( "~", "~0" ).replaceAll( "/", "~1" ); // Escape slashed and tilde in val when the key is an IRI
-							newVal = mainTree ? jsonpointer.get( mainTree, ref + "/" + val ) : jsonpointer.get( tree, ref + "/" + val );
-							if ( newVal ) {
+								if ( !newVal ) {
+									console.error( "wb-swap: Unable to find a corresponding value for: " + val + " in reference " + ref );
+									break;
+								}
+							}
+							if ( newVal && !valWasArray ) {
 								applyPatch( tree, "replace", path, newVal );
+							} else if ( newVal ) {
+								applyPatch( tree, "replace", path + "/" + i, newVal );
 							}
 						}
 					}
@@ -414,6 +441,12 @@ var componentName = "wb-jsonmanager",
 			},
 			manageObjDir = function( selector, selectedValue, json_return ) {
 				var arrPath = selector.path.split( "/" ).filter( Boolean );
+
+				// Check if selectedValue is an empty value returned by querySelectorAll
+				if ( selectedValue && selectedValue instanceof NodeList && selectedValue.length === 0 ) {
+					selectedValue = null;
+				}
+
 				if ( arrPath.length > 1 ) {
 					var pointer = "";
 					pointer = arrPath.pop();

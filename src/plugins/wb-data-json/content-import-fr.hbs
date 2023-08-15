@@ -1,0 +1,75 @@
+---
+{
+	"title": "Importation de contenu pour des gabarits",
+	"language": "fr",
+	"description": "Importation de contenu via des références et du contenu JSON selon la notation du JSON-LD",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "content-import-en.html",
+	"dateModified": "2023-07-12"
+}
+---
+<nav>
+	<ul>
+		<li><a href="data-json-fr.html">Data JSON</a></li>
+		<li><a href="template-fr.html">Gabarit HTML 5</a></li>
+		<li><a href="conditional-fr.html">Gabarit conditionel</a></li>
+	</ul>
+</nav>
+
+<p>{{ page.description }}</p>
+
+<h2>Fichier HTML non encodé</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/html/fr"
+		}
+	]
+}'><template><div data-import></div></template></div>
+
+
+<h2>Fichier HTML encodé</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/html/fr",
+			"encode": true
+		}
+	]
+}'><template><pre><code data-import></code></pre></template></div>
+
+<h2>Fichier JSON encodé</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/jsonimport",
+			"encode": true
+		}
+	]
+}'><template><pre><code data-import></code></pre></template></div>
+
+<h2>Valeur JSON utiliser comme une chaine de charactère de contenu</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/data"
+		}
+	]
+}'><template><code data-import></code></template></div>

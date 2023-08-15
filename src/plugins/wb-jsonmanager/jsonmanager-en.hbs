@@ -17,7 +17,6 @@
 </ul>
 -->
 <div class="wb-prettify all-pre"></div>
-
 <p>Manage dataset and apply JSON Patch.</p>
 
 <h2>Applying patch</h2>
@@ -128,7 +127,7 @@
 		{ "op": "patches", "path": "/items", "patches": [
 			{ "op": "wb-swap", "path": "/eventLanguage", "ref": "/reference/language/{{page.language}}" },
 			{ "op": "wb-swap", "path": "/province", "ref": "/reference/province/{{page.language}}" },
-			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus" },
 			{ "op": "wb-toDateISO", "path": "/startDate" },
 			{ "op": "wb-toDateISO", "path": "/endDate" },
 			{ "op": "patches", "path": "/registeredPeople", "patches": [
@@ -146,7 +145,7 @@
 			{ "selector": ".event-start", "value": "/startDate" },
 			{ "selector": ".event-end", "value": "/endDate" },
 			{ "selector": ".event-location", "value": "/city" },
-			{ "selector": ".event-status", "value": "/registrationStatus" },
+			{ "selector": ".event-status", "value": "/registrationStatus/en" },
 			{ "selector": ".event-provinces", "value": "/province", "queryall": "li" },
 			{ "selector": ".event-registered", "value": "/registeredPeople",
 				"mapping": [
@@ -1015,7 +1014,6 @@
 &lt;/div&gt;</code></pre>
 </details>
 
-
 <h3>Extract values from tag attributes or extract all specific tags values:</h3>
 <div data-wb-jsonmanager='{
 		"name": "ex3",
@@ -1026,7 +1024,8 @@
 						{ "path": "/formfields/externalReferer", "interface": "referer" },
 						{ "path": "/formfields/submissionPage", "interface": "locationHref" },
 						{ "selector": "h2", "path": "allH2", "selectAll":true },
-						{ "selector": "h3", "path": "allH3", "selectAll":true }
+						{ "selector": "h3", "path": "allH3", "selectAll":true },
+						{ "selector": "h1[data-not-found]", "path": "notfound" }
 					],
 		"patches": { "op": "wb-count", "path": "/allH3", "set": "/nbH3Total" }
 		}'>
@@ -1065,6 +1064,25 @@
 			<li></li>
 		</template>
 	</ul>
+	<p>Returning a <code>null</code> value when the element is not found by the CSS selector. Test (expect to return 'working'):
+		<span data-wb-json='{
+				"url": "#[ex3]",
+				"streamline": true,
+				"mapping": [
+					{
+						"template": "[data-not-found-result]",
+						"test": "fn:guessType",
+						"assess": "/notfound",
+						"expect": "undefined",
+						"mapping": null
+					}
+				]
+			}'>
+			<template data-not-found-result>
+				working
+			</template>
+		</span>
+	</p>
 </div>
 
 <details>
@@ -1118,5 +1136,24 @@
 			&lt;li&gt;&lt;/li&gt;
 		&lt;/template&gt;
 	&lt;/ul&gt;
+	&lt;p&gt;Returning a &lt;code&gt;null&lt;/code&gt; value when the element is not found by the CSS selector. Test (expect to return 'working'):
+		&lt;span data-wb-json='{
+				&quot;url&quot;: &quot;#[ex3]&quot;,
+				&quot;streamline&quot;: true,
+				&quot;mapping&quot;: [
+					{
+						&quot;template&quot;: &quot;[data-not-found-result]&quot;,
+						&quot;test&quot;: &quot;fn:guessType&quot;,
+						&quot;assess&quot;: &quot;/notfound&quot;,
+						&quot;expect&quot;: &quot;undefined&quot;,
+						&quot;mapping&quot;: null
+					}
+				]
+			}'&gt;
+			&lt;template data-not-found-result&gt;
+				working
+			&lt;/template&gt;
+		&lt;/span&gt;
+	&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </details>

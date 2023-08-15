@@ -687,6 +687,7 @@
 		<td>
 			<p>When queryall is not specified, it's is an array of string with a the JSON pointer. (Equivalent to the value in the Mapping object)</p>
 			<p>A mapping object can contain another mapping object to support sub-template. That inner mapping can also contain it's own <code>queryall</code> configuration.</p>
+			<p>When its value is explicitly set to <code>null</code>, the associated template object won't be used to map data.</p>
 		</td>
 	</tr>
 
@@ -761,6 +762,12 @@
 		<td>Force the content created via the template to be append from the template parent element instead of being inserted in-place.</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ { "append": "true" } ] }'</code></td>
 		<td>Boolean indicating if the content need to be append.</td>
+	</tr>
+	<tr>
+		<td>Mapping object <code>encode</code></td>
+		<td>Indicate to encode the content if its type is <code>rdf:HTML</code></td>
+		<td><code>data-wb-json='{ "url": "", "mapping": [ { "encode": true|false } ] }'</code></td>
+		<td>Boolean indicating if the content need to be encoded when the id reference are followed.</td>
 	</tr>
 	<tr>
 		<td><code>appendto</code></td>

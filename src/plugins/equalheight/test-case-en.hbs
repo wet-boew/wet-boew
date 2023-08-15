@@ -1,0 +1,89 @@
+---
+{
+	"title": "Equal height - Special test case examples",
+	"language": "en",
+	"description": "Test cases to ensure the stability of the equal height plugin.",
+	"tag": "equalheight",
+	"parentdir": "equalheight",
+	"altLangPrefix": "test-case",
+	"css": ["demo/equalheight"],
+	"dateModified": "2023-09-15"
+}
+---
+
+<p>This page is dedicated to special test case to ensure the equal height plugin work as expected</p>
+
+<h2>Row dectection with hidden column</h2>
+<p>The following example is to validate and ensure the issue described in <a href="https://github.com/wet-boew/wet-boew/pull/9639">Github PR #9639</a> is fixed.</p>
+<div class="row wb-eqht">
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 1</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4" hidden>
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 2 (hidden)</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1<br>Line 2</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 3</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1<br>Line 2<br>Line 3</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 4</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1<br>Line 2<br>Line 3<br>Line 4<br>Line 5</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 5</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 6</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1<br>Line 2<br>Line 3</p>
+			</div>
+		</section>
+	</div>
+	<div class="col-sm-4">
+		<section class="panel panel-default hght-inhrt">
+			<div class="panel-heading">
+				<h3 class="panel-title">Grid 7</h3>
+			</div>
+			<div class="panel-body">
+				<p>Line 1<br>Line 2<br>Line 3<br>Line 4<br>Line 5</p>
+			</div>
+		</section>
+	</div>
+</div>

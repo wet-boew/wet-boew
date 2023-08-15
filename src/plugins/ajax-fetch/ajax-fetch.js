@@ -81,7 +81,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "'></div>" )
 					.append( responseType === "string" ? response : "" );
 
-				response = $( response );
+				response = !xhr.responseJSON ? $( response ) : xhr.responseText;
 
 				fetchData.response = response;
 				fetchData.hasSelector = !!selector;

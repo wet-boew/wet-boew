@@ -347,6 +347,77 @@
 &lt;/template&gt;</code></pre>
 </details>
 
+<h3>Render JSON having null values</h3>
+
+<div class="row">
+	<div class="col-md-6">
+		<span class="text-muted">With the HTML rendering</span>
+		<dl class="dl-horizontal" data-wb-json='{
+				"url": "demo/data-en.json#/withNullAndHtml",
+				"mapping": [
+					{ "selector": "dt", "value": "/name" },
+					{ "selector": "dd", "value": "/prop", "isHTML": true }
+				]
+			}'>
+			<template>
+				<dt></dt>
+				<dd>N/A</dd>
+			</template>
+		</dl>
+	</div>
+	<div class="col-md-6">
+		<span class="text-muted">Without the HTML rendering</span>
+		<dl class="dl-horizontal" data-wb-json='{
+				"url": "demo/data-en.json#/withNullAndHtml",
+				"mapping": [
+					{ "selector": "dt", "value": "/name" },
+					{ "selector": "dd", "value": "/prop" }
+				]
+			}'>
+			<template>
+				<dt></dt>
+				<dd>N/A</dd>
+			</template>
+		</dl>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="row"&gt;
+	&lt;div class="col-md-6"&gt;
+		&lt;span class="text-muted"&gt;With the HTML rendering&lt;/span&gt;
+		&lt;dl class="dl-horizontal" data-wb-json='{
+				"url": "demo/data-en.json#/withNullAndHtml",
+				"mapping": [
+					{ "selector": "dt", "value": "/name" },
+					{ "selector": "dd", "value": "/prop", "isHTML": true }
+				]
+			}'&gt;
+			&lt;template&gt;
+				&lt;dt&gt;&lt;/dt&gt;
+				&lt;dd&gt;N/A&lt;/dd&gt;
+			&lt;/template&gt;
+		&lt;/dl&gt;
+	&lt;/div&gt;
+	&lt;div class="col-md-6"&gt;
+		&lt;span class="text-muted"&gt;Without the HTML rendering&lt;/span&gt;
+		&lt;dl class="dl-horizontal" data-wb-json='{
+				"url": "demo/data-en.json#/withNullAndHtml",
+				"mapping": [
+					{ "selector": "dt", "value": "/name" },
+					{ "selector": "dd", "value": "/prop" }
+				]
+			}'&gt;
+			&lt;template&gt;
+				&lt;dt&gt;&lt;/dt&gt;
+				&lt;dd&gt;N/A&lt;/dd&gt;
+			&lt;/template&gt;
+		&lt;/dl&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</details>
+
 
 <h2>Sub template</h2>
 
@@ -847,3 +918,6 @@
 		<p><span>Publish on [[pubdate]]</span> <a href=""></a></p>
 	</template>
 </div>
+
+<h2>Importing JSON file via references</h2>
+<p><a href="content-import-en.html">Example of importing JSON file via references</a></p>

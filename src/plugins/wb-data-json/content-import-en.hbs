@@ -1,0 +1,76 @@
+---
+{
+	"title": "Content import for template",
+	"language": "en",
+	"description": "Import content via references and JSON content according to JSON-LD notation.",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "content-import-fr.html",
+	"dateModified": "2023-07-12"
+}
+---
+
+<nav>
+	<ul>
+		<li><a href="data-json-en.html">Data JSON</a></li>
+		<li><a href="template-en.html">HTML 5 template</a></li>
+		<li><a href="conditional-en.html">Conditional template</a></li>
+	</ul>
+</nav>
+
+<p>{{ page.description }}</p>
+
+<h2>HTML file not encoded</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/html/en"
+		}
+	]
+}'><template><div data-import></div></template></div>
+
+
+<h2>HTML file encoded</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/html/en",
+			"encode": true
+		}
+	]
+}'><template><pre><code data-import></code></pre></template></div>
+
+<h2>JSON file encoded</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/jsonimport",
+			"encode": true
+		}
+	]
+}'><template><pre><code data-import></code></pre></template></div>
+
+<h2>JSON value as string content</h2>
+<div data-wb-json='{
+	"url": "demo/import.json",
+	"streamline": true,
+	"template": "template",
+	"mapping": [
+		{
+			"selector": "[data-import]",
+			"value": "/data"
+		}
+	]
+}'><template><code data-import></code></template></div>
