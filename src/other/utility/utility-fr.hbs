@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2022-12-13"
+	"dateModified": "2023-08-15"
 }
 ---
 
@@ -525,9 +525,7 @@
 
 <h2 id="dl-horizontal">Liste descriptive horizontale</h2>
 
-<---Translation required //-->
-<h3>Word wrap</h3>
-<!--Translation ended //-->
+<h3>Renvoi à la ligne</h3>
 	
 <p>Ceci est la mise à l'essaie d'un cas d'utilisation spécifique où le mot est tronqué dans le titre de la description lorsque ce dernier est long et prend toute l'espace disponible.</p>
 
@@ -539,21 +537,19 @@
 	<dt>Quelques mots afin de remplir de l'espace</dt>
 	<dd>Quisque tristique dui in ante mattis, nec commodo tortor eleifend.</dd>
 </dl>
-<!--Translation required //-->
-<p>If the longest word is capitalized, some browsers may not display a hyphen.</p>  
-<p>If you wish to self work break to create a hyphen, you can use the soft hyphen (<code>&shy;</code>) entity.</p>
-<h3>Maximum term width</h3>
-<p>Add the class <code>dt-max</code> with the <code>dl-horizontal</code> class and the longest word in any of the term (<code>&lt;dt&gt;</code>) elements will determine the width of all the terms.</p>
+<p>Si le mot le plus long est en majuscule, certains navigateurs peuvent ne pas afficher de trait d'union.</p>  
+<p>Si vous souhaitez définir l'endroit où il y aura une opportunité de créer un trait d'union pour faire un renvoie à la ligne en cas de manque d'espace, vous pouvez utiliser l'entité du trait d'union souple  (<code>&shy;</code>).</p>
+<h3>Largeur maximal de la colonne des termes</h3>
+<p>Ajouter la classe CSS <code>dt-max</code> avec la classe CSS <code>dl-horizontal</code> afin que le plus long mot dans la colonne des termes (l'élément <code>&lt;dt&gt;</code>) détermine la largeur pour l'ensemble des termes.</p>
 <dl class="dl-horizontal max-dt">
-	<dt>Description title</dt>
+	<dt>Titre du terme</dt>
 	<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
-	<dt>Long word: incomprehensibilities</dt>
+	<dt>Long mot: incompréhensibilités</dt>
 	<dd>Etiam at erat et sapien tempus vulputate.</dd>
-	<dt>A fews filling words that take space</dt>
+	<dt>Quelques mots de remplissage qui prennent de l'espace</dt>
 	<dd>Quisque tristique dui in ante mattis, nec commodo tortor eleifend.</dd>
 </dl>
-<!--Translation ended //-->
-	
+
 <h2 id="dl-inline">Liste descriptive en ligne</h2>
 <p>List descriptive en ligne utilisée pour afficher des termes et descriptions courts.</p>
 
