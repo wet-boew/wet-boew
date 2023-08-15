@@ -441,7 +441,7 @@
 				]
 			},
 
-			{ "selector": "ul", "value": "/passetemps", "queryall": "li" }
+			{ "selector": "ul[data-array]", "value": "/passetemps", "queryall": "li" }
 		]
 	}'>
 	<template>
@@ -454,7 +454,7 @@
 			<ul data-object>
 			</ul>
 			<h4>Hobby:</h4>
-			<ul class="lst-spcd"> <!-- Sous-modèle (Itération de liste) -->
+			<ul class="lst-spcd" data-array> <!-- Sous-modèle (Itération de liste) -->
 				<template>
 					<li></li>
 				</template>
