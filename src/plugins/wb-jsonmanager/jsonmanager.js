@@ -166,7 +166,7 @@ var componentName = "wb-jsonmanager",
 				fn: function( obj, key, tree ) {
 					var val = obj[ key ],
 						ref = this.ref,
-						mainTree = this.mainTree,
+						mainTree = this.mainTree || obj,
 						path = this.path,
 						newVal,
 						refObject, refIsArray, valWasArray,

@@ -764,7 +764,7 @@ var componentName = "wb-data-json",
 			}
 
 			// Do the cache value contain special @type
-			if ( cached_value[ "@value" ] && cached_value[ "@type" ] ) {
+			if ( cached_value && cached_value[ "@value" ] && cached_value[ "@type" ] ) {
 				if ( !$.isArray( cached_value[ "@type" ] ) ) {
 					cached_value[ "@type" ] = [ cached_value[ "@type" ] ];
 				}
