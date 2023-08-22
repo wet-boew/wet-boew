@@ -81,7 +81,7 @@
     {
       "earl:test": "WCAG21:audio-description-or-media-alternative-prerecorded",
       "earl:subject": "_:subject",
-      "earl:outcome": "earl:inapplicable",
+      "earl:outcome": "earl:passed",
       "dct:description": "",
       "acr:severity": "acr:noSeverity",
       "acr:relevancy": "wbv:acr#noRelevancy",
@@ -107,7 +107,7 @@
     {
       "earl:test": "WCAG21:audio-description-prerecorded",
       "earl:subject": "_:subject",
-      "earl:outcome": "earl:inapplicable",
+      "earl:outcome": "earl:passed",
       "dct:description": "",
       "acr:severity": "acr:noSeverity",
       "acr:relevancy": "wbv:acr#noRelevancy",
