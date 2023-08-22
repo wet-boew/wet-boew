@@ -1,0 +1,82 @@
+---
+{
+	"title": "Special test case for JSON manager",
+	"language": "en",
+	"description": "To validate some special edge case and to ensure the plugin work as expected.",
+	"tag": "jsonmanager",
+	"parentdir": "wb-jsonmanager",
+	"altLangPage": "test-case-fr.html",
+	"dateModified": "2023-08-22"
+}
+---
+
+<p>This page is a test page to validate some special edge case and to ensure the plugin work as expected.</p>
+
+<h2>Test case for <a href="https://github.com/wet-boew/wet-boew/pull/9649">PR 9649</a></h2>
+
+<div data-wb-jsonmanager='{
+	"name": "swapEx",
+	"url": "demo/test-case.json",
+	"patches": [
+		{ "op": "wb-swap", "path": "/alpha", "ref": "/ref" }
+	]
+}'></div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Test demo</p>
+		<div data-wb-json='{
+			"url": "#[swapEx]/alpha",
+			"mapping": [
+				{
+					"selector": "p"
+				}
+			]
+		}'>
+			<template>
+				<p>This paragraph content was not replaced</p>
+			</template>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo</p>
+		<p>Value 2</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<div class="row">
+		<div class="col-md-6">
+			<p>JSON content</p>
+			<pre><code>{
+	"ref": {
+		"itm1": "Value 1",
+		"itm2": "Value 2",
+		"itm3": "Value 3"
+
+	},
+	"alpha": "itm2"
+}</code></pre>
+		</div>
+		<div class="col-md-6">
+			<p>JSON manager configuration</p>
+			<pre><code>{
+	"name": "swapEx",
+	"url": "demo/test-case.json",
+	"patches": [
+		{ "op": "wb-swap", "path": "/alpha", "ref": "/ref" }
+	]
+}</code></pre>
+			<p>Data JSON configuration</p>
+			<pre><code>{
+	"url": "#[swapEx]/alpha",
+	"mapping": [
+		{
+			"selector": "p"
+		}
+	]
+}</code></pre>
+		</div>
+	</div>
+</details>

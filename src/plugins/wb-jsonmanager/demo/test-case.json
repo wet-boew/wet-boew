@@ -1,0 +1,8 @@
+{
+  "ref": {
+    "itm1": "Value 1",
+    "itm2": "Value 2",
+    "itm3": "Value 3"
+  },
+  "alpha": "itm2"
+}

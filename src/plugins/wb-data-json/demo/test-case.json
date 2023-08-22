@@ -1,0 +1,19 @@
+{
+  "alpha2": {
+      "@id": "_:beta",
+      "@value": null
+  },
+  "alpha": {
+      "beta": null
+  },
+  "beta": [
+    {
+      "itm1": "Value 1",
+      "itm2": null
+    },
+    {
+      "itm1": "Value 2",
+      "itm2": null
+    }
+  ]
+}
