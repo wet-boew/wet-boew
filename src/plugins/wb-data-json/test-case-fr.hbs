@@ -1,0 +1,130 @@
+---
+{
+	"title": "Case d'essaie spéciale pour Data JSON",
+	"language": "fr",
+	"description": "Afin de valider des cas précis et pour s'assurer que le plugin fonctionne tel que prévu.",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "test-case-en.html",
+	"dateModified": "2023-08-22"
+}
+---
+<nav>
+	<ul>
+		<li><a href="data-json-fr.html">Data JSON</a></li>
+		<li><a href="template-fr.html">Gabarit HTML 5</a></li>
+		<li><a href="conditional-fr.html">Gabarit conditionel</a></li>
+	</ul>
+</nav>
+
+<p>Cette page est une page d'essai afin de valider des cas précis et pour s'assurer que le plugin fonctionne tel que prévu.</p>
+
+<p>Le contenu suivant est seulement disponible en anglais.</p>
+
+<div lang="en">
+<h2>Test case for <a href="https://github.com/wet-boew/wet-boew/pull/9651">PR 9651</a></h2>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Test demo</p>
+		<div data-wb-json='{
+			"url": "demo/test-case.json#/alpha",
+			"mapping": [
+				{
+					"selector": "p"
+				}
+			]
+		}'>
+			<template>
+				<p>This paragraph content are not replaced because it is a <code>null</code> value</p>
+			</template>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo</p>
+		<p>This paragraph content are not replaced because it is a <code>null</code> value</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<div class="row">
+		<div class="col-md-6">
+			<p>JSON content</p>
+			<pre><code>{
+	"alpha": {
+		"beta": null
+	}
+}</code></pre>
+		</div>
+		<div class="col-md-6">
+			<p>Data JSON configuration</p>
+			<pre><code>{
+	"url": "demo/test-case.json#/alpha",
+	"mapping": [
+		{
+			"selector": "p"
+		}
+	]
+}</code></pre>
+		</div>
+	</div>
+</details>
+
+
+<h2>Test case for <a href="https://github.com/wet-boew/wet-boew/pull/9649">PR 9649</a></h2>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>Test demo</p>
+		<div data-wb-json='{
+			"url": "demo/test-case.json#/beta",
+			"mapping": [
+				{ "selector": "[data-itm1]", "value": "/itm1" },
+				{ "selector": "[data-itm2]", "value": "/itm2" }
+			]
+		}'>
+			<template>
+				<p>Itm1: <span data-itm1>Not defined</span>; Value: <span data-itm2>Not defined</span></p>
+			</template>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<p>Expectation of the preceding demo</p>
+		<p>Itm1: <span data-itm1>Value 1</span>; Value: <span data-itm2>Not defined</span></p>
+		<p>Itm1: <span data-itm1>Value 2</span>; Value: <span data-itm2>Not defined</span></p>
+	</div>
+</div>
+
+
+<details>
+	<summary>Source code</summary>
+	<div class="row">
+		<div class="col-md-6">
+			<p>JSON content</p>
+			<pre><code>{
+	"beta": [
+	{
+		"itm1": "Value 1",
+		"itm2": null
+	},
+	{
+		"itm1": "Value 2",
+		"itm2": null
+	}
+	]
+}</code></pre>
+		</div>
+		<div class="col-md-6">
+			<p>Data JSON configuration</p>
+			<pre><code>{
+	"url": "demo/test-case.json#/beta",
+	"mapping": [
+		{ "selector": "[data-itm1]", "value": "/itm1" },
+		{ "selector": "[data-itm2]", "value": "/itm2" }
+	]
+}</code></pre>
+		</div>
+	</div>
+</details>
+</div>
