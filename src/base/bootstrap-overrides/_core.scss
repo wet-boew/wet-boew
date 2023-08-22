@@ -52,6 +52,7 @@ a {
 			padding: 10px 10px 10px 0;
 			text-align: left;
 			white-space: normal;
+			width: 20ch;
 			word-break: break-word;
 		}
 
@@ -64,6 +65,22 @@ a {
 
 		dt + dd {
 			padding-bottom: 0;
+		}
+		&.dt-max {
+			display: grid;
+			grid-template-columns: minmax(min-content, min-content) auto;
+			dt {
+				-ms-hyphens: none;
+				-webkit-hyphens: none;
+				hyphens: none;
+				min-width: 20ch;
+				white-space: normal;
+				width: auto;
+				word-break: initial;
+			}
+			dd {
+				margin-left: 0;
+			}
 		}
 	}
 }
