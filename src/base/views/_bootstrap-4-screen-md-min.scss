@@ -1,0 +1,25 @@
+/*
+  WET-BOEW
+  @title: Bootstrap 4 suplemental style for WET-BOEW - Medium view and over (screen only)
+ */
+
+/* Flexbox */
+.d-md-flex {
+	display: flex;
+}
+
+/*TODO: These are using !important... despite the commit message saying it wouldn't be done like that for flex-only properties... non-viewport class might uses !important but lacks other browser-prefixed properties*/
+.flex-md-column {
+	-ms-flex-direction: column !important;
+	-webkit-box-direction: normal !important;
+	-webkit-box-orient: vertical !important;
+	flex-direction: column !important;
+}
+
+.flex-md-grow-1 {
+	flex-grow: 1; /* Bootstrap 4.1 */
+}
+
+.flex-md-wrap {
+	flex-wrap: wrap;
+}
