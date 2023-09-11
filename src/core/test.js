@@ -45,6 +45,13 @@ describe( "findPotentialPII test suite", function() {
 			expect( wb.findPotentialPII( "email:1@example.com", true ) ).to.equal( "email:" );
 		} );
 
+		it( "should match email pattern", function() {
+			expect( wb.findPotentialPII( "email:1%40example.com", true ) ).to.equal( "email:" );
+		} );
+		it( "should match email pattern", function() {
+			expect( wb.findPotentialPII( "email:1%2540example.com", true ) ).to.equal( "email:" );
+		} );
+
 		it( "should match postal code pattern", function() {
 			expect( wb.findPotentialPII( "postal code:K2C3N2, postal code:K2C 3N2, postal code:K2C-3N2", true ) ).to.equal( "postal code:, postal code:, postal code:" );
 		} );
