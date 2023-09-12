@@ -88,6 +88,7 @@ wb.i18nDict = {
 		on: "@cc-on@"
 	},
 	"cc-err": "@cc-err@",
+	fs: "@fs@",
 	adesc: {
 		on: "@adesc-on@",
 		off: "@adesc-off@"
