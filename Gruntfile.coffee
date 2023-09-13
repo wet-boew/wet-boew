@@ -978,6 +978,8 @@ module.exports = (grunt) ->
 				src: [
 					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
+					"!dist/unmin/demos/data-ajax/ajax/data-ajax-template-fr.html"
+					"!dist/unmin/demos/data-ajax/ajax/data-ajax-template-en.html"
 				]
 
 			lightbox:
