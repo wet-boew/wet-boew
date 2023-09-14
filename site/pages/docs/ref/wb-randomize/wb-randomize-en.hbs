@@ -69,13 +69,17 @@
 <p>(Version 1.0)</p>
 <dl>
 	<dt><code>selector</code> (jQuery selector)</dt>
-	<dd>Default undefined. When undefined it selects all the children. This attribute specifies the child elements to be displayed.</dd>
+	<dd>Default undefined. When undefined it selects all the children. This attribute specifies the child elements to be displayed. Cannot be used simultaneously with <code>attribute</code>.</dd>
 	<dt><code>shuffle</code> (boolean)</dt>
 	<dd>If true, it will shuffle the order of child components.</dd>
 	<dt><code>toggle</code> (CSS class)</dt>
 	<dd>Class name that will be toggled in child components and it will toggle the specified class of child components to reveal.</dd>
 	<dt><code>number</code> (number)</dt>
 	<dd>Optional and use with toggle. Number of child components to be displayed when toggled. Default is set to <code>1</code>.</dd>
+	<dt><code>attribute</code> (string)</dt>
+	<dd>Attribute to be defined on the element. Cannot be used simultaneously with <code>selector</code>.</dd>
+	<dt><code>values</code> (array of strings)</dt>
+	<dd>Set of possible values to be picked as the value for the attribute defined in <code>attribute</code>.</dd>
 </dl>
 
 <h3>User interface (Template)</h3>
