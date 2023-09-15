@@ -243,7 +243,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 // Re-run WET for elements that have just been loaded if WET is already done initializing
 $document.on( contentUpdatedEvent, function( event ) {
 	if ( !wb.isDisabled ) {
-		let updtElm = event.currentTarget;
+		let updtElm = event.target;
 
 		$( updtElm )
 			.find( wb.allSelectors )

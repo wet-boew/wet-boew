@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-( function( $, wb ) {
+( function( $, wb, DOMPurify ) {
 "use strict";
 
 /*
@@ -85,7 +85,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 					try {
 						response = $( response );
 					} catch ( e ) {
-						response = xhr.responseText;
+						response = DOMPurify.sanitize( xhr.responseText );
 					}
 				} else {
 					response = xhr.responseText;
@@ -114,4 +114,4 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	}
 } );
 
-} )( jQuery, wb );
+} )( jQuery, wb, DOMPurify );
