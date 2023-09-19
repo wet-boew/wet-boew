@@ -173,3 +173,86 @@
 	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </details>
+
+<h3>Choisir aléatoirement une valeur d'attribut</h3>
+<p>Sélectionnez une option aléatoire dans une liste d'options et ajoutez-la comme valeur à l'attribut défini.</p>
+<h4>Exemple 1</h4>
+<div class="bg-cover well"
+	data-wb-randomize='{
+		"attribute": "data-bgimg-srcset",
+		"values": [
+			"https://placehold.co/1920x300/blue/white.jpg 1920w, https://placehold.co/1200x300/blue/white.jpg 1200w, https://placehold.co/992x300/blue/white.jpg 992w, https://placehold.co/768x300/blue/white.jpg 768w",
+			"https://placehold.co/1920x300/green/white.jpg 1920w, https://placehold.co/1200x300/green/white.jpg 1200w, https://placehold.co/992x300/green/white.jpg 992w, https://placehold.co/768x300/green/white.jpg 768w",
+			"https://placehold.co/1920x300/orange/white.jpg 1920w, https://placehold.co/1200x300/orange/white.jpg 1200w, https://placehold.co/992x300/orange/white.jpg 992w, https://placehold.co/768x300/orange/white.jpg 768w",
+			"https://placehold.co/1920x300/purple/white.jpg 1920w, https://placehold.co/1200x300/purple/white.jpg 1200w, https://placehold.co/992x300/purple/white.jpg 992w, https://placehold.co/768x300/purple/white.jpg 768w"
+		]
+	}'>
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Titre</h4>
+		<p>Paragraphe</p>
+	</div>
+</div>
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;div class="bg-cover well"
+	data-wb-randomize='{
+		"attribute": "data-bgimg-srcset",
+		"values": [
+			"https://placehold.co/1920x300/blue/white.jpg 1920w, https://placehold.co/1200x300/blue/white.jpg 1200w, https://placehold.co/992x300/blue/white.jpg 992w, https://placehold.co/768x300/blue/white.jpg 768w",
+			"https://placehold.co/1920x300/green/white.jpg 1920w, https://placehold.co/1200x300/green/white.jpg 1200w, https://placehold.co/992x300/green/white.jpg 992w, https://placehold.co/768x300/green/white.jpg 768w",
+			"https://placehold.co/1920x300/orange/white.jpg 1920w, https://placehold.co/1200x300/orange/white.jpg 1200w, https://placehold.co/992x300/orange/white.jpg 992w, https://placehold.co/768x300/orange/white.jpg 768w",
+			"https://placehold.co/1920x300/purple/white.jpg 1920w, https://placehold.co/1200x300/purple/white.jpg 1200w, https://placehold.co/992x300/purple/white.jpg 992w, https://placehold.co/768x300/purple/white.jpg 768w"
+		]
+	}'>
+	&lt;div class="well mrgn-tp-md mrgn-bttm-md">
+		&lt;h4 class="mrgn-tp-md">Titre&lt;/h4>
+		&lt;p>Paragraphe&lt;/p>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h4>Exemple 2</h4>
+<div data-wb-randomize='{
+	"attribute": "data-ajax-replace",
+	"values": [
+		"../data-ajax/ajax/data-ajax-extra-fr.html",
+		"../data-ajax/ajax/data-ajax-extra-2-fr.html",
+		"../data-ajax/ajax/data-ajax-filter-fr.html#filter-id"
+	]
+}'></div>
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;div data-wb-randomize='{
+	"attribute": "data-ajax-replace",
+	"values": [
+		"../data-ajax/ajax/data-ajax-extra-fr.html",
+		"../data-ajax/ajax/data-ajax-extra-2-fr.html",
+		"../data-ajax/ajax/data-ajax-filter-fr.html#filter-id"
+	]
+}'>&lt;/div></code></pre>
+</details>
+
+<h4>Exemple 3</h4>
+<p>
+	Nom du produit&nbsp;: <span data-wb-randomize='{
+		"attribute": "data-wb-json",
+		"values": [
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/0\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/1\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/2\", \"type\": \"replacewith\" }"
+		]
+	}'></span>
+</p>
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;p>
+	Nom du produit&nbsp;: &lt;span data-wb-randomize='{
+		"attribute": "data-wb-json",
+		"values": [
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/0\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/1\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-fr.json#/produits/2\", \"type\": \"replacewith\" }"
+		]
+	}'>&lt;/span>
+&lt;/p></code></pre>
+</details>

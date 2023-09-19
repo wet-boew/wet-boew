@@ -186,3 +186,87 @@
 	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 </details>
+
+<h3>Randomize attribute value</h3>
+<p>Select a random option within a list of options and append it as the value to the defined attribute</p>
+
+<h4>Example 1</h4>
+<div class="bg-cover well"
+	data-wb-randomize='{
+		"attribute": "data-bgimg-srcset",
+		"values": [
+			"https://placehold.co/1920x300/blue/white.jpg 1920w, https://placehold.co/1200x300/blue/white.jpg 1200w, https://placehold.co/992x300/blue/white.jpg 992w, https://placehold.co/768x300/blue/white.jpg 768w",
+			"https://placehold.co/1920x300/green/white.jpg 1920w, https://placehold.co/1200x300/green/white.jpg 1200w, https://placehold.co/992x300/green/white.jpg 992w, https://placehold.co/768x300/green/white.jpg 768w",
+			"https://placehold.co/1920x300/orange/white.jpg 1920w, https://placehold.co/1200x300/orange/white.jpg 1200w, https://placehold.co/992x300/orange/white.jpg 992w, https://placehold.co/768x300/orange/white.jpg 768w",
+			"https://placehold.co/1920x300/purple/white.jpg 1920w, https://placehold.co/1200x300/purple/white.jpg 1200w, https://placehold.co/992x300/purple/white.jpg 992w, https://placehold.co/768x300/purple/white.jpg 768w"
+		]
+	}'>
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Paragraph</p>
+	</div>
+</div>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover well"
+	data-wb-randomize='{
+		"attribute": "data-bgimg-srcset",
+		"values": [
+			"https://placehold.co/1920x300/blue/white.jpg 1920w, https://placehold.co/1200x300/blue/white.jpg 1200w, https://placehold.co/992x300/blue/white.jpg 992w, https://placehold.co/768x300/blue/white.jpg 768w",
+			"https://placehold.co/1920x300/green/white.jpg 1920w, https://placehold.co/1200x300/green/white.jpg 1200w, https://placehold.co/992x300/green/white.jpg 992w, https://placehold.co/768x300/green/white.jpg 768w",
+			"https://placehold.co/1920x300/orange/white.jpg 1920w, https://placehold.co/1200x300/orange/white.jpg 1200w, https://placehold.co/992x300/orange/white.jpg 992w, https://placehold.co/768x300/orange/white.jpg 768w",
+			"https://placehold.co/1920x300/purple/white.jpg 1920w, https://placehold.co/1200x300/purple/white.jpg 1200w, https://placehold.co/992x300/purple/white.jpg 992w, https://placehold.co/768x300/purple/white.jpg 768w"
+		]
+	}'>
+	&lt;div class="well mrgn-tp-md mrgn-bttm-md">
+		&lt;h4 class="mrgn-tp-md">Heading&lt;/h4>
+		&lt;p>Paragraph&lt;/p>
+	&lt;/div>
+&lt;/div></code></pre>
+</details>
+
+<h4>Example 2</h4>
+<div data-wb-randomize='{
+	"attribute": "data-ajax-replace",
+	"values": [
+		"../data-ajax/ajax/data-ajax-extra-en.html",
+		"../data-ajax/ajax/data-ajax-extra-2-en.html",
+		"../data-ajax/ajax/data-ajax-filter-en.html#filter-id"
+	]
+}'></div>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div data-wb-randomize='{
+	"attribute": "data-ajax-replace",
+	"values": [
+		"../data-ajax/ajax/data-ajax-extra-en.html",
+		"../data-ajax/ajax/data-ajax-extra-2-en.html",
+		"../data-ajax/ajax/data-ajax-filter-en.html#filter-id"
+	]
+}'>&lt;/div></code></pre>
+</details>
+
+<h4>Example 3</h4>
+<p>
+	Product name: <span data-wb-randomize='{
+		"attribute": "data-wb-json",
+		"values": [
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/0\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/1\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/2\", \"type\": \"replacewith\" }"
+		]
+	}'></span>
+</p>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;p>
+	Product name: &lt;span data-wb-randomize='{
+		"attribute": "data-wb-json",
+		"values": [
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/0\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/1\", \"type\": \"replacewith\" }",
+			"{ \"url\": \"../wb-data-json/demo/data-en.json#/products/2\", \"type\": \"replacewith\" }"
+		]
+	}'>&lt;/span>
+&lt;/p></code></pre>
+</details>
