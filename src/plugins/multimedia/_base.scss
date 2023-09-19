@@ -244,6 +244,14 @@
 		}
 	}
 
+	.fs {
+		display: none;
+
+		.wb-mltmd[data-fullscreen-btn] & {
+			display: block;
+		}
+	}
+
 	.frstpnl {
 		@extend %pnl;
 		text-align: center;
@@ -254,6 +262,10 @@
 		@extend %pnl;
 		text-align: center;
 		width: 3em;
+
+		.wb-mltmd[data-fullscreen-btn] & {
+			width: 6em;
+		}
 	}
 
 	.tline {
