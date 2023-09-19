@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-( function( $, wb ) {
+( function( $, wb, DOMPurify ) {
 "use strict";
 
 /*
@@ -81,7 +81,15 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "'></div>" )
 					.append( responseType === "string" ? response : "" );
 
-				response = !xhr.responseJSON ? $( response ) : xhr.responseText;
+				if ( !xhr.responseJSON ) {
+					try {
+						response = $( response );
+					} catch ( e ) {
+						response = DOMPurify.sanitize( xhr.responseText );
+					}
+				} else {
+					response = xhr.responseText;
+				}
 
 				fetchData.response = response;
 				fetchData.hasSelector = !!selector;
@@ -106,4 +114,4 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	}
 } );
 
-} )( jQuery, wb );
+} )( jQuery, wb, DOMPurify );
