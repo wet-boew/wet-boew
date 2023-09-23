@@ -861,6 +861,25 @@
 			</dl>
 		</td>
 	</tr>
+	<tr>
+		<td><code>fail</code></td>
+		<td>Configuration and mapping instruction to follow when fetching a JSON do fail.</td>
+		<td><code>data-wb-json='{ "url": "", "fail": { "template": &lt;See template config>, "mapping": &lt;See mapping config> } }'</code></td>
+		<td>
+			<p>The configuration <code>template</code> and <code>mapping</code> must be defined if a failure condition is defined.</p>
+			<p>The following static content object can be mapped:</p>
+			<pre><code>{
+	error: "&lt;Details of the error in English>",
+	status: "&lt;Status or category of the error>",
+	url: "&lt;Relative URL of the failed resource>",
+	response: {
+		text: "&lt;Text version of the resource sanitized, if applicable>",
+		status: "&lt;HTTP status number>",
+		statusText: "&lt;HTTP status text>"
+	}
+}</code></pre>
+		</td>
+	</tr>
 
 	</tbody>
 	</table>
