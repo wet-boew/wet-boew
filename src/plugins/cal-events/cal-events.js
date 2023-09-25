@@ -188,16 +188,6 @@ var componentName = "wb-calevt",
 			if ( !directLinking ) {
 				linkId = event.id || wb.getId();
 				event.id = linkId;
-
-				/*
-				 * Fixes IE tabbing error:
-				 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
-				 */
-
-				// TODO: Which versions of IE should this fix be limited to?
-				if ( wb.ie ) {
-					event.tabIndex = "-1";
-				}
 				href = "#" + linkId;
 			}
 
@@ -283,14 +273,6 @@ var componentName = "wb-calevt",
 	addEvents = function( year, month, $days ) {
 		var eventsList = this.events,
 			i, eLen, date, dayIndex, $day, $dayEvents, event, eventMonth;
-
-		// Fix required to make up with the IE z-index behaviour mismatch
-		// TODO: Move ot IE CSS? Which versions of IE should this fix be limited to?
-		if ( wb.ie ) {
-			for ( i = 0, eLen = $days.length; i !== eLen; i += 1 ) {
-				$days.eq( i ).css( "z-index", 31 - i );
-			}
-		}
 
 		/*
 		 * Determines for each event, if it occurs in the display month

@@ -75,7 +75,6 @@
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-uglify": "^5.2.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-cssmin-ie8-clean": "0.0.1",
     "grunt-eslint": "^23.0.0",
     "grunt-gh-pages": "^4.0.0",
     "grunt-html": "^15.2.2",

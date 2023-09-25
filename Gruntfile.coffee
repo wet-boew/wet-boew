@@ -96,7 +96,6 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 #			"modernizr"
-			"wget:jqueryOldIE"
 		]
 	)
 
@@ -160,8 +159,6 @@ module.exports = (grunt) ->
 		"INTERNAL: Minify the CSS files"
 		[
 			"cssmin:dist"
-			"cssmin:distIE8"
-			"cssmin_ie8_clean"
 		]
 	)
 
@@ -312,7 +309,6 @@ module.exports = (grunt) ->
 		coreDist: "dist/wet-boew"
 		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: "<%= pkg.dependencies.jquery %>"
-		jqueryOldIEVersion: "1.12.4"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -353,17 +349,6 @@ module.exports = (grunt) ->
 				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
 				dest: "src/i18n/i18n.csv"
 
-			jqueryOldIE:
-				options:
-					baseUrl: "https://ajax.googleapis.com/ajax/libs/jquery/<%= jqueryOldIEVersion %>/"
-					overwrite: true
-				src: [
-					"jquery.js"
-					"jquery.min.js"
-					"jquery.min.map"
-				]
-				dest: "lib/jquery-oldIE"
-
 		concat:
 			options:
 				banner: "<%= banner %><%= modernizrBanner %>"
@@ -388,17 +373,10 @@ module.exports = (grunt) ->
 
 			coreIE8:
 				options:
+					banner: "<%= banner %>"
 					stripBanners: false
 				src: [
-					"dep/modernizr-custom.js"
-					"lib/excanvas/excanvas.js"
-					"node_modules/html5shiv/dist/html5shiv-printshiv.js"
-					"node_modules/es5-shim/es5-shim.js"
-					"src/core/wb.js"
-					"!src/plugins/**/test.js"
-					"!src/plugins/**/assets/*.js"
-					"!src/plugins/**/demo/*.js"
-					"!src/plugins/**/deps/*.*"
+					"src/core/ie8-wet-boew.js"
 				]
 				dest: "<%= coreDist %>/js/ie8-wet-boew.js"
 
@@ -407,12 +385,7 @@ module.exports = (grunt) ->
 					banner: "<%= banner %>"
 					stripBanners: false
 				src: [
-					"src/core/helpers.js"
-					"src/plugins/**/*.js"
-					"!src/plugins/**/test.js"
-					"!src/plugins/**/assets/*.js"
-					"!src/plugins/**/demo/*.js"
-					"!src/plugins/**/deps/*.*"
+					"src/core/ie8-wet-boew2.js"
 				]
 				dest: "<%= coreDist %>/js/ie8-wet-boew2.js"
 
@@ -502,7 +475,6 @@ module.exports = (grunt) ->
 				environment:
 					root: "/v4.0-ci/unmin"
 					jqueryVersion: "<%= jqueryVersion %>"
-					jqueryOldIEVersion: "<%= jqueryOldIEVersion %>"
 				assets: "dist/unmin"
 
 			theme:
@@ -694,7 +666,6 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.scss"
 						"!**/*-base.scss"
-						"!**/*-ie8.scss"
 						"!**/*-noscript.scss"
 						"!**/demo/*.scss"
 					]
@@ -728,7 +699,7 @@ module.exports = (grunt) ->
 				]
 
 		postcss:
-			# Only vendor prefixing and no IE8
+			# Only vendor prefixing
 			modern:
 				options:
 					processors: [
@@ -739,7 +710,6 @@ module.exports = (grunt) ->
 						cwd: "<%= coreDist %>/css"
 						src: [
 							"*.css"
-							"!ie8*.css"
 						]
 						dest: "<%= coreDist %>/css"
 						expand: true
@@ -749,14 +719,13 @@ module.exports = (grunt) ->
 						cwd: "<%= themeDist %>/css"
 						src: [
 							"**/*.css"
-							"!ie8*.css"
 						]
 						dest: "<%= themeDist %>/css"
 						expand: true
 					}
 				]
 
-			# Needs both IE8 and vendor prefixing
+			# Mixed vendor prefixing
 			mixed:
 				options:
 					processors: [
@@ -778,23 +747,6 @@ module.exports = (grunt) ->
 					dest: "dist"
 					expand: true
 				]
-
-			# Only IE8 support
-			oldIE:
-				options:
-					processors: [
-						require("autoprefixer")(
-							overrideBrowserslist: [
-								"ie 8"
-							]
-						)
-					]
-				cwd: "dist"
-				src: [
-					"**/ie8*.css"
-				]
-				dest: "dist/"
-				expand: true
 
 		stylelint:
 			options:
@@ -845,7 +797,6 @@ module.exports = (grunt) ->
 				cwd: "<%= coreDist %>/js/"
 				src: [
 					"*wet-boew*.js"
-					"!ie*.js"
 					"!*.min.js"
 				]
 				dest: "<%= coreDist %>/js/"
@@ -856,8 +807,6 @@ module.exports = (grunt) ->
 				options:
 					beautify:
 						beautify: false
-						quote_keys: true
-						ascii_only: true
 				cwd: "<%= coreDist %>/js/"
 				src: [
 					"ie8*.js"
@@ -902,20 +851,6 @@ module.exports = (grunt) ->
 				src: [
 					"<%= coreDist %>/**/*.css"
 					"<%= themeDist %>/**/*.css"
-					"!**/ie8*.css"
-					"!**/*.min.css"
-				]
-				ext: ".min.css"
-
-			distIE8:
-				options:
-					banner: ""
-					compatibility: "ie8"
-					noAdvanced: true
-				expand: true
-				src: [
-					"<%= coreDist %>/**/ie8*.css"
-					"<%= themeDist %>/**/ie8*.css"
 					"!**/*.min.css"
 				]
 				ext: ".min.css"
@@ -1043,7 +978,6 @@ module.exports = (grunt) ->
 					stoponwarning: true
 					showallerrors: true
 					relaxerror: [
-						# We recommend handling this through the server headers so it never appears in the markup
 						"W002" # `<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes
 						"W005" # Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work; however, you might not be using Bootstrap's JavaScript
 						# Opinionated exclusions
@@ -1063,14 +997,6 @@ module.exports = (grunt) ->
 					# Ignore HTML fragments used for the menus
 					"!dist/**/assets/*.html"
 					"!dist/**/ajax/*.html"
-				]
-
-		cssmin_ie8_clean:
-			min:
-				expand: true
-				src: [
-					"<%= coreDist %>/**/ie8*.min.css"
-					"<%= themeDist %>/**/ie8*.min.css"
 				]
 
 # Remove modernizr temp
@@ -1136,7 +1062,6 @@ module.exports = (grunt) ->
 						"mocha/mocha.css"
 						"expect.js/index.js"
 						"sinon/pkg/sinon.js"
-						"sinon/pkg/sinon-ie.js"
 					]
 					dest: "dist/unmin/test"
 					expand: true
@@ -1192,11 +1117,6 @@ module.exports = (grunt) ->
 					cwd: "node_modules/jquery/dist"
 					src: "*.*"
 					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion %>"
-					expand: true
-				,
-					cwd: "lib/jquery-oldIE/dist"
-					src: "*.*"
-					dest: "<%= coreDist %>/js/jquery/<%= jqueryOldIEVersion %>"
 					expand: true
 				,
 					cwd: "src"

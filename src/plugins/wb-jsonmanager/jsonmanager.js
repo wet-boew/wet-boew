@@ -690,34 +690,6 @@ var componentName = "wb-jsonmanager",
 		return JSONsource;
 	};
 
-// IE dedicated patch to support ECMA-402 but limited to English and French number formatting
-if ( wb.ie ) {
-	Number.prototype.toLocaleString = function( locale ) {
-
-		var splitVal = this.toString().split( "." ),
-			integer = splitVal[ 0 ],
-			decimal = splitVal[ 1 ],
-			intLength = integer.length,
-			nbSection = intLength % 3 || 3,
-			strValue = integer.substr( 0, nbSection ),
-			isFrenchLoc = ( locale === "fr" ),
-			thousandSep = ( isFrenchLoc ? " " : "," ),
-			i;
-
-		for ( i = nbSection; i < intLength; i = i + 3 ) {
-			strValue = strValue + thousandSep + integer.substr( i, 3 );
-		}
-		if ( decimal.length ) {
-			if ( isFrenchLoc ) {
-				strValue = strValue + "," + decimal;
-			} else {
-				strValue = strValue + "." + decimal;
-			}
-		}
-		return strValue;
-	};
-}
-
 $document.on( "json-failed.wb", selector, function( event ) {
 	var elm = event.target,
 		$elm;

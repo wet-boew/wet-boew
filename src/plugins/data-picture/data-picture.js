@@ -77,13 +77,6 @@ var imgClass,
 			img.src = matchedElm.getAttribute( "data-src" );
 			matchedElm.appendChild( img );
 
-			// Fixes bug with IE8 constraining the height of the image
-			// when the .img-responsive class is used.
-			if ( wb.ielt9 ) {
-				img.removeAttribute( "width" );
-				img.removeAttribute( "height" );
-			}
-
 		// No match and an image exists: delete it
 		} else if ( img ) {
 			img.parentNode.removeChild( img );

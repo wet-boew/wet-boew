@@ -6,7 +6,7 @@
 	"categoryfile": "polyfills",
 	"description": "Émule l'attribut « list » de l'élément « input », ainsi que l'élément « datalist », pour les navigateurs qui ne les supportent pas. Ceci ajoute des fonctionnalités de saisie semi-automatique des champs de « input » spécifiques en affichant dynamiquement une liste de mots qui correspondent à la « datalist ».",
 	"altLangPrefix": "datalist",
-	"dateModified": "2014-08-06"
+	"dateModified": "2023-06-19"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -31,7 +31,6 @@
 	<pre><code>&lt;label for="city"&gt;City&lt;/label&gt;
 &lt;input type="text" id="city" name="city" list="suggestions" /&gt;
 &lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
 	&lt;option label="" value="Calgary"&gt;&lt;/option&gt;
 	&lt;option label="" value="Edmonton"&gt;&lt;/option&gt;
 	&lt;option label="" value="Iqualuit"&gt;&lt;/option&gt;
@@ -44,7 +43,6 @@
 	&lt;option label="" value="Whitehorse"&gt;&lt;/option&gt;
 	&lt;option label="" value="Winnipeg"&gt;&lt;/option&gt;
 	&lt;option label="" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
 &lt;/datalist&gt;</code></pre>
 
 	<ul>
