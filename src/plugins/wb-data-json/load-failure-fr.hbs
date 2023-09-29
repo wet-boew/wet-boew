@@ -1,8 +1,8 @@
 ---
 {
-	"title": "Échec du chargement de document JSON avec Data-JSON",
+	"title": "Échec du chargement d'un fichier JSON avec data-json",
 	"language": "fr",
-	"description": "Example démontrant l'affichage de message en cas d'échec de chargement.",
+	"description": "Exemple d'échec du chargement d'un fichier JSON.",
 	"tag": "data-json",
 	"parentdir": "wb-data-json",
 	"altLangPage": "load-failure-en.html",
@@ -26,14 +26,22 @@
 <div data-wb-json='{
 	"url": "demo/bad-json-content.json",
 	"fail": {
-		"template": "template",
+		"template": "[data-tmpl-fail]",
 		"mapping": null
-	}
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
 }'>
-	<template>
-		<div class="alert alert-danger">
+	<template data-tmpl-fail>
+		<div class="alert alert-danger" role="status">
 			<p>Le fichier JSON spécifié dans l'URL du data-json est invalide.</p>
 		</div>
+	</template>
+	<template data-tmpl-foo>
+		<p data-p></p>
 	</template>
 </div>
 
@@ -42,14 +50,22 @@
 	<pre><code>&lt;div data-wb-json='{
 	"url": "demo/bad-json-content.json",
 	"fail": {
-		"template": "template",
+		"template": "[data-tmpl-fail]",
 		"mapping": null
-	}
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
 }'>
-	&lt;template>
-		&lt;div class="alert alert-danger">
+	&lt;template data-tmpl-fail>
+		&lt;div class="alert alert-danger" role="status">
 			&lt;p>Le fichier JSON spécifié dans l'URL du data-json est invalide.&lt;/p>
 		&lt;/div>
+	&lt;/template>
+	&lt;template data-tmpl-foo>
+		&lt;p data-p>&lt;/p>
 	&lt;/template>
 &lt;/div></code></pre>
 </details>
@@ -85,7 +101,7 @@
 	}
 }'>
 	<template>
-		<div class="alert alert-danger">
+		<div class="alert alert-danger" role="status">
 			<p>Échec de la lecture du fichier JSON.</p>
 			<details>
 				<summary>Détails techniques</summary>
@@ -123,20 +139,20 @@
 	}
 }'>
 	&lt;template>
-		&lt;div class="alert alert-danger">
+		&lt;div class="alert alert-danger" role="status">
 			&lt;p>Échec de la lecture du fichier JSON.&lt;/p>
 			&lt;details>
 				&lt;summary>Détails techniques&lt;/summary>
 				&lt;dl class="dl-horizontal">
-					&lt;dt>Message d'erreur&nbsp;:&lt;/dt>
+					&lt;dt>Message d'erreur&amp;nbsp;:&lt;/dt>
 					&lt;dd data-error lang="en">&lt;dd>
-					&lt;dt>État&nbsp;:&lt;/dt>
+					&lt;dt>État&amp;nbsp;:&lt;/dt>
 					&lt;dd data-status lang="en">&lt;dd>
-					&lt;dt>URL&nbsp;:&lt;/dt>
+					&lt;dt>URL&amp;nbsp;:&lt;/dt>
 					&lt;dd data-url>&lt;dd>
-					&lt;dt>État HTTP&nbsp;:&lt;/dt>
+					&lt;dt>État HTTP&amp;nbsp;:&lt;/dt>
 					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text lang="en">&lt;/span>&lt;dd>
-					&lt;dt>Réponse HTTP&nbsp;:&lt;/dt>
+					&lt;dt>Réponse HTTP&amp;nbsp;:&lt;/dt>
 					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
 				&lt;/dl>
 			&lt;/details>
@@ -162,7 +178,7 @@
 	}
 }'>
 	<template>
-		<div class="alert alert-danger">
+		<div class="alert alert-danger" role="status">
 			<p>Échec de la lecture du fichier JSON.</p>
 			<details>
 				<summary>Détails techniques</summary>
@@ -200,20 +216,20 @@
 	}
 }'>
 	&lt;template>
-		&lt;div class="alert alert-danger">
+		&lt;div class="alert alert-danger" role="status">
 			&lt;p>Échec de la lecture du fichier JSON.&lt;/p>
 			&lt;details>
 				&lt;summary>Détails techniques&lt;/summary>
 				&lt;dl class="dl-horizontal">
-					&lt;dt>Message d'erreur&nbsp;:&lt;/dt>
+					&lt;dt>Message d'erreur&amp;nbsp;:&lt;/dt>
 					&lt;dd data-error lang="en">&lt;dd>
-					&lt;dt>État&nbsp;:&lt;/dt>
+					&lt;dt>État&amp;nbsp;:&lt;/dt>
 					&lt;dd data-status lang="en">&lt;dd>
-					&lt;dt>URL&nbsp;:&lt;/dt>
+					&lt;dt>URL&amp;nbsp;:&lt;/dt>
 					&lt;dd data-url>&lt;dd>
-					&lt;dt>État HTTP&nbsp;:&lt;/dt>
+					&lt;dt>État HTTP&amp;nbsp;:&lt;/dt>
 					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text lang="en">&lt;/span>&lt;dd>
-					&lt;dt>Réponse HTTP&nbsp;:&lt;/dt>
+					&lt;dt>Réponse HTTP&amp;nbsp;:&lt;/dt>
 					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
 				&lt;/dl>
 			&lt;/details>

@@ -1,8 +1,8 @@
 ---
 {
-	"title": "Failing to load JSON with data-json",
+	"title": "Failure to load a JSON file with data-json",
 	"language": "en",
-	"description": "Example showing message when the JSON resource do fail to load",
+	"description": "Example of failing to load a JSON file.",
 	"tag": "data-json",
 	"parentdir": "wb-data-json",
 	"altLangPage": "load-failure-fr.html",
@@ -26,14 +26,22 @@
 <div data-wb-json='{
 	"url": "demo/bad-json-content.json",
 	"fail": {
-		"template": "template",
+		"template": "[data-tmpl-fail]",
 		"mapping": null
-	}
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
 }'>
-	<template>
-		<div class="alert alert-danger">
+	<template data-tmpl-fail>
+		<div class="alert alert-danger" role="status">
 			<p>The JSON file specified in the data-json URL is invalid.</p>
 		</div>
+	</template>
+	<template data-tmpl-foo>
+		<p data-p></p>
 	</template>
 </div>
 
@@ -42,14 +50,22 @@
 	<pre><code>&lt;div data-wb-json='{
 	"url": "demo/bad-json-content.json",
 	"fail": {
-		"template": "template",
+		"template": "[data-tmpl-fail]",
 		"mapping": null
-	}
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
 }'>
-	&lt;template>
-		&lt;div class="alert alert-danger">
+	&lt;template data-tmpl-fail>
+		&lt;div class="alert alert-danger" role="status">
 			&lt;p>The JSON file specified in the data-json URL is invalid.&lt;/p>
 		&lt;/div>
+	&lt;/template>
+	&lt;template data-tmpl-foo>
+		&lt;p data-p>&lt;/p>
 	&lt;/template>
 &lt;/div></code></pre>
 </details>
@@ -85,8 +101,8 @@
 	}
 }'>
 	<template>
-		<div class="alert alert-danger">
-			<p>Fail to read the JSON file.</p>
+		<div class="alert alert-danger" role="status">
+			<p>Failed to read the JSON file.</p>
 			<details>
 				<summary>Technical details</summary>
 				<dl class="dl-horizontal">
@@ -123,8 +139,8 @@
 	}
 }'>
 	&lt;template>
-		&lt;div class="alert alert-danger">
-			&lt;p>Fail to read the JSON file.&lt;/p>
+		&lt;div class="alert alert-danger" role="status">
+			&lt;p>Failed to read the JSON file.&lt;/p>
 			&lt;details>
 				&lt;summary>Technical details&lt;/summary>
 				&lt;dl class="dl-horizontal">
@@ -145,7 +161,7 @@
 &lt;/div></code></pre>
 </details>
 
-<h3>Fetch url not found</h3>
+<h3>Fetched url not found</h3>
 
 <div data-wb-json='{
 	"url": "demo/notfound-json-content.json",
@@ -162,7 +178,7 @@
 	}
 }'>
 	<template>
-		<div class="alert alert-danger">
+		<div class="alert alert-danger" role="status">
 			<p>Failed to read the JSON file.</p>
 			<details>
 				<summary>Technical details</summary>
@@ -200,7 +216,7 @@
 	}
 }'>
 	&lt;template>
-		&lt;div class="alert alert-danger">
+		&lt;div class="alert alert-danger" role="status">
 			&lt;p>Failed to read the JSON file.&lt;/p>
 			&lt;details>
 				&lt;summary>Technical details&lt;/summary>
