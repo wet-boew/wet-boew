@@ -21,7 +21,7 @@
 
 <h2>Failing to load a JSON file</h2>
 
-<p>Show a generic message when fetching a JSON file fail.</p>
+<p>Show a generic message when fetching a JSON file fails.</p>
 
 <div data-wb-json='{
 	"url": "demo/bad-json-content.json",
@@ -32,7 +32,7 @@
 }'>
 	<template>
 		<div class="alert alert-danger">
-			<p>The JSON file specified in the data-json URL is an invalid JSON file.</p>
+			<p>The JSON file specified in the data-json URL is invalid.</p>
 		</div>
 	</template>
 </div>
@@ -48,15 +48,15 @@
 }'>
 	&lt;template>
 		&lt;div class="alert alert-danger">
-			&lt;p>The JSON file specified in the data-json URL is an invalid JSON file.&lt;/p>
+			&lt;p>The JSON file specified in the data-json URL is invalid.&lt;/p>
 		&lt;/div>
 	&lt;/template>
 &lt;/div></code></pre>
 </details>
 
-<h2>Show technical detail about the failure</h2>
+<h2>Show technical details about the failure</h2>
 
-<p>Data object to map when an error occur</p>
+<p>Data object to map when an error occurs.</p>
 <pre><code>{
 	error: "&lt;Details of the error in English>",
 	status: "&lt;Status or category of the error>",
@@ -163,7 +163,7 @@
 }'>
 	<template>
 		<div class="alert alert-danger">
-			<p>Fail to read the JSON file.</p>
+			<p>Failed to read the JSON file.</p>
 			<details>
 				<summary>Technical details</summary>
 				<dl class="dl-horizontal">
@@ -201,7 +201,7 @@
 }'>
 	&lt;template>
 		&lt;div class="alert alert-danger">
-			&lt;p>Fail to read the JSON file.&lt;/p>
+			&lt;p>Failed to read the JSON file.&lt;/p>
 			&lt;details>
 				&lt;summary>Technical details&lt;/summary>
 				&lt;dl class="dl-horizontal">

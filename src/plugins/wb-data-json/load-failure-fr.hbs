@@ -21,7 +21,7 @@
 
 <h2>Échec du chargement d'un fichier JSON</h2>
 
-<p>Affiche un message d'erreur générique lorsque le chargement échou.</p>
+<p>Affiche un message d'erreur générique lorsque le chargement échoue.</p>
 
 <div data-wb-json='{
 	"url": "demo/bad-json-content.json",
@@ -32,7 +32,7 @@
 }'>
 	<template>
 		<div class="alert alert-danger">
-			<p>Le fichier JSON spécifié dans l'URL du data-json est un fichier invalid.</p>
+			<p>Le fichier JSON spécifié dans l'URL du data-json est invalide.</p>
 		</div>
 	</template>
 </div>
@@ -48,27 +48,27 @@
 }'>
 	&lt;template>
 		&lt;div class="alert alert-danger">
-			&lt;p>Le fichier JSON spécifié dans l'URL du data-json est un fichier invalid.&lt;/p>
+			&lt;p>Le fichier JSON spécifié dans l'URL du data-json est invalide.&lt;/p>
 		&lt;/div>
 	&lt;/template>
 &lt;/div></code></pre>
 </details>
 
-<h2>Affichage des détatils technique à propos de l'échec</h2>
+<h2>Affichage des détails techniques à propos de l'échec de chargement</h2>
 
-<p>L'objet de donnée à transposer lorsqu'une erreur survient</p>
+<p>L'objet de donnée à transposer lorsqu'une erreur survient.</p>
 <pre><code>{
 	error: "&lt;Détails de l'erreur en anglais>",
 	status: "&lt;État ou la catégorie de l'erreur>",
-	url: "&lt;URL de la resource ayant causé l'échec>",
+	url: "&lt;URL de la ressource ayant causé l'échec de chargement>",
 	response: {
-		text: "&lt;Version text de la ressource nettoyé, si applicable>",
+		text: "&lt;Version textuelle de la ressource nettoyée, si applicable>",
 		status: "&lt;Numéro de l'état HTTP>",
 		statusText: "&lt;Texte de l'état HTTP en anglais>"
 	}
 }</code></pre>
 
-<h3>Chargement d'un fichier JSON invalid</h3>
+<h3>Chargement d'un fichier JSON invalide</h3>
 
 <div data-wb-json='{
 	"url": "demo/bad-json-content-2.json",
@@ -88,17 +88,17 @@
 		<div class="alert alert-danger">
 			<p>Échec de la lecture du fichier JSON.</p>
 			<details>
-				<summary>Détail technique</summary>
+				<summary>Détails techniques</summary>
 				<dl class="dl-horizontal">
-					<dt>Message d'erreur:</dt>
+					<dt>Message d'erreur&nbsp;:</dt>
 					<dd data-error lang="en"><dd>
-					<dt>État:</dt>
+					<dt>État&nbsp;:</dt>
 					<dd data-status lang="en"><dd>
-					<dt>Url:</dt>
+					<dt>URL&nbsp;:</dt>
 					<dd data-url><dd>
-					<dt>État HTTP:</dt>
+					<dt>État HTTP&nbsp;:</dt>
 					<dd><span data-http-status></span> <span data-http-status-text lang="en"></span><dd>
-					<dt>Réponse HTTP</dt>
+					<dt>Réponse HTTP&nbsp;:</dt>
 					<dd><pre><code data-http-response></code></pre><dd>
 				</dl>
 			</details>
@@ -126,17 +126,17 @@
 		&lt;div class="alert alert-danger">
 			&lt;p>Échec de la lecture du fichier JSON.&lt;/p>
 			&lt;details>
-				&lt;summary>Détail technique&lt;/summary>
+				&lt;summary>Détails techniques&lt;/summary>
 				&lt;dl class="dl-horizontal">
-					&lt;dt>Message d'erreur:&lt;/dt>
+					&lt;dt>Message d'erreur&nbsp;:&lt;/dt>
 					&lt;dd data-error lang="en">&lt;dd>
-					&lt;dt>État:&lt;/dt>
+					&lt;dt>État&nbsp;:&lt;/dt>
 					&lt;dd data-status lang="en">&lt;dd>
-					&lt;dt>Url:&lt;/dt>
+					&lt;dt>URL&nbsp;:&lt;/dt>
 					&lt;dd data-url>&lt;dd>
-					&lt;dt>État HTTP:&lt;/dt>
+					&lt;dt>État HTTP&nbsp;:&lt;/dt>
 					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text lang="en">&lt;/span>&lt;dd>
-					&lt;dt>Réponse HTTP&lt;/dt>
+					&lt;dt>Réponse HTTP&nbsp;:&lt;/dt>
 					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
 				&lt;/dl>
 			&lt;/details>
@@ -145,7 +145,7 @@
 &lt;/div></code></pre>
 </details>
 
-<h3>Chargement d'un url pas trouvé</h3>
+<h3>Chargement d'un URL introuvable</h3>
 
 <div data-wb-json='{
 	"url": "demo/notfound-json-content.json",
@@ -165,17 +165,17 @@
 		<div class="alert alert-danger">
 			<p>Échec de la lecture du fichier JSON.</p>
 			<details>
-				<summary>Détail technique</summary>
+				<summary>Détails techniques</summary>
 				<dl class="dl-horizontal">
-					<dt>Message d'erreur:</dt>
+					<dt>Message d'erreur&nbsp;:</dt>
 					<dd data-error lang="en"><dd>
-					<dt>État:</dt>
+					<dt>État&nbsp;:</dt>
 					<dd data-status lang="en"><dd>
-					<dt>Url:</dt>
+					<dt>URL&nbsp;:</dt>
 					<dd data-url><dd>
-					<dt>État HTTP:</dt>
+					<dt>État HTTP&nbsp;:</dt>
 					<dd><span data-http-status></span> <span data-http-status-text lang="en"></span><dd>
-					<dt>Réponse HTTP</dt>
+					<dt>Réponse HTTP&nbsp;:</dt>
 					<dd><pre><code data-http-response></code></pre><dd>
 				</dl>
 			</details>
@@ -203,17 +203,17 @@
 		&lt;div class="alert alert-danger">
 			&lt;p>Échec de la lecture du fichier JSON.&lt;/p>
 			&lt;details>
-				&lt;summary>Détail technique&lt;/summary>
+				&lt;summary>Détails techniques&lt;/summary>
 				&lt;dl class="dl-horizontal">
-					&lt;dt>Message d'erreur:&lt;/dt>
+					&lt;dt>Message d'erreur&nbsp;:&lt;/dt>
 					&lt;dd data-error lang="en">&lt;dd>
-					&lt;dt>État:&lt;/dt>
+					&lt;dt>État&nbsp;:&lt;/dt>
 					&lt;dd data-status lang="en">&lt;dd>
-					&lt;dt>Url:&lt;/dt>
+					&lt;dt>URL&nbsp;:&lt;/dt>
 					&lt;dd data-url>&lt;dd>
-					&lt;dt>État HTTP:&lt;/dt>
+					&lt;dt>État HTTP&nbsp;:&lt;/dt>
 					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text lang="en">&lt;/span>&lt;dd>
-					&lt;dt>Réponse HTTP&lt;/dt>
+					&lt;dt>Réponse HTTP&nbsp;:&lt;/dt>
 					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
 				&lt;/dl>
 			&lt;/details>
