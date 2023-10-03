@@ -1,0 +1,239 @@
+---
+{
+	"title": "Failure to load a JSON file with data-json",
+	"language": "en",
+	"description": "Example of failing to load a JSON file.",
+	"tag": "data-json",
+	"parentdir": "wb-data-json",
+	"altLangPage": "load-failure-fr.html",
+	"dateModified": "2023-09-24"
+}
+---
+<nav>
+	<ul>
+		<li><a href="data-json-en.html">Data JSON</a></li>
+		<li><a href="template-en.html">HTML 5 template</a></li>
+		<li><a href="conditional-en.html">Conditional template</a></li>
+	</ul>
+</nav>
+
+<p>{{ page.description }}</p>
+
+<h2>Failing to load a JSON file</h2>
+
+<p>Show a generic message when fetching a JSON file fails.</p>
+
+<div data-wb-json='{
+	"url": "demo/bad-json-content.json",
+	"fail": {
+		"template": "[data-tmpl-fail]",
+		"mapping": null
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
+}'>
+	<template data-tmpl-fail>
+		<div class="alert alert-danger" role="status">
+			<p>The JSON file specified in the data-json URL is invalid.</p>
+		</div>
+	</template>
+	<template data-tmpl-foo>
+		<p data-p></p>
+	</template>
+</div>
+
+<details>
+	<summary>Code</summary>
+	<pre><code>&lt;div data-wb-json='{
+	"url": "demo/bad-json-content.json",
+	"fail": {
+		"template": "[data-tmpl-fail]",
+		"mapping": null
+	},
+	"streamline": true,
+	"template": "[data-tmpl-foo]",
+	"mapping": [
+		{ "selector": "[data-p]", "value": "/foo" }
+	]
+}'>
+	&lt;template data-tmpl-fail>
+		&lt;div class="alert alert-danger" role="status">
+			&lt;p>The JSON file specified in the data-json URL is invalid.&lt;/p>
+		&lt;/div>
+	&lt;/template>
+	&lt;template data-tmpl-foo>
+		&lt;p data-p>&lt;/p>
+	&lt;/template>
+&lt;/div></code></pre>
+</details>
+
+<h2>Show technical details about the failure</h2>
+
+<p>Data object to map when an error occurs.</p>
+<pre><code>{
+	error: "&lt;Details of the error in English>",
+	status: "&lt;Status or category of the error>",
+	url: "&lt;URL of the failed resource>",
+	response: {
+		text: "&lt;Text version of the resource sanitized, if applicable>",
+		status: "&lt;HTTP status number>",
+		statusText: "&lt;HTTP status text in English>"
+	}
+}</code></pre>
+
+<h3>Fetched an invalid JSON file</h3>
+
+<div data-wb-json='{
+	"url": "demo/bad-json-content-2.json",
+	"fail": {
+		"template": "template",
+		"mapping": [
+			{ "selector": "[data-error]", "value": "/error" },
+			{ "selector": "[data-status]", "value": "/status" },
+			{ "selector": "[data-url]", "value": "/url" },
+			{ "selector": "[data-http-status]", "value": "/response/status" },
+			{ "selector": "[data-http-status-text]", "value": "/response/statusText" },
+			{ "selector": "[data-http-response]", "value": "/response/text", "encode": true }
+		]
+	}
+}'>
+	<template>
+		<div class="alert alert-danger" role="status">
+			<p>Failed to read the JSON file.</p>
+			<details>
+				<summary>Technical details</summary>
+				<dl class="dl-horizontal">
+					<dt>Error message:</dt>
+					<dd data-error><dd>
+					<dt>Status:</dt>
+					<dd data-status><dd>
+					<dt>Url:</dt>
+					<dd data-url><dd>
+					<dt>HTTP status:</dt>
+					<dd><span data-http-status></span> <span data-http-status-text></span><dd>
+					<dt>HTTP response</dt>
+					<dd><pre><code data-http-response></code></pre><dd>
+				</dl>
+			</details>
+		</div>
+	</template>
+</div>
+
+<details>
+	<summary>Code</summary>
+	<pre><code>&lt;div data-wb-json='{
+	"url": "demo/bad-json-content-2.json",
+	"fail": {
+		"template": "template",
+		"mapping": [
+			{ "selector": "[data-error]", "value": "/error" },
+			{ "selector": "[data-status]", "value": "/status" },
+			{ "selector": "[data-url]", "value": "/url" },
+			{ "selector": "[data-http-status]", "value": "/response/status" },
+			{ "selector": "[data-http-status-text]", "value": "/response/statusText" },
+			{ "selector": "[data-http-response]", "value": "/response/text", "encode": true }
+		]
+	}
+}'>
+	&lt;template>
+		&lt;div class="alert alert-danger" role="status">
+			&lt;p>Failed to read the JSON file.&lt;/p>
+			&lt;details>
+				&lt;summary>Technical details&lt;/summary>
+				&lt;dl class="dl-horizontal">
+					&lt;dt>Error message:&lt;/dt>
+					&lt;dd data-error>&lt;dd>
+					&lt;dt>Status:&lt;/dt>
+					&lt;dd data-status>&lt;dd>
+					&lt;dt>Url:&lt;/dt>
+					&lt;dd data-url>&lt;dd>
+					&lt;dt>HTTP status:&lt;/dt>
+					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text>&lt;/span>&lt;dd>
+					&lt;dt>HTTP response&lt;/dt>
+					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
+				&lt;/dl>
+			&lt;/details>
+		&lt;/div>
+	&lt;/template>
+&lt;/div></code></pre>
+</details>
+
+<h3>Fetched url not found</h3>
+
+<div data-wb-json='{
+	"url": "demo/notfound-json-content.json",
+	"fail": {
+		"template": "template",
+		"mapping": [
+			{ "selector": "[data-error]", "value": "/error" },
+			{ "selector": "[data-status]", "value": "/status" },
+			{ "selector": "[data-url]", "value": "/url" },
+			{ "selector": "[data-http-status]", "value": "/response/status" },
+			{ "selector": "[data-http-status-text]", "value": "/response/statusText" },
+			{ "selector": "[data-http-response]", "value": "/response/text", "encode": true }
+		]
+	}
+}'>
+	<template>
+		<div class="alert alert-danger" role="status">
+			<p>Failed to read the JSON file.</p>
+			<details>
+				<summary>Technical details</summary>
+				<dl class="dl-horizontal">
+					<dt>Error message:</dt>
+					<dd data-error><dd>
+					<dt>Status:</dt>
+					<dd data-status><dd>
+					<dt>Url:</dt>
+					<dd data-url><dd>
+					<dt>HTTP status:</dt>
+					<dd><span data-http-status></span> <span data-http-status-text></span><dd>
+					<dt>HTTP response</dt>
+					<dd><pre><code data-http-response></code></pre><dd>
+				</dl>
+			</details>
+		</div>
+	</template>
+</div>
+
+<details>
+	<summary>Code</summary>
+	<pre><code>&lt;div data-wb-json='{
+	"url": "demo/notfound-json-content.json",
+	"fail": {
+		"template": "template",
+		"mapping": [
+			{ "selector": "[data-error]", "value": "/error" },
+			{ "selector": "[data-status]", "value": "/status" },
+			{ "selector": "[data-url]", "value": "/url" },
+			{ "selector": "[data-http-status]", "value": "/response/status" },
+			{ "selector": "[data-http-status-text]", "value": "/response/statusText" },
+			{ "selector": "[data-http-response]", "value": "/response/text", "encode": true }
+		]
+	}
+}'>
+	&lt;template>
+		&lt;div class="alert alert-danger" role="status">
+			&lt;p>Failed to read the JSON file.&lt;/p>
+			&lt;details>
+				&lt;summary>Technical details&lt;/summary>
+				&lt;dl class="dl-horizontal">
+					&lt;dt>Error message:&lt;/dt>
+					&lt;dd data-error>&lt;dd>
+					&lt;dt>Status:&lt;/dt>
+					&lt;dd data-status>&lt;dd>
+					&lt;dt>Url:&lt;/dt>
+					&lt;dd data-url>&lt;dd>
+					&lt;dt>HTTP status:&lt;/dt>
+					&lt;dd>&lt;span data-http-status>&lt;/span> &lt;span data-http-status-text>&lt;/span>&lt;dd>
+					&lt;dt>HTTP response&lt;/dt>
+					&lt;dd>&lt;pre>&lt;code data-http-response>&lt;/code>&lt;/pre>&lt;dd>
+				&lt;/dl>
+			&lt;/details>
+		&lt;/div>
+	&lt;/template>
+&lt;/div></code></pre>
+</details>

@@ -1032,8 +1032,35 @@ var componentName = "wb-data-json",
 	};
 
 $document.on( "json-failed.wb", selector, function( event ) {
+
+	var elm = event.currentTarget,
+		$elm = $( elm ),
+		lstCall = $elm.data( dataQueue ),
+		fetchObj = event.fetch,
+		xhrResponse = fetchObj.xhr,
+		itmSettings = lstCall[ fetchObj.refId ],
+		failSettings = itmSettings.fail;
+
+	if ( failSettings ) {
+
+		// Mapping is always streamline because the data structure is a static object not an array
+		failSettings.streamline = true;
+
+		// apply the templaty to display an error message
+		applyTemplate( elm, failSettings, {
+			error: fetchObj.error.message || xhrResponse.statusText,
+			status: fetchObj.status,
+			url: fetchObj.fetchOpts.url,
+			response: {
+				text: xhrResponse.responseText || "",
+				status: xhrResponse.status,
+				statusText: xhrResponse.statusText
+			}
+		} );
+	}
+
 	console.info( event.currentTarget );
-	throw "Bad JSON Fetched from url in " + componentName;
+	console.error( "Error or bad JSON Fetched from url in " + componentName );
 } );
 
 // Load template polyfill

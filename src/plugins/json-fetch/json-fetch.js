@@ -5,7 +5,7 @@
  * @author @duboisp
  */
 /*global jsonpointer */
-( function( $, wb ) {
+( function( $, wb, DOMPurify ) {
 "use strict";
 
 /*
@@ -189,6 +189,7 @@ $document.on( fetchEvent, function( event ) {
 
 					} )
 					.fail( function( xhr, status, error ) {
+						xhr.responseText = DOMPurify.sanitize( xhr.responseText );
 						$( "#" + callerId ).trigger( {
 							type: "json-failed.wb",
 							fetch: {
@@ -205,4 +206,4 @@ $document.on( fetchEvent, function( event ) {
 	}
 } );
 
-} )( jQuery, wb );
+} )( jQuery, wb, DOMPurify );
