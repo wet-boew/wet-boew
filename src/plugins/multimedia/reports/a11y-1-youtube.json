@@ -14,7 +14,7 @@
     "dct:description": "Only on the component 'Multimedia (Youtube)', not its container neither any other sibling component.",
     "earl:pointer": {
       "@type": "oa:CssSelector",
-      "@value": ".wb-mltmd .video .youtube"
+      "@value": ".wb-mltmd.video.youtube"
     }
   },
   "earl:assertedBy": {
