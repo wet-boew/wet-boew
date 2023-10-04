@@ -30,6 +30,7 @@
 			<li><a href="#osm">OSM basemap example</a></li>
 			<li><a href="#tile-source">Tile Source (XYZ) basemap example</a></li>
 			<li><a href="#filtering">Filtering example</a></li>
+			<li><a href="#aoiZoomOnLoad">Zoom to AOI on page load (extent)</a></li>
 		</ul>
 	</div>
 </div>
@@ -1299,6 +1300,56 @@ var wet_boew_geomap = {
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+	</section>
+</section>
+
+<section id="aoiZoomOnLoad">
+	<h2>Zoom to AOI on page load (extent)</h2>
+
+	<form class="wb-geomap-filter form-inline mrgn-bttm-md" data-bind-to="bc-geomap">
+		<div class="form-group">
+			<label for="zoomBCArea">B.C. Regions:</label>
+			<select class="form-control" data-filter="aoi" id="zoomBCArea">
+				<option value="63 -110 50 -128" selected>Select a region</option>
+				<option value="61 -124 55.33 -140.6">North</option>
+				<option value="50.802 -123.316 48.312 -128.578">Vancouver Island and Coast</option>
+				<option value="50.2806 -121.7203 49.0199 -124.4421">Lower Mainland</option>
+				<option value="52.4999 -118.5493 48.9964 -114.0535">Southern Interior</option>
+			</select>
+		</div>
+		<button aria-controls="bc-geomap" class="btn btn-primary" type="submit">Filter</button>
+		<button class="btn btn-link" type="reset">Reset page to defaults</button>
+	</form>
+	<div class="wb-geomap" id="bc-geomap" data-wb-geomap='{
+		"mapExtent": "63, -110, 50, -128"
+	}'>
+		<div class="wb-geomap-map"></div>
+	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;form class="wb-geomap-filter form-inline mrgn-bttm-md" data-bind-to="bc-geomap"&gt;
+	&lt;div class="form-group"&gt;
+		&lt;label for="zoomBCArea"&gt;B.C. Regions:&lt;/label&gt;
+		&lt;select class="form-control" data-filter="aoi" id="zoomBCArea"&gt;
+			&lt;option value="63 -110 50 -128" selected&gt;Select a region&lt;/option&gt;
+			&lt;option value="61 -124 55.33 -140.6"&gt;North&lt;/option&gt;
+			&lt;option value="50.802 -123.316 48.312 -128.578"&gt;Vancouver Island and Coast&lt;/option&gt;
+			&lt;option value="50.2806 -121.7203 49.0199 -124.4421"&gt;Lower Mainland&lt;/option&gt;
+			&lt;option value="52.4999 -118.5493 48.9964 -114.0535"&gt;Southern Interior&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/div&gt;
+	&lt;button aria-controls="bc-geomap" class="btn btn-primary" type="submit"&gt;Filter&lt;/button&gt;
+	&lt;button class="btn btn-link" type="reset"&gt;Reset page to defaults&lt;/button&gt;
+&lt;/form&gt;
+&lt;div class="wb-geomap" id="bc-geomap" data-wb-geomap='{
+	"mapExtent": "63, -110, 50, -128"
+}'&gt;
+	&lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
