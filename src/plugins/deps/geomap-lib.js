@@ -192,8 +192,10 @@ var componentName = "wb-geomap",
 		// Add map layers
 		this.addMapLayers();
 
-		// If an extent was configured, fit the map to it
-		if ( viewOptions.extent ) {
+		// If an extent was configured, fit the map to it (use mapExtent property, then basemap.extent)
+		if ( this.settings.mapExtent ) {
+			this.zoomAOI( this.settings.mapExtent );
+		} else if ( viewOptions.extent ) {
 			this.map.getView().fit( viewOptions.extent, this.map.getSize() );
 		}
 
