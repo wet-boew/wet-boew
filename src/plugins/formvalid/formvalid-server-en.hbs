@@ -124,6 +124,34 @@
 						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span> <span class="field-name">I agree with the directives</span><strong class="required"> (Required field)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv"><strong><span class="prefix">Error&nbsp;4: </span>This field is mandatory</strong></span></label></div>
 					</fieldset>
 
+					<fieldset class="form-inline chkbxrdio-grp">
+						<legend class="required"><span class="field-name">Work Status</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You must select No for this question.</span></legend>
+						<label class="radio-inline">
+							<input class="input-validation-error" data-msg-required="You must select Yes or No." data-rule-required="true" id="workNo" name="workStatus" type="radio" value="No" />
+							No
+						</label>
+						<label class="radio-inline">
+							<input class="input-validation-error" id="workYes" checked="checked" name="workStatus" type="radio" value="Yes" />
+							Yes
+						</label>
+					</fieldset>
+
+					<fieldset class="form-inline chkbxrdio-grp">
+						<legend class="required"><span class="field-name">New Vacation Destinations</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You have already been to Mexico.</span></legend>
+						<div class="label-inline">
+							<input type="checkbox" checked="checked" name="vacationDestination" id="dest1" required="required" />
+							<label for="dest1">Mexico</label>
+						</div>
+						<div class="label-inline">
+							<input type="checkbox" name="vacationDestination" id="dest2" />
+							<label for="dest2">Italy</label>
+						</div>
+						<div class="label-inline">
+							<input type="checkbox" name="vacationDestination" id="dest3" />
+							<label for="dest3">Germany</label>
+						</div>
+					</fieldset>
+
 					<ul class="list-inline">
 						<li><input name="ctl00$MainContent$btnSubmit" class="btn btn-primary" id="MainContent_btnSubmit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$MainContent$btnSubmit", "", true, "", "", false, false))' type="submit" value="Submit"></li>
 					</ul>
