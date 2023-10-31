@@ -39,19 +39,6 @@
 	<div class="wb-frmvld">
 		<form id="frmMain" action="#" method="get">
 
-			<section tabindex="-1" class="alert alert-danger" id="errors-frmMain">
-				<h2>The form could not be submitted because 4 errors were found.</h2>
-				<ul>
-					<li><a href="#MainContent_BeneficiaryName"><span class="prefix">Error&nbsp;1: </span>Beneficiary name - The name
-							should begin with "Super" - (Correct and resubmit) </a></li>
-					<li><a href="#MainContent_BeneficiaryAge"><span class="prefix">Error&nbsp;2: </span>Beneficiary age - Age should
-							be between 64 and 200 for a Retirement benefit - (Correct and resubmit) </a></li>
-					<li><a href="#MainContent_wbCheckBoxList0_checkBoxList0_0"><span class="prefix">Error&nbsp;3: </span>Contact
-							Information - You can't choose more than 2 checkboxes - (Correct and resubmit) </a></li>
-					<li><a href="#MainContent_wbCheckBoxList1_checkBoxList1_2"><span class="prefix">Error&nbsp;4: </span>I agree with
-							the directives - This field is mandatory - (Correct and resubmit) </a></li>
-				</ul>
-			</section>
 
 			<section class="panel panel-info">
 				<header class="panel-heading">
@@ -83,7 +70,7 @@
 							<label class="required" for="MainContent_BeneficiaryName">
 								<span class="field-name">Beneficiary name</span>
 								<strong class="required">(Required field)</strong>
-								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv"><strong><span class="prefix">Error&nbsp;1:</span>The name should begin with "Super"</strong></span> </label>
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv"><strong>The name should begin with "Super"</strong></span> </label>
 							<input name="ctl00$MainContent$BeneficiaryName" class="form-control valid" id="MainContent_BeneficiaryName" aria-invalid="false" required="required" type="text" maxlength="16" value="Me">
 						</div>
 
@@ -91,8 +78,7 @@
 							<label class="required">
 								<span class="field-name">Beneficiary age</span>
 								<strong class="required">(Required field)</strong>
-								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv"><strong><span class="prefix">Error&nbsp;2:
-										</span>Age should be between 64 and 200 for a Retirement benefit</strong></span>
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv"><strong>Age should be between 64 and 200 for a Retirement benefit</strong></span>
 								<input name="ctl00$MainContent$BeneficiaryAge" class="form-control css-implicite-input valid" id="MainContent_BeneficiaryAge" aria-invalid="false" required="required" type="number" min="1" max="200" step="1" value="52">
 							</label>
 						</div>
@@ -108,7 +94,7 @@
 					</fieldset>
 
 					<fieldset class="legend-brdr-bttm">
-						<legend class="required"><span class="field-name">Contact Information</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList0Cv"><strong><span class="prefix">Error&nbsp;3: </span>You can't choose more than 2 checkboxes</strong></span></legend>
+						<legend class="required"><span class="field-name">Contact Information</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList0Cv">You can't choose more than 2 checkboxes</strong></span></legend>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_0">
 								<input name="checkBoxList0" class="required_js valid" id="MainContent_wbCheckBoxList0_checkBoxList0_0" aria-invalid="false" required="required" type="checkbox" checked="checked" value="checkBoxList0_0v">
 								<span> <span class="field-name">Contact me by email</span></span>
@@ -125,21 +111,21 @@
 					</fieldset>
 
 					<fieldset class="form-inline chkbxrdio-grp">
-						<legend class="required"><span class="field-name">Work Status</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You must select No for this question.</span></legend>
+						<legend class="required"><span class="field-name">Work Status</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="workError">You must select No for this question.</span></legend>
 						<label class="radio-inline">
 							<input class="input-validation-error" data-msg-required="You must select Yes or No." data-rule-required="true" id="workNo" name="workStatus" type="radio" value="No" />
 							No
 						</label>
 						<label class="radio-inline">
-							<input class="input-validation-error" id="workYes" checked="checked" name="workStatus" type="radio" value="Yes" />
+							<input class="input-validation-error" id="workYes" name="workStatus" type="radio" value="Yes"  checked="checked"/>
 							Yes
 						</label>
 					</fieldset>
 
 					<fieldset class="form-inline chkbxrdio-grp">
-						<legend class="required"><span class="field-name">New Vacation Destinations</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You have already been to Mexico.</span></legend>
+						<legend class="required"><span class="field-name">New Vacation Destinations</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="vacationError">You have already been to Mexico.</span></legend>
 						<div class="label-inline">
-							<input type="checkbox" checked="checked" name="vacationDestination" id="dest1" required="required" />
+							<input type="checkbox" checked="checked" name="vacationDestination" id="dest1" />
 							<label for="dest1">Mexico</label>
 						</div>
 						<div class="label-inline">
