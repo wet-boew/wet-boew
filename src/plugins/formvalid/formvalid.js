@@ -378,16 +378,16 @@ var componentName = "wb-frmvld",
 						} else if ( $( this ).find( "input" )[ 0 ] ) {
 							$form.validate().element( $( this ).find( "input" )[ 0 ] );
 						} else if ( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input" )[ 0 ] ) {
-							if ( $( this ).find( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input " )[ 0 ].id ) ) {
+							if ( $( this ).find( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input" )[ 0 ].id ) ) {
 								$form.validate().element( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input" )[ 0 ] );
 							}
 						} else if ( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ] ) {
-							if ( $( this ).find( $( this ).next( ".radio-inline" ).children( "input " )[ 0 ].id ) ) {
+							if ( $( this ).find( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ].id ) ) {
 								$form.validate().element( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ] );
 							}
-						} else if ( $( this ).next( ".form-inline" ).children( "li" ).children( "input" )[ 0 ] ) {
-							if ( $( this ).find( $( this ).next( ".form-inline" ).children( "li" ).children( "input " )[ 0 ].id ) ) {
-								$form.validate().element( $( this ).next( ".form-inline" ).children( "li" ).children( "input" )[ 0 ] );
+						} else if ( $( this ).next( ".label-inline" ).children( "input" )[ 0 ] ) {
+							if ( $( this ).find( $( this ).next( ".label-inline" ).children( "input" )[ 0 ].id ) ) {
+								$form.validate().element( $( this ).next( ".label-inline" ).children( "input" )[ 0 ] );
 							}
 						}
 					} );

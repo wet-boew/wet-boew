@@ -1,4 +1,4 @@
----
+﻿---
 {
 	"title": "Merge Server-Client Errors",
 	"language": "en",
@@ -125,7 +125,7 @@
 					</fieldset>
 
 					<fieldset class="form-inline chkbxrdio-grp">
-						<legend class="required"><span class="field-name">Work Status</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You must select No for this question.</span></legend>
+						<legend class="required"><span class="field-name">Work Status</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="workError">You must select No for this question.</span></legend>
 						<label class="radio-inline">
 							<input class="input-validation-error" data-msg-required="You must select Yes or No." data-rule-required="true" id="workNo" name="workStatus" type="radio" value="No" />
 							No
@@ -137,7 +137,7 @@
 					</fieldset>
 
 					<fieldset class="form-inline chkbxrdio-grp">
-						<legend class="required"><span class="field-name">New Vacation Destinations</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error">You have already been to Mexico.</span></legend>
+						<legend class="required"><span class="field-name">New Vacation Destinations</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="vacationError">You have already been to Mexico.</span></legend>
 						<div class="label-inline">
 							<input type="checkbox" checked="checked" name="vacationDestination" id="dest1" required="required" />
 							<label for="dest1">Mexico</label>
