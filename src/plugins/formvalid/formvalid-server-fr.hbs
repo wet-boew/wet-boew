@@ -28,7 +28,7 @@
 
 	{{>alertariahidden}}
 
-	<p>Après avoir soumis votre page, le serveur retoune 4 erreurs serveur. Maintenant si vous essayez de resoumettre
+	<p>Après avoir soumis votre page, le serveur retoune 6 erreurs serveur. Maintenant si vous essayez de resoumettre
 		votre formulaire avec des erreurs clients, ce composant ajoutera ces erreurs aux erreurs serveur déjà existantes.</p>
 	<p>Pour tester le composant: Essayez d'effacer un champ ou d'entrer 201 comme âge du bénéficiaire ou de décocher
 		toutes les cases à cocher .</p>
@@ -80,15 +80,13 @@
 							<label class="required" for="MainContent_BeneficiaryName">
 								<span class="field-name">Nom du bénéficiaire</span>
 								<strong class="required">(Champ requis)</strong>
-								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv"><strong><span class="prefix">Erreur&nbsp;1&nbsp;:
-									</span>Le nom doit commencer par "Super"</strong></span> </label><input name="ctl00$MainContent$BeneficiaryName" class="form-control valid" id="MainContent_BeneficiaryName" aria-invalid="false" required="required" type="text" maxlength="16" value="Moi">
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryNameCv">Le nom doit commencer par "Super"</span> </label><input name="ctl00$MainContent$BeneficiaryName" class="form-control valid" id="MainContent_BeneficiaryName" aria-invalid="false" required="required" type="text" maxlength="16" value="Moi">
 						</div>
 						<div class="form-group">
 							<label class="required">
 								<span class="field-name">Âge du bénéficiaire</span>
 								<strong class="required">(Champ requis)</strong>
-								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv"><strong><span class="prefix">Erreur&nbsp;2&nbsp;:
-									</span>L'âge doit être entre 64 et 200 pour recevoir des prestations de retraite</strong></span><input name="ctl00$MainContent$BeneficiaryAge" class="form-control css-implicite-input valid" id="MainContent_BeneficiaryAge" aria-invalid="false" required="required" type="number" min="1" max="200" step="1" value="52">
+								<span class="label label-danger wb-server-error" id="MainContent_BeneficiaryAgeCv">L'âge doit être entre 64 et 200 pour recevoir des prestations de retraite</span><input name="ctl00$MainContent$BeneficiaryAge" class="form-control css-implicite-input valid" id="MainContent_BeneficiaryAge" aria-invalid="false" required="required" type="number" min="1" max="200" step="1" value="52">
 							</label>
 						</div>
 					</fieldset>
@@ -103,8 +101,7 @@
 					<fieldset class="legend-brdr-bttm">
 						<legend class="required"><span class="field-name">Informations de contact</span> <strong class="required">(Champ
 								requis)</strong>
-							<span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList0Cv"><strong><span class="prefix">Erreur&nbsp;3&nbsp;:
-									</span>Vous ne pouvez sélectionner plus de 2 cases à cocher</strong></span>
+							<span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList0Cv">Vous ne pouvez sélectionner plus de 2 cases à cocher</span>
 						</legend>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_0"><input name="checkBoxList0" class="required_js valid" id="MainContent_wbCheckBoxList0_checkBoxList0_0" aria-invalid="false" required="required" type="checkbox" checked="checked" value="checkBoxList0_0v"><span> <span class="field-name">Contactez-moi par courrier électronique</span></span> </label></div>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList0_checkBoxList0_1"><input name="checkBoxList0" id="MainContent_wbCheckBoxList0_checkBoxList0_1" type="checkbox" checked="checked" value="checkBoxList0_1v"><span> <span class="field-name">Contactez-moi par téléphone</span></span> </label></div>
@@ -115,9 +112,36 @@
 						<legend class="required"><span class="field-name">Signature</span> <strong class="required">(Champ requis)</strong></legend>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_0"><input name="checkBoxList1" class="required_js valid" id="MainContent_wbCheckBoxList1_checkBoxList1_0" required="required" type="checkbox" checked="checked" value="checkBoxList1_0v"><span> <span class="field-name">Imprimer cette page</span></span> </label></div>
 						<div class="checkbox"><label for="MainContent_wbCheckBoxList1_checkBoxList1_1"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_1" type="checkbox" value="checkBoxList1_1v"><span> <span class="field-name">Veuillez m'envoyer de l'information complémentaire</span></span> </label></div>
-						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span> <span class="field-name">Je suis en accord avec les directives</span><strong class="required"> (Champ requis)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv"><strong><span class="prefix">Erreur&nbsp;4&nbsp;: </span>Ce champs est obligatoire</strong></span> </label></div>
+						<div class="checkbox required"><label for="MainContent_wbCheckBoxList1_checkBoxList1_2"><input name="checkBoxList1" id="MainContent_wbCheckBoxList1_checkBoxList1_2" aria-invalid="false" required="required" type="checkbox" value="checkBoxList1_2v"><span> <span class="field-name">Je suis en accord avec les directives</span><strong class="required"> (Champ requis)</strong></span><span class="label label-danger wb-server-error" id="MainContent_wbCheckBoxList1_checkBoxList1_2Cv">Ce champs est obligatoire</span></label></div>
 					</fieldset>
 
+					<fieldset class="form-inline chkbxrdio-grp">
+						<legend class="required"><span class="field-name">Statut de travail</span> <strong class="required">(Champ requis)</strong><span class="label label-danger wb-server-error" id="workError">Vous devez sélectionner Non pour cette question.</span></legend>
+						<label class="radio-inline">
+							<input class="input-validation-error" data-msg-required="Vous devez sélectionner Oui ou Non." data-rule-required="true" id="workNo" name="workStatus" type="radio" value="No" />
+							Non
+						</label>
+						<label class="radio-inline">
+							<input class="input-validation-error" id="workYes" checked="checked" name="workStatus" type="radio" value="Yes" />
+							Oui
+						</label>
+					</fieldset>
+
+					<fieldset class="form-inline chkbxrdio-grp">
+						<legend class="required"><span class="field-name">Nouvelles destinations de vacances</span> <strong class="required">(Champ requis)</strong><span class="label label-danger wb-server-error" id="vacationError">Vous êtes déjà allé au Mexique.</span></legend>
+						<div class="label-inline">
+							<input type="checkbox" checked="checked" name="vacationDestination" id="dest1" required="required" />
+							<label for="dest1">Mexique</label>
+						</div>
+						<div class="label-inline">
+							<input type="checkbox" name="vacationDestination" id="dest2" />
+							<label for="dest2">Italie</label>
+						</div>
+						<div class="label-inline">
+							<input type="checkbox" name="vacationDestination" id="dest3" />
+							<label for="dest3">Allemagne</label>
+						</div>
+					</fieldset>
 					<ul class="list-inline">
 						<li><input name="ctl00$MainContent$btnSubmit" class="btn btn-primary" id="MainContent_btnSubmit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$MainContent$btnSubmit", "", true, "", "", false, false))' type="submit" value="Soumettre"></li>
 					</ul>
