@@ -381,13 +381,9 @@ var componentName = "wb-frmvld",
 							if ( $( this ).find( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input" )[ 0 ].id ) ) {
 								$form.validate().element( $( this ).next( ".radio, .checkbox" ).children( "label" ).children( "input" )[ 0 ] );
 							}
-						} else if ( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ] ) {
-							if ( $( this ).find( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ].id ) ) {
-								$form.validate().element( $( this ).next( ".radio-inline" ).children( "input" )[ 0 ] );
-							}
-						} else if ( $( this ).next( ".label-inline" ).children( "input" )[ 0 ] ) {
-							if ( $( this ).find( $( this ).next( ".label-inline" ).children( "input" )[ 0 ].id ) ) {
-								$form.validate().element( $( this ).next( ".label-inline" ).children( "input" )[ 0 ] );
+						} else if ( $( this ).next( ".radio-inline, .checkbox-inline, .label-inline" ).children( "input" )[ 0 ] ) {
+							if ( $( this ).find( $( this ).next( ".radio-inline, .checkbox-inline, .label-inline" ).children( "input" )[ 0 ].id ) ) {
+								$form.validate().element( $( this ).next( ".radio-inline, .checkbox-inline, .label-inline" ).children( "input" )[ 0 ] );
 							}
 						}
 					} );

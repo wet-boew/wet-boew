@@ -28,7 +28,7 @@
 
 	{{>alertariahidden}}
 
-	<p>After submitting your page, the server returned 6 server errors. Now if you try to resubmit your form with some
+	<p>After submitting your page, the server returned 7 server errors. Now if you try to resubmit your form with some
 		client errors, the component will add these errors to the existing server errors.</p>
 	<p>To test: Try clearing a field or enter 201 as the Beneficiary's age or uncheck all checkboxes.</p>
 
@@ -136,6 +136,13 @@
 							<input type="checkbox" name="vacationDestination" id="dest3" />
 							<label for="dest3">Germany</label>
 						</div>
+					</fieldset>
+
+					<fieldset class="form-inline chkbxrdio-grp">
+						<legend class="required"><span class="field-name">Owned pets</span> <strong class="required">(Required field)</strong><span class="label label-danger wb-server-error" id="petError">A deer is not a pet.</span></legend>
+						<label class="checkbox-inline"><input type="checkbox" checked="checked" name="petChoice" id="petDeer" required="required" /> Deer</label>
+						<label class="checkbox-inline"><input type="checkbox" name="petChoice" id="petCat" /> Cat</label>
+						<label class="checkbox-inline"><input type="checkbox" name="petChoice" id="petDog" /> Dog</label>
 					</fieldset>
 
 					<ul class="list-inline">
