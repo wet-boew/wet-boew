@@ -12,7 +12,7 @@
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
  */
-describe( "findPotentialPII test suite", function() {
+describe( "wb.core helpers test suite", function() {
 	var sandbox = sinon.createSandbox();
 
 	before( function() {
@@ -92,6 +92,58 @@ describe( "findPotentialPII test suite", function() {
 			expect( wb.findPotentialPII( "email:1@example.com, phone:514-514-5144, postal code:K2C-3N2, case number:123456", { email: 1, postalCode: 1 }, { useFullBlock: 1 } ) ).to.equal( "email:█████████████, phone:514-514-5144, postal code:███████, case number:123456" );
 		} );
 
+
+	} );
+
+	/*
+	 * Test wb string helpers
+	 */
+	describe( "wb.string helpers", function() {
+
+		before( function() {
+		} );
+
+		after( function() {
+		} );
+
+		// arrayBufferToBase64
+		it( "arrayBufferToBase64: Should convert arrayBuffer into Base64", function() {
+			expect( wb.string.arrayBufferToBase64( new Uint8Array( [ 21, 31 ] ) ) ).to.equal( "FR8=" );
+		} );
+
+		// base64ToArrayBuffer
+		it( "base64ToArrayBuffer: Should convert base64 string into array buffer", function() {
+			var retValue = wb.string.base64ToArrayBuffer( "FR8=" );
+			expect( retValue.byteLength ).to.equal( 2 ); // Valid its return an ArrayBuffer
+
+			// Check the integrity
+			var arr = new Uint8Array( retValue );
+			expect( arr[ 0 ] ).to.equal( 21 );
+			expect( arr[ 1 ] ).to.equal( 31 );
+			expect( arr[ 2 ] ).to.be.an( "undefined" );
+		} );
+
+		// toHexString
+		it( "toHexString: Should convert arrayBuffer into hexadecimal string", function() {
+			expect( wb.string.toHexString( new Uint8Array( [ 21, 31 ] ) ) ).to.equal( "151f" );
+		} );
+
+		// fromHexString
+		it( "fromHexString: should convert hexadecimal string into array buffer", function() {
+			var retValue = wb.string.fromHexString( "151f" );
+			expect( retValue.byteLength ).to.equal( 2 ); // Valid its return an ArrayBuffer
+			expect( retValue.buffer.byteLength ).to.equal( 2 ); // Valid its inheriting from ArrayBuffer
+
+			// Check the integrity
+			expect( retValue[ 0 ] ).to.equal( 21 );
+			expect( retValue[ 1 ] ).to.equal( 31 );
+			expect( retValue[ 2 ] ).to.be.an( "undefined" );
+		} );
+
+		// fromHexString (param is null)
+		it( "fromHexString: Should return null when passing a null parameter", function() {
+			expect( wb.string.fromHexString( null ) ).to.be.equal( null );
+		} );
 
 	} );
 
