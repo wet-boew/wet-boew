@@ -43,7 +43,7 @@ var componentName = "wb-exitscript",
 			queryString = window.location.search,
 			urlParams = new URLSearchParams( queryString ),
 			counterInUrl = wb.string.fromHexString( urlParams.get( "exturl" ) ),
-			encrytedUrl = localStorage.getItem( componentName ),
+			encryptedUrl = localStorage.getItem( componentName ),
 			jwt = JSON.parse( localStorage.getItem( keyForKeyHolder ) ),
 			$elm;
 		if ( elm ) {
@@ -101,7 +101,7 @@ var componentName = "wb-exitscript",
 			i18n = i18nDict[ wb.lang || "en" ];
 
 			// This conditional statement for a middle static exit page, to retrieve the URL to the non-secure site.
-			if ( $elm.hasClass( exiturlparam ) && encrytedUrl !== null && jwt !== null ) {
+			if ( $elm.hasClass( exiturlparam ) && encryptedUrl !== null && jwt !== null ) {
 
 				crypto.subtle.importKey(
 					"jwk",
@@ -121,7 +121,7 @@ var componentName = "wb-exitscript",
 							length: 64
 						},
 						key,
-						wb.string.base64ToArrayBuffer( encrytedUrl )
+						wb.string.base64ToArrayBuffer( encryptedUrl )
 					).then( function( decrypted ) {
 
 						var dec = new TextDecoder(),
