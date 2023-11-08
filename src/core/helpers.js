@@ -166,7 +166,7 @@ wb.addSkipLink = function( text, attr, isBtn, isLast ) {
 
 } )( jQuery, wb );
 
-( function( wb ) {
+( function( wb, window ) {
 
 "use strict";
 
@@ -1140,7 +1140,70 @@ wb.string = {
 			str = "0" + str;
 		}
 		return str;
+	},
+
+	/*
+	 * Convert a base64 string into an ArrayBuffer (Note: this function are not fully UTF-8 supported and may create interoperability issue)
+	 * ref. https://www.isummation.com/blog/convert-arraybuffer-to-base64-string-and-vice-versa/
+	 * @memberof wb.string
+	 * @param {string} Base64 browser encoded
+	 * @return {ArrayBuffer} string converted into ArrayBuffer
+	 */
+	base64ToArrayBuffer: function( base64 ) {
+		var binary_string = window.atob( base64 ),
+			len = binary_string.length,
+			bytes = new Uint8Array( len ),
+			i;
+		for ( i = 0; i < len; i++ ) {
+			bytes[ i ] = binary_string.charCodeAt( i );
+		}
+		return bytes.buffer;
+	},
+
+	/*
+	 * Convert an ArrayBuffer into base64 string (Note: this function are not fully UTF-8 supported and may create interoperability issue)
+	 * ref. https://www.isummation.com/blog/convert-arraybuffer-to-base64-string-and-vice-versa/
+	 * @memberof wb.string
+	 * @param {ArrayBuffer}
+	 * @return {string} ArrayBuffer converted into base64 string
+	 */
+	arrayBufferToBase64: function( buffer ) {
+		var binary = "",
+			bytes = new Uint8Array( buffer ),
+			len = bytes.byteLength,
+			i;
+		for ( i = 0; i < len; i++ ) {
+			binary += String.fromCharCode( bytes[ i ] );
+		}
+		return window.btoa( binary );
+	},
+
+	/*
+	 * Convert an hexadecimal string into an ArrayBuffer
+	 * ref. https://stackoverflow.com/questions/38987784/how-to-convert-a-hexadecimal-string-to-uint8array-and-back-in-javascript/50868276#50868276
+	 * @memberof wb.string
+	 * @param {string} Encoded string in hexadecimal
+	 * @return {Uint8Array} Binary array buffer
+	 */
+	fromHexString: function( hexString ) {
+		return hexString === null ? null : Uint8Array.from( hexString.match( /.{1,2}/g ).map( function( byte ) {
+			return parseInt( byte, 16 );
+		} ) );
+	},
+
+	/*
+	 * Convert an ArrayBuffer into an hexadecimal string
+	 * ref. https://stackoverflow.com/questions/38987784/how-to-convert-a-hexadecimal-string-to-uint8array-and-back-in-javascript/50868276#50868276
+	 * @memberof wb.string
+	 * @param {Uint8Array} Binary array buffer
+	 * @return {string} Encoded string in hexadecimal
+	 */
+	toHexString: function( bytes ) {
+		return bytes.reduce( function( str, byte ) {
+			return str + byte.toString( 16 ).padStart( 2, "0" );
+		}, "" );
 	}
+
 };
 
 /*
@@ -1363,7 +1426,7 @@ wb.findPotentialPII = function( str, scope, opts ) {
 	return toClean && isFound ? str : isFound;
 };
 
-} )( wb );
+} )( wb, window );
 
 ( function( $, undef ) {
 "use strict";

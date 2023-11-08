@@ -4,13 +4,14 @@
 * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 * @author @ipaksc
 */
-( function( $, window, wb ) {
+( function( $, window, wb, crypto ) {
 "use strict";
 var componentName = "wb-exitscript",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	exiturlparam = componentName + "-urlparam",
+	keyForKeyHolder = componentName + "key",
 	moDalId = componentName + "-modal",
 	i18n,
 	i18nDict = {
@@ -41,7 +42,9 @@ var componentName = "wb-exitscript",
 			settings,
 			queryString = window.location.search,
 			urlParams = new URLSearchParams( queryString ),
-			originalURL = urlParams.get( "exturl" ),
+			counterInUrl = wb.string.fromHexString( urlParams.get( "exturl" ) ),
+			encrytedUrl = localStorage.getItem( componentName ),
+			jwt = JSON.parse( localStorage.getItem( keyForKeyHolder ) ),
 			$elm;
 		if ( elm ) {
 			$elm = $( elm );
@@ -54,16 +57,90 @@ var componentName = "wb-exitscript",
 
 			$elm.data( componentName, settings );
 
-			if ( settings.url ) {
-				$( this ).attr( "href", settings.url + "?exturl=" +  encodeURIComponent( this.href ) );
+			if ( settings.url && crypto ) {
+
+				crypto.subtle.generateKey(
+					{
+						name: "AES-CTR",
+						length: 256
+					},
+					true,
+					[ "encrypt", "decrypt" ]
+				).then( function( keyToEncryp ) {
+
+					var enc, messageEncoded, counter;
+
+					// Save the key in the anchor
+					crypto.subtle.exportKey( "jwk", keyToEncryp )
+						.then( function( exportedJwtKey ) {
+							elm[ keyForKeyHolder ] = exportedJwtKey;
+						} );
+
+					// Encrypt the URL
+					enc = new TextEncoder();
+					messageEncoded = enc.encode( elm.href );
+					counter = crypto.getRandomValues( new Uint8Array( 16 ) );
+					crypto.subtle.encrypt(
+						{
+							name: "AES-CTR",
+							counter: counter,
+							length: 64
+						},
+						keyToEncryp,
+						messageEncoded
+					).then( function( ciphertext ) {
+						elm[ componentName ] = ciphertext;
+					} );
+
+					// Change the link URL by passing the counter as a key
+					$elm.attr( "href", settings.url + "?exturl=" + wb.string.toHexString( counter ) );
+				} );
+
 			}
 
 			i18n = i18nDict[ wb.lang || "en" ];
 
 			// This conditional statement for a middle static exit page, to retrieve the URL to the non-secure site.
-			if ( $elm.hasClass( exiturlparam ) ) {
-				this.outerHTML = "<a href='" + originalURL + "'>" + originalURL + "</a>";
+			if ( $elm.hasClass( exiturlparam ) && encrytedUrl !== null && jwt !== null ) {
+
+				crypto.subtle.importKey(
+					"jwk",
+					jwt,
+					{
+						name: "AES-CTR",
+						length: 256
+					},
+					true,
+					[ "decrypt" ]
+				).then( function( key ) {
+
+					crypto.subtle.decrypt(
+						{
+							name: "AES-CTR",
+							counter: counterInUrl,
+							length: 64
+						},
+						key,
+						wb.string.base64ToArrayBuffer( encrytedUrl )
+					).then( function( decrypted ) {
+
+						var dec = new TextDecoder(),
+							urlToRedirect = dec.decode( decrypted );
+
+						// Check if the decrypted message is an valid URL and silently fail if the pattern don't match
+						if ( urlToRedirect.match( /^(http|https):\/\//g ) ) {
+							elm.outerHTML = "<a href='" + urlToRedirect + "'>" + urlToRedirect + "</a>";
+						}
+
+					} );
+				} );
+
 			}
+
+			// Remove the plugin data and ensure it is removed from the localstorage
+			localStorage.removeItem( componentName );
+			localStorage.removeItem( keyForKeyHolder );
+
 			wb.ready( $elm, componentName );
 		}
 	};
@@ -137,6 +214,11 @@ $document.on( "click", selector, function( event ) {
 
 		] );
 
+	} else if ( crypto && this[ componentName ] ) {
+
+		// Save to localstorage, the plugin init will ensure this data is only used once
+		localStorage.setItem( componentName, wb.string.arrayBufferToBase64( this[ componentName ] ) );
+		localStorage.setItem( keyForKeyHolder, JSON.stringify( this[ keyForKeyHolder ] ) );
 	}
 
 } );
@@ -147,4 +229,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-} )( jQuery, window, wb );
+} )( jQuery, window, wb, crypto );
