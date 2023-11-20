@@ -31,7 +31,7 @@ var componentName = "wb-twitter",
 			protocol = wb.pageUrlParts.protocol;
 
 		if ( eventTarget ) {
-			const twitterLink = eventTarget.firstElementChild;
+			const twitterLinks = eventTarget.querySelectorAll( "a.twitter-timeline" );
 
 			// Ignore IE11
 			// Note: Twitter's widget no longer supports it...
@@ -40,39 +40,69 @@ var componentName = "wb-twitter",
 				return;
 			}
 
-			// If the plugin container's first child element is a Twitter link...
-			if ( twitterLink && twitterLink.matches( "a.twitter-timeline" ) ) {
-				const loadingDiv = document.createElement( "div" );
-				let observer;
+			// Process each Twitter link
+			twitterLinks.forEach( function( twitterLink ) {
 
-				// Add a loading icon below the link
-				loadingDiv.className = "twitter-timeline-loading";
-				twitterLink.after( loadingDiv );
+				// Set Chinese (Simplfified)'s language code to "zh-cn"
+				// If the link doesn't specify a widget language and its "in-page" language code is "zh-Hans"...
+				// Notes:
+				// -WET uses "zh-Hans", Twitter uses "zh-ch" and falls back to English if the former is used
+				// -Language code sourced from https://developer.twitter.com/en/docs/twitter-for-websites/supported-languages
+				if ( !twitterLink.dataset.lang && twitterLink.closest( "[lang='zh-Hans']" ) ) {
+					twitterLink.dataset.lang = "zh-cn";
+				}
 
-				// Remove the loading icon after the timeline widget appears
-				// Note: Twitter's widget script removes "a.twitter-timeline" upon filling-in the timeline's content... at which point the loading icon is no longer useful
-				observer = new MutationObserver( function( mutations ) {
+				// Match the Facebook page plugin's default height
+				// If data-height is set to "fb-page" OR the widget has a tweet limit and lacks a custom height...
+				// Notes:
+				// -Counteracts enormous default widget heights that can reach tens of thousands of pixels without a scrollbar
+				// -Timeline widgets stopped honouring tweet limits on July 21, 2023 and began showing up to 100 tweets at a time ("verified" accounts only)
+				// -Facebook page plugin's default height is documented in https://developers.facebook.com/docs/plugins/page-plugin#settings
+				if ( twitterLink.dataset.height === "fb-page" || ( twitterLink.dataset.tweetLimit && !twitterLink.dataset.height ) ) {
+					twitterLink.dataset.height = "500";
+				}
 
-					// Check for DOM mutations
-					mutations.forEach( function( mutation ) {
+				// Add a "do not track" parameter (i.e. data-dnt="true" attribute) unless it's already been set
+				// Note: Covered in https://developer.twitter.com/en/docs/twitter-for-websites/webpage-properties
+				if ( !twitterLink.dataset.dnt ) {
+					twitterLink.dataset.dnt = "true";
+				}
 
-						// Deal only with removed HTML nodes
-						mutation.removedNodes.forEach( function( removedNode ) {
+				// Display a loading icon
+				// If the plugin container's first child element is a Twitter link...
+				if ( twitterLink === eventTarget.firstElementChild ) {
+					const loadingDiv = document.createElement( "div" );
+					let observer;
 
-							// If the removed node was a Twitter link, remove its adjacent loading icon and stop observing
-							if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
-								loadingDiv.remove();
-								observer.disconnect();
-							}
+					// Add a loading icon below the link
+					loadingDiv.className = "twitter-timeline-loading";
+					twitterLink.after( loadingDiv );
+
+					// Remove the loading icon after the timeline widget appears
+					// Note: Twitter's widget script removes "a.twitter-timeline" upon filling-in the timeline's content... at which point the loading icon is no longer useful
+					observer = new MutationObserver( function( mutations ) {
+
+						// Check for DOM mutations
+						mutations.forEach( function( mutation ) {
+
+							// Deal only with removed HTML nodes
+							mutation.removedNodes.forEach( function( removedNode ) {
+
+								// If the removed node was a Twitter link, remove its adjacent loading icon and stop observing
+								if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+									loadingDiv.remove();
+									observer.disconnect();
+								}
+							} );
 						} );
 					} );
-				} );
 
-				// Observe changes to the plugin container's direct child elements
-				observer.observe( eventTarget, {
-					childList: true
-				} );
-			}
+					// Observe changes to the plugin container's direct child elements
+					observer.observe( eventTarget, {
+						childList: true
+					} );
+				}
+			} );
 
 			Modernizr.load( {
 				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
