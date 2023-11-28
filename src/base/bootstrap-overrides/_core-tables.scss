@@ -15,6 +15,20 @@ caption {
 
 
 // Not ported from, but inline with Bootstrap 4: Makes the table to scroll horizontally and makes the content wrap in any viewport including small devices (under 768px)
-.table-responsive > .table, th, td {
-	white-space: normal;
+.table-responsive {
+	@media screen and (max-width: $screen-xs-max) {
+		> .table {
+			// Undo Bootstrap 3.x's nowrap selector (removed in Bootstrap 4.0)
+			> thead,
+			> tbody,
+			> tfoot {
+				> tr {
+					> th,
+					> td {
+						white-space: initial;
+					}
+				}
+			}
+		}
+	}
 }
