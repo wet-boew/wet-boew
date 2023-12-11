@@ -126,6 +126,46 @@ var componentName = "wb-tables",
 				}
 			} );
 		}
+	},
+	updatePaginationMarkup = function( $pagination, setFocusOnId ) {
+
+		var ol = document.createElement( "OL" ),
+			li = document.createElement( "LI" ),
+			paginate_buttons = $pagination.find( ".paginate_button" ),
+			navFocusOnId = setFocusOnId || $pagination.get( 0 ).id;
+
+		// Update Pagination List
+		for ( var i = 0; i < paginate_buttons.length; i++ ) {
+			var item = li.cloneNode( true );
+			item.appendChild( paginate_buttons[ i ] );
+			ol.appendChild( item );
+		}
+
+		ol.className = "pagination mrgn-tp-0 mrgn-bttm-0";
+		$pagination.empty();
+		$pagination.append( ol );
+
+		// Update the aria-pressed properties on the pagination buttons
+		// Should be pushed upstream to DataTables
+		$pagination.find( ".paginate_button" )
+			.attr( {
+				"href": "#" + navFocusOnId
+			} )
+
+			// This is required to override the datatable.js (v1.10.13) behavior to cancel the event propagation on anchor element.
+			.on( "keypress", function( evn ) {
+				if ( evn.keyCode === 13 ) {
+					window.location = evn.target.href;
+				}
+			} )
+
+			.not( ".previous, .next" )
+			.attr( "aria-pressed", "false" )
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
+			} )
+			.filter( ".current" )
+			.attr( "aria-pressed", "true" );
 	};
 
 // Bind the init event of the plugin
@@ -139,9 +179,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
 		pbLength = paginate_buttons.length,
 		pHasLF = pagination.find( ".last, .first" ).length === 2,
-		pHasPN = pagination.find( ".previous, .next" ).length === 2,
-		ol = document.createElement( "OL" ),
-		li = document.createElement( "LI" );
+		pHasPN = pagination.find( ".previous, .next" ).length === 2;
 
 	// Handle sorting/ordering
 	var order = $elm.dataTable( { "retrieve": true } ).api().order();
@@ -180,38 +218,8 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		pagination.removeClass( "hidden" );
 		pagination_top.removeClass( "hidden" );
 
-		// Update Pagination List
-		for ( var i = 0; i < paginate_buttons.length; i++ ) {
-			var item = li.cloneNode( true );
-			item.appendChild( paginate_buttons[ i ] );
-			ol.appendChild( item );
-		}
-
-		ol.className = "pagination mrgn-tp-0 mrgn-bttm-0";
-		pagination.empty();
-		pagination.append( ol );
-
-		// Update the aria-pressed properties on the pagination buttons
-		// Should be pushed upstream to DataTables
-		$elm.next( ".bottom" ).find( ".paginate_button" )
-			.attr( {
-				"href": "#" + $elm.get( 0 ).id
-			} )
-
-			// This is required to override the datatable.js (v1.10.13) behavior to cancel the event propagation on anchor element.
-			.on( "keypress", function( evn ) {
-				if ( evn.keyCode === 13 ) {
-					window.location = evn.target.href;
-				}
-			} )
-
-			.not( ".previous, .next" )
-			.attr( "aria-pressed", "false" )
-			.html( function( index, oldHtml ) {
-				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
-			} )
-			.filter( ".current" )
-			.attr( "aria-pressed", "true" );
+		updatePaginationMarkup( pagination, $elm.get( 0 ).id );
+		updatePaginationMarkup( pagination_top );
 	}
 
 	// Identify that the table has been updated
