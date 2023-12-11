@@ -179,6 +179,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		// Make sure Pagination is visible
 		pagination.removeClass( "hidden" );
 		pagination_top.removeClass( "hidden" );
+
 		// Update Pagination List
 		for ( var i = 0; i < paginate_buttons.length; i++ ) {
 			var item = li.cloneNode( true );
