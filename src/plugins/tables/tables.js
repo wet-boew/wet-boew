@@ -135,6 +135,7 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "draw.dt", selector, function( event, settings ) {
 	var $elm = $( event.target ),
 		pagination = $elm.next( ".bottom" ).find( "div:first-child" ),
+		pagination_top = $elm.prevAll( ".top" ).find( "div.dataTables_paginate" ),
 		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
 		pbLength = paginate_buttons.length,
 		pHasLF = pagination.find( ".last, .first" ).length === 2,
@@ -172,11 +173,13 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		)
 	) {
 		pagination.addClass( "hidden" );
+		pagination_top.addClass( "hidden" );
 	} else {
 
 		// Make sure Pagination is visible
 		pagination.removeClass( "hidden" );
-
+		pagination_top.removeClass( "hidden" );
+		
 		// Update Pagination List
 		for ( var i = 0; i < paginate_buttons.length; i++ ) {
 			var item = li.cloneNode( true );
