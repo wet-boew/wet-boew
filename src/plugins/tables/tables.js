@@ -132,7 +132,14 @@ var componentName = "wb-tables",
 		var ol = document.createElement( "OL" ),
 			li = document.createElement( "LI" ),
 			paginate_buttons = $pagination.find( ".paginate_button" ),
-			navFocusOnId = setFocusOnId || $pagination.get( 0 ).id;
+			navFocusOnId;
+
+		if ( $pagination.length === 0 ) {
+			return;
+		}
+
+		// Set the element to get the focus upon navigation
+		navFocusOnId = setFocusOnId || $pagination.get( 0 ).id;
 
 		// Update Pagination List
 		for ( var i = 0; i < paginate_buttons.length; i++ ) {
