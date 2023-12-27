@@ -493,6 +493,125 @@
 			</details>
 		</section>
 	</section>
+
+	<section>
+		<h3>Calendar date range</h3>
+		<p>By default, the calendar's date range is set based on the date range of source events. This can be overridden by configuring minimum and/or maximum dates via <code>data-calevt-min-date</code> and <code>data-calevt-max-date</code>, each of which takes a <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">YYYY-MM-DD date time string</a>.</p>
+
+		<div id="cal-daterange"></div>
+
+		<div class="wb-calevt evt-anchor" data-calevt-src="cal-daterange" data-calevt-min-date="2013-02-01" data-calevt-max-date="2013-05-01">
+			<section>
+				<h4>Events List 1</h4>
+				<ul>
+					<li>
+						<section>
+							<h5><a href="https://www.ec.gc.ca" rel="external">Event 1</a></h5>
+							<p><time datetime="2013-03-11">March 11th, 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Event 2</a></h5>
+							<p><time datetime="2013-03-11">March 11th, 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5>World Expo Shanghai (Shanghai, China)</h5>
+							<p><time datetime="2013-03-22">March 22nd, 2013</time> to <time datetime="2013-04-26">April 26th, 2013</time></p>
+							<p>The Canada Pavilion celebrates the vibrancy and the vitality of Canadian communities and the people within them.</p>
+							<p>For more information about Canada at Expo 2010 Shanghai, visit: <a href="https://www.expo2010canada.gc.ca/index-eng.cfm" rel="external">www.expo2010canada.gc.ca/index-eng.cfm</a></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.ic.gc.ca" rel="external">Event 4</a></h5>
+							<p><time datetime="2013-03-24">March 24th, 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.ec.gc.ca" rel="external">Event 6</a></h5>
+							<p><time datetime="2013-04-11">April 11th, 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Event 7</a></h5>
+							<p><time datetime="2013-04-23">April 23rd, 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Event 17</a></h5>
+							<p><time datetime="2013-04-23">April 23rd, 2013</time></p>
+						</section>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;cal-daterange&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;cal-daterange&quot; data-calevt-min-date=&quot;2013-02-01&quot; data-calevt-max-date=&quot;2013-05-01&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Events List 1&lt;/h4&gt;
+		&lt;ul&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 2&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;World Expo Shanghai (Shanghai, China)&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;The Canada Pavilion celebrates the vibrancy and the vitality of Canadian communities and the people within them.&lt;/p&gt;
+					&lt;p&gt;For more information about Canada at Expo 2010 Shanghai, visit: &lt;a href=&quot;https://www.expo2010canada.gc.ca/index-eng.cfm&quot; rel=&quot;external&quot;&gt;www.expo2010canada.gc.ca/index-eng.cfm&lt;/a&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ic.gc.ca&quot; rel=&quot;external&quot;&gt;Event 4&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-24&quot;&gt;March 24th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 6&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-11&quot;&gt;April 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 7&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 17&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
+	</section>
 </section>
 
 <section>
