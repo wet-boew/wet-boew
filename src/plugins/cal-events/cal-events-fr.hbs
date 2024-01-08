@@ -490,6 +490,125 @@
 			</details>
 		</section>
 	</section>
+
+	<section>
+		<h3>Plage de dates du calendrier</h3>
+		<p>Par défaut, la plage de dates du calendrier est fixée selon la plage de dates des événements sources. Ceci peut-être outrepassé en configurant les dates minimum et/ou maximum à l'aide des attributs <code>data-calevt-min-date</code> et <code>data-calevt-max-date</code>, qui prennent chacun une <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-time-string-format">chaîne de charactères de date et de temps en format AAAA-MM-JJ (lien disponible uniquement en anglais)</a>.</p>
+
+		<div id="cal-daterange"></div>
+
+		<div class="wb-calevt evt-anchor" data-calevt-src="cal-daterange" data-calevt-min-date="2013-02-01" data-calevt-max-date="2013-05-01">
+			<section>
+				<h4>Événements - Liste 1</h4>
+				<ul>
+					<li>
+						<section>
+							<h5><a href="https://www.ec.gc.ca" rel="external">Événement 1</a></h5>
+							<p><time datetime="2013-03-11">11 mars 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Événement 2</a></h5>
+							<p><time datetime="2013-03-11">11 mars 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5>Expo 2010 Shanghai</h5>
+							<p>Le <time datetime="2013-03-22">22 mars 2013</time> au <time datetime="2013-04-26">26 avril 2013</time></p>
+							<p>Le Pavillon du Canada souligne le dynamisme et la vitalité des villes canadiennes et de leurs résidents.</p>
+							<p>Pour obtenir de plus amples renseignements, visitez le site Web de Canada à Expo 2010 Shanghai à l’adresse suivante&#160;: <a href="https://www.expo2010canada.gc.ca/index-fra.cfm" rel="external">www.expo2010canada.gc.ca/index-fra.cfm</a></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.ic.gc.ca" rel="external">Événement 4</a></h5>
+							<p><time datetime="2013-03-24">24 mars 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.ec.gc.ca" rel="external">Événement 6</a></h5>
+							<p><time datetime="2013-04-11">4 avril 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Événement 7</a></h5>
+							<p><time datetime="2013-04-23">23 avril 2013</time></p>
+						</section>
+					</li>
+					<li>
+						<section>
+							<h5><a href="https://www.canada.ca" rel="external">Événement 17</a></h5>
+							<p><time datetime="2013-04-23">23 avril 2013</time></p>
+						</section>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;div id=&quot;cal-daterange&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;cal-daterange&quot; data-calevt-min-date=&quot;2013-02-01&quot; data-calevt-max-date=&quot;2013-05-01&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&Eacute;v&eacute;nements - Liste 1&lt;/h4&gt;
+		&lt;ul&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;11 mars 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 2&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;11 mars 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;Expo 2010 Shanghai&lt;/h5&gt;
+					&lt;p&gt;Le &lt;time datetime=&quot;2013-03-22&quot;&gt;22 mars 2013&lt;/time&gt; au &lt;time datetime=&quot;2013-04-26&quot;&gt;26 avril 2013&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;Le Pavillon du Canada souligne le dynamisme et la vitalit&eacute; des villes canadiennes et de leurs r&eacute;sidents.&lt;/p&gt;
+					&lt;p&gt;Pour obtenir de plus amples renseignements, visitez le site Web de Canada &agrave; Expo 2010 Shanghai &agrave; l&rsquo;adresse suivante&amp;#160;: &lt;a href=&quot;https://www.expo2010canada.gc.ca/index-fra.cfm&quot; rel=&quot;external&quot;&gt;www.expo2010canada.gc.ca/index-fra.cfm&lt;/a&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ic.gc.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 4&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-24&quot;&gt;24 mars 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 6&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-11&quot;&gt;4 avril 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 7&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;23 avril 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;https://www.canada.ca&quot; rel=&quot;external&quot;&gt;&Eacute;v&eacute;nement 17&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;23 avril 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
+	</section>
 </section>
 <section>
 	<h2>Hors de portée à partid d'aujourd'hui</h2>
