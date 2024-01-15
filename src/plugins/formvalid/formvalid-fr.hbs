@@ -901,3 +901,40 @@
 		</ul>
 	</noscript>
 </section>
+
+<section>
+	<h2>Cas d'essai particulier</h2>
+	<p>Les exemples suivants sont uniquement à des fins de mise à l'essai de certaines configurations de cas particuliers afin de vérifier que le plugiciel continue de fonctionner comme prévu.</p>
+	<h3><code>&lt;div></code> entre le formulaire et le plugin de validation de formulaire</h3>
+	<p>Lorsqu'il y a une balise <code>&lt;div></code> enveloppant l'élément <code>&lt;form></code> entre le formulaire et le plugin de validation.</p>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="wb-frmvld">
+				<div id="app-root">
+					<form action="#" method="get" id="edge-test-1">
+						<div class="form-group">
+							<label for="edge-test-1-fruit" class="required"><span class="field-name">Choisissez un fruit :</span> <strong class="required">(obligatoire)</strong></label>
+							<select class="form-control" id="edge-test-1-fruit" name="fruit" required="required">
+								<option label="Choisissez un fruit"></option>
+								<option value="Pomme">Pomme</option>
+								<option value="Orange">Orange</option>
+								<option value="Kiwi">Kiwi</option>
+							</select>
+						</div>
+						<button class="btn btn-default" type="submit">Soumettre</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<p>Code source</p>
+			<pre><code>&lt;div class="wb-frmvld">
+	&lt;div id="app-root">
+		&lt;form action="#" method="get" id="edge-test-1">
+			...
+		&lt;/form>
+	&lt;/div>
+&lt;/div></code></pre>
+		</div>
+	</div>
+</section>

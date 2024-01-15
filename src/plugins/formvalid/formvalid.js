@@ -216,7 +216,7 @@ var componentName = "wb-frmvld",
 										prefixStart = "<span class='prefix'>" + i18nText.error + "&#160;",
 										prefixEnd = i18nText.colon + " </span>",
 										separator = i18nText.hyphen,
-										ariaLive = $form.parent().find( ".arialive" )[ 0 ],
+										ariaLive = $form.closest( ".wb-frmvld" ).find( ".arialive" )[ 0 ],
 										$summaryContainer, summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
 
 									// Correct the colouring of fields that are no longer invalid
@@ -364,7 +364,7 @@ var componentName = "wb-frmvld",
 									validator.resetForm();
 									$( "#" + errorFormId ).detach();
 
-									ariaLive = $form.parent().find( ".arialive" )[ 0 ];
+									ariaLive = $form.closest( ".wb-frmvld" ).find( ".arialive" )[ 0 ];
 									if ( ariaLive.innerHTML.length !== 0 ) {
 										ariaLive.innerHTML = "";
 									}
