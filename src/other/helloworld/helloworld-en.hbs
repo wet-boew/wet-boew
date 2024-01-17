@@ -80,10 +80,10 @@ wb.add( selector );
 	<dd>The value of <var>componentName</var> define the name of your plugin and the class name to use in order to initiate it</dd>
 
 	<dt>At line 36 <code>// ... Do the plugin initialisation</code></dt>
-	<dd>It is where you will do all the action in order to initiate your plugin. The chalenges here is to perform the minimalist task in order to have your plugin waiting for an action. WET plugin is focused on an event base aproach where we trend to not execute a line of script if is not required at that time, that for performance reason.</dd>
+	<dd>Is where you will do all the actions in order to initiate your plugin. The challenge here is to perform the minimal amount of tasks in order to have your plugin waiting for an action. WET plugins are focused on an event base aproach where we trend to not execute a line of code if is not required at that time for performance reasons.</dd>
 
 	<dt>At line 43-45 <code>// Add your plugin event handler</code></dt>
-	<dd>It is where you will add a bunch of event that your plugin will deal with. You can trigger your own event by using the jQuery instance of an element, then call the function trigger with your custom event name in parameter followed by an object if you want to transfers some data. Like <code>$elm.trigger( "name.of.your.event", mydata );</code>. The mydata parameter is optional.</dd>
+	<dd>Is where you will add a number of events that your plugin will deal with. You can trigger your own event by using the jQuery instance of an element, then call the function trigger with your custom event name in the first parameter followed by an object if you want to transfers some data. Like <code>$elm.trigger( "name.of.your.event", mydata );</code>. The mydata parameter is optional.</dd>
 </dl>
 
 <h2>Step 2 - Add your javascript code</h2>
@@ -157,15 +157,15 @@ wb.add( selector );
 	<dd>The plugin is named <strong>wb-helloworld</strong>.</dd>
 
 	<dt>At line 39 <code>$elm.trigger( &quot;name.of.your.event&quot; );</code></dt>
-	<dd>The event &quot;name.of.your.event&quot; is fired on the DOM element that have initiated the plugin</dd>
+	<dd>The event &quot;name.of.your.event&quot; is fired on the DOM element that has initiated the plugin</dd>
 
 	<dt>At line 51 <code>$elm.append(&quot;Hello World&quot;);</code></dt>
-	<dd>The words &quot;Hello World&quot; is added at the end of the content inside the elements</dd>
+	<dd>The words &quot;Hello World&quot; are added at the end of the content inside the element</dd>
 </dl>
 
 <h2>Step 3 - Make it configurable</h2>
 
-<p>As most plugins needs settings, the following code sample will show you how to support multiple way on how editor and developer will be able to configure your plugin.</p>
+<p>As most plugins needs settings, the following code sample will show you how to support multiple ways in which an editor and developer will be able to configure your plugin.</p>
 
 <pre><code>/**
  * @title WET-BOEW Hello world plugin
@@ -245,13 +245,13 @@ wb.add( selector );
 
 <dl>
 	<dt>At line 20 <code>defaults = {}</code></dt>
-	<dd>JSON object that define the defaults settings for your plugin.</dd>
+	<dd>JSON object that defines the default settings for your plugin.</dd>
 
 	<dt>At line 33 <code>settings;</code></dt>
-	<dd>A local variable to hold the setting for the current instance of the plugin.</dd>
+	<dd>A local variable to hold the settings for the current instance of the plugin.</dd>
 
 	<dt>At line 41 <code>settings = $.extend(</code></dt>
-	<dd>The local variable setting will have a cloned copy of all the combined settings.</dd>
+	<dd>The local variable settings will have a cloned copy of all the combined settings.</dd>
 
 	<dt>At line 42 <code>true,</code></dt>
 	<dd>It will perform a deep copy</dd>
@@ -260,7 +260,7 @@ wb.add( selector );
 	<dd>Start extending with an empty new object.</dd>
 
 	<dt>At line 44 <code>defaults,</code></dt>
-	<dd>Apply the defaults settings.</dd>
+	<dd>Apply the default settings.</dd>
 
 	<dt>At line 45 <code>window[ componentName ],</code></dt>
 	<dd>Retreive setting directly set via javascript harde coded in the page for example like: <code>window['wb-helloworld'] = {};</code></dd>
@@ -292,13 +292,13 @@ wb.add( selector );
 
 &lt;p class=&quot;wb-helloworld&quot; data-wb-helloworld='{ &quot;domore&quot;: true }'&gt;Example 3 with configuration&lt;/p&gt;</code></pre>
 
-<p>Please note to have your plugin working with WET you will needs to add your script after WET (wet-boew.js) in the HTML.</p>
+<p>Please note to have your plugin work with WET you will needs to add your script after WET (wet-boew.js) in the HTML.</p>
 
 <h2>Going beyond</h2>
 
 <p>The non-documented WET core includes a lot of utilities function re-used by several plugins.</p>
 
-<p>Such as the function <code>wb.getId()</code> from which we can get an unique id that are not conflicting with any other elements. Or the array defined at <code>wb.drawColours</code> that is about a color sequence to use in order to maintain a good contrast, as used by the chart and graph and the geomap. Take a look at the <a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code</a> to find others useful function.</p>
+<p>Such as the function <code>wb.getId()</code> from which we can get an unique id that does not conflict with any other elements. Or the array defined at <code>wb.drawColours</code> that is about a color sequence to use in order to maintain a good contrast, as used by the chart and graph and the geomap. Take a look at the <a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code</a> to find others useful function.</p>
 
 <p>The loading of third party plugin is done by using Modernizer. You can explorer other plugin that implement is like the <a href="https://github.com/wet-boew/wet-boew/blob/master/src/plugins/tables/tables.js#L80">tables plugins</a>.</p>
 
