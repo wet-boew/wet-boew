@@ -47,7 +47,8 @@ var componentName = "wb-twitter",
 				i18nText = {
 					end: i18n( "twitter-end" ),
 					skipEnd: i18n( "twitter-skip-end" ),
-					skipStart: i18n( "twitter-skip-start" )
+					skipStart: i18n( "twitter-skip-start" ),
+					timelineTitle: i18n( "twitter-timeline-title" )
 				};
 			}
 
@@ -79,7 +80,7 @@ var componentName = "wb-twitter",
 					twitterLink.dataset.dnt = "true";
 				}
 
-				// Add a loading icon and skip links
+				// Adjust timeline title and add a loading icon/skip links
 				// If the plugin container's first child element is a Twitter link...
 				if ( twitterLink === eventTarget.firstElementChild ) {
 					const loadingDiv = document.createElement( "div" );
@@ -89,31 +90,47 @@ var componentName = "wb-twitter",
 					loadingDiv.className = "twitter-timeline-loading";
 					twitterLink.after( loadingDiv );
 
-					// Remove the loading icon after the timeline widget appears
-					// Note: Twitter's widget script removes "a.twitter-timeline" upon filling-in the timeline's content... at which point the loading icon is no longer useful
+					// Observe DOM mutations
 					observer = new MutationObserver( function( mutations ) {
-
-						// Check for DOM mutations
 						mutations.forEach( function( mutation ) {
+							switch ( mutation.type ) {
 
-							// Deal only with removed HTML nodes
-							mutation.removedNodes.forEach( function( removedNode ) {
+							// Check for attribute changes
+							case "attributes": {
+								const mutationTarget = mutation.target;
 
-								// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
-								if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
-									const iframeContainer = loadingDiv.previousElementSibling;
-
-									loadingDiv.remove();
-									addSkipLinks( iframeContainer );
-									observer.disconnect();
+								// Override the timeline iframe's title right after Twitter's widget script adds it
+								// Note: The timeline's iframe title is English-only and written in title case ("Twitter Timeline")... This replaces it with an i18n version written in sentence case.
+								if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle ) {
+									mutationTarget.title = i18nText.timelineTitle;
 								}
-							} );
+								break;
+							}
+
+							// Check for node removals
+							case "childList": {
+								mutation.removedNodes.forEach( function( removedNode ) {
+
+									// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
+									// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
+									if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+										const iframeContainer = loadingDiv.previousElementSibling;
+
+										loadingDiv.remove();
+										addSkipLinks( iframeContainer );
+										observer.disconnect();
+									}
+								} );
+							}
+							}
 						} );
 					} );
 
-					// Observe changes to the plugin container's direct child elements
+					// Observe changes to the plugin container's child elements and title attributes
 					observer.observe( eventTarget, {
-						childList: true
+						attributeFilter: [ "title" ],
+						childList: true,
+						subtree: true
 					} );
 				}
 			} );

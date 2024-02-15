@@ -193,6 +193,7 @@ wb.i18nDict = {
 	"twitter-end": "@twitter-end@",
 	"twitter-skip-end": "@twitter-skip-end@",
 	"twitter-skip-start": "@twitter-skip-start@",
+	"twitter-timeline-title": "@twitter-timeline-title@",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
