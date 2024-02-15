@@ -32,7 +32,7 @@ var componentName = "wb-twitter",
 			protocol = wb.pageUrlParts.protocol;
 
 		if ( eventTarget ) {
-			const twitterLinks = eventTarget.querySelectorAll( "a.twitter-timeline" );
+			const twitterLink = eventTarget.querySelector( "a.twitter-timeline" );
 
 			// Ignore IE11
 			// Note: Twitter's widget no longer supports it...
@@ -41,19 +41,21 @@ var componentName = "wb-twitter",
 				return;
 			}
 
-			// Only initialize the i18nText once
-			if ( !i18nText ) {
-				i18n = wb.i18n;
-				i18nText = {
-					end: i18n( "twitter-end" ),
-					skipEnd: i18n( "twitter-skip-end" ),
-					skipStart: i18n( "twitter-skip-start" ),
-					timelineTitle: i18n( "twitter-timeline-title" )
-				};
-			}
+			// Process the Twitter link
+			if ( twitterLink ) {
+				const loadingDiv = document.createElement( "div" );
+				let observer;
 
-			// Process each Twitter link
-			twitterLinks.forEach( function( twitterLink ) {
+				// Only initialize the i18nText once
+				if ( !i18nText ) {
+					i18n = wb.i18n;
+					i18nText = {
+						end: i18n( "twitter-end" ),
+						skipEnd: i18n( "twitter-skip-end" ),
+						skipStart: i18n( "twitter-skip-start" ),
+						timelineTitle: i18n( "twitter-timeline-title" )
+					};
+				}
 
 				// Set Chinese (Simplfified)'s language code to "zh-cn"
 				// If the link doesn't specify a widget language and its "in-page" language code is "zh-Hans"...
@@ -80,60 +82,53 @@ var componentName = "wb-twitter",
 					twitterLink.dataset.dnt = "true";
 				}
 
-				// Adjust timeline title and add a loading icon/skip links
-				// If the plugin container's first child element is a Twitter link...
-				if ( twitterLink === eventTarget.firstElementChild ) {
-					const loadingDiv = document.createElement( "div" );
-					let observer;
+				// Add a loading icon below the link
+				loadingDiv.className = "twitter-timeline-loading";
+				twitterLink.after( loadingDiv );
 
-					// Add a loading icon below the link
-					loadingDiv.className = "twitter-timeline-loading";
-					twitterLink.after( loadingDiv );
+				// Observe DOM mutations
+				observer = new MutationObserver( function( mutations ) {
+					mutations.forEach( function( mutation ) {
+						switch ( mutation.type ) {
 
-					// Observe DOM mutations
-					observer = new MutationObserver( function( mutations ) {
-						mutations.forEach( function( mutation ) {
-							switch ( mutation.type ) {
+						// Check for attribute changes
+						case "attributes": {
+							const mutationTarget = mutation.target;
 
-							// Check for attribute changes
-							case "attributes": {
-								const mutationTarget = mutation.target;
+							// Override the timeline iframe's title right after Twitter's widget script adds it
+							// Note: The timeline's iframe title is English-only and written in title case ("Twitter Timeline")... This replaces it with an i18n version written in sentence case.
+							if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle ) {
+								mutationTarget.title = i18nText.timelineTitle;
+							}
+							break;
+						}
 
-								// Override the timeline iframe's title right after Twitter's widget script adds it
-								// Note: The timeline's iframe title is English-only and written in title case ("Twitter Timeline")... This replaces it with an i18n version written in sentence case.
-								if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle ) {
-									mutationTarget.title = i18nText.timelineTitle;
+						// Check for node removals
+						case "childList": {
+							mutation.removedNodes.forEach( function( removedNode ) {
+
+								// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
+								// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
+								if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+									const iframeContainer = loadingDiv.previousElementSibling;
+
+									loadingDiv.remove();
+									addSkipLinks( iframeContainer );
+									observer.disconnect();
 								}
-								break;
-							}
-
-							// Check for node removals
-							case "childList": {
-								mutation.removedNodes.forEach( function( removedNode ) {
-
-									// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
-									// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
-									if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
-										const iframeContainer = loadingDiv.previousElementSibling;
-
-										loadingDiv.remove();
-										addSkipLinks( iframeContainer );
-										observer.disconnect();
-									}
-								} );
-							}
-							}
-						} );
+							} );
+						}
+						}
 					} );
+				} );
 
-					// Observe changes to the plugin container's child elements and title attributes
-					observer.observe( eventTarget, {
-						attributeFilter: [ "title" ],
-						childList: true,
-						subtree: true
-					} );
-				}
-			} );
+				// Observe changes to the plugin container's child elements and title attributes
+				observer.observe( eventTarget, {
+					attributeFilter: [ "title" ],
+					childList: true,
+					subtree: true
+				} );
+			}
 
 			Modernizr.load( {
 				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
