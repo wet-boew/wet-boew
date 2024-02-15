@@ -17,6 +17,7 @@ var componentName = "wb-twitter",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	i18n, i18nText,
 
 	/**
 	 * @method init
@@ -38,6 +39,16 @@ var componentName = "wb-twitter",
 			if ( wb.ie11 ) {
 				wb.ready( $( eventTarget ), componentName );
 				return;
+			}
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					end: i18n( "twitter-end" ),
+					skipEnd: i18n( "twitter-skip-end" ),
+					skipStart: i18n( "twitter-skip-start" )
+				};
 			}
 
 			// Process each Twitter link
@@ -68,7 +79,7 @@ var componentName = "wb-twitter",
 					twitterLink.dataset.dnt = "true";
 				}
 
-				// Display a loading icon
+				// Add a loading icon and skip links
 				// If the plugin container's first child element is a Twitter link...
 				if ( twitterLink === eventTarget.firstElementChild ) {
 					const loadingDiv = document.createElement( "div" );
@@ -88,9 +99,12 @@ var componentName = "wb-twitter",
 							// Deal only with removed HTML nodes
 							mutation.removedNodes.forEach( function( removedNode ) {
 
-								// If the removed node was a Twitter link, remove its adjacent loading icon and stop observing
+								// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
 								if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+									const iframeContainer = loadingDiv.previousElementSibling;
+
 									loadingDiv.remove();
+									addSkipLinks( iframeContainer );
 									observer.disconnect();
 								}
 							} );
@@ -113,6 +127,96 @@ var componentName = "wb-twitter",
 				}
 			} );
 		}
+	},
+
+	// Add skip links immediately before and after the timeline widget
+	// Note: Verified account timelines may contain several hundred interactive elements... this provides a mechanism to spare keyboard-only users from needing to tab through everything to move past the widget.
+	addSkipLinks = function( iframeContainer ) {
+		const timelineIframe = iframeContainer.getElementsByTagName( "iframe" )[ 0 ];
+		const username = getTwitterUsername( timelineIframe.src );
+		const skipClass = componentName + "-" + "skip";
+		const skipToStartDir = "start";
+		let endNotice;
+		let skipToEndLink;
+		let skipToStartLink;
+
+		// Abort if Twitter username is falsy
+		// Note: Unlikely to happen unless the username doesn't exist... in which case Twitter's third party widget script will have already failed and triggered an exception by this point
+		if ( !username ) {
+			return;
+		}
+
+		// Build and add an end of timeline notice
+		endNotice = createEndNotice( i18nText.end, username, timelineIframe.id );
+		iframeContainer.after( endNotice );
+
+		// Hide the end notice upon losing focus
+		// Removes its tabindex attribute to make its CSS hide it from screen readers
+		endNotice.addEventListener( "blur", function( e ) {
+			e.target.removeAttribute( "tabindex" );
+		} );
+
+		// Add a skip to end link
+		skipToEndLink = createSkipLink( i18nText.skipEnd, username, endNotice.id, skipClass, "end" );
+		iframeContainer.before( skipToEndLink );
+
+		// Add a skip to start link
+		iframeContainer.id = timelineIframe.id + "-" + skipToStartDir;
+		skipToStartLink = createSkipLink( i18nText.skipStart, username, iframeContainer.id, skipClass, skipToStartDir );
+		endNotice.before( skipToStartLink );
+
+		// Focus onto the destination of a clicked skip link
+		$document.on( "click", "." + skipClass + " a", function( event ) {
+			const currentTarget = event.currentTarget;
+			const linkDestId = "#" + wb.jqEscape( currentTarget.getAttribute( "href" ).substring( 1 ) );
+			const $linkDest = $document.find( linkDestId );
+
+			// Assign focus to the skip link's destination
+			// Note: The focus event's scrolling behaviour is more graceful than "jumping" to an anchor link's destination
+			$linkDest.trigger( "setfocus.wb" );
+
+			// Don't engage normal link navigation behaviour (i.e. "jumping" to the link destination, changing address/navigation history)
+			return false;
+		} );
+	},
+
+	// Extract a Twitter username from the iframe's timeline URL
+	getTwitterUsername = function( iframeSrc ) {
+		let username = iframeSrc.match( /\/screen-name\/([^?]+)/ );
+		username = username ? username[ 1 ] : null;
+
+		return username;
+	},
+
+	// Create an end of timeline notice
+	createEndNotice = function( textTemplate, username, iframeId ) {
+		const spanElm = document.createElement( "span" );
+		const pElm = document.createElement( "p" );
+
+		spanElm.innerHTML = textTemplate.replace( "%username%", username );
+
+		pElm.id = iframeId + "-end";
+		pElm.className = "wb-twitter-end";
+		pElm.prepend( spanElm );
+
+		return pElm;
+	},
+
+	// Create a skip link
+	createSkipLink = function( textTemplate, username, linkDestId, skipClass, linkDir ) {
+		const spanElm = document.createElement( "span" );
+		const aElm = document.createElement( "a" );
+		const pElm = document.createElement( "p" );
+
+		spanElm.innerHTML = textTemplate.replace( "%username%", username );
+
+		aElm.href = "#" + linkDestId;
+		aElm.prepend( spanElm );
+
+		pElm.className = skipClass + " " + skipClass + "-" + linkDir;
+		pElm.prepend( aElm );
+
+		return pElm;
 	};
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
