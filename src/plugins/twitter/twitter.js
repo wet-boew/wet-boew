@@ -50,7 +50,8 @@ var componentName = "wb-twitter",
 				if ( !i18nText ) {
 					i18n = wb.i18n;
 					i18nText = {
-						end: i18n( "twitter-end" ),
+						startNotice: i18n( "twitter-start-notice" ),
+						endNotice: i18n( "twitter-end-notice" ),
 						skipEnd: i18n( "twitter-skip-end" ),
 						skipStart: i18n( "twitter-skip-start" ),
 						timelineTitle: i18n( "twitter-timeline-title" )
@@ -146,8 +147,11 @@ var componentName = "wb-twitter",
 	addSkipLinks = function( iframeContainer ) {
 		const timelineIframe = iframeContainer.getElementsByTagName( "iframe" )[ 0 ];
 		const username = getTwitterUsername( timelineIframe.src );
+		const noticeClass = componentName + "-" + "notice";
 		const skipClass = componentName + "-" + "skip";
-		const skipToStartDir = "start";
+		const startText = "start";
+		const endText = "end";
+		let startNotice;
 		let endNotice;
 		let skipToEndLink;
 		let skipToStartLink;
@@ -158,23 +162,20 @@ var componentName = "wb-twitter",
 			return;
 		}
 
-		// Build and add an end of timeline notice
-		endNotice = createEndNotice( i18nText.end, username, timelineIframe.id );
+		// Add a start of timeline notice
+		startNotice = createNotice( i18nText.startNotice, username, timelineIframe.id, noticeClass, startText );
+		iframeContainer.before( startNotice );
+
+		// Add an end of timeline notice
+		endNotice = createNotice( i18nText.endNotice, username, timelineIframe.id, noticeClass, endText );
 		iframeContainer.after( endNotice );
 
-		// Hide the end notice upon losing focus
-		// Removes its tabindex attribute to make its CSS hide it from screen readers
-		endNotice.addEventListener( "blur", function( e ) {
-			e.target.removeAttribute( "tabindex" );
-		} );
-
 		// Add a skip to end link
-		skipToEndLink = createSkipLink( i18nText.skipEnd, username, endNotice.id, skipClass, "end" );
-		iframeContainer.before( skipToEndLink );
+		skipToEndLink = createSkipLink( i18nText.skipEnd, username, endNotice.id, skipClass, endText );
+		startNotice.before( skipToEndLink );
 
 		// Add a skip to start link
-		iframeContainer.id = timelineIframe.id + "-" + skipToStartDir;
-		skipToStartLink = createSkipLink( i18nText.skipStart, username, iframeContainer.id, skipClass, skipToStartDir );
+		skipToStartLink = createSkipLink( i18nText.skipStart, username, startNotice.id, skipClass, startText );
 		endNotice.before( skipToStartLink );
 
 		// Focus onto the destination of a clicked skip link
@@ -200,16 +201,22 @@ var componentName = "wb-twitter",
 		return username;
 	},
 
-	// Create an end of timeline notice
-	createEndNotice = function( textTemplate, username, iframeId ) {
+	// Create a timeline notice
+	createNotice = function( textTemplate, username, iframeId, noticeClass, position ) {
 		const spanElm = document.createElement( "span" );
 		const pElm = document.createElement( "p" );
 
 		spanElm.innerHTML = textTemplate.replace( "%username%", username );
 
-		pElm.id = iframeId + "-end";
-		pElm.className = "wb-twitter-end";
+		pElm.id = iframeId + "-" + position;
+		pElm.className = noticeClass + "-" + position;
 		pElm.prepend( spanElm );
+
+		// Hide the notice upon losing focus
+		// Removes its tabindex attribute to make its CSS hide it from screen readers
+		pElm.addEventListener( "blur", function( e ) {
+			e.target.removeAttribute( "tabindex" );
+		} );
 
 		return pElm;
 	},
