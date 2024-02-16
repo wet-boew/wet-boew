@@ -190,7 +190,8 @@ wb.i18nDict = {
 	tbFilterInst: "@tbFilterInst@",
 
 	/* Twitter embedded timeline */
-	"twitter-end": "@twitter-end@",
+	"twitter-start-notice": "@twitter-start-notice@",
+	"twitter-end-notice": "@twitter-end-notice@",
 	"twitter-skip-end": "@twitter-skip-end@",
 	"twitter-skip-start": "@twitter-skip-start@",
 	"twitter-timeline-title": "@twitter-timeline-title@",

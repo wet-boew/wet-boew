@@ -129,8 +129,30 @@
 		}
 	}
 
+	/* Completely hide the start notice initially... */
+	.wb-twitter-notice-start {
+		@extend %global-display-none;
+
+		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to start link gets activated */
+		/* When that happens, the start notice gets unveiled as invisible content to make it focusable (hidden elements can't receive focus programmatically) */
+		/* The notice reverts to hidden upon losing focus (plugin removes tabindex attribute) to hide it from screen readers */
+		&[tabindex] {
+			@extend %accessible-invisible;
+			@extend %global-display-block;
+			
+			/* Show a fake outline around the ajacent iframe container */
+			&:focus {
+				+ {
+					.twitter-timeline-rendered {
+						outline-style: auto;
+					}
+				}
+			}
+		}
+	}
+
 	/* Completely hide the end notice initially... */
-	.wb-twitter-end {
+	.wb-twitter-notice-end {
 		@extend %global-display-none;
 
 		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to end link gets activated */
