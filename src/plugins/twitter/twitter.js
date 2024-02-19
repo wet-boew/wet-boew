@@ -172,7 +172,7 @@ var componentName = "wb-twitter",
 
 		// Add a skip to end link
 		skipToEndLink = createSkipLink( i18nText.skipEnd, username, endNotice.id, skipClass, endText );
-		startNotice.before( skipToEndLink );
+		startNotice.after( skipToEndLink );
 
 		// Add a skip to start link
 		skipToStartLink = createSkipLink( i18nText.skipStart, username, startNotice.id, skipClass, startText );
