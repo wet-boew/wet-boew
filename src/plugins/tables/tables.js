@@ -434,8 +434,12 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 
 			// Verifies if regex was preset, if not preset use 'contains value' as default
 			if ( !$regex ) {
-				$value = $value.replace( /\s/g, "\\s*" );
-				$regex = "(" + $value + ")";
+				if ( $elm[ 0 ].getAttribute( "data-exact" ) ) {
+					$regex = "^" + $value + "$";
+				} else {
+					$value = $value.replace( /\s/g, "\\s*" );
+					$regex = "(" + $value + ")";
+				}
 			}
 
 			$datatable.column( $column ).search( $regex, true );
