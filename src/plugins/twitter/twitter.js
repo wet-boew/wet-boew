@@ -177,20 +177,6 @@ var componentName = "wb-twitter",
 		// Add a skip to start link
 		skipToStartLink = createSkipLink( i18nText.skipStart, username, startNotice.id, skipClass, startText );
 		endNotice.before( skipToStartLink );
-
-		// Focus onto the destination of a clicked skip link
-		$document.on( "click", "." + skipClass + " a", function( event ) {
-			const currentTarget = event.currentTarget;
-			const linkDestId = "#" + wb.jqEscape( currentTarget.getAttribute( "href" ).substring( 1 ) );
-			const $linkDest = $document.find( linkDestId );
-
-			// Assign focus to the skip link's destination
-			// Note: The focus event's scrolling behaviour is more graceful than "jumping" to an anchor link's destination
-			$linkDest.trigger( "setfocus.wb" );
-
-			// Don't engage normal link navigation behaviour (i.e. "jumping" to the link destination, changing address/navigation history)
-			return false;
-		} );
 	},
 
 	// Extract a Twitter username from the iframe's timeline URL
@@ -231,6 +217,20 @@ var componentName = "wb-twitter",
 
 		aElm.href = "#" + linkDestId;
 		aElm.prepend( spanElm );
+
+		// Focus onto the destination of a clicked link
+		$( aElm ).on( "click", function( event ) {
+			const currentTarget = event.currentTarget;
+			const linkDestId = "#" + wb.jqEscape( currentTarget.getAttribute( "href" ).substring( 1 ) );
+			const $linkDest = $document.find( linkDestId );
+
+			// Assign focus to the link's destination
+			// Note: The focus event's scrolling behaviour is more graceful than "jumping" to an anchor link's destination
+			$linkDest.trigger( "setfocus.wb" );
+
+			// Don't engage normal link navigation behaviour (i.e. "jumping" to the link destination, changing address/navigation history)
+			return false;
+		} );
 
 		pElm.className = skipClass + " " + skipClass + "-" + linkDir;
 		pElm.prepend( aElm );
