@@ -1,0 +1,2016 @@
+{
+  "@context": "https://wet-boew.github.io/vocab/context/2023/assessment-report-en.json-ld",
+  "@type": [
+    "earl:Assertion",
+    "acr:AssessmentReport"
+  ],
+  "earl:subject": {
+    "@id": "_:subject",
+    "dct:references": "https://wet-boew.github.io/wet-boew/demos/feeds/feeds-en.html",
+    "@type": [
+      "earl:TestSubject",
+      "schema:WebPage"
+    ],
+    "dct:description": "Feed Plugins",
+    "earl:pointer": {
+      "@type": "oa:CssSelector",
+      "@value": ".wb-feeds"
+    }
+  },
+  "earl:assertedBy": {
+    "foaf:name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
+    "foaf:homepage": "https://github.com/BrahimMahadi",
+    "@type": [
+      "earl:Assertor",
+      "foaf:Organization"
+    ],
+    "earl:mainAssertor": {
+      "foaf:name": "Brahim Mahadi Wachilli (Github: @BrahimMahadi)",
+      "foaf:homepage": "https://github.com/BrahimMahadi"
+    }
+  },
+  "dct:date": "2022-09-07",
+  "acr:standard": "https://www.w3.org/TR/WCAG20",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+  "dct:description": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
+  "earl:result": [
+    {
+      "earl:test": "WCAG20:non-text-content",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G94",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G95",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G82",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F3",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F13",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F20",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:audio-only-and-video-only-prerecorded",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G158",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G159",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G166",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F30",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F67",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:captions-prerecorded",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G93",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G87",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F8",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F75",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F74",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:audio-description-or-media-alternative-prerecorded",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G69",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G68",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/GG78",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G173",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G8",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G203",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:captions-live",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G9",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G93",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G87",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:captions-live",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G78",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G173",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G8",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G203",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:info-and-relationships",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/GG115",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G117",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G140",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F2",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F33",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F34",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F42",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F43",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F46",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F48",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F87",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F90",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F91",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F92",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:meaningful-sequence",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G57",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F34",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F33",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F32",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F49",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F1",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:sensory-characteristics",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G96",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F14",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F26",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:orientation",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G214",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F97",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F100",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:identify-input-purpose",
+      "earl:outcome": "earl:inapplicable",
+      "notes": "This component does not have any input fields, therefore this success criteria does not apply to it",
+      "techniques": [
+        "WCAG21Tech:html/H98",
+        "WCAG21Tech:failures/F107"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:use-of-color",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G14",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G205",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G182",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G183",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G111",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G14",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F13",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F73",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F81",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:audio-control",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G60",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G170",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G171",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F23",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F93",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:contrast-minimum",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G18",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G148",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G174",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G145",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F24",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F83",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:resize-text",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G142",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G146",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G178",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G179",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F69",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F80",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F94",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:image-of-text",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G140",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C22",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C30",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:reflow",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/C32",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C31",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C33",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/C38",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/SCR34",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G206",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F102",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "advisory": [
+        "WCAG21Tech:css/C34",
+        "WCAG21Tech:css/C37"
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:non-text-contrast",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G195",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G174",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G207",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G209",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F78",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:text-spacing",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/C36",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C35",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F104",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/C8",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/C21",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/C28",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:content-on-hover-or-focus",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "techniques": [
+        "WCAG21Tech:client-side-script/",
+        "WCAG21Tech:failures/"
+      ],
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/SCR39",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F95",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:keyboard",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G202",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G90",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F54",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F55",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F42",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:no-keyboard-trap",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G21",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F10",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:character-key-shortcuts",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G217",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F99",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:timing-adjustable",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G133",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G198",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G180",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G4",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F40",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F41",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F58",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G4",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G11",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G187",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G152",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G186",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G191",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F16",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F47",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F4",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F50",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F7",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:three-flashes-or-below-threshold",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G19",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G176",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G15",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:bypass-blocks",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G1",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G123",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G124",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G88",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F25",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:focus-order",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G59",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F44",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F85",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:link-purpose-in-context",
+      "earl:outcome": "earl:passed",
+      "notes": "",
+      "techniques": [
+        "WCAG21Tech:general/",
+        "WCAG21Tech:general/",
+        "WCAG21Tech:general/",
+        "WCAG21Tech:failures/",
+        "WCAG21Tech:failures/"
+      ],
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G91",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G189",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G53",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F63",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F89",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:multiple-ways",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G125",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G64",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G63",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G161",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G126",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G185",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:headings-and-labels",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G130",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G131",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG20:pause-stop-hide",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G149",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G15",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G165",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/G195",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F55",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:failures/F78",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG22:focus-appearance-minimum",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G195",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C40",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/C41",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG22:page-break-navigation",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/H99",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:pointer-gestures",
+      "earl:outcome": "earl:inapplicable",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G215",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G216",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F105",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }
+      ],
+      "earl:mode": "earl:manual",
+      "@type": [
+        "earl:TestResult",
+        "earl:Assertion"
+      ]
+    },
+    {
+      "earl:test": "WCAG21:pointer-cancellation",
+      "earl:outcome": "earl:passed",
+      "dct:description": "",
+      "earl:result": [
+        {
+          "earl:test": "WCAG2xTech:general/G210",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/G212",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        },
+        {
+          "earl:test": "WCAG2xTech:general/F101",
+          "earl:outcome": "earl:cantTell",
+          "earl:subject": "_:subject"
+        }],
+
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG21:label-in-name",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G208",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G211",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F96",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "advisory": [
+          "WCAG21Tech:general/G162"
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG21:motion-actuation",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G213",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F106",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:dragging-movements",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G219",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F108",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:target-size-minimum",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/C42",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:language-of-page",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/H57",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:language-of-parts",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/H58",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:on-focus",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G107",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F55",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "label": "SC 3.2.2 On Input (Level A)",
+        "earl:test": "WCAG20:on-input",
+        "outcome": "Inapplicable",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G13",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F36",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G80",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:consistent-navigation",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G61",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/F66",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:consistent-navigation",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G115",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G117",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:consistent-help",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G220",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:visible-controls",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G222",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:error-identification",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G83",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:aria/ARIA21",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/SCR18",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/ARIA18",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/ARIA19",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G84",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G85",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/SCR32",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:labels-or-instructions",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G131",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/H44",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/H71",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G167",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F82",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:error-suggestion",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G83",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/ARIA2",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/ARIA18",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G85",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G177",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/SCR18",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/SCR32",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G84",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:error-prevention-legal-financial-data)",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G164",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G98",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G155",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G99",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G168",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:accessible-authentication",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G218",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG22:redundant-entry",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G221",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:parsing",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/G134",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G192",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/H88",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F70",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F77",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG20:name-role-value",
+        "earl:outcome": "earl:passed",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/ARIA14",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/ARIA16",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G108",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G135",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G10",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F59",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F15",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F20",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F68",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F79",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F86",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F89",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      },
+      {
+        "earl:test": "WCAG21:status-messages",
+        "earl:outcome": "earl:inapplicable",
+        "dct:description": "",
+        "earl:result": [
+          {
+            "earl:test": "WCAG2xTech:general/ARIA22",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/G199",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:general/ARIA19",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G83",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G84",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G85",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G177",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G194",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/ARIA23",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/G193",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/F103",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/ARIA18",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          },
+          {
+            "earl:test": "WCAG2xTech:failures/SCR14",
+            "earl:outcome": "earl:cantTell",
+            "earl:subject": "_:subject"
+          }
+        ],
+        "earl:mode": "earl:manual",
+        "@type": [
+          "earl:TestResult",
+          "earl:Assertion"
+        ]
+      }
+    ]
+  }
