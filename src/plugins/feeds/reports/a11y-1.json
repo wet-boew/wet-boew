@@ -29,7 +29,9 @@
       "foaf:homepage": "https://github.com/BrahimMahadi"
     }
   },
-  "date": "2022-09-07",
+  "dct:date": "2022-09-07",
+  "acr:standard": "https://www.w3.org/TR/WCAG20",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
   "dct:description": "Partial evaluation focused only on the component not its container. Evaluated all Success Criteria at Level AA of WCAG 2.2",
   "earl:result": [
     {
