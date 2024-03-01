@@ -151,6 +151,7 @@ wb.i18nDict = {
 	"cal-goToBtn": "@cal-goToBtn@",
 	prvMnth: "@prvMnth@",
 	nxtMnth: "@nxtMnth@",
+	addToCal: "@addToCal@",
 
 	/* Lightbox */
 	"lb-curr": "@lb-curr@",

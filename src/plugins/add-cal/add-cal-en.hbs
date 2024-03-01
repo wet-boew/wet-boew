@@ -10,90 +10,94 @@
 	"dateModified": "2022-07-25"
 }
 ---
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
 
 <span class="wb-prettify all-pre"></span>
 
-<h2>Example of an event including a detailed location</h2>
+<h2>Example of an event including a detailed location with specific button location</h2>
 <p>The following example present an event including a full detailed location (street address, region, province and postal code).</p>
-<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
+<div class="wb-addcal mrgn-bttm-md" data-addcal-target="addcalTarget">
 	<h3 property="name">Canux20</h3>
-	<p property="description">CanUX (pronounced “canucks”, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.</p>
-	<p property="location" typeof="Place">
-		<span property="name">Shaw Centre</span><br />
-		<span class="address" property="address" typeof="PostalAddress">
-			<span property="streetAddress">55 Colonel By Drive</span><br />
-			<span property="addressLocality">Ottawa</span>,
-			<span property="addressRegion">ON</span><br />
-			<span property="postalCode">K1N 9J2</span>
-		</span>
-	</p>
-	<dl>
-		<dt>Start</dt>
-		<dd><time property="startDate" datetime="2023-01-27 07:00-05:00">Friday, Jan 27, 2023, 7:00am EST</time></dd>
-		<dt>End</dt>
-		<dd><time property="endDate" datetime="2023-01-29 12:00-05:00">Sunday, Jan 29, 2023, 12:00pm EST</time></dd>
-	</dl>
+	<div class="row">
+		<div class="col-md-9">
+			<p property="description">CanUX (pronounced “canucks”, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.</p>
+			<p property="location" typeof="Place">
+				<span property="name">Shaw Centre</span><br />
+				<span class="address" property="address" typeof="PostalAddress">
+					<span property="streetAddress">55 Colonel By Drive</span><br />
+					<span property="addressLocality">Ottawa</span>,
+					<span property="addressRegion">ON</span><br />
+					<span property="postalCode">K1N 9J2</span>
+				</span>
+			</p>
+			<dl>
+				<dt>Start</dt>
+				<dd><time property="startDate" datetime="2023-01-27 07:00-05:00">Friday, Jan 27, 2023, 7:00am EST</time></dd>
+				<dt>End</dt>
+				<dd><time property="endDate" datetime="2023-01-29 12:00-05:00">Sunday, Jan 29, 2023, 12:00pm EST</time></dd>
+			</dl>
+		</div>
+		<div id="addcalTarget" class="col-md-3"></div>
+	</div>
 </div>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;wb-addcal mrgn-bttm-md&quot; data-addcal-target=&quot;addcalTarget&quot;&gt;
+	&lt;h3 property=&quot;name&quot;&gt;Canux20&lt;/h3&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;div class=&quot;col-md-9&quot;&gt;
+			&lt;p property=&quot;description&quot;&gt;CanUX (pronounced “canucks”, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.&lt;/p&gt;
+			&lt;p property=&quot;location&quot; typeof=&quot;Place&quot;&gt;
+				&lt;span property=&quot;name&quot;&gt;Shaw Centre&lt;/span&gt;&lt;br /&gt;
+				&lt;span class=&quot;address&quot; property=&quot;address&quot; typeof=&quot;PostalAddress&quot;&gt;
+					&lt;span property=&quot;streetAddress&quot;&gt;55 Colonel By Drive&lt;/span&gt;&lt;br /&gt;
+					&lt;span property=&quot;addressLocality&quot;&gt;Ottawa&lt;/span&gt;,
+					&lt;span property=&quot;addressRegion&quot;&gt;ON&lt;/span&gt;&lt;br /&gt;
+					&lt;span property=&quot;postalCode&quot;&gt;K1N 9J2&lt;/span&gt;
+				&lt;/span&gt;
+			&lt;/p&gt;
+			&lt;dl&gt;
+				&lt;dt&gt;Start&lt;/dt&gt;
+				&lt;dd&gt;&lt;time property=&quot;startDate&quot; datetime=&quot;2023-01-27 07:00-05:00&quot;&gt;Friday, Jan 27, 2023, 7:00am EST&lt;/time&gt;&lt;/dd&gt;
+				&lt;dt&gt;End&lt;/dt&gt;
+				&lt;dd&gt;&lt;time property=&quot;endDate&quot; datetime=&quot;2023-01-29 12:00-05:00&quot;&gt;Sunday, Jan 29, 2023, 12:00pm EST&lt;/time&gt;&lt;/dd&gt;
+			&lt;/dl&gt;
+		&lt;/div&gt;
+		&lt;div id=&quot;addcalTarget&quot; class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</details>
 
 <h2>Example of an event including a place only</h2>
 <p>The following example present an event including a place only without it's full address.</p>
-<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
+<div class="wb-addcal mrgn-bttm-md">
 	<h3 property="name">Igloo Baratanga</h3>
 	<p property="description">A percussion activity for the whole family! Take part in a drum circle and get warmed up. No musical experience required and smiles guaranteed! Come play with us!</p>
 	<p><strong>When:</strong> From <time property="startDate" datetime="2023-02-08 13:00-05:00">Wednesday, February 8, 2023 | 1:00 pm</time> to <time property="endDate" datetime="2023-02-08 13:30-05:00">1:30 pm</time></p>
 	<p><strong>Where:</strong> <span property="location">Snowflake Kingdom, <span lang="fr">Jacques-Cartier</span> Park, Gatineau</span></p>
 </div>
-
-<h2>Example of an online event</h2>
-<div class="wb-addcal provisional mrgn-bttm-md" typeof="Event">
-	<h3 property="name">Marsai Martin’s Picks for a Social Summer</h3>
-	<p property="description">There’s no time like summer for trying new things and meeting new people, especially if you’ve been feeling lonely.</p>
-	<p><strong>When:</strong> From <time property="startDate" datetime="2023-08-08 13:00-04:00">Tuesday, August 8, 2023 | 1:00 pm</time> to <time property="endDate" datetime="2023-08-08 15:30-04:00">3:30 pm</time></p>
-	<p><strong>Where:</strong> <span property="location" typeof="VirtualLocation">Online (<a href="https://virtual.event" target="_blank" rel="noopener noreferrer" property="url">https://virtual.event</a>)</span></p>
-</div>
-
-<h2>Source code</h2>
-<pre><code>&lt;h2&gt;Example of an event including a detailed location&lt;/h2&gt;
-&lt;p&gt;The following example present an event including a full detailed location (street address, region, province and postal code).&lt;/p&gt;
-&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
-	&lt;h3 property=&quot;name&quot;&gt;Canux20&lt;/h3&gt;
-	&lt;p property=&quot;description&quot;&gt;CanUX (pronounced &ldquo;canucks&rdquo;, like the hockey team) is an independent, locally-grown, non-profit, volunteer-driven event created for people who want to learn and share their expertise about user experience, and how our profession contributes to making things work better for everyone.&lt;/p&gt;
-	&lt;p property=&quot;location&quot; typeof=&quot;Place&quot;&gt;
-		&lt;span property=&quot;name&quot;&gt;Shaw Centre&lt;/span&gt;&lt;br /&gt;
-		&lt;span class=&quot;address&quot; property=&quot;address&quot; typeof=&quot;PostalAddress&quot;&gt;
-			&lt;span property=&quot;streetAddress&quot;&gt;55 Colonel By Drive&lt;/span&gt;&lt;br /&gt;
-			&lt;span property=&quot;addressLocality&quot;&gt;Ottawa&lt;/span&gt;,
-			&lt;span property=&quot;addressRegion&quot;&gt;ON&lt;/span&gt;&lt;br /&gt;
-			&lt;span property=&quot;postalCode&quot;&gt;K1N 9J2&lt;/span&gt;
-		&lt;/span&gt;
-	&lt;/p&gt;
-	&lt;dl&gt;
-		&lt;dt&gt;Start&lt;/dt&gt;
-		&lt;dd&gt;&lt;time property=&quot;startDate&quot; datetime=&quot;2023-01-27 07:00-05:00&quot;&gt;Friday, Jan 27, 2023, 7:00am EST&lt;/time&gt;&lt;/dd&gt;
-		&lt;dt&gt;End&lt;/dt&gt;
-		&lt;dd&gt;&lt;time property=&quot;endDate&quot; datetime=&quot;2023-01-29 12:00-05:00&quot;&gt;Sunday, Jan 29, 2023, 12:00pm EST&lt;/time&gt;&lt;/dd&gt;
-	&lt;/dl&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;Example of an event including a place only&lt;/h2&gt;
-&lt;p&gt;The following example present an event including a place only without it's full address.&lt;/p&gt;
-&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;wb-addcal mrgn-bttm-md&quot;&gt;
 	&lt;h3 property=&quot;name&quot;&gt;Igloo Baratanga&lt;/h3&gt;
 	&lt;p property=&quot;description&quot;&gt;A percussion activity for the whole family! Take part in a drum circle and get warmed up. No musical experience required and smiles guaranteed! Come play with us!&lt;/p&gt;
 	&lt;p&gt;&lt;strong&gt;When:&lt;/strong&gt; From &lt;time property=&quot;startDate&quot; datetime=&quot;2023-02-08 13:00-05:00&quot;&gt;Wednesday, February 8, 2023 | 1:00 pm&lt;/time&gt; to &lt;time property=&quot;endDate&quot; datetime=&quot;2023-02-08 13:30-05:00&quot;&gt;1:30 pm&lt;/time&gt;&lt;/p&gt;
 	&lt;p&gt;&lt;strong&gt;Where:&lt;/strong&gt; &lt;span property=&quot;location&quot;&gt;Snowflake Kingdom, &lt;span lang=&quot;fr&quot;&gt;Jacques-Cartier&lt;/span&gt; Park, Gatineau&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;Example of an online event&lt;/h2&gt;
-&lt;div class=&quot;wb-addcal provisional mrgn-bttm-md&quot; typeof=&quot;Event&quot;&gt;
-	&lt;h3 property=&quot;name&quot;&gt;Marsai Martin&rsquo;s Picks for a Social Summer&lt;/h3&gt;
-	&lt;p property=&quot;description&quot;&gt;There&rsquo;s no time like summer for trying new things and meeting new people, especially if you&rsquo;ve been feeling lonely.&lt;/p&gt;
-	&lt;p&gt;&lt;strong&gt;When:&lt;/strong&gt; From &lt;time property=&quot;startDate&quot; datetime=&quot;2023-08-08 13:00-04:00&quot;&gt;Tuesday, August 8, 2023 | 1:00 pm&lt;/time&gt; to &lt;time property=&quot;endDate&quot; datetime=&quot;2023-08-08 15:30-04:00&quot;&gt;3:30 pm&lt;/time&gt;&lt;/p&gt;
-	&lt;p property=&quot;location&quot; typeof=&quot;VirtualLocation&quot;&gt;&lt;strong&gt;Where:&lt;/strong&gt; Online (&lt;a href=&quot;https://virtual.event&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; property=&quot;url&quot;&gt;https://virtual.event&lt;/a&gt;)&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+</details>
+
+<h2>Example of an online event</h2>
+<div class="wb-addcal mrgn-bttm-md">
+	<h3 property="name">Marsai Martin’s Picks for a Social Summer</h3>
+	<p property="description">There’s no time like summer for trying new things and meeting new people, especially if you’ve been feeling lonely.</p>
+	<p><strong>When:</strong> From <time property="startDate" datetime="2023-08-08 13:00-05:00">Tuesday, August 8, 2023 | 1:00 pm</time> to <time property="endDate" datetime="2023-08-08 15:30-05:00">3:30 pm</time></p>
+	<p><strong>Where:</strong> <span property="location" typeof="VirtualLocation">Online (<a href="https://virtual.event" target="_blank" rel="noopener noreferrer" property="url">https://virtual.event</a>)</span></p>
+</div>
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class=&quot;wb-addcal mrgn-bttm-md&quot;&gt;
+	&lt;h3 property=&quot;name&quot;&gt;Marsai Martin’s Picks for a Social Summer&lt;/h3&gt;
+	&lt;p property=&quot;description&quot;&gt;There’s no time like summer for trying new things and meeting new people, especially if you’ve been feeling lonely.&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;When:&lt;/strong&gt; From &lt;time property=&quot;startDate&quot; datetime=&quot;2023-08-08 13:00-05:00&quot;&gt;Tuesday, August 8, 2023 | 1:00 pm&lt;/time&gt; to &lt;time property=&quot;endDate&quot; datetime=&quot;2023-08-08 15:30-05:00&quot;&gt;3:30 pm&lt;/time&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;Where:&lt;/strong&gt; &lt;span property=&quot;location&quot; typeof=&quot;VirtualLocation&quot;&gt;Online (&lt;a href=&quot;https://virtual.event&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; property=&quot;url&quot;&gt;https://virtual.event&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</details>

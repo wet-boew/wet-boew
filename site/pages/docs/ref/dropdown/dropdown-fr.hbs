@@ -1,0 +1,95 @@
+---
+{
+	"title": "Bouton de menu déroulant",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Bouton affichant un menu déroulant d'actions ou de liens au clic",
+	"altLangPrefix": "dropdown",
+	"dateModified": "2023-02-15"
+}
+---
+
+<div lang="en" class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../provisional-fr.html">Check other provisional features available.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<h2>But</h2>
+<p>Bouton affichant un menu déroulant d'actions ou de liens au clic</p>
+
+<h2>Exemples pratiques</h2>
+<ul>
+	<li><a href="../../../demos/dropdown/dropdown-en.html">Exemple en anglais</a></li>
+	<li><a href="../../../demos/dropdown/dropdown-fr.html">Exemple en français</a></li>
+</ul>
+
+<h2>Évaluation et rapport</h2>
+<p>Il n'y a pas d'évaluation ni de rapport disponible pour cette composante.</p>
+
+<h2>API (Version 1.0)</h2>
+<dl class="dl-horizontal">
+	<dt>Fonction</dt>
+	<dd>Provisoire</dd>
+	<dt>Configuration</dt>
+	<dd>N'est pas applicable</dd>
+	<dt>Interface utilisateur (Modèle)</dt>
+	<dd>Provisoire</dd>
+	<dt>Source de données</dt>
+	<dd>Provisoire</dd>
+	<dt>Affichage et style</dt>
+	<dd>Provisoire</dd>
+	<dt>Chaîne de caractères i18n</dt>
+	<dd>Provisoire</dd>
+</dl>
+
+<h3>Fonction</h3>
+<p>(Version 1.0)</p>
+<table class="table">
+	<tr>
+		<th>Type de fonction</th>
+		<th>Nom</th>
+		<th>Comment implémenter</th>
+		<th>Fonction</th>
+	</tr>
+	<tr>
+		<td>Événement jQuery</td>
+		<td><code>wb-init.dropdown</code></td>
+		<td>Déclenché manuellement (par exemple&nbsp;: <code>$( ".dropdown" ).trigger( "wb-init.dropdown" );</code>).</td>
+		<td>Initialise la composante <code>.dropdown</code>. Cette composante sera initialisée automatiquement sauf si l'élément <code>.dropdown</code> est ajouté après le chargement de la page et l'initialisation de wet-boew.</td>
+	</tr>
+	<tr>
+		<td>Événement jQuery</td>
+		<td><code>wb-ready.dropdown</code></td>
+		<td>Déclenché automatiquement après l'initialisation du plugin.</td>
+		<td>Utilisé pour identifier quand et où la composante s'initialise.
+			<pre><code>$( document ).on( "wb-ready.dropdown", ".dropdown", function( event ) {
+});</code></pre>
+			<pre><code>$elm.on( "wb-ready.dropdown", function( event ) {
+});</code></pre>
+		</td>
+	</tr>
+</table>
+
+<h3>Configuration</h3>
+<p>N'est pas applicable pour cette composante.</p>
+
+<h3>Interface utilisateur (Modèle)</h3>
+<p>(Provisoire)</p>
+
+<pre><code>&lt;div class="dropdown"&gt;
+	&lt;button class="btn btn-default dropdown-toggle" type="button"&gt;Menu déroulant&lt;/button&gt;
+	&lt;ul class="dropdown-menu"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Lien 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Lien 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Lien 3&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Lien 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>Code source</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/dropdown">Code source d'Ajout au calendrier sur GitHub</a></p>

@@ -1,0 +1,94 @@
+---
+{
+	"title": "Dropdown button",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Dropdown button to display a list of actions or links on click",
+	"altLangPrefix": "dropdown",
+	"dateModified": "2023-02-15"
+}
+---
+<div class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../provisional-en.html">Check other provisional features available.</a></small></p>
+</div>
+
+<span class="wb-prettify all-pre"></span>
+
+<h2>Purpose</h2>
+<p>Dropdown button to display a list of actions or links on click</p>
+
+<h2>Working example</h2>
+<ul>
+	<li><a href="../../../demos/dropdown/dropdown-en.html">English example</a></li>
+	<li><a href="../../../demos/dropdown/dropdown-fr.html">French example</a></li>
+</ul>
+
+<h2>Evaluation and report</h2>
+<p>There is no evaluation and report available for this component.</p>
+
+<h2>API (Version 1.0)</h2>
+<dl class="dl-horizontal">
+	<dt>Function</dt>
+	<dd>Provisional</dd>
+	<dt>Configuration</dt>
+	<dd>Not applicable</dd>
+	<dt>User interface (Template)</dt>
+	<dd>Provisional</dd>
+	<dt>Data source</dt>
+	<dd>Provisional</dd>
+	<dt>View and style</dt>
+	<dd>Provisional</dd>
+	<dt>i18n string</dt>
+	<dd>Provisional</dd>
+</dl>
+
+<h3>Function</h3>
+<p>(Version 1.0)</p>
+<table class="table">
+	<tr>
+		<th>Function type</th>
+		<th>Name</th>
+		<th>How to implement</th>
+		<th>What it does</th>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-init.dropdown</code></td>
+		<td>Triggered manually (e.g., <code>$( ".dropdown" ).trigger( "wb-init.dropdown" );</code>).</td>
+		<td>Initializes the <code>.dropdown</code> plugin. This plugin will be initialized automatically unless the <code>.dropdown</code> element is added after the page load and wet-boew was initialized.</td>
+	</tr>
+	<tr>
+		<td>jQuery Event</td>
+		<td><code>wb-ready.dropdown</code></td>
+		<td>Triggered automatically after the plugin initializes.</td>
+		<td>Used to identify when and where the plugin initializes.
+			<pre><code>$( document ).on( "wb-ready.dropdown", ".dropdown", function( event ) {
+});</code></pre>
+			<pre><code>$elm.on( "wb-ready.dropdown", function( event ) {
+});</code></pre>
+		</td>
+	</tr>
+</table>
+
+<h3>Configuration</h3>
+<p>Not applicable for this plugin.</p>
+
+<h3>User interface (Template)</h3>
+<p>(Provisional)</p>
+
+<pre><code>&lt;div class="dropdown"&gt;
+	&lt;button class="btn btn-default dropdown-toggle" type="button"&gt;Dropdown&lt;/button&gt;
+	&lt;ul class="dropdown-menu"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Link 4&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/dropdown">Add to Calendar source code on GitHub</a></p>
