@@ -602,7 +602,7 @@ Modernizr.load( [
 					if ( isTrident ) {
 
 						// Load an ES6 polyfill
-						Modernizr.load( "timeout=500!https://polyfill.io/v3/polyfill.min.js?features=es6" );
+						Modernizr.load( "timeout=500!https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" );
 
 						// Specify the CDN's font URL
 						// Note: IE11 is unable to resolve this on its own
