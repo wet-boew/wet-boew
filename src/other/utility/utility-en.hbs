@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2023-08-15"
+	"dateModified": "2023-09-01"
 }
 ---
 
@@ -21,7 +21,9 @@
 <ul>
 	<li><a href="#alignment">Alignment</a></li>
 	<li><a href="#background">Background</a></li>
+	<li><a href="#borders">Borders</a></li>
 	<li><a href="#colors">Color schemes</a></li>
+	<li><a href="#shadows">Shadows</a></li>
 	<li><a href="#spacing">Spacing</a></li>
 	<li><a href="#sizing">Sizing</a></li>
 	<li><a href="#flexbox">Flexbox</a></li>
@@ -137,7 +139,46 @@
 &lt;/div&gt;
 &lt;button type="button" class="btn text-white bg-dark"&gt;Button&lt;button&gt;</code></pre>
 
+<h2 id="borders">Borders</h2>
+
+<h3><code>border-top-0</code></h3>
+<p>Disable an element's top border.</p>
+<h4>Working example</h4>
+<div class="panel panel-default brdr-rds-0 shadow-none border-top-0">
+	<div class="panel-body">
+		<p>Suspendisse faucibus nisl at consectetur.</p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="panel panel-default brdr-rds-0 shadow-none <strong>border-top-0</strong>"&gt;
+	&lt;div class="panel-body"&gt;
+		&lt;p>Suspendisse faucibus nisl at consectetur.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>border-bottom-0</code></h3>
+<p>Disable an element's bottom border.</p>
+<h4>Working example</h4>
+<div class="panel panel-default brdr-rds-0 shadow-none border-bottom-0">
+	<div class="panel-body">
+		<p>Suspendisse faucibus nisl at consectetur.</p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="panel panel-default brdr-rds-0 shadow-none <strong>border-bottom-0</strong>"&gt;
+	&lt;div class="panel-body"&gt;
+		&lt;p>Suspendisse faucibus nisl at consectetur.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h2 id="colors">Color Schemes</h2>
+
+<h3><code>text-black</code></h3>
+<p>Set text in black.</p>
+<h4>Working example</h4>
+<p class="text-black">Suspendisse faucibus nisl at consectetur. Lorem ipsum <a href="#" class="text-black">dolor sit amet, consectetur.</a></p>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="<strong>text-black</strong>"&gt;Suspendisse faucibus nisl at consectetur. Lorem ipsum &lt;a href="#" class="text-white"&gt;dolor sit amet, consectetur.&lt;/a&gt;&lt;/p&gt;</code></pre>
 
 <h3><code>text-white</code></h3>
 <p>Set text in white. Works jointly with darker backgrounds.</p>
@@ -145,6 +186,16 @@
 <p class="bg-darker text-white">Suspendisse faucibus nisl at consectetur. Lorem ipsum <a href="#" class="text-white">dolor sit amet, consectetur.</a></p>
 <h4>Code sample</h4>
 <pre><code>&lt;p class="bg-darker <strong>text-white</strong>"&gt;Suspendisse faucibus nisl at consectetur. Lorem ipsum &lt;a href="#" class="text-white"&gt;dolor sit amet, consectetur.&lt;/a&gt;&lt;/p&gt;</code></pre>
+
+<h2 id="shadows">Shadows</h2>
+<h3><code>shadow-none</code></h3>
+<p>Disable an element's shadows.</p>
+<h4>Working example</h4>
+<button class="btn btn-default active">Active button with shadow</button>
+<button class="btn btn-default active shadow-none">Active button without shadow</button>
+<h4>Code sample</h4>
+<pre><code>&lt;button class="btn btn-default active"&gt;Active button with shadow&lt;/button&gt;
+&lt;button class="btn btn-default active <strong>shadow-none</strong>"&gt;Active button without shadow&lt;/button&gt;</code></pre>
 
 <h2 id="spacing">Spacing</h2>
 
@@ -299,6 +350,40 @@
 	&lt;p class="well"&gt;Flex item&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h3><code>d-md-flex</code></h3>
+<p>Set an element as a flexbox container and change its direct children into flex items. To use when you only want the style applied for <code>md</code> breakpoint and up.</p>
+<h4>Working example</h4>
+<div class="d-md-flex">
+	<p class="well">Flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="<strong>d-md-flex</strong>"&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-wrap</code></h3>
+<p>Allow a flexbox container's flex items to wrap across multiple lines. Useful for grid layouts.</p>
+<h4>Working example</h4>
+<div class="row d-flex flex-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row d-flex <strong>flex-wrap</strong>"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h3><code>flex-sm-wrap</code></h3>
 <p>Allow a flexbox container's flex items to wrap across multiple lines in small view and over. Useful for grid layouts.</p>
 <h4>Working example</h4>
@@ -312,10 +397,31 @@
 </div>
 <h4>Code sample</h4>
 <pre><code>&lt;div class="row d-sm-flex <strong>flex-sm-wrap</strong>"&gt;
-	&lt;div class="col-sm-12"&gt;
+	&lt;div class="col-xs-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
-	&lt;div class="col-sm-12"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-md-wrap</code></h3>
+<p>Allow a flexbox container's flex items to wrap across multiple lines in medium view and over. Useful for grid layouts.</p>
+<h4>Working example</h4>
+<div class="row d-md-flex flex-md-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="row d-md-flex <strong>flex-md-wrap</strong>"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -330,6 +436,62 @@
 <h4>Code sample</h4>
 <pre><code>&lt;div class="d-flex <strong>flex-column</strong>"&gt;
 	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-sm-column"><code>flex-sm-column</code></h3>
+<p><strong>TODO: Working example looks literally identical to no flexbox at all... try finding a way to make the example stand out on its own merits.</strong></p>
+<p><strong>NOTE: This example initially used d-flex... might've been doing that deliberately to make the viewport transition obvious)</strong></p>
+<p>Set a flexbox container's direction to vertical instead of horizontal in small view and over.</p>
+<h4>Working example</h4>
+<div class="d-sm-flex flex-sm-column">
+	<p class="well">Flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-sm-flex <strong>flex-sm-column</strong>"&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-md-column"><code>flex-md-column</code></h3>
+<p><strong>TODO: Working example looks literally identical to no flexbox at all... try finding a way to make the example stand out on its own merits.</strong></p>
+<p><strong>NOTE: This example initially used d-flex... might've been doing that deliberately to make the viewport transition obvious)</strong></p>
+<p>Set a flexbox container's direction to vertical instead of horizontal in medium view and over.</p>
+<h4>Working example</h4>
+<div class="d-md-flex flex-md-column">
+	<p class="well">Flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-md-flex <strong>flex-md-column</strong>"&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-sm-grow-1</code></h3>
+<p>Make a flex item fill all available space in small view and over.</p>
+<h4>Working example</h4>
+<div class="d-sm-flex">
+	<p class="well flex-sm-grow-1">Grown flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-sm-flex"&gt;
+	&lt;p class="well <strong>flex-sm-grow-1</strong>"&gt;Grown flex item&lt;/p&gt;
+	&lt;p class="well"&gt;Flex item&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-md-grow-1</code></h3>
+<p>Make a flex item fill all available space in medium view and over.</p>
+<h4>Working example</h4>
+<div class="d-md-flex">
+	<p class="well flex-md-grow-1">Grown flex item</p>
+	<p class="well">Flex item</p>
+</div>
+<h4>Code sample</h4>
+<pre><code>&lt;div class="d-md-flex"&gt;
+	&lt;p class="well <strong>flex-md-grow-1</strong>"&gt;Grown flex item&lt;/p&gt;
 	&lt;p class="well"&gt;Flex item&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 

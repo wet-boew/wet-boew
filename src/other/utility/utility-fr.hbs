@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2023-08-15"
+	"dateModified": "2023-09-01"
 }
 ---
 
@@ -20,7 +20,9 @@
 <ul>
 	<li><a href="#alignment">Alignement</a></li>
 	<li><a href="#arriere-plan">Arrière-plan</a></li>
+	<li><a href="#bordures">Bordures</a></li>
 	<li><a href="#couleurs">Schémas de couleurs</a></li>
+	<li><a href="#ombres">Ombres</a></li>
 	<li><a href="#espacement">Espacement</a></li>
 	<li><a href="#dimension">Dimensionnement</a></li>
 	<li><a href="#flexbox" lang="en">Flexbox</a></li>
@@ -136,13 +138,62 @@
 &lt;/div&gt;
 &lt;button type="button" class="btn text-white bg-dark"&gt;Bouton&lt;/button&gt;</code></pre>
 
+<h2 id="bordures">Bordures</h2>
+
+<h3><code>border-top-0</code></h3>
+<p>Désactivez la bordure haute d'un élément.</p>
+<h4>Exemple pratique</h4>
+<div class="panel panel-default brdr-rds-0 shadow-none border-top-0">
+	<div class="panel-body">
+		<p>Suspendisse faucibus nisl at consectetur.</p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="panel panel-default brdr-rds-0 shadow-none <strong>border-top-0</strong>"&gt;
+	&lt;div class="panel-body"&gt;
+		&lt;p>Suspendisse faucibus nisl at consectetur.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>border-bottom-0</code></h3>
+<p>Désactivez la bordure du côté bas d'un élément.</p>
+<h4>Exemple pratique</h4>
+<div class="panel panel-default brdr-rds-0 shadow-none border-bottom-0">
+	<div class="panel-body">
+		<p>Suspendisse faucibus nisl at consectetur.</p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="panel panel-default brdr-rds-0 shadow-none <strong>border-bottom-0</strong>"&gt;
+	&lt;div class="panel-body"&gt;
+		&lt;p>Suspendisse faucibus nisl at consectetur.&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h2 id="couleurs">Schémas de couleurs</h2>
+<h3><code>text-black</code></h3>
+<p>Définir le texte en noir.</p>
+<h4>Exemple pratique</h4>
+<p class="text-black">Suspendisse faucibus nisl at consectetur. Lorem ipsum <a href="#" class="text-black">dolor sit amet, consectetur.</a></p>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="<strong>text-black</strong>"&gt;Suspendisse faucibus nisl at consectetur. Lorem ipsum &lt;a href="#" class="text-white"&gt;dolor sit amet, consectetur.&lt;/a&gt;&lt;/p&gt;</code></pre>
+
 <h3><code>text-white</code></h3>
 <p>Définir le texte en blanc. Fonctionne conjointement avec des arrière-plans plus sombres.</p>
 <h4>Exemple pratique</h4>
 <p class="bg-darker text-white">Suspendisse faucibus nisl at consectetur. Lorem ipsum <a href="#" class="text-white">dolor sit amet, consectetur.</a></p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="bg-darker <strong>text-white</strong>"&gt;Suspendisse faucibus nisl at consectetur. Lorem ipsum &lt;a href="#" class="text-white"&gt;dolor sit amet, consectetur.&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;</code></pre>
+
+<h2 id="ombres">Ombres</h2>
+<h3><code>shadow-none</code></h3>
+<p>Désactivez les ombres d'un élément.</p>
+<h4>Exemple pratique</h4>
+<button class="btn btn-default active">Bouton actif avec ombre</button>
+<button class="btn btn-default active shadow-none">Bouton actif sans ombre</button>
+<h4>Exemple de code</h4>
+<pre><code>&lt;button class="btn btn-default active"&gt;Bouton actif avec ombre&lt;/button&gt;
+&lt;button class="btn btn-default active <strong>shadow-none</strong>"&gt;Bouton actif sans ombre&lt;/button&gt;</code></pre>
 
 <h2 id="espacement">Espacement</h2>
 <h3><code>p-0</code></h3>
@@ -296,6 +347,40 @@
 	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
+<h3><code>d-md-flex</code></h3>
+<p>Défini un élément en tant que conteneur "flex" et change ses enfants directs en tant qu'éléments "flex". À utiliser lorsque vous souhaitez que le style soit appliqué uniquement pour les points d'arrêt <code>md</code> et plus.</p>
+<h4>Exemple pratique</h4>
+<div class="d-md-flex">
+	<p class="well">Élément flex</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="<strong>d-md-flex</strong>"&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-wrap</code></h3>
+<p>Permet les éléments flex d'un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» de retourner à travers plusieurs lignes. Utile pour les dispositions en grille.</p>
+<h4>Example pratique</h4>
+<div class="row d-flex flex-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row d-flex <strong>flex-wrap</strong>"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 <h3><code>flex-sm-wrap</code></h3>
 <p>Permet les éléments flex d'un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» de retourner à travers plusieurs lignes dans la petite vue et plus. Utile pour les dispositions en grille.</p>
 <h4>Example pratique</h4>
@@ -309,16 +394,37 @@
 </div>
 <h4>Exemple de code</h4>
 <pre><code>&lt;div class="row d-sm-flex <strong>flex-sm-wrap</strong>"&gt;
-	&lt;div class="col-sm-12"&gt;
+	&lt;div class="col-xs-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
-	&lt;div class="col-sm-12"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-md-wrap</code></h3>
+<p>Permet les éléments flex d'un conteneur «&nbsp;<span lang="en">flexbox</span>&nbsp;» de retourner à travers plusieurs lignes dans la vue médium et plus. Utile pour les dispositions en grille.</p>
+<h4>Example pratique</h4>
+<div class="row d-md-flex flex-md-wrap">
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+	<div class="col-xs-12">
+		<p class="well"><code>col-xs-12</code></p>
+	</div>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="row d-md-flex <strong>flex-md-wrap</strong>"&gt;
+	&lt;div class="col-xs-12"&gt;
+		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="col-xs-12"&gt;
 		&lt;p class="well"&gt;&lt;code&gt;col-xs-12&lt;/code&gt;&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
 <h3 id="flex-column"><code>flex-column</code></h3>
-<p>Défini la direction d'un conteneur "flex" à la vertical au lieu de l'horizontal.</p>
+<p>Défini la direction d'un conteneur "flex" à la verticale au lieu de l'horizontal.</p>
 <h4>Exemple pratique</h4>
 <div class="d-flex flex-column">
 	<p class="well">Élément flex</p>
@@ -327,6 +433,62 @@
 <h4>Exemple de code</h4>
 <pre><code>&lt;div class="d-flex <strong>flex-column</strong>"&gt;
 	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-sm-column"><code>flex-sm-column</code></h3>
+<p><strong>TODO: Working example looks literally identical to no flexbox at all... try finding a way to make the example stand out on its own merits.</strong></p>
+<p><strong>NOTE: This example initially used d-flex... might've been doing that deliberately to make the viewport transition obvious)</strong></p>
+<p>Défini la direction d'un conteneur "flex" à la verticale au lieu de l'horizontal dans la petite vue et plus.</p>
+<h4>Exemple pratique</h4>
+<div class="d-sm-flex flex-sm-column">
+	<p class="well">Élément flex</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="d-sm-flex <strong>flex-sm-column</strong>"&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3 id="flex-md-column"><code>flex-md-column</code></h3>
+<p><strong>TODO: Working example looks literally identical to no flexbox at all... try finding a way to make the example stand out on its own merits.</strong></p>
+<p><strong>NOTE: This example initially used d-flex... might've been doing that deliberately to make the viewport transition obvious)</strong></p>
+<p>Défini la direction d'un conteneur "flex" à la verticale au lieu de l'horizontal dans la vue médium et plus.</p>
+<h4>Exemple pratique</h4>
+<div class="d-md-flex flex-md-column">
+	<p class="well">Élément flex</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="d-md-flex <strong>flex-md-column</strong>"&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-sm-grow-1</code></h3>
+<p>Faire en sorte qu'un élément flex utilise tout l'espace disponible dans la petite vue et plus.</p>
+<h4>Exemple pratique</h4>
+<div class="d-sm-flex">
+	<p class="well flex-sm-grow-1">Élément flex grandi</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="d-sm-flex"&gt;
+	&lt;p class="well <strong>flex-sm-grow-1</strong>"&gt;Élément flex grandi&lt;/p&gt;
+	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<h3><code>flex-md-grow-1</code></h3>
+<p>Faire en sorte qu'un élément flex utilise tout l'espace disponible dans la vue médium et plus.</p>
+<h4>Exemple pratique</h4>
+<div class="d-md-flex">
+	<p class="well flex-md-grow-1">Élément flex grandi</p>
+	<p class="well">Élément flex</p>
+</div>
+<h4>Exemple de code</h4>
+<pre><code>&lt;div class="d-md-flex"&gt;
+	&lt;p class="well <strong>flex-md-grow-1</strong>"&gt;Élément flex grandi&lt;/p&gt;
 	&lt;p class="well"&gt;Élément flex&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 

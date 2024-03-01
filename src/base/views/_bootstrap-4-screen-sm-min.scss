@@ -17,6 +17,18 @@
 	display: flex;
 }
 
+/*TODO: These are using !important... despite the commit message saying it wouldn't be done like that for flex-only properties... non-viewport class might uses !important but lacks other browser-prefixed properties*/
+.flex-sm-column {
+	-ms-flex-direction: column !important;
+	-webkit-box-direction: normal !important;
+	-webkit-box-orient: vertical !important;
+	flex-direction: column !important;
+}
+
+.flex-sm-grow-1 {
+	flex-grow: 1; /* Bootstrap 4.1 */
+}
+
 .flex-sm-wrap {
 	flex-wrap: wrap;
 }

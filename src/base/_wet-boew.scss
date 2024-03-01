@@ -180,6 +180,7 @@
 /* Medium view and over */
 @media screen and (min-width: $screen-md-min) {
 	@import "views/screen-md-min";
+	@import "views/_bootstrap-4-screen-md-min";
 	@import "proximity/screen-md-min";
 	@import "../plugins/feeds/screen-md-min";
 	@import "../plugins/tabs/screen-md-min";

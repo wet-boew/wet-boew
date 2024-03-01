@@ -3,6 +3,15 @@
   @title: Bootstrap 4 suplemental style for WET-BOEW
  */
 
+/* Borders */
+.border-top-0 {
+	border-top: 0 !important;
+}
+
+.border-bottom-0 {
+	border-bottom: 0 !important;
+}
+
 /* Spacing */
 .p-0 {
 	padding: 0 !important;
@@ -30,6 +39,11 @@
 
 .mt-auto {
 	margin-top: auto !important;
+}
+
+/* Shadows */
+.shadow-none {
+	box-shadow: none !important; /* Bootstrap 4.1 */
 }
 
 /* Stretched link */
@@ -66,6 +80,10 @@
 	flex-direction: column !important;
 }
 
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
 .align-items-center {
 	align-items: center !important;
 }
@@ -92,6 +110,10 @@
 }
 
 /* Color scheme */
+.text-black {
+	color: #000 !important; /* Bootstrap 5.1 */
+}
+
 .text-white, a.text-white:visited {
 	color: #fff;
 }
