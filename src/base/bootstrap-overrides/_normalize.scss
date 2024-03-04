@@ -1,0 +1,14 @@
+/*
+  WET-BOEW
+  @title: Bootstrap overrides for WET-BOEW - normalize.css
+ */
+
+/*
+ *	Restore user agent's "native" link outline styles
+ *	Prevents outlines from getting removed when the :focus pseudo-class is paired with :active and/or :hover
+ *	Matches normalize 6.0.0+'s default behaviour
+ */
+a:active,
+a:hover {
+	outline: revert;
+}
