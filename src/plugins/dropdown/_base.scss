@@ -1,0 +1,82 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ * Extend: https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_dropdowns.scss
+*/
+
+@mixin tabFocus() {
+	outline: 5px auto rgb(0, 95, 204);
+	outline-offset: -2px;
+}
+
+.wb-dropdown {
+	@extend .dropdown;
+
+	display: inline-block;
+
+	.dropdown-menu {
+		> li {
+			> button {
+				background: none;
+				border: none;
+				padding: .375em 1em;
+				text-align: left;
+				width: 100%;
+
+				&:hover {
+					background-color: rgba(0, 0, 0, .1);
+					color: $text-color;
+				}
+				&:focus { @include tabFocus(); }
+				&:focus-visible { @include tabFocus(); }
+			}
+
+			> a {
+				padding: .375em 1em;
+
+				&:hover {
+					background-color: rgba(0, 0, 0, .1);
+					color: $text-color;
+					text-decoration: underline;
+				}
+				&:focus {
+					@include tabFocus();
+					text-decoration: underline;
+				}
+				&:focus-visible { @include tabFocus(); }
+			}
+		}
+
+		.wb-disable & {
+			display: block;
+			float: none;
+			position: static;
+		}
+	}
+
+	.dropdown-toggle {
+		&:focus-visible {
+			@include tabFocus();
+		}
+
+		.dropdown-toggle-icon {
+			font-size: 75%;
+			margin-left: 8px;
+		}
+	}
+
+	ul {
+		display: none;
+
+		.wb-disable & {
+			display: block;
+		}
+	}
+
+	&.open {
+		.dropdown-toggle-icon {
+			transform: rotate(180deg);
+		}
+	}
+}
