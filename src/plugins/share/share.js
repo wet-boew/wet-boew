@@ -94,7 +94,11 @@ var componentName = "wb-share",
 				url: "https://www.tumblr.com/share/link?url={u}&amp;name={t}&amp;description={d}"
 			},
 			twitter: {
-				name: "Twitter",
+				name: "X",
+				url: "https://twitter.com/intent/tweet?text={t}&url={u}"
+			},
+			x: {
+				name: "X",
 				url: "https://twitter.com/intent/tweet?text={t}&url={u}"
 			},
 			yahoomail: {
@@ -192,6 +196,14 @@ var componentName = "wb-share",
 				keys.sort( function( x, y ) {
 					return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
 				} );
+
+				// If Twitter and X are both present, only keep X
+				if ( keys.includes( "twitter" ) && keys.includes( "x" ) ) {
+					keys = keys.filter( function( item ) {
+						return item !== "twitter";
+					} );
+				}
+
 				len = keys.length;
 
 				// Generate the panel
