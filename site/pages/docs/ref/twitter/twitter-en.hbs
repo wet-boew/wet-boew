@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Helps with implementing Twitter embedded timelines.",
 	"altLangPrefix": "twitter",
-	"dateModified": "2017-02-07"
+	"dateModified": "2023-11-14"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -46,12 +46,95 @@
 
 <section>
 	<h2>Configuration options</h2>
-	<p>All configuration options are detailed in <a rel="external" href="https://dev.twitter.com/web/overview">Twitter for Websites</a> documentation.</p>
+	<p>All configuration options are detailed in <a rel="external" href="https://dev.twitter.com/web/overview">Twitter for Websites</a> documentation:</p>
+	<ul>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview">Timelines overview</a></li>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/supported-languages">Supported languages and browsers</a></li>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/webpage-properties">Webpage properties</a></li>
+	</ul>
 	<p>
 		<strong>Note:</strong> Twitter has removed the ability to embed timelines with searches which includes hashtags.
 		Instead you can use the collections or list which are created using <a rel="external" href="https://tweetdeck.twitter.com">Tweet Deck</a>.
 		Please see <a rel="external" href="https://dev.twitter.com/web/overview">Twitter for Websites</a> for more information.
 	<p>
+	<p>Notable configuration options are outlined in the following table. WET may preset their values or leverage them in other ways.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Type</th>
+				<th scope="col">Option</th>
+				<th scope="col">Description</th>
+				<th scope="col">How to configure</th>
+				<th scope="col">Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>HTML attribute</td>
+				<td><code>data-dnt</code></td>
+				<td>Do not track parameter. Controls whether to allow Twitter to use the widget to personalize content, suggestions and ads.</td>
+				<td>Add a <code>data-dnt</code> attribute to the <code>&lt;a class="twitter-timeline"&gt;</code> element.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>WET automatically sets "true".</dd>
+						<dt>"true":</dt>
+						<dd>Disallows personalization.</dd>
+						<dt>"false":</dt>
+						<dd>Permits personalization.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>HTML attribute</td>
+				<td><code>data-height</code></td>
+				<td>Widget's maximum height. A vertical scrollbar appears if the widget's content exceeds it.</td>
+				<td>Add a <code>data-height</code> attribute to the <code>&lt;a class="twitter-timeline"&gt;</code> element.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Uses as much height as possible.</dd>
+						<dt>None (if <code>data-tweet-limit</code> is used):</dt>
+						<dd>WET automatically uses the same height as "fb-page" (500 CSS pixels). Intended for backwards-compatibility.</dd>
+						<dt>"fb-page":</dt>
+						<dd>WET uses the same height as the Facebook page plugin (500 CSS pixels).</dd>
+						<dt>Integer:</dt>
+						<dd>Number of CSS pixels.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>HTML attribute</td>
+				<td><code>data-lang</code></td>
+				<td>Widget's default language code. Used by the widget's user interface. Unsupported languages revert to English ("en").</td>
+				<td>Add a <code>data-lang</code> attribute to the <code>&lt;a class="twitter-timeline"&gt;</code> element.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Uses the link or closest parent element's <code>lang</code> attribute.</dd>
+						<dt>None (if link or closest parent element contains <code>lang="zh-Hans"</code>):</dt>
+						<dd>WET automatically sets "zh-cn". WET uses "zh-Hans" for Chinese (Simplified), but Twitter is unable to map it on its own.</dd>
+						<dt>Language code:</dt>
+						<dd>Any of <a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/supported-languages">Twitter's suppored languages</a>.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>HTML attribute</td>
+				<td><code>data-tweet-limit</code></td>
+				<td>Specify the number of tweets to be displayed. Stopped working on <time datetime="2023-07-21">July 21, 2023</time>.</td>
+				<td>Add a <code>data-tweet-limit</code> attribute to the <code>&lt;a class="twitter-timeline"&gt;</code> element.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Displays the top 100 most-liked tweets.</dd>
+						<dt>Integer:</dt>
+						<dd>Previously represented a specific number of tweets to display. WET now uses it as a flag to set a reduced height via <code>data-height</code>.</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
 <section>
