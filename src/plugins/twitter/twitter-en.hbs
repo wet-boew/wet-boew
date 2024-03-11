@@ -7,7 +7,7 @@
 	"tag": "twitter",
 	"parentdir": "twitter",
 	"altLangPrefix": "twitter",
-	"dateModified": "2017-02-07"
+	"dateModified": "2023-11-14"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -18,17 +18,42 @@
 </section>
 
 <section>
-	<h2>Example: Embedded User Timeline</h2>
-	<div class="wb-twitter">
-		<a class="twitter-timeline" href="https://twitter.com/WebExpToolkit" data-tweet-limit="3">Tweets by @WebExpToolkit</a>
-	</div>
+	<h2>Examples: Profile timeline</h2>
 
-	<section>
-		<h3>Code</h3>
-		<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
+	<div class="row">
+		<section class="col-md-6">
+			<h3>Standard account</h3>
+			<div class="wb-twitter">
+				<a class="twitter-timeline" href="https://twitter.com/WebExpToolkit" data-tweet-limit="3">Tweets by @WebExpToolkit</a>
+			</div>
+			<section>
+				<h4>Code</h4>
+				<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
 &lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/WebExpToolkit&quot; data-tweet-limit=&quot;3&quot; &gt;Tweets by @WebExpToolkit&lt;/a&gt;
 &lt;/div&gt;</code></pre>
-	</section>
+			</section>
+		</section>
 
-	<p>Twitter Developer Documentation: <a href="https://dev.twitter.com/web/embedded-timelines/user">Embedded User Timeline</a></p>
+		<section class="col-md-6">
+			<h3>"Verified" account</h3>
+			<div class="wb-twitter">
+				<a class="twitter-timeline" href="https://twitter.com/Canada" data-height="fb-page">Tweets by @Canada</a>
+			</div>
+			<section>
+				<h4>Code</h4>
+				<pre><code>&lt;div class=&quot;wb-twitter&quot;&gt;
+	&lt;a class=&quot;twitter-timeline&quot; href=&quot;https://twitter.com/Canada&quot; data-height=&quot;fb-page&quot;&gt;Tweets by @Canada&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+		</section>
+	</div>
+</section>
+
+<section>
+	<h2>Twitter developer documentation</h2>
+	<ul>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview">Timelines overview</a></li>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/supported-languages">Supported languages and browsers</a></li>
+		<li><a rel="external" href="https://developer.twitter.com/en/docs/twitter-for-websites/webpage-properties">Webpage properties</a></li>
+	</ul>
 </section>
