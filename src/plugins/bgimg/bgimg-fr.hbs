@@ -26,7 +26,7 @@
 </div>
 
 <details>
-	<summary>Source code</summary>
+	<summary>Code source</summary>
 	<pre><code>&lt;div class="bg-cover bg-center well" data-bgimg="../../demos/tabs/img/investinourfuture.jpg"&gt;
 		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
 			&lt;h4 class="mrgn-tp-md"&gt;Titre&lt;/h4&gt;
@@ -53,9 +53,33 @@
 </div>
 
 <details>
-	<summary>Source code</summary>
+	<summary>Code source</summary>
 	<pre><code>&lt;div class="bg-cover well"
 		data-bgimg-srcset="../../demos/tabs/img/investinourfuture.jpg 600w,
+				../../demos/tabs/img/flytheskies.jpg 960w,
+				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Titre&lt;/h4&gt;
+			&lt;p&gt;Paragraphe&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
+
+<h2>Définir aucune image d'arrière plan pour un certain point d'arrêt - <code>[data-bgimg-srcset]</code></h2>
+
+<pre><code>data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w, image2_link 960w, image3_link 1280w"</code></pre>
+
+<div class="bg-cover well" data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Titre</h4>
+		<p>Paragraphe</p>
+	</div>
+</div>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;div class="bg-cover well"
+		data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w,
 				../../demos/tabs/img/flytheskies.jpg 960w,
 				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
 		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
