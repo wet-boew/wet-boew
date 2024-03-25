@@ -110,7 +110,12 @@ var $document = wb.doc,
 
 		for ( link in optimizedLink ) {
 			elm = document.getElementById( link );
-			elm.style.backgroundImage = "url(" + optimizedLink[ link ] + ")";
+
+			if ( optimizedLink[ link ] === "https://wet-boew.github.io/vocab/wb/utilities#no-image" ) {
+				elm.style.backgroundImage = "none";
+			} else {
+				elm.style.backgroundImage = "url(" + optimizedLink[ link ] + ")";
+			}
 		}
 	};
 

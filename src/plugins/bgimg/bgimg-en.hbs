@@ -64,3 +64,27 @@
 		&lt;/div&gt;
 	&lt;/div&gt;</code></pre>
 </details>
+
+<h2>Specify no background image for a specific breakpoint</h2>
+
+<pre><code>data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w, image2_link 960w, image3_link 1280w"</code></pre>
+
+<div class="bg-cover well" data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w, ../../demos/tabs/img/flytheskies.jpg 960w, ../../demos/tabs/img/protect-environment.jpg 1280w">
+	<div class="well mrgn-tp-md mrgn-bttm-md">
+		<h4 class="mrgn-tp-md">Heading</h4>
+		<p>Paragraph</p>
+	</div>
+</div>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;div class="bg-cover well"
+		data-bgimg-srcset="https://wet-boew.github.io/vocab/wb/utilities#no-image 600w,
+				../../demos/tabs/img/flytheskies.jpg 960w,
+				../../demos/tabs/img/protect-environment.jpg 1280w"&gt;
+		&lt;div class="well mrgn-tp-md mrgn-bttm-md"&gt;
+			&lt;h4 class="mrgn-tp-md"&gt;Heading&lt;/h4&gt;
+			&lt;p&gt;SParagraph&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+</details>
