@@ -255,6 +255,31 @@
 	}
 }
 
+/* Disallow column breaks inside list column items */
+%proximity-colcount-no-break {
+	break-inside: avoid-column;
+}
+
+.colcount-no-break {
+	> {
+		dd,
+		dt,
+		li {
+			@extend %proximity-colcount-no-break;
+		}
+	}
+}
+
+dl {
+	&.colcount-no-break {
+		> {
+			div {
+				@extend %proximity-colcount-no-break;
+			}
+		}
+	}
+}
+
 .colcount-xxs-2 {
 	column-count: 2;
 }

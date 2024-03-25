@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2023-08-15"
+	"dateModified": "2024-03-25"
 }
 ---
 
@@ -24,6 +24,7 @@
 	<li><a href="#espacement">Espacement</a></li>
 	<li><a href="#dimension">Dimensionnement</a></li>
 	<li><a href="#flexbox" lang="en">Flexbox</a></li>
+	<li><a href="#listes">Listes</a></li>
 	<li><a href="#positionnement">Positionnement</a></li>
 	<li><a href="#tables">Tables</a></li>
 	<li><a href="#divers">Divers</a></li>
@@ -409,6 +410,189 @@
 		&lt;p class="well"&gt;Ligne 1&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
+
+<h2 id="listes">Listes</h2>
+
+<h3>Colonnes de liste (<code>colcount-*-*</code>)</h3>
+<p>Répend une liste à travers 2, 3 ou 4 colonnes.</p>
+<p>Puisque les colonnes sont semblables à des grilles, elles sont assujetties aux mêmes points d'arrêt que les grilles.</p>
+<h4>Classes disponibles</h4>
+<ul>
+	<li>2 colonnes&nbsp;:
+		<ul>
+			<li><code>colcount-xxs-2</code>, <code>colcount-xs-2</code>, <code>colcount-sm-2</code>, <code>colcount-md-2</code>, <code>colcount-lg-2</code>, <code>colcount-xl-2</code></li>
+		</ul>
+	</li>
+	<li>3 colonnes&nbsp;:
+		<ul>
+			<li><code>colcount-xxs-3</code>, <code>colcount-xs-3</code>, <code>colcount-sm-3</code>, <code>colcount-md-3</code>, <code>colcount-lg-3</code>, <code>colcount-xl-3</code></li>
+		</ul>
+	</li>
+	<li>4 colonnes&nbsp;:
+		<ul>
+			<li><code>colcount-xxs-4</code>, <code>colcount-xs-4</code>, <code>colcount-sm-4</code>, <code>colcount-md-4</code>, <code>colcount-lg-4</code>, <code>colcount-xl-4</code></li>
+		</ul>
+	</li>
+</ul>
+<h4>Liste sans ordre</h4>
+<h5>Exemple pratique</h5>
+<ul class="colcount-sm-2 colcount-md-3 colcount-lg-4">
+	<li>Élément 1<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 2<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 3</li>
+	<li>Élément 4<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 5<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 6<br>Ligne 2</li>
+	<li>Élément 7<br>Ligne 2</li>
+	<li>Élément 8</li>
+</ul>
+<h5>Exemple de code</h5>
+<pre><code>&lt;ul class="colcount-sm-2 colcount-md-3 colcount-lg-4"&gt;
+	&lt;li&gt;Élément 1&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 2&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 3&lt;/li&gt;
+	&lt;li&gt;Élément 4&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 5&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 6&lt;br&gt;Ligne 2&lt;/li&gt;
+	&lt;li&gt;Élément 7&lt;br&gt;Ligne 2&lt;/li&gt;
+	&lt;li&gt;Élément 8&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h4>Liste de descriptions</h4>
+<h5>Exemple pratique</h5>
+<dl class="colcount-sm-2 colcount-md-3 colcount-lg-4">
+	<div>
+		<dt>Terme 1</dt>
+		<dd>Description</dd>
+	</div>
+	<div>
+		<dt>Terme 2</dt>
+		<dd>Description<br>Ligne 2<br>Ligne 3</dd>
+	</div>
+	<div>
+		<dt>Terme 3</dt>
+		<dd>Description<br>Ligne 2<br>Ligne 3</dd>
+	</div>
+	<div>
+		<dt>Terme 4</dt>
+		<dd>Description<br>Ligne 2</dd>
+	</div>
+	<div>
+		<dt>Terme 5</dt>
+		<dd>Description<br>Ligne 2</dd>
+	</div>
+	<div>
+		<dt>Terme 6</dt>
+		<dd>Description</dd>
+	</div>
+</dl>
+<h5>Exemple de code</h5>
+<pre><code>&lt;dl class="colcount-sm-2 colcount-md-3 colcount-lg-4"&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 1&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 2&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 3&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 4&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 5&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 6&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+
+<h3><code>colcount-no-break</code></h3>
+<p>Empêche les éléments de liste de se séparer à travers plusieurs colonnes de liste.</p>
+<h4>Liste sans ordre</h4>
+<h5>Exemple pratique</h5>
+<ul class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break">
+	<li>Élément 1<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 2<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 3</li>
+	<li>Élément 4<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 5<br>Ligne 2<br>Ligne 3</li>
+	<li>Élément 6<br>Ligne 2</li>
+	<li>Élément 7<br>Ligne 2</li>
+	<li>Élément 8</li>
+</ul>
+<h5>Exemple de code</h5>
+<pre><code>&lt;ul class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break"&gt;
+	&lt;li&gt;Élément 1&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 2&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 3&lt;/li&gt;
+	&lt;li&gt;Élément 4&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 5&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/li&gt;
+	&lt;li&gt;Élément 6&lt;br&gt;Ligne 2&lt;/li&gt;
+	&lt;li&gt;Élément 7&lt;br&gt;Ligne 2&lt;/li&gt;
+	&lt;li&gt;Élément 8&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h4>Liste de descriptions</h4>
+<h5>Exemple pratique</h5>
+<dl class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break">
+	<div>
+		<dt>Terme 1</dt>
+		<dd>Description</dd>
+	</div>
+	<div>
+		<dt>Terme 2</dt>
+		<dd>Description<br>Ligne 2<br>Ligne 3</dd>
+	</div>
+	<div>
+		<dt>Terme 3</dt>
+		<dd>Description<br>Ligne 2<br>Ligne 3</dd>
+	</div>
+	<div>
+		<dt>Terme 4</dt>
+		<dd>Description<br>Ligne 2</dd>
+	</div>
+	<div>
+		<dt>Terme 5</dt>
+		<dd>Description<br>Ligne 2</dd>
+	</div>
+	<div>
+		<dt>Terme 6</dt>
+		<dd>Description</dd>
+	</div>
+</dl>
+<h5>Exemple de code</h5>
+<pre><code>&lt;dl class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break"&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 1&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 2&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 3&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;br&gt;Ligne 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 4&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 5&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Ligne 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Terme 6&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+&lt;/dl&gt;</code></pre>
 
 <h2 id="positionnement">Positionnement</h2>
 <h3><code>position-relative</code></h3>
