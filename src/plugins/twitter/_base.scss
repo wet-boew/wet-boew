@@ -3,7 +3,36 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+@import "../../variables";
+
+%twitter-overlay {
+	@extend %accessible-invisible;
+	align-items: center;
+	display: flex;
+	font-weight: 700;
+	justify-content: center;
+	left: 0;
+	min-height: 77px;
+	outline-offset: -6px;
+	padding: 3px 12px;
+	right: 0;
+
+	&:focus {
+		@extend %accessible-invisible-show;
+		height: auto;
+		margin: 0;
+		position: absolute;
+	}
+
+	span {
+		overflow-wrap: break-word;
+		width: 100%;
+	}
+}
+
 .wb-twitter {
+	position: relative;
+
 	/* Align the loading icon relative to the center of the Twitter link in browsers that support :has() */
 	&:has( a.twitter-timeline + .twitter-timeline-loading ) {
 		display: inline-block;
@@ -23,6 +52,11 @@
 					}
 				}
 			}
+		}
+
+		/* Counteract the iframe width fix (see below) to prevent the loading icon from shifting sideways when the empty iframe first appears */
+		iframe {
+			min-width: 0;
 		}
 	}
 
@@ -49,6 +83,93 @@
 					}
 				}
 			}
+		}
+	}
+
+	/* Prevent the iframe from getting too wide */
+	/* When the iframe gets populated, Twitter's third party widget script injects a style attribute with a width in pixels... but it sometimes gets wider than its container (causing skip links to look misaligned). This sets min/max widths to avoid that behaviour and avoid truncating content if the iframe gets too narrow. */
+	/* The timeline's minimum widths are documented in https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview's Dimensions section... went with the narrowest width that works in practice. */
+	iframe {
+		max-width: 100%;
+		min-width: 224px;
+	}
+
+	/* Make focus outline rings rounded and scroll horizontally if the inner iframe gets too narrow to fit */
+	.twitter-timeline-rendered {
+		border-radius: $twitter-iframe-border-radius;
+		overflow-x: auto;
+	}
+
+	/* Completely hide the start notice initially... */
+	.wb-twitter-notice-start {
+		@extend %global-display-none;
+
+		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to start link gets activated */
+		/* When that happens, the start notice gets unveiled as invisible content to make it focusable (hidden elements can't receive focus programmatically) */
+		/* The notice reverts to hidden upon losing focus (plugin removes tabindex attribute) to hide it from screen readers */
+		&[tabindex] {
+			@extend %accessible-invisible;
+			@extend %global-display-block;
+
+			/* Add a fake outline to the nearby iframe container */
+			&:focus {
+				+ {
+					.wb-twitter-skip-end {
+						+ {
+							.twitter-timeline-rendered {
+								outline-style: auto;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wb-twitter-skip {
+		margin-bottom: 0;
+		text-align: center;
+
+		&.wb-twitter-skip-end {
+			a {
+				&:focus {
+					@include border-top-radius($twitter-iframe-border-radius);
+					top: 0;
+				}
+			}
+		}
+
+		&.wb-twitter-skip-start {
+			a {
+				&:focus {
+					@include border-bottom-radius($twitter-iframe-border-radius);
+					bottom: 0;
+				}
+			}
+		}
+
+		a {
+			@extend %twitter-overlay;
+			background-color: $twitter-skip-background-color;
+			color: $twitter-skip-color;
+		}
+	}
+
+	/* Completely hide the end notice initially... */
+	.wb-twitter-notice-end {
+		@extend %global-display-none;
+
+		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to end link gets activated */
+		/* When that happens, the end notice gets unveiled as invisible content to make it focusable (hidden elements can't receive focus programmatically) */
+		/* The notice reverts to hidden upon losing focus (plugin removes tabindex attribute) to hide it from screen readers */
+		&[tabindex] {
+			@extend %twitter-overlay;
+			@include border-bottom-radius($twitter-iframe-border-radius);
+			background-color: $twitter-end-background-color;
+			border: 1px solid $twitter-iframe-border-color;
+			bottom: 0;
+			color: $twitter-end-color;
+			text-align: center;
 		}
 	}
 }
