@@ -171,10 +171,8 @@ var localParseHTML = jQuery.parseHTML,
 	replaceWith = jQuery.fn.replaceWith,
 	jqInit = jQuery.fn.init,
 	dataTableAllowedTag = [
-		"<tbody/>",
-		"<tr/>",
-		"<td />",
-		"<td/>"
+		"<tbody>", "<tr>", "<td>", "<td>",
+		"</tbody>", "</tr>", "</td>", "</td>"
 	],
 	sanitize = function( html ) {
 
