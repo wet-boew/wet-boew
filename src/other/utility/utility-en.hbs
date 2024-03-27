@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2023-08-15"
+	"dateModified": "2024-03-25"
 }
 ---
 
@@ -25,6 +25,7 @@
 	<li><a href="#spacing">Spacing</a></li>
 	<li><a href="#sizing">Sizing</a></li>
 	<li><a href="#flexbox">Flexbox</a></li>
+	<li><a href="#lists">Lists</a></li>
 	<li><a href="#positioning">Positioning</a></li>
 	<li><a href="#tables">Tables</a></li>
 	<li><a href="#miscellaneous">Miscellaneous</a></li>
@@ -412,6 +413,189 @@
 		&lt;p class="well"&gt;Line 1&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
+
+<h2 id="lists">Lists</h2>
+
+<h3>List columns (<code>colcount-*-*</code>)</h3>
+<p>Spreads a list over 2, 3 or 4 columns.</p>
+<p>Since columns are similar to grids, they adhere to the same breakpoints as grids.</p>
+<h4>Available classes</h4>
+<ul>
+	<li>2 columns:
+		<ul>
+			<li><code>colcount-xxs-2</code>, <code>colcount-xs-2</code>, <code>colcount-sm-2</code>, <code>colcount-md-2</code>, <code>colcount-lg-2</code>, <code>colcount-xl-2</code></li>
+		</ul>
+	</li>
+	<li>3 columns:
+		<ul>
+			<li><code>colcount-xxs-3</code>, <code>colcount-xs-3</code>, <code>colcount-sm-3</code>, <code>colcount-md-3</code>, <code>colcount-lg-3</code>, <code>colcount-xl-3</code></li>
+		</ul>
+	</li>
+	<li>4 columns:
+		<ul>
+			<li><code>colcount-xxs-4</code>, <code>colcount-xs-4</code>, <code>colcount-sm-4</code>, <code>colcount-md-4</code>, <code>colcount-lg-4</code>, <code>colcount-xl-4</code></li>
+		</ul>
+	</li>
+</ul>
+<h4>Unordered list</h4>
+<h5>Working example</h5>
+<ul class="colcount-sm-2 colcount-md-3 colcount-lg-4">
+	<li>Item 1<br>Line 2<br>Line 3</li>
+	<li>Item 2<br>Line 2<br>Line 3</li>
+	<li>Item 3</li>
+	<li>Item 4<br>Line 2<br>Line 3</li>
+	<li>Item 5<br>Line 2<br>Line 3</li>
+	<li>Item 6<br>Line 2</li>
+	<li>Item 7<br>Line 2</li>
+	<li>Item 8</li>
+</ul>
+<h5>Code sample</h5>
+<pre><code>&lt;ul class="colcount-sm-2 colcount-md-3 colcount-lg-4"&gt;
+	&lt;li&gt;Item 1&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 2&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 3&lt;/li&gt;
+	&lt;li&gt;Item 4&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 5&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 6&lt;br&gt;Line 2&lt;/li&gt;
+	&lt;li&gt;Item 7&lt;br&gt;Line 2&lt;/li&gt;
+	&lt;li&gt;Item 8&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h4>Description list</h4>
+<h5>Working example</h5>
+<dl class="colcount-sm-2 colcount-md-3 colcount-lg-4">
+	<div>
+		<dt>Term 1</dt>
+		<dd>Description</dd>
+	</div>
+	<div>
+		<dt>Term 2</dt>
+		<dd>Description<br>Line 2<br>Line 3</dd>
+	</div>
+	<div>
+		<dt>Term 3</dt>
+		<dd>Description<br>Line 2<br>Line 3</dd>
+	</div>
+	<div>
+		<dt>Term 4</dt>
+		<dd>Description<br>Line 2</dd>
+	</div>
+	<div>
+		<dt>Term 5</dt>
+		<dd>Description<br>Line 2</dd>
+	</div>
+	<div>
+		<dt>Term 6</dt>
+		<dd>Description</dd>
+	</div>
+</dl>
+<h5>Code sample</h5>
+<pre><code>&lt;dl class="colcount-sm-2 colcount-md-3 colcount-lg-4"&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 1&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 2&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 3&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 4&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 5&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 6&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+
+<h3><code>colcount-no-break</code></h3>
+<p>Prevents list items from splitting across multiple list columns.</p>
+<h4>Unordered list</h4>
+<h5>Working example</h5>
+<ul class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break">
+	<li>Item 1<br>Line 2<br>Line 3</li>
+	<li>Item 2<br>Line 2<br>Line 3</li>
+	<li>Item 3</li>
+	<li>Item 4<br>Line 2<br>Line 3</li>
+	<li>Item 5<br>Line 2<br>Line 3</li>
+	<li>Item 6<br>Line 2</li>
+	<li>Item 7<br>Line 2</li>
+	<li>Item 8</li>
+</ul>
+<h5>Code sample</h5>
+<pre><code>&lt;ul class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break"&gt;
+	&lt;li&gt;Item 1&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 2&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 3&lt;/li&gt;
+	&lt;li&gt;Item 4&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 5&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/li&gt;
+	&lt;li&gt;Item 6&lt;br&gt;Line 2&lt;/li&gt;
+	&lt;li&gt;Item 7&lt;br&gt;Line 2&lt;/li&gt;
+	&lt;li&gt;Item 8&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h4>Description list</h4>
+<h5>Working example</h5>
+<dl class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break">
+	<div>
+		<dt>Term 1</dt>
+		<dd>Description</dd>
+	</div>
+	<div>
+		<dt>Term 2</dt>
+		<dd>Description<br>Line 2<br>Line 3</dd>
+	</div>
+	<div>
+		<dt>Term 3</dt>
+		<dd>Description<br>Line 2<br>Line 3</dd>
+	</div>
+	<div>
+		<dt>Term 4</dt>
+		<dd>Description<br>Line 2</dd>
+	</div>
+	<div>
+		<dt>Term 5</dt>
+		<dd>Description<br>Line 2</dd>
+	</div>
+	<div>
+		<dt>Term 6</dt>
+		<dd>Description</dd>
+	</div>
+</dl>
+<h5>Code sample</h5>
+<pre><code>&lt;dl class="colcount-sm-2 colcount-md-3 colcount-lg-4 colcount-no-break"&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 1&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 2&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 3&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;br&gt;Line 3&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 4&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 5&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;br&gt;Line 2&lt;/dd&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;dt&gt;Term 6&lt;/dt&gt;
+		&lt;dd&gt;Description&lt;/dd&gt;
+	&lt;/div&gt;
+&lt;/dl&gt;</code></pre>
 
 <h2 id="positioning">Positioning</h2>
 
