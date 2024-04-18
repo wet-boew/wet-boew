@@ -117,8 +117,8 @@ var componentName = "wb-twitter",
 									addSkipLinks( iframeContainer );
 
 									// The following 2 lines were added as a workaround in Safari where the iFrame is not displayed
-									$( ".wb-twitter" ).css( "opacity", 1 );
-									$( ".wb-twitter" ).css( "opacity", "" );
+									eventTarget.style.opacity = 1;
+									eventTarget.style.opacity = "";
 
 									observer.disconnect();
 								}
