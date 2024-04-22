@@ -261,6 +261,10 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 						<td><code>static</code></td>
 						<td>If present, the widgets (pan, zoom, select, etc.) will not be added to the map. This is useful for scenarios where a simple map with one or more features is required to communicate some value or idea (e.g. an extent map for a data product).</td>
 					</tr>
+					<tr>
+						<td><code>legend-label-only</code></td>
+						<td>If present and if there is only one legend item within a certain layer, the symbol description will be hidden (as it can be the same as the label). In which case, the title of the layer must represent the legend item.</td>
+					</tr>
 				</tbody>
 			</table>
 			<p><strong>Configuration class example:</strong></p>

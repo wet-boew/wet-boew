@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml
+	xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Folder>
+			<name>Projets</name>
+			<Schema name="Projects" id="Projects">
+				<SimpleField name="OBJECTID" type="int"></SimpleField>
+				<SimpleField name="Project" type="string"></SimpleField>
+				<SimpleField name="Program" type="string"></SimpleField>
+			</Schema>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">3</SimpleData>
+						<SimpleData name="Project">Créer un Agtech Innovation Sandbox (AGIS) pour développer et commercialiser l'agtech en Colombie-Britannique</SimpleData>
+						<SimpleData name="Program">Écosystèmes d&apos;innovation régionaux</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-122.848782,49.187925</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">6</SimpleData>
+						<SimpleData name="Project">Développez la biotechnologie de la Colombie-Britannique en faisant progresser la thérapie antivirale in vitro et in situ pour les variantes du SRAS-CoV2</SimpleData>
+						<SimpleData name="Program">Écosystèmes d&apos;innovation régionaux</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.245686,49.263306</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">9</SimpleData>
+						<SimpleData name="Project">Établir le réseau d’innovation de la Colombie-Britannique Net-Zero</SimpleData>
+						<SimpleData name="Program">Écosystèmes d&apos;innovation régionaux</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-122.776649,49.26575355</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">22</SimpleData>
+						<SimpleData name="Project">Développer la biotechnologie de la Colombie-Britannique en améliorant la technologie d'administration derrière les vaccins à ARNm</SimpleData>
+						<SimpleData name="Program">Écosystèmes d&apos;innovation régionaux</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.249624,49.260613</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

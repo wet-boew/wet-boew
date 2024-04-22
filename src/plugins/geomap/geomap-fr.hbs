@@ -31,6 +31,7 @@
 			<li><a href="#carte-xyz">Exemple de carte de base XYZ</a></li>
 			<li><a href="#filtrer">Filtrer la carte</a></li>
 			<li><a href="#aoiZoomOnLoad">Zoom à AOI au chargement de la page (étendue)</a></li>
+			<li><a href="#singleItem">Fusionner la légende et le symbole</a></li>
 		</ul>
 	</div>
 </div>
@@ -1341,4 +1342,107 @@ var wet_boew_geomap = {
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
+</section>
+
+<section id="singleItem">
+	<h2>Fusionner la légende et le symbole</h2>
+	<p>Lorsque le calque de légende ne comporte qu'un seul élément de légende, masquez l'élément de légende et ne conservez que l'étiquette avec l'icône.</p>
+	<div class="wb-geomap legend-label-only" id="geomap_single" data-wb-geomap='{
+		"mapExtent": "63, -110, 50, -128",
+		"overlays": [
+			{
+				"title": "Expansion et productivité des entreprises",
+				"caption": "Cette carte interactive montre les projets en Colombie-Britannique. qui a reçu du financement des programmes de développement économique de PacifiCan",
+				"type": "kml",
+				"url": "demo/BusinessScaleProductivity_fr.kml",
+				"datatable": true,
+				"attributes": {
+					"Program": "Programme",
+					"Project": "Projet"
+				},
+				"style": {
+					"type": "unique",
+					"field": "Programme",
+					"init": {
+						"Expansion des entreprises": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAANHSURBVEhLlZZ5SFRBHMe/s7peiWaZbpBrJamZ5VGJQVBRCB5pdhAERZLmFRTRgUVJhP8EEXRYQkkGVlBUW0FUhCUUlEVlSIYlIZZlmgcS67XTb9/+WHzu27fr54958/3NvPnO9WaegCdq7odjHIUQMpvUIkCEAnIAEi0w4CGEuILi3B5HZW30TAQuWsrpUUX5EEdICzlIdSpQmlvNARe0TSorDTCl1lBxIUc8I2UNGZXSyCRHnBj4qSYy5Zg3BkaDQLY5EvVrU5FhjijGpQdHuEiF60jOWxbBBx+oyJcjmkz3N+JpTjqWzZqu6PzHTbjX3jVKQ1qMsg1flCDjOhIfcdCTgZ3+4VFcb/vBihHCCOFzgJUTtUlDAzUu81npkjfXhFPpCWjuHcSWJ28VUwe2TaiUqnbVJi2DcdQdnZ3koCA+CrcyluJp5x+ssrzC7fYuPP/Zy6UiDKaHMSwU1CZChHNOkzBah9o1yTi3cjEqXrci59EbbI6ZTToRS2ZO6Nu4jOScwuQ1+cdPFcFGX+xPisHHLaswMm7DwpsNOP3xG2xSIsscgT2J8zA/JIhrEwLDnFOYNBLDV9rvyj43CIEk6l1xQjSq0uLRax1B0q0XKGlsxqHkGFxenQRzcKDymgr7+0HjbawU1CZlOX3UixZW+Nw/hNrWDhxvakUUNVi0MFqJb4+Nwq54M2YE+ClahRCfUJDfz0ph8nQR4q49zaRpGC7Kpm9hBUL9jDi5PA5HUxcoNfSRyvsTcTUZGauj1OYQU0TSUQq/q6ycuJrs3fiNKltYTREaRWnmdxZOtA/I6nspkYEB79JMYaLXOor3PQNYNyccYzaJRx3dylT60rnVSN9GbGgwTNP80dTdb/s1ZE1BeV4zt+LE/VF/wVJPW2wbK2+oo1N4J+dVaCw8YzQepuEPsdJH0p0ijBWsXHBvsjurk9aGjnwvEHRplWR2sXLBvYmd37lnyeglK3c0oGT9Rc5rom9yQtBWNuyg+aArVgvZRy3s1LoNJ6JvYqcsp53SEodQIelrKqSfiA7WbvFsYqc07walk6ZEnKHteoeFLt6Z2Jlp3edcHymf4Vcw7T7v0PslcqX6cQSE9Rp8rdtQtPUvRz0A/AeDMOjMASjW0wAAAABJRU5ErkJggg==",
+							"graphicOpacity": "1",
+							"graphicWidth": "32",
+							"graphicHeight": "32"
+						},
+						"Productivité des entreprises": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAMzSURBVEhLlZRLaBNBGMf/s0lqWjUxsVYRDWpKpXixvoqFaKMIgiCIiOhBpQ9p8aAIPgpqEPHgSfRgqTbV6qEX0YsoCCFqyUWFgo9LEa31iW3TNomozWP8ZndMst1NUn/L7nz/b2b3PzsvhlKED1cCyRZwZQcYVgHcCbBJcLyl+AGYNQj/9VHZ2pRiJgzh5iNUXqTboWbMiYHxDjT2XJPagLlJIKBg86cuMNYiMzOAd5FRO32Ry0QWiyz1BLznyOC4VCqLypzYW7UeGxzLUTfHg5FkArH0L1krYOvwYU0SvQP9MpFFkWWOUAuNO85oQqPCUoZndSex3L4AbutsLJ3lxpPVJ9RYDw8g1LRSiizG4Qo33aL0wU3OGvTWNqFMscLGLHBayjGaSshGUA0S6T+Y4imkMhm0Dd7Bo+hr8uHd2NLTKpup6P8kHLCSwS4R1jtWYJm9EovL5mGBba5qJuJ/t12xodI2R409djcanF71E8Ru+iHdd/UmmS/iV4utpNIw5sLTj1lHgd6EpWlPaPxIxmSU42V8CEff9aF/clBmcowk4zIiOFsoIxX9nDxpXQ+eeS5Ch7UcGx1e6kWuydepCbxcewa+gUtw5U06p+t57AOiqZ9aIpXegG23Xmhiukl/uwvJqTHKsgZnNSJ1p2WFxvDvMdz8HsG+hfWoKdd1FjteXcFDdeLpYik3/L0TsmracPk6x+lJx4U5Hvt8BJbtNBjoYPx1voFAbyJQ2H1R/KTl+T8kMv/aa+/nY9wnoQNeOvQGaZUoW121NPYVsqIwcerQ4+gbcZ6kAWs1/F1DskrFaCIIN9+jp7pf/gvO79JG3CNVFuNwCRi/QC8YDrqicJ6BlV2QSoe5SWPPAD37NDFDGO5gU/CVVDrMTQRMOUW9yx1WxeA8BsXSIZWBwib+7s80bGelKkUHNt/4JmMDhU0EjZ6r1M2IVOZwhOEPdkplSnETdp4mkx+gyHiQCTjGYbMcouVedJEUNxH4br4ntzap8hEHSAt814elLkhpE4G/u48md/qQXMbWoNhPJZmZiaAqfixvfkLAklMyLon5ji9EpK0Kv6duI8n2Y3swKrMlAP4CcCvpgKo0qDEAAAAASUVORK5CYII=",
+							"graphicOpacity": "1",
+							"graphicWidth": "32",
+							"graphicHeight": "32"
+						}
+					}
+				}
+			},
+			{
+				"title": "Écosystèmes d&apos;innovation régionaux",
+				"caption": "Cette carte interactive montre les projets en Colombie-Britannique. qui a reçu du financement des programmes de développement économique de PacifiCan",
+				"type": "kml",
+				"url": "demo/RegionalInnovationEcosystem_fr.kml",
+				"datatable": true,
+				"attributes": {
+					"Program": "Programme",
+					"Project": "Projet"
+				},
+				"style": {
+					"type": "unique",
+					"field": "Programme",
+					"init": {
+						"Écosystèmes d&apos;innovation régionaux": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAB2IAAAdiATh6mdsAAAS7SURBVEhLjZZrTFtlGMf/55y2UEencl0RtiEDNgKslLB5GZf6Yc6E6QcNxg9GjZplJsa4JQ7jEqjskhhNzIyJzCxmRj/My0RmWMwccpnxEgqsQ2AuMhiMjnFraQstbc/xed8eBrUt2+/LOc973vf5v8/lPecIuAvldcdSZCnwqiJgr6CgCAIegAKnIij99LhFJymn/rBaZ8OzY7OWiGB+r+ENmnFcgGBQx6CVJARCIdUCFAXzJH7Idqz+M3UoCkm9RlJfL5p3WU4KgnCYBBIKjBvgCwS489pHytE/fhN6nQ5bMtIx4/Ek0EZqjJWWDEdne6vqIYKYImUVlgYSeFsUBMoMICsyirOz8Hh+HvRaHbKSH0SQBKfdHiwuLYHNI8qNFZYlR1d7FzNWEyViPvx+MXn+itaJu0uKsOD3o6bUBH8giJ/t/ei+PgLX4iKeZM9IwB8MorpwK67dmmS5r8h6ouqbiY6OGdUdR1SvdxAU+R0S0LB75nR3cRFaL9vhcLmw12zCTwffQvK6dWju7sWO3Bx4fX609tn5WlLRySHxYNhYISKSsqYmLVzeL5L0CboakwnOhUXcf58e16emcebN/agsyIeGCl+7sxzr9Xqc6+njaWTPnykrxYTTSZEFNjssVR+io4NlmhMRiTI2uZV2k+Sh3Z3ttmEn7bTr6jVYKB2MujPfwXL0A56ycDMEkUvFZ4I/2nrhXvTRciHFHNTk8AUqESKiEuKtakhMhE6j4R3kpZrkpKVBI4pwOF28w6bdbqQZDOQ8EaPTM3wzbD5bxxHl1PBNmAgRWZT87Mp2l2ZIwvDUFPJpx01t7byFT7z4Ak69/gr2lBSjfXCIt3Juejou9A8gJSmJtzQnJAfCN2EiRAIB7TA7Xn2jN3Bzzonu4RFeB9ZFn15o4862ZRpxpPkcWqgeDNbKDAfVo5fW0XIlpAX5WSGi8LcvXfQZK6qfNegTM57aXoLBCQdPT+mmjWi29eDPf4fRNzqGtoFBJNPOH83bAonSaB8bx9PUeRO0saVg0N7baP1YdcmJbmEBP7DCt1AhGfYbYzz3rAZMkBWc8RgJdA5dxde//c5t1mlunw+KKJzlA6uIFpGU03QYZdZ/2zdmI5Vqc95+BbsK8sITCNbGHnLoohZPoefmzZv4m0GBEgotyV+GZ60QdeLptM5lVlWbSG6bKIi4PT/PUoDirIe4s1mvF2nrDbyrpqjLWL3YKWSi1L7f9x5v+DzsaYWoSBj0Rmlk0bBiLjNA9WFR5W/IQGFmJv6h18gyfB6PXmhUhyKI+YKc6Pz1VmaVJZ9uS8IjwKzHy1+OkxQZa10WYQQiTvccqT+pWhHEjIQRlKVDlGO3alLry7yr2v4exBBFFQF9xERRfle1oogZCWOyq81trKxeoDzvUYfiQps5YGu0tqtmFHEjYfRIyid06QxbcVCUi5SmuF9FxpoisFrloCS/xD6x6sj/UOYkjfIyHa47b9xYrC1CXLZaRyDI+1VzNfS9FF/7y2odV+24xK3JahydHVeoPqlUnx3qEPsmf9RztP6Eaq3JXSNZRsg2HqCcXGL3dP3lYVNhHX9wD9yziG3fvoA25HuOOum8TpKf/7a2duW/aE2A/wDjpO0OJUui9gAAAABJRU5ErkJggg==",
+							"graphicOpacity": "1",
+							"graphicWidth": "32",
+							"graphicHeight": "32"
+						}
+					}
+				}
+			},
+			{
+				"title": "CEDD (anciennement WDP)",
+				"caption": "Cette carte interactive montre les projets en Colombie-Britannique. qui a reçu du financement des programmes de développement économique de PacifiCan.",
+				"type": "kml",
+				"url": "demo/WesternDiversificationProgram_fr.kml",
+				"datatable": true,
+				"attributes": {
+					"Program": "Programme",
+					"Project": "Projet"
+				},
+				"style": {
+					"type": "unique",
+					"field": "Programme",
+					"init": {
+						"CEDD (anciennement WDP)": {
+							"externalGraphic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAOTSURBVEhLjZVNSFRRFMf/5/ksMlNMszKjqCAiWpRF6agVFVSu3LaIFlZGmxaFGIiEtI5aVGpGH4t2WWTQJlyUEAUVfUB+pKbVVFpjpWnqzO1/37uN8+aNjj94zJxz77vnnv859z5BEtSR1hzArlBKymiu55PJ5yeftxBpEYw3ScPOQdrTMm0QxTF1+NFxLnSWkzKM24dS6hdgVVuNgYvG5SNhEFVba6nPu+tFpMK4ksJN1UtD4Jhwb8YVxTK/HlRwV03CAOmpwLF1wAL+xsHdHlWH204b04Mvk0jFo/WU6KUIbONy0TPLVwIPPgJ784HmXmf7sVC6CaTIButycbtxOfgyEUtO+QJoduUB/SNusE6WYc8y1x8Ds09FWE4aM4onE1Xbaqug/V3y0zOQqSXhsJ7xnosungeULgHu9TMAAz5jQwX/AKsWOO86/JqA6h8JSV4gR85IxHi9mahP9loWLgObsoHfk2zUcWDrImrIwd5h4OsoEPrr+nt+00+9ihdz7gQwzPkF2cwGWerLk9Xuii5euUTxTJB3PAZzOBTmIs+/A1tct4/N9Pcw+GiYR4kptzNjImqSkaeIq0kK8yddnFzCeeUr3IADY0BRrjPkMMRMCmn/YFaPvwK7Kd+OpayVPqO6ASwOTOEJInakS3GKI4PW/GoHULYc+MDd6sD/GeQaOkstYRk77c4H4OmA49PvS1pap5np4A1yqSTEWW8d400IGKMMLX3Afi70jdloUijLhix30X3032cj6Hl6voO8lvMbh4zhECeXRprNHxe9gK5LgamLboQ2SqSb4+UPtx4xiFLe90mCILjOQxVtPwcty7I0N9jCuZSLWeXPdzssBgoYhmVfM2YUXxCrsfg9+/CuMafQcuQxUJBtvIb3pW6IeJiF1BfyKvCSKBN6pY7ZcGMxdHPX+s7q4OL6AMY2AnGyj6g6Y3pIGMS6HHhBdW8Zc4o+Xiv64OnzoDswBl4pN62m0lfG9JA4E42yq5gLixFDnzF742rBb4pS4Wpj+pg2iHVl20e2So0xk6D40doeNIaP6TMhsrT4AnfZZsyEcLxVGkouGTMhMwfhTSo2DvIUe6tsoJwhXoiHWA9vgeKYMYiGt0A3PzKVxozCVRXlrGAWvBJmJmkQjVUfuEVZvJKInLMaSm4ba0ZmFUQjQ1kn/teHMj2UJeNVzsAs8HwZkxGpbMtFOHIDkZQDVlMRL67ZAPwD81FLUtjLgdUAAAAASUVORK5CYII=",
+							"graphicOpacity": "1",
+							"graphicWidth": "32",
+							"graphicHeight": "32"
+						}
+					}
+				}
+			}
+		]
+	}'>
+		<div class="row mrgn-bttm-lg">
+			<div class="col-md-8">
+				<div class="wb-geomap-map"></div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<header class="panel-heading">
+						<h3 class="panel-title">Légende</h3>
+					</header>
+					<div class="panel-body">
+						<p class="”h4”"><strong>Choisissez parmi les programmes PacifiCan suivants pour voir les projets financés à travers la Colombie-Britannique&nbsp;:</strong></p>
+						<div class="wb-geomap-legend"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wb-geomap-layers"></div>
+	</div>
 </section>
