@@ -189,6 +189,13 @@ wb.i18nDict = {
 	filter: "@filter@",
 	tbFilterInst: "@tbFilterInst@",
 
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "@twitter-start-notice@",
+	"twitter-end-notice": "@twitter-end-notice@",
+	"twitter-skip-end": "@twitter-skip-end@",
+	"twitter-skip-start": "@twitter-skip-start@",
+	"twitter-timeline-title": "@twitter-timeline-title@",
+
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
 	"geo-zmin": "@geo-zmin@",
