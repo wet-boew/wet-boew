@@ -7,7 +7,7 @@
 	"tag": "paginate",
 	"parentdir": "paginate",
 	"altLangPrefix": "paginate",
-	"dateModified": "2023-05-15"
+	"dateModified": "2024-04-25"
 }
 ---
 
@@ -25,15 +25,16 @@
 
 <h2>On this page:</h2>
 <ul>
-	<li><a href="#paginatedList">Example 1 - List</a></li>
+	<li><a href="#paginatedList">Example 1 - List with buttons</a></li>
 	<li><a href="#paginatedTable">Example 2 - Table</a></li>
 	<li><a href="#paginatedArticles">Example 3 - Articles</a></li>
 	<li><a href="#filteredEventsList">Example 4 - Events list</a></li>
 </ul>
 
 <section id="paginatedList">
-	<h2>Example 1 - List</h2>
-	<ul class="wb-paginate provisional">
+	<h2>Example 1 - List with buttons</h2>
+	<ul class="wb-paginate provisional" data-wb-paginate='{
+		"buttonsUI": true }'>
 		<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!</li>
 		<li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?</li>
 		<li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.</li>
@@ -119,7 +120,8 @@
 	</ul>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;ul class="wb-paginate provisional">
+		<pre><code>&lt;ul class="wb-paginate provisional" data-wb-paginate='{
+		"buttonsUI": true }'>
 	&lt;li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li>
 	&lt;li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li>
 	&lt;li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li>
@@ -428,7 +430,8 @@
 	<h2>Example 3 - Articles</h2>
 	<p>This example leverages the following option: <code>itemsPerPage</code></p>
 	<div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
-		"itemsPerPage": 12
+		"itemsPerPage": 12,
+		"buttonsUI": true
 	}'>
 		<article class="col-sm-6 col-md-4 col-lg-3">
 			<div class="well">

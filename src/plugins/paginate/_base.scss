@@ -24,6 +24,67 @@
 		border-bottom-right-radius: 4px;
 		border-top-right-radius: 4px;
 	}
+
+	li.active:nth-last-child(2) button {
+		border-bottom-right-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
+	.pagination > li > button, .pagination > li > span {
+		background-color: #eaebed;
+		border: 1px solid #dcdee1;
+		color: #335075;
+		float: left;
+		line-height: 1.4375;
+		margin-left: -1px;
+		position: relative;
+		text-decoration: none;
+	}
+
+	.pagination > .active > button, .pagination > .active > button:focus, .pagination > .active > button:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+		background-color: #2572b4;
+		border-color: #2572b4;
+		color: #fff;
+		cursor: default;
+		z-index: 3;
+	}
+
+
+	.pagination > li:first-child > button, .pagination > li:first-child > span {
+		border-bottom-left-radius: 4px;
+		border-top-left-radius: 4px;
+		margin-left: 0;
+	}
+
+	.pagination > li:last-child > button, .pagination > li:last-child > span {
+		border-bottom-right-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
+	.pagination > li > button:hover, .pagination > li > button:focus,
+	.pagination > li > span:hover,
+	.pagination > li > span:focus {
+		background-color: #d4d6da;
+		border-color: #bbbfc5;
+		color: #335075;
+		z-index: 2;
+	}
+
+	.pager > li > button, .pagination > li > button {
+		cursor: pointer;
+		display: inline-block;
+		margin-bottom: .5em;
+		padding: 10px 16px;
+	}
+
+	.pager > li.disabled + li > button, .pagination > li.disabled + li > button {
+		border-bottom-left-radius: 4px;
+		border-top-left-radius: 4px;
+	}
+
+	.pager > li.active > button, .pagination > li.active > button {
+		cursor: default;
+	}
 }
 
 html:not(.wb-disable) .wb-pgfltr-out {

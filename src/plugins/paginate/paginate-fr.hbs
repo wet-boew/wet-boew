@@ -7,7 +7,7 @@
 "tag": "paginate",
 "parentdir": "paginate",
 "altLangPrefix": "paginate",
-"dateModified": "2023-05-15"
+"dateModified": "2024-04-25"
 }
 ---
 
@@ -22,15 +22,16 @@
 
 <h2>Sur cette page:</h2>
 <ul>
-	<li><a href="#paginatedList">Exemple 1 - Liste</a></li>
+	<li><a href="#paginatedList">Exemple 1 - Liste avec des boutons</a></li>
 	<li><a href="#paginatedTable">Exemple 2 - Tableau</a></li>
 	<li><a href="#paginatedArticles">Exemple 3 - Articles</a></li>
 	<li><a href="#filteredEventsList">Exemple 4 - Liste d'événements</a></li>
 </ul>
 
 <section id="paginatedList">
-	<h2>Exemple 1 - Liste</h2>
-	<ul class="wb-paginate provisional">
+	<h2>Exemple 1 - Liste avec des boutons</h2>
+	<ul class="wb-paginate provisional" data-wb-paginate='{
+		"buttonsUI": true }'>
 		<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!</li>
 		<li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?</li>
 		<li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.</li>
@@ -116,7 +117,8 @@
 	</ul>
 	<details>
 		<summary>Code source</summary>
-		<pre><code>&lt;ul class="wb-paginate provisional">
+		<pre><code>&lt;ul class="wb-paginate provisional" data-wb-paginate='{
+		"buttonsUI": true }'>
 	&lt;li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li>
 	&lt;li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li>
 	&lt;li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li>

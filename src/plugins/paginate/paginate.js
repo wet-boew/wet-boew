@@ -69,6 +69,7 @@ const componentName = "wb-paginate",
 			elm.pgSettings.currPage = 1;
 			elm.pgSettings.itemsPerPage = elm.pgSettings.itemsPerPage || defaults.itemsPerPage;
 			elm.pgSettings.items = elm.querySelectorAll( ( elm.pgSettings.section || ":scope" ) + " " + elm.pgSettings.selector + notFilterClassSel );
+
 			// elm.pgSettings.buttonsUI = true;
 
 			// Setup pagination container
@@ -121,13 +122,8 @@ const componentName = "wb-paginate",
 			prevLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
 
 			if ( buttonsUI ) {
-				prevLI += "<button href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</button>";
-				// var prevButton = document.createElement( "button" );
-				// prevButton.setAttribute( "class", "paginate-prev" );
-				// prevButton.setAttribute( "aria-controls", elm.id );
-				// prevButton.setAttribute( "href", "#" + elm.id );
-				// prevButton.textContent = i18nText.prv;
-				// prevLI += prevButton;
+				prevLI += "<button class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
+
 			} else {
 				prevLI += "<a class=\"paginate-prev\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.prv + "</a>";
 			}
@@ -142,13 +138,7 @@ const componentName = "wb-paginate",
 				pageButtonLI += "<li class=\"" + returnItemClass( currPage, pagesCount, i ) + "\"" + ( i === currPage ? " aria-current=\"page\"" : "" ) + ">";
 
 				if ( buttonsUI ) {
-					pageButtonLI += "<button href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</button>";
-					// var pageButton = document.createElement( "button" );
-					// pageButton.setAttribute( "href", "#" + elm.id );
-					// pageButton.setAttribute( pageData, i );
-					// pageButton.setAttribute( "aria-controls", elm.id );
-					// pageButton.textContent = "<span class=\"wb-inv\">Page </span>" + i;
-					// pageButtonLI += pageButton;
+					pageButtonLI += "<button " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</button>";
 				} else {
 					pageButtonLI += "<a href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</a>";
 				}
@@ -162,13 +152,7 @@ const componentName = "wb-paginate",
 			nextLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
 
 			if ( buttonsUI ) {
-				nextLI += "<button href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</button>";
-				// var nextButton = document.createElement( "button" );
-				// nextButton.setAttribute( "class", "paginate-next" );
-				// nextButton.setAttribute( "aria-controls", elm.id );
-				// nextButton.setAttribute( "href", "#" + elm.id );
-				// nextButton.textContent = i18nText.nxt;
-				// nextLI += nextButton;
+				nextLI += "<button class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
 			} else {
 				nextLI += "<a class=\"paginate-next\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.nxt + "</a>";
 			}
@@ -206,10 +190,16 @@ const componentName = "wb-paginate",
 			itemClass,
 			pageLink,
 			currPage = elm.pgSettings.currPage,
-			pagesCount = elm.pgSettings.pagesCount;
+			pagesCount = elm.pgSettings.pagesCount,
+			buttonsUI = elm.pgSettings.buttonsUI;
 
 		pageItems.forEach( function( pageItem, i ) {
-			pageLink = pageItem.querySelector( "a" );
+			if ( buttonsUI ) {
+				pageLink = pageItem.querySelector( "button" );
+			} else {
+				pageLink = pageItem.querySelector( "a" );
+			}
+
 
 			if ( pageLink.classList.contains( "paginate-prev" ) ) {
 				if ( currPage > 1 ) {
@@ -284,7 +274,7 @@ const componentName = "wb-paginate",
 	};
 
 // When a filter is updated
-$document.on( "click", "." + pagerClass + " a", function()  {
+$document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", function()  {
 	let elm = document.querySelector( "#" + this.getAttribute( "aria-controls" ) ),
 		pageDest = ( ( this.getAttribute( pageData ) ) * 1 ) || elm.pgSettings.currPage;
 
