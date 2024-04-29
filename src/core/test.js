@@ -96,6 +96,36 @@ describe( "wb.core helpers test suite", function() {
 	} );
 
 	/*
+	 * Test external links after DOMPurify sanitization
+	 */
+	describe( "External links", function() {
+		before( function() {
+			$( "body" ).append( `<div class='external-links-test'>
+				<a id='externalLinkTest1' href='http://www.canada.ca' target='_blank' rel='noreferrer'>Valid link 1</a>
+				<a id='externalLinkTest2' href='http://www.canada.ca' target='_blank' rel='noreferrer noopener'>Valid link 2</a>
+				<a id='externalLinkTest3' href='http://www.canada.ca' target='_blank'>Invalid link 1</a>
+				<a id='externalLinkTest4' href='http://www.canada.ca' target='_blank' rel='hellonoreferrerworld'>Invalid link 2</a>
+				<!-- This one should be valid according to spec because the token are case insensitive but this is a limitation of relList DOM anchor function implemented in browser -->
+				<!-- No need to test, but let's keep it here as a documentation item for future reference -->
+				<!-- <a id='externalLinkTest5' href='http://www.canada.ca' target='_blank' rel='external noReferrer nofollow'>Valid link 3</a> -->
+			</div>` );
+		} );
+
+		after( function() {
+		} );
+
+		it( "valid external links have a target attribute", function() {
+			expect( $( "#externalLinkTest1" ).attr( "target" ) ).to.equal( "_blank" );
+			expect( $( "#externalLinkTest2" ).attr( "target" ) ).to.equal( "_blank" );
+		} );
+
+		it( "invalid external links don't have a target attribute", function() {
+			expect( $( "#externalLinkTest3" ).attr( "target" ) ).to.equal( undefined );
+			expect( $( "#externalLinkTest4" ).attr( "target" ) ).to.equal( undefined );
+		} );
+	} );
+
+	/*
 	 * Test wb string helpers
 	 */
 	describe( "wb.string helpers", function() {

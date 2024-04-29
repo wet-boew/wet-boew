@@ -163,6 +163,33 @@ jQuery.htmlPrefilter = function( html ) {
  * This implementation leverage DOMPurify for filtering every string prior DOM manipulation by jQuery
  *
  */
+
+// START: add hooks to DOMPurify to allow external links when they meet certain conditions as defined here: https://owasp.org/www-community/attacks/Reverse_Tabnabbing
+DOMPurify.addHook( "beforeSanitizeAttributes", function( node ) {
+
+	// Add "data-wb-external-link" to all <a> with a target="_blank" and rel="noreferrer"
+	if (
+		node.tagName === "A" &&
+		node.getAttribute( "target" ) &&
+		node.getAttribute( "target" ) === "_blank" &&
+		node.getAttribute( "rel" ) &&
+		node.relList.contains( "noreferrer" )
+	) {
+		node.setAttribute( "data-wb-external-link", "true" );
+	}
+} );
+
+DOMPurify.addHook( "afterSanitizeAttributes", function( node ) {
+
+	// Put back the target="_blank" to all <a> with attribute "data-wb-external-link"
+	if ( node.tagName === "A" && node.getAttribute( "data-wb-external-link" ) ) {
+		node.setAttribute( "target", "_blank" );
+		node.removeAttribute( "data-wb-external-link" );
+	}
+} );
+
+// END
+
 var localParseHTML = jQuery.parseHTML,
 	append = jQuery.fn.append,
 	prepend = jQuery.fn.prepend,
