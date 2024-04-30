@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml
+	xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Folder>
+			<name>Projects</name>
+			<Schema name="Projects" id="Projects">
+				<SimpleField name="OBJECTID" type="int"></SimpleField>
+				<SimpleField name="Project" type="string"></SimpleField>
+				<SimpleField name="Program" type="string"></SimpleField>
+			</Schema>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">1</SimpleData>
+						<SimpleData name="Project">Increase operational capacity of media technology company</SimpleData>
+						<SimpleData name="Program">Business Scale Up</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.090303,49.371067</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">2</SimpleData>
+						<SimpleData name="Project">Build a Green Hydrogen Production Plant in BC</SimpleData>
+						<SimpleData name="Program">Business Scale Up</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.005664,49.158076</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">3</SimpleData>
+						<SimpleData name="Project">Expand medical device manufacturing facilities</SimpleData>
+						<SimpleData name="Program">Business Productivity</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.007287,49.206271</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">4</SimpleData>
+						<SimpleData name="Project">Expand sales and manufacturing capacity for biodegradable consumer product producer</SimpleData>
+						<SimpleData name="Program">Business Productivity</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-119.494117,49.889315</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

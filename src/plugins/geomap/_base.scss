@@ -97,6 +97,22 @@
 /**
  * GeoMap
  */
+.wb-geomap {
+	&.legend-label-only {
+		.geomap-lgnd-layer:has(> div > ul > li:only-child) {
+			display: flex;
+
+			label {
+				margin-right: 5px;
+			}
+
+			.geomap-legend-symbol-text {
+				display: none;
+			}
+		}
+	}
+}
+
 .wb-geomap-map {
 	outline: 1px solid #ccc;
 	overflow: hidden;

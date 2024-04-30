@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml
+	xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Folder>
+			<name>Projects</name>
+			<Schema name="Projects" id="Projects">
+				<SimpleField name="OBJECTID" type="int"></SimpleField>
+				<SimpleField name="Project" type="string"></SimpleField>
+				<SimpleField name="Program" type="string"></SimpleField>
+			</Schema>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">8</SimpleData>
+						<SimpleData name="Project">Implement a disaster recovery and economic adjustment initiative in British Columbia</SimpleData>
+						<SimpleData name="Program">CEDD (formerly known as WDP)</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-122.292378,49.145325</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">39</SimpleData>
+						<SimpleData name="Project">Establish an Indigenous Innovative Bioeconomy Demonstration Program in BC</SimpleData>
+						<SimpleData name="Program">CEDD (formerly known as WDP)</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.24746,49.261224</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">122</SimpleData>
+						<SimpleData name="Project">Deliver Rural &amp; Northern Immigration Pilot in North Okanagan, West Kootenay &amp; Shuswap, BC</SimpleData>
+						<SimpleData name="Program">CEDD (formerly known as WDP)</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-119.261665,50.282286</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">201</SimpleData>
+						<SimpleData name="Project">Enhance Small Business BC&amp;s BC Marketplace to support diversity and inclusiveness</SimpleData>
+						<SimpleData name="Program">CEDD (formerly known as WDP)</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.1044603,49.24362229</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

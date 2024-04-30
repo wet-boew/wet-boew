@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml
+	xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<Folder>
+			<name>Projects</name>
+			<Schema name="Projects" id="Projects">
+				<SimpleField name="OBJECTID" type="int"></SimpleField>
+				<SimpleField name="Project" type="string"></SimpleField>
+				<SimpleField name="Program" type="string"></SimpleField>
+			</Schema>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">3</SimpleData>
+						<SimpleData name="Project">Create an Agtech Innovation Sandbox (AGIS) to scale up and commercialize agtech in BC</SimpleData>
+						<SimpleData name="Program">Regional Innovation Ecosystems</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-122.848782,49.187925</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">6</SimpleData>
+						<SimpleData name="Project">Grow BC biotech by advancing in-vitro and in-situ antiviral therapy for SARS-CoV2 variants</SimpleData>
+						<SimpleData name="Program">Regional Innovation Ecosystems</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.245686,49.263306</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">9</SimpleData>
+						<SimpleData name="Project">Establish the BC Net-Zero Innovation Network</SimpleData>
+						<SimpleData name="Program">Regional Innovation Ecosystems</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-122.776649,49.26575355</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<ExtendedData>
+					<SchemaData schemaUrl="#Projects">
+						<SimpleData name="OBJECTID">22</SimpleData>
+						<SimpleData name="Project">Grow BC biotech by improving the delivery technology behind the mRNA vaccines</SimpleData>
+						<SimpleData name="Program">Regional Innovation Ecosystems</SimpleData>
+					</SchemaData>
+				</ExtendedData>
+				<Point>
+					<coordinates>-123.249624,49.260613</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

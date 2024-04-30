@@ -3546,7 +3546,14 @@ MapLegend.prototype.symbolize = function( mapLayer ) {
 	}
 
 	// append the list to the legend
-	$( "#sb_" + layerName ).html( "<ul class='list-unstyled'>" + symbolList + "</ul>" );
+	if ( $( "#sb_" + layerName ).closest( ".wb-geomap" ).hasClass( "legend-label-only" ) && symbolList.match( /<li>/g ) && symbolList.match( /<li>/g ).length === 1 ) {
+
+		// role="presentation" added here because there is only one item and the icon is now only there for styling purposes
+		$( "#sb_" + layerName ).html( "<ul class='list-unstyled' role='presentation'>" + symbolList + "</ul>" );
+		$( "#sb_" + layerName + " li" ).attr( "role", "presentation" );
+	} else {
+		$( "#sb_" + layerName ).html( "<ul class='list-unstyled'>" + symbolList + "</ul>" );
+	}
 
 	// create the legend symbols
 	for ( i = 0, len = symbolItems.length; i !== len; i += 1 ) {
