@@ -135,12 +135,12 @@ const componentName = "wb-paginate",
 			// Add pages buttons
 			for ( i; i <= pagesCount; i++ ) {
 				var pageButtonLI = "";
-				pageButtonLI += "<li class=\"" + returnItemClass( currPage, pagesCount, i ) + "\"" + ( i === currPage ? " aria-current=\"page\"" : "" ) + ">";
+				pageButtonLI += "<li class=\"" + returnItemClass( currPage, pagesCount, i ) + "\"" + ">";
 
 				if ( buttonsUI ) {
-					pageButtonLI += "<button " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</button>";
+					pageButtonLI += "<button " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</button>";
 				} else {
-					pageButtonLI += "<a href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i + "</a>";
+					pageButtonLI += "<a href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</a>";
 				}
 
 				pageButtonLI += "</li>";
@@ -273,8 +273,9 @@ const componentName = "wb-paginate",
 		return itemClass;
 	};
 
-// When a filter is updated
-$document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", function()  {
+// When a page button is clicked
+$document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", function( e )  {
+	e.preventDefault();
 	let elm = document.querySelector( "#" + this.getAttribute( "aria-controls" ) ),
 		pageDest = ( ( this.getAttribute( pageData ) ) * 1 ) || elm.pgSettings.currPage;
 
@@ -289,7 +290,10 @@ $document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", func
 
 		updateItems( elm );
 		goToPage( elm );
+		elm.scrollIntoView( { behavior: "smooth" }, true );
 	}
+
+
 } );
 
 // Resets items and pagination
