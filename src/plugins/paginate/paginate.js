@@ -122,7 +122,7 @@ const componentName = "wb-paginate",
 			prevLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
 
 			if ( buttonsUI ) {
-				prevLI += "<button class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
+				prevLI += "<button type=\"button\" class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
 
 			} else {
 				prevLI += "<a class=\"paginate-prev\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.prv + "</a>";
@@ -138,7 +138,7 @@ const componentName = "wb-paginate",
 				pageButtonLI += "<li class=\"" + returnItemClass( currPage, pagesCount, i ) + "\"" + ">";
 
 				if ( buttonsUI ) {
-					pageButtonLI += "<button " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</button>";
+					pageButtonLI += "<button type=\"button\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</button>";
 				} else {
 					pageButtonLI += "<a href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</a>";
 				}
@@ -152,7 +152,7 @@ const componentName = "wb-paginate",
 			nextLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
 
 			if ( buttonsUI ) {
-				nextLI += "<button class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
+				nextLI += "<button type=\"button\" class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
 			} else {
 				nextLI += "<a class=\"paginate-next\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.nxt + "</a>";
 			}
@@ -290,7 +290,9 @@ $document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", func
 
 		updateItems( elm );
 		goToPage( elm );
-		elm.scrollIntoView( { behavior: "smooth" }, true );
+		if ( elm.getBoundingClientRect().top < 0 ) {
+			elm.scrollIntoView( { behavior: "smooth" }, true );
+		}
 	}
 
 
