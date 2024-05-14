@@ -70,8 +70,6 @@ const componentName = "wb-paginate",
 			elm.pgSettings.itemsPerPage = elm.pgSettings.itemsPerPage || defaults.itemsPerPage;
 			elm.pgSettings.items = elm.querySelectorAll( ( elm.pgSettings.section || ":scope" ) + " " + elm.pgSettings.selector + notFilterClassSel );
 
-			// elm.pgSettings.buttonsUI = true;
-
 			// Setup pagination container
 			paginationElm = document.createElement( "div" );
 			paginationElm.id = componentName + "-" + elm.id;
@@ -105,7 +103,6 @@ const componentName = "wb-paginate",
 			currPage = elm.pgSettings.currPage,
 			pagesCount = elm.pgSettings.pagesCount,
 			paginationElm = document.querySelector( "#" + componentName + "-" + elm.id ),
-			buttonsUI = elm.pgSettings.buttonsUI,
 			i = 1;
 
 		// Make sure the defined current page is not bigger than the total pages
@@ -120,14 +117,7 @@ const componentName = "wb-paginate",
 			// Add Previous page button
 			var prevLI = "";
 			prevLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
-
-			if ( buttonsUI ) {
-				prevLI += "<button type=\"button\" class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
-
-			} else {
-				prevLI += "<a class=\"paginate-prev\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.prv + "</a>";
-			}
-
+			prevLI += "<button type=\"button\" class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
 			prevLI += "</li>";
 
 			paginationUI += prevLI;
@@ -136,13 +126,7 @@ const componentName = "wb-paginate",
 			for ( i; i <= pagesCount; i++ ) {
 				var pageButtonLI = "";
 				pageButtonLI += "<li class=\"" + returnItemClass( currPage, pagesCount, i ) + "\"" + ">";
-
-				if ( buttonsUI ) {
-					pageButtonLI += "<button type=\"button\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</button>";
-				} else {
-					pageButtonLI += "<a href=\"#" + elm.id + "\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-selected=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</a>";
-				}
-
+				pageButtonLI += "<button type=\"button\" " + pageData + "=\"" + i + "\" aria-controls=\"" + elm.id + "\"" + ( i === currPage ? " aria-current=\"true\"" : "" ) + "><span class=\"wb-inv\">Page </span>" + i + "</button>";
 				pageButtonLI += "</li>";
 				paginationUI += pageButtonLI;
 			}
@@ -150,13 +134,7 @@ const componentName = "wb-paginate",
 			// Add Next page button
 			var nextLI = "";
 			nextLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
-
-			if ( buttonsUI ) {
-				nextLI += "<button type=\"button\" class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
-			} else {
-				nextLI += "<a class=\"paginate-next\" aria-controls=\"" + elm.id + "\" href=\"#" + elm.id + "\">" + i18nText.nxt + "</a>";
-			}
-
+			nextLI += "<button type=\"button\" class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
 			nextLI += "</li>";
 			paginationUI += nextLI;
 			paginationUI += "</ol>";
@@ -190,16 +168,10 @@ const componentName = "wb-paginate",
 			itemClass,
 			pageLink,
 			currPage = elm.pgSettings.currPage,
-			pagesCount = elm.pgSettings.pagesCount,
-			buttonsUI = elm.pgSettings.buttonsUI;
+			pagesCount = elm.pgSettings.pagesCount;
 
 		pageItems.forEach( function( pageItem, i ) {
-			if ( buttonsUI ) {
-				pageLink = pageItem.querySelector( "button" );
-			} else {
-				pageLink = pageItem.querySelector( "a" );
-			}
-
+			pageLink = pageItem.querySelector( "button" );
 
 			if ( pageLink.classList.contains( "paginate-prev" ) ) {
 				if ( currPage > 1 ) {
@@ -215,12 +187,12 @@ const componentName = "wb-paginate",
 				}
 			} else {
 				pageItem.className = "";
-				pageItem.removeAttribute( "aria-current" );
+				pageItem.children[ 0 ].removeAttribute( "aria-current" );
 
 				itemClass = returnItemClass( currPage, pagesCount, i );
 
 				if ( i === currPage ) {
-					pageItem.setAttribute( "aria-current", "page" );
+					pageItem.children[ 0 ].setAttribute( "aria-current", "true" );
 				}
 
 				pageItem.className = itemClass;
@@ -274,8 +246,7 @@ const componentName = "wb-paginate",
 	};
 
 // When a page button is clicked
-$document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", function( e )  {
-	e.preventDefault();
+$document.on( "click", "." + pagerClass + " button", function()  {
 	let elm = document.querySelector( "#" + this.getAttribute( "aria-controls" ) ),
 		pageDest = ( ( this.getAttribute( pageData ) ) * 1 ) || elm.pgSettings.currPage;
 
@@ -290,6 +261,8 @@ $document.on( "click", "." + pagerClass + " a, ." + pagerClass + " button", func
 
 		updateItems( elm );
 		goToPage( elm );
+
+		$( elm ).trigger( "setfocus.wb" );
 		if ( elm.getBoundingClientRect().top < 0 ) {
 			elm.scrollIntoView( { behavior: "smooth" }, true );
 		}

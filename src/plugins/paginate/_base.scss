@@ -52,6 +52,10 @@
 					border-color: #bbbfc5;
 					z-index: 2;
 				}
+
+				&:focus {
+					@include tab-focus;
+				}
 			}
 			&.disabled {
 				& + li {
