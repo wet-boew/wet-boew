@@ -239,7 +239,7 @@
 </section>
 
 <section>
-	<h2>Filtering the content by the URL hash (<code>ajax/data-ajax-extra-en.html#filter-id</code>, v4.0.12+)</h2>
+	<h2>Filtering the content by the URL hash (<code>ajax/data-ajax-filter-en.html#filter-id</code>, v4.0.12+)</h2>
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-append="ajax/data-ajax-filter-en.html#filter-id" class="original">
@@ -272,7 +272,7 @@
 </section>
 
 <section>
-	<h2>Filtering the content by a selector (<code>ajax/data-ajax-extra-en.html .filter-selector</code>, v4.0.12+)</h2>
+	<h2>Filtering the content by a selector (<code>ajax/data-ajax-filter-en.html .filter-selector</code>, v4.0.12+)</h2>
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-append="ajax/data-ajax-filter-en.html .filter-selector" class="original">
@@ -294,12 +294,67 @@
 	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
 &lt;/section&gt;
 
-&lt;section class=&quot;ajaxed-in filter-selector&quot;&gt;
+&lt;section class=&quot;filter-selector&quot;&gt;&lt;div class="ajaxed-in">
 	&lt;h4&gt;I was ajaxed in and filtered by a selector&lt;/h4&gt;
 	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;!-- to illustrate filter out -->
+&lt;ul class="filter-out-selector">
+	&lt;li>Item 1&lt;/li>
+	&lt;li>Item 2&lt;/li>
+	&lt;li>Item 3&lt;/li>
+&lt;/ul>
+&lt;/div>
 &lt;/section&gt;
 </code></pre>
 			</section>
+		</details>
+	</section>
+</section>
+
+<section>
+	<h2>Filtering out the content by a selector </h2>
+	<section>
+		<h3>Removing one element</h3>
+		<p>Data ajax attribute: <code>data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)"</code></p>
+		<div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)" class="original">
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</div>
+	</section>
+	<section>
+		<h3>Removing multiple elements</h3>
+		<p>Data ajax attribute: <code>data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector, p)</code></p>
+		<div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector, p)" class="original">
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</div>
+	</section>
+	<section>
+		<h3>Source code</h3>
+		<details>
+			<summary>View code</summary>
+			<p>Filering out one element, in-page HTML</p>
+			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector)</strong>" class="original"&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+	&lt;/div&gt;</code></pre>
+			<p>Filering out multiple elements, in-page HTML</p>
+			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector, p)</strong>" class="original"&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+	&lt;/div&gt;</code></pre>
+			<p>data-ajax-filter-en.html</p>
+			<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+&lt;h4&gt;I was ajaxed in and filtered by the URL hash&lt;/h4&gt;
+&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class=&quot;filter-selector&quot;&gt;&lt;div class="ajaxed-in">
+&lt;h4&gt;I was ajaxed in and filtered by a selector&lt;/h4&gt;
+&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;!-- to illustrate filter out -->
+&lt;ul class="filter-out-selector">
+	&lt;li>Item 1&lt;/li>
+	&lt;li>Item 2&lt;/li>
+	&lt;li>Item 3&lt;/li>
+&lt;/ul>
+&lt;/div&gt;&lt;/section></code></pre>
 		</details>
 	</section>
 </section>

@@ -34,6 +34,10 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	// Separate the URL from the filtering criteria
 	if ( selector ) {
 		fetchOpts.url = urlParts[ 0 ];
+
+		if ( urlParts[ 1 ] ) {
+			selector = urlParts.slice( 1 ).join( " " );
+		}
 	}
 
 	if ( fetchNoCache ) {
