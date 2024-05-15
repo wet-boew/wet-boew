@@ -174,7 +174,8 @@ var localParseHTML = jQuery.parseHTML,
 		"<tbody/>",
 		"<tr/>",
 		"<td />",
-		"<td/>"
+		"<td/>",
+		"<tr><td></td></tr>"
 	],
 	sanitize = function( html ) {
 
