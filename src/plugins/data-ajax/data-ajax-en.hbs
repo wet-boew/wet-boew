@@ -328,21 +328,28 @@
 		</div>
 	</section>
 	<section>
+		<h3>Removing an element and encoding the output</h3>
+		<p>Data ajax attribute: <code>data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'</code></p>
+		<pre><code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</code></pre>
+	</section>
+	<section>
 		<h3>Source code</h3>
 		<details>
 			<summary>View code</summary>
 			<p>Filering out one element, in-page HTML</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector)</strong>" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
-	&lt;/div&gt;</code></pre>
+&lt;/div&gt;</code></pre>
 			<p>Filering out multiple elements, in-page HTML</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector, p)</strong>" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
-	&lt;/div&gt;</code></pre>
+&lt;/div&gt;</code></pre>
+			<p>Filering out one element and encoding the output</p>
+			<pre><code>&lt;pre>&lt;code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/code>&lt;/pre></code></pre>
 			<p>data-ajax-filter-en.html</p>
 			<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
-&lt;h4&gt;I was ajaxed in and filtered by the URL hash&lt;/h4&gt;
-&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+	&lt;h4&gt;I was ajaxed in and filtered by the URL hash&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;section class=&quot;filter-selector&quot;&gt;&lt;div class="ajaxed-in">

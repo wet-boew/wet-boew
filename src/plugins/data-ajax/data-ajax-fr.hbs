@@ -326,32 +326,39 @@
 		</div>
 	</section>
 	<section>
+		<h3>Retrait d'un élément et encoder le rendement</h3>
+		<p>Attribut data ajax: <code>data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-fr.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'</code></p>
+		<pre><code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-fr.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</code></pre>
+	</section>
+	<section>
 		<h3>Code source</h3>
 		<details>
 			<summary>Visualiser le code</summary>
 			<p>Retrait d'un élément, HTML dans la page</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector)</strong>" class="original"&gt;
 	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
-	&lt;/div&gt;</code></pre>
+&lt;/div&gt;</code></pre>
 			<p>Retrait de plusieurs éléments, HTML dans la page</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector, p)</strong>" class="original"&gt;
 	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
-	&lt;/div&gt;</code></pre>
+&lt;/div&gt;</code></pre>
+			<p>Retrait d'un élément et encoder le rendement</p>
+			<pre><code>&lt;pre>&lt;code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-fr.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/code>&lt;/pre></code></pre>
 			<p>data-ajax-filter-fr.html</p>
 			<pre><code>&lt;section id=&quot;filter-id&quot; class=&quot;ajaxed-in&quot;&gt;
-&lt;h4&gt;J'ai été affiché via Ajax et après filtrer par le &amp;#171;&amp;#160;hash&amp;#160;&amp;#187; de l'URL&lt;/h4&gt;
-&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
+	&lt;h4&gt;J'ai été affiché via Ajax et après filtrer par le &amp;#171;&amp;#160;hash&amp;#160;&amp;#187; de l'URL&lt;/h4&gt;
+	&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;section class=&quot;filter-selector&quot;&gt;&lt;div class="ajaxed-in">
-&lt;h4&gt;J'ai été affiché via Ajax et après filtrer par selecteur&lt;/h4&gt;
-&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
-&lt;!-- Pour illustrer le retrait de contenu par selecteur -->
-&lt;ul class="filter-out-selector">
-	&lt;li>Item 1&lt;/li>
-	&lt;li>Item 2&lt;/li>
-	&lt;li>Item 3&lt;/li>
-&lt;/ul>
+	&lt;h4&gt;J'ai été affiché via Ajax et après filtrer par selecteur&lt;/h4&gt;
+	&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
+	&lt;!-- Pour illustrer le retrait de contenu par selecteur -->
+	&lt;ul class="filter-out-selector">
+		&lt;li>Item 1&lt;/li>
+		&lt;li>Item 2&lt;/li>
+		&lt;li>Item 3&lt;/li>
+	&lt;/ul>
 &lt;/div&gt;&lt;/section></code></pre>
 		</details>
 	</section>
