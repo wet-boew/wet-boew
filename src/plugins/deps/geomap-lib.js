@@ -2384,6 +2384,11 @@ MapLayer.prototype.addToLegend = function() {
 		$ul = $( "<ul class='list-unstyled geomap-lgnd'></ul>" ).appendTo( $fieldset );
 	}
 
+	// display labels over 2 columns if "two-cols-legend" class is present
+	if ( $ul.closest( ".wb-geomap" ).hasClass( "two-cols-legend" ) ) {
+		$ul.addClass( "colcount-md-2" );
+	}
+
 	$chkBox = $( "<input type='checkbox' id='cb_" + this.id +
 			"' class='geomap-lgnd-cbx' value='" + this.id +
 						"' " + checked + " data-map='" + this.map.id +
