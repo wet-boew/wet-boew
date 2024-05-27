@@ -97,7 +97,7 @@ var componentName = "wb-twitter",
 							const mutationTarget = mutation.target;
 
 							// Override the timeline iframe's title right after Twitter's widget script adds it
-							// Note: The timeline's iframe title is English-only and written in title case ("Twitter Timeline")... This replaces it with an i18n version written in sentence case.
+							// Note: The timeline's iframe title is English-only, uses "Twitter" and is written in title case ("Twitter Timeline")... This replaces it with an i18n version that uses "X" and is written in sentence case.
 							if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle ) {
 								mutationTarget.title = i18nText.timelineTitle;
 							}
