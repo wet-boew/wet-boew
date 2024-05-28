@@ -319,7 +319,10 @@ var componentName = "wb-frmvld",
 											// Create our container if one doesn't already exist
 											if ( $summaryContainer.length === 0 ) {
 												$summaryContainer = $( "<section id='" + errorFormId + "' class='alert alert-danger' tabindex='-1'>" + summary + "</section>" ).prependTo( $form );
-											} else if ( $summaryContainer.html().replace( /'/g, "\"" ).replace( /&#160;/g, "&nbsp;" ) !== summary.replace( /'/g, "\"" ).replace( /&#160;/g, "&nbsp;" ) ) {
+
+												// Replace current error summary content only if it is different
+												// from the incoming error summary content
+											} else if ( $summaryContainer.html() !== summary.replace( /'/g, "\"" ).replace( /&#160;/g, "&nbsp;" ) ) {
 
 												// if the summary container is currently focused then
 												// we will focus the last element in the summary
