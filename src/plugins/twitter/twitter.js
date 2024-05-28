@@ -58,6 +58,11 @@ var componentName = "wb-twitter",
 					};
 				}
 
+				// Show a warning if the timelineTitle variable isn't a string
+				if ( typeof i18nText.startNotice !== "string" ) {
+					console.warn( componentName + ": i18n text is missing. Iframe title override and skip links will be disabled." );
+				}
+
 				// Set Chinese (Simplfified)'s language code to "zh-cn"
 				// If the link doesn't specify a widget language and its "in-page" language code is "zh-Hans"...
 				// Notes:
@@ -97,8 +102,10 @@ var componentName = "wb-twitter",
 							const mutationTarget = mutation.target;
 
 							// Override the timeline iframe's title right after Twitter's widget script adds it
-							// Note: The timeline's iframe title is English-only, uses "Twitter" and is written in title case ("Twitter Timeline")... This replaces it with an i18n version that uses "X" and is written in sentence case.
-							if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle ) {
+							// Notes:
+							// -The timeline's iframe title is English-only, uses "Twitter" and is written in title case ("Twitter Timeline")... This replaces it with an i18n version that uses "X" and is written in sentence case.
+							// -Only proceed if the i18n variable is a string... otherwise this'll trigger an infinite loop of attribute mutations
+							if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle && typeof i18nText.timelineTitle === "string" ) {
 								mutationTarget.title = i18nText.timelineTitle;
 							}
 							break;
@@ -161,9 +168,8 @@ var componentName = "wb-twitter",
 		let skipToEndLink;
 		let skipToStartLink;
 
-		// Abort if Twitter username is falsy
-		// Note: Unlikely to happen unless the username doesn't exist... in which case Twitter's third party widget script will have already failed and triggered an exception by this point
-		if ( !username ) {
+		// Abort if Twitter username is falsy or i18n variables aren't strings
+		if ( !username || typeof i18nText.timelineTitle !== "string" ) {
 			return;
 		}
 
