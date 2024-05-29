@@ -21,6 +21,11 @@ var componentName = "wb-lbx",
 	modalHideSelector = "#wb-tphp, body > header, body > main, body > footer",
 	$document = wb.doc,
 	callbacks, i18n, i18nText,
+	defaults = {
+
+		// exclude 'times' from screen reader with aria-hidden span
+		closeMarkup: "<button type='button' class='mfp-close' title='%title%'><span class='mfp-close' aria-hidden='true'>&times;</span></button>"
+	},
 
 	/**
 	 * @method init
@@ -147,7 +152,7 @@ var componentName = "wb-lbx",
 						$container = $wrap.find( ".mfp-container" ),
 						$containerParent = $container.parent(),
 						$modal = $wrap.find( ".modal-dialog" ),
-						$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
+						$buttons = $wrap.find( "button.mfp-close, .mfp-arrow" ),
 						len = $buttons.length,
 						i, button;
 
@@ -272,7 +277,7 @@ var componentName = "wb-lbx",
 			complete: function() {
 
 				// Set the dependency i18nText only once
-				$.extend( true, $.magnificPopup.defaults, i18nText );
+				$.extend( true, $.magnificPopup.defaults, i18nText, defaults );
 
 				$document.trigger( dependenciesLoadedEvent );
 			}
@@ -296,7 +301,7 @@ var componentName = "wb-lbx",
 
 				overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary pull-left " + closeClassFtr +
 					"' title='" + spanTextFtr + "'>" +
-					closeTextFtr +
+					"<span aria-hidden='true'>" + closeTextFtr + "</span>" +
 					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
 
 				$( footer ).append( overlayCloseFtr );
