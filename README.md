@@ -50,7 +50,7 @@
 
 ### Multilingual
 
-* Currently supports 33 languages (including right-to-left languages)
+* Currently supports 34 languages (including right-to-left languages)
   * English
   * French
   * Afrikaans
@@ -69,6 +69,7 @@
   * Hungarian
   * Icelandic
   * Indonesian
+  * Inuktitut
   * Italian
   * Japanese
   * Korean
@@ -169,7 +170,7 @@ The Canada wordmark and related graphics associated with this distribution are p
 
 ### Multilingue
 
-* Soutien actuellement 33 langues (y compris les langues droite-à-gauche)
+* Soutien actuellement 34 langues (y compris les langues droite-à-gauche)
   * Anglais
   * Français
   * Afrikaans
@@ -187,6 +188,7 @@ The Canada wordmark and related graphics associated with this distribution are p
   * Hindi
   * Hongrois
   * Indonésien
+  * Inuktitut
   * Islandais
   * Italien
   * Japonais
