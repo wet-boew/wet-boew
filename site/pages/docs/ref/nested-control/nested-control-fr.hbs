@@ -1,0 +1,85 @@
+---
+{
+	"title": "Contrôle imbriqué (pure CSS)",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Un plugiciel CSS pour l'ajout de champs indentés à l'intérieur des contrôles boîtes à cocher et boutons radio.",
+	"altLangPrefix": "nested-control",
+	"dateModified": "2022-03-29"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<div lang="en" class="alert alert-warning">
+	<h2>Unstable feature</h2>
+	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
+	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
+	<p><small><a href="../provisional-fr.html" hreflang="fr">Check other provisional features available.</a></small></p>
+</div>
+
+<section>
+	<h2>Fonction</h2>
+	<p>Offre la possibilité d'avoir un champ indenté à l'intérieur d'un contrôle de type boîte à cocher ou bouton radio.</p>
+</section>
+
+<!--<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>Des éléments ayant des hauteurs différentes sont affichés sur la même ligne de base.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Éviter lorsque</h2>
+	<p>Aucun cas d'utilisation n'est connu pour lequel l'utilisation de ce plugiciel devrait être évitée.</p>
+</section>-->
+
+<p><strong>Cette documentation n'est pas traduite.</strong></p>
+
+<div lang="en">
+<section>
+	<h2>Use when</h2>
+	<ul>
+		<li>An additional optional field is required to gather input from the user; such as an "other" field with a nested "specify".</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Do not use when</h2>
+	<ul>
+		<li>Arbitrarily nest multiple fields.</li>
+		<li>Nest multiple levels of fields.</li>
+		<li>Nested field is required.</li>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<p><a href="../../../demos/nested-control/nested-control-en.html">Working example of the nested control css plugin</a></p>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Add the class <code>wb-nested-control</code> to a container element <strong>sibling</strong> to the checkbox or radio button it complements.</li>
+		<li>This container element can then have a <code>label</code> and an <code>input</code> of type text for example.</li>
+		<li>The <code>wb-nested-control</code> element will be hidden by default. When its associated control is checked, then it displays.</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>There are no configuration options.</p>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>Document the public events that can be used by implementers or developers.</p>
+	<p><strong>There are no events.</strong></p>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/nested-control/">Source code for the nested control css plugin on GitHub</a></p>
+</section>
+</div>
