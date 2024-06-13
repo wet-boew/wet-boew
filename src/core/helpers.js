@@ -7,10 +7,11 @@
  */
 ( function( $, wb ) {
 
-wb.getData = function( element, dataName ) {
+wb.getData = function( element, dataName, parseOptions ) {
 	var elm = !element.jquery ? element : element[ 0 ],
 		dataAttr = elm.getAttribute( "data-" + dataName ),
-		dataObj;
+		dataObj = {},
+		configElm, dataConfig;
 
 	if ( dataAttr ) {
 		try {
@@ -18,12 +19,183 @@ wb.getData = function( element, dataName ) {
 			$.data( elm, dataName, dataObj );
 		} catch ( error ) {
 			console.info( elm );
-			$.error( "Bad JSON array in data-" + dataName + " attribute" );
+			console.error( "Bad JSON array in data-" + dataName + " attribute" );
+		}
+	}
+
+	// Check if there is web-component wb-config
+	configElm = elm.querySelector( ":scope wb-config[wb-plugin=" + dataName + "]" ) || document.getElementById( elm.getAttribute( "data-" + dataName + "-config" ) );
+
+	if ( configElm ) {
+
+		// If wb-ignore are not define, set it by default to: wb-ignore="id"
+		if ( !configElm.hasAttribute( "wb-ignore" ) ) {
+			configElm.setAttribute( "wb-ignore", "id" );
+		}
+
+		// Get the setting from wb-config element
+		dataConfig = getWbConfig( configElm, parseOptions ).parsed;
+
+		if ( !dataAttr ) {
+			dataObj = dataConfig;
+		} else if ( Array.isArray( dataConfig ) && Array.isArray( dataObj ) ) {
+			dataObj = dataObj.concat( dataConfig );
+		} else if ( !Array.isArray( dataConfig ) && !Array.isArray( dataObj ) ) {
+			dataObj = $.extend( true, {}, dataObj, dataConfig );
+		} else {
+			console.info( elm );
+			console.error( "Incompatible setting, array and object can not be merged" );
+
+			// Let's use the dataConfig
+			dataObj = dataConfig;
 		}
 	}
 
 	return dataObj;
 };
+
+function getWbConfig( elm, parseOptions ) {
+
+	var context = {},
+		configuration = {},
+		i, i_len = elm.attributes.length,
+		attr, attrName, attrValue,
+		innerConfig = elm.querySelectorAll( ":scope > wb-config" ),
+		innerConfigArray = [],
+		lstIgnoreProp,
+		configParsed,
+		parsedValue;
+
+	// Validate parse Options
+	parseOptions = parseOptions || {};
+
+	// Get all attribute and triage aside the contextual ones prefixed with "wb-"
+	for ( i = 0; i !== i_len; i++ ) {
+		attr = elm.attributes[ i ];
+		attrName = attr.nodeName;
+		attrValue = attr.value;
+
+		// Is it a contextual setting
+		if ( attrName.startsWith( "wb-" ) ) {
+			context[ attrName.substring( 3 ) ] = attrValue;
+			continue;
+		}
+
+		// Exclude any data-* attribute
+		if ( attrName.startsWith( "data-" ) ) {
+			continue;
+		}
+
+		configuration[ attrName ] = parseConfigValue( attrName, attrValue, parseOptions );
+	}
+
+	// Is there any property to remove/cleanup?
+	if ( context.ignore ) {
+		lstIgnoreProp = context.ignore.split( " " );
+		i_len = lstIgnoreProp.length;
+		for ( i = 0; i !== i_len; i++ ) {
+			if ( configuration[ lstIgnoreProp[ i ] ] !== undefined ) {
+				delete configuration[ lstIgnoreProp[ i ] ];
+			}
+		}
+	}
+
+	// Is there any wb-config children?
+	i_len = innerConfig.length;
+	for ( i = 0; i !== i_len; i++ ) {
+		configParsed = getWbConfig( innerConfig[ i ], parseOptions );
+
+		if ( configParsed.context.prop ) {
+			configuration[ configParsed.context.prop ] = configParsed.parsed;
+		} else {
+			innerConfigArray.push( configParsed.parsed );
+		}
+	}
+
+	// Check if the data type enforced for textContent are JSON
+	if ( !context.value ) {
+		context.value = elm.textContent;
+	} else if ( !context.type && context.value ) {
+		context.type = "json";
+	}
+
+	// Define the true value of the configuration
+	if ( !innerConfig.length && ( context.prop || context.value ) ) {
+
+		parsedValue = {};
+
+		// Map the text content value
+		if ( context.type === "json" ) {
+			try {
+				parsedValue = JSON.parse( context.value );
+			} catch ( error ) {
+				console.info( elm );
+				console.error( "Bad JSON in wb-value attribute" );
+			}
+		} else if ( context.type === "bool" ) {
+			parsedValue = parseConfigValue( context.prop, context.value, { expectBool: [ context.prop ] } );
+		} else if ( context.type === "number" ) {
+			parsedValue = parseConfigValue( context.prop, context.value, { expectNb: [ context.prop ] } );
+		} else if ( context.type === "pre" ) {
+			parsedValue = parseConfigValue( context.prop, context.value, parseOptions );
+		} else { // string
+			parsedValue = parseConfigValue( context.prop, context.value.trim(), parseOptions );
+		}
+
+		// Add the property value as sibling prop
+		if ( Object.keys( configuration ).length ) {
+			if ( !parsedValue === "" || context.type === "pre" ) {
+				configuration[ context.prop ] = parsedValue;
+			}
+		} else {
+			configuration = parsedValue;
+		}
+
+	} else if ( innerConfigArray.length && ( !Object.keys( configuration ).length ) ) {
+
+		// The value are an array of object
+		configuration = innerConfigArray;
+	} else if ( innerConfigArray.length && Object.keys( configuration ).length ) {
+
+		// We can't mix key/value items with anonymous object
+		console.error( elm );
+		console.error( "Error in the configuration, Unnamed property or incompatible config type where array must not be intermixed with key/value.\nThe following config are ignored" );
+		console.error( innerConfigArray );
+	}
+
+	return {
+		context: context,
+		parsed: configuration
+	};
+}
+
+function parseConfigValue( propName, propValue, options ) {
+
+	var expectedBooleanValue = options.expectBool || [],
+		expectedNumberValue = options.expectNb || [];
+
+	// Adjust the value based on plugin configuration expectation
+	if ( expectedBooleanValue.indexOf( propName ) !== -1 ) {
+		switch ( propValue ) {
+
+		case "false":
+		case "0":
+			propValue = false;
+			break;
+
+		case "true":
+		default:
+			propValue = true;
+			break;
+		}
+	}
+
+	if ( expectedNumberValue.indexOf( propName ) !== -1 ) {
+		propValue = Number.parseFloat( propValue );
+	}
+
+	return propValue;
+}
 
 /*
  * Initiate an in-browser download from a blob
