@@ -269,7 +269,7 @@ $document.on( "wb-contentupdated", selector, function( event, data )  {
 		supportsHas = window.getComputedStyle( document.documentElement ).getPropertyValue( "--supports-has" ); // Get "--supports-has" CSS property
 
 	// Reinitialize tagfilter if content on the page has been updated by another plugin
-	if ( data.source !== componentName ) {
+	if ( data && data.source !== componentName ) {
 		if ( wait ) {
 			clearTimeout( wait );
 		}
