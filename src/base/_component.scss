@@ -18,6 +18,17 @@
 .bg-norepeat {
 	background-repeat: no-repeat;
 }
+.bg-half-right,
+.bg-half-left {
+	background-repeat: no-repeat;
+	background-size: 50%;
+}
+.bg-half-right {
+	background-position: 100% center;
+}
+.bg-half-left {
+	background-position: left center;
+}
 
 /*
  Additional color
