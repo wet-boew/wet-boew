@@ -6,7 +6,7 @@
 "tag": "filter",
 "parentdir": "tagfilter",
 "altLangPrefix": "tagfilter-edge-cases",
-"dateModified": "2023-07-10"
+"dateModified": "2024-07-03"
 }
 ---
 
@@ -14,16 +14,30 @@
 
 <h2>Sur cette page:</h2>
 <ul>
-	<li><a href="#filteredEventsList">Exemple 1 - liste d'événements avec pagination et data-json</a></li>
+	<li><a href="#filteredEventsList">Exemple 1 - liste d'événements avec filtre de texte, pagination et data-json</a></li>
+	<li><a href="#filteredAppsList">Exemple 2 - liste d'applications avec filtre de texte et pagination</a></li>
 </ul>
 
-<section id="filteredEventsList" class="wb-tagfilter wb-paginate provisional" data-wb-paginate='{
+<section id="filteredEventsList" class="wb-filter wb-tagfilter wb-paginate provisional" data-wb-filter='{
+	"selector": "li",
+	"section": ".events-list",
+	"uiTemplate": "#searchFilter"
+}' data-wb-paginate='{
 	"itemsPerPage": 5,
 	"section": ".events-list",
 	"selector": "li",
 	"uiTarget": "#filteredEventsListPagination"
 }'>
-	<h2>Exemple 1 - Liste d'événements</h2>
+	<h2>Exemple 1 - liste d'événements avec filtre de texte, pagination et data-json</h2>
+	<div id="searchFilter" class="row mrgn-tp-lg">
+		<div class="col-xs-12">
+			<p class="h3 wb-fltr-info mrgn-tp-0"><span data-nbitem></span> résultats sur <span data-total></span></p>
+			<div class="form-group">
+				<label for="customSearchUI">Rechercher</label>
+				<input type="search" class="form-control full-width" id="customSearchUI">
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-lg-3">
 			<details open>
@@ -129,89 +143,102 @@
 
 <details>
 	<summary>Code source</summary>
-	<pre><code>&lt;section id="filteredEventsList" class="wb-tagfilter wb-paginate provisional" data-wb-paginate='{
+	<pre><code>&lt;section id="filteredEventsList" class="wb-filter wb-tagfilter wb-paginate provisional" data-wb-filter='{
+	"selector": "li",
+	"section": ".events-list",
+	"uiTemplate": "#searchFilter"
+}' data-wb-paginate='{
 	"itemsPerPage": 5,
 	"section": ".events-list",
 	"selector": "li",
 	"uiTarget": "#filteredEventsListPagination"
-}'>
-	&lt;h2>Exemple 1 - Liste d'événements&lt;/h2>
-	&lt;div class="row">
-		&lt;div class="col-xs-12 col-sm-4 col-lg-3">
-			&lt;details open>
-				&lt;summary>
-					&lt;h3>Options de filtre&lt;/h3>
-				&lt;/summary>
-				&lt;div class="form-group mrgn-bttm-0">
-					&lt;fieldset>
-						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Langue&lt;/span>&lt;/legend>
-						&lt;ul class="list-unstyled">
-							&lt;li class="radio">
-								&lt;label>
-									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="" checked> Toutes
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="radio">
-								&lt;label>
-									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="language__french"> Français
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="radio">
-								&lt;label>
-									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="language__english"> Anglais
-								&lt;/label>
-							&lt;/li>
-						&lt;/ul>
-					&lt;/fieldset>
-				&lt;/div>
-				&lt;div class="form-group mrgn-bttm-0">
-					&lt;fieldset>
-						&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Emplacement&lt;/span>&lt;/legend>
-						&lt;ul class="list-unstyled">
-							&lt;li class="checkbox">
-								&lt;label for="location__montreal">
-									&lt;input type="checkbox" name="location" id="location__montreal" class="wb-tagfilter-ctrl" value="location__montreal"> Montréal
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="checkbox">
-								&lt;label for="location__online">
-									&lt;input type="checkbox" name="location" id="location__online" class="wb-tagfilter-ctrl" value="location__online"> En ligne
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="checkbox">
-								&lt;label for="location__ottawa">
-									&lt;input type="checkbox" name="location" id="location__ottawa" class="wb-tagfilter-ctrl" value="location__ottawa"> Ottawa
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="checkbox">
-								&lt;label for="location__toronto">
-									&lt;input type="checkbox" name="location" id="location__toronto" class="wb-tagfilter-ctrl" value="location__toronto"> Toronto
-								&lt;/label>
-							&lt;/li>
-							&lt;li class="checkbox">
-								&lt;label for="location__vancouver">
-									&lt;input type="checkbox" name="location" id="location__vancouver" class="wb-tagfilter-ctrl" value="location__vancouver"> Vancouver
-								&lt;/label>
-							&lt;/li>
-						&lt;/ul>
-					&lt;/fieldset>
-				&lt;/div>
-				&lt;div class="form-group mrgn-bttm-0">
-					&lt;label for="jourListe">Jour de la semaine&lt;/label>
-					&lt;select id="jourListe" name="jour" class="form-control full-width wb-tagfilter-ctrl">
-						&lt;option value="">Tous&lt;/option>
-						&lt;option value="dayOTW_monday">Lundi&lt;/option>
-						&lt;option value="dayOTW_tuesday">Mardi&lt;/option>
-						&lt;option value="dayOTW_wednesday">Mercredi&lt;/option>
-						&lt;option value="dayOTW_thursday">Jeudi&lt;/option>
-						&lt;option value="dayOTW_friday">Vendredi&lt;/option>
-						&lt;option value="dayOTW_saturday">Samedi&lt;/option>
-						&lt;option value="dayOTW_sunday">Dimanche&lt;/option>
-					&lt;/select>
-				&lt;/div>
-			&lt;/details>
-		&lt;/div>
-		&lt;div class="col-xs-12 col-sm-8 col-lg-9">
+}'&gt;
+	&lt;h2&gt;Exemple 1 - liste d'événements avec filtre de texte, pagination et data-json&lt;/h2&gt;
+	&lt;div id="searchFilter" class="row mrgn-tp-lg"&gt;
+		&lt;div class="col-xs-12"&gt;
+			&lt;p class="h3 wb-fltr-info mrgn-tp-0"&gt;&lt;span data-nbitem&gt;&lt;/span&gt; résultats sur &lt;span data-total&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="customSearchUI"&gt;Rechercher&lt;/label&gt;
+				&lt;input type="search" class="form-control full-width" id="customSearchUI"&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-xs-12 col-sm-4 col-lg-3"&gt;
+			&lt;details open&gt;
+				&lt;summary&gt;
+					&lt;h3&gt;Options de filtre&lt;/h3&gt;
+				&lt;/summary&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;fieldset&gt;
+						&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Langue&lt;/span&gt;&lt;/legend&gt;
+						&lt;ul class="list-unstyled"&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="" checked&gt; Toutes
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="language__french"&gt; Français
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="langue" class="wb-tagfilter-ctrl" value="language__english"&gt; Anglais
+								&lt;/label&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;fieldset&gt;
+						&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Emplacement&lt;/span&gt;&lt;/legend&gt;
+						&lt;ul class="list-unstyled"&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label for="location__montreal"&gt;
+									&lt;input type="checkbox" name="location" id="location__montreal" class="wb-tagfilter-ctrl" value="location__montreal"&gt; Montréal
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label for="location__online"&gt;
+									&lt;input type="checkbox" name="location" id="location__online" class="wb-tagfilter-ctrl" value="location__online"&gt; En ligne
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label for="location__ottawa"&gt;
+									&lt;input type="checkbox" name="location" id="location__ottawa" class="wb-tagfilter-ctrl" value="location__ottawa"&gt; Ottawa
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label for="location__toronto"&gt;
+									&lt;input type="checkbox" name="location" id="location__toronto" class="wb-tagfilter-ctrl" value="location__toronto"&gt; Toronto
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label for="location__vancouver"&gt;
+									&lt;input type="checkbox" name="location" id="location__vancouver" class="wb-tagfilter-ctrl" value="location__vancouver"&gt; Vancouver
+								&lt;/label&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;label for="jourListe"&gt;Jour de la semaine&lt;/label&gt;
+					&lt;select id="jourListe" name="jour" class="form-control full-width wb-tagfilter-ctrl"&gt;
+						&lt;option value=""&gt;Tous&lt;/option&gt;
+						&lt;option value="dayOTW_monday"&gt;Lundi&lt;/option&gt;
+						&lt;option value="dayOTW_tuesday"&gt;Mardi&lt;/option&gt;
+						&lt;option value="dayOTW_wednesday"&gt;Mercredi&lt;/option&gt;
+						&lt;option value="dayOTW_thursday"&gt;Jeudi&lt;/option&gt;
+						&lt;option value="dayOTW_friday"&gt;Vendredi&lt;/option&gt;
+						&lt;option value="dayOTW_saturday"&gt;Samedi&lt;/option&gt;
+						&lt;option value="dayOTW_sunday"&gt;Dimanche&lt;/option&gt;
+					&lt;/select&gt;
+				&lt;/div&gt;
+			&lt;/details&gt;
+		&lt;/div&gt;
+		&lt;div class="col-xs-12 col-sm-8 col-lg-9"&gt;
 			&lt;ul class="list-unstyled events-list wb-tagfilter-items" data-wb-json='{
 				"url": "data_fr.json#/events",
 				"mapping": [
@@ -222,20 +249,547 @@
 					{ "selector": ".event-location", "value": "/location" },
 					{ "selector": ".event-language", "value": "/language" }
 				]
-			}'>
-				&lt;template>
-					&lt;li data-wb-tags="">
-						&lt;h3>&lt;/h3>
-						&lt;p>&lt;span class="event-date">&lt;/span> | &lt;span class="event-time">&lt;/span>&lt;/p>
-						&lt;p>&lt;strong>Emplacement:&lt;/strong> &lt;span class="event-location">&lt;/span>, &lt;strong>Langue&lt;/strong>: &lt;span class="event-language">&lt;/span>&lt;/p>
-					&lt;/li>
-				&lt;/template>
-			&lt;/ul>
-			&lt;div class="wb-tagfilter-noresult">
-				&lt;p>Aucun item ne correspond à cette combinaison de filtres.&lt;/p>
-			&lt;/div>
-			&lt;div id="filteredEventsListPagination">&lt;/div>
-		&lt;/div>
-	&lt;/div>
-&lt;/section></code></pre>
+			}'&gt;
+				&lt;template&gt;
+					&lt;li data-wb-tags=""&gt;
+						&lt;h3&gt;&lt;/h3&gt;
+						&lt;p&gt;&lt;span class="event-date"&gt;&lt;/span&gt; | &lt;span class="event-time"&gt;&lt;/span&gt;&lt;/p&gt;
+						&lt;p&gt;&lt;strong&gt;Emplacement:&lt;/strong&gt; &lt;span class="event-location"&gt;&lt;/span&gt;, &lt;strong&gt;Langue&lt;/strong&gt;: &lt;span class="event-language"&gt;&lt;/span&gt;&lt;/p&gt;
+					&lt;/li&gt;
+				&lt;/template&gt;
+			&lt;/ul&gt;
+			&lt;div class="wb-tagfilter-noresult"&gt;
+				&lt;p&gt;Aucun item ne correspond à cette combinaison de filtres.&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;div id="filteredEventsListPagination"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</details>
+
+<section id="filteredAppsList" class="wb-filter wb-tagfilter wb-paginate provisional" data-wb-filter='{
+	"selector": "div[data-wb-tags]",
+	"section": ".wb-tagfilter-items",
+	"uiTemplate": "#searchFilter2"
+}' data-wb-paginate='{
+	"itemsPerPage": 3,
+	"section": ".wb-tagfilter-items",
+	"selector": "div[data-wb-tags]",
+	"uiTarget": "#filteredEventsListPagination2"
+}'>
+	<h2>Exemple 2 - liste d'applications avec filtre de texte et pagination</h2>
+	<div id="searchFilter2" class="row mrgn-tp-lg">
+		<div class="col-sm-12">
+			<p class="h3 wb-fltr-info mrgn-tp-0"><span data-nbitem></span> résultats sur <span data-total></span></p>
+		</div>
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label for="customSearchUI2">Rechercher</label>
+				<input type="search" class="form-control full-width" id="customSearchUI2">
+			</div>
+		</div>
+		<div class="col-sm-4 col-md-5 col-lg-6">
+			<div class="form-group">
+				<fieldset>
+					<legend class="h5 mrgn-tp-0"><span class="field-name">Institution</span></legend>
+					<select id="institutionListe" name="institution" class="full-width form-control wb-tagfilter-ctrl">
+						<option value="">Toutes</option>
+						<option value="inst__EDC">Sciences et Développement économique Canada</option>
+						<option value="inst__AAFC">Agriculture et Agroalimentaire Canada</option>
+						<option value="inst__CBSA">Agence des services frontaliers du Canada</option>
+						<option value="inst__CBSAandPHAC">Agence des services frontaliers du Canada et Agence de la santé publique du Canada</option>
+						<option value="inst__CRA">Agence du revenu du Canada</option>
+						<option value="inst__CSPS">École de la fonction publique du Canada</option>
+						<option value="inst__ESDC">Emploi et Développement social Canada</option>
+						<option value="inst__ECCC">Environnement et Changement climatique Canada</option>
+						<option value="inst__FOC">Pêches et Océans Canada</option>
+						<option value="inst__GAC">Affaires mondiales Canada</option>
+						<option value="inst__HC">Santé Canada</option>
+						<option value="inst__IRCC">Immigration, Réfugiés, et Citoyenneté Canada</option>
+						<option value="inst__ISC">Services aux Autochtones Canada</option>
+						<option value="inst__Innovation">Innovation</option>
+						<option value="inst__NDandCAF">Défense nationale et les Forces armées canadiennes</option>
+						<option value="inst__NFBC">Office national du film du Canada</option>
+						<option value="inst__NRC">Ressources Naturelles Canada</option>
+						<option value="inst__PC">Parcs Canada</option>
+						<option value="inst__PHAC">Agence de la santé publique du Canada</option>
+						<option value="inst__PSPC">Services publics et Approvisionnement Canada</option>
+						<option value="inst__RCMP">Gendarmerie royale du Canada</option>
+						<option value="inst__SC">Statistique Canada</option>
+						<option value="inst__VAC">Anciens Combattants Canada</option>
+					</select>
+				</fieldset>
+			</div>
+		</div>
+		<div class="col-sm-8 col-md-7 col-lg-6">
+			<div class="form-group mrgn-bttm-0">
+				<fieldset>
+					<legend class="h5 mrgn-tp-0"><span class="field-name">Plateforme</span></legend>
+					<ul class="list-unstyled list-inline">
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__ios"> iOS
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__android"> Android
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__bb"> Blackberry
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__amazon"> Amazon
+							</label>
+						</li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__windows"> Windows
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="row wb-eqht-grd wb-tagfilter-items" lang="en">
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__CBSA inst__CBSAandPHAC inst__HC inst__PHAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">ArriveCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Use ArriveCAN to provide mandatory travel information on and after your entry into Canada.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags=" plat__android inst__NRC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Auto$mart</h3>
+				<p><span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Auto$mart mobile application helps drivers track their fuel consumption, learn how to be more fuel-efficient and save money.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__RCMP">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">B.C. RCMP</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">B.C. RCMP connects you to information for the latest news, missing and wanted persons, how to report a crime and more.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__FOC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Baitfish Primer</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Developed by Fisheries and Oceans Canada, The Baitfish Primer mobile app is a guide that allows users identify and protect Ontario’s baitfishes wherever they go!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">BarCode.tv</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">BARCODE is a simple and fun documentary app that gives voice to the objects around you.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__EDC inst__Innovation">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canada Business</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Your mobile business partner. A simplified all-access point for businesses to find essential information, directly interact with government resources and use tools to build your business.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canada COVID-19</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The app will support you to track your symptoms, receive the latest updates, and access trusted resources.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canadian Armed Forces App</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">A new look for 2021! Get the latest updates from CAF leadership, access CANFORGENS, browse social media feeds, view Defence imagery and discover a variety of resources such as health, pay and pension</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC inst__PHAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Canadian Guidelines on Sexually Transmitted Infections</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">If you are a health professional, you will want to download our new Canadian Guidelines on Sexually Transmitted Infections mobile app.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb plat__amazon inst__CBSA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">CBSA CanBorder</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-warning">Amazon</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">The CanBorder app provides estimated wait times at select ports of entry in Canada and the United States. In addition to current wait times listed by port, you’ll also find forecasted wait times, based on historical data, trends and patterns.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__AAFC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Cereal Aphids Manager</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Easy-to-use app for controlling cereal aphids</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__CRA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">CRA Business Tax Reminders</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">CRA Business Tax Reminders lets business users create custom reminders and alerts for key CRA due dates related to instalment payments, returns, and remittances.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__CBSA">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">eDeclaration</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">Looking for a better border experience? Download the eDeclaration mobile app to save time upon arrival in Canada. Using eDeclaration is quick, simple and secure.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__IRCC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">How Canadian are you, eh?</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">How much do you know about Canada? Test your knowledge with the official Immigration, Refugees and Citizenship Canada application aptly named ‘How Canadian are you, Eh?’</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">HR GO</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The HR GO App provides critical HR information to public service managers and staff including; articles, contacts, walkthroughs, links to En ligne resources and calculators.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ESDC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Job Bank – Job Search</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Job search made easy with Job Bank. Search for work and find a job in Canada.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__PC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Louisbourg Guided Tour</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Enhance your experience visiting Fortress of Louisbourg National Historic Site with the self-guided tour app!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Ludovic</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">Guided by Ludovic, a lovable teddy bear, children can learn about the passage of time by participating in simple, creative and educational activities.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">McLaren's Workshop</h3>
+				<p><span class="label label-default">iOS</span></p>
+				<p class="mrgn-bttm-0">A free iPad app that provides access to 51 works by animation pioneer Norman McLaren and lets users create their own films, exploring three animation techniques made famous by McLaren.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">My Transition App</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Canadian Armed Forces Transition app has been designed to assist all military members in their transition to civilian life and the civilian workforce.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__NRC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">My Tree</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">My Tree provides a list of selected trees of Canada and their hardiness zones to allow Canadians to choose a suitable tree for their environment.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb plat__windows inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">NFB Films</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span> <span class="label label-default">Windows</span></p>
+				<p class="mrgn-bttm-0">Watch over 2,000 documentaries, animations and feature films for free.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">OSI Connect</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">OSI Connect is a free mental health learning and self-management mobile app developed to help OSI patients and their families understand the nature of operational stress injuries (OSIs).</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__bb inst__PSPC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">ourlangues.gc.ca on the go!</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">The ourlangues.gc.ca on the go! mobile application lets users search TERMIUM Plus®, the Government of Canada's terminology and linguistic data bank, and quickly find equivalents for nearly 4 million Anglais and Français terms in various fields.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__amazon inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Pesticide Labels</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-warning">Amazon</span></p>
+				<p class="mrgn-bttm-0">Mobile version of PMRA's Label Search. Search and download registered pesticide labels.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">PTSD Coach Canada</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">PTSD Coach Canada can help you learn about and manage symptoms that can occur after trauma.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__HC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Recalls and Safety Alerts</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">Blackberry</span></p>
+				<p class="mrgn-bttm-0">Get Government of Canada Recalls and Safety Alerts on the go!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__CSPS">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Reconciliation: A Starting Point</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Reconciliation: A Starting Point app is a reference tool for learning about First Nations, Inuit and Métis Peoples, including key historical events and reconciliation initiatives.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Respect in the CAF</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span> <span class="label label-primary">BlackBerry</span></p>
+				<p class="mrgn-bttm-0">The Respect in the Canadian Armed Forces app provides support and guidance to victims of sexual misconduct, bystanders, and those in a position of leadership.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__PC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Restigouche Guided Tour</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Enhance your experience visiting Restigouche National Historic Site with the self-guided tour app!</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Road to Mental Readiness (R2MR)</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The Road to Mental Readiness (R2MR) Mobile Application is a mobile training tool developed to improve short-term performance and long-term mental health outcomes.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ISC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">SCIS Photo app</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Take and send your photo for your secure status card for free</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__SC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">StatsCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">StatsCAN: Data for a better Canada! Explore the stories behind the numbers with facts, visuals and our latest Eh Sayers podcasts.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">The Last Hunt</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">The first made-for-tablet story that challenges the conventions of the tablet reading experience.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__GAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Travel Smart</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Travel smarter with the Government of Canada’s Travel Smart app, your one-stop-shop for international travel information and advice.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__VAC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">Veterans Matter</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Veterans Matter will help you find information about remembrance and the services and benefits offered to Veterans and their families.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NFBC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">War of 1812</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">This interactive graphic novel follows a fictional family from Upper Canada that is torn apart by the conflict with the United States.</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__ECCC">
+			<div class="well h-100">
+				<h3 class="mrgn-tp-0">WeatherCAN</h3>
+				<p><span class="label label-default">iOS</span> <span class="label label-success">Android</span></p>
+				<p class="mrgn-bttm-0">Available on Apple and Android smartphones, WeatherCAN draws its weather data and information directly from Environment and Climate Change Canada, the official source for Canadian weather alerts.</p>
+			</div>
+		</div>
+	</div>
+	<div class="wb-tagfilter-noresult">
+		<p>Aucun item ne correspond à cette combinaison de filtres.</p>
+	</div>
+	<div id="filteredEventsListPagination2"></div>
+</section>
+
+<details>
+	<summary>Code source</summary>
+	<pre><code>&lt;section id="filteredAppsList" class="wb-filter wb-tagfilter wb-paginate provisional" data-wb-filter='{
+	"selector": "div[data-wb-tags]",
+	"section": ".wb-tagfilter-items",
+	"uiTemplate": "#searchFilter2"
+}' data-wb-paginate='{
+	"itemsPerPage": 3,
+	"section": ".wb-tagfilter-items",
+	"selector": "div[data-wb-tags]",
+	"uiTarget": "#filteredEventsListPagination2"
+}'&gt;
+	&lt;h2&gt;Exemple 2 - liste d'applications avec filtre de texte et pagination&lt;/h2&gt;
+	&lt;div id="searchFilter2" class="row mrgn-tp-lg"&gt;
+		&lt;div class="col-sm-12"&gt;
+			&lt;p class="h3 wb-fltr-info mrgn-tp-0"&gt;&lt;span data-nbitem&gt;&lt;/span&gt; résultats sur &lt;span data-total&gt;&lt;/span&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-12"&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label for="customSearchUI2"&gt;Rechercher&lt;/label&gt;
+				&lt;input type="search" class="form-control full-width" id="customSearchUI2"&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-4 col-md-5 col-lg-6"&gt;
+			&lt;div class="form-group"&gt;
+				&lt;fieldset&gt;
+					&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Institution&lt;/span&gt;&lt;/legend&gt;
+					&lt;select id="institutionListe" name="institution" class="full-width form-control wb-tagfilter-ctrl"&gt;
+						&lt;option value=""&gt;Toutes&lt;/option&gt;
+						&lt;option value="inst__EDC"&gt;Sciences et Développement économique Canada&lt;/option&gt;
+						&lt;option value="inst__AAFC"&gt;Agriculture et Agroalimentaire Canada&lt;/option&gt;
+						&lt;option value="inst__CBSA"&gt;Agence des services frontaliers du Canada&lt;/option&gt;
+						&lt;option value="inst__CBSAandPHAC"&gt;Agence des services frontaliers du Canada et Agence de la santé publique du Canada&lt;/option&gt;
+						&lt;option value="inst__CRA"&gt;Agence du revenu du Canada&lt;/option&gt;
+						&lt;option value="inst__CSPS"&gt;École de la fonction publique du Canada&lt;/option&gt;
+						&lt;option value="inst__ESDC"&gt;Emploi et Développement social Canada&lt;/option&gt;
+						&lt;option value="inst__ECCC"&gt;Environnement et Changement climatique Canada&lt;/option&gt;
+						&lt;option value="inst__FOC"&gt;Pêches et Océans Canada&lt;/option&gt;
+						&lt;option value="inst__GAC"&gt;Affaires mondiales Canada&lt;/option&gt;
+						&lt;option value="inst__HC"&gt;Santé Canada&lt;/option&gt;
+						&lt;option value="inst__IRCC"&gt;Immigration, Réfugiés, et Citoyenneté Canada&lt;/option&gt;
+						&lt;option value="inst__ISC"&gt;Services aux Autochtones Canada&lt;/option&gt;
+						&lt;option value="inst__Innovation"&gt;Innovation&lt;/option&gt;
+						&lt;option value="inst__NDandCAF"&gt;Défense nationale et les Forces armées canadiennes&lt;/option&gt;
+						&lt;option value="inst__NFBC"&gt;Office national du film du Canada&lt;/option&gt;
+						&lt;option value="inst__NRC"&gt;Ressources Naturelles Canada&lt;/option&gt;
+						&lt;option value="inst__PC"&gt;Parcs Canada&lt;/option&gt;
+						&lt;option value="inst__PHAC"&gt;Agence de la santé publique du Canada&lt;/option&gt;
+						&lt;option value="inst__PSPC"&gt;Services publics et Approvisionnement Canada&lt;/option&gt;
+						&lt;option value="inst__RCMP"&gt;Gendarmerie royale du Canada&lt;/option&gt;
+						&lt;option value="inst__SC"&gt;Statistique Canada&lt;/option&gt;
+						&lt;option value="inst__VAC"&gt;Anciens Combattants Canada&lt;/option&gt;
+					&lt;/select&gt;
+				&lt;/fieldset&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-8 col-md-7 col-lg-6"&gt;
+			&lt;div class="form-group mrgn-bttm-0"&gt;
+				&lt;fieldset&gt;
+					&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Plateforme&lt;/span&gt;&lt;/legend&gt;
+					&lt;ul class="list-unstyled list-inline"&gt;
+						&lt;li class="checkbox"&gt;
+							&lt;label&gt;
+								&lt;input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__ios"&gt; iOS
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class="checkbox"&gt;
+							&lt;label&gt;
+								&lt;input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__android"&gt; Android
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class="checkbox"&gt;
+							&lt;label&gt;
+								&lt;input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__bb"&gt; Blackberry
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class="checkbox"&gt;
+							&lt;label&gt;
+								&lt;input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__amazon"&gt; Amazon
+							&lt;/label&gt;
+						&lt;/li&gt;
+						&lt;li class="checkbox"&gt;
+							&lt;label&gt;
+								&lt;input type="checkbox" name="platform" class="wb-tagfilter-ctrl" value="plat__windows"&gt; Windows
+							&lt;/label&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/fieldset&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="row wb-eqht-grd wb-tagfilter-items" lang="en"&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__CBSA inst__CBSAandPHAC inst__HC inst__PHAC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;ArriveCAN&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;Use ArriveCAN to provide mandatory travel information on and after your entry into Canada.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags=" plat__android inst__NRC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Auto$mart&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;The Auto$mart mobile application helps drivers track their fuel consumption, learn how to be more fuel-efficient and save money.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android plat__bb inst__RCMP"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;B.C. RCMP&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt; &lt;span class="label label-primary"&gt;Blackberry&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;B.C. RCMP connects you to information for the latest news, missing and wanted persons, how to report a crime and more.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__FOC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Baitfish Primer&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;Developed by Fisheries and Oceans Canada, The Baitfish Primer mobile app is a guide that allows users identify and protect Ontario’s baitfishes wherever they go!&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios inst__NFBC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;BarCode.tv&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;BARCODE is a simple and fun documentary app that gives voice to the objects around you.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__EDC inst__Innovation"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Canada Business&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;Your mobile business partner. A simplified all-access point for businesses to find essential information, directly interact with government resources and use tools to build your business.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Canada COVID-19&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;The app will support you to track your symptoms, receive the latest updates, and access trusted resources.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__NDandCAF"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Canadian Armed Forces App&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;A new look for 2021! Get the latest updates from CAF leadership, access CANFORGENS, browse social media feeds, view Defence imagery and discover a variety of resources such as health, pay and pension&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="col-sm-6 col-lg-4" data-wb-tags="plat__ios plat__android inst__HC inst__PHAC"&gt;
+			&lt;div class="well h-100"&gt;
+				&lt;h3 class="mrgn-tp-0"&gt;Canadian Guidelines on Sexually Transmitted Infections&lt;/h3&gt;
+				&lt;p&gt;&lt;span class="label label-default"&gt;iOS&lt;/span&gt; &lt;span class="label label-success"&gt;Android&lt;/span&gt;&lt;/p&gt;
+				&lt;p class="mrgn-bttm-0"&gt;If you are a health professional, you will want to download our new Canadian Guidelines on Sexually Transmitted Infections mobile app.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		...
+	&lt;/div&gt;
+	&lt;div class="wb-tagfilter-noresult"&gt;
+		&lt;p&gt;Aucun item ne correspond à cette combinaison de filtres.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div id="filteredEventsListPagination2"&gt;&lt;/div&gt;
+&lt;/section&gt;</code></pre>
 </details>
