@@ -1,0 +1,118 @@
+---
+{
+	"title": "WET core",
+	"language": "en",
+	"category": "Other",
+	"description": "Working examples of WET core's built-in methods.",
+	"tag": "core",
+	"parentdir": "core",
+	"altLangPrefix": "core",
+	"dateModified": "2024-07-02"
+}
+---
+
+<div class="wb-prettify all-pre hide"></div>
+
+<p>{{description}}</p>
+
+<nav>
+	<h2>On this page</h2>
+	<ul>
+		<li><a href="#ex1">Example 1 - <code>wb.getId()</code> and ID conflicts</a></li>
+	</ul>
+</nav>
+
+<section>
+	<h2 id="ex1">Example 1 - <code>wb.getId()</code> and ID conflicts</h2>
+	<p>Demonstrates how <code>wb.getId()</code> reacts when hardcoded IDs conflict with its naming convention (anything starting with <code>wb-auto-</code>).</p>
+
+	<section>
+		<h3>Hardcoded IDs</h3>
+		<ul>
+			<li id="wb-auto-"><code>wb-auto-</code></li>
+			<li id="wb-auto-3abc"><code>wb-auto-3abc</code></li>
+			<li id="wb-auto-4."><code>wb-auto-4.</code></li>
+			<li id="wb-auto-17"><code>wb-auto-17</code></li>
+			<li id="wb-auto-5.0"><code>wb-auto-5.0</code></li>
+			<li id="wb-auto-1"><code>wb-auto-1</code></li>
+			<li id="wb-auto-6.1"><code>wb-auto-6.1</code></li>
+			<li id="wb-auto-2"><code>wb-auto-2</code></li>
+			<li id="wb-auto-abc9"><code>wb-auto-abc9</code></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Tables plugin</h3>
+		<p>This plugin calls <code>wb.getId()</code>.</p>
+		<table class="wb-tables table">
+			<thead>
+				<tr>
+					<th>Rendering engine</th>
+					<th>Browser</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Blink</td>
+					<td>Chromium</td>
+				</tr>
+				<tr>
+					<td>Gecko</td>
+					<td>Firefox</td>
+				</tr>
+				<tr>
+					<td>WebKit</td>
+					<td>Safari</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<h3>Code sample</h3>
+	<pre><code>&lt;section&gt;
+	&lt;h2 id="ex1"&gt;Example 1 - &lt;code&gt;wb.getId()&lt;/code&gt; and ID conflicts&lt;/h2&gt;
+	&lt;p&gt;Demonstrates how &lt;code&gt;wb.getId()&lt;/code&gt; reacts when hardcoded IDs conflict with its naming convention (anything starting with &lt;code&gt;wb-auto-&lt;/code&gt;).&lt;/p&gt;
+
+	&lt;section&gt;
+		&lt;h3&gt;Hardcoded IDs&lt;/h3&gt;
+		&lt;ul&gt;
+			&lt;li id="wb-auto-"&gt;&lt;code&gt;wb-auto-&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-3abc"&gt;&lt;code&gt;wb-auto-3abc&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-4."&gt;&lt;code&gt;wb-auto-4.&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-17"&gt;&lt;code&gt;wb-auto-17&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-5.0"&gt;&lt;code&gt;wb-auto-5.0&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-1"&gt;&lt;code&gt;wb-auto-1&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-6.1"&gt;&lt;code&gt;wb-auto-6.1&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-2"&gt;&lt;code&gt;wb-auto-2&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-abc9"&gt;&lt;code&gt;wb-auto-abc9&lt;/code&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+
+	&lt;section&gt;
+		&lt;h3&gt;Tables plugin&lt;/h3&gt;
+		&lt;p&gt;This plugin calls &lt;code&gt;wb.getId()&lt;/code&gt;.&lt;/p&gt;
+		&lt;table class="wb-tables table"&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Rendering engine&lt;/th&gt;
+					&lt;th&gt;Browser&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Blink&lt;/td&gt;
+					&lt;td&gt;Chromium&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Gecko&lt;/td&gt;
+					&lt;td&gt;Firefox&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;WebKit&lt;/td&gt;
+					&lt;td&gt;Safari&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/section&gt;
+&lt;/section&gt;</code></pre>
+</section>

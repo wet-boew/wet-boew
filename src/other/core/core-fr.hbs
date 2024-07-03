@@ -1,0 +1,118 @@
+---
+{
+	"title": "Base de la BOEW",
+	"language": "en",
+	"category": "Other",
+	"description": "Exemples pratiques des méthodes natifs de la base de la BOEW.",
+	"tag": "core",
+	"parentdir": "core",
+	"altLangPrefix": "core",
+	"dateModified": "2024-07-02"
+}
+---
+
+<div class="wb-prettify all-pre hide"></div>
+
+<p>{{description}}</p>
+
+<nav>
+	<h2>Sur cette page</h2>
+	<ul>
+		<li><a href="#ex1">Exemple 1 - <code>wb.getId()</code> et conflits d’IDs</a></li>
+	</ul>
+</nav>
+
+<section>
+	<h2 id="ex1">Exemple 1 - <code>wb.getId()</code> et conflits d’IDs</h2>
+	<p>Démontre comment <code>wb.getId()</code> réagit quand des IDs codés en dur entrent en conflit avec sa convention de nommage (tout ce qui commence par <code>wb-auto-</code>).</p>
+
+	<section>
+		<h3>IDs codés en dur</h3>
+		<ul>
+			<li id="wb-auto-"><code>wb-auto-</code></li>
+			<li id="wb-auto-3abc"><code>wb-auto-3abc</code></li>
+			<li id="wb-auto-4."><code>wb-auto-4.</code></li>
+			<li id="wb-auto-17"><code>wb-auto-17</code></li>
+			<li id="wb-auto-5.0"><code>wb-auto-5.0</code></li>
+			<li id="wb-auto-1"><code>wb-auto-1</code></li>
+			<li id="wb-auto-6.1"><code>wb-auto-6.1</code></li>
+			<li id="wb-auto-2"><code>wb-auto-2</code></li>
+			<li id="wb-auto-abc9"><code>wb-auto-abc9</code></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Plugiciel de tableaux</h3>
+		<p>This plugin calls <code>wb.getId()</code>.</p>
+		<table class="wb-tables table">
+			<thead>
+				<tr>
+					<th>Moteur de rendu</th>
+					<th>Navigateur</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Blink</td>
+					<td>Chromium</td>
+				</tr>
+				<tr>
+					<td>Gecko</td>
+					<td>Firefox</td>
+				</tr>
+				<tr>
+					<td>WebKit</td>
+					<td>Safari</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<h3>Exemple de code</h3>
+	<pre><code>&lt;section&gt;
+	&lt;h2 id="ex1"&gt;Exemple 1 - &lt;code&gt;wb.getId()&lt;/code&gt; et conflits d’IDs&lt;/h2&gt;
+	&lt;p&gt;Démontre comment &lt;code&gt;wb.getId()&lt;/code&gt; réagit quand des IDs codés en dur entrent en conflit avec sa convention de nommage (tout ce qui commence par &lt;code&gt;wb-auto-&lt;/code&gt;).&lt;/p&gt;
+
+	&lt;section&gt;
+		&lt;h3&gt;IDs codés en dur&lt;/h3&gt;
+		&lt;ul&gt;
+			&lt;li id="wb-auto-"&gt;&lt;code&gt;wb-auto-&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-3abc"&gt;&lt;code&gt;wb-auto-3abc&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-4."&gt;&lt;code&gt;wb-auto-4.&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-17"&gt;&lt;code&gt;wb-auto-17&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-5.0"&gt;&lt;code&gt;wb-auto-5.0&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-1"&gt;&lt;code&gt;wb-auto-1&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-6.1"&gt;&lt;code&gt;wb-auto-6.1&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-2"&gt;&lt;code&gt;wb-auto-2&lt;/code&gt;&lt;/li&gt;
+			&lt;li id="wb-auto-abc9"&gt;&lt;code&gt;wb-auto-abc9&lt;/code&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+
+	&lt;section&gt;
+		&lt;h3&gt;Plugiciel de tableaux&lt;/h3&gt;
+		&lt;p&gt;This plugin calls &lt;code&gt;wb.getId()&lt;/code&gt;.&lt;/p&gt;
+		&lt;table class="wb-tables table"&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Moteur de rendu&lt;/th&gt;
+					&lt;th&gt;Navigateur&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Blink&lt;/td&gt;
+					&lt;td&gt;Chromium&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Gecko&lt;/td&gt;
+					&lt;td&gt;Firefox&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;WebKit&lt;/td&gt;
+					&lt;td&gt;Safari&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/section&gt;
+&lt;/section&gt;</code></pre>
+</section>
