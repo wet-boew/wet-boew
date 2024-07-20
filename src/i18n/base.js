@@ -58,7 +58,7 @@ wb.i18nDict = {
 	"srch-menus": "@srch-menus@",
 	email: "@email@",
 	"menu-close": "@menu-close@",
-	"overlay-close": "@overlay-close@",
+	"overlay": "@overlay@",
 	"esc-key": "@esc-key@",
 	show: "@show@",
 

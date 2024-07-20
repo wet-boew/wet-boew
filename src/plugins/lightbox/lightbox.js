@@ -24,7 +24,7 @@ var componentName = "wb-lbx",
 	defaults = {
 
 		// exclude 'times' from screen reader with aria-hidden span
-		closeMarkup: "<button type='button' class='mfp-close' title='%title%'><span class='mfp-close' aria-hidden='true'>&times;</span></button>"
+		closeMarkup: "<button type='button' class='mfp-close'><span class='mfp-close' aria-hidden='true'>&times;</span><span class='wb-inv'>%title%</span></button>"
 	},
 
 	/**
@@ -98,6 +98,7 @@ var componentName = "wb-lbx",
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
 					settings = $.extend(
 						true,
+						defaults,
 						settings,
 						window[ componentName ],
 						wb.getData( $elm, componentName )
@@ -126,8 +127,8 @@ var componentName = "wb-lbx",
 			i18n = wb.i18n;
 			i18nText = {
 				close: i18n( "close" ),
-				oClose: i18n( "overlay-close" ),
-				tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
+				oClose: i18n( "overlay" ),
+				tClose: i18n( "close" ) + i18n( "space" ) + i18n( "overlay" ) + i18n( "space" ) + i18n( "esc-key" ),
 				tLoading: i18n( "load" ),
 				gallery: {
 					tPrev: i18n( "prv-l" ),
@@ -152,7 +153,7 @@ var componentName = "wb-lbx",
 						$container = $wrap.find( ".mfp-container" ),
 						$containerParent = $container.parent(),
 						$modal = $wrap.find( ".modal-dialog" ),
-						$buttons = $wrap.find( "button.mfp-close, .mfp-arrow" ),
+						$buttons = $wrap.find( ".mfp-arrow" ),
 						len = $buttons.length,
 						i, button;
 
@@ -277,7 +278,7 @@ var componentName = "wb-lbx",
 			complete: function() {
 
 				// Set the dependency i18nText only once
-				$.extend( true, $.magnificPopup.defaults, i18nText, defaults );
+				$.extend( true, $.magnificPopup.defaults, i18nText );
 
 				$document.trigger( dependenciesLoadedEvent );
 			}
@@ -300,8 +301,8 @@ var componentName = "wb-lbx",
 				}
 
 				overlayCloseFtr = "<button type='button' class='btn btn-sm btn-primary pull-left " + closeClassFtr +
-					"' title='" + spanTextFtr + "'>" +
-					"<span aria-hidden='true'>" + closeTextFtr + "</span>" +
+					"'>" +
+					closeTextFtr +
 					"<span class='wb-inv'>" + spanTextFtr + "</span></button>";
 
 				$( footer ).append( overlayCloseFtr );
