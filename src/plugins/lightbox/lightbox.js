@@ -98,7 +98,6 @@ var componentName = "wb-lbx",
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
 					settings = $.extend(
 						true,
-						defaults,
 						settings,
 						window[ componentName ],
 						wb.getData( $elm, componentName )
@@ -278,7 +277,7 @@ var componentName = "wb-lbx",
 			complete: function() {
 
 				// Set the dependency i18nText only once
-				$.extend( true, $.magnificPopup.defaults, i18nText );
+				$.extend( true, $.magnificPopup.defaults, i18nText, defaults );
 
 				$document.trigger( dependenciesLoadedEvent );
 			}
