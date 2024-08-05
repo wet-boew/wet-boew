@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Manage dataset and apply JSON Patch",
 	"altLangPage": "wb-jsonmanager-fr.html",
-	"dateModified": "2023-06-19"
+	"dateModified": "2023-08-05"
 }
 ---
 <div class="wb-prettify all-pre"></div>
@@ -644,11 +644,6 @@
 				<td><code>postpone.wb-jsonmanager</code></td>
 				<td>Triggered automatically by the json fetch plugin to let the JSON manager that other plugin depends on it.</td>
 				<td>Postpone the json fetch call until the dataset is ready.</td>
-			</tr>
-			<tr>
-				<td><code>wb-init.wb-jsonmanager</code></td>
-				<td>Triggered manually (e.g., <code>$( ".wb-jsonmanager" ).trigger( "wb-init.wb-jsonmanager" );</code>).</td>
-				<td>Used to manually initialize the wb-jsonmanager plugin. <strong>Note:</strong> The wb-jsonmanager plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
 				<td><code>wb-init.wb-jsonmanager</code></td>
