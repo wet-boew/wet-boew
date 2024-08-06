@@ -497,41 +497,41 @@ var componentName = "wb-geomap",
 
 				if ( operators[ ruleFilter ]( feature.attributes[ rule.field ], rule.value ) ) {
 					switch ( featureType ) {
-					case "Polygon" || "MultiPolygon":
-						return getPolygonStyle( {
-							fill: new ol.style.Fill( { color: fillColor } ),
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
-					case "Point" || "MultiPoint":
-						if ( graphicName ) {
-							return getSymbolStyle( {
-								symbol: graphicName,
-								fill: new ol.style.Fill( { color: fillColor } ),
-								stroke: new ol.style.Stroke( { color: strokeColor, lineDash: strokeDash } ),
-								radius: radius
-							} );
-						} else if ( externalGraphic ) {
-							return getIconStyle( {
-								src: externalGraphic,
-								opacity: opacity,
-								size: [ graphicWidth, graphicHeight ]
-							} );
-						} else {
-							return getPointStyle( {
-								radius: radius,
+						case "Polygon" || "MultiPolygon":
+							return getPolygonStyle( {
 								fill: new ol.style.Fill( { color: fillColor } ),
 								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 							} );
-						}
-					case "LineString" || "MultiLineString":
-						return getLineStyle( {
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
-					default:
-						return getPolygonStyle( {
-							fill: new ol.style.Fill( { color: fillColor } ),
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
+						case "Point" || "MultiPoint":
+							if ( graphicName ) {
+								return getSymbolStyle( {
+									symbol: graphicName,
+									fill: new ol.style.Fill( { color: fillColor } ),
+									stroke: new ol.style.Stroke( { color: strokeColor, lineDash: strokeDash } ),
+									radius: radius
+								} );
+							} else if ( externalGraphic ) {
+								return getIconStyle( {
+									src: externalGraphic,
+									opacity: opacity,
+									size: [ graphicWidth, graphicHeight ]
+								} );
+							} else {
+								return getPointStyle( {
+									radius: radius,
+									fill: new ol.style.Fill( { color: fillColor } ),
+									stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+								} );
+							}
+						case "LineString" || "MultiLineString":
+							return getLineStyle( {
+								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+							} );
+						default:
+							return getPolygonStyle( {
+								fill: new ol.style.Fill( { color: fillColor } ),
+								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+							} );
 					}
 
 				}
@@ -613,48 +613,48 @@ var componentName = "wb-geomap",
 				graphicWidth = objStyle.graphicWidth ? objStyle.graphicWidth : 25;
 
 				switch ( featureType ) {
-				case "Polygon" || "MultiPolygon":
-					if ( feature.attributes && feature.attributes[ field ] === obj ) {
-						return getPolygonStyle( {
-							fill: new ol.style.Fill( { color: fillColor } ),
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
-					}
-					break;
-				case "Point" || "MultiPoint":
-					if ( externalGraphic ) {
+					case "Polygon" || "MultiPolygon":
 						if ( feature.attributes && feature.attributes[ field ] === obj ) {
-							return getIconStyle( {
-								src: externalGraphic,
-								opacity: opacity,
-								size: [ graphicWidth, graphicHeight ]
-							} );
-						}
-					} else {
-						if ( feature.attributes && feature.attributes[ field ] === obj ) {
-							return getPointStyle( {
-								radius: radius,
+							return getPolygonStyle( {
 								fill: new ol.style.Fill( { color: fillColor } ),
 								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 							} );
 						}
-					}
-					break;
-				case "LineString" || "MultiLineString":
-					if ( feature.attributes && feature.attributes[ field ] === obj ) {
-						return getLineStyle( {
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
-					}
-					break;
-				default:
-					if ( feature.attributes && feature.attributes[ field ] === obj ) {
-						return getPolygonStyle( {
-							fill: new ol.style.Fill( { color: fillColor } ),
-							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-						} );
-					}
-					break;
+						break;
+					case "Point" || "MultiPoint":
+						if ( externalGraphic ) {
+							if ( feature.attributes && feature.attributes[ field ] === obj ) {
+								return getIconStyle( {
+									src: externalGraphic,
+									opacity: opacity,
+									size: [ graphicWidth, graphicHeight ]
+								} );
+							}
+						} else {
+							if ( feature.attributes && feature.attributes[ field ] === obj ) {
+								return getPointStyle( {
+									radius: radius,
+									fill: new ol.style.Fill( { color: fillColor } ),
+									stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+								} );
+							}
+						}
+						break;
+					case "LineString" || "MultiLineString":
+						if ( feature.attributes && feature.attributes[ field ] === obj ) {
+							return getLineStyle( {
+								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+							} );
+						}
+						break;
+					default:
+						if ( feature.attributes && feature.attributes[ field ] === obj ) {
+							return getPolygonStyle( {
+								fill: new ol.style.Fill( { color: fillColor } ),
+								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+							} );
+						}
+						break;
 				}
 
 			}
@@ -674,36 +674,36 @@ var componentName = "wb-geomap",
 			graphicWidth = style.graphicWidth ? style.graphicWidth : 25;
 
 			switch ( featureType ) {
-			case "Polygon" || "MultiPolygon":
-				return getPolygonStyle( {
-					fill: new ol.style.Fill( { color: fillColor } ),
-					stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-				} );
-			case "Point" || "MultiPoint":
-				if ( externalGraphic ) {
-					return getIconStyle( {
-						src: externalGraphic,
-						opacity: opacity,
-						size: [ graphicWidth, graphicHeight ]
-					} );
-				} else {
-					return getPointStyle( {
-						radius: radius,
+				case "Polygon" || "MultiPolygon":
+					return getPolygonStyle( {
 						fill: new ol.style.Fill( { color: fillColor } ),
 						stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 					} );
-				}
+				case "Point" || "MultiPoint":
+					if ( externalGraphic ) {
+						return getIconStyle( {
+							src: externalGraphic,
+							opacity: opacity,
+							size: [ graphicWidth, graphicHeight ]
+						} );
+					} else {
+						return getPointStyle( {
+							radius: radius,
+							fill: new ol.style.Fill( { color: fillColor } ),
+							stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+						} );
+					}
 
-			case "LineString" || "MultiLineString":
-				return getLineStyle( {
-					stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-				} );
+				case "LineString" || "MultiLineString":
+					return getLineStyle( {
+						stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+					} );
 
-			default:
-				return getPolygonStyle( {
-					fill: new ol.style.Fill( { color: fillColor } ),
-					stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
-				} );
+				default:
+					return getPolygonStyle( {
+						fill: new ol.style.Fill( { color: fillColor } ),
+						stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+					} );
 			}
 
 		};
@@ -1653,18 +1653,18 @@ var componentName = "wb-geomap",
 								which = event.which;
 
 							switch ( eventType ) {
-							case "keydown":
-								if ( !( event.ctrlKey || event.metaKey ) ) {
-									return keyboardHandlerAutolist( which, link );
-								}
-								break;
-							case "click":
+								case "keydown":
+									if ( !( event.ctrlKey || event.metaKey ) ) {
+										return keyboardHandlerAutolist( which, link );
+									}
+									break;
+								case "click":
 
-								// Ignore middle/right mouse buttons
-								if ( !which || which === 1 ) {
-									return clickHandlerAutolist( link );
-								}
-								break;
+									// Ignore middle/right mouse buttons
+									if ( !which || which === 1 ) {
+										return clickHandlerAutolist( link );
+									}
+									break;
 							}
 
 						} );
@@ -3464,18 +3464,18 @@ MapLegend.prototype.symbolize = function( mapLayer ) {
 						title = filter.name;
 					} else {
 						switch ( filter ) {
-						case "EQUAL_TO":
-							title = rule.field + " = " + rule.value[ 0 ];
-							break;
-						case "GREATER_THAN":
-							title = rule.field + " > " + rule.value[ 0 ];
-							break;
-						case "LESS_THAN":
-							title = rule.field + " < " + rule.value[ 0 ];
-							break;
-						case "BETWEEN":
-							title = rule.field + " " + rule.value[ 0 ] + " - " + rule.value[ 1 ];
-							break;
+							case "EQUAL_TO":
+								title = rule.field + " = " + rule.value[ 0 ];
+								break;
+							case "GREATER_THAN":
+								title = rule.field + " > " + rule.value[ 0 ];
+								break;
+							case "LESS_THAN":
+								title = rule.field + " < " + rule.value[ 0 ];
+								break;
+							case "BETWEEN":
+								title = rule.field + " " + rule.value[ 0 ] + " - " + rule.value[ 1 ];
+								break;
 						}
 					}
 				} else if ( rule && rule.name ) {
@@ -3591,78 +3591,78 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 		pseudoFeature, rendererMap, source, style;
 
 	switch ( featureType ) {
-	case "Polygon" || "MultiPolygon":
-		pseudoFeature = new ol.Feature( {
-			geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ],
-				[ 10, 7 ], [ -10, 7 ] ] ] )
-		} );
-		style = getPolygonStyle( {
-			fill: new ol.style.Fill( {
-				color: fillColor
-			} ),
-			stroke: new ol.style.Stroke( {
-				color: strokeColor,
-				width: strokeWidth,
-				lineDash: strokeDash
-			} )
-		} );
-		pseudoFeature.setStyle( style );
-		break;
-	case "Point" || "MultiPoint":
-		pseudoFeature = new ol.Feature( {
-			geometry: new ol.geom.Point( [ 0, 0 ] )
-		} );
-		if ( graphicName ) {
-			style = getSymbolStyle( {
-				symbol: graphicName,
-				fill: new ol.style.Fill( { color: fillColor } ),
-				stroke: new ol.style.Stroke( { color: strokeColor, lineDash: strokeDash } ),
-				radius: radius
+		case "Polygon" || "MultiPolygon":
+			pseudoFeature = new ol.Feature( {
+				geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ],
+					[ 10, 7 ], [ -10, 7 ] ] ] )
 			} );
-		} else if ( externalGraphic ) {
-			style = getIconStyle( {
-				src: externalGraphic,
-				opacity: opacity,
-				size: [ graphicWidth, graphicHeight ]
+			style = getPolygonStyle( {
+				fill: new ol.style.Fill( {
+					color: fillColor
+				} ),
+				stroke: new ol.style.Stroke( {
+					color: strokeColor,
+					width: strokeWidth,
+					lineDash: strokeDash
+				} )
 			} );
-		} else {
-			style = getPointStyle( {
-				radius: radius,
-				fill: new ol.style.Fill( { color: fillColor } ),
-				stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+			pseudoFeature.setStyle( style );
+			break;
+		case "Point" || "MultiPoint":
+			pseudoFeature = new ol.Feature( {
+				geometry: new ol.geom.Point( [ 0, 0 ] )
 			} );
-		}
-		pseudoFeature.setStyle( style );
-		break;
-	case "LineString" || "MultiLineString":
-		pseudoFeature = new ol.Feature( {
-			geometry: new ol.geom.LineString( [ [ -9, -4 ], [ -4, 4 ], [ 4, -4 ], [ 9, 4 ] ] )
-		} );
-		style = getLineStyle( {
-			stroke: new ol.style.Stroke( {
-				color: strokeColor,
-				width: strokeWidth,
-				lineDash: strokeDash
-			} )
-		} );
-		pseudoFeature.setStyle( style );
-		break;
-	default:
-		pseudoFeature = new ol.Feature( {
-			geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ], [ 10, 7 ], [ -10, 7 ] ] ] )
-		} );
-		style = getPolygonStyle( {
-			fill: new ol.style.Fill( {
-				color: fillColor
-			} ),
-			stroke: new ol.style.Stroke( {
-				color: strokeColor,
-				width: strokeWidth,
-				lineDash: strokeDash
-			} )
-		} );
-		pseudoFeature.setStyle( style );
-		break;
+			if ( graphicName ) {
+				style = getSymbolStyle( {
+					symbol: graphicName,
+					fill: new ol.style.Fill( { color: fillColor } ),
+					stroke: new ol.style.Stroke( { color: strokeColor, lineDash: strokeDash } ),
+					radius: radius
+				} );
+			} else if ( externalGraphic ) {
+				style = getIconStyle( {
+					src: externalGraphic,
+					opacity: opacity,
+					size: [ graphicWidth, graphicHeight ]
+				} );
+			} else {
+				style = getPointStyle( {
+					radius: radius,
+					fill: new ol.style.Fill( { color: fillColor } ),
+					stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
+				} );
+			}
+			pseudoFeature.setStyle( style );
+			break;
+		case "LineString" || "MultiLineString":
+			pseudoFeature = new ol.Feature( {
+				geometry: new ol.geom.LineString( [ [ -9, -4 ], [ -4, 4 ], [ 4, -4 ], [ 9, 4 ] ] )
+			} );
+			style = getLineStyle( {
+				stroke: new ol.style.Stroke( {
+					color: strokeColor,
+					width: strokeWidth,
+					lineDash: strokeDash
+				} )
+			} );
+			pseudoFeature.setStyle( style );
+			break;
+		default:
+			pseudoFeature = new ol.Feature( {
+				geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ], [ 10, 7 ], [ -10, 7 ] ] ] )
+			} );
+			style = getPolygonStyle( {
+				fill: new ol.style.Fill( {
+					color: fillColor
+				} ),
+				stroke: new ol.style.Stroke( {
+					color: strokeColor,
+					width: strokeWidth,
+					lineDash: strokeDash
+				} )
+			} );
+			pseudoFeature.setStyle( style );
+			break;
 	}
 
 	// create a map for the symbol

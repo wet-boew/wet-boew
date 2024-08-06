@@ -407,22 +407,22 @@ var getUrlParts = function( url ) {
 					( typeof mixin === "string" && mixin !== "" ) << 2;
 
 			switch ( truthiness ) {
-			case 1:
+				case 1:
 
-				// only key was provided
-				return dictionary[ key ];
+					// only key was provided
+					return dictionary[ key ];
 
-			case 3:
+				case 3:
 
-				// key and state were provided
-				return dictionary[ key ][ state ];
+					// key and state were provided
+					return dictionary[ key ][ state ];
 
-			case 7:
+				case 7:
 
-				// key, state, and mixin were provided
-				return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
-			default:
-				return "";
+					// key, state, and mixin were provided
+					return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
+				default:
+					return "";
 			}
 		},
 

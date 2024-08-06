@@ -470,32 +470,32 @@ $document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSe
 	if ( event.currentTarget === eventTarget ) {
 		$emlRss = $( eventTarget ).parentsUntil( selector ).parent();
 		switch ( event.type ) {
-		case "ajax-fetched":
-			responseRaw = event.fetch.response;
-			if ( typeof responseRaw === "string" ) {
-				response = JSON.parse( responseRaw ); // Assuming we have fetch a JSON document, try to parse it.
-			} else {
-				response = responseRaw.get( 0 ); // fetched an HTML or XML document which has been parsed by jQuery and sanitized by DomPurify
-			}
-			if ( response.documentElement ) {
-				limit = getLimit( $emlRss[ Object.keys( $emlRss )[ 0 ] ] );
-				data = corsEntry( response, limit );
-			} else if ( response.query ) {
-				results = response.query.results;
-				if ( !results ) {
-					data = results.item; // Flicker feeds
-					if ( !Array.isArray( data ) ) {
-						data = [ data ];
+			case "ajax-fetched":
+				responseRaw = event.fetch.response;
+				if ( typeof responseRaw === "string" ) {
+					response = JSON.parse( responseRaw ); // Assuming we have fetch a JSON document, try to parse it.
+				} else {
+					response = responseRaw.get( 0 ); // fetched an HTML or XML document which has been parsed by jQuery and sanitized by DomPurify
+				}
+				if ( response.documentElement ) {
+					limit = getLimit( $emlRss[ Object.keys( $emlRss )[ 0 ] ] );
+					data = corsEntry( response, limit );
+				} else if ( response.query ) {
+					results = response.query.results;
+					if ( !results ) {
+						data = results.item; // Flicker feeds
+						if ( !Array.isArray( data ) ) {
+							data = [ data ];
+						}
+					} else {
+						data = [];
 					}
 				} else {
-					data = [];
+					data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
 				}
-			} else {
-				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
-			}
-			break;
-		default:
-			data = event.feedsData;
+				break;
+			default:
+				data = event.feedsData;
 		}
 
 		// Identify that initialization has completed

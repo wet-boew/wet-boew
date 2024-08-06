@@ -42,29 +42,29 @@ $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview
 
 	switch ( eventType ) {
 
-	case "xxsmallview":
-		onXXSmallView();
-		break;
+		case "xxsmallview":
+			onXXSmallView();
+			break;
 
-	case "xsmallview":
-		onXSmallView();
-		break;
+		case "xsmallview":
+			onXSmallView();
+			break;
 
-	case "smallview":
-		onSmallView();
-		break;
+		case "smallview":
+			onSmallView();
+			break;
 
-	case "mediumview":
-		onMediumView();
-		break;
+		case "mediumview":
+			onMediumView();
+			break;
 
-	case "largeview":
-		onLargeView();
-		break;
+		case "largeview":
+			onLargeView();
+			break;
 
-	case "xlargeview":
-		onXLargeView();
-		break;
+		case "xlargeview":
+			onXLargeView();
+			break;
 	}
 } );
 

@@ -142,22 +142,22 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 
 	switch ( event.type ) {
 
-	/*
-	 * Init
-	 */
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		/*
+		 * Init
+		 */
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	/*
-	 * Data table parsed
-	 */
-	case "parsecomplete":
-		if ( event.currentTarget === eventTarget ) {
-			zebraTable( $( eventTarget ) );
-		}
-		break;
+		/*
+		 * Data table parsed
+		 */
+		case "parsecomplete":
+			if ( event.currentTarget === eventTarget ) {
+				zebraTable( $( eventTarget ) );
+			}
+			break;
 	}
 
 	/*

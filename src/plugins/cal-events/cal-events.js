@@ -376,16 +376,16 @@ $document.on( "timerpoke.wb " + initEvent + " wb-redraw" + selector, selector, f
 		calendarId = event.currentTarget.dataset.calevtSrc;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "wb-redraw":
-		$( "#" + calendarId + " .wb-clndr" ).remove();
-		processEvents( $elm );
-		$elm.trigger( "wb-updated" + selector );
-		break;
+		case "wb-redraw":
+			$( "#" + calendarId + " .wb-clndr" ).remove();
+			processEvents( $elm );
+			$elm.trigger( "wb-updated" + selector );
+			break;
 	}
 } );
 
@@ -410,18 +410,18 @@ $document.on( "focusin focusout keydown", selectorEvent + " .cal-evt", function(
 		$link;
 
 	switch ( eventType ) {
-	case "focusin":
-		showEvents.call( event.target );
-		break;
-	case "focusout":
-		hideEvents.call( event.target );
-		break;
-	case "keydown":
-		$link = $( event.target );
-		if ( ( event.which === 13 || event.which === 32 ) && $link.hasClass( "cal-evt" ) ) {
-			$( event.target ).next().find( "a:first" ).trigger( setFocusEvent );
-		}
-		break;
+		case "focusin":
+			showEvents.call( event.target );
+			break;
+		case "focusout":
+			hideEvents.call( event.target );
+			break;
+		case "keydown":
+			$link = $( event.target );
+			if ( ( event.which === 13 || event.which === 32 ) && $link.hasClass( "cal-evt" ) ) {
+				$( event.target ).next().find( "a:first" ).trigger( setFocusEvent );
+			}
+			break;
 	}
 } );
 
@@ -430,24 +430,24 @@ $document.on( "keydown", selectorEvent + " td > ul li", function( event ) {
 		$toFocus, $itemParent;
 
 	switch ( event.which ) {
-	case 38:
-		$toFocus = $item.prev().find( "a" );
-		if ( $toFocus.length === 0 ) {
-			$toFocus = $item.siblings( ":last" ).find( "a" );
-		}
-		$toFocus.trigger( setFocusEvent );
-		break;
-	case 40:
-		$toFocus = $item.next().find( "a" );
-		if ( $toFocus.length === 0 ) {
-			$toFocus = $item.siblings( ":first" ).find( "a" );
-		}
-		$toFocus.trigger( setFocusEvent );
-		break;
-	case 27:
-		$itemParent = $item.closest( "td" ).children( "a" );
-		$itemParent.trigger( setFocusEvent );
-		break;
+		case 38:
+			$toFocus = $item.prev().find( "a" );
+			if ( $toFocus.length === 0 ) {
+				$toFocus = $item.siblings( ":last" ).find( "a" );
+			}
+			$toFocus.trigger( setFocusEvent );
+			break;
+		case 40:
+			$toFocus = $item.next().find( "a" );
+			if ( $toFocus.length === 0 ) {
+				$toFocus = $item.siblings( ":first" ).find( "a" );
+			}
+			$toFocus.trigger( setFocusEvent );
+			break;
+		case 27:
+			$itemParent = $item.closest( "td" ).children( "a" );
+			$itemParent.trigger( setFocusEvent );
+			break;
 	}
 } );
 

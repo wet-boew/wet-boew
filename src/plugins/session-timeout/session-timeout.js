@@ -424,22 +424,22 @@ inactivityEvent + " " + resetEvent, selector, function( event, settings ) {
 	var eventType = event.type;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "keepalive":
-		keepalive( event, settings );
-		break;
+		case "keepalive":
+			keepalive( event, settings );
+			break;
 
-	case "inactivity":
-		inactivity( event, settings );
-		break;
+		case "inactivity":
+			inactivity( event, settings );
+			break;
 
-	case "reset":
-		reset( event, settings );
-		break;
+		case "reset":
+			reset( event, settings );
+			break;
 	}
 } );
 

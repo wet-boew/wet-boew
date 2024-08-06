@@ -740,35 +740,35 @@ $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent + " " + selectEvent
 	// Filter out any events triggered by descendants
 	if ( eventCurrentTarget === eventTarget ) {
 		switch ( event.type ) {
-		case "timerpoke":
-			$elm = $( eventTarget );
-			if ( !$elm.hasClass( componentName + "-inited" ) ) {
+			case "timerpoke":
+				$elm = $( eventTarget );
+				if ( !$elm.hasClass( componentName + "-inited" ) ) {
+					init( event );
+				} else if ( $elm.hasClass( "playing" ) ) {
+					onTimerPoke( $elm );
+				}
+				break;
+
+			/*
+			 * Init
+			 */
+			case "wb-init":
 				init( event );
-			} else if ( $elm.hasClass( "playing" ) ) {
-				onTimerPoke( $elm );
-			}
-			break;
+				break;
 
-		/*
-		 * Init
-		 */
-		case "wb-init":
-			init( event );
-			break;
+			/*
+			 * Change tab panels by a delta
+			 */
+			case "wb-shift":
+				onShift( event, $( eventTarget ) );
+				break;
 
-		/*
-		 * Change tab panels by a delta
-		 */
-		case "wb-shift":
-			onShift( event, $( eventTarget ) );
-			break;
-
-		/*
-		 * Select a specific tab panel
-		 */
-		case "wb-select":
-			onSelect( event.id );
-			break;
+			/*
+			 * Select a specific tab panel
+			 */
+			case "wb-select":
+				onSelect( event.id );
+				break;
 		}
 	}
 

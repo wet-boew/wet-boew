@@ -97,40 +97,40 @@ var componentName = "wb-twitter",
 					mutations.forEach( function( mutation ) {
 						switch ( mutation.type ) {
 
-						// Check for attribute changes
-						case "attributes": {
-							const mutationTarget = mutation.target;
+							// Check for attribute changes
+							case "attributes": {
+								const mutationTarget = mutation.target;
 
-							// Override the timeline iframe's title right after Twitter's widget script adds it
-							// Notes:
-							// -The timeline's iframe title is English-only, uses "Twitter" and is written in title case ("Twitter Timeline")... This replaces it with an i18n version that uses "X" and is written in sentence case.
-							// -Only proceed if the i18n variable is a string... otherwise this'll trigger an infinite loop of attribute mutations
-							if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle && typeof i18nText.timelineTitle === "string" ) {
-								mutationTarget.title = i18nText.timelineTitle;
-							}
-							break;
-						}
-
-						// Check for node removals
-						case "childList": {
-							mutation.removedNodes.forEach( function( removedNode ) {
-
-								// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
-								// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
-								if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
-									const iframeContainer = loadingDiv.previousElementSibling;
-
-									loadingDiv.remove();
-									addSkipLinks( iframeContainer );
-
-									// The following 2 lines were added as a workaround in Safari where the iFrame is not displayed
-									eventTarget.style.opacity = 1;
-									eventTarget.style.opacity = "";
-
-									observer.disconnect();
+								// Override the timeline iframe's title right after Twitter's widget script adds it
+								// Notes:
+								// -The timeline's iframe title is English-only, uses "Twitter" and is written in title case ("Twitter Timeline")... This replaces it with an i18n version that uses "X" and is written in sentence case.
+								// -Only proceed if the i18n variable is a string... otherwise this'll trigger an infinite loop of attribute mutations
+								if ( mutationTarget.nodeName === "IFRAME" && mutationTarget.title !== i18nText.timelineTitle && typeof i18nText.timelineTitle === "string" ) {
+									mutationTarget.title = i18nText.timelineTitle;
 								}
-							} );
-						}
+								break;
+							}
+
+							// Check for node removals
+							case "childList": {
+								mutation.removedNodes.forEach( function( removedNode ) {
+
+									// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
+									// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
+									if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
+										const iframeContainer = loadingDiv.previousElementSibling;
+
+										loadingDiv.remove();
+										addSkipLinks( iframeContainer );
+
+										// The following 2 lines were added as a workaround in Safari where the iFrame is not displayed
+										eventTarget.style.opacity = 1;
+										eventTarget.style.opacity = "";
+
+										observer.disconnect();
+									}
+								} );
+							}
 						}
 					} );
 				} );

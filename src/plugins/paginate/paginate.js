@@ -53,15 +53,15 @@ const componentName = "wb-paginate",
 
 			// Setup configurations
 			switch ( elmTagName ) {
-			case "UL":
-				setDefault = defaults.lst;
-				break;
-			case "TABLE":
-				setDefault = defaults.tbl;
-				break;
-			default:
-				setDefault = defaults.grp;
-				break;
+				case "UL":
+					setDefault = defaults.lst;
+					break;
+				case "TABLE":
+					setDefault = defaults.tbl;
+					break;
+				default:
+					setDefault = defaults.grp;
+					break;
 			}
 
 			elm.id = elm.id || wb.getId();

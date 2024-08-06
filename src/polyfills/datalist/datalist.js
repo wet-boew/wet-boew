@@ -325,37 +325,37 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click"
 		autolist;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "wb-update":
-		if ( event.namespace === componentName ) {
-			populateOptions( event.target );
-		}
-		break;
+		case "wb-update":
+			if ( event.namespace === componentName ) {
+				populateOptions( event.target );
+			}
+			break;
 
-	case "keydown":
-		if ( !( event.ctrlKey || event.metaKey ) ) {
-			return keyboardHandlerInput( which, event );
-		}
-		break;
+		case "keydown":
+			if ( !( event.ctrlKey || event.metaKey ) ) {
+				return keyboardHandlerInput( which, event );
+			}
+			break;
 
-	case "click":
+		case "click":
 
-		if ( initialized ) {
+			if ( initialized ) {
 
-			// Ignore middle/right mouse buttons
-			if ( !which || which === 1 ) {
-				autolist = input.nextSibling.firstChild;
-				if ( autolist.className.indexOf( "hide" ) === -1 ) {
-					closeOptions( input );
-				} else {
-					showOptions( input, input.value );
+				// Ignore middle/right mouse buttons
+				if ( !which || which === 1 ) {
+					autolist = input.nextSibling.firstChild;
+					if ( autolist.className.indexOf( "hide" ) === -1 ) {
+						closeOptions( input );
+					} else {
+						showOptions( input, input.value );
+					}
 				}
 			}
-		}
 	}
 
 	/*
@@ -371,18 +371,18 @@ $document.on( "keydown click", ".wb-al a, .wb-al span", function( event ) {
 		which = event.which;
 
 	switch ( eventType ) {
-	case "keydown":
-		if ( !( event.ctrlKey || event.metaKey ) ) {
-			return keyboardHandlerAutolist( which, link );
-		}
-		break;
-	case "click":
+		case "keydown":
+			if ( !( event.ctrlKey || event.metaKey ) ) {
+				return keyboardHandlerAutolist( which, link );
+			}
+			break;
+		case "click":
 
-		// Ignore middle/right mouse buttons
-		if ( !which || which === 1 ) {
-			return clickHandlerAutolist( link );
-		}
-		break;
+			// Ignore middle/right mouse buttons
+			if ( !which || which === 1 ) {
+				return clickHandlerAutolist( link );
+			}
+			break;
 	}
 } );
 

@@ -228,19 +228,19 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 
 	switch ( event.type ) {
 
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
-	case "wb-update":
-		ajax( event );
-		break;
-	default:
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
+		case "wb-update":
+			ajax( event );
+			break;
+		default:
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
-			ajxFetched( eventTarget, event.fetch );
-		}
+			// Filter out any events triggered by descendants
+			if ( event.currentTarget === eventTarget ) {
+				ajxFetched( eventTarget, event.fetch );
+			}
 	}
 
 	/*

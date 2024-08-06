@@ -70,50 +70,50 @@ var componentName = "wb-addcal",
 			for ( i = 0; i < i_len; i++ ) {
 				prop_cache = properties[ i ];
 				switch ( prop_cache.getAttribute( "property" ) ) {
-				case "name":
+					case "name":
 
-					// If the property=name is inside an element with typeof=Place defined
-					if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[typeof=Place]" ).length ) {
-						event_details.placeName = prop_cache.textContent;
-					} else {
-						event_details.name = prop_cache.textContent;
-					}
-					break;
-				case "description":
-					event_details.description = prop_cache.textContent.replace( /(\r\n|\n|\r)/gm, " " );
-					break;
-				case "startDate":
-					event_details.sDate = dtToISOString( $( "time[property='startDate']", $elm ) );
-					break;
-				case "endDate":
-					event_details.eDate = dtToISOString( $( "time[property='endDate']", $elm ) );
-					break;
-				case "location":
+						// If the property=name is inside an element with typeof=Place defined
+						if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[typeof=Place]" ).length ) {
+							event_details.placeName = prop_cache.textContent;
+						} else {
+							event_details.name = prop_cache.textContent;
+						}
+						break;
+					case "description":
+						event_details.description = prop_cache.textContent.replace( /(\r\n|\n|\r)/gm, " " );
+						break;
+					case "startDate":
+						event_details.sDate = dtToISOString( $( "time[property='startDate']", $elm ) );
+						break;
+					case "endDate":
+						event_details.eDate = dtToISOString( $( "time[property='endDate']", $elm ) );
+						break;
+					case "location":
 
-					// If the location doesn't have typeof defined OR has typeof=VirtualLocation without URL inside.
-					if ( !prop_cache.getAttribute( "typeof" ) || ( prop_cache.getAttribute( "typeof" ) === "VirtualLocation" && !$( prop_cache ).find( "[property=url]" ).length ) ) {
-						event_details.placeName = prop_cache.textContent;
-					}
-					break;
-				case "streetAddress":
-					event_details.placeAddress = prop_cache.textContent;
-					break;
-				case "addressLocality":
-					event_details.placeLocality = prop_cache.textContent;
-					break;
-				case "addressRegion":
-					event_details.placeRegion = prop_cache.textContent;
-					break;
-				case "postalCode":
-					event_details.placePostalCode = prop_cache.textContent;
-					break;
-				case "url":
+						// If the location doesn't have typeof defined OR has typeof=VirtualLocation without URL inside.
+						if ( !prop_cache.getAttribute( "typeof" ) || ( prop_cache.getAttribute( "typeof" ) === "VirtualLocation" && !$( prop_cache ).find( "[property=url]" ).length ) ) {
+							event_details.placeName = prop_cache.textContent;
+						}
+						break;
+					case "streetAddress":
+						event_details.placeAddress = prop_cache.textContent;
+						break;
+					case "addressLocality":
+						event_details.placeLocality = prop_cache.textContent;
+						break;
+					case "addressRegion":
+						event_details.placeRegion = prop_cache.textContent;
+						break;
+					case "postalCode":
+						event_details.placePostalCode = prop_cache.textContent;
+						break;
+					case "url":
 
-					// If the property=url is inside a property=location
-					if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[property=location]" ).length ) {
-						event_details.placeName = prop_cache.textContent;
-					}
-					break;
+						// If the property=url is inside a property=location
+						if ( $( prop_cache ).parentsUntil( ( "." + componentName ), "[property=location]" ).length ) {
+							event_details.placeName = prop_cache.textContent;
+						}
+						break;
 				}
 			}
 

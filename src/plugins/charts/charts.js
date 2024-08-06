@@ -1147,22 +1147,22 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 
 	switch ( eventType ) {
 
-	/*
-	 * Init
-	 */
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		/*
+		 * Init
+		 */
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	/*
-	 * Data table parsed
-	 */
-	case "parsecomplete":
-		if ( event.currentTarget === elm ) {
-			createCharts( $( elm ) );
-		}
-		break;
+		/*
+		 * Data table parsed
+		 */
+		case "parsecomplete":
+			if ( event.currentTarget === elm ) {
+				createCharts( $( elm ) );
+			}
+			break;
 	}
 
 	/*

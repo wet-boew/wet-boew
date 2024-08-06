@@ -143,13 +143,13 @@ $document.on( mobileEvent + " " + iconEvent, selector, function( event, data ) {
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
-		case "mobile":
-			mobile( eventTarget, event, data );
-			break;
+			case "mobile":
+				mobile( eventTarget, event, data );
+				break;
 
-		case "icon":
-			icon( eventTarget, event, data );
-			break;
+			case "icon":
+				icon( eventTarget, event, data );
+				break;
 		}
 	}
 

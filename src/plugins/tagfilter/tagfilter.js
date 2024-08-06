@@ -95,25 +95,25 @@ const componentName = "wb-tagfilter",
 			}
 
 			switch ( control.type ) {
-			case "checkbox":
-			case "radio":
-				if ( !( control.name in filtersObj ) ) {
-					filtersObj[ control.name ] = [ ];
-				}
+				case "checkbox":
+				case "radio":
+					if ( !( control.name in filtersObj ) ) {
+						filtersObj[ control.name ] = [ ];
+					}
 
-				filtersObj[ control.name ].push( {
-					isChecked: control.checked,
-					type: control.type,
-					value: control.value
-				} );
+					filtersObj[ control.name ].push( {
+						isChecked: control.checked,
+						type: control.type,
+						value: control.value
+					} );
 
-				break;
-			case "select-one":
-				filtersObj[ control.name ] = [ {
-					type: control.type,
-					value: control.value
-				} ];
-				break;
+					break;
+				case "select-one":
+					filtersObj[ control.name ] = [ {
+						type: control.type,
+						value: control.value
+					} ];
+					break;
 			}
 		} );
 
@@ -132,36 +132,36 @@ const componentName = "wb-tagfilter",
 				filterGroupActiveFilters = [ ];
 
 			switch ( filterGroup[ 0 ].type ) {
-			case "checkbox":
-				if ( filterGroupChkCnt > 0 ) {
-					filterGroup.forEach( function( filterItem ) {
-						if ( filterItem.isChecked ) {
-							filterGroupActiveFilters.push( filterItem.value );
-						}
-					} );
-				}
-				break;
-
-			case "radio":
-				if ( filterGroupChkCnt > 0 ) {
-					for ( let filterItem of filterGroup ) {
-						if ( filterItem.isChecked === true ) {
-							if ( filterItem.value !== "" ) {
+				case "checkbox":
+					if ( filterGroupChkCnt > 0 ) {
+						filterGroup.forEach( function( filterItem ) {
+							if ( filterItem.isChecked ) {
 								filterGroupActiveFilters.push( filterItem.value );
 							}
-							break;
-						}
+						} );
 					}
-				} else {
-					console.warn( componentName + ": Radio button groups must have a default selected value. If you want to display all items, add an option called \"All\" with an empty value." );
-				}
-				break;
+					break;
 
-			case "select-one":
-				if ( filterGroup[ 0 ].value !== "" ) {
-					filterGroupActiveFilters.push( filterGroup[ 0 ].value );
-				}
-				break;
+				case "radio":
+					if ( filterGroupChkCnt > 0 ) {
+						for ( let filterItem of filterGroup ) {
+							if ( filterItem.isChecked === true ) {
+								if ( filterItem.value !== "" ) {
+									filterGroupActiveFilters.push( filterItem.value );
+								}
+								break;
+							}
+						}
+					} else {
+						console.warn( componentName + ": Radio button groups must have a default selected value. If you want to display all items, add an option called \"All\" with an empty value." );
+					}
+					break;
+
+				case "select-one":
+					if ( filterGroup[ 0 ].value !== "" ) {
+						filterGroupActiveFilters.push( filterGroup[ 0 ].value );
+					}
+					break;
 			}
 
 			instance.activeFilters.push( filterGroupActiveFilters );
@@ -232,32 +232,32 @@ $document.on( "change", selectorCtrl, function( event )  {
 		filterGroup = elm.filters[ filterName ];
 
 	switch ( filterType ) {
-	case "checkbox":
+		case "checkbox":
 
-		// Update virtual filter to the new state
-		filterGroup.find( function( filter ) {
-			return filter.value === filterValue;
-		} ).isChecked = !!control.checked;
-		break;
+			// Update virtual filter to the new state
+			filterGroup.find( function( filter ) {
+				return filter.value === filterValue;
+			} ).isChecked = !!control.checked;
+			break;
 
-	case "radio":
+		case "radio":
 
-		// Set all virtual radio items to unchecked
-		filterGroup.forEach( function( filterItem ) {
-			filterItem.isChecked = false;
-		} );
+			// Set all virtual radio items to unchecked
+			filterGroup.forEach( function( filterItem ) {
+				filterItem.isChecked = false;
+			} );
 
-		// Set selected radio button's associated virtual filter to checked
-		filterGroup.find( function( filter ) {
-			return filter.value === filterValue;
-		} ).isChecked = true;
-		break;
+			// Set selected radio button's associated virtual filter to checked
+			filterGroup.find( function( filter ) {
+				return filter.value === filterValue;
+			} ).isChecked = true;
+			break;
 
-	case "select-one":
+		case "select-one":
 
-		// Update virtual filter to the new value
-		filterGroup[ 0 ].value = filterValue;
-		break;
+			// Update virtual filter to the new value
+			filterGroup[ 0 ].value = filterValue;
+			break;
 	}
 
 	// Update list of visible items

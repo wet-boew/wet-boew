@@ -147,18 +147,18 @@ $document.on( "timerpoke.wb " + initEvent + " " + scrollEvent, selector, functio
 		eventType = event.type;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "scroll":
+		case "scroll":
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
-			onInView( $( eventTarget ) );
-		}
-		break;
+			// Filter out any events triggered by descendants
+			if ( event.currentTarget === eventTarget ) {
+				onInView( $( eventTarget ) );
+			}
+			break;
 	}
 
 	/*

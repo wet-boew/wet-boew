@@ -259,11 +259,11 @@ $document.on( "focusout focusin", "#" + containerName + " .wb-clndr",  function(
 
 	// Hide the calendar when the focus leaves the calendar
 	switch ( event.type ) {
-	case "focusout":
-		focusOutTimer = setTimeout( hide, 10 );
-		break;
-	case "focusin":
-		clearTimeout( focusOutTimer );
+		case "focusout":
+			focusOutTimer = setTimeout( hide, 10 );
+			break;
+		case "focusin":
+			clearTimeout( focusOutTimer );
 	}
 } );
 
