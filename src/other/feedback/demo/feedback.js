@@ -82,30 +82,30 @@ var componentName = "wb-fdbck",
 			targetId = elm.id;
 
 		switch ( targetId ) {
-		case "fbrsn":
-			if ( elm.value === "web" ) {
-				$show = $fbweb;
-			} else {
-				$hide = $fbweb;
-			}
-			break;
-		case "fbaxs":
-			if ( elm.value === "mobile" ) {
-				$show = $fbmob;
-				$hide = $fbcomp;
-			} else {
-				$show = $fbcomp;
-				$hide = $fbmob;
-			}
-			break;
-		case "fbcntc1":
-		case "fbcntc2":
-			if ( document.getElementById( "fbcntc1" ).checked || document.getElementById( "fbcntc2" ).checked ) {
-				$show = $fbinfo;
-			} else {
-				$hide = $fbinfo;
-			}
-			break;
+			case "fbrsn":
+				if ( elm.value === "web" ) {
+					$show = $fbweb;
+				} else {
+					$hide = $fbweb;
+				}
+				break;
+			case "fbaxs":
+				if ( elm.value === "mobile" ) {
+					$show = $fbmob;
+					$hide = $fbcomp;
+				} else {
+					$show = $fbcomp;
+					$hide = $fbmob;
+				}
+				break;
+			case "fbcntc1":
+			case "fbcntc2":
+				if ( document.getElementById( "fbcntc1" ).checked || document.getElementById( "fbcntc2" ).checked ) {
+					$show = $fbinfo;
+				} else {
+					$hide = $fbinfo;
+				}
+				break;
 		}
 
 		// Element to show

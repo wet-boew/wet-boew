@@ -955,41 +955,41 @@ var componentName = "wb-data-json",
 	//
 	_equalsJSON = function( a, b ) {
 		switch ( typeof a ) {
-		case "undefined":
-			return false;
-		case "boolean":
-		case "string":
-		case "number":
-			return a === b;
-		case "object":
-			if ( a === null ) {
-				return b === null;
-			}
-			var i, l;
-			if ( $.isArray( a ) ) {
-				if (  !$.isArray( b ) || a.length !== b.length ) {
+			case "undefined":
+				return false;
+			case "boolean":
+			case "string":
+			case "number":
+				return a === b;
+			case "object":
+				if ( a === null ) {
+					return b === null;
+				}
+				var i, l;
+				if ( $.isArray( a ) ) {
+					if (  !$.isArray( b ) || a.length !== b.length ) {
+						return false;
+					}
+					for ( i = 0, l = a.length; i < l; i++ ) {
+						if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
+							return false;
+						}
+					}
+					return true;
+				}
+				var bKeys = _objectKeys( b ),
+					bLength = bKeys.length;
+				if ( _objectKeys( a ).length !== bLength ) {
 					return false;
 				}
-				for ( i = 0, l = a.length; i < l; i++ ) {
+				for ( i in a ) {
 					if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
 						return false;
 					}
 				}
 				return true;
-			}
-			var bKeys = _objectKeys( b ),
-				bLength = bKeys.length;
-			if ( _objectKeys( a ).length !== bLength ) {
+			default:
 				return false;
-			}
-			for ( i in a ) {
-				if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
-					return false;
-				}
-			}
-			return true;
-		default:
-			return false;
 		}
 	},
 	_objectKeys = function( obj ) {
@@ -1074,16 +1074,16 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " json-fetched.w
 	if ( event.currentTarget === event.target ) {
 		switch ( event.type ) {
 
-		case "timerpoke":
-		case "wb-init":
-			init( event );
-			break;
-		case "wb-update":
-			jsonUpdate( event );
-			break;
-		default:
-			jsonFetched( event );
-			break;
+			case "timerpoke":
+			case "wb-init":
+				init( event );
+				break;
+			case "wb-update":
+				jsonUpdate( event );
+				break;
+			default:
+				jsonFetched( event );
+				break;
 		}
 	}
 

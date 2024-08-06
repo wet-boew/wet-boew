@@ -411,19 +411,19 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 
 				// Adjust regex based on advanced options
 				switch ( $aoType ) {
-				case "both":
-					$regex = "(" + $value + ").*";
-					break;
-				case "either":
-					$regex = "^(" + $value + ")$";
-					break;
-				case "and":
-					$regex = ( $value.indexOf( "|" ) > -1 ) ? "^(" + $value + "|[,\\s])(" + $value + "|[,\\s])+$" : "(" + $value + ")";
-					break;
-				case "any":
-				default:
-					$regex = "(" + $value + ")";
-					break;
+					case "both":
+						$regex = "(" + $value + ").*";
+						break;
+					case "either":
+						$regex = "^(" + $value + ")$";
+						break;
+					case "and":
+						$regex = ( $value.indexOf( "|" ) > -1 ) ? "^(" + $value + "|[,\\s])(" + $value + "|[,\\s])+$" : "(" + $value + ")";
+						break;
+					case "any":
+					default:
+						$regex = "(" + $value + ")";
+						break;
 				}
 			}
 		} else {

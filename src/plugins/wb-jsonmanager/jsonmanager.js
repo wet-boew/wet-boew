@@ -601,41 +601,41 @@ var componentName = "wb-jsonmanager",
 	// Utility function to compare two JSON value
 	_equalsJSON = function( a, b ) {
 		switch ( typeof a ) {
-		case "undefined":
-			return false;
-		case "boolean":
-		case "string":
-		case "number":
-			return a === b;
-		case "object":
-			if ( a === null ) {
-				return b === null;
-			}
-			var i, l;
-			if ( Array.isArray( a ) ) {
-				if (  Array.isArray( b ) || a.length !== b.length ) {
+			case "undefined":
+				return false;
+			case "boolean":
+			case "string":
+			case "number":
+				return a === b;
+			case "object":
+				if ( a === null ) {
+					return b === null;
+				}
+				var i, l;
+				if ( Array.isArray( a ) ) {
+					if (  Array.isArray( b ) || a.length !== b.length ) {
+						return false;
+					}
+					for ( i = 0, l = a.length; i < l; i++ ) {
+						if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
+							return false;
+						}
+					}
+					return true;
+				}
+				var bKeys = _objectKeys( b ),
+					bLength = bKeys.length;
+				if ( _objectKeys( a ).length !== bLength ) {
 					return false;
 				}
-				for ( i = 0, l = a.length; i < l; i++ ) {
+				for ( i = 0; i < bLength; i++ ) {
 					if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
 						return false;
 					}
 				}
 				return true;
-			}
-			var bKeys = _objectKeys( b ),
-				bLength = bKeys.length;
-			if ( _objectKeys( a ).length !== bLength ) {
+			default:
 				return false;
-			}
-			for ( i = 0; i < bLength; i++ ) {
-				if ( !_equalsJSON( a[ i ], b[ i ] ) ) {
-					return false;
-				}
-			}
-			return true;
-		default:
-			return false;
 		}
 	},
 	_objectKeys = function( obj ) {

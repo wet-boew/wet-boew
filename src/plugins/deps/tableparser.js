@@ -1267,88 +1267,88 @@ var componentName = "wb-tableparser",
 
 				switch ( this.nodeName.toLowerCase() ) {
 
-				// cell header
-				case "th":
+					// cell header
+					case "th":
 
-					// Check for spanned cell between cells
-					fnParseSpannedRowCell();
+						// Check for spanned cell between cells
+						fnParseSpannedRowCell();
 
-					headerCell = {
-						rowpos: currentRowPos,
-						colpos: columnPos,
-						width: width,
-						height: height,
-						data: [],
-						summary: [],
-						elem: this
-					};
+						headerCell = {
+							rowpos: currentRowPos,
+							colpos: columnPos,
+							width: width,
+							height: height,
+							data: [],
+							summary: [],
+							elem: this
+						};
 
-					$this.data().tblparser = headerCell;
-					headerCell.groupZero = groupZero;
+						$this.data().tblparser = headerCell;
+						headerCell.groupZero = groupZero;
 
-					headerCell.uid = uidElem;
-					uidElem += 1;
-					groupZero.allParserObj.push( headerCell );
+						headerCell.uid = uidElem;
+						uidElem += 1;
+						groupZero.allParserObj.push( headerCell );
 
-					fnPreProcessGroupHeaderCell( headerCell );
+						fnPreProcessGroupHeaderCell( headerCell );
 
-					headerCell.parent = colgroup;
+						headerCell.parent = colgroup;
 
-					headerCell.spanHeight = height - 1;
+						headerCell.spanHeight = height - 1;
 
-					for ( i = 0; i < width; i += 1 ) {
-						row.cell.push( headerCell );
-						spannedRow[ columnPos + i ] = headerCell;
-					}
+						for ( i = 0; i < width; i += 1 ) {
+							row.cell.push( headerCell );
+							spannedRow[ columnPos + i ] = headerCell;
+						}
 
-					// Increment the column position
-					columnPos += headerCell.width;
+						// Increment the column position
+						columnPos += headerCell.width;
 
-					break;
+						break;
 
-				// data cell
-				case "td":
+					// data cell
+					case "td":
 
-					// Check for spanned cell between cells
-					fnParseSpannedRowCell();
+						// Check for spanned cell between cells
+						fnParseSpannedRowCell();
 
-					dataCell = {
-						rowpos: currentRowPos,
-						colpos: columnPos,
-						width: width,
-						height: height,
-						elem: this
-					};
+						dataCell = {
+							rowpos: currentRowPos,
+							colpos: columnPos,
+							width: width,
+							height: height,
+							elem: this
+						};
 
-					$this.data().tblparser = dataCell;
-					dataCell.groupZero = groupZero;
+						$this.data().tblparser = dataCell;
+						dataCell.groupZero = groupZero;
 
-					dataCell.uid = uidElem;
-					uidElem += 1;
-					groupZero.allParserObj.push( dataCell );
+						dataCell.uid = uidElem;
+						uidElem += 1;
+						groupZero.allParserObj.push( dataCell );
 
-					fnPreProcessGroupDataCell( dataCell );
+						fnPreProcessGroupDataCell( dataCell );
 
-					dataCell.parent = colgroup;
+						dataCell.parent = colgroup;
 
-					dataCell.spanHeight = height - 1;
+						dataCell.spanHeight = height - 1;
 
-					for ( i = 0; i < width; i += 1 ) {
-						row.cell.push( dataCell );
-						spannedRow[ columnPos + i ] = dataCell;
-					}
+						for ( i = 0; i < width; i += 1 ) {
+							row.cell.push( dataCell );
+							spannedRow[ columnPos + i ] = dataCell;
+						}
 
-					// Increment the column position
-					columnPos += dataCell.width;
+						// Increment the column position
+						columnPos += dataCell.width;
 
-					break;
-				default:
-					$obj.trigger( {
-						type: warningEvent,
-						pointer: this,
-						err: 15
-					} );
-					break;
+						break;
+					default:
+						$obj.trigger( {
+							type: warningEvent,
+							pointer: this,
+							err: 15
+						} );
+						break;
 				}
 
 				lastCellType = this.nodeName.toLowerCase();

@@ -427,62 +427,62 @@ var componentName = "wb-mltmd",
 		var $this, method;
 
 		switch ( fn ) {
-		case "play":
-			try {
-				this.object.play();
-			} catch ( ex ) {
-				this.object.doPlay();
-			}
-			break;
-		case "pause":
-			try {
-				this.object.pause();
-			} catch ( ex ) {
-				this.object.doPause();
-			}
-			break;
-		case "getCaptionsVisible":
-			return $( this ).hasClass( captionClass );
-		case "setCaptionsVisible":
-			$this = $( this );
-			if ( args ) {
-				$this.addClass( captionClass );
-			} else {
-				$this.removeClass( captionClass );
-			}
-			$this.trigger( captionsVisibleChangeEvent );
-			break;
-		case "fullscreen":
-			if ( this.object.requestFullscreen ) {
-				this.object.requestFullscreen();
-			} else if ( this.object.webkitRequestFullscreen ) { /* Safari */
-				this.object.webkitRequestFullscreen();
-			} else if ( this.object.msRequestFullscreen ) { /* IE11 */
-				this.object.msRequestFullscreen();
-			}
-			break;
-		case "getBuffering":
-			return this.object.buffering || false;
-		case "setBuffering":
-			this.object.buffering = args;
-			break;
-		case "getPreviousTime":
-			return this.object.previousTime;
-		case "setPreviousTime":
-			this.object.previousTime = args;
-			break;
-		default:
-			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
-			switch ( fn.substr( 0, 3 ) ) {
-			case "get":
-				return typeof this.object[ method ] !== "function" ?
-					this.object[ method ] :
-					this.object[ method ]();
-			case "set":
-				typeof this.object[ method ] !== "function" ?
-					this.object[ method ] = args :
-					this.object[ fn ]( args );
-			}
+			case "play":
+				try {
+					this.object.play();
+				} catch ( ex ) {
+					this.object.doPlay();
+				}
+				break;
+			case "pause":
+				try {
+					this.object.pause();
+				} catch ( ex ) {
+					this.object.doPause();
+				}
+				break;
+			case "getCaptionsVisible":
+				return $( this ).hasClass( captionClass );
+			case "setCaptionsVisible":
+				$this = $( this );
+				if ( args ) {
+					$this.addClass( captionClass );
+				} else {
+					$this.removeClass( captionClass );
+				}
+				$this.trigger( captionsVisibleChangeEvent );
+				break;
+			case "fullscreen":
+				if ( this.object.requestFullscreen ) {
+					this.object.requestFullscreen();
+				} else if ( this.object.webkitRequestFullscreen ) { /* Safari */
+					this.object.webkitRequestFullscreen();
+				} else if ( this.object.msRequestFullscreen ) { /* IE11 */
+					this.object.msRequestFullscreen();
+				}
+				break;
+			case "getBuffering":
+				return this.object.buffering || false;
+			case "setBuffering":
+				this.object.buffering = args;
+				break;
+			case "getPreviousTime":
+				return this.object.previousTime;
+			case "setPreviousTime":
+				this.object.previousTime = args;
+				break;
+			default:
+				method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
+				switch ( fn.substr( 0, 3 ) ) {
+					case "get":
+						return typeof this.object[ method ] !== "function" ?
+							this.object[ method ] :
+							this.object[ method ]();
+					case "set":
+						typeof this.object[ method ] !== "function" ?
+							this.object[ method ] = args :
+							this.object[ fn ]( args );
+				}
 		}
 	},
 
@@ -497,70 +497,70 @@ var componentName = "wb-mltmd",
 			state;
 
 		switch ( fn ) {
-		case "play":
-			this.object.wasMutedPlay = this.object.isMuted();
-			return this.object.playVideo();
-		case "pause":
-			return this.object.pauseVideo();
-		case "getPaused":
-			state = this.object.getPlayerState();
-			return state === -1 || state === 0 || state === 2 || state === 5;
-		case "getPlayed":
-			return this.object.getPlayerState() > -1;
-		case "getEnded":
-			return this.object.getPlayerState() === 0;
-		case "getDuration":
-			return this.object.getDuration();
-		case "getCurrentTime":
-			return this.object.getCurrentTime();
-		case "setCurrentTime":
-			return this.object.seekTo( args, true );
-		case "fullscreen":
-			return this.object.getIframe().requestFullscreen();
-		case "getMuted":
-			if ( !this.object.playedOnce && this.object.wasMutedPlay ) {
-				state = this.object.wasMutedPlay;
-				this.object.playedOnce = true;
-				return state;
-			} else {
-				return this.object.isMuted();
-			}
-		case "setMuted":
-			if ( args ) {
-				this.object.mute();
-			} else {
-				this.object.unMute();
-			}
-			setTimeout( function() {
-				$media.trigger( "volumechange" );
-			}, ( wb.isReady ? 50 : 500 ) );
-			break;
-		case "getVolume":
-			return this.object.getVolume() / 100;
-		case "setVolume":
-			this.object.setVolume( args * 100 );
-			setTimeout( function() {
-				$media.trigger( "volumechange" );
-			}, 50 );
-			break;
-		case "getCaptionsVisible":
-			return $( this ).hasClass( captionClass );
-		case "setCaptionsVisible":
-			if ( args ) {
-				$( this ).addClass( captionClass );
-				try {
-					this.object.loadModule( "cc" );
-					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
-				} catch ( e ) {
-					this.object.loadModule( "captions" );
-					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+			case "play":
+				this.object.wasMutedPlay = this.object.isMuted();
+				return this.object.playVideo();
+			case "pause":
+				return this.object.pauseVideo();
+			case "getPaused":
+				state = this.object.getPlayerState();
+				return state === -1 || state === 0 || state === 2 || state === 5;
+			case "getPlayed":
+				return this.object.getPlayerState() > -1;
+			case "getEnded":
+				return this.object.getPlayerState() === 0;
+			case "getDuration":
+				return this.object.getDuration();
+			case "getCurrentTime":
+				return this.object.getCurrentTime();
+			case "setCurrentTime":
+				return this.object.seekTo( args, true );
+			case "fullscreen":
+				return this.object.getIframe().requestFullscreen();
+			case "getMuted":
+				if ( !this.object.playedOnce && this.object.wasMutedPlay ) {
+					state = this.object.wasMutedPlay;
+					this.object.playedOnce = true;
+					return state;
+				} else {
+					return this.object.isMuted();
 				}
-			} else {
-				$( this ).removeClass( captionClass );
-				this.object.unloadModule( "cc" );
-				this.object.unloadModule( "captions" );
-			}
-			$media.trigger( "ccvischange" );
+			case "setMuted":
+				if ( args ) {
+					this.object.mute();
+				} else {
+					this.object.unMute();
+				}
+				setTimeout( function() {
+					$media.trigger( "volumechange" );
+				}, ( wb.isReady ? 50 : 500 ) );
+				break;
+			case "getVolume":
+				return this.object.getVolume() / 100;
+			case "setVolume":
+				this.object.setVolume( args * 100 );
+				setTimeout( function() {
+					$media.trigger( "volumechange" );
+				}, 50 );
+				break;
+			case "getCaptionsVisible":
+				return $( this ).hasClass( captionClass );
+			case "setCaptionsVisible":
+				if ( args ) {
+					$( this ).addClass( captionClass );
+					try {
+						this.object.loadModule( "cc" );
+						this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
+					} catch ( e ) {
+						this.object.loadModule( "captions" );
+						this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+					}
+				} else {
+					$( this ).removeClass( captionClass );
+					this.object.unloadModule( "cc" );
+					this.object.unloadModule( "captions" );
+				}
+				$media.trigger( "ccvischange" );
 		}
 	},
 
@@ -580,62 +580,62 @@ var componentName = "wb-mltmd",
 			isMuted;
 
 		switch ( event.data ) {
-		case null: // init
-			$media
-				.trigger( "canplay" )
-				.trigger( "durationchange" );
+			case null: // init
+				$media
+					.trigger( "canplay" )
+					.trigger( "durationchange" );
 
-			// Put video on mute if the video is muted on init, run once
-			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+				// Put video on mute if the video is muted on init, run once
+				$mltmPlayerElm = $media.parentsUntil( selector ).parent();
 
-			// Mute the player, GUI
-			if ( $mltmPlayerElm.data( "putMutedOnInit" ) ) {
-				youTubeApi.call( $mltmPlayerElm.get( 0 ), "setMuted", true );
-				$mltmPlayerElm.data( "putMutedOnInit", false );
-			}
-			break;
-		case -1:
-			event.target.unMute();
-			$media.trigger( "durationchange" );
-			break;
-		case 0:
-			$media.trigger( "ended" );
-			media.timeline = clearInterval( media.timeline );
-			break;
-		case 1: // play
+				// Mute the player, GUI
+				if ( $mltmPlayerElm.data( "putMutedOnInit" ) ) {
+					youTubeApi.call( $mltmPlayerElm.get( 0 ), "setMuted", true );
+					$mltmPlayerElm.data( "putMutedOnInit", false );
+				}
+				break;
+			case -1:
+				event.target.unMute();
+				$media.trigger( "durationchange" );
+				break;
+			case 0:
+				$media.trigger( "ended" );
+				media.timeline = clearInterval( media.timeline );
+				break;
+			case 1: // play
 
-			// Get the media player
-			$mltmPlayerElm = $media.parentsUntil( selector ).parent();
-			mltmPlayerElm = $mltmPlayerElm.get( 0 );
+				// Get the media player
+				$mltmPlayerElm = $media.parentsUntil( selector ).parent();
+				mltmPlayerElm = $mltmPlayerElm.get( 0 );
 
-			// Need to be muted here
-			isMuted = mltmPlayerElm.player( "getMuted" );
+				// Need to be muted here
+				isMuted = mltmPlayerElm.player( "getMuted" );
 
-			// Reset the close caption state when iframe was reloaded
-			if ( media.dataset.L2 ) {
-				youTubeApi.call( mltmPlayerElm, "setCaptionsVisible", $mltmPlayerElm.hasClass( captionClass ) );
-			}
+				// Reset the close caption state when iframe was reloaded
+				if ( media.dataset.L2 ) {
+					youTubeApi.call( mltmPlayerElm, "setCaptionsVisible", $mltmPlayerElm.hasClass( captionClass ) );
+				}
 
-			// Play
-			$media
-				.trigger( "canplay" )
-				.trigger( "play" )
-				.trigger( "playing" );
+				// Play
+				$media
+					.trigger( "canplay" )
+					.trigger( "play" )
+					.trigger( "playing" );
 
-			// Reset muted as needed because youtube onMute by default when playing
-			if ( isMuted ) {
-				youTubeApi.call( mltmPlayerElm, "setMuted", true );
-			}
+				// Reset muted as needed because youtube onMute by default when playing
+				if ( isMuted ) {
+					youTubeApi.call( mltmPlayerElm, "setMuted", true );
+				}
 
-			media.timeline = setInterval( timeline, 250 );
-			break;
-		case 2:
-			$media.trigger( "pause" );
-			media.timeline = clearInterval( media.timeline );
-			break;
-		case 3:
-			media.timeline = clearInterval( media.timeline );
-			break;
+				media.timeline = setInterval( timeline, 250 );
+				break;
+			case 2:
+				$media.trigger( "pause" );
+				media.timeline = clearInterval( media.timeline );
+				break;
+			case 3:
+				media.timeline = clearInterval( media.timeline );
+				break;
 		}
 	},
 
@@ -970,46 +970,46 @@ $document.on( "keydown", dispCtrls, function( event ) {
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 		switch ( which ) {
-		case 32:
+			case 32:
 
-			// Mute/unmute if focused on the mute/unmute button or volume input.
-			if ( $( event.target ).hasClass( "mute" ) || event.target.nodeName === "INPUT" ) {
-				$playerTarget.find( ".mute" ).trigger( "click" );
-			} else if ( $( event.target ).hasClass( "fs" ) ) {
+				// Mute/unmute if focused on the mute/unmute button or volume input.
+				if ( $( event.target ).hasClass( "mute" ) || event.target.nodeName === "INPUT" ) {
+					$playerTarget.find( ".mute" ).trigger( "click" );
+				} else if ( $( event.target ).hasClass( "fs" ) ) {
 
-				// Enter full screen if focused on the full screen button
-				$playerTarget.find( ".fs" ).trigger( "click" );
-			} else if ( $( event.target ).hasClass( "cc" ) ) {
+					// Enter full screen if focused on the full screen button
+					$playerTarget.find( ".fs" ).trigger( "click" );
+				} else if ( $( event.target ).hasClass( "cc" ) ) {
 
-				// Show/hide captions if focused on the closed captions button.
-				$playerTarget.find( ".cc" ).trigger( "click" );
-			} else {
+					// Show/hide captions if focused on the closed captions button.
+					$playerTarget.find( ".cc" ).trigger( "click" );
+				} else {
 
-				// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
-				$playerTarget.find( ".playpause" ).trigger( "click" );
-			}
-			break;
+					// Play/pause if focused on anything else (i.e. the video itself, play/pause button or progress bar).
+					$playerTarget.find( ".playpause" ).trigger( "click" );
+				}
+				break;
 
-		case 37:
-			playerTarget.player( "setCurrentTime", this.parentNode.player( "getCurrentTime" ) - this.parentNode.player( "getDuration" ) * 0.05 );
-			break;
+			case 37:
+				playerTarget.player( "setCurrentTime", this.parentNode.player( "getCurrentTime" ) - this.parentNode.player( "getDuration" ) * 0.05 );
+				break;
 
-		case 39:
-			playerTarget.player( "setCurrentTime", this.parentNode.player( "getCurrentTime" ) + this.parentNode.player( "getDuration" ) * 0.05 );
-			break;
+			case 39:
+				playerTarget.player( "setCurrentTime", this.parentNode.player( "getCurrentTime" ) + this.parentNode.player( "getDuration" ) * 0.05 );
+				break;
 
-		case 38:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 + step;
-			playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
-			break;
+			case 38:
+				volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 + step;
+				playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
+				break;
 
-		case 40:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 - step;
-			playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
-			break;
+			case 40:
+				volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 - step;
+				playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
+				break;
 
-		default:
-			return true;
+			default:
+				return true;
 		}
 		return false;
 	}
@@ -1043,129 +1043,129 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		invEnd = "</span>",
 		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, skipTo, volume;
 	switch ( eventType ) {
-	case "playing":
-	case "pause":
-	case "ended":
-		isPlay = eventType === "playing";
-		$button = $this.find( ".playpause" );
-		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
-		if ( isPlay ) {
-			$this.addClass( "playing" );
-			$this.find( ".progress" ).addClass( "active" );
-		} else {
-			if ( eventType === "ended" ) {
-				this.loading = clearTimeout( this.loading );
+		case "playing":
+		case "pause":
+		case "ended":
+			isPlay = eventType === "playing";
+			$button = $this.find( ".playpause" );
+			buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
+			if ( isPlay ) {
+				$this.addClass( "playing" );
+				$this.find( ".progress" ).addClass( "active" );
+			} else {
+				if ( eventType === "ended" ) {
+					this.loading = clearTimeout( this.loading );
+				}
+				$this.removeClass( "playing" );
 			}
-			$this.removeClass( "playing" );
-		}
-		$button
-			.attr( "title", buttonData )
-			.children( "span" )
-			.toggleClass( "glyphicon-play", !isPlay )
-			.toggleClass( "glyphicon-pause", isPlay )
-			.html( invStart + buttonData + invEnd );
-		break;
+			$button
+				.attr( "title", buttonData )
+				.children( "span" )
+				.toggleClass( "glyphicon-play", !isPlay )
+				.toggleClass( "glyphicon-pause", isPlay )
+				.html( invStart + buttonData + invEnd );
+			break;
 
-	case "volumechange":
-		isMuted = eventTarget.player( "getMuted" );
-		$button = $this.find( ".mute" );
-		buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
-		volume = eventTarget.player( "getVolume" ) * 100;
-		$button
-			.attr( {
-				title: buttonData,
-				"aria-pressed": isMuted
-			} )
-			.children( "span" )
-			.toggleClass( "glyphicon-volume-up", !isMuted )
-			.toggleClass( "glyphicon-volume-off", isMuted )
-			.html( invStart + buttonData + invEnd );
-		$slider = $this.find( "input[type='range']" );
-		$slider[ 0 ].value = isMuted ? 0 : volume;
-		$slider.trigger( "wb-update.wb-slider" );
-		break;
+		case "volumechange":
+			isMuted = eventTarget.player( "getMuted" );
+			$button = $this.find( ".mute" );
+			buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
+			volume = eventTarget.player( "getVolume" ) * 100;
+			$button
+				.attr( {
+					title: buttonData,
+					"aria-pressed": isMuted
+				} )
+				.children( "span" )
+				.toggleClass( "glyphicon-volume-up", !isMuted )
+				.toggleClass( "glyphicon-volume-off", isMuted )
+				.html( invStart + buttonData + invEnd );
+			$slider = $this.find( "input[type='range']" );
+			$slider[ 0 ].value = isMuted ? 0 : volume;
+			$slider.trigger( "wb-update.wb-slider" );
+			break;
 
-	case "timeupdate":
-		currentTime = eventTarget.player( "getCurrentTime" );
-		$this.find( "progress" )
-			.attr(
-				"value",
-				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
-			).trigger( "wb-update.wb-progress" );
+		case "timeupdate":
+			currentTime = eventTarget.player( "getCurrentTime" );
+			$this.find( "progress" )
+				.attr(
+					"value",
+					Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
+				).trigger( "wb-update.wb-progress" );
 
-		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
-			.text( formatTime( currentTime ) );
+			$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
+				.text( formatTime( currentTime ) );
 
-		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
-			updateCaptions(
-				$this.find( ".wb-mm-cc" ),
-				currentTime,
-				$.data( eventTarget, "captions" )
-			);
-		}
-		break;
-
-	case "durationchange":
-		$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
-			.text( formatTime( eventTarget.player( "getDuration" ) ) );
-
-		// Skip to pointer from the querystring
-		skipTo = wb.pageUrlParts.params[ event.target.id ];
-		if ( skipTo ) {
-			skipTo = parseTime( skipTo );
-			eventTarget.player( "setCurrentTime", skipTo );
-		}
-		break;
-
-	case "ccloaded":
-		if ( eventNamespace === componentName ) {
-			$.data( eventTarget, "captions", event.captions );
-		}
-		break;
-
-	case "ccloadfail":
-		if ( eventNamespace === componentName ) {
-			if ( !$this.hasClass( "errmsg" ) ) {
-				$this.addClass( "cc_on errmsg" )
-					.find( ".wb-mm-cc" )
-					.append( "<div>" + i18nText.cc_error + "</div>" )
-					.end()
-					.find( ".cc" )
-					.attr( "disabled", "" )
-					.removeAttr( "aria-pressed" );
+			if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
+				updateCaptions(
+					$this.find( ".wb-mm-cc" ),
+					currentTime,
+					$.data( eventTarget, "captions" )
+				);
 			}
-		}
-		break;
+			break;
 
-	case "ccvischange":
-		if ( eventNamespace === componentName ) {
-			isCCVisible = eventTarget.player( "getCaptionsVisible" );
-			$button = $this.find( ".cc" );
-			buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
-			$button.attr( {
-				title: buttonData,
-				"aria-pressed": isCCVisible
-			} ).children( "span" ).html( invStart + buttonData + invEnd );
-		}
-		break;
+		case "durationchange":
+			$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
+				.text( formatTime( eventTarget.player( "getDuration" ) ) );
 
-	case "waiting":
-		if ( !simulated ) {
-			$document.off( "progress", selector );
-		}
-		this.loading = setTimeout( function() {
-			$this.addClass( "waiting" );
-		}, 500 );
-		break;
+			// Skip to pointer from the querystring
+			skipTo = wb.pageUrlParts.params[ event.target.id ];
+			if ( skipTo ) {
+				skipTo = parseTime( skipTo );
+				eventTarget.player( "setCurrentTime", skipTo );
+			}
+			break;
 
-	case "canplay":
-	case "seeked":
-		this.loading = clearTimeout( this.loading );
-		$this.removeClass( "waiting" );
-		break;
-	case "cuepoint":
-		eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
-		break;
+		case "ccloaded":
+			if ( eventNamespace === componentName ) {
+				$.data( eventTarget, "captions", event.captions );
+			}
+			break;
+
+		case "ccloadfail":
+			if ( eventNamespace === componentName ) {
+				if ( !$this.hasClass( "errmsg" ) ) {
+					$this.addClass( "cc_on errmsg" )
+						.find( ".wb-mm-cc" )
+						.append( "<div>" + i18nText.cc_error + "</div>" )
+						.end()
+						.find( ".cc" )
+						.attr( "disabled", "" )
+						.removeAttr( "aria-pressed" );
+				}
+			}
+			break;
+
+		case "ccvischange":
+			if ( eventNamespace === componentName ) {
+				isCCVisible = eventTarget.player( "getCaptionsVisible" );
+				$button = $this.find( ".cc" );
+				buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
+				$button.attr( {
+					title: buttonData,
+					"aria-pressed": isCCVisible
+				} ).children( "span" ).html( invStart + buttonData + invEnd );
+			}
+			break;
+
+		case "waiting":
+			if ( !simulated ) {
+				$document.off( "progress", selector );
+			}
+			this.loading = setTimeout( function() {
+				$this.addClass( "waiting" );
+			}, 500 );
+			break;
+
+		case "canplay":
+		case "seeked":
+			this.loading = clearTimeout( this.loading );
+			$this.removeClass( "waiting" );
+			break;
+		case "cuepoint":
+			eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
+			break;
 	}
 } );
 
