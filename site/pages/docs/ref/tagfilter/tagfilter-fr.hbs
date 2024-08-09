@@ -84,6 +84,27 @@
 &lt;/select></code></pre>
 <p><strong>Remarque&nbsp;:</strong> ajoutez une <code>valeur</code> vide à votre option afin d'afficher tous les items.</p>
 
+
+<h4>Ajouter un bouton de soumission (Optionnel)</h4>
+<p>Ce plugiciel effectue ses mises-à-jours automatiquement après chaque changement de valeur; vous pouvez empêcher cette fonctionalité et ajouter un bouton de soumission si votre page le requiert. Cette option est pratique si vous devez actionner une soumission comme dans le cas o&ugrave; vous désirez collecter des données analytiques.</p>
+<ol>
+	<li>Ajouter l'option "live": false à l'élément du plugiciel</li>
+	<li>Ajouter une élément form à l'intérieur du contenant du plugiciel.</li>
+	<li>Ajouter un bouton ou input type submit à l'intérieur du formulaire.</li>
+</ol>
+<pre><code>&lt;section class="wb-tagfilter provisional" data-wb-tagfilter='{ "live": false }'>
+	&lt;form>
+		&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
+			&lt;option value="">All&lt;/option>
+			&lt;option value="maBalise">Ma balise&lt;/option>
+			&lt;option value="maBalise2">Ma balise 2&lt;/option>
+			&lt;option value="maBalise3">Ma balise 3&lt;/option>
+		&lt;/select>
+	
+		&lt;button type="submit">Filtrer&lt;/button>
+	&lt;/form>
+&lt;/section></code></pre>
+
 <h3>Ajoutez votre élément pour aucun résultat</h3>
 <p>En option, vous pouvez ajouter un élément qui s'affichera lorsqu'aucun item n'est visible. Identifiez cet élément avec la classe CSS <code>wb-tagfilter-noresult</code>.</p>
 <p>Cet élément doit être ajouté <strong>directement</strong> après l'élément enveloppant votre liste d'items (<code>.wb-tagfilter-items</code>).</p>
