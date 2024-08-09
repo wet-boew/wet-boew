@@ -12,6 +12,7 @@ var componentName = "wb-filter",
 	dtNameFltrArea = "wbfltrid",
 	selectorInput = "." + inputClass,
 	defaults = {
+		live : true,
 		std: {
 			selector: "li"
 		},
@@ -59,10 +60,14 @@ var componentName = "wb-filter",
 			} else {
 				setDefault = defaults.std;
 			}
+			setDefault.live = defaults.live;
 
 			settings = $.extend( true, {}, setDefault, window[ componentName ], wb.getData( $elm, componentName ) );
-			$elm.data( settings );
-
+			
+			$.data( elm, componentName, settings ); 	//	wb-filter
+			//$elm.data( componentName, settings ); 	//	wbFilter
+			//$elm.data( componentName ).live;	//	Undefined
+			
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
@@ -217,6 +222,7 @@ var componentName = "wb-filter",
 			hndParentSelector = settings.hdnparentuntil,
 			$items = $elm.find( secSelector + settings.selector ),
 			itemsLength = $items.length,
+			that = this || $field.get(0),
 			i, $item, text, searchFilterRegularExp;
 
 		$elm.find( "." + filterClass ).removeClass( filterClass );
@@ -238,9 +244,11 @@ var componentName = "wb-filter",
 		if ( !fCallBack || typeof fCallBack !== "function"  ) {
 			fCallBack = filterCallback;
 		}
-		fCallBack.apply( this, arguments );
 
 		$elm.trigger( "wb-contentupdated" );
+		
+		//	Tag filter calls wb-contentupdated and needs to make changes before we hide or show the content section when a button is used.
+		fCallBack.apply( that, arguments );
 	},
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section ),
@@ -248,6 +256,7 @@ var componentName = "wb-filter",
 			fndSelector = notFilterClassSel + settings.selector,
 			s, $section;
 
+		//	Hide each parent that has no visible child
 		for ( s = 0; s < sectionsLength; s += 1 ) {
 			$section = $sections.eq( s );
 			if ( $section.find( fndSelector ).length === 0 ) {
@@ -259,13 +268,28 @@ var componentName = "wb-filter",
 $document.on( "keyup", selectorInput, function( event ) {
 	var target = event.target,
 		$input = $( target ),
-		$elm = $( "#" + $input.data( dtNameFltrArea ) );
-
-	if ( wait ) {
-		clearTimeout( wait );
+		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
+		live = $elm.data( componentName ).live;
+	
+	if ( !!live ) {
+		if ( wait ) {
+			clearTimeout( wait );
+		}
+		wait = setTimeout( filter.bind( this, $input, $elm, $elm.data( componentName ) ), 250 );
 	}
-	wait = setTimeout( filter.bind( this, $input, $elm, $elm.data() ), 250 );
+} );
 
+//	Trigger on form submit if not live changes
+$document.on( "submit", selector + " form", function( event )  {
+	const target = event.target,
+		$input = $( target ).find( selectorInput ),
+		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
+		live = $elm.data( componentName ).live;
+	
+	if ( !live ) {
+		filter( $input, $elm, $elm.data( componentName ) );
+	}
+	event.preventDefault();
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );

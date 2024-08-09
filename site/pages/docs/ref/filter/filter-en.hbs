@@ -58,6 +58,15 @@
 	...
 &lt;/ul&gt;</code></pre>
 		</li>
+		<li><p><strong>Optional:</strong> Set the live option to false and include a form element in the container.</p>
+		
+		<pre><code>&lt;div class=&quot;wb-filter&quot; data-wb-filter='{ "live": "false" }'&gt;
+		&lt;form role="search" aria-label="On this page"&gt;
+	&hellip;
+	&lt;button type="submit" class="btn btn-primary"&gt;Filter&lt;/button&gt;
+	&lt;/form&gt;
+&lt;/div&gt;</code></pre>
+		</li>
 		<li>Test the feature to see if it is properly configured and show correctly the number of total entries and the same upon filtering. If the number match, you are done.</li>
 		<li>In the scenario of those number don't match or you want to filter in a complex design, see the feature configuration below and make your own adjustment.</li>
 	</ol>
@@ -202,6 +211,12 @@
 				<td>Pointer to the element wrapping your UI template. For more information, see the <a href="#uiTemplateEB">uiTemplate's essential behaviour</a>.</td>
 				<td><code>data-wb-filter='{"uiTemplate": "<em>#idToMyTemplate</em>"}'</code></td>
 				<td>JQuery selector that represent the template element on the current page.</td>
+			</tr>
+			<tr>
+				<td><code>live</code></td>
+				<td>Define if the filtering should happen when the keyboard is typed or on submit of form element inside the plugin container.</td>
+				<td><code>data-wb-filter='{"live": "<em>false</em>"}'</code></td>
+				<td>True by default. False will update the results only when a submit happens on the form. Can be useful for Adobe Analytics tracking.</td>
 			</tr>
 		</tbody>
 	</table>

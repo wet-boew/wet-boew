@@ -28,7 +28,8 @@
 	<li><a href="#filteredEventsList">Example 1 - Events list</a></li>
 	<li><a href="#filteredAppsList">Example 2 - Applications list</a></li>
 	<li><a href="#filteredFAQ">Example 3 - FAQ leveraging Filter plugin</a></li>
-	<li><a href="#filteredTable">Example 4 - Table</a></li>
+	<li><a href="#filteredFinder">Example 4 - Finder with "or" behavior not updating live</a></li>
+	<li><a href="#filteredTable">Example 5 - Table</a></li>
 	<li><a href="#edgeCases">Edge case examples</a></li>
 </ul>
 
@@ -748,6 +749,7 @@
 		<div class="col-sm-12">
 			<p class="h3 wb-fltr-info mrgn-tp-0"><span data-nbitem></span> results out of <span data-total></span></p>
 		</div>
+		
 		<div class="col-sm-4 col-md-5 col-lg-4">
 			<div class="form-group">
 				<label for="customSearchUI">Search</label>
@@ -864,7 +866,7 @@
 		"selector": "article",
 		"section": ".wb-tagfilter-items",
 		"uiTemplate": "#searchFilter"
-	}'>
+	}' data-wb-tagfilter='{ "live": false }'>
 	&lt;h2>Example 3 - FAQ leveraging Filter plugin&lt;/h2>
 	&lt;div id="searchFilter" class="row mrgn-tp-lg">
 		&lt;div class="col-sm-12">
@@ -979,6 +981,246 @@
 		&lt;p>No result.&lt;/p>
 	&lt;/div>
 &lt;/section></code></pre>
+</details>
+
+
+<section id="filteredFinder" class="wb-tagfilter provisional wb-filter" data-wb-tagfilter='{ "live": false }' data-wb-filter='{
+		"selector": "section",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter2",
+		"live": false
+	}'>
+	<h2>Example 4 - Finder with "or" behavior updating with a button</h2>
+	
+	<div class="row">
+	<section id="searchFilter2" class="col-xs-12 col-md-3 pull-right">
+		<h3>Filters</h3>
+		<div>
+			<p class="wb-fltr-info mrgn-tp-0"><span data-nbitem></span> results out of <span data-total></span></p>
+		</div>
+		
+		<form method="get" aria-role="search" aria-label="On this page">
+			<div class="form-group">
+				<label class="text-muted" for="customSearchUI2">Search for a term</label>
+				<input type="search" class="form-control full-width" id="customSearchUI2">
+			</div>
+			
+			<div class="form-group">
+			<fieldset>
+				<legend>Audience</legend>
+				
+				<ul class="list-unstyled">
+					<li class="checkbox"><label><input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Student</label></li>
+					<li class="checkbox"><label><input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Worker</label></li>
+					<li class="checkbox"><label><input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Senior</label></li>
+				</ul>
+			</fieldset>
+			</div>
+			
+			<div class="form-group">
+			<fieldset>
+				<legend>Life stage</legend>
+				
+				<ul class="list-unstyled">
+					<li class="checkbox"><label><input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Divorced or separating</label></li>
+					<li class="checkbox"><label><input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Retirement</label></li>
+					<li class="checkbox"><label><input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Starting a family</label></li>
+				</ul>
+			</fieldset>
+			</div>
+			
+			<div class="form-group">
+				<label for="province">Province</label>
+				<select name="province" id="province" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}'>
+					<option value="">Select a province</option>
+					<option value="Alberta">Alberta</option>
+					<option value="BC">British Columbia</option>
+					<option value="Manitoba">Manitoba</option>
+					<option value="NewBrunswick">New Brunswick</option>
+					<option value="NewfoundlandLabrador">Newfoundland and Labrador</option>
+					<option value="Northwest">Northwest territories</option>
+					<option value="NovaScotia">Nova Scotia</option>
+					<option value="Nunavut">Nunavut</option>
+					<option value="Ontario">Ontario</option>
+					<option value="PEI">Prince Edward Island</option>
+					<option value="Saskatchewan">Saskatchewan</option>
+					<option value="Quebec">Quebec</option>
+					<option value="Yukon">Yukon</option>
+				</select>
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Filter results</button>
+		</form>
+	</section>
+	
+	<section class="col-xs-12 col-md-9">
+		<h3>Results</h3>
+		<div id="finderResults" class="wb-tagfilter-items">
+			<section class="card" data-wb-tags="family">
+				<div class="card-body">
+					<h4>Canada Child Benefit</h4>
+					<p>A tax-free monthly payment made to eligible families to help with the cost of raising children under 18 years of age.</p>
+				</div>
+			</section>
+			
+			<section class="card" data-wb-tags="retirement">
+				<div class="card-body">
+					<h4>Canada Pension Plan (CPP) Annuities</h4>
+					<p>Learn about the administration of annuities currently under payment as well as those to become payable at a later date.</p>
+				</div>
+			</section>
+			
+			<section class="card" data-wb-tags="divorced">
+				<div class="card-body">
+					<h4>Canada Pension Plan (CPP) Credit Splitting</h4>
+					<p>The Canada Pension Plan (CPP) contributions you and your spouse or common-law partner made during the time you lived together can be equally divided after a divorce or separation.</p>
+				</div>
+			</section>
+			
+			<section class="card" data-wb-tags="student">
+				<div class="card-body">
+					<h4>Canada Apprentice Loan</h4>
+					<p>With the Canada Apprentice Loan, you can get up to $4,000 in interest-free loans per period of technical training.</p>
+				</div>
+			</section>
+			
+			<section class="card" data-wb-tags="senior">
+				<div class="card-body">
+					<h4>Old Age Security (OAS) </h4>
+					<p>The Old Age Security (OAS) pension is a monthly payment you can get if you are 65 and older. You must be a Canadian citizen or legal resident and have lived in Canada for at least 10 years after the age of 18.</p>
+				</div>
+			</section>
+			
+			<section class="card" data-wb-tags="Alberta">
+				<div class="card-body">
+					<h4>Alberta income support</h4>
+					<p>Child and adult health benefits, Alberta Child Benefit, child care subsidy, income support and other financial assistance.</p>
+				</div>
+			</section>
+		</div>
+		<div class="wb-tagfilter-noresult">
+			<p>The combination of selected filters didn't match any items. Please modify and try again.</p>
+		</div>
+	</section>
+	</div>
+</section>
+
+
+<details class="mrgn-tp-md">
+	<summary>Source code</summary>
+	<pre><code>&lt;section id="filteredFinder" class="wb-tagfilter provisional wb-filter" data-wb-tagfilter='{ "live": false }' data-wb-filter='{
+		"selector": "section",
+		"section": ".wb-tagfilter-items",
+		"uiTemplate": "#searchFilter2",
+		"live": false
+	}'&gt;
+	&lt;h2&gt;Example 4 - Finder with "or" behavior not updating live&lt;/h2&gt;
+	
+	&lt;div class="row"&gt;
+	&lt;section id="searchFilter2" class="col-xs-12 col-md-3 pull-right"&gt;
+		&lt;h3&gt;Filters&lt;/h3&gt;
+		&lt;div&gt;
+			&lt;p class="wb-fltr-info mrgn-tp-0"&gt;&lt;span data-nbitem&gt;&lt;/span&gt; results out of &lt;span data-total&gt;&lt;/span&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;form method="get" aria-role="search" aria-label="On this page"&gt;
+			&lt;div class="form-group"&gt;
+				&lt;label class="text-muted" for="customSearchUI2"&gt;Search for a term&lt;/label&gt;
+				&lt;input type="search" class="form-control full-width" id="customSearchUI2"&gt;
+			&lt;/div&gt;
+			
+			&lt;div class="form-group"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Audience&lt;/legend&gt;
+				
+				&lt;ul class="list-unstyled"&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Student&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Worker&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Senior&lt;/label&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/fieldset&gt;
+			&lt;/div&gt;
+			
+			&lt;div class="form-group"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Life stage&lt;/legend&gt;
+				
+				&lt;ul class="list-unstyled"&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Divorced or separating&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Retirement&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Starting a family&lt;/label&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/fieldset&gt;
+			&lt;/div&gt;
+			
+			&lt;div class="form-group"&gt;
+				&lt;label for="province"&gt;Province&lt;/label&gt;
+				&lt;select name="province" id="province" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}'&gt;
+					&lt;option value=""&gt;Select a province&lt;/option&gt;
+					&lt;option value="Alberta"&gt;Alberta&lt;/option&gt;
+					&lt;option value="BC"&gt;British Columbia&lt;/option&gt;
+					&lt;option value="Manitoba"&gt;Manitoba&lt;/option&gt;
+					&lt;option value="NewBrunswick"&gt;New Brunswick&lt;/option&gt;
+					&lt;option value="NewfoundlandLabrador"&gt;Newfoundland and Labrador&lt;/option&gt;
+					&lt;option value="Northwest"&gt;Northwest territories&lt;/option&gt;
+					&lt;option value="NovaScotia"&gt;Nova Scotia&lt;/option&gt;
+					&lt;option value="Nunavut"&gt;Nunavut&lt;/option&gt;
+					&lt;option value="Ontario"&gt;Ontario&lt;/option&gt;
+					&lt;option value="PEI"&gt;Prince Edward Island&lt;/option&gt;
+					&lt;option value="Saskatchewan"&gt;Saskatchewan&lt;/option&gt;
+					&lt;option value="Quebec"&gt;Quebec&lt;/option&gt;
+					&lt;option value="Yukon"&gt;Yukon&lt;/option&gt;
+				&lt;/select&gt;
+			&lt;/div&gt;
+			
+			&lt;button type="submit" class="btn btn-primary"&gt;Filter results&lt;/button&gt;
+		&lt;/form&gt;
+	&lt;/section&gt;
+	
+	&lt;section class="col-xs-12 col-md-9"&gt;
+		&lt;h3&gt;Results&lt;/h3&gt;
+		&lt;div id="finderResults" class="wb-tagfilter-items"&gt;
+			&lt;section class="card" data-wb-tags="family"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Canada Child Benefit&lt;/h4&gt;
+					&lt;p&gt;A tax-free monthly payment made to eligible families to help with the cost of raising children under 18 years of age.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+			
+			&lt;section class="card" data-wb-tags="retirement"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Canada Pension Plan (CPP) Annuities&lt;/h4&gt;
+					&lt;p&gt;Learn about the administration of annuities currently under payment as well as those to become payable at a later date.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+			
+			&lt;section class="card" data-wb-tags="divorced"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Canada Pension Plan (CPP) Credit Splitting&lt;/h4&gt;
+					&lt;p&gt;The Canada Pension Plan (CPP) contributions you and your spouse or common-law partner made during the time you lived together can be equally divided after a divorce or separation.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+			
+			&lt;section class="card" data-wb-tags="student"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Canada Apprentice Loan&lt;/h4&gt;
+					&lt;p&gt;With the Canada Apprentice Loan, you can get up to $4,000 in interest-free loans per period of technical training.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+			
+			&lt;section class="card" data-wb-tags="senior"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Old Age Security (OAS) &lt;/h4&gt;
+					&lt;p&gt;The Old Age Security (OAS) pension is a monthly payment you can get if you are 65 and older. You must be a Canadian citizen or legal resident and have lived in Canada for at least 10 years after the age of 18.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;div class="wb-tagfilter-noresult"&gt;
+			&lt;p&gt;The combination of selected filters didn't match any items. Please modify and try again.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
 </details>
 
 <section id="filteredTable" class="wb-tagfilter provisional">
