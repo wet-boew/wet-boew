@@ -762,14 +762,12 @@
 		"selector": "article",
 		"section": ".wb-tagfilter-items",
 		"uiTemplate": "#searchFilter"
-	}' data-wb-tagfilter='{ "live": false }'>
+	}'>
 	<h2>Exemple 3 - FAQ utilisant le plugiciel Filtre</h2>
 	<div id="searchFilter" class="row mrgn-tp-lg">
 		<div class="col-sm-12">
 			<p class="h3 wb-fltr-info mrgn-tp-0"><span data-nbitem></span> résultats sur <span data-total></span></p>
 		</div>
-		
-		<form>
 		<div class="col-sm-4 col-md-5 col-lg-4">
 			<div class="form-group">
 				<label for="customSearchUI">Rechercher</label>
@@ -800,10 +798,6 @@
 				</fieldset>
 			</div>
 		</div>
-		<div class="col-xs-12">
-			<button type="submit" class="btn btn-primary">Filtrer</button>
-		</div>
-		</form>
 	</div>
 
 	<div class="wb-tagfilter-items">
@@ -1034,9 +1028,9 @@
 				<legend>Audience</legend>
 				
 				<ul class="list-unstyled">
-					<li class="radio"><label><input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Étudiant</label></li>
-					<li class="radio"><label><input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Travailleur</label></li>
-					<li class="radio"><label><input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Aîné</label></li>
+					<li class="radio"><label><input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Étudiant</label></li>
+					<li class="radio"><label><input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Travailleur</label></li>
+					<li class="radio"><label><input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Aîné</label></li>
 				</ul>
 			</fieldset>
 			</div>
@@ -1046,9 +1040,9 @@
 				<legend>Thème</legend>
 				
 				<ul class="list-unstyled">
-					<li class="radio"><label><input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Divorcé ou séparé</label></li>
-					<li class="radio"><label><input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Retraite</label></li>
-					<li class="radio"><label><input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /> Fonder une famille</label></li>
+					<li class="radio"><label><input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Divorcé ou séparé</label></li>
+					<li class="radio"><label><input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Retraite</label></li>
+					<li class="radio"><label><input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /> Fonder une famille</label></li>
 				</ul>
 			</fieldset>
 			</div>
@@ -1114,6 +1108,13 @@
 					<p>La pension de la Sécurité de la vieillesse (SV) est un versement mensuel que vous pouvez recevoir si vous avez 65 ans ou plus. Vous devez être citoyen canadien ou résident autorisé, et avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans.</p>
 				</div>
 			</section>
+			
+			<section class="card" data-wb-tags="Alberta">
+				<div class="card-body">
+					<h4>Soutien au revenu de l'Alberta</h4>
+					<p>Prestations de santé pour enfants et adultes,  Allocations familiale de l'Alberta, subvention pour la garde d'enfants, soutien du revenu et autres aides financières.</p>
+				</div>
+			</section>
 		</div>
 		<div class="wb-tagfilter-noresult">
 			<p>Cette combinaison de filtre ne correspond à aucun item. Veuillez modifier vos sélections et essayer de nouveau.</p>
@@ -1150,9 +1151,9 @@
 				&lt;legend&gt;Audience&lt;/legend&gt;
 				
 				&lt;ul class="list-unstyled"&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Étudiant&lt;/label&gt;&lt;/li&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Travailleur&lt;/label&gt;&lt;/li&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Aîné&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="student" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Étudiant&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="worker" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Travailleur&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="audience" value="senior" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Aîné&lt;/label&gt;&lt;/li&gt;
 				&lt;/ul&gt;
 			&lt;/fieldset&gt;
 			&lt;/div&gt;
@@ -1162,9 +1163,9 @@
 				&lt;legend&gt;Thème&lt;/legend&gt;
 				
 				&lt;ul class="list-unstyled"&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Divorcé ou séparé&lt;/label&gt;&lt;/li&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Retraite&lt;/label&gt;&lt;/li&gt;
-					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "events"}' /&gt; Fonder une famille&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="divorced" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Divorcé ou séparé&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="retirement" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Retraite&lt;/label&gt;&lt;/li&gt;
+					&lt;li class="radio"&gt;&lt;label&gt;&lt;input type="checkbox" name="stage" value="family" class="wb-tagfilter-ctrl" data-wb-tagfilter='{"group": "orConditionGroup"}' /&gt; Fonder une famille&lt;/label&gt;&lt;/li&gt;
 				&lt;/ul&gt;
 			&lt;/fieldset&gt;
 			&lt;/div&gt;
@@ -1228,6 +1229,13 @@
 				&lt;div class="card-body"&gt;
 					&lt;h4&gt;Sécurité de la vieillesse (SV)&lt;/h4&gt;
 					&lt;p&gt;La pension de la Sécurité de la vieillesse (SV) est un versement mensuel que vous pouvez recevoir si vous avez 65 ans ou plus. Vous devez être citoyen canadien ou résident autorisé, et avoir vécu au Canada pendant au moins 10 ans après l'âge de 18 ans.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+			
+			&lt;section class="card" data-wb-tags="Alberta"&gt;
+				&lt;div class="card-body"&gt;
+					&lt;h4&gt;Soutien au revenu de l'Alberta&lt;/h4&gt;
+					&lt;p&gt;Prestations de santé pour enfants et adultes,  Allocations familiale de l'Alberta, subvention pour la garde d'enfants, soutien du revenu et autres aides financières.&lt;/p&gt;
 				&lt;/div&gt;
 			&lt;/section&gt;
 		&lt;/div&gt;

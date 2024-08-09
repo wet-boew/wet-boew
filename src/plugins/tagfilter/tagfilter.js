@@ -268,8 +268,6 @@ $document.on( "change", selectorCtrl, function( event )  {
 	// Update list of visible items
 	if (!!live) {
 		update( elm );
-	} else {
-		refineFilters( elm );
 	}
 } );
 

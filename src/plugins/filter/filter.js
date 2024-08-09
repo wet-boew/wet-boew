@@ -63,10 +63,7 @@ var componentName = "wb-filter",
 			setDefault.live = defaults.live;
 
 			settings = $.extend( true, {}, setDefault, window[ componentName ], wb.getData( $elm, componentName ) );
-			
-			$.data( elm, componentName, settings ); 	//	wb-filter
-			//$elm.data( componentName, settings ); 	//	wbFilter
-			//$elm.data( componentName ).live;	//	Undefined
+			$.data( elm, componentName, settings );
 			
 			if ( !i18nText ) {
 				i18n = wb.i18n;
@@ -244,11 +241,9 @@ var componentName = "wb-filter",
 		if ( !fCallBack || typeof fCallBack !== "function"  ) {
 			fCallBack = filterCallback;
 		}
-
-		$elm.trigger( "wb-contentupdated" );
-		
-		//	Tag filter calls wb-contentupdated and needs to make changes before we hide or show the content section when a button is used.
 		fCallBack.apply( that, arguments );
+		
+		$elm.trigger( "wb-contentupdated" );
 	},
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section ),
