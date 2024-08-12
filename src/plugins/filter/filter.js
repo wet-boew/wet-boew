@@ -12,7 +12,7 @@ var componentName = "wb-filter",
 	dtNameFltrArea = "wbfltrid",
 	selectorInput = "." + inputClass,
 	defaults = {
-		live : true,
+		live: true,
 		std: {
 			selector: "li"
 		},
@@ -64,7 +64,7 @@ var componentName = "wb-filter",
 
 			settings = $.extend( true, {}, setDefault, window[ componentName ], wb.getData( $elm, componentName ) );
 			$.data( elm, componentName, settings );
-			
+
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
@@ -219,7 +219,7 @@ var componentName = "wb-filter",
 			hndParentSelector = settings.hdnparentuntil,
 			$items = $elm.find( secSelector + settings.selector ),
 			itemsLength = $items.length,
-			that = this || $field.get(0),
+			that = this || $field.get( 0 ),
 			i, $item, text, searchFilterRegularExp;
 
 		$elm.find( "." + filterClass ).removeClass( filterClass );
@@ -242,7 +242,7 @@ var componentName = "wb-filter",
 			fCallBack = filterCallback;
 		}
 		fCallBack.apply( that, arguments );
-		
+
 		$elm.trigger( "wb-contentupdated" );
 	},
 	filterCallback = function( $field, $elm, settings ) {
@@ -265,8 +265,8 @@ $document.on( "keyup", selectorInput, function( event ) {
 		$input = $( target ),
 		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
 		live = $elm.data( componentName ).live;
-	
-	if ( !!live ) {
+
+	if ( live ) {
 		if ( wait ) {
 			clearTimeout( wait );
 		}
@@ -280,7 +280,7 @@ $document.on( "submit", selector + " form", function( event )  {
 		$input = $( target ).find( selectorInput ),
 		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
 		live = $elm.data( componentName ).live;
-	
+
 	if ( !live ) {
 		filter( $input, $elm, $elm.data( componentName ) );
 	}
