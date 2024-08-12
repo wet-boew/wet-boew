@@ -219,7 +219,7 @@ var componentName = "wb-filter",
 			hndParentSelector = settings.hdnparentuntil,
 			$items = $elm.find( secSelector + settings.selector ),
 			itemsLength = $items.length,
-			that = this || $field.get( 0 ),
+			self = this || $field.get( 0 ),
 			i, $item, text, searchFilterRegularExp;
 
 		$elm.find( "." + filterClass ).removeClass( filterClass );
@@ -241,7 +241,7 @@ var componentName = "wb-filter",
 		if ( !fCallBack || typeof fCallBack !== "function"  ) {
 			fCallBack = filterCallback;
 		}
-		fCallBack.apply( that, arguments );
+		fCallBack.apply( self, arguments );
 
 		$elm.trigger( "wb-contentupdated" );
 	},
