@@ -1229,15 +1229,15 @@ wb.date = {
 		var dateConstructor = dateValue.constructor;
 
 		switch ( dateConstructor ) {
-		case Date:
-			return dateConstructor;
-		case Array:
-			return new Date( dateValue[ 0 ], dateValue[ 1 ], dateValue[ 2 ] );
-		case Number:
-		case String:
-			return new Date( dateValue );
-		default:
-			return typeof dateValue === "object" ? new Date( dateValue.year, dateValue.month, dateValue.date ) : NaN;
+			case Date:
+				return dateConstructor;
+			case Array:
+				return new Date( dateValue[ 0 ], dateValue[ 1 ], dateValue[ 2 ] );
+			case Number:
+			case String:
+				return new Date( dateValue );
+			default:
+				return typeof dateValue === "object" ? new Date( dateValue.year, dateValue.month, dateValue.date ) : NaN;
 		}
 	},
 

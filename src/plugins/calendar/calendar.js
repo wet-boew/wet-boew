@@ -228,14 +228,14 @@ var i18nText,
 
 		return i18nText.format.replace( /\{ddd\}|\{d\}|\{M\}|\{Y\}/g, function( match ) {
 			switch ( match ) {
-			case "{ddd}":
-				return textWeekDayNames[ parseInt( date.getDay(), 10 ) ];
-			case "{d}":
-				return parseInt( date.getDate(), 10 );
-			case "{M}":
-				return textMonthNames[ parseInt( date.getMonth(), 10 ) ];
-			case "{Y}":
-				return date.getFullYear();
+				case "{ddd}":
+					return textWeekDayNames[ parseInt( date.getDay(), 10 ) ];
+				case "{d}":
+					return parseInt( date.getDate(), 10 );
+				case "{M}":
+					return textMonthNames[ parseInt( date.getMonth(), 10 ) ];
+				case "{Y}":
+					return date.getFullYear();
 			}
 		} );
 	};
@@ -308,14 +308,14 @@ $document.on( "change", selector, function( event ) {
 		year, month;
 
 	switch ( target.className ) {
-	case "cal-year":
-		year = parseInt( target.value, 10 );
-		month = calendar.lib.month;
-		break;
-	case "cal-month":
-		year = calendar.lib.year;
-		month = parseInt( target.value, 10 );
-		break;
+		case "cal-year":
+			year = parseInt( target.value, 10 );
+			month = calendar.lib.month;
+			break;
+		case "cal-month":
+			year = calendar.lib.year;
+			month = parseInt( target.value, 10 );
+			break;
 	}
 
 	$( calendar ).trigger( {
@@ -363,21 +363,21 @@ $document.on( "keydown", selector, function( event ) {
 		//Key binding for the entire calendar
 		switch ( which ) {
 
-		//page up
-		case 33:
-			date.setDate( minDate.getDate() );
+			//page up
+			case 33:
+				date.setDate( minDate.getDate() );
 
-			//page down
-			/* falls through */
-		case 34:
-			modifier = ( which === 33 ? -1 : 1 );
+				//page down
+				/* falls through */
+			case 34:
+				modifier = ( which === 33 ? -1 : 1 );
 
-			if ( event.ctrlKey || event.shiftKey || event.altKey ) {
-				date.setYear( date.getFullYear() + modifier );
-			} else {
-				date.setMonth( date.getMonth() + modifier );
-			}
-			break;
+				if ( event.ctrlKey || event.shiftKey || event.altKey ) {
+					date.setYear( date.getFullYear() + modifier );
+				} else {
+					date.setMonth( date.getMonth() + modifier );
+				}
+				break;
 		}
 
 		//Key binding for navigating calendar days
@@ -389,27 +389,27 @@ $document.on( "keydown", selector, function( event ) {
 
 			switch ( which ) {
 
-			// end / home
-			case 35:
-				date.setDate( lastDay );
-				break;
-			case 36:
-				date.setDate( 1 );
-				break;
+				// end / home
+				case 35:
+					date.setDate( lastDay );
+					break;
+				case 36:
+					date.setDate( 1 );
+					break;
 
-			// left / up / right / down arrows
-			case 37:
-				date.setDate( day - 1 );
-				break;
-			case 38:
-				date.setDate( day - 7 );
-				break;
-			case 39:
-				date.setDate( day + 1 );
-				break;
-			case 40:
-				date.setDate( day + 7 );
-				break;
+				// left / up / right / down arrows
+				case 37:
+					date.setDate( day - 1 );
+					break;
+				case 38:
+					date.setDate( day - 7 );
+					break;
+				case 39:
+					date.setDate( day + 1 );
+					break;
+				case 40:
+					date.setDate( day + 7 );
+					break;
 			}
 		}
 

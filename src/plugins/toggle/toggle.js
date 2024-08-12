@@ -451,18 +451,18 @@ $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
 	var eventType = event.type;
 
 	switch ( eventType ) {
-	case "click":
-		click( event );
-		break;
+		case "click":
+			click( event );
+			break;
 
-	case "toggle":
-		toggle( event, data );
-		break;
+		case "toggle":
+			toggle( event, data );
+			break;
 
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 	}
 } );
 
@@ -483,35 +483,35 @@ $document.on( "keydown", selectorTab, function( event ) {
 
 		switch ( which ) {
 
-		// End
-		case 35:
-			$newPanel = $group.last();
-			break;
-
-		// Home
-		case 36:
-			$newPanel = $group.first();
-			break;
-
-		// Left / up arrow
-		case 37:
-		case 38:
-			if ( index === 0 ) {
+			// End
+			case 35:
 				$newPanel = $group.last();
-			} else {
-				$newPanel = $group.eq( index - 1 );
-			}
-			break;
+				break;
 
-		// Right / down arrow
-		case 39:
-		case 40:
-			if ( index === $group.length - 1 ) {
+			// Home
+			case 36:
 				$newPanel = $group.first();
-			} else {
-				$newPanel = $group.eq( index + 1 );
-			}
-			break;
+				break;
+
+			// Left / up arrow
+			case 37:
+			case 38:
+				if ( index === 0 ) {
+					$newPanel = $group.last();
+				} else {
+					$newPanel = $group.eq( index - 1 );
+				}
+				break;
+
+			// Right / down arrow
+			case 39:
+			case 40:
+				if ( index === $group.length - 1 ) {
+					$newPanel = $group.first();
+				} else {
+					$newPanel = $group.eq( index + 1 );
+				}
+				break;
 		}
 
 		$newPanel

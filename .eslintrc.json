@@ -20,7 +20,7 @@
     "DOMPurify": true
   },
   "rules": {
-    "indent": ["error", "tab", { "outerIIFEBody": 0 }],
+    "indent": ["error", "tab", { "outerIIFEBody": 0, "SwitchCase": 1 }],
     "eqeqeq": [2, "allow-null"],
     "no-eq-null": 2,
     "no-unused-expressions": [2, { "allowTernary": true }],

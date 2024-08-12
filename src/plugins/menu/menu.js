@@ -514,26 +514,26 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 		elm, $elm;
 
 	switch ( eventType ) {
-	case "ajax-fetched":
-	case "ajax-failed":
-		elm = event.target;
+		case "ajax-fetched":
+		case "ajax-failed":
+			elm = event.target;
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
-			$elm = $( elm );
+			// Filter out any events triggered by descendants
+			if ( event.currentTarget === elm ) {
+				$elm = $( elm );
 
-			// Only replace the menu if there isn't an error
-			onAjaxLoaded(
-				$elm,
-				eventType === "ajax-fetched" ? event.fetch.pointer : $elm
-			);
-		}
-		return false;
+				// Only replace the menu if there isn't an error
+				onAjaxLoaded(
+					$elm,
+					eventType === "ajax-fetched" ? event.fetch.pointer : $elm
+				);
+			}
+			return false;
 
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 	}
 
 	/*

@@ -92,18 +92,18 @@ $document.on( "timerpoke.wb " + initEvent + " " + picturefillEvent, selector, fu
 		eventType = event.type;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "picfill":
+		case "picfill":
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
-			picturefill( eventTarget );
-		}
-		break;
+			// Filter out any events triggered by descendants
+			if ( event.currentTarget === eventTarget ) {
+				picturefill( eventTarget );
+			}
+			break;
 	}
 } );
 

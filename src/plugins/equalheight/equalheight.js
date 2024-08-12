@@ -194,15 +194,15 @@ var componentName = "wb-eqht",
 			anchorRel = $elm.data( "anchorRel" );
 
 		switch ( anchorRel ) {
-		case "prev":
-			$anchor.after( $elm );
-			break;
-		case "next":
-			$anchor.before( $elm );
-			break;
-		case "parent":
-			$anchor.append( $elm );
-			break;
+			case "prev":
+				$anchor.after( $elm );
+				break;
+			case "next":
+				$anchor.before( $elm );
+				break;
+			case "parent":
+				$anchor.append( $elm );
+				break;
 		}
 
 		return $elm;
