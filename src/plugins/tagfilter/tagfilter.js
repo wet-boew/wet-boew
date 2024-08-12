@@ -30,7 +30,7 @@ const componentName = "wb-tagfilter",
 				taggedItems = elm.querySelectorAll( "[data-wb-tags]" ),
 				taggedItemsWrapper = elm.querySelector( "." + itemsWrapperClass ),
 				noResultWrapper = elm.querySelector( "." + noResultWrapperClass ),
-				$elm = $(elm),
+				$elm = $( elm ),
 				data = $.extend( {}, defaults, $elm.data( componentName ) );
 
 			elm.items = [];
@@ -38,7 +38,7 @@ const componentName = "wb-tagfilter",
 			elm.activeFilters = [];
 
 			$elm.data( componentName, data );
-			
+
 			if ( taggedItemsWrapper ) {
 				taggedItemsWrapper.id = taggedItemsWrapper.id || wb.getId(); // Ensure the element has an ID
 				taggedItemsWrapper.setAttribute( "aria-live", "polite" );
@@ -97,12 +97,12 @@ const componentName = "wb-tagfilter",
 		let filtersObj = {};
 
 		filterControls.forEach( function( control ) {
-			const filterKey = getControlFilterName(control);
-			
+			const filterKey = getControlFilterName( control );
+
 			if ( !filterKey ) {
 				console.error( componentName + ": Filter controls require an attribute 'name'." );
 			}
-			
+
 			if ( !( filterKey in filtersObj ) ) {
 				filtersObj[ filterKey ] = [ ];
 			}
@@ -118,13 +118,12 @@ const componentName = "wb-tagfilter",
 				} );
 
 				break;
-//	CHANGE HERE - TEST
 			case "select-one":
-				filtersObj[ filterKey ].push({
+				filtersObj[ filterKey ].push( {
 					type: control.type,
 					value: control.value,
 					name: control.name
-				});
+				} );
 				break;
 			}
 		} );
@@ -143,16 +142,16 @@ const componentName = "wb-tagfilter",
 				} ).length,
 				filterGroupActiveFilters = [ ];
 
-			if ( filterGroup[ 0 ].type == "radio" && filterGroupChkCnt < 1 ) {
+			if ( filterGroup[ 0 ].type === "radio" && filterGroupChkCnt < 1 ) {
 				console.warn( componentName + ": Radio button groups must have a default selected value. If you want to display all items, add an option called \"All\" with an empty value." );
 			}
 
 			filterGroup.forEach( function( filterItem ) {
-				if ( ( filterItem.isChecked || filterItem.type == "select-one" ) && filterItem.value !== "") {
+				if ( ( filterItem.isChecked || filterItem.type === "select-one" ) && filterItem.value !== "" ) {
 					filterGroupActiveFilters.push( filterItem.value );
 				}
 			} );
-			
+
 			instance.activeFilters.push( filterGroupActiveFilters );
 		}
 	},
@@ -202,9 +201,9 @@ const componentName = "wb-tagfilter",
 		return updatedItemsList;
 	},
 
-	getControlFilterName = function(control) {
+	getControlFilterName = function( control ) {
 		const controlSettings = wb.getData( control, componentName );
-		if ( controlSettings != undefined ) {
+		if ( controlSettings !== undefined ) {
 			return controlSettings.group || control.name;
 		}
 		return control.name;
@@ -223,7 +222,7 @@ const componentName = "wb-tagfilter",
 $document.on( "change", selectorCtrl, function( event )  {
 	let control = event.currentTarget,
 		filterType = control.type,
-		filterName = getControlFilterName(control),
+		filterName = getControlFilterName( control ),
 		filterValue = control.value,
 		controlName = control.name,
 		elm = control.closest( selector ),
@@ -243,7 +242,7 @@ $document.on( "change", selectorCtrl, function( event )  {
 
 		// Set all virtual radio items to unchecked
 		filterGroup.forEach( function( filterItem ) {
-			if (controlName == filterItem.name) {
+			if ( controlName === filterItem.name ) {
 				filterItem.isChecked = false;
 			}
 		} );
@@ -257,16 +256,15 @@ $document.on( "change", selectorCtrl, function( event )  {
 	case "select-one":
 
 		// Update virtual filter to the new value
-//	CHANGE HERE - TEST
-		filterGroup.find( function ( filterItem ) {
+		filterGroup.find( function( filterItem ) {
 			return filterItem.name === controlName;
-		}).value = filterValue;
+		} ).value = filterValue;
 
 		break;
 	}
 
 	// Update list of visible items
-	if (!!live) {
+	if ( live ) {
 		update( elm );
 	}
 } );
@@ -275,7 +273,7 @@ $document.on( "change", selectorCtrl, function( event )  {
 $document.on( "submit", selector + " form", function( event )  {
 	const elm = event.currentTarget.closest( selector ),
 		live = $( elm ).data( componentName ).live;
-	
+
 	if ( !live ) {
 		update( elm );
 	}
@@ -312,9 +310,9 @@ $document.on( "wb-contentupdated", selector, function( event, data )  {
 			}
 		}
 	}
-	
+
 	//	Filter events are bound before tag filter so it hides the container
-	if (visibleItems.length > 0 && wrapper.hasClass( filterOutClass ) ) {
+	if ( visibleItems.length > 0 && wrapper.hasClass( filterOutClass ) ) {
 		wrapper.removeClass( filterOutClass );
 	}
 } );
