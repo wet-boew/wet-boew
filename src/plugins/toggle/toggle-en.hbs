@@ -8,7 +8,7 @@
 	"parentdir": "toggle",
 	"altLangPrefix": "toggle",
 	"css": ["demo/toggle"],
-	"dateModified": "2020-03-10"
+	"dateModified": "2024-08-14"
 }
 ---
 <span class="wb-prettify all-pre linenums"></span>
@@ -25,6 +25,7 @@
 			<a href="#setup" class="list-group-item">Plugin Setup</a>
 			<a href="#simple" class="list-group-item">Simple Example</a>
 			<a href="#details" class="list-group-item">Details Elements</a>
+			<a href="#print" class="list-group-item">Print States</a>
 			<a href="#grouped" class="list-group-item">Grouped Toggle</a>
 			<a href="#accordion" class="list-group-item">Accordion</a>
 			<a href="#persist" class="list-group-item">Persist Toggle State</a>
@@ -241,6 +242,25 @@
 				</details>
 			</div>
 
+		</section>
+
+		<section>
+			<h2 id="print">Print States</h2>
+			<p>The <code>"print": "on"</code> and <code>"print": "off"</code> settings can be used to control whether to always open/close regular <code>&lt;details&gt;</code> elements when printing:</p>
+			<ul class="list-unstyled">
+				<li>
+					<details>
+						<summary class="wb-toggle" data-toggle='{"print": "on"}'>Always open when printing (<code>"print": "on"</code>)</summary>
+						<p>Example content that provides more details.</p>
+					</details>
+				</li>
+				<li>
+					<details>
+						<summary class="wb-toggle" data-toggle='{"print": "off"}'>Always closed when printing (<code>"print": "off"</code>) (not recommended)</summary>
+						<p>Example content that provides more details.</p>
+					</details>
+				</li>
+			</ul>
 		</section>
 
 		<section>
