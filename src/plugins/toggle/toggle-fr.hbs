@@ -8,7 +8,7 @@
 	"parentdir": "toggle",
 	"altLangPrefix": "toggle",
 	"css": ["demo/toggle"],
-	"dateModified": "2020-03-10"
+	"dateModified": "2024-08-14"
 }
 ---
 <span class="wb-prettify all-pre linenums"></span>
@@ -25,6 +25,7 @@
 			<a href="#setup" class="list-group-item" lang="en">Plugin Setup</a>
 			<a href="#simple" class="list-group-item">Exemple simple</a>
 			<a href="#details" class="list-group-item">Details</a>
+			<a href="#print" class="list-group-item">États d’impression</a>
 			<a href="#grouped" class="list-group-item">Basculer groupe</a>
 			<a href="#accordion" class="list-group-item">Accordion</a>
 			<a href="#persist" class="list-group-item">Conserver l'état de bascule</a>
@@ -236,6 +237,26 @@
 			</div>
 
 		</section>
+
+		<section>
+			<h2 id="print">États d’impression</h2>
+			<p>Les paramètres <code>"print": "on"</code> et <code>"print": "off"</code> peuvent être utilisés pour contrôler s’il faut toujours ouvrir/fermer les éléments de <code>&lt;details&gt;</code> normaux lors de l’impression&nbsp;:</p>
+			<ul class="list-unstyled">
+				<li>
+					<details>
+						<summary class="wb-toggle" data-toggle='{"print": "on"}'>Toujours ouvert lors de l’impression (<code>"print": "on"</code>)</summary>
+						<p>Le contenu d'exemple qui fournit plus de détails.</p>
+					</details>
+				</li>
+				<li>
+					<details>
+						<summary class="wb-toggle" data-toggle='{"print": "off"}'>Toujours fermé lors de l’impression (<code>"print": "off"</code>) (pas recommandé)</summary>
+						<p>Le contenu d'exemple qui fournit plus de détails.</p>
+					</details>
+				</li>
+			</ul>
+		</section>
+
 		<section>
 			<h2 id="grouped">Basculer groupe</h2>
 			<p>
