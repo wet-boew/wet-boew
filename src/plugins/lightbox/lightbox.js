@@ -126,8 +126,8 @@ var componentName = "wb-lbx",
 			i18n = wb.i18n;
 			i18nText = {
 				close: i18n( "close" ),
-				oClose: i18n( "overlay" ),
-				tClose: i18n( "close" ) + i18n( "space" ) + i18n( "overlay" ) + i18n( "space" ) + i18n( "esc-key" ),
+				oClose: i18n( "overlay-close" ),
+				tClose: i18n( "close" ) + i18n( "space" ) + i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
 				tLoading: i18n( "load" ),
 				gallery: {
 					tPrev: i18n( "prv-l" ),
