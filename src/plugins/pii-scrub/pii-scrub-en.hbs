@@ -1,0 +1,288 @@
+---
+{
+	"title": "PII Scrub",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Replace Personal Identifiable Information (PII) from the form flagged fields with redacted characters.",
+	"tag": "pii-scrub",
+	"parentdir": "pii-scrub",
+	"altLangPrefix": "pii-scrub",
+	"dateModified": "2024-11-19"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Replace Personal Identifiable Information (PII) from the form flagged fields with redacted characters.</p>
+
+<h2>On this page</h2>
+<ul>
+	<li><a href="#basicExample">Basic example</a></li>
+	<li><a href="#postbackExample">Example with form Postback</a></li>
+	<li><a href="#validationExample">Example with form Form validation</a></li>
+	<li><a href="#validationandPostbackExample">Example with form Form validation and Postback</a></li>
+</ul>
+
+<h2 id="basicExample">Basic example</h2>
+<p>Below is a basic example of how to implement the PII Scrub plugin.</p>
+<section class="panel panel-info">
+	<header class="panel-heading">
+		<h3 class="panel-title">Instructions</h3>
+	</header>
+	<div class="panel-body">
+		<p>Fill the below fields with the following values:</p>
+		<ul>
+			<li>Subject: <code>My PRI: 012345678</code></li>
+			<li>Message: <code>Visa: 4916 0739.3667-6891, Master: 5428735149026050, SIN: 123 123-123, Postal code: K2C 3N2, Driving Licence Nr: P12345678912345, Bank account example: 003-1234567</code></li>
+		</ul>
+	</div>
+</section>
+
+<form action="pii-scrub-en.html" class="wb-pii-scrub">
+	<div class="form-content">
+		<div class="form-group">
+			<label for="subject"><span class="field-name">Subject</span></label>
+			<input class="form-control" id="subject" name="subject" type="text" data-scrub-field />
+		</div>
+		<div class="form-group">
+			<label for="message">Message</label>
+			<textarea class="form-control" id="message" name="message" data-scrub-field rows="4" cols="50"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="pii-scrub-en.html" class="wb-pii-scrub">
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="subject">&lt;span class="field-name">Subject&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="subject" name="subject" type="text" data-scrub-field />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="message">Message&lt;/label>
+			&lt;textarea class="form-control" id="message" name="message" data-scrub-field rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button type="submit" class="btn btn-primary">Submit&lt;/button>
+	&lt;/div>
+&lt;/form></code></pre>
+</details>
+
+<h2 id="postbackExample">Example with form Postback and custom modal template</h2>
+<p>Below is an example demonstrating the implementation of the PII Scrub plugin with a form submitted with Postback. This example also demonstrates the use of the <code>srubChar</code> and <code>moreInfo</code> options.</p>
+<section class="panel panel-info">
+	<header class="panel-heading">
+		<h3 class="panel-title">Instructions</h3>
+	</header>
+	<div class="panel-body">
+		<p>Only the <strong>Comments</strong> field has a data-scrub-field attribute.</p>
+		<p>Fill the <strong>Comments</strong> field with the following:<br><code>Visa: 4916 0739.3667-6891, Master: 5428735149026050, SIN: 123 123-123, Postal code: K2C 3N2, Driving Licence Nr: P12345678912345, Bank account example: 003-1234567</code></p>
+	</div>
+</section>
+<form action="pii-scrub-en.html" class="wb-postback wb-pii-scrub" data-wb-postback='{"success":".success-message","failure":".failure-message"}' data-wb-pii-scrub='{"scrubChar": "████████", "modalTemplate": "[data-scrub-modal]"}'>
+	<template data-scrub-modal>
+		<header class="modal-header">
+			<h2 class="modal-title">Personal information in your comment has been removed</h2>
+		</header>
+		<div class="modal-body">
+			<p>Comments are only used to improve our website. You will not receive a response.</p>
+			<p><strong>To protect your privacy, your comment will be submitted as:</strong></p>
+			<div data-scrub-modal-fields></div>
+			<details class="mrgn-tp-md">
+				<summary>What is considered personal information?</summary>
+				<p>Certain types of information can’t be included in this feedback form, such as your:</p>
+				<ul>
+					<li>email address</li>
+					<li>telephone number</li>
+					<li>postal code</li>
+					<li>passport number</li>
+					<li>business number</li>
+					<li>social insurance number (SIN)</li>
+				</ul>
+			</details>
+		</div>
+		<div class="modal-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-link btn-block popup-modal-dismiss">Go back and edit comment</button></div>
+				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block popup-modal-dismiss" data-scrub-submit>Submit comment</button></div>
+			</div>
+		</div>
+	</template>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname1"><span class="field-name">First Name</span></label>
+			<input class="form-control" id="firstname1" name="firstname" type="text" />
+		</div>
+		<div class="form-group">
+			<label for="lastname1"><span class="field-name">Last Name</span></label>
+			<input class="form-control" id="lastname1" name="lastname" type="text" />
+		</div>
+		<div class="form-group">
+			<label for="comments">Comments</label>
+			<textarea class="form-control" id="comments" name="comments" data-scrub-field rows="4" cols="50"></textarea>
+		</div>
+		<button class="btn btn-primary">Submit</button>
+	</div>
+</form>
+<p class="success-message hide">Thank you!</p>
+<p class="failure-message hide">Something went wrong. Please submit your information via an alternative method.</p>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="pii-scrub-en.html" class="wb-postback wb-pii-scrub" data-wb-postback='{"success":".success-message","failure":".failure-message"}' data-wb-pii-scrub='{"scrubChar": "████████", "modalTemplate": "[data-scrub-modal]"}'>
+	&lt;template data-scrub-modal>
+		&lt;header class="modal-header">
+			&lt;h2 class="modal-title">Personal information in your comment has been removed&lt;/h2>
+		&lt;/header>
+		&lt;div class="modal-body">
+			&lt;p>Comments are only used to improve our website. You will not receive a response.&lt;/p>
+			&lt;p>&lt;strong>To protect your privacy, your comment will be submitted as:&lt;/strong>&lt;/p>
+			&lt;div data-scrub-modal-fields>&lt;/div>
+			&lt;details class="mrgn-tp-md">
+				&lt;summary>What is considered personal information?&lt;/summary>
+				&lt;p>Certain types of information can’t be included in this feedback form, such as your:&lt;/p>
+				&lt;ul>
+					&lt;li>email address&lt;/li>
+					&lt;li>telephone number&lt;/li>
+					&lt;li>postal code&lt;/li>
+					&lt;li>passport number&lt;/li>
+					&lt;li>business number&lt;/li>
+					&lt;li>social insurance number (SIN)&lt;/li>
+				&lt;/ul>
+			&lt;/details>
+		&lt;/div>
+		&lt;div class="modal-footer">
+			&lt;div class="row">
+				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-link btn-block popup-modal-dismiss">Go back and edit comment&lt;/button>&lt;/div>
+				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-primary btn-block popup-modal-dismiss" data-scrub-submit>Submit comment&lt;/button>&lt;/div>
+			&lt;/div>
+		&lt;/div>
+	&lt;/template>
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="firstname1">&lt;span class="field-name">First Name&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="firstname1" name="firstname" type="text" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="lastname1">&lt;span class="field-name">Last Name&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="lastname1" name="lastname" type="text" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="comments">Comments&lt;/label>
+			&lt;textarea class="form-control" id="comments" name="comments" data-scrub-field rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button class="btn btn-primary">Submit&lt;/button>
+	&lt;/div>
+&lt;/form>
+&lt;p class="success-message hide">Thank you!&lt;/p>
+&lt;p class="failure-message hide">Something went wrong. Please submit your information via an alternative method.&lt;/p></code></pre>
+</details>
+
+<h2 id="validationExample">Example with form Form validation</h2>
+<p>Below is an example demonstrating the implementation of the PII Scrub plugin with Form validation.</p>
+<section class="panel panel-info">
+	<header class="panel-heading">
+		<h3 class="panel-title">Instructions</h3>
+	</header>
+	<div class="panel-body">
+		<p>Only the <strong>Comments</strong> field has a data-scrub-field attribute.</p>
+		<p>Fill the <strong>Comments</strong> field with the following:<br><code>Visa: 4916 0739.3667-6891, Master: 5428735149026050, SIN: 123 123-123, Postal code: K2C 3N2, Driving Licence Nr: P12345678912345, Bank account example: 003-1234567</code></p>
+	</div>
+</section>
+<div class="wb-frmvld mrgn-bttm-md">
+	<form action="pii-scrub-en.html" class="wb-pii-scrub">
+		<div class="form-content">
+			<div class="form-group">
+				<label for="fname1" class="required"><span class="field-name">First name</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+			</div>
+			<div class="form-group">
+				<label for="lname1" class="required"><span class="field-name">Last name</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+			</div>
+			<div class="form-group">
+				<label for="preferredNumber1">Preferred: <span class="field-name">Phone Number</span></label>
+				<input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" />
+			</div>
+			<div class="form-group">
+				<label for="comments2">Comments</label>
+				<textarea class="form-control" id="comments2" name="comments2" data-scrub-field rows="4" cols="50"></textarea>
+			</div>
+			<button class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+</div>
+<details>
+	<summary>View code</summary>
+	<pre><code>&lt;div class="wb-frmvld mrgn-bttm-md">
+		&lt;form action="pii-scrub-en.html" class="wb-pii-scrub">
+			&lt;div class="form-content">
+				&lt;div class="form-group">
+					&lt;label for="fname1" class="required">&lt;span class="field-name">First name&lt;/span> &lt;strong class="required">(required)&lt;/strong>&lt;/label>
+					&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				&lt;/div>
+				&lt;div class="form-group">
+					&lt;label for="lname1" class="required">&lt;span class="field-name">Last name&lt;/span> &lt;strong class="required">(required)&lt;/strong>&lt;/label>
+					&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				&lt;/div>
+				&lt;div class="form-group">
+					&lt;label for="preferredNumber1">Preferred: &lt;span class="field-name">Phone Number&lt;/span>&lt;/label>
+					&lt;input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" />
+				&lt;/div>
+				&lt;div class="form-group">
+					&lt;label for="comments2">Comments&lt;/label>
+					&lt;textarea class="form-control" id="comments2" name="comments2" data-scrub-field rows="4" cols="50">&lt;/textarea>
+				&lt;/div>
+				&lt;button class="btn btn-primary">Submit&lt;/button>
+			&lt;/div>
+		&lt;/form>
+	&lt;/div></code></pre>
+</details>
+
+<h2 id="validationandPostbackExample">Example with form Form validation and Postback</h2>
+<p>Below is an example demonstrating the implementation of the PII Scrub plugin with Form validation and Postback.</p>
+<section class="panel panel-info">
+	<header class="panel-heading">
+		<h3 class="panel-title">Instructions</h3>
+	</header>
+	<div class="panel-body">
+		<p>Only the <strong>Issue</strong> field has a data-scrub-field attribute.</p>
+		<p>Fill the <strong>Issue</strong> field with the following:<br><code>Visa: 4916 0739.3667-6891, Master: 5428735149026050, SIN: 123 123-123, Postal code: K2C 3N2, Driving Licence Nr: P12345678912345, Bank account example: 003-1234567</code></p>
+	</div>
+</section>
+<div class="wb-frmvld mrgn-bttm-md">
+	<form action="pii-scrub-en.html" class="wb-pii-scrub wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+		<div class="form-content">
+			<div class="form-group">
+				<label for="fullName" class="required"><span class="field-name">Full name</span> <strong class="required">(required)</strong></label>
+				<input class="form-control" id="fullName" name="fullName" type="text" required="required" data-rule-minlength="2" />
+			</div>
+			<div class="form-group">
+				<label for="issue">Issue</label>
+				<textarea class="form-control" id="issue" name="issue" data-scrub-field rows="4" cols="50"></textarea>
+			</div>
+			<button class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+	<p class="success-message-2 hide">Thank you!</p>
+	<p class="failure-message-2 hide">Something went wrong. Please submit your information via an alternative method.</p>
+</div>
+<details>
+	<summary>View code</summary>
+	<pre><code>&lt;div class="wb-frmvld mrgn-bttm-md">
+	&lt;form action="pii-scrub-en.html" class="wb-pii-scrub wb-postback" data-wb-postback='{"success":".success-message-2","failure":".failure-message-2"}'>
+		&lt;div class="form-content">
+			&lt;div class="form-group">
+				&lt;label for="fullName" class="required">&lt;span class="field-name">Full name&lt;/span> &lt;strong class="required">(required)&lt;/strong>&lt;/label>
+				&lt;input class="form-control" id="fullName" name="fullName" type="text" required="required" data-rule-minlength="2" />
+			&lt;/div>
+			&lt;div class="form-group">
+				&lt;label for="issue">Issue&lt;/label>
+				&lt;textarea class="form-control" id="issue" name="issue" data-scrub-field rows="4" cols="50">&lt;/textarea>
+			&lt;/div>
+			&lt;button class="btn btn-primary">Submit&lt;/button>
+		&lt;/div>
+	&lt;/form>
+	&lt;p class="success-message-2 hide">Thank you!&lt;/p>
+	&lt;p class="failure-message-2 hide">Something went wrong. Please submit your information via an alternative method.&lt;/p>
+&lt;/div></code></pre>
+</details>

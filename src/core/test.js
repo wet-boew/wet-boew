@@ -37,6 +37,10 @@ describe( "wb.core helpers test suite", function() {
 			expect( wb.findPotentialPII( "master:5428735149026050, phone:514-514-5144, SIN:123 123-123, driving license:P12345678912345, bank account: 003-1234567", true ) ).to.equal( "master:, phone:, SIN:, driving license:P, bank account: " );
 		} );
 
+		it( "should match phone number", function() {
+			expect( wb.findPotentialPII( "phone: (613) 555-1234, phone: (613)555-1234, phone: (613)5551234, phone: 613.555.1234, phone: 613_555_1234, phone: (123)456.7890, phone: (123) 456.7890, phone: (123) 456 7890", true ) ).to.equal( "phone:, phone:, phone:, phone: , phone:, phone:, phone:, phone:" );
+		} );
+
 		it( "should match canadian nr passport", function() {
 			expect( wb.findPotentialPII( "passport Nr:AB123456, passport Nr:AB 123456, passport Nr:AB-123456", true ) ).to.equal( "passport Nr:, passport Nr:, passport Nr:" );
 		} );
@@ -50,6 +54,14 @@ describe( "wb.core helpers test suite", function() {
 		} );
 		it( "should match email pattern", function() {
 			expect( wb.findPotentialPII( "email:1%2540example.com", true ) ).to.equal( "email:" );
+		} );
+
+		it( "should match loose email pattern", function() {
+			expect( wb.findPotentialPII( "email: 1 @ gmail.com, email: 1 @ gmail,com, email: 1gf. @ gmail,com", true ) ).to.equal( "email: , email: , email: " );
+		} );
+
+		it( "should match loose email pattern 2", function() {
+			expect( wb.findPotentialPII( "email: 1%gf. @ gmail . com, email: 1%-gf. @gmail. com", true ) ).to.equal( "email: , email: " );
 		} );
 
 		it( "should match postal code pattern", function() {
