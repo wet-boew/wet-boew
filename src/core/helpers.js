@@ -1366,12 +1366,66 @@ wb.findPotentialPII = function( str, scope, opts ) {
 		return false;
 	}
 	var oRegEx = {
-			digits: /\d(?:[\s\-\\.\\/]?\d){8,}(?!\d)/ig, //9digits or more pattern
-			passport: /\b[A-Za-z]{2}[\s\\.-]*?\d{6}\b/ig, //canadian nr passport pattern
-			email: /\b(?:[a-zA-Z0-9_\-\\.]+)(?:@|%40|%2540)(?:[a-zA-Z0-9_\-\\.]+)\.(?:[a-zA-Z]{2,5})\b/ig, //email pattern
-			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig, //postal code pattern
-			username: /(?:(username|user)[%20]?([:=]|(%EF%BC%9A))[^\s&]*)/ig,
-			password: /(?:(password|pass)[%20]?([:=]|(%EF%BC%9A))[^\s&]*)/ig
+
+			/*
+			* Digits:
+			* 9 digits or more
+			*/
+			digits: /\d(?:[\s\-\\.\\/]?\d){8,}(?!\d)/ig,
+
+			/*
+			* Phone:
+			* Any international phone number format
+			*/
+			phone: /\+?(\d{1,3})?[-._\s]?(\(?\d{3}\)?)[-._\s]?(\d{3})[-._\s]?(\d{4})/ig,
+
+			/*
+			* Passport:
+			* 2 letters followed by either a " ", a "/", a ".", or a "-" any amount of times, followed by 6 digits
+			*/
+			passport: /\b[A-Za-z]{2}[\s\\.-]*?\d{6}\b/ig,
+
+			/*
+			* Email:
+			* valid email format
+			*/
+			email: /\b(?:[a-zA-Z0-9_\-\\.]+)(?:@|%40|%2540)(?:[a-zA-Z0-9_\-\\.]+)\.(?:[a-zA-Z]{2,5})\b/ig,
+
+			/*
+			* Loose email:
+			* email address that has one or more whitespaces before the "@" sign and either a "." or "," after the domain name
+			*/
+			looseEmail: /([a-zA-Z0-9_\-.]+)\s*@([\sa-zA-Z0-9_\-.]+)[.,]([a-zA-Z]{1,5})/g,
+
+			/*
+			* Loose email 2:
+			* matches probable email format that the user tried to hide
+			* any amount of letters, numbers, ".", "_", "%", "+", or "-", followed by 0 or 1 whitespace,
+			* followed by "@", followed by 0 or 1 whitespace, followed by "gmail", "outlook", "hotmail", or "yahoo".
+			*/
+			looseEmail2: /([a-zA-Z0-9._%+-]+)\s?@\s?(gmail|outlook|icloud|hotmail|yahoo)(\s?\.?\s?(com|ca))?/ig,
+
+			/*
+			* Postal code:
+			* valid Canadian postal code
+			*/
+			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig,
+
+			/*
+			* Usename:
+			* "username", "user", "nom d'utilisateur", or "utilisateur",
+			* followed by 0 or 1 whitespace, followed by a colon or an equals sign,
+			* followed by a white space or an ampersand
+			*/
+			username: /(?:(username|user|nom d'utilisateur|utilisateur)\s?([:=]|(%EF%BC%9A))[^\s&]*)/ig,
+
+			/*
+			* Password:
+			* "password", "pass", or "mot de passe",
+			* followed by 0 or 1 " ", followed by a ":" or a "=",
+			* followed by a " " or a "&"
+			*/
+			password: /(?:(password|pass|mot de passe)\s?([:=]|(%EF%BC%9A))[^\s&]*)/ig
 		},
 		isFound = false,
 		txtMarker = opts && opts.replaceWith ? opts.replaceWith : "",
