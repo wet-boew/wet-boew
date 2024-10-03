@@ -1,12 +1,12 @@
 ---
 {
-	"title": "Data Scrub",
+	"title": "Nettoyage de données",
 	"language": "fr",
 	"category": "Plugiciels",
 	"categoryfile": "plugins",
 	"description": "Supprimer les informations personnelles identifiables (IPI) avant de soumettre le formulaire",
 	"altLangPrefix": "wb-data-scrub",
-	"dateModified": "2022-03-02"
+	"dateModified": "2024-10-17"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -16,14 +16,14 @@
 	<p>Ce composant offre la possibilité de supprimer les informations personnelles identifiables (PII) dans les champs d'un formulaire avant de le soumettre.</p>
 	<p>Voici la liste des IPI que le plugiciel recherchera et supprimera:</p>
 	<ul>
-		<li>Toutes les combinaisons de 8 chiffres et plus</li>
+		<li>Toutes les combinaisons de 9 chiffres et plus</li>
 		<li>Numéro de série du passeport canadien</li>
 		<li>E-mail</li>
 		<li>Code postal canadien</li>
 		<li>Toute valeur de nom d'utilisateur potentielle ajoutée dans ce format username=theUserValue, username:theUserValue, user=theUserValue, user:theUserValue</li>
 		<li>Toute valeur de mot de passe potentielle ajoutée dans ce format password=thePassValue, mot de passe:thePassValue pass=thePassValue, pass:thePassValue</li>
 	</ul>
-	<p>Un message contextuel informera l'utilisateur si des champs contiennent des informations personnelles et affichera la sortie des données nettoyées. L'utilisateur peut choisir de revenir au formulaire et de supprimer les données ou de poursuivre la soumission du formulaire qui comprend le nettoyage automatique des informations personnelles.</p>
+	<p>Un message contextuel informera l'utilisateur si des champs contiennent des informations personnelles et affichera la sortie des données nettoyées. L'utilisateur peut choisir de revenir au formulaire et de supprimer les données ou de poursuivre avec le remplacement automatique des informations personnelles.</p>
 	<p>Pour plus de détails sur le comportement de nettoyage des PII, veuillez consulter l'assistant de base wet-boew:<code>wb.findPotentialPII</code></p>
 </section>
 
@@ -38,7 +38,6 @@
 	<h2>Ne pas utiliser lorsque</h2>
 	<ul>
 		<li>un formulaire utilise le plugiciel Validation de formulaires</li>
-		<li>un formulaire utilise le plugiciel Envoie via Ajax</li>
 	</ul>
 </section>
 

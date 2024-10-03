@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Delete Personal Identifiable Information (PII) before form submit.",
 	"altLangPrefix": "wb-data-scrub",
-	"dateModified": "2022-03-02"
+	"dateModified": "2024-10-17"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -17,14 +17,14 @@
 	<p>This component provides the ability to delete the Personal Identifiable Information (PII) from a form fields before submit.</p>
 	<p>Here is the list of the PII that the plugin will search and remove:</p>
 	<ul>
-		<li>All the combinations of 8 digits and more</li>
+		<li>All the combinations of 9 digits and more</li>
 		<li>Canadian serial passport number</li>
 		<li>Email</li>
 		<li>Canadian postal code</li>
 		<li>Any potential user name values added in this format username=theUserValue, username:theUserValue, user=theUserValue, user:theUserValue</li>
 		<li>Any potential password values added in this format password=thePassValue, password: thePassValue pass=thePassValue, pass:thePassValue</li>
 	</ul>
-	<p>A popup message will inform the user if any fields contain personal information and will show the output of the scrubbed data. The user can choose to go back to the form and delete the data or to proceed with the form submission that includes scrubbing the personal information automatically.</p>
+	<p>A popup message will inform the user if any fields contain personal information and will show the output of the scrubbed data. The user can choose to go back to the form and delete the data or to proceed with scrubbing the personal information automatically.</p>
 	<p>For more details about the scrubbing PII behaviour please check on the wet-boew core helper <code>wb.findPotentialPII</code></p>
 </section>
 
@@ -39,7 +39,6 @@
 	<h2>Do not use when</h2>
 	<ul>
 		<li>a form is using Form validation plugin</li>
-		<li>a form is using Postback plugin</li>
 	</ul>
 </section>
 

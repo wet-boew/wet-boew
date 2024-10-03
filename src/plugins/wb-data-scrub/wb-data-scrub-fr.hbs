@@ -7,78 +7,114 @@
 	"tag": "wb-data-scrub",
 	"parentdir": "wb-data-scrub",
 	"altLangPrefix": "wb-data-scrub",
-	"dateModified": "2022-03-02"
+	"dateModified": "2024-10-17"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
 
-<h2>Exemple</h2>
+<h2>Exemple de base</h2>
+<p>Remplacez les informations personnelles identifiables (PII) des champs marqués par des caractères «&nbsp;*&nbsp;».</p>
+<p>Remplissez les champs ci-dessous avec les valeurs suivantes&nbsp;:</p>
+<ul>
+	<li>Objet&nbsp;: <code>Mon PRI&nbsp;: 012345678</code></li>
+	<li>Message&nbsp;: <code>visa&nbsp;: 4916 0739.3667-6891, master&nbsp;: 5428735149026050, SIN&nbsp;: 123 123-123, ZIP&nbsp;: K2C 3N2, numéro de permis de conduire&nbsp;: P12345678912345, exemple de compte bancaire&nbsp;: 003-1234567</code></li>
+</ul>
+<p>Le formulaire affichera un message informant l'utilisateur qu'aucune information personnelle ne sera soumise.</p>
 
-<p>Supprimez les informations personnelles identifiables (IPI) des champs marqués du formulaire avant de les soumettre.</p>
-
-<form action="wb-data-scrub-fr.html">
+<form action="wb-data-scrub-en.html" method="GET">
 	<div class="form-content">
 		<div class="form-group">
-			<label for="preferredNumber"><span class="field-name">Numéro de téléphone</span></label>
-			<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-wbscrub />
+			<label for="userName"><span class="field-name">Nom</span></label>
+			<input class="form-control" id="userName" name="userName" type="text" />
 		</div>
 		<div class="form-group">
-			<label for="email"><span class="field-name">Addresse courriel</span> (test@domaine)</label>
-			<input class="form-control" id="email" name="email" type="email" data-rule-wbscrub />
+			<label for="subject"><span class="field-name">Objet</span></label>
+			<input class="form-control" id="subject" name="subject" type="text" data-rule-wbscrub />
 		</div>
 		<div class="form-group">
-			<label for="search"><span class="field-name">Rechercher</span></label>
-			<input class="form-control" id="search" name="search" type="search" data-rule-wbscrub />
-		</div>
-		<div class="form-group">
-			<label for="comments"><span class="field-name">Commentaires</span></label>
-			<textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50" ></textarea>
-		</div>
-		<div class="form-group">
-			<label for="noScrubField"><span class="field-name">Exemple de champ sans IPI</span></label>
-			<input class="form-control" id="noScrubField" name="noScrubField" type="text" />
+			<label for="message">Message</label>
+			<textarea class="form-control" id="message" name="message" data-rule-wbscrub rows="4" cols="50"></textarea>
 		</div>
 		<button type="submit" class="btn btn-primary">Soumettre</button>
 	</div>
 </form>
 
 <details class="mrgn-tp-md mrgn-bttm-md">
-	<summary>View code</summary>
-	<pre><code>&lt;form action="wb-data-scrub-fr.html" &gt;
-	&lt;div class="form-content"&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="preferredNumber"&gt;&lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-wbscrub /&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="email"&gt;&lt;span class="field-name"&gt;Addresse courriel&lt;/span&gt; (test@domaine)&lt;/label&gt;
-			&lt;input class="form-control" id="email" name="email" type="email" data-rule-wbscrub /&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="search"&gt;&lt;span class="field-name"&gt;Rechercher&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="search" name="search" type="search" data-rule-wbscrub /&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="comments"&gt;&lt;span class="field-name"&gt;Commentaires&lt;/span&gt;&lt;/label&gt;
-			&lt;textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50"&gt;&lt;/textarea&gt;
-		&lt;/div&gt;
-		&lt;div class="form-group"&gt;
-			&lt;label for="noScrubField"&gt;&lt;span class="field-name"&gt;Exemple de champ sans IPI&lt;/span&gt;&lt;/label&gt;
-			&lt;input class="form-control" id="noScrubField" name="noScrubField" type="text" /&gt;
-		&lt;/div&gt;
-		&lt;button type="submit" class="btn btn-primary"&gt;Soumettre&lt;/button&gt;
-	&lt;/div&gt;
-&lt;/form&gt;
-</code></pre>
+	<summary>Code</summary>
+	<pre><code>&lt;form action="wb-data-scrub-en.html" method="GET">
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="userName">&lt;span class="field-name">Nom&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="userName" name="userName" type="text" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="subject">&lt;span class="field-name">Objet&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="subject" name="subject" type="text" data-rule-wbscrub />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="message">Message&lt;/label>
+			&lt;textarea class="form-control" id="message" name="message" data-rule-wbscrub rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button type="submit" class="btn btn-primary">Soumettre&lt;/button>
+	&lt;/div>
+&lt;/form></code></pre>
 </details>
-<h2> Scénario de test</h2>
-<p>Remplissez les champs suivants avec les valeurs suivantes:</p>
-<ul>
-	<li>Téléphone: <code>514 111 1111</code></li>
-	<li>E-mail: <code>1@example.com</code></li>
-	<li>Rechercher: <code>Numéro de passeport: AB123456</code></li>
-	<li>Commentaires: <code>visa: 4916 0739.3667-6891, master:5428735149026050, SIN:123 123-123, ZIP:K2C 3N2, numéro de permis de conduire:P12345678912345, exemple de compte bancaire: 003-1234567</code></li>
-	<li>Nom complet: <code>John Doe</code></li>
-</ul>
-<p>Le formulaire affichera un message informant l'utilisateur qu'aucun renseignement personnel ne sera soumis.</p>
-<p>Après l'envoi du formulaire, la sortie des paramètres d'url sera :<code>?preferredNumber=&amp;email=&amp;search=Passport+Nr%3A+&amp;comments=visa%3A+%2C+master%3A%2C+SIN%3A%2C+ZIP%3A%2C+Driving+Licence+Nr%3AP%2C+Bank+account+example%3A+&amp;noScrubField=John+Doe</code></p>
+
+<h2>Exemple avec envoi via Ajax</h2>
+<p>Seul le champ «&nbsp;Commentaires&nbsp;» possède un attribut data-scrub.</p>
+<p>Remplissez le champ «&nbsp;Commentaires&nbsp;» avec les informations suivantes : <code>visa : 4916 0739.3667-6891, master : 5428735149026050, SIN : 123 123-123, ZIP : K2C 3N2, numéro de permis de conduire : P12345678912345, exemple de compte bancaire : 003-1234567</code></p>
+<form action="wb-data-scrub-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname1"><span class="field-name">Prénom</span></label>
+			<input class="form-control" id="firstname1" name="firstname" type="text" data-rule-minlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="lastname1"><span class="field-name">Nom de famille</span></label>
+			<input class="form-control" id="lastname1" name="lastname" type="text" data-rule-minlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="preferredNumber1">De préférence: <span class="field-name">Numéro de téléphone</span></label>
+			<input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		</div>
+		<div class="form-group">
+			<label for="email1"><span class="field-name">Courriel</span> (test@domaine)</label>
+			<input class="form-control" id="email1" name="email" type="email" />
+		</div>
+		<div class="form-group">
+			<label for="comments">Commentaires</label>
+			<textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50"></textarea>
+		</div>
+		<button class="btn btn-primary">Soumettre</button>
+	</div>
+</form>
+<p class="success-message hide">Merci !</p>
+<p class="failure-message hide">Une erreur s'est produite. Veuillez soumettre vos informations via une autre méthode.</p>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>Code</summary>
+	<pre><code>&lt;form action="wb-data-scrub-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'>
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="firstname1">&lt;span class="field-name">Prénom&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="firstname1" name="firstname" type="text" data-rule-minlength="2" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="lastname1">&lt;span class="field-name">Nom de famille&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="lastname1" name="lastname" type="text" data-rule-minlength="2" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="preferredNumber1">De préférence: &lt;span class="field-name">Numéro de téléphone&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="email1">&lt;span class="field-name">Courriel&lt;/span> (test@domaine)&lt;/label>
+			&lt;input class="form-control" id="email1" name="email" type="email" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="comments">Commentaires&lt;/label>
+			&lt;textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button class="btn btn-primary">Soumettre&lt;/button>
+	&lt;/div>
+&lt;/form></code></pre>
+</details>

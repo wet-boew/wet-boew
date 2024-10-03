@@ -248,7 +248,20 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "@fltr-lbl@",
-	"fltr-info": "@fltr-info@"
+	"fltr-info": "@fltr-info@",
+
+	/* Data scrub */
+	"pii-header": "@pii-header@",
+	"pii-intro": "@pii-intro@",
+	"pii-view-more": "@pii-view-more@",
+	"pii-view-more-intro": "@pii-view-more-intro@",
+	"pii-view-more-item-1": "@pii-view-more-item-1@",
+	"pii-view-more-item-2": "@pii-view-more-item-2@",
+	"pii-view-more-item-3": "@pii-view-more-item-3@",
+	"pii-view-more-item-4": "@pii-view-more-item-4@",
+	"ii-view-more-item-5": "@pii-view-more-item-5@",
+	"pii-yes-btn": "@pii-yes-btn@",
+	"pii-cancel-btn": "@pii-cancel-btn@"
 };
 
 } )( wb );
