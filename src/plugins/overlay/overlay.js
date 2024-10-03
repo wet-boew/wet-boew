@@ -207,7 +207,7 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 
 					// No special tab handling when ignoring outside activity
 					if ( overlay.className.indexOf( ignoreOutsideClass ) === -1 ) {
-						$focusable = $( overlay ).find( ":focusable:not([tabindex='-1'])" );
+						$focusable = $( overlay ).find( "a[href]:visible, button:visible, input:visible, textarea:visible, select:visible, details>summary:visible, [tabindex]:not([tabindex='-1']:visible)" );
 						length = $focusable.length;
 						index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
 
