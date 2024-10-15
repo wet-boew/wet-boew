@@ -38,6 +38,7 @@ var componentName = "wb-data-json",
 	$document = wb.doc,
 	isExtensionRegistered,
 	s,
+	settingParsingOption = { expectBool: [ "streamline", "isHTML", "encode", "trigger" ] },
 
 	/**
 	 * @method init
@@ -104,7 +105,7 @@ var componentName = "wb-data-json",
 			// Identify that initialization has completed
 			wb.ready( $elm, componentName );
 
-			jsondata = wb.getData( $elm, shortName );
+			jsondata = wb.getData( $elm, shortName, settingParsingOption );
 
 			if ( jsondata && jsondata.url ) {
 				lstCall.push( jsondata );
