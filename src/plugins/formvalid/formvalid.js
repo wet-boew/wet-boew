@@ -115,7 +115,7 @@ var componentName = "wb-frmvld",
 							// Add space to the end of the labels (so separation between label and error when CSS turned off)
 							len = labels.length;
 							for ( i = 0; i !== len; i += 1 ) {
-								labels[ i ].innerHTML += " ";
+								labels[ i ].insertAdjacentHTML( "beforeend", " " );
 							}
 
 							// Hide "required" label text in older forms from screen readers
