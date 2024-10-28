@@ -1,0 +1,122 @@
+---
+{
+	"title": "Data Scrub",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Delete Personal Identifiable Information (PII) from the form flagged fields before submit",
+	"tag": "wb-data-scrub",
+	"parentdir": "wb-data-scrub",
+	"altLangPrefix": "wb-data-scrub",
+	"dateModified": "2024-10-17"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<h2>Basic example</h2>
+<p>Replace Personal Identifiable Information (PII) from the form flagged fields with "*" characters.</p>
+<p>Fill the below fields with the following values:</p>
+<ul>
+	<li>Subject: <code>My PRI: 012345678</code></li>
+	<li>Message: <code>visa: 4916 0739.3667-6891, master:5428735149026050, SIN:123 123-123, ZIP:K2C 3N2, Driving Licence Nr:P12345678912345, Bank account example: 003-1234567</code></li>
+</ul>
+<p>The form will prompt a message informing the user that any Personal Information will not be submitted.</p>
+
+<form action="wb-data-scrub-en.html" method="GET">
+	<div class="form-content">
+		<div class="form-group">
+			<label for="userName"><span class="field-name">Name</span></label>
+			<input class="form-control" id="userName" name="userName" type="text" />
+		</div>
+		<div class="form-group">
+			<label for="subject"><span class="field-name">Subject</span></label>
+			<input class="form-control" id="subject" name="subject" type="text" data-rule-wbscrub />
+		</div>
+		<div class="form-group">
+			<label for="message">Message</label>
+			<textarea class="form-control" id="message" name="message" data-rule-wbscrub rows="4" cols="50"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="wb-data-scrub-en.html" method="GET">
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="userName">&lt;span class="field-name">Name&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="userName" name="userName" type="text" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="subject">&lt;span class="field-name">Subject&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="subject" name="subject" type="text" data-rule-wbscrub />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="message">Message&lt;/label>
+			&lt;textarea class="form-control" id="message" name="message" data-rule-wbscrub rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button type="submit" class="btn btn-primary">Submit&lt;/button>
+	&lt;/div>
+&lt;/form></code></pre>
+</details>
+
+<h2>Example with form Postback</h2>
+<p>Only the "Comments" field has a data-scrub attribute.</p>
+<p>Fill the "Comments" field with the following: <code>visa: 4916 0739.3667-6891, master:5428735149026050, SIN:123 123-123, ZIP:K2C 3N2, Driving Licence Nr:P12345678912345, Bank account example: 003-1234567</code></p>
+<form action="wb-data-scrub-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname1"><span class="field-name">First Name</span></label>
+			<input class="form-control" id="firstname1" name="firstname" type="text" data-rule-minlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="lastname1"><span class="field-name">Last Name</span></label>
+			<input class="form-control" id="lastname1" name="lastname" type="text" data-rule-minlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="preferredNumber1">Preferred: <span class="field-name">Phone Number</span></label>
+			<input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		</div>
+		<div class="form-group">
+			<label for="email1"><span class="field-name">Email Address</span> (test@domaine)</label>
+			<input class="form-control" id="email1" name="email" type="email" />
+		</div>
+		<div class="form-group">
+			<label for="comments">Comments</label>
+			<textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50"></textarea>
+		</div>
+		<button class="btn btn-primary">Submit</button>
+	</div>
+</form>
+<p class="success-message hide">Thank you!</p>
+<p class="failure-message hide">Something went wrong. Please submit your information via an alternative method.</p>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>View code</summary>
+	<pre><code>&lt;form action="wb-data-scrub-en.html" class="wb-postback" data-wb-postback='{"success":".success-message","failure":".failure-message"}'>
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="firstname1">&lt;span class="field-name">First Name&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="firstname1" name="firstname" type="text" data-rule-minlength="2" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="lastname1">&lt;span class="field-name">Last Name&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="lastname1" name="lastname" type="text" data-rule-minlength="2" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="preferredNumber1">Preferred: &lt;span class="field-name">Phone Number&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" data-rule-phoneUS="true" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="email1">&lt;span class="field-name">Email Address&lt;/span> (test@domaine)&lt;/label>
+			&lt;input class="form-control" id="email1" name="email" type="email" />
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="comments">Comments&lt;/label>
+			&lt;textarea class="form-control" id="comments" name="comments" data-rule-wbscrub rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button class="btn btn-primary">Submit&lt;/button>
+	&lt;/div>
+&lt;/form>
+&lt;p class="success-message hide">Thank you!&lt;/p>
+&lt;p class="failure-message hide">Something went wrong. Please submit your information via an alternative method.&lt;/p></code></pre>
+</details>
