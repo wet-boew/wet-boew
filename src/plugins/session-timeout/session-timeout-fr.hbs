@@ -7,7 +7,7 @@
 	"tag": "session-timeout",
 	"parentdir": "session-timeout",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-11-14"
+	"dateModified": "2024-10-24"
 }
 ---
 
@@ -24,8 +24,14 @@
 		<li><strong>inactivity :</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra (20 minutes par défaut).</li>
 		<li><strong>reactionTime :</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît (3 minutes par défaut).</li>
 		<li><strong>sessionalive :</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse (20 minutes par défaut).</li>
-		<li><strong>logouturl :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
+		<li><strong>logouturl :</strong> adresse URL utilisée pour terminer la session.</li>
+		<li><strong>signInUrl :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
+		<li><strong>refreshCallback :</strong> La fonction utilisée pour vérifier la réponse reçue de refreshCallbackUrl.</li>
 		<li><strong>refreshCallbackUrl :</strong> adresse URL pour effectuer une actualisation ajax, doit retourner "true".</li>
+		<li><strong>refreshOnClick :</strong> Détermine si cliquer sur le document doit réinitialiser le délai d'inactivité et effectuer une requête ajax (si un refreshCallbackUrl a été spécifié).</li>
+		<li><strong>refreshLimit :</strong> Définit le temps qui doit s'écouler avant qu'une requête ajax puisse être effectuée.</li>
+		<li><strong>method :</strong> Définit la méthode de requête utilisée pour les requêtes ajax. Recommandé : GET ou POST.</li>
+		<li><strong>additionalData :</strong> Données supplémentaires à envoyer avec la demande.</li>
 	</ul>
 	<p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
 	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></pre>

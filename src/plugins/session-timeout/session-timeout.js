@@ -34,7 +34,8 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		reactionTime: 180000,		/* default confirmation period of 3 minutes */
 		sessionalive: 1200000,		/* default keepalive period of 20 minutes */
 		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
-		logouturl: "./",			/* logout URL once the session has expired */
+		logouturl: "./",			/* logout URL to end the session */
+		signInUrl: null,			/* sign-in URL once the session has expired */
 		refreshOnClick: true,		/* refresh session if user clicks on the page */
 		refreshLimit: 120000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
 		method: "POST",				/* the request method to use */
@@ -67,6 +68,9 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
 			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( dataAttr ) );
+			if ( !settings.signinUrl ) {
+				settings.signInUrl = settings.logouturl;
+			}
 			$elm.data( dataAttr, settings );
 
 			// Only initialize the i18nText once
@@ -249,13 +253,14 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		// Clear the keepalive timeout to avoid double firing of requests
 		clearInterval( $( event.target ).data( keepaliveEvent ) );
 
+		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
+			i18nText.buttonEnd + buttonEnd )
+			.data( "logouturl", settings.logouturl );
+		settings.logouturl = settings.signInUrl;
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonContinue + buttonEnd )
 			.data( settings )
 			.data( "start", startTime );
-		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
-			i18nText.buttonEnd + buttonEnd )
-			.data( "logouturl", settings.logouturl );
 
 		openModal( {
 			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
