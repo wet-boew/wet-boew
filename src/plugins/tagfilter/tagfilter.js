@@ -259,7 +259,6 @@ $document.on( "change", selectorCtrl, function( event )  {
 			filterGroup.find( function( filterItem ) {
 				return filterItem.name === controlName;
 			} ).value = filterValue;
-	
 			break;
 	}
 
