@@ -108,23 +108,23 @@ const componentName = "wb-tagfilter",
 			}
 
 			switch ( control.type ) {
-			case "checkbox":
-			case "radio":
-				filtersObj[ filterKey ].push( {
-					isChecked: control.checked,
-					type: control.type,
-					value: control.value,
-					name: control.name
-				} );
+				case "checkbox":
+				case "radio":
+					filtersObj[ filterKey ].push( {
+						isChecked: control.checked,
+						type: control.type,
+						value: control.value,
+						name: control.name
+					} );
 
-				break;
-			case "select-one":
-				filtersObj[ filterKey ].push( {
-					type: control.type,
-					value: control.value,
-					name: control.name
-				} );
-				break;
+					break;
+				case "select-one":
+					filtersObj[ filterKey ].push( {
+						type: control.type,
+						value: control.value,
+						name: control.name
+					} );
+					break;
 			}
 		} );
 
@@ -240,12 +240,12 @@ $document.on( "change", selectorCtrl, function( event )  {
 
 	case "radio":
 
-		// Set all virtual radio items to unchecked
-		filterGroup.forEach( function( filterItem ) {
-			if ( controlName === filterItem.name ) {
-				filterItem.isChecked = false;
-			}
-		} );
+			// Set all virtual radio items to unchecked
+			filterGroup.forEach( function( filterItem ) {
+				if ( controlName === filterItem.name ) {
+					filterItem.isChecked = false;
+				}
+			} );
 
 		// Set selected radio button's associated virtual filter to checked
 		filterGroup.find( function( filter ) {
@@ -255,12 +255,12 @@ $document.on( "change", selectorCtrl, function( event )  {
 
 	case "select-one":
 
-		// Update virtual filter to the new value
-		filterGroup.find( function( filterItem ) {
-			return filterItem.name === controlName;
-		} ).value = filterValue;
-
-		break;
+			// Update virtual filter to the new value
+			filterGroup.find( function( filterItem ) {
+				return filterItem.name === controlName;
+			} ).value = filterValue;
+	
+			break;
 	}
 
 	// Update list of visible items
