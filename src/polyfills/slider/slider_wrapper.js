@@ -57,15 +57,15 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
-		case "wb-init":
-			init( event );
-			break;
+			case "wb-init":
+				init( event );
+				break;
 
-		case "wb-update":
-			if ( event.namespace === componentName ) {
-				window.fdSlider.updateSlider( eventTarget.id );
-				$( eventTarget ).trigger( "wb-updated." + componentName );
-			}
+			case "wb-update":
+				if ( event.namespace === componentName ) {
+					window.fdSlider.updateSlider( eventTarget.id );
+					$( eventTarget ).trigger( "wb-updated." + componentName );
+				}
 		}
 	}
 } );

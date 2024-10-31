@@ -182,26 +182,26 @@ var componentName = "wb-filter",
 
 		switch ( filterType ) {
 
-		case "and":
-			words = filterQueryParser( filter );
-			if ( words ) {
-				wordRegExFilter = ".*";
-				i_len = words.length;
-				for ( i = 0; i < i_len; i++ ) {
-					wordRegExFilter = wordRegExFilter + ( "(?=.*" + words[ i ] + ")" );
+			case "and":
+				words = filterQueryParser( filter );
+				if ( words ) {
+					wordRegExFilter = ".*";
+					i_len = words.length;
+					for ( i = 0; i < i_len; i++ ) {
+						wordRegExFilter = wordRegExFilter + ( "(?=.*" + words[ i ] + ")" );
+					}
 				}
-			}
-			break;
+				break;
 
-		case "or": // If one word fall back on default
-			words = filterQueryParser( filter );
-			if ( words ) {
-				wordRegExFilter =  words.join( "|" );
-			}
-			break;
+			case "or": // If one word fall back on default
+				words = filterQueryParser( filter );
+				if ( words ) {
+					wordRegExFilter =  words.join( "|" );
+				}
+				break;
 
-		default:
-			break;
+			default:
+				break;
 
 		}
 

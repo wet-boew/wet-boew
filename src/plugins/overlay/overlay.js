@@ -180,52 +180,52 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 		overlay, $focusable, index, length;
 
 	switch ( eventType ) {
-	case "timerpoke":
-	case "wb-init":
-		init( event );
-		break;
+		case "timerpoke":
+		case "wb-init":
+			init( event );
+			break;
 
-	case "open":
-		if ( eventTurrentTarget === eventTarget ) {
-			openOverlay( overlayId, event.noFocus );
-		}
-		break;
-
-	case "close":
-		if ( eventTurrentTarget === eventTarget ) {
-			closeOverlay( overlayId, event.noFocus );
-		}
-		break;
-
-	default:
-		overlay = document.getElementById( overlayId );
-
-		switch ( which ) {
-
-		// Tab key
-		case 9:
-
-			// No special tab handling when ignoring outside activity
-			if ( overlay.className.indexOf( ignoreOutsideClass ) === -1 ) {
-				$focusable = $( overlay ).find( ":focusable:not([tabindex='-1'])" );
-				length = $focusable.length;
-				index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
-
-				if ( index === -1 || index === length ) {
-					event.preventDefault();
-					$focusable.eq( index === -1 ? length - 1 : 0 )
-						.trigger( setFocusEvent );
-				}
+		case "open":
+			if ( eventTurrentTarget === eventTarget ) {
+				openOverlay( overlayId, event.noFocus );
 			}
 			break;
 
-		// Escape key
-		case 27:
-			if ( !event.isDefaultPrevented() ) {
-				closeOverlay( overlayId, false, true );
+		case "close":
+			if ( eventTurrentTarget === eventTarget ) {
+				closeOverlay( overlayId, event.noFocus );
 			}
 			break;
-		}
+
+		default:
+			overlay = document.getElementById( overlayId );
+
+			switch ( which ) {
+
+				// Tab key
+				case 9:
+
+					// No special tab handling when ignoring outside activity
+					if ( overlay.className.indexOf( ignoreOutsideClass ) === -1 ) {
+						$focusable = $( overlay ).find( ":focusable:not([tabindex='-1'])" );
+						length = $focusable.length;
+						index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+
+						if ( index === -1 || index === length ) {
+							event.preventDefault();
+							$focusable.eq( index === -1 ? length - 1 : 0 )
+								.trigger( setFocusEvent );
+						}
+					}
+					break;
+
+				// Escape key
+				case 27:
+					if ( !event.isDefaultPrevented() ) {
+						closeOverlay( overlayId, false, true );
+					}
+					break;
+			}
 	}
 } );
 
