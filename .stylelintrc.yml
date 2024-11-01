@@ -26,6 +26,7 @@ rules:
   comment-empty-line-before: null
   comment-whitespace-inside: null
   declaration-block-no-redundant-longhand-properties: null
+  declaration-block-no-duplicate-properties: null # Needed to fix build because of bootstrap-sass/assets/stylesheets/bootstrap/normalize line 113
   font-family-name-quotes: null
   function-name-case: null
   function-url-quotes: null
