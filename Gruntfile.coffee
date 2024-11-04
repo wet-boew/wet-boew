@@ -955,9 +955,9 @@ module.exports = (grunt) ->
 						"The “contentinfo” role is unnecessary for element “footer”."
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
-						"Element “search” not allowed as child of element “main” in this context."
-						"Element “search” not allowed as child of element “section” in this context."
-						"Element “search” not allowed as child of element “div” in this context."
+						"Element “search” not allowed as child of element “main” in this context. (Suppressing further errors from this subtree.)"
+						"Element “search” not allowed as child of element “section” in this context. (Suppressing further errors from this subtree.)"
+						"Element “search” not allowed as child of element “div” in this context. (Suppressing further errors from this subtree.)"
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
 					]
 				src: [
