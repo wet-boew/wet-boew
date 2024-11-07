@@ -33,7 +33,9 @@
 <section>
 	<h2>Exemple pratique</h2>
 	<p><a href="../../../demos/session-timeout/session-timeout-en.html">Exemple en anglais</a></p>
+	<p><a href="../../../demos/session-timeout/session-timeout-signin-en.html">Exemple signInUrl en anglais</a></p>
 	<p><a href="../../../demos/session-timeout/session-timeout-fr.html">Exemple en français</a></p>
+	<p><a href="../../../demos/session-timeout/session-timeout-signin-fr.html">Exemple signInUrl en français</a></p>
 </section>
 
 <div lang="en">
@@ -51,6 +53,7 @@
 		"reactionTime": 30000,
 		"sessionalive": 1200000,
 		"logouturl": "./",
+		"signInUrl": null,
 		"refreshCallbackUrl": "./",
 		"refreshOnClick": true,
 		"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
@@ -136,6 +139,19 @@
 							<dd>Default logout URL is "./"</dd>
 							<dt>String URL:</dt>
 							<dd>The URL to redirect to once the session has expired.</dd>
+						</dl>
+					</td>
+				</tr>
+				<tr>
+					<td><code>signInUrl</code></td>
+					<td>URL to the Sign-In page.</td>
+					<td>Provide a URL.</td>
+					<td>
+						<dl>
+							<dt>None (default):</dt>
+							<dd>Default sign-in Url is null.</dd>
+							<dt>String URL:</dt>
+							<dd>The URL to the Sign-In page.  The logout URL is used if none is provided.</dd>
 						</dl>
 					</td>
 				</tr>

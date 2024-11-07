@@ -68,7 +68,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
 			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( dataAttr ) );
-			if ( !settings.signinUrl ) {
+			if ( !settings.signInUrl ) {
 				settings.signInUrl = settings.logouturl;
 			}
 			$elm.data( dataAttr, settings );
