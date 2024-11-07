@@ -68,9 +68,6 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
 			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( dataAttr ) );
-			if ( !settings.signInUrl ) {
-				settings.signInUrl = settings.logouturl;
-			}
 			$elm.data( dataAttr, settings );
 
 			// Only initialize the i18nText once
@@ -256,7 +253,6 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
 			i18nText.buttonEnd + buttonEnd )
 			.data( "logouturl", settings.logouturl );
-		settings.logouturl = settings.signInUrl;
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonContinue + buttonEnd )
 			.data( settings )
@@ -321,7 +317,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 		// Negative confirmation or the user took too long; logout
 		} else {
-			window.location.href = settings.logouturl;
+			window.location.href = settings.signInUrl ? settings.signInUrl : settings.logouturl;
 		}
 	},
 
