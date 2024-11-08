@@ -250,13 +250,13 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		// Clear the keepalive timeout to avoid double firing of requests
 		clearInterval( $( event.target ).data( keepaliveEvent ) );
 
-		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
-			i18nText.buttonEnd + buttonEnd )
-			.data( "logouturl", settings.logouturl );
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary popup-modal-dismiss'>" + i18nText.buttonContinue + buttonEnd )
 			.data( settings )
 			.data( "start", startTime );
+		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
+			i18nText.buttonEnd + buttonEnd )
+			.data( "logouturl", settings.logouturl );
 
 		openModal( {
 			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
