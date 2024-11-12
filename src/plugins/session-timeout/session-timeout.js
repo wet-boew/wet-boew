@@ -34,7 +34,8 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		reactionTime: 180000,		/* default confirmation period of 3 minutes */
 		sessionalive: 1200000,		/* default keepalive period of 20 minutes */
 		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
-		logouturl: "./",			/* logout URL once the session has expired */
+		logouturl: "./",			/* logout URL to end the session */
+		signInUrl: null,			/* sign-in URL once the session has expired */
 		refreshOnClick: true,		/* refresh session if user clicks on the page */
 		refreshLimit: 120000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
 		method: "POST",				/* the request method to use */
@@ -316,7 +317,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 		// Negative confirmation or the user took too long; logout
 		} else {
-			window.location.href = settings.logouturl;
+			window.location.href = settings.signInUrl ? settings.signInUrl : settings.logouturl;
 		}
 	},
 

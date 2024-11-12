@@ -1,0 +1,26 @@
+---
+{
+	"title": "Session Timeout with signInUrl option",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Helps Web asset owners to provide session timeout and inactivity timeout functionality.",
+	"tag": "session-timeout-signin",
+	"parentdir": "session-timeout",
+	"altLangPrefix": "session-timeout-signin",
+	"dateModified": "2024-11-06"
+}
+---
+
+<span class="wb-sessto" data-wb-sessto='{"inactivity": 30000, "reactionTime": 30000, "logouturl": "../index-en.html", "signInUrl": "../../index-en.html"}'></span>
+
+
+<section>
+	<h2 id="how">How do I use it?</h2>
+	<p>Add the <code>signInUrl</code> option to the session timeout element. Here is the current page's example:</p>
+	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"inactivity": 30000, "reactionTime": 30000, "logouturl": "../index-en.html", "signInUrl": "../../index-en.html"}'&gt;&lt;/span&gt;</code></pre>
+</section>
+
+<section>
+	<h2 id="try">Try it out!</h2>
+	<p>This page has a 30 seconds inactivity timeout period. You also have 30 seconds to confirm if you want to keep the session alive. Please wait for the prompt to appear.</p>
+</section>
