@@ -216,7 +216,14 @@
 				<td><code>live</code></td>
 				<td>Define if the filtering should happen when the keyboard is typed or on submit of form element inside the plugin container.</td>
 				<td><code>data-wb-filter='{"live": "<em>false</em>"}'</code></td>
-				<td>True by default. False will update the results only when a submit happens on the form. Can be useful for Adobe Analytics tracking.</td>
+				<td>
+					<dl>
+						<dt>True (default):</dt>
+						<dd>Will update the results on key up.</dd>
+						<dt>False</dt>
+						<dd>Will update the results only when a submit happens on the form. Can be useful for Adobe Analytics tracking.</dd>
+					</dl>
+				</td>
 			</tr>
 		</tbody>
 	</table>
