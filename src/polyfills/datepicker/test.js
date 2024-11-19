@@ -7,9 +7,9 @@
 ( function( $, wb ) {
 
 function supportsInputTypeDate() {
-    const input = document.createElement("input");
-    input.setAttribute("type", "date");
-    return input.type === "date";
+	const input = document.createElement( "input" );
+	input.setAttribute( "type", "date" );
+	return input.type === "date";
 }
 var runTest = supportsInputTypeDate() ? describe.skip : describe;
 

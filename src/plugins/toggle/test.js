@@ -394,7 +394,7 @@ describe( "Toggle test suite", function() {
 
 			// Check if the <details> element is supported by the browser.
 			// Vérifie si l'élément <details> est supporté par le navigateur.
-			if (!supportsDetails) {
+			if ( !supportsDetails ) {
 				$tabs.trigger( "wb-init.wb-details" );
 			}
 		} );
