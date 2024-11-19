@@ -90,7 +90,7 @@ var componentName = "wb-data-ajax",
 		// Detect CORS requests.
 		// Détecter les requêtes CORS.
 		if ( settings && ( url.startsWith( "http" ) || url.startsWith( "//" ) ) ) {
-			urlParts = wb.getUrlParts(url);
+			urlParts = wb.getUrlParts( url );
 
 			// Check if it's a cross-origin request.
 			// Vérifier si c'est une requête cross-origin.
