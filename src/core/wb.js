@@ -181,7 +181,6 @@ var getUrlParts = function( url ) {
 
 		// Checks if the element <details> is supported natively.
 		// Vérifier si l'élément <details> est supporté nativement.
-		// eslint-disable-next-line no-unused-vars
 		supportsDetails: function() {
 			return "open" in document.createElement( "details" );
 		},
