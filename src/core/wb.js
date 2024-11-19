@@ -10,11 +10,6 @@
 ( function( $, window, document, undef ) {
 "use strict";
 
-// Checks if the element <details> is supported natively.
-// Vérifier si l'élément <details> est supporté nativement.
-// eslint-disable-next-line no-unused-vars
-const supportsDetails = "open" in document.createElement("details") ;
-
 /**
  * @method getUrlParts
  * @param {String} url of URL to examine
@@ -183,6 +178,11 @@ var getUrlParts = function( url ) {
 		isReady: false,
 		ignoreHashChange: false,
 		initQueue: 0,
+
+		// Checks if the element <details> is supported natively.
+		// Vérifier si l'élément <details> est supporté nativement.
+		// eslint-disable-next-line no-unused-vars
+		const supportsDetails = "open" in document.createElement( "details" );
 
 		getPath: function( property ) {
 			return Object.prototype.hasOwnProperty.call( this, property ) ? this[ property ] : undef;

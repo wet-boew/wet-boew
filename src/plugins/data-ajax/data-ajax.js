@@ -89,18 +89,19 @@ var componentName = "wb-data-ajax",
 
 		// Detect CORS requests.
 		// Détecter les requêtes CORS.
-		if ( settings && (url.startsWith("http") || url.startsWith("//") ) ) {
+		if ( settings && ( url.startsWith( "http" ) || url.startsWith( "//" ) ) ) {
 			urlParts = wb.getUrlParts(url);
 
 			// Check if it's a cross-origin request.
 			// Vérifier si c'est une requête cross-origin.
-			if ( (wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host) && (!supportsCors() || settings.forceCorsFallback) ) {
+			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !supportsCors() || settings.forceCorsFallback ) ) {
+
 				// Use fallback if CORS is not supported or forced.
 				// Utiliser une solution de repli si CORS n'est pas supporté ou forcé.
 				if ( typeof settings.corsFallback === "function" ) {
 					fetchObj.dataType = "jsonp";
 					fetchObj.jsonp = "callback";
-					fetchObj = settings.corsFallback(fetchObj);
+					fetchObj = settings.corsFallback( fetchObj );
 				}
 			}
 		}
