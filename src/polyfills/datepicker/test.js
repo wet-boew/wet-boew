@@ -6,7 +6,12 @@
  */
 ( function( $, wb ) {
 
-var runTest = Modernizr.inputtypes.date ? describe.skip : describe;
+function supportsInputTypeDate() {
+    const input = document.createElement("input");
+    input.setAttribute("type", "date");
+    return input.type === "date";
+}
+var runTest = supportsInputTypeDate() ? describe.skip : describe;
 
 runTest( "Input type=\"date\" polyfill (date picker)", function() {
 	var sandbox = sinon.sandbox.create(),

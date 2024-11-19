@@ -8,6 +8,12 @@
 ( function( $, window, wb ) {
 "use strict";
 
+// Detect CORS support using XMLHttpRequest.
+// Détecter le support CORS en utilisant XMLHttpRequest.
+function supportsCors() {
+    return 'withCredentials' in new XMLHttpRequest();
+}
+
 /*
  * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once
@@ -81,16 +87,22 @@ var componentName = "wb-data-ajax",
 			nocachekey: ajxInfo.nocachekey
 		};
 
-		// Detect CORS requests
-		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
-			urlParts = wb.getUrlParts( url );
-			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
-				if ( typeof settings.corsFallback === "function" ) {
-					fetchObj.dataType = "jsonp";
-					fetchObj.jsonp = "callback";
-					fetchObj = settings.corsFallback( fetchObj );
-				}
-			}
+		// Detect CORS requests.
+		// Détecter les requêtes CORS.
+		if (settings && (url.startsWith("http") || url.startsWith("//"))) {
+		    urlParts = wb.getUrlParts(url);
+
+		    // Check if it's a cross-origin request.
+		    // Vérifier si c'est une requête cross-origin.
+		    if ((wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host) && (!supportsCors() || settings.forceCorsFallback)) {
+			// Use fallback if CORS is not supported or forced.
+			// Utiliser une solution de repli si CORS n'est pas supporté ou forcé.
+		        if (typeof settings.corsFallback === "function") {
+		            fetchObj.dataType = "jsonp";
+		            fetchObj.jsonp = "callback";
+		            fetchObj = settings.corsFallback(fetchObj);
+		        }
+		    }
 		}
 
 		$elm.trigger( {
@@ -149,7 +161,7 @@ var componentName = "wb-data-ajax",
 			i, i_len;
 
 		if ( referer ) {
-			if ( !$.isArray( referer ) ) {
+			if ( !Array.isArray( referer ) ) {
 				refers = [];
 				refers.push( referer );
 			} else {
@@ -161,7 +173,7 @@ var componentName = "wb-data-ajax",
 			for ( i = 0; i !== i_len; i += 1 ) {
 				regHttpRef = new RegExp( refers[ i ] );
 				if ( regHttpRef.test( httpRef ) ) {
-					if ( $.isArray( url ) && url.length === i_len ) {
+					if ( Array.isArray( url ) && url.length === i_len ) {
 						return url[ i ];
 					} else {
 						return url;

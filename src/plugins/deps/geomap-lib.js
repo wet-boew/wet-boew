@@ -2244,7 +2244,7 @@ Geomap.prototype.addBasemap = function() {
 
 			// Backwards compatibility with OL2 configurations
 			// TODO: test with known configurations
-			if ( $.isArray( basemap.url ) ) {
+			if ( Array.isArray( basemap.url ) ) {
 				$.each( basemap.url, function( index, url ) {
 					urls.push( url.replace( /\${/g, "{" ) );
 				} );

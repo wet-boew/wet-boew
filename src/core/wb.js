@@ -10,6 +10,10 @@
 ( function( $, window, document, undef ) {
 "use strict";
 
+// Checks if the element <details> is supported natively.
+// Vérifier si l'élément <details> est supporté nativement.
+const supportsDetails = 'open' in document.createElement('details');
+
 /**
  * @method getUrlParts
  * @param {String} url of URL to examine
@@ -536,7 +540,7 @@ wb.modernizrLoad = Modernizr.load;
 Modernizr.load = function( options ) {
 	var i, i_len, i_cache,
 		testReady, complete;
-	if ( !$.isArray( options ) ) {
+	if ( !Array.isArray( options ) ) {
 		options = [ options ];
 	}
 	i_len = options.length;

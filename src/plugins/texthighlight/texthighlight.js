@@ -33,7 +33,7 @@ var componentName = "wb-txthl",
 
 		if ( elm ) {
 			if ( event.txthl ) {
-				searchCriteria = $.isArray( event.txthl ) ? event.txthl.join( "|" ) : event.txthl;
+				searchCriteria = Array.isArray( event.txthl ) ? event.txthl.join( "|" ) : event.txthl;
 			} else if ( params && params.txthl ) {
 				searchCriteria = decodeURIComponent(
 					wb.pageUrlParts.params.txthl

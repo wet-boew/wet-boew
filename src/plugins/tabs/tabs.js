@@ -202,16 +202,15 @@ var componentName = "wb-tabs",
 					isOpen = !!$panel.attr( open );
 
 					if ( isSmallView ) {
-						if ( !Modernizr.details ) {
-							$panel.toggleClass( "open", isOpen );
-						}
+					    if (!wb.supportsDetails) {
+					        $panel.toggleClass("open", isOpen);
+					    }
 					} else {
 						$panel.attr( {
 							role: "tabpanel",
 							open: open
 						} );
-						$panel.addClass( ( Modernizr.details ? "" :  open + " " ) +
-							"fade " + ( isOpen ? "in" : "noheight out wb-inv" ) );
+					        $panel.addClass((wb.supportsDetails ? "" : open + " ") + "fade " + (isOpen ? "in" : "noheight out wb-inv"));
 					}
 
 					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +

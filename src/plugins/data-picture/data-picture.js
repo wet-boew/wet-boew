@@ -61,7 +61,9 @@ var imgClass,
 		// Loop over the data-media elements and find matching media queries
 		for ( i = 0, len = sources.length; i !== len; i += 1 ) {
 			media = sources[ i ].getAttribute( "data-media" );
-			if ( !media || Modernizr.mq( media ) ) {
+			// Check if the media query matches or if no media query is defined.
+			// Vérifie si le media query correspond ou si aucun media query n'est défini.
+			if ( !media || window.matchMedia(media).matches) {
 				matches.push( sources[ i ] );
 			}
 		}

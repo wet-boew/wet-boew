@@ -1,6 +1,6 @@
 {
   "name": "wet-boew",
-  "version": "4.0.82",
+  "version": "4.0.83",
   "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
   "main": "index.html",
   "engines": {
@@ -47,7 +47,7 @@
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
     "html5shiv": "^3.7.3",
     "jquery": "2.2.4",
-    "jquery-validation": "1.19.5",
+    "jquery-validation": "^1.21.0",
     "jsonpointer.js": "^0.4.0",
     "magnific-popup": "git+https://github.com/wet-boew/Magnific-Popup.git#1.0.0+keyboard_trap_fix",
     "mathjax": "^3.2.0",
