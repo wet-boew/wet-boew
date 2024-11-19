@@ -12,7 +12,8 @@
 
 // Checks if the element <details> is supported natively.
 // Vérifier si l'élément <details> est supporté nativement.
-const supportsDetails = 'open' in document.createElement('details');
+// eslint-disable-next-line no-unused-vars
+const supportsDetails = "open" in document.createElement("details") ;
 
 /**
  * @method getUrlParts
