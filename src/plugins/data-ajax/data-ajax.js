@@ -84,9 +84,7 @@ var componentName = "wb-data-ajax",
 		// Detect CORS requests.
 		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
 			urlParts = wb.getUrlParts( url );
-
 			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
-
 				if ( typeof settings.corsFallback === "function" ) {
 					fetchObj.dataType = "jsonp";
 					fetchObj.jsonp = "callback";
