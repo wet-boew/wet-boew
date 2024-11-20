@@ -69,7 +69,7 @@ var componentName = "wb-collapsible",
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Do not bind events if details polyfill is active
-if ( "open" in document.createElement( "details" ) ) {
+if ( Modernizr.details ) {
 
 	// Bind the the event handlers of the plugin
 	$document.on( "click keydown toggle." + componentName, selector + " summary", function( event ) {
