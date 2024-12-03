@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Create a session inactivity timeout that warns users when their session is about to expire.",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2015-07-21"
+	"dateModified": "2024-12-03"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -30,6 +30,7 @@
 	<h2>Working example</h2>
 	<p><a href="../../../demos/session-timeout/session-timeout-en.html">Basic example</a></p>
 	<p><a href="../../../demos/session-timeout/session-timeout-signin-en.html">Example with signInUrl option</a></p>
+	<p><a href="../../../demos/session-timeout/session-timeout-text-override-en.html">Example with text overrides</a></p>
 </section>
 
 <section>
@@ -50,6 +51,7 @@
 	"refreshOnClick": true,
 	"refreshLimit": 200000,
 	"method": "POST",
+	"textOverride": {"buttonContinue": "Continue button text", "buttonEnd": "End button text", "buttonSignin": "Sign in button text", "timeoutEnd": "Timeout message", "timeoutAlready": "Timed out message"},
 	"additionalData": null}'&gt;&lt;/span&gt;</code></pre>
 		</li>
 	</ol>
@@ -213,6 +215,25 @@
 						<dd>The POST request method is used.</dd>
 						<dt>String:</dt>
 						<dd>Treated as the request method (HTTP verb). The method is used as entered.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>textOverride</code></td>
+				<td>Sets up the messages that override the default content.</td>
+				<td>Provide a JSON object with one or more of these properties.</td>
+				<td>
+					<dl>
+						<dt>buttonContinue</dt>
+						<dd>The text for the Continue Session button.</dd>
+						<dt>buttonEnd</dt>
+						<dd>The text for the End Session button.</dd>
+						<dt>buttonSignin</dt>
+						<dd>The text for the Sign In button.</dd>
+						<dt>timeoutEnd</dt>
+						<dd>Informational message displayed beneath the countdown timer message.</dd>
+						<dt>timeoutAlready</dt>
+						<dd>The message displayed once the session has expired.</dd>
 					</dl>
 				</td>
 			</tr>

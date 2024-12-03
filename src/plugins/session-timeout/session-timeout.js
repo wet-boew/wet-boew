@@ -73,15 +73,29 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
-				i18nText = {
-					buttonContinue: i18n( "st-btn-cont" ),
-					buttonEnd: i18n( "st-btn-end" ),
-					buttonSignin: i18n( "tmpl-signin" ),
-					timeoutBegin: i18n( "st-to-msg-bgn" ),
-					timeoutEnd: i18n( "st-to-msg-end" ),
-					timeoutTitle: i18n( "st-msgbx-ttl" ),
-					timeoutAlready: i18n( "st-alrdy-to-msg" )
-				};
+
+				// Allow overrides except for Title and Begin messages.
+				if ( settings.textOverride ) {
+					i18nText = {
+						buttonContinue: settings.textOverride.buttonContinue ? DOMPurify.sanitize( settings.textOverride.buttonContinue ) : i18n( "st-btn-cont" ),
+						buttonEnd: settings.textOverride.buttonEnd ? DOMPurify.sanitize( settings.textOverride.buttonEnd ) : i18n( "st-btn-end" ),
+						buttonSignin: settings.textOverride.buttonSignin ? DOMPurify.sanitize( settings.textOverride.buttonSignin ) : i18n( "tmpl-signin" ),
+						timeoutBegin: i18n( "st-to-msg-bgn" ),
+						timeoutEnd: settings.textOverride.timeoutEnd ? DOMPurify.sanitize( settings.textOverride.timeoutEnd ) : i18n( "st-to-msg-end" ),
+						timeoutTitle: i18n( "st-msgbx-ttl" ),
+						timeoutAlready: settings.textOverride.timeoutAlready ? DOMPurify.sanitize( settings.textOverride.timeoutAlready ) : i18n( "st-alrdy-to-msg" )
+					};
+				} else {
+					i18nText = {
+						buttonContinue: i18n( "st-btn-cont" ),
+						buttonEnd: i18n( "st-btn-end" ),
+						buttonSignin: i18n( "tmpl-signin" ),
+						timeoutBegin: i18n( "st-to-msg-bgn" ),
+						timeoutEnd: i18n( "st-to-msg-end" ),
+						timeoutTitle: i18n( "st-msgbx-ttl" ),
+						timeoutAlready: i18n( "st-alrdy-to-msg" )
+					};
+				}
 			}
 
 			onReady = function() {

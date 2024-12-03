@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Créer un délai d'inactivité qui avertit les utilisateurs lorsque leur session est sur le point d'expirer.",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2015-07-21"
+	"dateModified": "2024-12-03"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -34,6 +34,7 @@
 	<h2>Exemple pratique</h2>
 	<p><a href="../../../demos/session-timeout/session-timeout-fr.html">Exemple de base</a></p>
 	<p><a href="../../../demos/session-timeout/session-timeout-signin-fr.html">Exemple avec l'option signInUrl</a></p>
+	<p><a href="../../../demos/session-timeout/session-timeout-text-override-fr.html">Exemple avec l'option textOverride</a></p>
 </section>
 
 <div lang="en">
@@ -47,14 +48,17 @@
 			</li>
 			<li>Configure the plugin using the <code>data-wb-sessto</code> attribute of the element:
 				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{
-		"inactivity": 1200000,
-		"reactionTime": 30000,
-		"sessionalive": 1200000,
-		"logouturl": "./",
-		"signInUrl": null,
-		"refreshCallbackUrl": "./",
-		"refreshOnClick": true,
-		"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
+	"inactivity": 1200000,
+	"reactionTime": 30000,
+	"sessionalive": 1200000,
+	"logouturl": "./",
+	"signInUrl": "./",
+	"refreshCallbackUrl": "./",
+	"refreshOnClick": true,
+	"refreshLimit": 200000,
+	"method": "POST",
+	"textOverride": {"buttonContinue": "Continue button text", "buttonEnd": "End button text", "buttonSignin": "Sign in button text", "timeoutEnd": "Timeout message", "timeoutAlready": "Timed out message"},
+	"additionalData": null}'&gt;&lt;/span&gt;</code></pre>
 			</li>
 		</ol>
 	</section>
@@ -217,6 +221,25 @@
 							<dd>The POST request method is used.</dd>
 							<dt>String:</dt>
 							<dd>Treated as the request method (HTTP verb). The method is used as entered.</dd>
+						</dl>
+					</td>
+				</tr>
+				<tr>
+					<td><code>textOverride</code></td>
+					<td>Sets up the messages that override the default content.</td>
+					<td>Provide a JSON object with one or more of these properties.</td>
+					<td>
+						<dl>
+							<dt>buttonContinue</dt>
+							<dd>The text for the Continue Session button.</dd>
+							<dt>buttonEnd</dt>
+							<dd>The text for the End Session button.</dd>
+							<dt>buttonSignin</dt>
+							<dd>The text for the Sign In button.</dd>
+							<dt>timeoutEnd</dt>
+							<dd>Informational message displayed beneath the countdown timer message.</dd>
+							<dt>timeoutAlready</dt>
+							<dd>The message displayed once the session has expired.</dd>
 						</dl>
 					</td>
 				</tr>
