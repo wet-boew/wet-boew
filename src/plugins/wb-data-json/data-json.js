@@ -108,7 +108,7 @@ var componentName = "wb-data-json",
 
 			if ( jsondata && jsondata.url ) {
 				lstCall.push( jsondata );
-			} else if ( jsondata && $.isArray( jsondata ) ) {
+			} else if ( jsondata && Array.isArray( jsondata ) ) {
 				i_len = jsondata.length;
 				for ( i = 0; i !== i_len; i += 1 ) {
 					lstCall.push( jsondata[ i ] );
@@ -284,12 +284,12 @@ var componentName = "wb-data-json",
 
 
 		// if content is object, transform into array @id and @value
-		if ( !$.isArray( content ) ) {
+		if ( !Array.isArray( content ) ) {
 			if ( typeof content !== "object" ) {
 				content = [ content ];
 			} else {
 				content = $.map( content, function( val, index ) {
-					if ( val && typeof val === "object" && !$.isArray( val ) ) {
+					if ( val && typeof val === "object" && !Array.isArray( val ) ) {
 						if ( !val[ "@id" ] ) {
 							val[ "@id" ] = index;
 						}
@@ -458,7 +458,7 @@ var componentName = "wb-data-json",
 	functionForTest = {
 
 		"fn:isArray": function( value ) {
-			return $.isArray( value );
+			return Array.isArray( value );
 		},
 
 		"fn:isLiteral": function( value ) {
@@ -481,7 +481,7 @@ var componentName = "wb-data-json",
 
 			if ( tp === "@json" ) {
 				return "rdf:JSON";
-			} else if ( $.isArray( tp ) && tp.indexOf( "@json" ) !== -1 ) {
+			} else if ( Array.isArray( tp ) && tp.indexOf( "@json" ) !== -1 ) {
 				tp[ tp.indexOf( "@json" ) ] = "rdf:JSON";
 			}
 
@@ -519,7 +519,7 @@ var componentName = "wb-data-json",
 			if ( guessType && guessType !== "undefined" ) {
 				if ( guessType === "@json" ) {
 					guessType = "rdf:JSON";
-				} else if ( $.isArray( guessType ) && guessType.indexOf( "@json" ) !== -1 ) {
+				} else if ( Array.isArray( guessType ) && guessType.indexOf( "@json" ) !== -1 ) {
 					guessType[ guessType.indexOf( "@json" ) ] = "rdf:JSON";
 				}
 			}
@@ -535,7 +535,7 @@ var componentName = "wb-data-json",
 					guessType = [ "xsd:double", "rdfs:Literal" ];
 				} else if ( typeof value === "undefined" ) {
 					guessType = "undefined";
-				} else if ( $.isArray( value ) ) {
+				} else if ( Array.isArray( value ) ) {
 					guessType = "rdfs:Container";
 				} else {
 
@@ -555,9 +555,9 @@ var componentName = "wb-data-json",
 		"softEq": function( value, expect ) {
 			var i, i_len;
 
-			if ( $.isArray( value ) && !$.isArray( expect ) && value.indexOf( expect ) !== -1 ) {
+			if ( Array.isArray( value ) && !Array.isArray( expect ) && value.indexOf( expect ) !== -1 ) {
 				return true;
-			} else if ( $.isArray( value ) &&  $.isArray( expect ) ) {
+			} else if ( Array.isArray( value ) &&  Array.isArray( expect ) ) {
 				i_len = expect.length;
 				for ( i = 0; i !== i_len; i++ ) {
 					if ( value.indexOf( expect[ i ] ) ) {
@@ -601,15 +601,15 @@ var componentName = "wb-data-json",
 				return false;
 			}
 
-			if ( $.isArray( value ) && !$.isArray( expect ) && value.indexOf( expect ) !== -1 ) {
+			if ( Array.isArray( value ) && !Array.isArray( expect ) && value.indexOf( expect ) !== -1 ) {
 				return true;
-			} else if ( $.isArray( value ) &&  $.isArray( expect ) ) {
+			} else if ( Array.isArray( value ) &&  Array.isArray( expect ) ) {
 				for ( i = 0; i !== expect.length; i++ ) {
 					if ( value.indexOf( expect[ i ] ) ) {
 						return true;
 					}
 				}
-			} else if ( !$.isArray( value ) &&  $.isArray( expect ) && expect.indexOf( value ) !== -1  ) {
+			} else if ( !Array.isArray( value ) &&  Array.isArray( expect ) && expect.indexOf( value ) !== -1  ) {
 				return true;
 			} else if ( value === expect ) {
 				return true;
@@ -672,7 +672,7 @@ var componentName = "wb-data-json",
 
 
 		// Is content an array? then iterate the content
-		if ( $.isArray( content ) ) {
+		if ( Array.isArray( content ) ) {
 
 
 			dataIterator( clone, content, mappingConfig, clone );
@@ -700,7 +700,7 @@ var componentName = "wb-data-json",
 		if ( !mapping ) {
 			mapping = [ {} ];
 		}
-		if ( !$.isArray( mapping ) ) {
+		if ( !Array.isArray( mapping ) ) {
 			mapping = [ mapping ];
 		}
 		mapping_len = mapping.length;
@@ -765,7 +765,7 @@ var componentName = "wb-data-json",
 
 			// Do the cache value contain special @type
 			if ( cached_value && cached_value[ "@value" ] && cached_value[ "@type" ] ) {
-				if ( !$.isArray( cached_value[ "@type" ] ) ) {
+				if ( !Array.isArray( cached_value[ "@type" ] ) ) {
 					cached_value[ "@type" ] = [ cached_value[ "@type" ] ];
 				}
 				cached_value_is_IRI = cached_value[ "@type" ].indexOf( "@id" ) !== -1;
@@ -774,7 +774,7 @@ var componentName = "wb-data-json",
 			}
 
 			// Action the value
-			if ( $.isArray( cached_value ) && ( j_cache.mapping || j_cache.queryall ) ) {
+			if ( Array.isArray( cached_value ) && ( j_cache.mapping || j_cache.queryall ) ) {
 
 				// Deep dive into the content if a mapping exist
 				dataIterator( cached_node, cached_value, j_cache );
@@ -966,8 +966,8 @@ var componentName = "wb-data-json",
 					return b === null;
 				}
 				var i, l;
-				if ( $.isArray( a ) ) {
-					if (  !$.isArray( b ) || a.length !== b.length ) {
+				if ( Array.isArray( a ) ) {
+					if (  !Array.isArray( b ) || a.length !== b.length ) {
 						return false;
 					}
 					for ( i = 0, l = a.length; i < l; i++ ) {
@@ -994,7 +994,7 @@ var componentName = "wb-data-json",
 	},
 	_objectKeys = function( obj ) {
 		var keys;
-		if ( $.isArray( obj ) ) {
+		if ( Array.isArray( obj ) ) {
 			keys = new Array( obj.length );
 			for ( var k = 0; k < keys.length; k++ ) {
 				keys[ k ] = "" + k;

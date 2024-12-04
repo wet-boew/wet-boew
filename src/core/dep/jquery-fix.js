@@ -70,12 +70,8 @@ Test: jQuery.extend
  *
  * This is almost verbatim copied from jQuery 3.4.0.
  *
- * Only two minor changes have been made:
- * - The call to isFunction() is changed to jQuery.isFunction().
- * - The two calls to Array.isArray() is changed to jQuery.isArray().
+ * Now compatible with jQuery 4.
  *
- * The above two changes ensure compatibility with all older jQuery versions
- * (1.4.4 - 3.3.1) and older browser versions (e.g., IE8).
  */
 jQuery.extend = jQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
@@ -94,7 +90,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+	if ( typeof target !== "object" && typeof target !== "function" ) {
 		target = {};
 	}
 
@@ -122,11 +118,11 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
-					( copyIsArray = jQuery.isArray( copy ) ) ) ) {
+					( copyIsArray = Array.isArray( copy ) ) ) ) {
 					src = target[ name ];
 
 					// Ensure proper type for the source value
-					if ( copyIsArray && !jQuery.isArray( src ) ) {
+					if ( copyIsArray && !Array.isArray( src ) ) {
 						clone = [];
 					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
 						clone = {};

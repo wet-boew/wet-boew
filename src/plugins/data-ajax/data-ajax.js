@@ -81,7 +81,7 @@ var componentName = "wb-data-ajax",
 			nocachekey: ajxInfo.nocachekey
 		};
 
-		// Detect CORS requests
+		// Detect CORS requests.
 		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
 			urlParts = wb.getUrlParts( url );
 			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
@@ -149,7 +149,7 @@ var componentName = "wb-data-ajax",
 			i, i_len;
 
 		if ( referer ) {
-			if ( !$.isArray( referer ) ) {
+			if ( !Array.isArray( referer ) ) {
 				refers = [];
 				refers.push( referer );
 			} else {
@@ -161,7 +161,7 @@ var componentName = "wb-data-ajax",
 			for ( i = 0; i !== i_len; i += 1 ) {
 				regHttpRef = new RegExp( refers[ i ] );
 				if ( regHttpRef.test( httpRef ) ) {
-					if ( $.isArray( url ) && url.length === i_len ) {
+					if ( Array.isArray( url ) && url.length === i_len ) {
 						return url[ i ];
 					} else {
 						return url;

@@ -179,6 +179,12 @@ var getUrlParts = function( url ) {
 		ignoreHashChange: false,
 		initQueue: 0,
 
+		// Checks if the element <details> is supported natively.
+		// Vérifier si l'élément <details> est supporté nativement.
+		supportsDetails: function() {
+			return "open" in document.createElement( "details" );
+		},
+
 		getPath: function( property ) {
 			return Object.prototype.hasOwnProperty.call( this, property ) ? this[ property ] : undef;
 		},
@@ -536,7 +542,7 @@ wb.modernizrLoad = Modernizr.load;
 Modernizr.load = function( options ) {
 	var i, i_len, i_cache,
 		testReady, complete;
-	if ( !$.isArray( options ) ) {
+	if ( !Array.isArray( options ) ) {
 		options = [ options ];
 	}
 	i_len = options.length;
