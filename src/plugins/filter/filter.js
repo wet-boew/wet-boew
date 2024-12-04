@@ -9,6 +9,7 @@ var componentName = "wb-filter",
 	tagFilterClass = "wb-tgfltr-out",
 	notFilterClassSel = ":not(." + filterClass + "):not(." + tagFilterClass + ")",
 	inputClass = "wb-fltr-inpt",
+	buttonClass = "wb-fltr-btn",
 	dtNameFltrArea = "wbfltrid",
 	selectorInput = "." + inputClass,
 	defaults = {
@@ -40,7 +41,7 @@ var componentName = "wb-filter",
 			itemsObserver,
 			inptId, totalEntries,
 			secSelector,
-			uiTemplate, uiInpt, uiInfo,
+			uiTemplate, uiInpt, uiInfo, uiBtn,
 			uiNbItems, uiTotal, uiInfoID;
 
 		if ( elm ) {
@@ -69,7 +70,8 @@ var componentName = "wb-filter",
 				i18n = wb.i18n;
 				i18nText = {
 					filter_label: i18n( "fltr-lbl" ),
-					fltr_info: i18n( "fltr-info" )
+					fltr_info: i18n( "fltr-info" ),
+					fltr_typed: i18n( "fltr-typed" )
 				};
 			}
 
@@ -105,16 +107,36 @@ var componentName = "wb-filter",
 					console.error( componentName + ": " + "an <input type=\"search\"> is required in your UI template." );
 				}
 
+				if ( !settings.live ) {
+					uiBtn = uiTemplate.querySelector( "input[type=button],button" );
+					if ( uiBtn === null ) {
+						console.error( componentName + ": " + "a <button> or <input type=\"button\"> is required in your UI template when using \"live\": false." );
+					} else {
+						uiBtn.setAttribute( "data-" + dtNameFltrArea, elm.id );
+					}
+				}
+
 				if ( settings.source ) {
 					console.warn( componentName + ": " + "the 'source' option is not compatible with the 'uiTemplate' option. If both options are defined, only 'uiTemplate' will be registered." );
 				}
 			} else {
 				inptId = elm.id + "-inpt";
-				filterUI = $( "<div class=\"input-group\">" +
-					"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label>" +
+
+				if ( settings.live ) {
+					filterUI = $( "<div class=\"input-group\">" +
+					"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + i18nText.fltr_typed + "</label>" +
 					"<input id=\"" + inptId + "\" class=\"form-control " + inputClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\" aria-controls=\"" + elm.id + "\" type=\"search\">" +
 					"</div>" +
 					"<p role=\"status\" id=\"" + uiInfoID + "\">" + i18nText.fltr_info + "</p>" );
+				} else {
+					filterUI = $( "<label for=\"" + inptId + "\" class=\"wb-inv\"> " + i18nText.filter_label + "</label>" +
+					"<div class=\"input-group\">" +
+					"<input id=\"" + inptId + "\" class=\"form-control " + inputClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\" aria-controls=\"" + elm.id + "\" type=\"search\">" +
+					"<span class=\"input-group-btn\"><button class=\"btn btn-default " + buttonClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\">" + i18nText.filter_label + "</button></span>" +
+					"</div>" +
+					"<p role=\"status\" id=\"" + uiInfoID + "\">" + i18nText.fltr_info + "</p>" );
+				}
+
 
 				if ( settings.source ) {
 					$( settings.source ).prepend( filterUI );
@@ -258,6 +280,16 @@ var componentName = "wb-filter",
 				$section.addClass( filterClass );
 			}
 		}
+	},
+	filterBtnClick = function( event )  {
+		const $input = ( event.type === "submit" ) ? $( event.currentTarget ).find( "." + inputClass ) : $( "." + inputClass + "[data-" + dtNameFltrArea + "=" + $( event.currentTarget ).data( dtNameFltrArea ) + "]" ),
+			$elm = $( "#" + $input.data( dtNameFltrArea ) ),
+			live = $elm.data( componentName ).live;
+
+		if ( !live ) {
+			filter( $input, $elm, $elm.data( componentName ) );
+		}
+		event.preventDefault();
 	};
 
 $document.on( "keyup", selectorInput, function( event ) {
@@ -275,17 +307,8 @@ $document.on( "keyup", selectorInput, function( event ) {
 } );
 
 //	Trigger on form submit if not live changes
-$document.on( "submit", selector + " form", function( event )  {
-	const target = event.target,
-		$input = $( target ).find( selectorInput ),
-		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
-		live = $elm.data( componentName ).live;
-
-	if ( !live ) {
-		filter( $input, $elm, $elm.data( componentName ) );
-	}
-	event.preventDefault();
-} );
+$document.on( "submit", selector + " form", filterBtnClick );
+$document.on( "click", "." + buttonClass, filterBtnClick );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
