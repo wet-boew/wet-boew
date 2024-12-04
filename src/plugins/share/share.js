@@ -57,6 +57,10 @@ var componentName = "wb-share",
 				name: "Blogger",
 				url: "https://www.blogger.com/blog_this.pyra?t=&amp;u={u}&amp;n={t}"
 			},
+			bluesky: {
+				name: "Bluesky",
+				url: "https://bsky.app/intent/compose?text={t}+{u}"
+			},
 			diigo: {
 				name: "Diigo",
 				url: "https://www.diigo.com/post?url={u}&amp;title={t}"
