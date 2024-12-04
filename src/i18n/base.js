@@ -258,6 +258,8 @@ wb.i18nDict = {
 	"pii-yes-btn": "@pii-yes-btn@",
 	"pii-cancel-btn": "@pii-cancel-btn@",
 	"redacted": "@redacted@"
+	"fltr-info": "@fltr-info@",
+	"fltr-typed": "@fltr-typed@"
 };
 
 } )( wb );
