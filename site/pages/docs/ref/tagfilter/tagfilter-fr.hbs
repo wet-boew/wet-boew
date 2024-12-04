@@ -56,6 +56,7 @@
 	<li>Créez votre case à cocher. <strong>L'attribut <code>name</code> est obligatoire pour les cases à cocher</strong>.</li>
 	<li>Ajoutez l'attribut <code>value</code> à la case à cocher. Remarque&nbsp;: la valeur de cet attribut doit être identique à celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contrôlés, par exemple, <code>value="maBalise"</code>.</li>
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
+	<li>Ajoutez l'<a href="#groupOption">option "group"</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li>
 </ol>
 <p>Votre case à cocher finale devrait ressembler à ceci&nbsp;:</p>
 <pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="maBalise" /></code></pre>
@@ -65,6 +66,7 @@
 	<li>Créez votre bouton radio. <strong>L'attribut <code>name</code> est obligatoire pour les boutons radio</strong>.</li>
 	<li>Ajoutez l'attribut <code>value</code> au bouton radio. Remarque&nbsp;: la valeur de cet attribut doit être la même que celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contrôlés, par exemple, <code>value="maBalise"</code>.</li>
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
+	<li>Ajoutez l'<a href="#groupOption">option "group"</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li>
 </ol>
 <p>Votre bouton radio final devrait ressembler à ceci&nbsp;:</p>
 <pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="maBalise" /></code></pre>
@@ -74,6 +76,7 @@
 	<li>Créez votre liste déroulante avec votre option par défaut. <strong>L'attribut <code>name</code> est obligatoire pour les listes déroulantes</strong>.</li>
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
 	<li>Ajoutez vos autres options et définissez l'attribut <code>value</code>. Remarque&nbsp;: la valeur de cet attribut doit être la même que celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contrôlés, par exemple, <code>value="maBalise"</code>.</li>
+	<li>Ajoutez l'<a href="#groupOption">option "group"</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li>
 </ol>
 <p>Votre liste déroulante finale devrait ressembler à ceci&nbsp;:</p>
 <pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
@@ -123,8 +126,49 @@
 <h3>Comportement essentiel de la composante</h3>
 <ul>
 	<li>Par défaut, pour chaque groupe de filtres de cases à cocher, si aucune case n'est cochée, cela a le même effet que si toutes les cases étaient cochées.</li>
-	<li>Le comportement de plusieurs cases à cocher dans un groupe est d'afficher les items dont l'une des balises est sélectionnée (comportement <span lang="en">"OR"</span>), et non d'afficher les éléments dont toutes les balises sont sélectionnées (comportement <span lang="en">"AND"</span>).</li>
+	<li>Le comportement des composantes dans un groupe (défini par l'attribut "name" de la composante ou par l'<a href="#groupOption">option "group"</a>) est d'afficher les items dont l'une des balises est sélectionnée (comportement <span lang="en">"OR"</span>), et non d'afficher les éléments dont toutes les balises sont sélectionnées (comportement <span lang="en">"AND"</span>).</li>
+	<li>Les valeurs séléctionnées à travers différents groupes ont le comportement <span lang="en">"AND"</span>.</li>
 </ul>
 
 <h3>Remarques</h3>
 <p>Pour des raisons sémantiques, chaque groupe logique de filtres devrait être enveloppé par un élément <code>&lt;fieldset></code>.</p>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>All configuration options of the plugin are controlled by the <code>data-wb-tagfilter</code> attribute.</p>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>live</code></td>
+				<td>Indique si le filtrage devrait ce faire quand une touches du clavier est appuyé ou à la soumission du formulaire à l'intérieur du plugiciel.</td>
+				<td><code>data-wb-filter='{"live": <em>false</em>}'</code></td>
+				<td><dl>
+						<dt>Vrai (default):</dt>
+						<dd>Met-à-jour les données au changement de statut des composantes.</dd>
+						<dt>False</dt>
+						<dd>Les résultats seront mis-à-jour seulement quand le formulaire est soumis. Peux être utile pour utiliser recueillir des données d'Adobe Analytics.</dd>
+					</dl></td>
+			</tr>
+			<tr>
+				<td id="groupOption"><code>group</code></td>
+				<td>Ajouter aux contrôles du tag filter ou un élément "Legend" parent afin de dicter le comportement; les contrôles dans un même group auront un comportement "Ou" alors que les différents group auront un comportement "Et".</td>
+				<td><code>data-wb-filter='{"group": "groupName"}'</code></td>
+				<td><dl>
+						<dt>Aucun (défaut):</dt>
+						<dd>La valeur par défaut est l'attribut "name" du contrôle</dd>
+						<dt>String</dt>
+						<dd>Le nom du group pour identifer les composante qui utilisent un comportement "ou".</dd>
+					</dl></td>
+			</tr>
+		</tbody>
+	</table>
+</section>

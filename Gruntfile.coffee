@@ -570,6 +570,7 @@ module.exports = (grunt) ->
 				src: [
 						# Root files
 						".*rc"
+
 						".editorconfig"
 						".eslint*"
 						".git*"
