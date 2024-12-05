@@ -130,6 +130,20 @@ wb.findPotentialPII( "email:test@test.com, phone:123 123 1234, numéro de cas 12
 </section>
 
 <section>
+	<h2>Native DOM event on ready</h2>
+	<p>WET-BOEW triggers a native DOM event once all plugins have been initialized. The event is called <code>wet-boew-ready</code>.</p>
+	<p>Here is an example of how it can be used:</p>
+	<pre><code>document.addEventListener( "wet-boew-ready", function( e ) {
+	...code...
+});</code></pre>
+	<script>
+		document.addEventListener( "wet-boew-ready", function( e ) {
+			console.log( "DOM event - WET-BOEW is now ready" );
+		} );
+	</script>
+</section>
+
+<section>
 	<h2>Source code</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/core">WET core source code on GitHub</a></p>
 </section>
