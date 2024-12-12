@@ -1,6 +1,6 @@
 path = require("path")
 fs = require("fs")
-sass = require("node-sass")
+sass = require("sass")
 
 module.exports = (grunt) ->
 

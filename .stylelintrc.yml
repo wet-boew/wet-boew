@@ -27,6 +27,7 @@ rules:
   comment-whitespace-inside: null
   declaration-block-no-redundant-longhand-properties: null
   declaration-block-no-duplicate-properties: null # Needed to fix build because of bootstrap-sass/assets/stylesheets/bootstrap/normalize line 113
+  declaration-block-semicolon-space-before: null # Deprecated, can't use due to a Dart Sass bug with Bootstrap 3.4.x's IE8 hacks (property values ending with \9)
   font-family-name-quotes: null
   function-name-case: null
   function-url-quotes: null
@@ -34,6 +35,7 @@ rules:
   length-zero-no-unit: null
   max-line-length: null # Deprecated
   media-feature-name-no-vendor-prefix: null
+  no-missing-end-of-source-newline: null # Deprecated
   number-leading-zero: null # Deprecated
   number-max-precision: null
   number-no-trailing-zeros: null # Deprecated
