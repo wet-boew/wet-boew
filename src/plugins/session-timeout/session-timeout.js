@@ -39,6 +39,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		refreshOnClick: true,		/* refresh session if user clicks on the page */
 		refreshLimit: 120000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
 		method: "POST",				/* the request method to use */
+		textOverrides: null,		/* text overrides (no default) */
 		additionalData: null,		/* additional data to send with the request */
 		refreshCallback: function( response ) {	/* callback function used to check the server response */
 			return response.replace( /\s/g, "" ) === "true";
@@ -73,15 +74,28 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
-				i18nText = {
-					buttonContinue: i18n( "st-btn-cont" ),
-					buttonEnd: i18n( "st-btn-end" ),
-					buttonSignin: i18n( "tmpl-signin" ),
-					timeoutBegin: i18n( "st-to-msg-bgn" ),
-					timeoutEnd: i18n( "st-to-msg-end" ),
-					timeoutTitle: i18n( "st-msgbx-ttl" ),
-					timeoutAlready: i18n( "st-alrdy-to-msg" )
-				};
+				const textOverrides = settings.textOverrides;
+				if ( textOverrides ) {
+					i18nText = {
+						buttonContinue: Object.hasOwn( textOverrides, "buttonContinue" ) ? textOverrides.buttonContinue : i18n( "st-btn-cont" ),
+						buttonEnd: Object.hasOwn( textOverrides, "buttonEnd" ) ? textOverrides.buttonEnd : i18n( "st-btn-end" ),
+						buttonSignin: Object.hasOwn( textOverrides, "buttonSignin" ) ? textOverrides.buttonSignin : i18n( "tmpl-signin" ),
+						timeoutBegin: i18n( "st-to-msg-bgn" ),
+						timeoutEnd: Object.hasOwn( textOverrides, "timeoutEnd" ) ? textOverrides.timeoutEnd : i18n( "st-to-msg-end" ),
+						timeoutTitle: i18n( "st-msgbx-ttl" ),
+						timeoutAlready: Object.hasOwn( textOverrides, "timeoutAlready" ) ? textOverrides.timeoutAlready : i18n( "st-alrdy-to-msg" )
+					};
+				} else {
+					i18nText = {
+						buttonContinue: i18n( "st-btn-cont" ),
+						buttonEnd: i18n( "st-btn-end" ),
+						buttonSignin: i18n( "tmpl-signin" ),
+						timeoutBegin: i18n( "st-to-msg-bgn" ),
+						timeoutEnd: i18n( "st-to-msg-end" ),
+						timeoutTitle: i18n( "st-msgbx-ttl" ),
+						timeoutAlready: i18n( "st-alrdy-to-msg" )
+					};
+				}
 			}
 
 			onReady = function() {

@@ -34,6 +34,7 @@
 	<h2>Exemple pratique</h2>
 	<p><a href="../../../demos/session-timeout/session-timeout-fr.html">Exemple de base</a></p>
 	<p><a href="../../../demos/session-timeout/session-timeout-signin-fr.html">Exemple avec l'option signInUrl</a></p>
+	<p><a href="../../../demos/session-timeout/session-timeout-text-override-fr.html">Example with text overrides</a></p>
 </section>
 
 <div lang="en">
@@ -54,7 +55,17 @@
 		"signInUrl": null,
 		"refreshCallbackUrl": "./",
 		"refreshOnClick": true,
-		"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
+		"refreshLimit": 200000,
+		"method": "POST",
+		"additionalData": null,
+		"textOverrides": {
+			"buttonContinue": "button text",
+			"buttonEnd": "button text",
+			"buttonSignin": "button text",
+			"timeoutEnd": "message text",
+			"timeoutAlready": "message text"
+			}
+		}'&gt;&lt;/span&gt;</code></pre>
 			</li>
 		</ol>
 	</section>
@@ -232,6 +243,25 @@
 							<dd>Treated as a query string of the form <code>key1=value1&amp;key2=value2</code> and sent as-is.</dd>
 							<dt>Array or object:</dt>
 							<dd>Converted to query string form before being sent with the request.</dd>
+						</dl>
+					</td>
+				</tr>
+				<tr>
+					<td><code>textOverrides</code></td>
+					<td>Optional button text and message elements to override the defaults.</td>
+					<td>Provide an object with one or more of the following properties.</td>
+					<td>
+						<dl>
+							<dt>buttonContinue</dt>
+							<dd>Text for the Continue Session button.</dd>
+							<dt>buttonEnd</dt>
+							<dd>Text for the End Session button.</dd>
+							<dt>buttonSignin</dt>
+							<dd>Text for the Sign In button.</dd>
+							<dt>timeoutEnd</dt>
+							<dd>Text for the message displayed below the timer.</dd>
+							<dt>timeoutAlready</dt>
+							<dd>Text for the message displayed when the session has expired.</dd>
 						</dl>
 					</td>
 				</tr>
