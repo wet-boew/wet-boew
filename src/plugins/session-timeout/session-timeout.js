@@ -77,13 +77,13 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 				const textOverrides = settings.textOverrides;
 				if ( textOverrides ) {
 					i18nText = {
-						buttonContinue: Object.hasOwn( textOverrides, "buttonContinue" ) ? textOverrides.buttonContinue : i18n( "st-btn-cont" ),
-						buttonEnd: Object.hasOwn( textOverrides, "buttonEnd" ) ? textOverrides.buttonEnd : i18n( "st-btn-end" ),
-						buttonSignin: Object.hasOwn( textOverrides, "buttonSignin" ) ? textOverrides.buttonSignin : i18n( "tmpl-signin" ),
+						buttonContinue: Object.hasOwn( textOverrides, "buttonContinue" ) ? DOMPurify.sanitize( textOverrides.buttonContinue ) : i18n( "st-btn-cont" ),
+						buttonEnd: Object.hasOwn( textOverrides, "buttonEnd" ) ? DOMPurify.sanitize( textOverrides.buttonEnd ) : i18n( "st-btn-end" ),
+						buttonSignin: Object.hasOwn( textOverrides, "buttonSignin" ) ? DOMPurify.sanitize( textOverrides.buttonSignin ) : i18n( "tmpl-signin" ),
 						timeoutBegin: i18n( "st-to-msg-bgn" ),
-						timeoutEnd: Object.hasOwn( textOverrides, "timeoutEnd" ) ? textOverrides.timeoutEnd : i18n( "st-to-msg-end" ),
+						timeoutEnd: Object.hasOwn( textOverrides, "timeoutEnd" ) ? DOMPurify.sanitize( textOverrides.timeoutEnd ) : i18n( "st-to-msg-end" ),
 						timeoutTitle: i18n( "st-msgbx-ttl" ),
-						timeoutAlready: Object.hasOwn( textOverrides, "timeoutAlready" ) ? textOverrides.timeoutAlready : i18n( "st-alrdy-to-msg" )
+						timeoutAlready: Object.hasOwn( textOverrides, "timeoutAlready" ) ? DOMPurify.sanitize( textOverrides.timeoutAlready ) : i18n( "st-alrdy-to-msg" )
 					};
 				} else {
 					i18nText = {
