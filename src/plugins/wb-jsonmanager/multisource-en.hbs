@@ -1,0 +1,121 @@
+---
+{
+	"title": "JSON Manager - Multiple data source to render a data table.",
+	"language": "en",
+	"description": "Merge multiple source and render a data table",
+	"tag": "jsonmanager",
+	"parentdir": "wb-jsonmanager",
+	"altLangPage": "multisource-fr.html",
+	"dateModified": "2024-12-27"
+}
+---
+
+<ul>
+	<li><a href="jsonmanager-en.html">Main example</a></li>
+	<li>Multiple data source to render a data table</li>
+</ul>
+
+<p>Technical note:</p>
+<ul>
+	<li>The data json plugin <code>data-wb-json</code> need to be set on the table element <code>&lt;table></code></li>
+	<li>The URLs set in the JSON manager must point to an array, otherwise the content are not going to be merged (concatenated)</li>
+</ul>
+
+<p>The following example merge twice the same data source. This result do show a duplicate for every entry.</p>
+
+<div data-wb-jsonmanager='{
+	"url": [
+		"../wb-data-json/demo/data-en.json#/addressList",
+		"../wb-data-json/demo/data-en.json#/addressList"
+	],
+	"name": "merged-source"
+}'></div>
+
+<!-- data-wb-json need to be set on the "table" element -->
+<table class="table wb-tables" data-wb-json='{
+	"url": "#[merged-source]",
+	"source": "#tbl3",
+	"mapping": [
+		{ "selector": "a", "value": "/name" },
+		{ "selector": "a", "value": "/homeUrl", "attr": "href" },
+		{ "selector": ".streetAdress", "value": "/num", "placeholder": "[[num]]" },
+		{ "selector": ".streetAdress", "value": "/street", "placeholder": "[[street]]" },
+		{ "selector": ".streetAdress", "value": "/city", "placeholder": "[[city]]" },
+		{ "selector": ".streetAdress", "value": "/postalCode", "placeholder": "[[pcode]]" },
+		{ "selector": ".email", "value": "/email", "attr": "href", "placeholder": "emailAddress@example.com" },
+		{ "selector": ".email", "value": "/email" }
+	]
+}'>
+
+	<caption>Binding with the data table plugin <code>wb-tables</code></caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Street Address</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<template id="tbl3">
+	<table>
+		<tr>
+			<td><a href=""></a></td>
+			<td>
+				<span class="streetAdress">[[num]] [[street]], [[city]], [[pcode]]</span>
+			</td>
+			<td><a class="email" href="mailto:emailAddress@example.com">emailAddress</a></td>
+		</tr>
+	</table>
+</template>
+
+<details class="mrgn-tp-lg">
+	<summary>Source code</summary>
+	<pre><code>&lt;div data-wb-jsonmanager='{
+	"url": [
+		"../wb-data-json/demo/data-en.json#/addressList",
+		"../wb-data-json/demo/data-en.json#/addressList"
+	],
+	"name": "merged-source"
+}'>&lt;/div>
+
+&lt;!-- data-wb-json need to be set on the "table" element -->
+&lt;table class="table wb-tables" data-wb-json='{
+	"url": "#[merged-source]",
+	"source": "#tbl3",
+	"mapping": [
+		{ "selector": "a", "value": "/name" },
+		{ "selector": "a", "value": "/homeUrl", "attr": "href" },
+		{ "selector": ".streetAdress", "value": "/num", "placeholder": "[[num]]" },
+		{ "selector": ".streetAdress", "value": "/street", "placeholder": "[[street]]" },
+		{ "selector": ".streetAdress", "value": "/city", "placeholder": "[[city]]" },
+		{ "selector": ".streetAdress", "value": "/postalCode", "placeholder": "[[pcode]]" },
+		{ "selector": ".email", "value": "/email", "attr": "href", "placeholder": "emailAddress@example.com" },
+		{ "selector": ".email", "value": "/email" }
+	]
+}'>
+
+	&lt;caption>Binding with the data table plugin &lt;code>wb-tables&lt;/code>&lt;/caption>
+	&lt;thead>
+		&lt;tr>
+			&lt;th>Name&lt;/th>
+			&lt;th>Street Address&lt;/th>
+			&lt;th>Email&lt;/th>
+		&lt;/tr>
+	&lt;/thead>
+	&lt;tbody>&lt;/tbody>
+&lt;/table>
+
+&lt;template id="tbl3">
+	&lt;table>
+		&lt;tr>
+			&lt;td>&lt;a href="">&lt;/a>&lt;/td>
+			&lt;td>
+				&lt;span class="streetAdress">[[num]] [[street]], [[city]], [[pcode]]&lt;/span>
+			&lt;/td>
+			&lt;td>&lt;a class="email" href="mailto:emailAddress@example.com">emailAddress&lt;/a>&lt;/td>
+		&lt;/tr>
+	&lt;/table>
+&lt;/template></code></pre>
+</details>

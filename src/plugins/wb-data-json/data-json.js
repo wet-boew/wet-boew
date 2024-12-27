@@ -228,8 +228,8 @@ var componentName = "wb-data-json",
 				return;
 			}
 
-			// Edge case, when both plugin are ready at the same time, just wait for the next tick
-			if ( !$.fn.dataTable.isDataTable( elm ) && elmClass.indexOf( componentName + "-dtwait" ) === -1 ) {
+			// Edge case, when both plugin are ready at the same time or when the datatables plugin are not fully ready, just wait for the next tick
+			if ( !$.fn.dataTable || !$.fn.dataTable.isDataTable( elm ) && elmClass.indexOf( componentName + "-dtwait" ) === -1 ) {
 				elm.classList.add( componentName + "-dtwait" );
 				setTimeout( function( ) {
 					applyTemplate( elm, settings, content );
