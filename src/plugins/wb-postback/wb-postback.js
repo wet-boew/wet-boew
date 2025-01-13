@@ -31,6 +31,7 @@ var $document = wb.doc,
 				selectorSuccess = settings.success,
 				selectorFailure = settings.failure || selectorSuccess;
 			const attrBlocked = "data-wb-blocked",
+				attrPIIBlocked = "data-wb-pii-blocked",
 				attrSending = "data-wb-sending";
 
 			elm.addEventListener( "submit", function( e ) {
@@ -50,50 +51,54 @@ var $document = wb.doc,
 				}
 
 				// Submit the form unless it's blocked or currently being sent
-				if ( !$( this ).attr( attrBlocked ) && !$( this ).attr( attrSending ) ) {
-					var data = $elm.serializeArray(),
-						btn = e.submitter,
-						$selectorSuccess = $( selectorSuccess ),
-						$selectorFailure = $( selectorFailure );
-
-					// Indicate that the form is currently being sent (to prevent multiple submissions in parallel)
-					$( this ).attr( attrSending, true );
-
-					// If the submit button contains a variable, add it to the form's paramaters
-					// Note: Submitting a form via Enter will act as if the FIRST submit button was pressed. Therefore, that button's variable will be added (as opposed to nothing). This is in line with default form submission behaviour.
-					if ( btn && btn.name ) {
-						data.push( { name: btn.name, value: btn.value } );
-					}
-
-					// Hide feedback messages
-					$selectorFailure.addClass( classToggle );
-					$selectorSuccess.addClass( classToggle );
-
-					// Send the form through ajax and ignore the response body.
-					$.ajax( {
-						type: this.method,
-						url: this.action,
-						data: $.param( data )
-					} )
-						.done( function() {
-							$elm.trigger( successEvent );
-							$selectorSuccess.removeClass( classToggle );
-						} )
-						.fail( function( response ) {
-							$elm.trigger( failEvent, response );
-							$selectorFailure.removeClass( classToggle );
-						} )
-						.always( function() {
-
-							// Hide the form unless multiple submits are allowed
-							if ( !multiple ) {
-								$elm.addClass( classToggle );
-							}
-
-							// Remove the sending indicator now that submission is fully complete (i.e. HTTP response code has been received)
-							$elm.removeAttr( attrSending );
-						} );
+				if ( !$( this ).attr( attrBlocked ) && !$( this ).attr( attrSending ) && !$( this ).attr( attrPIIBlocked ) ) {
+					$elm.trigger( componentName + ".submit", { e } );
 				}
+			} );
+
+			$elm.on( componentName + ".submit", function( event, submitEvent ) {
+				var data = $elm.serializeArray(),
+					btn = submitEvent.submitter,
+					$selectorSuccess = $( selectorSuccess ),
+					$selectorFailure = $( selectorFailure );
+
+				// Indicate that the form is currently being sent (to prevent multiple submissions in parallel)
+				$( this ).attr( attrSending, true );
+
+				// If the submit button contains a variable, add it to the form's paramaters
+				// Note: Submitting a form via Enter will act as if the FIRST submit button was pressed. Therefore, that button's variable will be added (as opposed to nothing). This is in line with default form submission behaviour.
+				if ( btn && btn.name ) {
+					data.push( { name: btn.name, value: btn.value } );
+				}
+
+				// Hide feedback messages
+				$selectorFailure.addClass( classToggle );
+				$selectorSuccess.addClass( classToggle );
+
+				// Send the form through ajax and ignore the response body.
+				$.ajax( {
+					type: this.method,
+					url: this.action,
+					data: $.param( data )
+				} )
+					.done( function() {
+						$elm.trigger( successEvent );
+						$selectorSuccess.removeClass( classToggle );
+					} )
+					.fail( function( response ) {
+						$elm.trigger( failEvent, response );
+						$selectorFailure.removeClass( classToggle );
+					} )
+					.always( function() {
+
+						// Hide the form unless multiple submits are allowed
+						if ( !multiple ) {
+							$elm.addClass( classToggle );
+						}
+
+						// Remove the sending indicator now that submission is fully complete (i.e. HTTP response code has been received)
+						$elm.removeAttr( attrSending );
+					} );
 			} );
 
 			wb.ready( $( elm ), componentName );

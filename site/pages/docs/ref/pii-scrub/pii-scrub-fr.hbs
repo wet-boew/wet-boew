@@ -1,0 +1,132 @@
+---
+{
+	"title": "Nettoyage d'IPI",
+	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
+	"description": "Remplacez les informations personnelles identifiables (IPI) des champs marqués par des caractères caviardés.",
+	"altLangPrefix": "pii-scrub",
+	"dateModified": "2024-11-19"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>But</h2>
+	<p>Ce composant permet de détecter et de remplacer les informations personnelles identifiables (IPI) par du contenu caviardé.</p>
+	<p>Voici la liste des IPI que le plugiciel recherchera et caviardera&nbsp;:</p>
+	<ul>
+		<li>Toutes les combinaisons de 9 chiffres et plus</li>
+		<li>Numéro de téléphone</li>
+		<li>Numéro de série du passeport canadien</li>
+		<li>E-mail</li>
+		<li>Code postal canadien</li>
+		<li>Toute valeur de nom d'utilisateur potentielle ajoutée dans ce format username=theUserValue, username:theUserValue, user=theUserValue, user:theUserValue</li>
+		<li>Toute valeur de mot de passe potentielle ajoutée dans ce format password=thePassValue, mot de passe:thePassValue pass=thePassValue, pass:thePassValue</li>
+	</ul>
+	<p>Un message contextuel informera l'utilisateur si un champ contient des informations personnelles et affichera le résultat des données nettoyées. L'utilisateur peut choisir de revenir au formulaire et de supprimer les données manuellement ou de procéder à la suppression automatique des informations personnelles.</p>
+	<p>Pour plus de détails sur le comportement de nettoyage des IPI, veuillez consulter l'assistant de base wet-boew:<code>wb.findPotentialPII</code>.</p>
+</section>
+
+<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>Les formulaires peuvent contenir des informations personnelles identifiables (IPI), ce plugiciel identifiera et caviardera ces informations.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Exemple pratique</h2>
+	<ul>
+		<li><a href="../../../demos/pii-scrub/pii-scrub-fr.html">Exemple en français</a></li>
+		<li><a hreflang="en" href="../../../demos/pii-scrub/pii-scrub-en.html">Exemple en anglais</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Comment implémenter le plugiciel</h2>
+	<ol>
+		<li>Ajoutez la classe CSS <code>wb-pii-scrub</code> à l'élément <code>&lt;form></code> contenant les champs que vous souhaitez nettoyer.</li>
+		<li>Ajoutez l'attribut suivant <code>data-scrub-field</code> pour chaque champ texte du formulaire susceptible de contenir des informations personnelles.
+			<pre><code>&lt;input id="email" name="email" type="email" <strong>data-scrub-field</strong> /&gt;</code></pre>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Options de configuration</h2>
+	<p>Toutes les options de configuration du plugiciel sont contrôlées par l'attribut <code>data-wb-pii-scrub</code>. Par exemple&nbsp;: <code>data-wb-pii-scrub='{ "scrubChar": "XXXXXXX" }'</code></p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Valeur par défaut</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>scrubChar</code></td>
+				<td>Utilisé pour définir par quelle chaîne les IPI seront remplacés.</td>
+				<td>String</td>
+				<td><code>********</code></td>
+			</tr>
+			<tr>
+				<td><code>modalTemplate</code></td>
+				<td>
+					<p>Utilisé pour définir le modèle HTML de la fenêtre modale affichée lorsque des informations personnelles sont trouvées dans un champ.</p>
+					<p>Votre modèle doit inclure les éléments suivants&nbsp;:</p>
+					<ul>
+						<li>L'espace réservé pour les champs IPI&nbsp;: <code>&lt;div data-scrub-modal-fields>&lt;/div></code>. Cet espace réservé sera rempli avec la liste des champs IPI et leur libellé associé.</li>
+						<li>Un bouton Annuler. Ce bouton doit avoir la classe CSS <code>popup-modal-dismiss</code>. Par exemple&nbsp;: <code>&lt;button type="button" class="btn btn-link btn-block <strong>popup-modal-dismiss</strong>">Revenir en arrière et modifier les champs&lt;/button></code></li>
+						<li>Un bouton Soumettre. Ce bouton doit avoir l'attribut <code>data-scrub-submit</code> et la classe CSS <code>popup-modal-dismiss</code>. Par exemple&nbsp;: <code>&lt;button type="button" class="btn btn-primary btn-block <strong>popup-modal-dismiss</strong>" <strong>data-scrub-submit</strong>>Envoyer le commentaire&lt;/button></code></li>
+					</ul>
+				</td>
+				<td>Sélecteur CSS</td>
+				<td>Voir l'exemple pratique pour le modèle HTML par défaut.</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Événements</h2>
+	<p>Voici les événements publics qui peuvent être utilisés par les implémenteurs ou les développeurs.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Effet déclenché</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-pii-scrub</code></td>
+				<td>Déclenché manuellement (e.g., <code>$( ".wb-pii-scrub" ).trigger( "wb-init.wb-pii-scrub" );</code>).</td>
+				<td>Utilisé pour initialiser manuellement le plugiciel Nettoyage d'IPI.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-pii-scrub</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement après l'initialisation du plugiciel Nettoyage d'IPI.</td>
+				<td><p>Utilisé afin d'identifier l'élément sur lequel le plugiciel Nettoyage d'IPI a été initialisé (la cible de l'événement)</p>
+					<pre><code>$( document ).on( "wb-ready.wb-pii-scrub", ".wb-pii-scrub", function( event ) {});</code></pre>
+					<pre><code>$( ".wb-pii-scrub" ).on( "wb-ready.wb-pii-scrub", function( event ) {});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.24+)</td>
+				<td>Déclenché automatiquement lorsque la WET-BOEW a terminé son chargement et son exécution.</td>
+				<td>Utilisé pour identifier le moment lorsque tous les plugiciels et tous les polyfills de la WET-BOEW ont terminé de charger et de s'exécuter.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/pii-scrub">Code source du plugiciel Data Scrub sur GitHub</a></p>
+</section>

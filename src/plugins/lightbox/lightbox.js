@@ -315,7 +315,7 @@ var componentName = "wb-lbx",
 
 		$wrap.on( "keydown", function( e ) {
 			if ( e.which === 9 ) {
-				var tabbable = $wrap.find( ".mfp-container :tabbable:visible" ),
+				var tabbable = $wrap.find( ".mfp-container :tabbable" ),
 					firstTabbable = tabbable.first()[ 0 ],
 					lastTabbable = tabbable.last()[ 0 ],
 					currentFocus = $( document.activeElement )[ 0 ];

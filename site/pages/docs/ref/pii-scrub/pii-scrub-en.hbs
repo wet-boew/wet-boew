@@ -1,0 +1,133 @@
+---
+{
+	"title": "PII Scrub",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Replace Personal Identifiable Information (PII) from the form flagged fields with redacted characters.",
+	"altLangPrefix": "pii-scrub",
+	"dateModified": "2024-11-19"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+
+<section>
+	<h2>Purpose</h2>
+	<p>This component provides the ability to detect replace Personal Identifiable Information (PII) with redacted content.</p>
+	<p>Here is the list of the PII that the plugin will search and redact:</p>
+	<ul>
+		<li>All the combinations of 9 digits and more</li>
+		<li>Phone number</li>
+		<li>Canadian serial passport number</li>
+		<li>Email</li>
+		<li>Canadian postal code</li>
+		<li>Any potential user name values added in this format username=theUserValue, username:theUserValue, user=theUserValue, user:theUserValue</li>
+		<li>Any potential password values added in this format password=thePassValue, password: thePassValue pass=thePassValue, pass:thePassValue</li>
+	</ul>
+	<p>A popup message will inform the user if any field contains personal information and will show the output of the scrubbed data. The user can choose to go back to the form and delete the data manually or to proceed with scrubbing the personal information automatically.</p>
+	<p>For more details about the scrubbing PII behaviour please check on the wet-boew core helper <code>wb.findPotentialPII</code>.</p>
+</section>
+
+<section>
+	<h2>Use when</h2>
+	<ul>
+		<li>Forms might contain Personal Identifiable Information (PII), this plugin will identify and redact this information.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/pii-scrub/pii-scrub-en.html">English example</a></li>
+		<li><a hreflang="fr" href="../../../demos/pii-scrub/pii-scrub-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Add the CSS class <code>wb-pii-scrub</code> to the <code>&lt;form></code> element containing fields you want to scrub.</li>
+		<li>Add the attribute <code>data-scrub-field</code> to each text field that might contain personal information.
+			<pre><code>&lt;input id="email" name="email" type="email" <strong>data-scrub-field</strong> /&gt;</code></pre>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p>All configuration options of the plugin are controlled by the <code>data-wb-pii-scrub</code> attribute. For example: <code>data-wb-pii-scrub='{ "scrubChar": "XXXXXXX" }'</code></p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Default</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>scrubChar</code></td>
+				<td>Used to define with what string the PII will be replaced with.</td>
+				<td>String</td>
+				<td><code>********</code></td>
+			</tr>
+			<tr>
+				<td><code>modalTemplate</code></td>
+				<td>
+					<p>Used to define the HTML template for the modal displayed when PII is found in a field.</p>
+					<p>Your template must include the following:</p>
+					<ul>
+						<li>The placeholder for PII fields: <code>&lt;div data-scrub-modal-fields>&lt;/div></code>. This placeholder will be filled with the list of PII fields and their associated label.</li>
+						<li>A cancel button. This button must have the CSS class <code>popup-modal-dismiss</code>. For example: <code>&lt;button type="button" class="btn btn-link btn-block <strong>popup-modal-dismiss</strong>">Go back and edit comment&lt;/button></code></li>
+						<li>A submit button. This button must have the attribute <code>data-scrub-submit</code> and the CSS class <code>popup-modal-dismiss</code>. For example: <code>&lt;button type="button" class="btn btn-primary btn-block <strong>popup-modal-dismiss</strong>" <strong>data-scrub-submit</strong>>Submit comment&lt;/button></code></li>
+					</ul>
+				</td>
+				<td>CSS selector</td>
+				<td>View working example for default HTML template.</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<p>The following are the public events that can be used by implementers or developers.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-pii-scrub</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-pii-scrub" ).trigger( "wb-init.wb-pii-scrub" );</code>).</td>
+				<td>Used to manually initialize the wb-pii-scrub plugin</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-pii-scrub</code> (v4.0.24+)</td>
+				<td>Triggered automatically after wb-pii-scrub initializes.</td>
+				<td><p>Used to identify the element where steps form has initialized (target of the event)</p>
+					<pre><code>$( document ).on( "wb-ready.wb-pii-scrub", ".wb-pii-scrub", function( event ) {});</code></pre>
+					<pre><code>$( ".wb-pii-scrub" ).on( "wb-ready.wb-pii-scrub", function( event ) {});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.24+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/pii-scrub">Data Scrub source code on GitHub</a></p>
+</section>
