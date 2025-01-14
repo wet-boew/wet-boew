@@ -1,0 +1,26 @@
+---
+{
+	"title": "Session Timeout with text overrides",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Helps Web asset owners to provide session timeout and inactivity timeout functionality.",
+	"tag": "session-timeout-text-override",
+	"parentdir": "session-timeout",
+	"altLangPrefix": "session-timeout-text-override",
+	"dateModified": "2024-12-16"
+}
+---
+
+<span class="wb-sessto" data-wb-sessto='{"inactivity": 30000, "reactionTime": 30000, "logouturl": "../index-en.html", "textOverrides": {"buttonContinue": "Keep Going", "buttonEnd": "Goodbye", "timeoutAlready": "You took too long.  Bye!", "buttonSignin": "Start Over", "timeoutEnd": "Are you still there?"}}'></span>
+
+
+<section>
+	<h2 id="how">How do I use it?</h2>
+	<p>Add the <code>textOverrides</code> option to the session timeout element. Here is the current page's example:</p>
+	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"inactivity": 30000, "reactionTime": 30000, "logouturl": "../index-en.html", "textOverrides": {"buttonContinue": "Keep Going", "buttonEnd": "Goodbye", "timeoutAlready": "You took too long.  Bye!", "buttonSignin": "Start Over", "timeoutEnd": "Are you still there?"}}'&gt;&lt;/span&gt;</code></pre>
+</section>
+
+<section>
+	<h2 id="try">Try it out!</h2>
+	<p>This page has a 30 seconds inactivity timeout period. You also have 30 seconds to confirm if you want to keep the session alive. Please wait for the prompt to appear.</p>
+</section>
