@@ -1582,7 +1582,6 @@ function visible( element ) {
 
 $.extend( $.expr.pseudos, {
 	data: function( elem, index, match ) {
-		// Handles both old-style and createPseudo if needed
 		return !!$.data( elem, match[ 3 ] );
 	},
 	focusable: function( element ) {
