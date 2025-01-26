@@ -72,7 +72,7 @@
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-uglify": "github:wet-boew/grunt-contrib-uglify#v1.0.0",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^23.0.0",
+    "grunt-eslint": "^24.3.0",
     "grunt-gh-pages": "^4.0.0",
     "grunt-html": "^15.2.2",
     "grunt-i18n-csv": "^0.1.0",

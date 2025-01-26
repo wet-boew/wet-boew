@@ -50,6 +50,14 @@
       "env": {
         "mocha": true
       }
+    },
+    {
+      "files":[
+        "test-runner.js"
+      ],
+      "env": {
+        "node": true
+      }
     }
   ]
 }
