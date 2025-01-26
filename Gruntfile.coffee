@@ -1301,13 +1301,19 @@ module.exports = (grunt) ->
 
 		eslint:
 			options:
-				configFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
+				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
 				quiet: true
 			all:
 				src: [
-					"site/**/*.js"
-					"src/**/*.js"
-					"theme/**/*.js"
+					"**/*.js"
+
+					# Copied ignores from .editorconfig
+					"!node_modules/**/*.js"
+					"!dist/**/*.js"
+					"!src/polyfills/slider/slider.js"
+					"!src/polyfills/events/mobile.js"
+					"!lib/**/*.js"
+					"!src/core/dep/modernizr-custom.js"
 				]
 
 		connect:

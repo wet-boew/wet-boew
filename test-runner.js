@@ -15,46 +15,46 @@ const webPageUrlToTest = "http://localhost:8000/unmin/test/test.html?txthl=just%
 
 // Import/required
 const puppeteer = require( "puppeteer" );
-const connect = require('connect');
-const path = require('path');
+const connect = require( "connect" );
+const path = require( "path" );
 const connectServer = connect();
-const serveIndex = require('serve-index');
-const serveStatic = require('serve-static');
+const serveIndex = require( "serve-index" );
+const serveStatic = require( "serve-static" );
 const basePath = path.resolve( baseFolder );
 
 // Start the web server
 connectServer.use( serveStatic( basePath ) );
 connectServer.use( serveIndex( basePath ) );
-webServer = connectServer.listen( webServerPort );
+const webServer = connectServer.listen( webServerPort );
 console.log( "Web server started" );
 
 // Sleep utility function
 function sleep( ms ) {
 	ms = ms || 1000;
-	return new Promise( resolve => setTimeout( resolve, ms) );
+	return new Promise( resolve => setTimeout( resolve, ms ) );
 }
 
 // Run the test into the headless Chromium browser
 puppeteer.launch( {
-		headless: true,
-		args: [
-			'--no-sandbox',
-			'--disable-setuid-sandbox'
-		],
-		slowMo: 50
-	} ).then( async browser => {
+	headless: true,
+	args: [
+		"--no-sandbox",
+		"--disable-setuid-sandbox"
+	],
+	slowMo: 50
+} ).then( async browser => {
 
 	// Wait a little to help concurrent test
-    await sleep( 1000 );
+	await sleep( 1000 );
 
 	console.log( "Puppeteer Chromium started, navigating to:\n" + webPageUrlToTest );
 	const page = await browser.newPage();
 
-	page.on( 'console', msg => {
+	page.on( "console", msg => {
 		console.log( "LOG" );
 		console.log( msg );
 	} );
-	page.on( 'pageerror', msg => {
+	page.on( "pageerror", msg => {
 		console.log( "ERR" );
 		console.log( msg );
 	} );
@@ -106,7 +106,9 @@ puppeteer.launch( {
 
 	// Close the browser and webserver
 	await browser.close();
-	await webServer.close( () => { console.log( "Web server terminated" ); } );
+	await webServer.close( () => {
+		console.log( "Web server terminated" );
+	} );
 
 	// Print the stats
 	console.log( "\n=== Test results ===\n" );
