@@ -58,7 +58,7 @@ var $document = wb.doc,
 
 			$elm.on( componentName + ".submit", function( event, submitEvent ) {
 				var data = $elm.serializeArray(),
-					btn = submitEvent.submitter,
+					btn = submitEvent.e.submitter,
 					$selectorSuccess = $( selectorSuccess ),
 					$selectorFailure = $( selectorFailure );
 
