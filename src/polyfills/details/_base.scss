@@ -49,14 +49,3 @@ details {
 		}
 	}
 }
-
-// Prevent FOUC when polyfill is disabled
-.wb-disable {
-	details {
-		& > {
-			*:not(summary) {
-				display: block !important;
-			}
-		}
-	}
-}
