@@ -52,13 +52,12 @@ var $document = wb.doc,
 
 				// Submit the form unless it's blocked or currently being sent
 				if ( !$( this ).attr( attrBlocked ) && !$( this ).attr( attrSending ) && !$( this ).attr( attrPIIBlocked ) ) {
-					$elm.trigger( componentName + ".submit", { e } );
+					$elm.trigger( componentName + ".submit", e.submitter );
 				}
 			} );
 
-			$elm.on( componentName + ".submit", function( event, submitEvent ) {
+			$elm.on( componentName + ".submit", function( event, submitter ) {
 				var data = $elm.serializeArray(),
-					btn = submitEvent.e.submitter,
 					$selectorSuccess = $( selectorSuccess ),
 					$selectorFailure = $( selectorFailure );
 
@@ -67,8 +66,8 @@ var $document = wb.doc,
 
 				// If the submit button contains a variable, add it to the form's paramaters
 				// Note: Submitting a form via Enter will act as if the FIRST submit button was pressed. Therefore, that button's variable will be added (as opposed to nothing). This is in line with default form submission behaviour.
-				if ( btn && btn.name ) {
-					data.push( { name: btn.name, value: btn.value } );
+				if ( submitter && submitter.name ) {
+					data.push( { name: submitter.name, value: submitter.value } );
 				}
 
 				// Hide feedback messages

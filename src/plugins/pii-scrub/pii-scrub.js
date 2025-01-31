@@ -19,6 +19,8 @@ var $document = wb.doc,
 		scrubChar: "********"
 	},
 	i18n, i18nText,
+	currSubmitter,
+	btnAsInput,
 
 	init = function( event ) {
 		var elm = wb.init( event, componentName, selector ),
@@ -55,8 +57,8 @@ var $document = wb.doc,
 			// Block form submission for Postback forms by default
 			elm.setAttribute( attrPIIBlocked, "true" );
 
-			elm.addEventListener( "submit", function( event ) {
-				event.preventDefault(); // This is needed because of the setTimeout
+			elm.addEventListener( "submit", function( e ) {
+				e.preventDefault(); // This is needed because of the setTimeout
 
 				// Go through form values
 				checkFormValues( elm );
@@ -66,6 +68,16 @@ var $document = wb.doc,
 					let errorElm = elm.querySelector( ".error .label.label-danger" );
 
 					if ( !errorElm ) {
+						currSubmitter = e.submitter;
+
+						// Add submitter data if it is present (only if not a Postback form as it has its own method)
+						if ( currSubmitter.name && !elm.classList.contains( "wb-postback" ) ) {
+							btnAsInput = document.createElement( "input" );
+							btnAsInput.type = "hidden";
+							btnAsInput.name = currSubmitter.name;
+							btnAsInput.value = currSubmitter.value;
+							elm.appendChild( btnAsInput );
+						}
 
 						// Open modal
 						if ( elm.PIIFields.length > 0 ) {
@@ -80,7 +92,7 @@ var $document = wb.doc,
 							] );
 						} else {
 							if ( elm.classList.contains( "wb-postback" ) ) {
-								$( elm ).trigger( "wb-postback.submit", { event } );
+								$( elm ).trigger( "wb-postback.submit", currSubmitter );
 							} else {
 								elm.submit();
 							}
@@ -209,14 +221,14 @@ var $document = wb.doc,
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Scrub the form fields on click of the "Confirm" button
-$document.on( "click", "#" + piiModalID + " [" + attrScrubSubmit + "]", function( event ) {
+$document.on( "click", "#" + piiModalID + " [" + attrScrubSubmit + "]", function( ) {
 	let modal = document.getElementById( piiModalID ),
 		form = document.getElementById( modal.dataset.form );
 
 	scrubFormValues( form );
 
 	if ( form.classList.contains( "wb-postback" ) ) {
-		$( form ).trigger( "wb-postback.submit", { event } );
+		$( form ).trigger( "wb-postback.submit", currSubmitter );
 	} else {
 		form.submit();
 	}
