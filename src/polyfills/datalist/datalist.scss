@@ -9,6 +9,7 @@
 
 .wb-al-cnt {
 	@extend %datalist-height;
+
 	border: 1px solid transparent;
 	margin-top: -6px;
 	position: absolute;
@@ -16,6 +17,7 @@
 
 	.wb-al {
 		@extend %datalist-height;
+
 		background: #fff;
 		border: 1px solid #666;
 		border-top: 0;

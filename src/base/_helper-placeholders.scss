@@ -34,11 +34,13 @@
 %global-centered-overlay {
 	&:after {
 		@extend %global-centered-overlay-container;
+
 		z-index: 1;
 	}
 
 	&:before {
 		@extend %global-centered-overlay-container;
+
 		background: rgba(0, 0, 0, .7);
 		border-radius: 10px;
 	}
@@ -55,12 +57,14 @@
 			name: spin;
 			timing-function: linear;
 		}
+
 		color: #fff;
 		content: "\e031";
 		font: {
 			family: "Glyphicons Halflings";
 			size: 3.5em;
 		}
+
 		height: 1em;
 		line-height: 1.03;
 		width: 1em;

@@ -146,6 +146,7 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
+			"stylelint:scss"
 			"sass"
 			"concat:supports"
 			"postcss"
@@ -761,6 +762,9 @@ module.exports = (grunt) ->
 
 			demos:
 				src: "dist/unmin/demos/**/*.css"
+
+			scss:
+				src: "**/*.scss"
 
 		# Minify
 		uglify:

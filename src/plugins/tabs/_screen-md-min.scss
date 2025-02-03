@@ -11,6 +11,7 @@
 				style: $tabpanel-border-style;
 				width: $tabpanel-border-width;
 			}
+
 			display: none;
 
 			&[open] {
@@ -46,6 +47,7 @@
 								style: $carousel-s2-tablist-thumbnail-active-border-style;
 								width: $carousel-s2-tablist-thumbnail-active-border-width;
 							}
+
 							margin-bottom: 1px;
 							padding: 0;
 

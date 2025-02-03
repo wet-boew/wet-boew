@@ -14,6 +14,7 @@ legend,
 	&.required {
 		&:before {
 			@extend %forms-color-red-bold;
+
 			content: "* ";
 			margin-left: -$wb-forms-asterisk-width;
 			vertical-align: top;

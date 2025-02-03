@@ -113,7 +113,8 @@ abbr[title] {
 	abbr[title] {
 		border-bottom: 0;
 		text-decoration: underline dotted;
-		//Next line ported from Bootstrap 4
+
+		// Next line ported from Bootstrap 4
 		text-decoration-skip-ink: none; // sass-lint:disable-line no-misspelled-properties
 	}
 }
@@ -152,7 +153,7 @@ blockquote {
 	}
 }
 
-//Overiding mark to have a better contrast ratio
+// Overriding mark to have a better contrast ratio
 mark {
 	background-color: $txthl-bg-color;
 	color: $txthl-color;

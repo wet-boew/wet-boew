@@ -23,6 +23,7 @@
 
 	h3 {
 		@extend %data-inview-bar-demo-gutter;
+
 		background-color: #f5f5f5;
 		border-bottom: 1px solid #ddd;
 	}
@@ -36,6 +37,7 @@
 
 	ul {
 		@extend %data-inview-bar-demo-inline-block;
+
 		margin-bottom: 0;
 
 		li {
