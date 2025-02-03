@@ -112,6 +112,7 @@
 	@extend %slider-display-block;
 	@extend %slider-height-20;
 	@extend %slider-width-100perc;
+
 	cursor: pointer;
 	margin: 0 0 10px;
 	position: relative;
@@ -142,6 +143,7 @@
 	@extend %slider-background-color-ddd;
 	@extend %slider-border-radius-2;
 	@extend %slider-background-clip-padding-box;
+
 	background-image: linear-gradient(#ececec, #ccc);
 	border: 1px solid #606060;
 	border: 1px solid rgba(187, 187, 187, .8);
@@ -176,6 +178,7 @@
 	@extend %slider-padding-0;
 	@extend %slider-position-absolute;
 	@extend %slider-z-index-3;
+
 	background-image: linear-gradient(to right, #89a5bd, #165c91);
 	left: 11px;
 	line-height: 2px;
@@ -199,6 +202,7 @@
 		image: url("../../assets/fd-slider-sprite.png");
 		position: 0 0;
 	}
+
 	cursor: W-resize;
 	font-size: 10px;
 	line-height: 20px;
@@ -323,6 +327,7 @@ input {
 
 #html5shim-4 {
 	@extend %slider-width-20;
+
 	height: 400px;
 }
 

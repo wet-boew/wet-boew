@@ -7,6 +7,7 @@
 
 %twitter-overlay {
 	@extend %accessible-invisible;
+
 	align-items: center;
 	display: flex;
 	font-weight: 700;
@@ -19,6 +20,7 @@
 
 	&:focus {
 		@extend %accessible-invisible-show;
+
 		height: auto;
 		margin: 0;
 		position: absolute;
@@ -66,11 +68,13 @@
 			+ {
 				.twitter-timeline-loading {
 					@extend %global-loading;
+
 					margin-top: 5px;
 					min: {
 						height: 100px;
 						width: 100px;
 					}
+
 					position: relative;
 
 					/* Align the loading icon leftwards by default */
@@ -134,6 +138,7 @@
 			a {
 				&:focus {
 					@include border-top-radius($twitter-iframe-border-radius);
+
 					top: 0;
 				}
 			}
@@ -143,6 +148,7 @@
 			a {
 				&:focus {
 					@include border-bottom-radius($twitter-iframe-border-radius);
+
 					bottom: 0;
 				}
 			}
@@ -150,6 +156,7 @@
 
 		a {
 			@extend %twitter-overlay;
+
 			background-color: $twitter-skip-background-color;
 			color: $twitter-skip-color;
 		}
@@ -165,6 +172,7 @@
 		&[tabindex] {
 			@extend %twitter-overlay;
 			@include border-bottom-radius($twitter-iframe-border-radius);
+
 			background-color: $twitter-end-background-color;
 			border: 1px solid $twitter-iframe-border-color;
 			bottom: 0;

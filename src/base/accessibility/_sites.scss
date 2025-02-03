@@ -37,6 +37,7 @@
 
 .wb-sl {
 	@extend %accessible-invisible;
+
 	padding: 5px;
 	z-index: 501;
 
@@ -55,6 +56,7 @@
 
 		.wb-sl {
 			@extend %accessible-invisible-show;
+
 			background: none;
 			color: $link-color;
 			display: block !important;

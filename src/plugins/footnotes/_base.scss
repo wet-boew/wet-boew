@@ -25,6 +25,7 @@
 
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
+
 	line-height: 1.15;
 	margin-left: 5px;
 
@@ -42,6 +43,7 @@
 
 	h2 {
 		@extend %fnote-margin-top-spacing;
+
 		margin-left: 0;
 		margin-right: 0;
 	}
@@ -116,6 +118,7 @@
 
 		a {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
+
 			display: inline-block;
 			margin-top: 0;
 			padding-bottom: 0;

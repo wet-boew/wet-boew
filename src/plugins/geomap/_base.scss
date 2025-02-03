@@ -637,6 +637,7 @@ ol-geolocate button {
 
 .wb-geomap-geoloc-al-cnt {
 	@extend %datalist-height;
+
 	border: 1px solid transparent;
 	left: 0;
 	margin-top: 0;
@@ -645,6 +646,7 @@ ol-geolocate button {
 
 	.wb-geomap-geoloc-al {
 		@extend %datalist-height;
+
 		-webkit-overflow-scrolling: touch; // mobile safari
 		background: #fff;
 		border: solid 1px #ccc;

@@ -26,8 +26,7 @@
 }
 
 .wb-calevt-cal {
-
-	//TODO: Remove this and make fluid the default
+	// TODO: Remove this and make fluid the default
 	width: 19em;
 
 	.cal-days {
@@ -58,7 +57,7 @@
 		padding: .5em;
 	}
 
-	//TODO: Remove this and make fluid the default
+	// TODO: Remove this and make fluid the default
 	&.cal-cnt-fluid {
 		width: 100%;
 	}
