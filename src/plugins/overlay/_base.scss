@@ -12,6 +12,7 @@
 	border: 0;
 	border-radius: 0;
 	display: none;
+
 	// Push the element onto the GPU stack
 	transform: translateZ(0);
 	z-index: 1050;
@@ -49,26 +50,31 @@
  */
 .wb-panel-l {
 	@extend %overlay-panel;
+
 	left: 0;
 }
 
 .wb-panel-r {
 	@extend %overlay-panel;
+
 	right: 0;
 }
 
 .wb-bar-t {
 	@extend %overlay-bar;
+
 	top: 0;
 }
 
 .wb-bar-b {
 	@extend %overlay-bar;
+
 	bottom: 0;
 }
 
 .wb-popup-mid {
 	@extend %overlay-popup;
+
 	border-radius: 6px;
 	bottom: 0;
 	left: 0;

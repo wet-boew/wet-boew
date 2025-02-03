@@ -54,6 +54,7 @@ $tab-margin-width: 10px;
 
 				&::before {
 					@extend %carousel-tabpanel-link-outline-common;
+
 					height: calc(100% - #{$carousel-tabpanel-outline-offset * 2});
 					margin: 2px;
 					outline-color: $carousel-tabpanel-outline-color-inner;
@@ -62,6 +63,7 @@ $tab-margin-width: 10px;
 
 				&::after {
 					@extend %carousel-tabpanel-link-outline-common;
+
 					height: calc(100% - #{$carousel-tabpanel-outline-offset});
 					margin: 1px;
 					top: 0;
@@ -196,6 +198,7 @@ $tab-margin-width: 10px;
 	> {
 		.tabpanels {
 			@extend %tabs-details-padding-6-12;
+
 			overflow: hidden;
 			position: relative;
 		}
@@ -212,12 +215,14 @@ $tab-margin-width: 10px;
 		> {
 			li {
 				@extend %tabs-display-inline-block;
+
 				background: $tablist-bg-color;
 				border: {
 					color: $tablist-border-color;
 					style: $tablist-border-style;
 					width: $tablist-border-width;
 				}
+
 				color: $carousel-tablist-tabcount-color;
 				cursor: pointer;
 				display: table-cell;
@@ -227,7 +232,9 @@ $tab-margin-width: 10px;
 
 				a {
 					@extend %tabs-display-inline-block;
+
 					color: $tablist-color;
+
 					// changed padding and margin from em to px to fix web-kit layout issue
 					padding: 10px;
 					text-decoration: none;
@@ -249,6 +256,7 @@ $tab-margin-width: 10px;
 					} @else {
 						background: $body-bg;
 					}
+
 					border-bottom: 0;
 					cursor: default;
 					padding-bottom: 1px;
@@ -260,6 +268,7 @@ $tab-margin-width: 10px;
 							style: $tablist-active-link-border-style;
 							width: $tablist-active-link-border-width;
 						}
+
 						cursor: default;
 						padding-top: 6px;
 					}
@@ -301,6 +310,7 @@ $tab-margin-width: 10px;
 
 			li {
 				@extend %tabs-tablist-li-margin;
+
 				display: inline-block;
 				left: auto;
 			}
@@ -319,6 +329,7 @@ $tab-margin-width: 10px;
 	&.carousel-s1 {
 		@extend %carousel-tabpanel-link;
 		@extend %carousel-tabpanel-video;
+
 		border-top: 0;
 
 		[role="tablist"] {
@@ -386,6 +397,7 @@ $tab-margin-width: 10px;
 	&.carousel-s2 {
 		@extend %carousel-tabpanel-link;
 		@extend %carousel-tabpanel-video;
+
 		background: $carousel-s2-tablist-controls-bg-color;
 
 		[role="tablist"] {
@@ -398,6 +410,7 @@ $tab-margin-width: 10px;
 					@extend %global-display-none;
 					@extend %tab-zindex-100;
 					@extend %tabs-tablist-li-margin;
+
 					background: transparent;
 					border: 0;
 
@@ -411,6 +424,7 @@ $tab-margin-width: 10px;
 						a {
 							@extend %carousel-s2-prv-nxt-a-common;
 							@extend %carousel-s2-btn-color;
+
 							padding-left: 1em;
 
 							.glyphicon {
@@ -462,6 +476,7 @@ $tab-margin-width: 10px;
 						a {
 							@extend %carousel-s2-btn-common;
 							@extend %carousel-s2-btn-color;
+
 							font-size: 1.5em;
 							margin-right: .65em;
 							margin-top: .4em;

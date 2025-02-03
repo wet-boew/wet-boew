@@ -15,12 +15,14 @@
 
 %pagination-left-arrow {
 	@extend %glyphicon-inline-icons;
+
 	content: "\e091";
 	margin-right: .5em;
 }
 
 %pagination-right-arrow {
 	@extend %glyphicon-inline-icons;
+
 	content: "\e092";
 	margin-left: .5em;
 }

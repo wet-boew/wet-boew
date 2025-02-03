@@ -174,7 +174,7 @@
 /* Small view and over */
 @media screen and (min-width: $screen-sm-min) {
 	@import "views/screen-sm-min";
-	@import "views/_bootstrap-4-screen-sm-min";
+	@import "views/bootstrap-4-screen-sm-min";
 	@import "proximity/screen-sm-min";
 	@import "../plugins/filter/screen-sm-min";
 }

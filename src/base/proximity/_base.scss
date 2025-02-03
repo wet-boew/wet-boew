@@ -193,21 +193,25 @@
 
 .brdr-lft {
 	@extend %proximity-border-base;
+
 	border-left-width: 1px;
 }
 
 .brdr-rght {
 	@extend %proximity-border-base;
+
 	border-right-width: 1px;
 }
 
 .brdr-tp {
 	@extend %proximity-border-base;
+
 	border-top-width: 1px;
 }
 
 .brdr-bttm {
 	@extend %proximity-border-base;
+
 	border-bottom-width: 1px;
 }
 

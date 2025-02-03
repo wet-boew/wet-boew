@@ -167,6 +167,7 @@ table {
 	&.dataTable {
 		@extend %tables-box-sizing-content-box;
 		@extend %tables-clear-both;
+
 		border-collapse: separate;
 		border-spacing: 0;
 		margin: 0 auto;
@@ -210,16 +211,19 @@ table {
 
 			.sorting-icons {
 				@extend %global-display-none;
+
 				margin-top: 2px;
 
 				&:before {
 					@extend %glyphicon-inline-icons;
+
 					content: "\e093";
 					padding: 0 .1em 0 0;
 				}
 
 				&:after {
 					@extend %glyphicon-inline-icons;
+
 					content: "\e094";
 					padding: 0 .04em 0 .06em;
 				}
@@ -903,6 +907,7 @@ table {
 
 %tables-pagination-first-button {
 	@include border-left-radius($border-radius-base);
+
 	margin-left: 0;
 }
 
@@ -918,6 +923,7 @@ table {
 	.dataTables_filter {
 		@extend %tables-color-333;
 		@extend %tables-font-weight-400;
+
 		float: left;
 		margin-right: 15px;
 
@@ -945,12 +951,14 @@ table {
 	.dataTables_length {
 		@extend %tables-color-333;
 		@extend %tables-font-weight-400;
+
 		display: inline-block;
 		margin-top: 5px;
 	}
 
 	.dataTables_info {
 		@extend %tables-color-333;
+
 		display: inline-block;
 	}
 
@@ -1020,6 +1028,7 @@ table {
 
 	.dataTables_processing {
 		@extend %tables-color-333;
+
 		background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .9) 25%, rgba(255, 255, 255, .9) 75%, rgba(255, 255, 255, 0) 100%);
 		background-color: #fff;
 		font-size: 1.2em;

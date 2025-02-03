@@ -32,23 +32,27 @@ h2,
 h3,
 .h3 {
 	@extend %font-weight-700;
+
 	margin-top: ceil($line-height-computed * $font-scale-xl);
 }
 
 h4,
 .h4 {
 	@extend %font-weight-700;
+
 	margin-top: ceil($line-height-computed * $font-scale-lg);
 }
 
 h5,
 .h5 {
 	@extend %font-weight-700;
+
 	margin-top: $line-height-computed;
 }
 
 h6,
 .h6 {
 	@extend %font-weight-700;
+
 	margin-top: ceil($line-height-computed * $font-scale-sm);
 }

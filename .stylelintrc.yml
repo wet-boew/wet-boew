@@ -1,5 +1,6 @@
 extends:
   - stylelint-config-standard
+  - stylelint-config-standard-scss
 
 plugins:
   - "@double-great/stylelint-a11y"
@@ -59,6 +60,12 @@ rules:
   a11y/no-outline-none: null
   a11y/no-text-align-justify: null # Bootstrap 3.4.x comes with a .text-justify class
   a11y/selector-pseudo-class-focus: null
+
+  # standard-
+  no-invalid-position-at-import-rule: null # Fixable, need to run sass migrator
+  scss/comment-no-empty: null
+  scss/dollar-variable-pattern: null # Fixable
+  scss/no-global-function-names: null # Fixable, need to run sass migrator
 
 ignoreFiles:
   - "**/*.min.css"
