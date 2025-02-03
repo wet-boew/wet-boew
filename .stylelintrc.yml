@@ -19,38 +19,30 @@ rules:
   alpha-value-notation: number
   at-rule-empty-line-before: null
   at-rule-no-vendor-prefix: null
-  block-closing-brace-newline-before: null # Deprecated, slow
   color-function-notation: null
-  color-hex-case: null # Deprecated
   color-hex-length: null
   comment-empty-line-before: null
   comment-whitespace-inside: null
   declaration-block-no-redundant-longhand-properties: null
   declaration-block-no-duplicate-properties: null # Needed to fix build because of bootstrap-sass/assets/stylesheets/bootstrap/normalize line 113
-  declaration-block-semicolon-space-before: null # Deprecated, can't use due to a Dart Sass bug with Bootstrap 3.4.x's IE8 hacks (property values ending with \9)
+  declaration-property-value-no-unknown: null # Uses legacy syntax
+  declaration-property-value-keyword-no-deprecated: null # Fix use of break-word
   font-family-name-quotes: null
   function-name-case: null
   function-url-quotes: null
-  indentation: null # Deprecated, very slow
   length-zero-no-unit: null
-  max-line-length: null # Deprecated
+  media-feature-range-notation: "prefix" # Uses legacy syntax
   media-feature-name-no-vendor-prefix: null
-  no-missing-end-of-source-newline: null # Deprecated
-  number-leading-zero: null # Deprecated
   number-max-precision: null
-  number-no-trailing-zeros: null # Deprecated
   property-no-vendor-prefix: null
   rule-empty-line-before: null
   selector-attribute-quotes: null
   selector-class-pattern: null
-  selector-descendant-combinator-no-non-space: null # Deprecated
   selector-id-pattern: null
-  selector-list-comma-newline-after: null # Deprecated, slow
   selector-not-notation: null
   selector-no-vendor-prefix: null
   selector-pseudo-element-colon-notation: null
   shorthand-property-no-redundant-values: null
-  string-quotes: null # Deprecated
   value-keyword-case: null
   value-no-vendor-prefix: null
 
@@ -67,3 +59,7 @@ rules:
   a11y/no-outline-none: null
   a11y/no-text-align-justify: null # Bootstrap 3.4.x comes with a .text-justify class
   a11y/selector-pseudo-class-focus: null
+
+ignoreFiles:
+  - "**/*.min.css"
+  - "lib/**"
