@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 8
+          distribution: "temurin"
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
