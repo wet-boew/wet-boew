@@ -221,19 +221,10 @@ var componentName = "wb-data-json",
 		if ( elm.tagName === "TABLE" && elmClass.indexOf( "wb-tables" ) !== -1 ) {
 
 			//  Wait for its initialization before to applyTemplate
-			if ( elmClass.indexOf( "wb-tables-inited" ) === -1 ) {
-				$( elm ).one( "wb-ready.wb-tables,init.dt", function( ) {
+			if ( elmClass.indexOf( "wb-tables-inited" ) === -1 || !$.fn.dataTable || !$.fn.dataTable.isDataTable( elm ) ) {
+				$( elm ).one( "wb-ready.wb-tables", function( ) {
 					applyTemplate( elm, settings, content );
 				} );
-				return;
-			}
-
-			// Edge case, when both plugin are ready at the same time, just wait for the next tick
-			if ( !$.fn.dataTable.isDataTable( elm ) && elmClass.indexOf( componentName + "-dtwait" ) === -1 ) {
-				elm.classList.add( componentName + "-dtwait" );
-				setTimeout( function( ) {
-					applyTemplate( elm, settings, content );
-				}, 50 );
 				return;
 			}
 
