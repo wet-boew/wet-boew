@@ -44,7 +44,6 @@ rules:
   selector-no-vendor-prefix: null
   selector-pseudo-element-colon-notation: null
   shorthand-property-no-redundant-values: null
-  value-keyword-case: null
   value-no-vendor-prefix: null
 
   # Partially-enable stylelint-a11y rules
