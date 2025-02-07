@@ -64,7 +64,6 @@ This Code of Conduct is also inspired by GDS' **alphagov** [Code of conduct](htt
 
 This Code of Conduct is also inspired by the [Guide for Publishing Open Source Code](https://github.com/canada-ca/open-source-logiciel-libre/blob/master/en/guides/publishing-open-source-code.md)
 
-
 ---
 
 # Code de conduite pour le projet **Boîte à outils de l’expérience Web**
