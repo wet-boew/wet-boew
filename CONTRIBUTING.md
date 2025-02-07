@@ -41,7 +41,7 @@ Veuillez lire la [rubrique pour développeurs dans la section comment démarrer]
 ## Créer ou modifier une fonctionnalité dans la BOEW
 
 * Inclure tous les guides, les descriptions ou les directives pour la BOEW en fichiers HTML dans ce répertoire.
-* Suivre le <a href="https://wet-boew.github.io/wet-boew/docs/ref/docstmpl-fr.html">modèle de documentation</a>.
+* Suivre le [modèle de documentation](https://wet-boew.github.io/wet-boew/docs/ref/docstmpl-fr.html).
 * Fournir au moins un exemple pour chaque utilitaire, composante (plugiciel ou motif), gabarit ou thème de la BOEW. D’autres exemples doivent être donnés pour chaque paramètre ou option.
 
 Faites-nous part de vos questions, ou rejoignez les [Heures de service de la BOEW](https://github.com/wet-boew/wet-boew/wiki/WET-Office-hours,-Heures-de-service-de-la-BOEW). Assurez vous de prendre le temps de consulter notre [code de conduite](CODE_OF_CONDUCT.md#Code-de-conduite-pour-le-projet-Boîte-à-outils-de-lexpérience-Web) en vue de contribuer au projet.
