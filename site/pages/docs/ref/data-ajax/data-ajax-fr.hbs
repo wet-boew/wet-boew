@@ -31,7 +31,7 @@
 (function( $, document, wb ) {
 	&quot;use strict&quot;;
 	$('#mycontainer').on( &quot;wb-contentupdated&quot;, function( event, data ){
-		// &quot;data.ajax-type&quot; contains the insersion method [after, append, before, prepend, replace]
+		// &quot;data.ajax-type&quot; contains the insertion method [after, append, before, prepend, replace]
 		// &quot;data.content&quot; contains the
 		var $elm = $(event.currentTarget);
 		$elm
@@ -214,7 +214,7 @@
 						<dt>Default</dt>
 						<dd>False, the ajaxed file are not encoded</dd>
 						<dt><code>true</code></dt>
-						<dd>Will encode the characted <code>&lt;</code> into the character <code>&amp;lt;</code> which allow to show the code source of the ajaxed content.</dd>
+						<dd>Will encode the character <code>&lt;</code> into the character <code>&amp;lt;</code> which allow to show the code source of the ajaxed content.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -227,9 +227,9 @@
 						<dt>Default</dt>
 						<dd>The browser will manage the cache based on how the server has sent the file.</dd>
 						<dt><code>true</code></dt>
-						<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+						<dd>Boolean, Use the same cache buster id for the user session. Closing and opening the tab should generate a new cache busting id.</dd>
 						<dt><code>nocache</code></dt>
-						<dd>String, A new id is generated everytime the file is fetched</dd>
+						<dd>String, A new id is generated every time the file is fetched</dd>
 					</dl>
 				</td>
 			</tr>

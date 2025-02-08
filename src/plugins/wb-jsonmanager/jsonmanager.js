@@ -737,7 +737,7 @@ $document.on( "json-fetched.wb", selector, function( event ) {
 		// Determine if the response is an array
 		isArrayResponse = Array.isArray( JSONresponse );
 
-		// Ensure the response is an independant clone
+		// Ensure the response is an independent clone
 		if ( isArrayResponse ) {
 			JSONresponse = $.extend( true, [], JSONresponse );
 		} else {

@@ -1046,7 +1046,7 @@ $document.on( "json-failed.wb", selector, function( event ) {
 		// Mapping is always streamline because the data structure is a static object not an array
 		failSettings.streamline = true;
 
-		// apply the templaty to display an error message
+		// apply the template to display an error message
 		applyTemplate( elm, failSettings, {
 			error: fetchObj.error.message || xhrResponse.statusText,
 			status: fetchObj.status,

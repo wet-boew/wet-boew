@@ -155,7 +155,7 @@ var componentName = "wb-filter",
 	 */
 	filterQueryParser = function( filter ) {
 
-		// Pattern to seperate the filter text into "words"
+		// Pattern to separate the filter text into "words"
 		var pattern = /[^\s"]+|"([^"]*)"/gi;
 
 		// Make strings safe again for regex

@@ -424,7 +424,7 @@
             "earl:test": "WCAG21:label-in-name",
             "earl:subject": "_:subject",
             "earl:outcome": "earl:cantTell",
-            "dct:description": "A best practice is to have the text of the label at the start of the name. The visual label for controls is a trigger for speech activation. Where pratical, make the control’s text label and name match.",
+            "dct:description": "A best practice is to have the text of the label at the start of the name. The visual label for controls is a trigger for speech activation. Where practical, make the control’s text label and name match.",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
             "acr:relevancy": "wbv:acr#noRelevancy",

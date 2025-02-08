@@ -62,7 +62,7 @@ wb.download = function( blob, filename, title ) {
 		document.body.removeChild( anchor );
 	}, 1 );
 
-	// Revoke the ojbect, A setTimeout is used because Blob API don't have a download complete event.
+	// Revoke the object, A setTimeout is used because Blob API don't have a download complete event.
 	setTimeout( function() {
 		if ( typeof objectURL === "string" ) {
 			URL.revokeObjectURL( objectURL );
@@ -97,7 +97,7 @@ wb.shuffleDOM = function( $elm ) {
 
 /* ---------------------------------
 @extension: pickElements
-@returns: [collection] of randoms elements
+@returns: [collection] of random elements
 -------------------------------- */
 wb.pickElements = function( $elm, numOfElm ) {
 	var nbElm = $elm.size(),
@@ -1342,8 +1342,8 @@ wb.decodeUTF8Base64 = function( str ) {
 * 	{regex} customCase - this param is a regex. It will search and replace the values corresponding that pattern
 *
 * @param {object} opts (optional) - the 3rd param of the function that can contain the following properties (optional):
-* 	{boolean} isCustomExclusive - if true, it will scrubb only the custom regex if the regex is the only property of the "scope" object
-* 	{bolean} useFullBlock - if true, it will replace the scrubbed characters with the "█" symbol;
+* 	{boolean} isCustomExclusive - if true, it will scrub only the custom regex if the regex is the only property of the "scope" object
+* 	{boolean} useFullBlock - if true, it will replace the scrubbed characters with the "█" symbol;
 * 	{string} replaceWith - this string will replace the scrubbed content
 *
 
@@ -1412,7 +1412,7 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig,
 
 			/*
-			* Usename:
+			* Username:
 			* "username" or "user",
 			* followed by a colon or an equals sign,
 			* followed by any character that is not a " " or a "&"
@@ -1422,7 +1422,7 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			/*
 			* Password:
 			* "password" or "pass",
-			* ollowed by a ":" or a "=",
+			* followed by a ":" or a "=",
 			* followed by any character that is not a " " or a "&"
 			*/
 			password: /(?:(password|pass)[%20]?([:=]|(%EF%BC%9A))[^\s&]*)/ig

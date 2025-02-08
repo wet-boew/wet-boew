@@ -336,7 +336,7 @@ var componentName = "wb-geomap",
 		this.target = $( "#" + map.id + ".wb-geomap" ).find( ".wb-geomap-legend" );
 		this.target.attr( "id", "geomap-legend-" + map.id );
 
-		// remove the placehoders
+		// remove the placeholders
 		this.target.empty();
 
 		return this;
@@ -826,7 +826,7 @@ var componentName = "wb-geomap",
 		} ) ];
 	},
 
-	// Convert a hexidecimal color string to 0..255 R,G,B for backwards compatibility
+	// Convert a hexadecimal color string to 0..255 R,G,B for backwards compatibility
 	hexToRGB = function( code, alpha ) {
 
 		var hex = ( code + "" ).trim(),
@@ -1012,7 +1012,7 @@ var componentName = "wb-geomap",
 		map.once( "postrender", function() {
 
 			// v4.0.x transition function to support static map.
-			// The following makes assumption the geometry only inlude a point and it is WKT format
+			// The following makes assumption the geometry only include a point and it is WKT format
 			// The following should be removed in WET 5
 			map.getLayer = function( strSelector ) {
 
@@ -1046,7 +1046,7 @@ var componentName = "wb-geomap",
 			wb.ready( $( "#" + geomap.id ), componentName, [ map ] );
 		} );
 
-		// Everytime the map view is changed, fire the updated event
+		// Every time the map view is changed, fire the updated event
 		map.on( "moveend", function() {
 			$( geomap.id ).trigger( "wb-updated" + selector, [ geomap.map ] );
 		} );
@@ -1328,7 +1328,7 @@ var componentName = "wb-geomap",
 	//
 	// Param:
 	// - geomap = geomap Object
-	// - extext = array with 4 point ( West, South, East, North)
+	// - extent = array with 4 point ( West, South, East, North)
 	// - dontAddFeat = boolean (default:false) if true, no delimiter box would be added to the map
 	//
 	drawAOI = function( geomap, extent, dontAddFeat ) {
@@ -2160,7 +2160,7 @@ $document.on( "focusin focusout mouseover mouseout", ".wb-geomap-map", function(
 		geomap = getMapById( target.getAttribute( "data-map" ) ),
 		mouseWheelZoom = getMapInteraction( geomap.map, ol.interaction.MouseWheelZoom );
 
-	// disable mouseWheelZoom so that page scrolling isn't interupted
+	// disable mouseWheelZoom so that page scrolling isn't interrupted
 	if ( geomap.settings.useMapControls ) {
 		mouseWheelZoom.setActive( false );
 	}
@@ -2431,7 +2431,7 @@ MapLayer.prototype.addToLegend = function() {
 };
 
 /**
- * Add tabluar data
+ * Add tabular data
  */
 Geomap.prototype.addTabularData = function() {
 

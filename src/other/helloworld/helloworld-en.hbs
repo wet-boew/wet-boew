@@ -18,7 +18,7 @@
 
 <h2>Step 1 - Use a barebone plugin container</h2>
 
-<p>Use a barbone plugin container like:</p>
+<p>Use a barebone plugin container like:</p>
 
 <pre><code>/**
  * @title WET-BOEW Barebone plugin container
@@ -80,7 +80,7 @@ wb.add( selector );
 	<dd>The value of <var>componentName</var> define the name of your plugin and the class name to use in order to initiate it</dd>
 
 	<dt>At line 36 <code>// ... Do the plugin initialisation</code></dt>
-	<dd>Is where you will do all the actions in order to initiate your plugin. The challenge here is to perform the minimal amount of tasks in order to have your plugin waiting for an action. WET plugins are focused on an event base aproach where we trend to not execute a line of code if is not required at that time for performance reasons.</dd>
+	<dd>Is where you will do all the actions in order to initiate your plugin. The challenge here is to perform the minimal amount of tasks in order to have your plugin waiting for an action. WET plugins are focused on an event base approach where we trend to not execute a line of code if is not required at that time for performance reasons.</dd>
 
 	<dt>At line 43-45 <code>// Add your plugin event handler</code></dt>
 	<dd>Is where you will add a number of events that your plugin will deal with. You can trigger your own event by using the jQuery instance of an element, then call the function trigger with your custom event name in the first parameter followed by an object if you want to transfers some data. Like <code>$elm.trigger( "name.of.your.event", mydata );</code>. The mydata parameter is optional.</dd>
@@ -263,10 +263,10 @@ wb.add( selector );
 	<dd>Apply the default settings.</dd>
 
 	<dt>At line 45 <code>window[ componentName ],</code></dt>
-	<dd>Retreive setting directly set via javascript harde coded in the page for example like: <code>window['wb-helloworld'] = {};</code></dd>
+	<dd>Retrieve setting directly set via javascript harde coded in the page for example like: <code>window['wb-helloworld'] = {};</code></dd>
 
 	<dt>At line 46 <code>wb.getData( $elm, componentName )</code></dt>
-	<dd>Retreive and parse into a JSON object the setting set through the attribute <code>data-wb-helloworld</code></dd>
+	<dd>Retrieve and parse into a JSON object the setting set through the attribute <code>data-wb-helloworld</code></dd>
 
 	<dt>At line 50 <code>$elm.trigger( &quot;name.of.your.event&quot;, settings );</code></dt>
 	<dd>Now, the second parameter contains the instance settings that will be used by the event.</dd>

@@ -110,7 +110,7 @@ var componentName = "wb-share",
 				url: "https://compose.mail.yahoo.com/?to=&subject={t}&body={u}%0A{d}"
 			},
 			whatsapp: {
-				name: "Whatsapp",
+				name: "WhatsApp",
 				url: "https://api.whatsapp.com/send?text={t}%0A{d}%0A{u}"
 			}
 		}

@@ -150,7 +150,7 @@ runTest( "Input type=\"date\" polyfill (date picker)", function() {
 		before( beforeFactory() );
 		after( defaultAfter );
 
-		it( "should have added alternative text indentifying the parent control", function() {
+		it( "should have added alternative text identifying the parent control", function() {
 			var $toggle = $elm.next().find( "a" );
 			expect( $toggle.text() ).to.equal( hiddenAltText );
 			expect( $toggle.attr( "title" ) ).to.equal( hiddenAltText );

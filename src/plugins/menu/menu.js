@@ -50,7 +50,7 @@ var componentName = "wb-menu",
 			menuCount += 1;
 
 			// Lets test to see if we have any menus to fetch
-			// This is required for backwards compatibility. In previous versions, the menu was not integrated witht he data ajax plugin.
+			// This is required for backwards compatibility. In previous versions, the menu was not integrated with the data ajax plugin.
 			ajaxFetch = $elm.data( "ajax-fetch" );
 			if ( ajaxFetch ) {
 				$elm.trigger( {

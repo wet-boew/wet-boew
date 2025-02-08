@@ -43,7 +43,7 @@ var componentName = "wb-tblvalidator",
 		"%tblparser12": "Last summary row group already found",
 		"%tblparser12Tech": 3,
 		"%tblparser13": "Error, Row group not calculated",
-		"%tblparser14": "You can not have a summary at level under 0, add a group header or merge a tbody togheter",
+		"%tblparser14": "You can not have a summary at level under 0, add a group header or merge a tbody together",
 		"%tblparser14Tech": 3,
 		"%tblparser15": "tr element need to only have th or td element as his child",
 		"%tblparser16": "The row do not have a good width",
@@ -54,9 +54,9 @@ var componentName = "wb-tblvalidator",
 		"%tblparser18Tech": 7,
 		"%tblparser21": "Move the row used as the column cell heading in the thead row group",
 		"%tblparser21Tech": 7,
-		"%tblparser23": "Avoid the use of have paralel row headers, it's recommended do a cell merge to fix it",
+		"%tblparser23": "Avoid the use of have parallel row headers, it's recommended do a cell merge to fix it",
 		"%tblparser23Tech": 3,
-		"%tblparser24": "For a data row, the heading hiearchy need to be the Generic to the specific",
+		"%tblparser24": "For a data row, the heading hierarchy need to be the Generic to the specific",
 		"%tblparser24Tech": 3,
 		"%tblparser25": "You have a problematic key cell",
 		"%tblparser25Tech": 0,
@@ -432,8 +432,8 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 		}
 	}
 
-	// Horay, now all the table cell have theirs id/headers set as the table was parsed,
-	// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
+	// Hooray, now all the table cell have theirs id/headers set as the table was parsed,
+	// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interest Mailing List to get some liable solution
 	// tfoot question: do I force it as exclusive column summaries as the HTML5 spec define it if it used as table footnote ??
 	// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
 	for ( i = 0; i < tblparser.colgroup.length; i += 1 ) {
@@ -485,7 +485,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 	$elm.trigger( showHTMLEvent );
 } );
 
-// Simple grougpin table
+// Simple grouping table
 $document.on( addscopeEvent, "#visualoutput > table:eq( 0 )", function( event ) {
 	var elm = event.target,
 		$elm,
@@ -593,7 +593,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 		}
 	}
 
-	// Test if the table can use scope colgorup
+	// Test if the table can use scope colgroup
 	// - Adjust the pointer for testing the table
 	if ( tblparser.colgroup[ 0 ] && tblparser.colgroup[ 0 ].type === 1 && tblparser.theadRowStack[ 0 ].cell[ 0 ].type === 6 ) {
 		i = tblparser.colgroup[ 0 ].end;
@@ -606,7 +606,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 		return;
 	}
 
-	// - Test each header cell in the thead fit in the scope colgroup partern as per the HTML5 spec.
+	// - Test each header cell in the thead fit in the scope colgroup pattern as per the HTML5 spec.
 	for ( i; i < tblparser.theadRowStack[ 0 ].cell.length; i += 1 ) {
 		if ( tblparser.theadRowStack[ 0 ].cell[ i ].colgroup &&
 				( tblparser.theadRowStack[ 0 ].cell[ i ].colgroup.start === tblparser.theadRowStack[ 0 ].cell[ i ].colgroup.end ||
@@ -615,7 +615,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 				( tblparser.theadRowStack[ 0 ].cell[ i ].colpos + tblparser.theadRowStack[ 0 ].cell[ i ].width - 1 ) ||
 				tblparser.theadRowStack[ 0 ].cell[ i ].colgroup.type !== 2 ) ) {
 
-			// This cell DO NOT fit in the colgroup patern
+			// This cell DO NOT fit in the colgroup pattern
 			$elm.trigger( addidheadersEvent );
 			return;
 		}
@@ -753,7 +753,7 @@ $document.on( "click", "#validatetable", function( ) {
 		}
 	} );
 
-	// Add a default zebra stipping
+	// Add a default zebra stripping
 	$tbl.addClass( "table table-lined" );
 
 } );

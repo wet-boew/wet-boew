@@ -17,7 +17,7 @@ describe( "Toggle test suite", function() {
 		$body = wb.doc.find( "body" );
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before( function() {
 
@@ -26,7 +26,7 @@ describe( "Toggle test suite", function() {
 	} );
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after( function() {
 

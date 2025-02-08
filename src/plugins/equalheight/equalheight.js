@@ -80,7 +80,7 @@ var componentName = "wb-eqht",
 				currentChild = $children[ j ];
 				childCSS = currentChild.style.cssText.toLowerCase();
 
-				//Ensure the CSS string ends by a seperator
+				//Ensure the CSS string ends by a separator
 				if ( childCSS.length > 0 && childCSS.substr( childCSS.length - 1 ) !== cssPropertySeparator ) {
 					childCSS += cssPropertySeparator;
 				}
@@ -151,7 +151,7 @@ var componentName = "wb-eqht",
 	/**
 	* @method equalize
 	* @param {array} row the array of items to be equalized
-	* @param {int} tallestHeight the talest height to use to equalize
+	* @param {int} tallestHeight the tallest height to use to equalize
 	*/
 	equalize = function( row, tallestHeight ) {
 		for ( var i = 0; i < row.length; i++ ) {

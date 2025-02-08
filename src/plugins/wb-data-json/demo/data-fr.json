@@ -39,7 +39,7 @@
     "2017-1": {
       "nom": "M. X",
       "ville": "Gatineau",
-      "quelquesChoseHTML": "<strong>Horay</strong> ici du contenu HTML enrichie",
+      "quelquesChoseHTML": "<strong>Hooray</strong> ici du contenu HTML enrichie",
       "passetemps": [ "Voiture", "Mécanique", "Course" ],
       "language": {
         "fr": {

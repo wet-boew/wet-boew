@@ -31,7 +31,7 @@
       "fr": {
         "act:standard/profiles/wcag#levelAA": "Niveau AA",
         "act:standard/profiles/wcag#delta21_levelAA": "Delta du WCAG 2.1 au niveau AA",
-        "act:standard/profiles/en301549#ictClauseFunc": "ICT avec des fonctionalités fermé",
+        "act:standard/profiles/en301549#ictClauseFunc": "ICT avec des fonctionnalités fermé",
         "act:standard/profiles/en301549#ictTwoVoiceComm": "ICT avec communication vocale bidirectionnelle",
         "act:standard/profiles/en301549#ictVideo": "ICT avec des capacités vidéo",
         "act:standard/profiles/en301549#hardware": "Matériel",
@@ -381,7 +381,7 @@
         "wbv:acr/relevancies/compatibility-at": "Compatibilité de la technologie adaptative",
         "wbv:acr#usability": "Convivialité",
         "wbv:acr/relevancies/usability-issue": "Problème de convivialité supporté par de la recherche utilisateur public et reproductible",
-        "wbv:acr/relevancies/usability-limited": "Problème de convivialité supporté avec de la recherche utilisateur privé ou avec une échantillonage limité.",
+        "wbv:acr/relevancies/usability-limited": "Problème de convivialité supporté avec de la recherche utilisateur privé ou avec une échantillonnage limité.",
         "wbv:acr/relevancies/legislative": "Législative",
         "wbv:acr#expertise": "Expertise",
         "wbv:acr#opinionated": "Dogmatique",

@@ -24,12 +24,12 @@ var componentName = "wb-feeds",
 	 * @object Templates
 	 * @properties {function}
 	 * @param {object} requires a entry object of various ATOM based properties
-	 * @returns {string} modified string with appropiate markup/format for a entry object
+	 * @returns {string} modified string with appropriate markup/format for a entry object
 	 */
 	Templates = {
 
 		/**
-		 * [fickr template]
+		 * [flickr template]
 		 * @param  {entry object} data
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
@@ -50,7 +50,7 @@ var componentName = "wb-feeds",
 		},
 
 		/**
-		 * [Youtube template]
+		 * [YouTube template]
 		 * @param  {entry object} data
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
@@ -103,7 +103,7 @@ var componentName = "wb-feeds",
 	},
 
 	/**
-	 * Helper function that returns the string representaion of a unicode character
+	 * Helper function that returns the string representation of a unicode character
 	 * @method decode
 	 * @param  {regex} match  unicode pattern
 	 * @param  {string} code  string where unicode is needed to be converted

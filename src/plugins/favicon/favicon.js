@@ -13,9 +13,9 @@
  * -**data-rel:** rel attribute of the mobile favicon (defaults to "apple-touch-icon").
  * -**data-sizes:** sizes attribute of the mobile favicon (defaults to "57x57 72x72 114x114 144x144 150x150").
  *
- * For example, the following overides the rel and file name attributes of the mobile favicon:
+ * For example, the following overrides the rel and file name attributes of the mobile favicon:
  *
- *     <link href="favion.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico"/>
+ *     <link href="favicon.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico"/>
  */
 ( function( $, document, wb ) {
 "use strict";

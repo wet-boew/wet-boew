@@ -64,7 +64,7 @@ var $document = wb.doc,
 				// Indicate that the form is currently being sent (to prevent multiple submissions in parallel)
 				$( this ).attr( attrSending, true );
 
-				// If the submit button contains a variable, add it to the form's paramaters
+				// If the submit button contains a variable, add it to the form's parameters
 				// Note: Submitting a form via Enter will act as if the FIRST submit button was pressed. Therefore, that button's variable will be added (as opposed to nothing). This is in line with default form submission behaviour.
 				if ( submitter && submitter.name ) {
 					data.push( { name: submitter.name, value: submitter.value } );

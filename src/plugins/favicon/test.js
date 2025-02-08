@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * @title Favion Plugin Unit Tests
+ * @title Favicon Plugin Unit Tests
  * @overview Test the favicon plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard

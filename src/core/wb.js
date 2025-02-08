@@ -677,7 +677,7 @@ Modernizr.load( [
 									nope: "mthjx!mml-chtml.js",
 									complete: function() {
 
-										// Try loading a local copy of MathJax 2 as a last dith effort
+										// Try loading a local copy of MathJax 2 as a last ditch effort
 										Modernizr.load( [ {
 											test: window.MathJax.startup,
 											nope: "mthjx!MathJax.js?config=Accessible",

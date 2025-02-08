@@ -264,7 +264,7 @@ var componentName = "wb-charts",
 		 * Apply preset defined by a set of space-separated tokens from a baseline json object and at the same time extend the result by using the HTML5 data attribute
 		 *
 		 * @method applyPreset
-		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset
+		 * @param {json object} baseline - Base line json object that includes predefined and user defined preset
 		 * @param {jQuery} $elem - Element on which the class attribute will be taken for a set of space-separated tokens
 		 * @param {string} attribute - Name of the HTML5 data attribute for extending the object at the end
 		 * @return {json object} - Return a new object build from the ```baseline``` or ```baseline.default``` object with the preset applied.
@@ -306,7 +306,7 @@ var componentName = "wb-charts",
 					if ( preset ) {
 						if ( preset.base ) {
 
-							// Like setting herited from a parent config
+							// Like setting inherited from a parent config
 							config = $.extend( true, config, baseline[ preset.base ] );
 							fn = $.extend( true, fn, baseline[ preset.base ].fn || { } );
 						}
@@ -461,7 +461,7 @@ var componentName = "wb-charts",
 		 *
 		 * @method setInnerStepValues
 		 * @param {object} vectorHead - Group Header Object from the table parser
-		 * @param {number} headerLevel - Hiearchical Level of heading
+		 * @param {number} headerLevel - Hierarchical Level of heading
 		 * @param {number} stepsValue - Step Value for the reference value vector
 		 * @param {number} referenceValue - Reference Value Vector ID
 		 * @param {number} dataColgroupStart - Column position where the column data group start
@@ -514,7 +514,7 @@ var componentName = "wb-charts",
 		 *
 		 * @method setInnerStepValuesChildRecursive
 		 * @param {object} headerCell - Header cell object from the table parser
-		 * @param {number} headerLevel - Hiearchical Level of heading
+		 * @param {number} headerLevel - Hierarchical Level of heading
 		 * @param {number} stepsValue - Specific Step Value applied for current headerCell
 		 * @param {number} referenceValue - Reference Value Vector ID
 		 */
@@ -1107,7 +1107,7 @@ var componentName = "wb-charts",
 				"site!deps/tableparser" + modeJS
 			];
 
-			//TODO: Revist this in the new plugin structure
+			//TODO: Revisit this in the new plugin structure
 			if ( settings && settings.plugins ) {
 				deps = deps.concat( settings.plugins );
 			}

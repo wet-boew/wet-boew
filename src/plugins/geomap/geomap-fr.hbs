@@ -17,7 +17,7 @@
 	<div class="col-md-6 pull-right col-xs-12">
 		<aside class="alert alert-info">
 			<h2 class="h3">Avis de mise à jour</h2>
-			<p>Depuis BOEW 4.0.31 nous avons mise à jour la géocarte afin d'utiliser OpenLayer 3 donc les flux RSS et ATOM ne sont plus supporté. La configuration pour certaines cartes statiques on été changé et une configuration revisé est utilisé pour supporté les cartes de base XYZ. <a href="geomap-v4.0.30-fr.html">Accéder au example pratique antérieur à v4.0.30</a>.</p>
+			<p>Depuis BOEW 4.0.31 nous avons mise à jour la géocarte afin d'utiliser OpenLayer 3 donc les flux RSS et ATOM ne sont plus supporté. La configuration pour certaines cartes statiques on été changé et une configuration révisé est utilisé pour supporté les cartes de base XYZ. <a href="geomap-v4.0.30-fr.html">Accéder au example pratique antérieur à v4.0.30</a>.</p>
 		</aside>
 	</div>
 	<div class="col-md-auto">
@@ -211,7 +211,7 @@
 								<thead>
 									<tr>
 										<th>Titre</th>
-										<th>Géometrie</th>
+										<th>Géométrie</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -411,7 +411,7 @@
 					&lt;thead&gt;
 						&lt;tr&gt;
 							&lt;th&gt;Titre&lt;/th&gt;
-							&lt;th&gt;Géometrie&lt;/th&gt;
+							&lt;th&gt;Géométrie&lt;/th&gt;
 						&lt;/tr&gt;
 					&lt;/thead&gt;
 					&lt;tbody&gt;
@@ -438,7 +438,7 @@
 <section>
 	<h2 id="statique">Carte statique - Exemple</h2>
 	<p>Geomap peux être configuré pour créer une carte statique afin de situer un endroit comme un bureau ou une étendue à l'aide d'une "bbox".</p>
-	<p>Depuis BOEW 4.0.31 nous avons mise à jour la géocarte afin d'utiliser OpenLayer 3 et le code dans <code>client_functions.js</code> a changé. Veuillez mettre à jour <code>client_functions.js</code> tel qu'illustré dans l'<a href="./demo/client_functions.js">example</a>. Les cartes statique qui utilise une configuration très similaire tel que configuré et démontré depuis la version 4.0.30, qui est désuet, devrait continuer de fonctionner. Nous vous recommendons de mettre à jour votre code tel qu'illustré dans l'example suivant.</p>
+	<p>Depuis BOEW 4.0.31 nous avons mise à jour la géocarte afin d'utiliser OpenLayer 3 et le code dans <code>client_functions.js</code> a changé. Veuillez mettre à jour <code>client_functions.js</code> tel qu'illustré dans l'<a href="./demo/client_functions.js">example</a>. Les cartes statique qui utilise une configuration très similaire tel que configuré et démontré depuis la version 4.0.30, qui est désuet, devrait continuer de fonctionner. Nous vous recommandons de mettre à jour votre code tel qu'illustré dans l'example suivant.</p>
 
 	<!-- GeomapStart -->
 	<div id="location_map"
@@ -751,7 +751,7 @@ var wet_boew_geomap = {
 <section>
 	<h2 id="carte-xyz">Exemple de carte de base XYZ</h2>
 	<p>Geomap peut être configuré pour utiliser un service de tuiles XYZ (ex : MapQuest) comme carte de base. La configuration peut être effectuée dans le paramètre <code>basemap</code> du fichier config.</p>
-	<p>Avant la BOEW 4.0.31 le service utilisé pour créer cet example n'est plus supporté. Veuillez consulter la configuration revisé ci-dessous.</p>
+	<p>Avant la BOEW 4.0.31 le service utilisé pour créer cet example n'est plus supporté. Veuillez consulter la configuration révisé ci-dessous.</p>
 	<!-- GeomapStart -->
 	<div id="xyz_map"
 		class="wb-geomap"
@@ -828,7 +828,7 @@ var wet_boew_geomap = {
 			<select id="gm_province" class="form-control" data-filter="aoi">
 				<!-- Les dimension ci-dessous sont approximative pour cette demonstration seulement -->
 				<option selected value="64.097 -10.63 34.692 -177.659">Canada</option>
-				<option value="60 -120 48 -139">Colombie Britanique</option>
+				<option value="60 -120 48 -139">Colombie Britannique</option>
 				<option value="60 -110 49 -120">Alberta</option>
 				<option value="POLYGON((-78.30545265676142 62.84207638792185,-79.79959328176142 51.57292655739278,-79.18435890676142 46.810536399556135,-76.45974953176142 45.655468008018055,-75.58084328176142 45.961790800827984,-74.87771828176142 45.47086564114406,-74.96560890676142 44.97562684884711,-71.44998390676142 44.97562684884711,-69.16482765676142 47.349194267123444,-68.19803078176142 47.349194267123444,-64.33084328176142 48.35181916125691,-55.80545265676142 52.00783331541157,-67.31912453176142 52.16984334247954,-64.24295265676142 60.85236662687351,-78.30545265676142 62.84207638792185))">Québec</option>
 			</select>
@@ -1065,7 +1065,7 @@ var wet_boew_geomap = {
 		&lt;select id="gm_province" class="form-control" data-filter="aoi"&gt;
 			&lt;!-- Les dimension ci-dessous sont approximative pour cette demonstration seulement --&gt;
 			&lt;option selected value="64.097 -10.63 34.692 -177.659"&gt;Canada&lt;/option&gt;
-			&lt;option value="60 -120 48 -139"&gt;Colombie Britanique&lt;/option&gt;
+			&lt;option value="60 -120 48 -139"&gt;Colombie Britannique&lt;/option&gt;
 			&lt;option value="60 -110 49 -120"&gt;Alberta&lt;/option&gt;
 			&lt;option value="POLYGON((-78.30545265676142 62.84207638792185,-79.79959328176142 51.57292655739278,-79.18435890676142 46.810536399556135,-76.45974953176142 45.655468008018055,-75.58084328176142 45.961790800827984,-74.87771828176142 45.47086564114406,-74.96560890676142 44.97562684884711,-71.44998390676142 44.97562684884711,-69.16482765676142 47.349194267123444,-68.19803078176142 47.349194267123444,-64.33084328176142 48.35181916125691,-55.80545265676142 52.00783331541157,-67.31912453176142 52.16984334247954,-64.24295265676142 60.85236662687351,-78.30545265676142 62.84207638792185))"&gt;Québec&lt;/option&gt;
 		&lt;/select&gt;

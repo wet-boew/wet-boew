@@ -28,7 +28,7 @@
 		<li>To publish simple or complex charts online</li>
 		<li>Before using an image-based charts approach</li>
 		<li>To save time in creating long text descriptions for your charts</li>
-		<li>To have uniform charting style accross your website</li>
+		<li>To have uniform charting style across your website</li>
 	</ul>
 </section>
 
@@ -46,9 +46,9 @@
 	<p>French:</p>
 	<ul lang="fr">
 		<li><a href="../../../demos/charts/charts-fr.html" hreflang="fr">Graphiques - Simple</a></li>
-		<li><a href="../../../demos/charts/labelsandreferencevalue-fr.html" hreflang="fr">Étiquettage et valeur de référence</a></li>
+		<li><a href="../../../demos/charts/labelsandreferencevalue-fr.html" hreflang="fr">Étiquetage et valeur de référence</a></li>
 		<li><a href="../../../demos/charts/custom-fr.html" hreflang="fr">Personalisation, préréglages personnalisés et plusieurs types de graphique</a></li>
-		<li><a href="../../../demos/charts/piecustom-fr.html" hreflang="fr">Personalisation de diagrame circulaire</a></li>
+		<li><a href="../../../demos/charts/piecustom-fr.html" hreflang="fr">Personalisation de diagramme circulaire</a></li>
 		<li><a href="../../../demos/charts/testing-fr.html" hreflang="fr">Scénarios d'essai spécifiques</a></li>
 	</ul>
 </section>
@@ -120,7 +120,7 @@
 
 	<pre><code>&lt;table class=&quot;wb-charts&quot; data-flot='{ &quot;bars&quot;: { &quot;lineWidth&quot;: 0.2, &quot;show&quot;: true } }'&gt;</code></pre>
 
-	<p>The result could look like the following visulalization.</p>
+	<p>The result could look like the following visualization.</p>
 
 	<table class="wb-charts table" data-flot='{ "bars": { "lineWidth": 0.2, "show": true } }'>
 		<caption>Number of pages by main purpose and audience</caption>
@@ -345,7 +345,7 @@ window[ "wb-charts" ] = {
 	<section>
 	<h4>Going beyond</h4>
 
-		<p>The previous unctionality allowed you to set any javascript function to better control <a href="https://github.com/flot/flot/blob/master/PLUGINS.md">flot plugin</a> and to the call back defined in the <a href="https://github.com/flot/flot/blob/master/API.md">flot API core</a>.</p>
+		<p>The previous functionality allowed you to set any javascript function to better control <a href="https://github.com/flot/flot/blob/master/PLUGINS.md">flot plugin</a> and to the call back defined in the <a href="https://github.com/flot/flot/blob/master/API.md">flot API core</a>.</p>
 
 
 		<p>The following examples show you how you can control the <a href="https://www.flotcharts.org/flot/examples/series-pie/index.html">pie chart</a> label formater. Note that the context has been changed to target directly the flot options.</p>
@@ -451,7 +451,7 @@ window[ "wb-charts" ] = {
 		</li>
 
 		<li>Configure the plugin using the <code>data-flot</code> on the <code>th</code> element
-			<pre><code>&lt;!-- The following example configure a specific color for a serie --&gt;
+			<pre><code>&lt;!-- The following example configure a specific color for a series --&gt;
 &lt;th data-flot='{&quot;color&quot;:&quot;#56E&quot;}'&gt;</code></pre>
 		</li>
 	</ul>
@@ -495,7 +495,7 @@ window[ "wb-charts" ] = {
 			<tr>
 				<td>wb-charts-line</td>
 				<td></td>
-				<td>Do nothing, here for conviniance and to add more clarity on the charts generated from the data table.</td>
+				<td>Do nothing, here for convenience and to add more clarity on the charts generated from the data table.</td>
 			</tr>
 			<tr>
 				<td>wb-charts-area</td>
@@ -520,17 +520,17 @@ window[ "wb-charts" ] = {
 			<tr>
 				<td>wb-charts-stacked</td>
 				<td>wb-charts-bar</td>
-				<td>Only for series. Avoid to be cought and have no impact on how the orderbar plugin will be configured.</td>
+				<td>Only for series. Avoid to be caught and have no impact on how the orderbar plugin will be configured.</td>
 			</tr>
 			<tr>
 				<td><del>wb-charts-thousandcomma</del></td>
 				<td></td>
-				<td><em>This option was removed by #6614 in favor of an i18n solution.</em> Replace the function to parse the data content of a table cells in order to support thousand comma separator numbers.</td>
+				<td><em>This option was removed by #6614 in favour of an i18n solution.</em> Replace the function to parse the data content of a table cells in order to support thousand comma separator numbers.</td>
 			</tr>
 			<tr>
 				<td><del>wb-charts-thousanddot</del></td>
 				<td></td>
-				<td><em>This option was removed by #6614 in favor of an i18n solution.</em> Replace the function to parse the data content of a table cells in order to support thousand dot separator numbers</td>
+				<td><em>This option was removed by #6614 in favour of an i18n solution.</em> Replace the function to parse the data content of a table cells in order to support thousand dot separator numbers</td>
 			</tr>
 		</tbody>
 	</table>
@@ -653,7 +653,7 @@ window[ "wb-charts" ] = {
 			</tr>
 			<tr>
 				<td>height</td>
-				<td>Sets the height of a chart. Holds numeric value mesured in pixels.</td>
+				<td>Sets the height of a chart. Holds numeric value measured in pixels.</td>
 				<td>data-wb-charts='{ &quot;height&quot;: 350 }'</td>
 				<td>
 					<dl>
@@ -666,12 +666,12 @@ window[ "wb-charts" ] = {
 			</tr>
 			<tr>
 				<td>width</td>
-				<td>Set the width of a chart. It may useful for pie charts but are useless for other charts because the Flot Canvas plugin will allow the charts to fit the full width of the table container. Holds a numeric value mesured in pixel.</td>
+				<td>Set the width of a chart. It may useful for pie charts but are useless for other charts because the Flot Canvas plugin will allow the charts to fit the full width of the table container. Holds a numeric value measured in pixels.</td>
 				<td>data-wb-charts='{ &quot;width&quot;: 350 }'</td>
 				<td>
 					<dl>
 						<dt>$elm.width() (default):</dt>
-						<dd>The width, in pixels, of the table, if unknow it would use a value of 200 pixels.</dd>
+						<dd>The width, in pixels, of the table, if unknown it would use a value of 200 pixels.</dd>
 						<dt>Numerical Value:</dt>
 						<dd>Number of pixel that represent the chart's width.</dd>
 					</dl>
@@ -746,7 +746,7 @@ window[ "wb-charts" ] = {
 		<li>Core: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/charts">Charts plugin</a></li>
 		<li>Dependency: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/deps">Complex Table Parser</a></li>
 		<li>Dependency: <a href="https://github.com/flot/flot">Flot</a></li>
-		<li>Flot Pluging third party dependency: <a href="https://github.com/pkoltermann/SideBySideImproved">SideBySideImproved</a></li>
+		<li>Flot Plugin third party dependency: <a href="https://github.com/pkoltermann/SideBySideImproved">SideBySideImproved</a></li>
 	</ul>
 </section>
 </div>

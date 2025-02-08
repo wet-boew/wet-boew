@@ -4,7 +4,7 @@
 	"language": "fr",
 	"category": "Autre",
 	"categoryfile": "other",
-	"description": "Un tutoriel rapide sur commment créer votre plugiciel BOEW.",
+	"description": "Un tutoriel rapide sur comment créer votre plugiciel BOEW.",
 	"altLangPrefix": "helloworld",
 	"dateModified": "2016-12-06"
 }
@@ -28,7 +28,7 @@
 	<h2>Code source de <code>bonjour.js</code></h2>
 <pre><code>/**
  * @title WET-BOEW Plugiciel bonjour le monde
- * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personnalisé
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
@@ -48,7 +48,7 @@ var nomComposant = &quot;wb-bonjour&quot;,
 
 	/**
 	 * @method init
-	 * @param {jQuery Event} event L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Event} event L'object événement lors du déclenchement de la fonction
 	 */
 	init = function( event ) {
 
@@ -67,17 +67,17 @@ var nomComposant = &quot;wb-bonjour&quot;,
 			// Obtenir les paramètres JSON du plugiciel tel que définie par l'attribut data-wb-bonjour
 			parametres = wb.getData( $elm, nomComposant );
 
-			// Appel d'un événement personalisé
+			// Appel d'un événement personnalisé
 			$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );
 
-			// Annonce que l'initialisation de l'instance a été complélté
+			// Annonce que l'initialisation de l'instance a été complété
 			wb.ready( $elm, nomComposant );
 		}
 	};
 
 // Ajouter votre code pour gérer les événement de votre plugiciel
-$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenenment, donnee ) {
-	var elm = evenenment.currentTarget,
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenement, donnee ) {
+	var elm = evenement.currentTarget,
 		$elm = $( elm );
 
 	$elm.append( &quot;Bonjour le monde&quot; );
