@@ -1,0 +1,119 @@
+---
+{
+	"title": "Gestionnaire JSON - Plusieurs source de donnée afin de générer un tableau de donné",
+	"language": "fr",
+	"description": "Fusionne plusieurs source de donnée afin de générer un tableau de donné",
+	"tag": "jsonmanager",
+	"parentdir": "wb-jsonmanager",
+	"altLangPage": "multisource-en.html",
+	"dateModified": "2024-12-27"
+}
+---
+
+<ul>
+	<li><a href="jsonmanager-fr.html">Exemple principal</a></li>
+	<li>Plusieurs source de donnée afin de générer un tableau de donné</li>
+</ul>
+
+<p>Note technique:</p>
+<ul>
+	<li>Le plugiciel data JSON <code>data-wb-json</code> dois être défini sur l'élément <code>&lt;table></code> du tableau. </li>
+	<li>Les liens (URLs) configuré dans le gestionaire JSON doit référer à un tableau JSON (<span lang="en">array</span>), sinon le contenu ne pourra pas être fusioné (<span lang="en">concatenated</span>)</li>
+</ul>
+
+<p>L'exemple suivant fusione deux fois la même source de donnée. Le résultat obtenue est un duplicata de chaque ligne.</p>
+
+<div data-wb-jsonmanager='{
+	"url": [
+		"../wb-data-json/demo/data-fr.json#/listeAdresses",
+		"../wb-data-json/demo/data-fr.json#/listeAdresses"
+	],
+	"name": "source-fusioné"
+}'></div>
+
+<!-- data-wb-json doit être définie sur le "table" element -->
+<table class="table wb-tables" data-wb-json='{
+	"url": "#[source-fusioné]",
+	"source": "#tbl3",
+	"mapping": [
+		{ "selector": "a", "value": "/nom" },
+		{ "selector": "a", "value": "/homeUrl", "attr": "href" },
+		{ "selector": ".adresseRurale", "value": "/num", "placeholder": "[[num]]" },
+		{ "selector": ".adresseRurale", "value": "/rue", "placeholder": "[[rue]]" },
+		{ "selector": ".adresseRurale", "value": "/ville", "placeholder": "[[ville]]" },
+		{ "selector": ".adresseRurale", "value": "/codePostal", "placeholder": "[[codep]]" },
+		{ "selector": ".courriel", "value": "/courriel", "attr": "href", "placeholder": "adresseCourriel@example.com" },
+		{ "selector": ".courriel", "value": "/courriel" }
+	]
+}'>
+	<caption>Connection avec le plugiciels d'amélioration des tableaux <code>wb-tables</code></caption>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Adresse</th>
+			<th>Courriel</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<template id="tbl3">
+	<table>
+		<tr>
+			<td><a href=""></a></td>
+			<td>
+				<span class="adresseRurale">[[num]] [[rue]], [[ville]], [[codep]]</span>
+			</td>
+			<td><a class="courriel" href="mailto:adresseCourriel@example.com">adresseCourriel</a></td>
+		</tr>
+	</table>
+</template>
+
+<details class="mrgn-tp-lg">
+	<summary>Code source</summary>
+	<pre><code>&lt;div data-wb-jsonmanager='{
+	"url": [
+		"../wb-data-json/demo/data-fr.json#/listeAdresses",
+		"../wb-data-json/demo/data-fr.json#/listeAdresses"
+	],
+	"name": "source-fusioné"
+}'>&lt;/div>
+
+&lt;!-- data-wb-json doit être définie sur le "table" element -->
+&lt;table class="table wb-tables" data-wb-json='{
+	"url": "#[source-fusioné]",
+	"source": "#tbl3",
+	"mapping": [
+		{ "selector": "a", "value": "/nom" },
+		{ "selector": "a", "value": "/homeUrl", "attr": "href" },
+		{ "selector": ".adresseRurale", "value": "/num", "placeholder": "[[num]]" },
+		{ "selector": ".adresseRurale", "value": "/rue", "placeholder": "[[rue]]" },
+		{ "selector": ".adresseRurale", "value": "/ville", "placeholder": "[[ville]]" },
+		{ "selector": ".adresseRurale", "value": "/codePostal", "placeholder": "[[codep]]" },
+		{ "selector": ".courriel", "value": "/courriel", "attr": "href", "placeholder": "adresseCourriel@example.com" },
+		{ "selector": ".courriel", "value": "/courriel" }
+	]
+}'>
+	&lt;caption>Connection avec le plugiciels d'amélioration des tableaux &lt;code>wb-tables&lt;/code>&lt;/caption>
+	&lt;thead>
+		&lt;tr>
+			&lt;th>Nom&lt;/th>
+			&lt;th>Adresse&lt;/th>
+			&lt;th>Courriel&lt;/th>
+		&lt;/tr>
+	&lt;/thead>
+	&lt;tbody>&lt;/tbody>
+&lt;/table>
+
+&lt;template id="tbl3">
+	&lt;table>
+		&lt;tr>
+			&lt;td>&lt;a href="">&lt;/a>&lt;/td>
+			&lt;td>
+				&lt;span class="adresseRurale">[[num]] [[rue]], [[ville]], [[codep]]&lt;/span>
+			&lt;/td>
+			&lt;td>&lt;a class="courriel" href="mailto:adresseCourriel@example.com">adresseCourriel&lt;/a>&lt;/td>
+		&lt;/tr>
+	&lt;/table>
+&lt;/template></code></pre>
+</details>
