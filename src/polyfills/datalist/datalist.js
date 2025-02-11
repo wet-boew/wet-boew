@@ -38,7 +38,7 @@ var componentName = "wb-datalist",
 			input.setAttribute( "aria-haspopup", "true" );
 			input.setAttribute( "aria-autocomplete", "list" );
 			input.setAttribute( "aria-owns", "wb-al-" + input.id );
-			input.setAttribute( "aria-activedescendent", "" );
+			input.setAttribute( "aria-activedescendant", "" );
 
 			populateOptions( input );
 
@@ -119,7 +119,7 @@ var componentName = "wb-datalist",
 		autolist.innerHTML = "";
 		autolist.setAttribute( "aria-hidden", "true" );
 		input.setAttribute( "aria-expanded", "false" );
-		input.setAttribute( "aria-activedescendent", "" );
+		input.setAttribute( "aria-activedescendant", "" );
 	},
 
 	/**
@@ -170,7 +170,7 @@ var componentName = "wb-datalist",
 				}
 
 			// Up / down arrow
-			} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+			} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendant" ) === "" ) {
 				if ( autolistHidden ) {
 					showOptions( input );
 				}
@@ -178,7 +178,7 @@ var componentName = "wb-datalist",
 				options = autolist.getElementsByTagName( "a" );
 				dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-				input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+				input.setAttribute( "aria-activedescendant", dest.parentNode.getAttribute( "id" ) );
 
 				// Assign focus to dest
 				$( dest ).trigger( setFocusEvent );
@@ -280,7 +280,7 @@ var componentName = "wb-datalist",
 				}
 				dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-				input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+				input.setAttribute( "aria-activedescendant", dest.parentNode.getAttribute( "id" ) );
 				$( dest ).trigger( setFocusEvent );
 
 				return false;
