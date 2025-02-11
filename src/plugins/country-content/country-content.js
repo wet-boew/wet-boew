@@ -60,7 +60,7 @@ var componentName = "wb-ctrycnt",
 		var dfd = $.Deferred(),
 			countryCode = localStorage.getItem( "countryCode" );
 
-		// Couldn"t find a value in the session
+		// Couldn't find a value in the session
 		if ( countryCode === null ) {
 
 			// From https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js#L89-L127

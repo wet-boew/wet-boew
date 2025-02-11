@@ -39,7 +39,7 @@
     "2017-1": {
       "name": "Mr X",
       "city": "Gatineau",
-      "somethingHTML": "<strong>Horay</strong> here rich HTML content",
+      "somethingHTML": "<strong>Hooray</strong> here rich HTML content",
       "hobby": [ "Car", "Mechanic", "Race" ],
       "language": {
         "en": {

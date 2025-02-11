@@ -83,7 +83,7 @@
   * Spanish
   * Thai
   * Turkish
-  * Ukranian
+  * Ukrainian
   * Vietnamese
 
 ### Themeable and reusable

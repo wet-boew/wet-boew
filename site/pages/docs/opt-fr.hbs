@@ -15,7 +15,7 @@
 	<h2>Synthèse</h2>
 	<p>L'optimisation de la programmation est une tâche importante de la Boîte à outils de l'expérience Web maintenant qu'elle adopte une approche mobilité d'abord dans la version 4.0.
 	Là où la programmation molle pourrait avoir un impact minimal sur les performances dans un fureteur d'ordinateur de bureau,
-	elle peut résulter en des délais vraiment significatifs sur les appreils mobiles.
+	elle peut résulter en des délais vraiment significatifs sur les appareils mobiles.
 	C'est pourquoi une des priorités de la BOEW v4.x est l'optimisation de la performance.</p>
 	<p>Le cadre de la BOEW v4.x est déjà fortement optimisé en utilisant la minification de code, la consolidation, le scriptage CSS et l'encodage Base64.
 	Tout ca résulte dans une augmentation de la performance significative mais peut encore s'enliser par du code gonflé et mou.
@@ -26,7 +26,7 @@
 	<h2>Optimisation du code JavaScript</h2>
 	<ul>
 		<li><strong>Minimiser l'utilisation du jQuery :</strong> jQuery peut être d'un grand aide avec la traversée DOM
-		et les scénarios complexes de scrptage mais peut ralentir lorsqu'on travaille avec des scénarios de code simple et direct.
+		et les scénarios complexes de scriptage mais peut ralentir lorsqu'on travaille avec des scénarios de code simple et direct.
 		Il y a un coût a la performance pour chaque objet jQuery créé et méthode d'emballage jQuery
 		pour les opérations JavaScript de base. Évitez de créer des objets jQuery chaque fois que possible,
 		spécialement dans les boucles.</li>
@@ -54,7 +54,7 @@ for ( i = 0; i !== len; i += 1 ) {
 		Minimisez l'impact en ajoutant à la mémoire tampon les résultats où ces résultats seront utilisés plus d'une fois.
 		Il est préférable d'emmagasiner ces résultats dans des variables locales et de réutiliser ces variables.</li>
 		<li>
-			<strong>Minimiser le refoulement :</strong> Chaque modification apportée au DOM a un coût significatif à la performace car elle
+			<strong>Minimiser le refoulement :</strong> Chaque modification apportée au DOM a un coût significatif à la performance car elle
 			le refoulement de page. Minimisez ce coût en effectuant tout les changements dans une seule opération
 			pour actionner le refoulement qu'une seule fois plutôt que plusieurs opérations qui activent le refoulement plusieurs fois.
 			Ca peut être effectuer de la manière suivante :
@@ -124,7 +124,7 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 	</section>
 
 	<section>
-		<h3>Techniques additionelles</h3>
+		<h3>Techniques additionnelles</h3>
 		<ul>
 			<li><a rel="external" href="https://24ways.org/2011/your-jquery-now-with-less-suck">Your jQuery: Now With 67% Less Suck</a></li>
 			<li><a rel="external" href="https://hungred.com/useful-information/jquery-optimization-tips-and-tricks/">8 jQuery Optimization Tips and Tricks</a></li>

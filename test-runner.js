@@ -34,7 +34,7 @@ function sleep( ms ) {
 	return new Promise( resolve => setTimeout( resolve, ms) );
 }
 
-// Run the test into the headless chromiumn browser
+// Run the test into the headless Chromium browser
 puppeteer.launch( {
 		headless: true,
 		args: [
@@ -44,10 +44,10 @@ puppeteer.launch( {
 		slowMo: 50
 	} ).then( async browser => {
 
-	// Wait a little to help concurent test
+	// Wait a little to help concurrent test
     await sleep( 1000 );
 
-	console.log( "Puppeteer chrominium started, navigating to:\n" + webPageUrlToTest );
+	console.log( "Puppeteer Chromium started, navigating to:\n" + webPageUrlToTest );
 	const page = await browser.newPage();
 
 	page.on( 'console', msg => {
@@ -134,4 +134,3 @@ puppeteer.launch( {
 	// Exit
 	process.exit( mocha.reports.length );
 } );
-	

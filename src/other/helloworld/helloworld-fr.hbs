@@ -3,7 +3,7 @@
 	"title": "Exemple de plugiciel, Bonjour le monde",
 	"language": "fr",
 	"category": "Autre",
-	"description": "Un tutoriel rapide sur commment créer votre plugiciel BOEW.",
+	"description": "Un tutoriel rapide sur comment créer votre plugiciel BOEW.",
 	"tag": "helloworld",
 	"parentdir": "helloworld",
 	"altLangPrefix": "helloworld",
@@ -12,7 +12,7 @@
 }
 ---
 
-<p>Un tutoriel rapide sur commment créer votre plugiciel BOEW.</p>
+<p>Un tutoriel rapide sur comment créer votre plugiciel BOEW.</p>
 
 <div class="wb-prettify all-pre linenums"></div>
 
@@ -22,7 +22,7 @@
 
 <pre><code>/**
  * @title WET-BOEW Plugiciel conteneur squelettique
- * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personnalisé
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
@@ -42,7 +42,7 @@
 
 	/**
 	 * @method init
-	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclenchement de la fonction
 	 */
 	init = function( Evenement ) {
 
@@ -57,7 +57,7 @@
 
 			<strong>// ... Faire l'initialisation du plugiciel</strong>
 
-			// Annonce que l'initialisation de l'instance a été complélté
+			// Annonce que l'initialisation de l'instance a été complété
 			wb.ready( $elm, nomComposant );
 		}
 	};
@@ -80,10 +80,10 @@ wb.add( selecteur );
 	<dd>La valeur donnée à <var>nomComposant</var> représentera le nom du plugiciel et du nom de la classe à utiliser pour initié l'instance.</dd>
 
 	<dt>À la ligne 36 <code>// ... Faire l'initialisation du plugiciel</code></dt>
-	<dd>C'est ici où que toute les actions d'initialisation nécessaire seront exécuté. Le défi est de faire le moins d'exécution que possible afin de rendre votre plugiel en attente d'action de l'utilisateur. Les plugiciels de la BOEW sont orienté sur une approche événementielle où qu'on essai de ne pas éxécuter des lignes de script qui n'est actuellement pas nécessaire. Ceci pour des raison de performance.</dd>
+	<dd>C'est ici où que toute les actions d'initialisation nécessaire seront exécuté. Le défi est de faire le moins d'exécution que possible afin de rendre votre plugiel en attente d'action de l'utilisateur. Les plugiciels de la BOEW sont orienté sur une approche événementielle où qu'on essai de ne pas exécuter des lignes de script qui n'est actuellement pas nécessaire. Ceci pour des raison de performance.</dd>
 
 	<dt>À la ligne 43-45 <code>// Ajouter votre code pour gérer les événement de votre plugiciel</code></dt>
-	<dd>C'est ici que vous allez déclarer une série d'événement pour votre plugiciel. Vous pouvez déclancher vos propre événéement en utilisant l'instance jQuery d'un élément. L'appel à la fonction trigger suivi de votre nom d'événement et de vos donnée s'il y lieu. Par example: <code>$elm.trigger( "nom.de.votre.evenement", mesdonnee );</code>. Le paramètre mesdonnee est optionel.</dd>
+	<dd>C'est ici que vous allez déclarer une série d'événement pour votre plugiciel. Vous pouvez déclencher vos propre événement en utilisant l'instance jQuery d'un élément. L'appel à la fonction trigger suivi de votre nom d'événement et de vos donnée s'il y lieu. Par example: <code>$elm.trigger( "nom.de.votre.evenement", mesdonnee );</code>. Le paramètre mesdonnee est optionel.</dd>
 </dl>
 
 <h2>Étape 2 - Ajouter votre code javascript</h2>
@@ -92,7 +92,7 @@ wb.add( selecteur );
 
 <pre><code>/**
  * @title WET-BOEW Plugiciel bonjour le monde
- * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personnalisé
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
@@ -112,7 +112,7 @@ wb.add( selecteur );
 
 	/**
 	 * @method init
-	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclenchement de la fonction
 	 */
 	init = function( Evenement ) {
 
@@ -127,17 +127,17 @@ wb.add( selecteur );
 
 			// ... Faire l'initialisation du plugiciel
 
-			// Appel d'un événement personalisé
+			// Appel d'un événement personnalisé
 			<strong>$elm.trigger( &quot;nom.de.votre.evenement&quot; );</strong>
 
-			// Annonce que l'initialisation de l'instance a été complélté
+			// Annonce que l'initialisation de l'instance a été complété
 			wb.ready( $elm, nomComposant );
 		}
 	};
 
 // Ajouter votre code pour gérer les événement de votre plugiciel
-$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenenment ) {
-	var elm = evenenment.currentTarget,
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, function( evenement ) {
+	var elm = evenement.currentTarget,
 		$elm = $( elm );
 
 	<strong>$elm.append( &quot;Bonjour le monde&quot; );</strong>
@@ -157,7 +157,7 @@ wb.add( selecteur );
 	<dd>Le plugiciel est nommé <strong>wb-bonjour</strong>.</dd>
 
 	<dt>À la ligne 39 <code>$elm.trigger( &quot;nom.de.votre.evenement&quot; );</code></dt>
-	<dd>L'événement &quot;nom.de.votre.evenement&quot; est déclanché pour l'élément DOM qui a initialisé cet instance de plugiciel</dd>
+	<dd>L'événement &quot;nom.de.votre.evenement&quot; est déclenché pour l'élément DOM qui a initialisé cet instance de plugiciel</dd>
 
 	<dt>À la ligne 51 <code>$elm.append(&quot;Bonjour le monde&quot;);</code></dt>
 	<dd>Le texte &quot;Bonjour le monde&quot; est ajouté à la fin du contenu intérieur de l'élément.</dd>
@@ -165,11 +165,11 @@ wb.add( selecteur );
 
 <h2>Étape 3 - Permettre le paramétrage</h2>
 
-<p>La pluspars des plugiciels ont besoin de paramétrage, l'exemple de code suivant démontre comment supporté plusieurs avenue différente afin de géré des paramètrages définie par l'éditeur et le développeur.</p>
+<p>La plupart des plugiciels ont besoin de paramétrage, l'exemple de code suivant démontre comment supporté plusieurs avenue différente afin de géré des paramétrages définie par l'éditeur et le développeur.</p>
 
 <pre><code>/**
  * @title WET-BOEW Plugiciel bonjour le monde
- * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personalisé
+ * @overview Plugiciel démontrant un example de comment créer votre propre plugiciel BOEW personnalisé
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
@@ -190,7 +190,7 @@ var nomComposant = &quot;wb-bonjour&quot;,
 
 	/**
 	 * @method init
-	 * @param {jQuery Evenement} Evenement L'object événement lors du déclanchement de la fonction
+	 * @param {jQuery Evenement} Evenement L'object événement lors du déclenchement de la fonction
 	 */
 	init = function( Evenement ) {
 
@@ -215,17 +215,17 @@ var nomComposant = &quot;wb-bonjour&quot;,
 				wb.getData( $elm, nomComposant )
 			);</strong>
 
-			// Appel d'un événement personalisé
+			// Appel d'un événement personnalisé
 			<strong>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</strong>
 
-			// Annonce que l'initialisation de l'instance a été complélté
+			// Annonce que l'initialisation de l'instance a été complété
 			wb.ready( $elm, nomComposant );
 		}
 	};
 
 // Ajouter votre code pour gérer les événement de votre plugiciel
-$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, <strong>function( evenenment, donnee ) {</strong>
-	var elm = evenenment.currentTarget,
+$document.on( &quot;nom.de.votre.evenement&quot;, selecteur, <strong>function( evenement, donnee ) {</strong>
+	var elm = evenement.currentTarget,
 		$elm = $( elm );
 
 	$elm.append( &quot;Bonjour le monde&quot; );
@@ -248,7 +248,7 @@ wb.add( selecteur );
 	<dd>Un objet JSON qui définie les paramètres par défaut du plugiciel.</dd>
 
 	<dt>À la ligne 33 <code>parametres;</code></dt>
-	<dd>Une variable local qui contiendra les paramètres de l'instance courrante du plugiciel.</dd>
+	<dd>Une variable local qui contiendra les paramètres de l'instance courante du plugiciel.</dd>
 
 	<dt>À la ligne 41 <code>parametres = $.extend(</code></dt>
 	<dd>La valeur de la variable local, parametres, sera une copie clonné créé en combinant l'ensemble des paramètres.</dd>
@@ -263,7 +263,7 @@ wb.add( selecteur );
 	<dd>Applique les paramètres par défaut.</dd>
 
 	<dt>À la ligne 45 <code>window[ nomComposant ],</code></dt>
-	<dd>Obtient les paramètres définie via javascript qui est souvant directement codé dans la même page qui utilise le plugiciel. Par example : <code>window['wb-bonjour'] = {};</code></dd>
+	<dd>Obtient les paramètres définie via javascript qui est souvent directement codé dans la même page qui utilise le plugiciel. Par example : <code>window['wb-bonjour'] = {};</code></dd>
 
 	<dt>À la ligne 46 <code>wb.getData( $elm, nomComposant )</code></dt>
 	<dd>Cela va lire les paramètres définie par l'attribut <code>data-wb-bonjour</code> et transforme le résultat en un objet JSON.</dd>
@@ -271,8 +271,8 @@ wb.add( selecteur );
 	<dt>À la ligne 50 <code>$elm.trigger( &quot;nom.de.votre.evenement&quot;, parametres );</code></dt>
 	<dd>Ici, le second paramètre est la configuration de l'instance en cours et qui sera utilisé par l'événement.</dd>
 
-	<dt>À la ligne 58 <code>function( evenenment, donnee ) {</code></dt>
-	<dd>Ajoute un second paramètre, <var>donnee</var>, à la fonction afin d'être en mesure de recevoir les données lorsque l'évélement est déclanché.</dd>
+	<dt>À la ligne 58 <code>function( evenement, donnee ) {</code></dt>
+	<dd>Ajoute un second paramètre, <var>donnee</var>, à la fonction afin d'être en mesure de recevoir les données lorsque l'évélement est déclenché.</dd>
 
 	<dt>À la ligne 64-66 <code>if ( donnee &amp;&amp; donnee.surpassetoi ) {</code></dt>
 	<dd>S'il la variable <var>donnee</var> a été initialisé et qu'il contient une propriété nommé <var>surpassetoi</var> avec n'importe lequel valeur qui est vrai, alors les mots &quot;Surpasse toi&quot; sera ajouté au début de l'élément.</dd>
@@ -292,7 +292,7 @@ wb.add( selecteur );
 
 &lt;p class=&quot;wb-bonjour&quot; data-wb-bonjour='{ &quot;surpassetoi&quot;: true }'&gt;Exemple 3 avec paramètre&lt;/p&gt;</code></pre>
 
-<p>Noter que pour que vous puissez utiliser votre propre plugiciel dans la BOEW, vous devriez ajouter votre script après celui de la BOEW (wet-boew.js) dans le code HTML.</p>
+<p>Noter que pour que vous puissiez utiliser votre propre plugiciel dans la BOEW, vous devriez ajouter votre script après celui de la BOEW (wet-boew.js) dans le code HTML.</p>
 
 <h2>Allez plus loin</h2>
 
@@ -304,4 +304,4 @@ wb.add( selecteur );
 
 <h2>Question ou besoin d'assistance?</h2>
 
-<p><a href="https://github.com/wet-boew/wet-boew/issues/new" hreflang="en">Soumetter une requête sur Github</a> (en anglais seulement, mais les questions peuvent être posés en français)</p>
+<p><a href="https://github.com/wet-boew/wet-boew/issues/new" hreflang="en">Soumettre une requête sur Github</a> (en anglais seulement, mais les questions peuvent être posés en français)</p>

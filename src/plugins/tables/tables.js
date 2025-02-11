@@ -282,7 +282,7 @@ $document.on( "submit", ".wb-tables-filter", function( event ) {
 	// Lets reset the search
 	$datatable.search( "" ).columns().search( "" );
 
-	// Lets loop throug all options
+	// Lets loop through all options
 	var $prevCol = -1, $cachedVal = "";
 	$form.find( "[name]" ).each( function() {
 		var $elm = $( this ),

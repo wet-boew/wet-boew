@@ -19,12 +19,12 @@
 </section>
 <section>
 	<h2>Use when</h2>
-	<p>When a reteived JSON file or when a JSON result requested through a RESTful API need a few minor manipulation in order to be displayed with the data-json.</p>
+	<p>When a retrieved JSON file or when a JSON result requested through a RESTful API need a few minor manipulation in order to be displayed with the data-json.</p>
 </section>
 <section>
 	<h2>Do not use when</h2>
-	<p>To perform complexe manipulation or metamorphing data in a way that change his original meaning. By complexe manipulation is like filtering, sorting, forking, merging, infering a result based from multiple source inside or outside the data context and any other operation that take time or required considerable amount of ressource where it badly impact the performance of the device and the user experience.</p>
-	<p>Instead, if your JSON file need a lot of manipulation, consider to create your own RESTful service that will accomodate for performing those task and it will allow to cache the result.</p>
+	<p>To perform complexe manipulation or metamorphing data in a way that change his original meaning. By complexe manipulation is like filtering, sorting, forking, merging, inferring a result based from multiple source inside or outside the data context and any other operation that take time or required considerable amount of ressource where it badly impact the performance of the device and the user experience.</p>
+	<p>Instead, if your JSON file need a lot of manipulation, consider to create your own RESTful service that will accommodate for performing those task and it will allow to cache the result.</p>
 	<p>Instead, if your are metamorphing the JSON data source, then that is probably means it should be an middleware service that do that transformation prior to receive the data for being display.</p>
 </section>
 <section>
@@ -92,10 +92,10 @@
 <section>
 <h2 id="jsonpatchesops">JSON patches operation</h2>
 
-<p>JSON operation is defined as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002 - JavaScript Object Notation (JSON) Patch</a> with additional operation to fullfill the needs of the JSON manager. Described in the documentation, the following operation are supported: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>. The operation that start with "wb" are custom operation defined inside the JSON manager</p>
+<p>JSON operation is defined as per <a href="https://tools.ietf.org/html/rfc6902">RFC6002 - JavaScript Object Notation (JSON) Patch</a> with additional operation to fulfil the needs of the JSON manager. Described in the documentation, the following operation are supported: <code>add</code>, <code>remove</code>, <code>replace</code>, <code>move</code>, <code>copy</code>, <code>test</code>, <code>wb-count</code>, <code>wb-first</code>, <code>wb-last</code>, <code>wb-toDateISO</code> and <code>wb-toDateTimeISO</code>. The operation that start with "wb" are custom operation defined inside the JSON manager</p>
 
 
-<p>In the description bellow when it refering to :</p>
+<p>In the description bellow when it referring to :</p>
 <dl class="dl-horizontal">
 	<dt><code>&lt;path&gt;</code></dt>
 	<dd>That represents a string containing a valid <a href="https://tools.ietf.org/html/rfc6901">JavaScript Object Notation (JSON) Pointer [RFC6901]</a>. You can find JSON pointer example in the data-json working example under "Selecting data" heading.</dd>
@@ -154,7 +154,7 @@
 		<td><code>{ "op": "test", "path": &lt;path&gt;, "value": &lt;value&gt; }</code></td>
 		<td>
 			<p>Tests that a value at the target location is equal to a specified value. On failing, it would result in no changes being made.</p>
-			<p>Note by using test operation, it makes the pathes atomic. So that means that is one test operation fail, nothing will be executed otherwise all operation get executed. The execution of any test operation are prioritized before any other operation.</p>
+			<p>Note by using test operation, it makes the paths atomic. So that means that is one test operation fail, nothing will be executed otherwise all operation get executed. The execution of any test operation are prioritized before any other operation.</p>
 		</td>
 	</tr>
 
@@ -217,13 +217,13 @@
 	</tr>
 
 	<tr>
-		<td>Formating a date to ISO (YYYY-MM-DD)</td>
+		<td>Formatting a date to ISO (YYYY-MM-DD)</td>
 		<td><code>{ "op": "wb-toDateISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
 		<td>Format a date value to data ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
 	</tr>
 
 	<tr>
-		<td>Formating a date and time to ISO (YYYY-MM-DD HH:MM)</td>
+		<td>Formatting a date and time to ISO (YYYY-MM-DD HH:MM)</td>
 		<td><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt; }</code><br/> or<br/><code>{ "op": "wb-toDateTimeISO", "path": &lt;path&gt;, "set": &lt;path&gt; }</code></td>
 		<td>Format a date value to date time ISO and copy the value at a specified location. If <code>set</code> is not defined, it will be the value located at <code>path</code> that will be replaced.</td>
 	</tr>
@@ -289,7 +289,7 @@
 <section>
 <h2>Debugging</h2>
 
-<p>You can set the configuration option <code>&quot;debug&quot;: true</code> to show, added the element that call the JSON manager, the modified JSON object and his applied patches. The JSON are displayed without any formating.</p>
+<p>You can set the configuration option <code>&quot;debug&quot;: true</code> to show, added the element that call the JSON manager, the modified JSON object and his applied patches. The JSON are displayed without any formatting.</p>
 
 <pre><code>&lt;div data-wb-jsonmanager='{
 	&quot;url&quot;: &quot;data-en.json&quot;,
@@ -351,7 +351,7 @@
 				<dt>false (default)</dt>
 				<dd>Will execute the patches when the plugin is initialized</dd>
 				<dt>true</dt>
-				<dd>Will wait to notify plugins that use the named dataset, until patches is received throught the event <code>patches.wb-jsonmanager</code>.</dd>
+				<dd>Will wait to notify plugins that use the named dataset, until patches is received through the event <code>patches.wb-jsonmanager</code>.</dd>
 			</dl>
 		</td>
 	</tr>
@@ -436,7 +436,7 @@
 				<dt>false (default)</dt>
 				<dd>There is no debug info that is displayed</dd>
 				<dt>true</dt>
-				<dd>Will display a unformated result.</dd>
+				<dd>Will display a unformatted result.</dd>
 			</dl>
 		</td>
 	</tr>
@@ -449,9 +449,9 @@
 				<dt>Default</dt>
 				<dd>The browser will manage the cache based on how the server has sent the file.</dd>
 				<dt><code>true</code></dt>
-				<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+				<dd>Boolean, Use the same cache buster id for the user session. Closing and opening the tab should generate a new cache busting id.</dd>
 				<dt><code>nocache</code></dt>
-				<dd>String, A new id is generated everytime the file is fetched</dd>
+				<dd>String, A new id is generated every time the file is fetched</dd>
 			</dl>
 		</td>
 	</tr>
@@ -583,12 +583,12 @@
 	<tr>
 		<td><code>value</code></td>
 		<td><code>{ "filter": [ { "value": "A value" } ] &hellip;}</code> or <code>{ "filternot": [ { "value": "A value" } ] &hellip;}</code> </td>
-		<td>Any value that could be compared with the information retreived form the path. An exact match is performed.</td>
+		<td>Any value that could be compared with the information retrieved form the path. An exact match is performed.</td>
 	</tr>
 	<tr class="text-muted">
 		<td><code>optional</code></td>
 		<td><code>{ "filter": [ { "optional": true } ] &hellip;}'</code> or <code>{ "filternot": [ { "optional": true } ] &hellip;}'</code></td>
-		<td>True or false. If omited it will be false by default.</td>
+		<td>True or false. If omitted it will be false by default.</td>
 	</tr>
 	</tbody>
 	</table>
@@ -669,7 +669,7 @@
 					<p>Triggered manually via javascript or automatically via other plugin that interact with the JSON manager.</p>
 					<pre><code>$( "#MyJsonManager" ).trigger(  {
 	type: "patches.wb-jsonmanager",
-	patches: [ { JSON patached operation object } ]
+	patches: [ { JSON patched operation object } ]
 } );</code></pre>
 					<p>Where supporting the following event property:</p>
 					<dl>
@@ -679,7 +679,7 @@
 						<dd>Boolean. Default (false) If true the patches applied for this one event will be cumulative and impact subsequent applied patches.</dd>
 					</dl>
 				</td>
-				<td>Apply patches to the dataset and will send a request to update the content of all plugin that are binded to this dataset.</td>
+				<td>Apply patches to the dataset and will send a request to update the content of all plugin that are bound to this dataset.</td>
 			</tr>
 			<tr>
 				<td><code>postpone.wb-jsonmanager</code></td>

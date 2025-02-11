@@ -205,7 +205,7 @@ var componentName = "wb-mltmd",
 	},
 
 	/*
-	 * Peformant micro templater
+	 * Performant micro templater
 	 * @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 	 * @todo: caching
 	 */
@@ -373,7 +373,7 @@ var componentName = "wb-mltmd",
 
 	/**
 	 * @method loadCaptionsInternal
-	 * @description Loads same page captions emebed in HTML
+	 * @description Loads same page captions embedded in HTML
 	 * @param {Object} elm The jQuery object for the multimedia player loading the captions
 	 * @param {Object} obj The jQUery object containing the captions
 	 * @fires ccloaded.wb-mltmd
@@ -566,7 +566,7 @@ var componentName = "wb-mltmd",
 
 	/**
 	 * @method youTubeEvents
-	 * @description Youtube API event manager
+	 * @description YouTube API event manager
 	 * @param {object} event The event object fior the triggered event
 	 */
 	youTubeEvents = function( event ) {
@@ -734,7 +734,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				//possible solution for multimedia and doaction conflict in corporate network
 				complete: function() {
 
-					// Ensure that Youtube API is loading the iframe and if it fails, ensure that it will show a message, like accessing the web via our GC network.
+					// Ensure that YouTube API is loading the iframe and if it fails, ensure that it will show a message, like accessing the web via our GC network.
 					setTimeout( function() {
 						var resources, arrIframesYt, $notifText;
 
@@ -774,7 +774,7 @@ $document.on( initializedEvent, selector, function( event ) {
 } );
 
 /*
- *  Youtube Video mode Event
+ *  YouTube Video mode Event
  */
 $document.on( youtubeEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
@@ -813,7 +813,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 				},
 				onError: function() {
-					console.warn( "There is an issue loading the Youtube player" );
+					console.warn( "There is an issue loading the YouTube player" );
 				}
 			}
 		} );
@@ -832,7 +832,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		// Detect if the YT player reloads, like when magnific Popup show the modal, because it moves the iframe
 		// and then the iframe gets refreshed and reloaded. So the issue is that the iframe stops emitting the event
-		// needed to adjust the multimedia player controler, like the "onStateChange" event.
+		// needed to adjust the multimedia player controller, like the "onStateChange" event.
 		$media.on( "load", function( evt ) {
 
 			var elm = evt.currentTarget,

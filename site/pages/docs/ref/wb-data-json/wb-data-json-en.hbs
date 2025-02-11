@@ -19,12 +19,12 @@
 <section>
 	<h2>Use when</h2>
 	<p>When you need to display the same atomic information on multiple pages. Like a fee for a services that is re-use across multiple pages.</p>
-	<p>To insert repeatitive content by using HTML5 template element.</p>
+	<p>To insert repetitive content by using HTML5 template element.</p>
 </section>
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>To insert block of HTML content, instead use <a href="https://wet-boew.github.io/themes-dist/GCWeb/demos/data-ajax/data-ajax-en.html">data-ajax</a> with the filtering option if neccessary.</li>
+		<li>To insert block of HTML content, instead use <a href="https://wet-boew.github.io/themes-dist/GCWeb/demos/data-ajax/data-ajax-en.html">data-ajax</a> with the filtering option if necessary.</li>
 		<li>For inserting data that only apply to an unique page.</li>
 	</ul>
 </section>
@@ -40,7 +40,7 @@
 	<ul>
 		<li><a href="../../../demos/wb-data-json/data-json-fr.html" hreflang="fr">Data JSON</a></li>
 		<li><a href="../../../demos/wb-data-json/template-fr.html" hreflang="fr" lang="fr">Gabarit HTML 5</a></li>
-		<li><a href="../../../demos/wb-data-json/conditional-fr.html" hreflang="fr" lang="fr">Gabarit conditionel</a></li>
+		<li><a href="../../../demos/wb-data-json/conditional-fr.html" hreflang="fr" lang="fr">Gabarit conditionnel</a></li>
 	</ul>
 	<div lang="en">
 		<h2>Evaluation and report</h2>
@@ -133,7 +133,7 @@
 					<p>Note: When using the template for filling a table, wrap your rows template into a <code>table</code> element in order to avoid a bug in Internet Explorer.</p>
 				</li>
 				<li>
-					<p>Use the data for shapping multiple area of an HTML element</p>
+					<p>Use the data for shaping multiple area of an HTML element</p>
 					<pre><code>&lt;a href=&quot;generic/location.html&quot; data-wb-json='[
 		{
 			&quot;url&quot;: &quot;mydata.json#/first/title&quot;,
@@ -545,7 +545,7 @@
 	<tr>
 		<td><code>type</code></td>
 		<td>Configure the origin and destination of the content to be extracted from a JSON file. Similar of using the insertion type.</td>
-		<td>Add a value to type that is recongnized, if leaved it it will assume it's means template.</td>
+		<td>Add a value to type that is recognized, if leaved it it will assume it's means template.</td>
 		<td>
 			<dl>
 				<dt><code>template</code></dt>
@@ -585,7 +585,7 @@
 		<td><code>prop</code></td>
 		<td>Specify the element attribute name. Only required when <code>type="prop"</code>.</td>
 		<td><code>data-wb-json='{ "url": "", "type": "prop", "prop": "disabled" }'</code></td>
-		<td>A valid attribute considered as a propperty supported by the element and be one of the following <code>checked, selected, disabled, required, readonly, multiple, hidden</code>.</td>
+		<td>A valid attribute considered as a property supported by the element and be one of the following <code>checked, selected, disabled, required, readonly, multiple, hidden</code>.</td>
 	</tr>
 	<tr>
 		<td><code>queryall</code></td>
@@ -610,7 +610,7 @@
 		<td><code>filter</code> <span class="label label-warning">Deprecated</span></td>
 		<td>
 			<p><strong>Use the filtering feature from the JSON manager instead.</strong></p>
-			<p>Template only. Validating for truthness to allow array items to be processed by the template. Contains an array of evaluation criteria for array items.</p>
+			<p>Template only. Validating for truthiness to allow array items to be processed by the template. Contains an array of evaluation criteria for array items.</p>
 		</td>
 		<td><code>data-wb-json='{ "url": "", "filter": [ {evaluation object} ] }'</code></td>
 		<td>
@@ -641,7 +641,7 @@
 			<p>Template only, for evaluation object and required.</p>
 		</td>
 		<td><code>data-wb-json='{ "url": "", "filter": [ { "value": "A value" } ] }'</code></td>
-		<td>Any value that could be compared with the information retreived form the path.</td>
+		<td>Any value that could be compared with the information retrieved form the path.</td>
 	</tr>
 	<tr class="text-muted">
 		<td>Evaluation object <code>optional</code> <span class="label label-warning">Deprecated</span></td>
@@ -650,13 +650,13 @@
 			<p>Template only and for evaluation object.</p>
 		</td>
 		<td><code>data-wb-json='{ "url": "", "filter": [ { "optional": true } ] }'</code></td>
-		<td>True or false. If omited it will be false by default.</td>
+		<td>True or false. If omitted it will be false by default.</td>
 	</tr>
 	<tr class="text-muted">
 		<td><code>filternot</code> <span class="label label-warning">Deprecated</span></td>
 		<td>
 			<p><strong>Use the filtering feature from the JSON manager instead.</strong></p>
-			<p>Template only. Validating for falsness to disallow an array items to be processed by the template. Contains an array of evaluation criteria for array items.</p>
+			<p>Template only. Validating for falseness to disallow an array items to be processed by the template. Contains an array of evaluation criteria for array items.</p>
 		</td>
 		<td><code>data-wb-json='{ "url": "", "filternot": [ {evaluation object} ] }'</code></td>
 		<td>
@@ -685,7 +685,7 @@
 	</tr>
 	<tr>
 		<td><code>mapping</code></td>
-		<td>Template only. Array of string represeting a JSON pointer or object where it specify how to bind the data with the template content. If the configuration <code>queryall</code> is used, the number of items in the mapping must match the number of returning result of the queryall. In the other hand, if <code>queryall</code> configuration is not specified, than each mapping object must define a <code>selector</code> configuration.</td>
+		<td>Template only. Array of string representing a JSON pointer or object where it specify how to bind the data with the template content. If the configuration <code>queryall</code> is used, the number of items in the mapping must match the number of returning result of the queryall. In the other hand, if <code>queryall</code> configuration is not specified, than each mapping object must define a <code>selector</code> configuration.</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ "JSON Pointer", "JSON Pointer" ] }'</code> or <code>data-wb-json='{ "url": "", "mapping": [ {mapping object}, {mapping object} ] }'</code></td>
 		<td>
 			<p>When queryall is not specified, it's is an array of string with a the JSON pointer. (Equivalent to the value in the Mapping object)</p>
@@ -696,7 +696,7 @@
 
 	<tr>
 		<td>Mapping object <code>selector</code></td>
-		<td>Template only, for mapping object and required when <code>queryall</code> is not specified. Should selects one element inside the cloned template. When selecting an array, that allow you run sub-template. To configure a sub-template, the mapping object is extended like: you can optionnaly set the "source" configuration, optionnaly set the "queryall" configuration and you can also set a inner "mapping" object for the mapping of the sub-template.</td>
+		<td>Template only, for mapping object and required when <code>queryall</code> is not specified. Should selects one element inside the cloned template. When selecting an array, that allow you run sub-template. To configure a sub-template, the mapping object is extended like: you can optionally set the "source" configuration, optionally set the "queryall" configuration and you can also set a inner "mapping" object for the mapping of the sub-template.</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ { "selector": "A CSS Selector" } ] }'</code></td>
 		<td>A valid <a href="https://www.w3.org/TR/selectors/">CSS selector</a>.</td>
 	</tr>
@@ -708,7 +708,7 @@
 	</tr>
 	<tr>
 		<td>Mapping object <code>placeholder</code></td>
-		<td>Template only, for mapping object and optinal when <code>queryall</code> is not specified. String representing the placeholder to replace by the selected data</td>
+		<td>Template only, for mapping object and optional when <code>queryall</code> is not specified. String representing the placeholder to replace by the selected data</td>
 		<td><code>data-wb-json='{ "url": "", "mapping": [ { "placeholder": "{{name}}" } ] }'</code></td>
 		<td>A findable string in the selected element in the template.</td>
 	</tr>
@@ -773,7 +773,7 @@
 	</tr>
 	<tr>
 		<td><code>appendto</code></td>
-		<td>Template only. When the elements are outside the editing area, this specified the element to use to append the template. Specifying the data-json directly of the elements should remain how it is used. Note: Since WET 4.0.27 a bug fix has change the behavior of one usecase depending how the mapping is configured. Since WET 4.0.27, using the data-json template is always done against an JSON array.</td>
+		<td>Template only. When the elements are outside the editing area, this specified the element to use to append the template. Specifying the data-json directly of the elements should remain how it is used. Note: Since WET 4.0.27 a bug fix has change the behavior of one use case depending how the mapping is configured. Since WET 4.0.27, using the data-json template is always done against an JSON array.</td>
 		<td><code>data-wb-json='{ "url": "", "appendto": "title" }'</code></td>
 		<td>A valid jQuery selector.</td>
 	</tr>
@@ -786,9 +786,9 @@
 				<dt>Default</dt>
 				<dd>The browser will manage the cache based on how the server has sent the file.</dd>
 				<dt><code>true</code></dt>
-				<dd>Boolean, Use the same cache buster id for the user session. Clossing and opening the tab should generate a new cache busting id.</dd>
+				<dd>Boolean, Use the same cache buster id for the user session. Closing and opening the tab should generate a new cache busting id.</dd>
 				<dt><code>nocache</code></dt>
-				<dd>String, A new id is generated everytime the file is fetched</dd>
+				<dd>String, A new id is generated every time the file is fetched</dd>
 			</dl>
 		</td>
 	</tr>

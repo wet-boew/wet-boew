@@ -82,7 +82,7 @@ var componentName = "wb-prettify",
 				}
 			}
 
-			// CSS class overides of settings
+			// CSS class overrides of settings
 			settings.allpre = settings.allpre || $elm.hasClass( "all-pre" );
 			settings.linenums = settings.linenums || $elm.hasClass( "linenums" );
 

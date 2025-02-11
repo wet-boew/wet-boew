@@ -29,7 +29,7 @@
   },
 
   "dct:date": "2023-08-02",
-  "dct:description": "Analyzing and exploring the subject and produce a pre-evaluation of all WCAG 2.1 SC at level AA.",
+  "dct:description": "Analysing and exploring the subject and produce a pre-evaluation of all WCAG 2.1 SC at level AA.",
   "acr:involvesExpertise": [
     "wbv:acr/topics#aria",
     "Javascript"

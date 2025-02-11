@@ -50,7 +50,7 @@ $clrDarkBlue: #243850 !default;
 //## Settings for some of the most global styles.
 
 //** Global textual link color.
-// Boostrap Overrides
+// Bootstrap Overrides
 $link-color: #295376 !default;
 $link-hover-color: #0535d2 !default;
 
@@ -89,7 +89,7 @@ $line-height-base: 1.4375 !default;
 
 //== Breadcrumb
 //
-//## Breacrumb enable/disable and colour settings.
+// ## Breadcrumb enable/disable and colour settings.
 
 // WET Custom
 $wb-bc-enable: true !default; // Enable or disable WET's breadcrumb SCSS. Themes that don't use breadcrumbs can set this to false.

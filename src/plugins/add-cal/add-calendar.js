@@ -150,7 +150,7 @@ var componentName = "wb-addcal",
 
 	};
 
-// Convert date to ISO string and formating for ICS file
+// Convert date to ISO string and formatting for ICS file
 var dtToISOString = function( date ) {
 	if ( date.is( "[datetime]" ) ) {
 		date = date.attr( "datetime" );

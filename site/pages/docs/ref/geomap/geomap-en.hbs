@@ -335,7 +335,7 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 					<td>No</td>
 					<td>Array</td>
 					<td>''</td>
-					<td>A comma delimitated array of OpenLayers options for WMS layer types.</td>
+					<td>A comma delimited array of OpenLayers options for WMS layer types.</td>
 				</tr>
 				<tr>
 					<td><code>mapOptions</code></td>
@@ -582,7 +582,7 @@ var wet_boew_geomap = {
 			</table>
 
 			<section>
-				<h4>Feature overylay configuration example</h4>
+				<h4>Feature overlay configuration example</h4>
 				<pre><code>{
 	attributes: {
 		location_desc: 'Location',
@@ -692,7 +692,7 @@ var wet_boew_geomap = {
 	</section>
 	<section>
 		<h3>Adding WMS Overlays (v4.0.11+)</h3>
-		<p>Geomap will not generate an HTML table of map features for WMS overlays. Consequently WMS overlays should only be used when feature based alternatives are not available as accessibility is severly compromised.</p>
+		<p>Geomap will not generate an HTML table of map features for WMS overlays. Consequently WMS overlays should only be used when feature based alternatives are not available as accessibility is severely compromised.</p>
 	<pre><code>
 {
 	title: "WMS Demo",
@@ -747,7 +747,7 @@ options: {
 			<h4>Pre v4.0.5</h4>
 			<pre><code>// return an array of OpenLayers maps in the page
 wb.doc.on( "geomap.ready", function( event, maps ) {
-	var myMap = maps.mygeomap; // return map with specfic id
+	var myMap = maps.mygeomap; // return map with specific id
 	// do something
 });</code></pre>
 			<p>Note that the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing is used as the key in the maps array.</p>
@@ -805,7 +805,7 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 	<p>You can apply the following filter:</p>
 	<ul>
 		<li><strong>Area Of Interest</strong>: [<code>aoi</code>] Zoom the map to an specific area (extent).</li>
-		<li><strong>Layer (Overlays)</strong>: [<code>layer</code>] Select a specific layer (overlays) to diplay on the map</li>
+		<li><strong>Layer (Overlays)</strong>: [<code>layer</code>] Select a specific layer (overlays) to display on the map</li>
 	</ul>
 
 	<p>Implementation requirement:</p>
@@ -820,7 +820,7 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 
 	<div class="row">
 		<div class="col-md-6">
-			<h4><code>data-fitler="aoi"</code></h4>
+			<h4><code>data-filter="aoi"</code></h4>
 
 			<p>The value of the option is as 4 cardinal point (North East South West) or as <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-known text (WKT)</a> if there is any letter. For example:</p>
 			<ul>
@@ -904,7 +904,7 @@ $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
 	<p>Instance properties:</p>
 	<dl class="dl-horizontal">
 		<dt><code>id</code></dt>
-		<dd>Uniquer identifier set for that layer</dd>
+		<dd>Unique identifier set for that layer</dd>
 		<dt><code>layer</code></dt>
 		<dd>OpenLayer layer Vector object</dd>
 		<dt><code>map</code></dt>

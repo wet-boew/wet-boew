@@ -336,15 +336,15 @@
 		<h3>Source code</h3>
 		<details>
 			<summary>View code</summary>
-			<p>Filering out one element, in-page HTML</p>
+			<p>Filtering out one element, in-page HTML</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector)</strong>" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-			<p>Filering out multiple elements, in-page HTML</p>
+			<p>Filtering out multiple elements, in-page HTML</p>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-filter-en.html .filter-selector > div > *<strong>:not(.filter-out-selector, p)</strong>" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-			<p>Filering out one element and encoding the output</p>
+			<p>Filtering out one element and encoding the output</p>
 			<pre><code>&lt;pre>&lt;code data-wb-ajax='{ "encode": true, "url": "ajax/data-ajax-filter-en.html .filter-selector > div > *:not(.filter-out-selector)", "type": "replace" }'>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/code>&lt;/pre></code></pre>
 			<p>data-ajax-filter-en.html</p>
 			<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
@@ -368,7 +368,7 @@
 
 <section>
 	<h2>Alternative syntax</h2>
-	<p>Consult the <a href="../../docs/ref/data-ajax/data-ajax-en.html">documentation</a> for more information regarding the following alternative syntaxt.</p>
+	<p>Consult the <a href="../../docs/ref/data-ajax/data-ajax-en.html">documentation</a> for more information regarding the following alternative syntax.</p>
 	<h3>Example</h3>
 	<div data-wb-ajax='{
 			"url": "ajax/data-ajax-extra-en.html",

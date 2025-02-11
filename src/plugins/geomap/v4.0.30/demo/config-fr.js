@@ -6,13 +6,13 @@
  */
 
 /*
- * Les composantes individuelles seront substituées par les compasantes globales
+ * Les composantes individuelles seront substituées par les composantes globales
  *
  * Les couche de superpositions seront ajoutés dans l'ordre où ils sont fournis
  * (c'est à dire la première couche sera ajouté en premier, puis la suivante
  * sur le dessus, et ainsi de suite).
  *
- * Prennez note, la carte de base peut être définie globalement dans le fichier settings.js.
+ * Prenez note, la carte de base peut être définie globalement dans le fichier settings.js.
  */
 /*jshint unused:false*/
 var wet_boew_geomap = {
@@ -204,7 +204,7 @@ var wet_boew_geomap = {
 			attributes: {
 				title: "Titre",
 				summary: "Résumé",
-				author: "Autheur"
+				author: "Auteur"
 			}
 		},
 		{
@@ -306,7 +306,7 @@ var wet_boew_geomap = {
 				select: {
 					pointRadius: "30",
 					externalGraphic: "demo/icons/OverIcon.png",
-					label: "Selectionné",
+					label: "Sélectionné",
 					fillOpacity: 0.90
 				}
 			}

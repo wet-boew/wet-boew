@@ -3,11 +3,11 @@
  *
  * Note: The following analysis and/or changes was required also to be applied in our code base:
  *	- Ensure there is no JSONP ajax call
- *	- Ensure to not use self closing tag when a closing tag is usally needed.
+ *	- Ensure to not use self closing tag when a closing tag is usually needed.
  *		ex: `<div />` need to change for `<div></div>`
  *		This is applicable to all tags except the one in this list: area|br|col|embed|hr|img|input|link|meta|param
  *	- Review how `<tr>`, `<td>`, `<script>` and `<link>` are inserted with `$()`.
- *		Their insersion need to be completed differently like the by using the javascript DOM interface.
+ *		Their insertion need to be completed differently like the by using the javascript DOM interface.
  *	- All content that related to jQuery DOM manipulation are sanitized with DOMPurify
  *	- You can't use jQuery for parsing XML document, you can use DOMParser() as an alternative
  *	- Ensure AJAX and fetch are sanitized before they response are used
