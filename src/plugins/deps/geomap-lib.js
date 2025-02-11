@@ -254,7 +254,7 @@ var componentName = "wb-geomap",
 	MapLayer = function( map, options ) {
 
 		var _this = this,
-			visibilytyCallBackArr = [];
+			visibilityCallBackArr = [];
 
 		this.map = map;
 		this.settings = options;
@@ -280,7 +280,7 @@ var componentName = "wb-geomap",
 				_this.visibilityState = newVal;
 
 				// Notify
-				visibilytyCallBackArr.forEach( function( signalHandler ) {
+				visibilityCallBackArr.forEach( function( signalHandler ) {
 
 					return signalHandler( newVal );
 				} );
@@ -294,7 +294,7 @@ var componentName = "wb-geomap",
 
 		// Allow the properties to be observed
 		this.observeVisibility = function( callback ) {
-			visibilytyCallBackArr.push( callback );
+			visibilityCallBackArr.push( callback );
 		};
 
 		this.observeVisibility( function( vis ) {
