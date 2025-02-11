@@ -58,6 +58,7 @@
 
 				a {
 					@extend %global-text-decoration-none;
+
 					display: block;
 					padding: 1em;
 					text-align: center;
@@ -209,6 +210,7 @@
 
 				&:focus {
 					@extend %menu-mb-pnl-wb-navcurr-focus;
+
 					outline-offset: -2px;
 				}
 			}

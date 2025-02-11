@@ -21,9 +21,10 @@
 	padding-top: 2em;
 }
 
-@mixin multimedia_overlay_loading {
+@mixin multimedia-overlay-loading {
 	.display {
 		@extend %global-loading;
+
 		position: relative;
 
 		&:before,
@@ -33,15 +34,16 @@
 	}
 }
 
-@mixin multimedia_overlay_base {
+@mixin multimedia-overlay-base {
 	.display {
 		@extend %global-centered-overlay;
+
 		cursor: pointer;
 		position: relative;
 	}
 }
 
-@mixin multimedia_overlay_play {
+@mixin multimedia-overlay-play {
 	.display {
 		&:before {
 			text-align: center;
@@ -50,6 +52,7 @@
 		&:after {
 			color: #fff;
 			content: "";
+
 			// TODO: Use Bootstrap's placeholder when nested extends are supported
 			font-family: "Glyphicons Halflings";
 			font-size: 65px;
@@ -63,12 +66,12 @@
 	width: 100%;
 }
 
-%captions_hidden {
+%captions-hidden {
 	max-height: 0;
 	padding: 0;
 }
 
-%captions_text_box {
+%captions-text-box {
 	display: table-cell;
 	height: #{$line-height-base * $mm-cc-lines}em;
 	vertical-align: middle;
@@ -83,12 +86,12 @@
 	&.video {
 
 		&:not(.playing):not(.waiting) {
-			@include multimedia_overlay_base;
-			@include multimedia_overlay_play;
+			@include multimedia-overlay-base;
+			@include multimedia-overlay-play;
 		}
 
 		&.waiting {
-			@include multimedia_overlay_loading;
+			@include multimedia-overlay-loading;
 		}
 	}
 
@@ -104,6 +107,7 @@
 
 	video {
 		@extend %controls-offset;
+
 		height: auto;
 		width: 100%;
 	}
@@ -190,7 +194,8 @@
 }
 
 .wb-mm-cc {
-	@extend %captions_hidden;
+	@extend %captions-hidden;
+
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
 	text-align: center;
@@ -198,12 +203,13 @@
 	width: 100%;
 
 	&:before {
-		@extend %captions_text_box;
+		@extend %captions-text-box;
+
 		content: " ";
 	}
 
 	div {
-		@extend %captions_text_box;
+		@extend %captions-text-box;
 	}
 }
 
@@ -222,12 +228,14 @@
 
 	.btn {
 		@extend %multimedia-controls-outline;
+
 		background: transparent;
 		border: 0;
 		border-top: {
 			left-radius: 0 !important;
 			right-radius: 0 !important;
 		}
+
 		color: $mm-ctrl-fg-color;
 		font-size: 130%;
 
@@ -254,12 +262,14 @@
 
 	.frstpnl {
 		@extend %pnl;
+
 		text-align: center;
 		width: 13em;
 	}
 
 	.lastpnl {
 		@extend %pnl;
+
 		text-align: center;
 		width: 3em;
 
@@ -338,6 +348,7 @@
 	input {
 		&[type=range] {
 			@extend %multimedia-controls-outline;
+
 			-webkit-appearance: none;
 			background: transparent;
 			display: inline-block;

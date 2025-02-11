@@ -9,10 +9,12 @@
 
 .original {
 	@extend %data-ajax-demo-padding-border;
+
 	background: #ccc;
 }
 
 .ajaxed-in {
 	@extend %data-ajax-demo-padding-border;
+
 	background: #fff;
 }

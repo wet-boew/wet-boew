@@ -61,6 +61,7 @@
 
 		abbr {
 			@extend %cal-cell;
+
 			color: $cal-dow-color;
 			display: block;
 		}
@@ -75,6 +76,7 @@
 		> {
 			time {
 				@extend %cal-cell;
+
 				display: block;
 			}
 
@@ -99,6 +101,7 @@
 
 	.cal-curr-day {
 		@extend %cal-curr-day-color;
+
 		background: $cal-curr-day-bg;
 		font-weight: bolder;
 

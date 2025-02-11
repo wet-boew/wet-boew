@@ -42,6 +42,7 @@
 
 	&.in {
 		@extend %visible;
+
 		animation-duration: 350ms;
 		animation-name: popin;
 		transform: scale(1);
@@ -50,6 +51,7 @@
 
 	&.out {
 		@extend %invisible;
+
 		animation-duration: 100ms;
 		animation-name: fadeout;
 		visibility: hidden;
@@ -70,11 +72,13 @@
 @keyframes popin {
 	0% {
 		@include visible;
+
 		transform: scale(.8);
 	}
 
 	100% {
 		@include invisible;
+
 		transform: scale(1);
 	}
 }
@@ -82,11 +86,13 @@
 @keyframes popout {
 	0% {
 		@include visible;
+
 		transform: scale(1);
 	}
 
 	100% {
 		@include invisible;
+
 		transform: scale(.8);
 	}
 }
@@ -97,12 +103,14 @@
 
 	&.in {
 		@extend %visible;
+
 		animation-duration: 225ms;
 		animation-name: fadein;
 	}
 
 	&.out {
 		@extend %invisible;
+
 		animation-duration: 125ms;
 		animation-name: fadeout;
 		z-index: -1;
@@ -116,11 +124,13 @@
 	&.reverse {
 		&.in {
 			@extend %invisible;
+
 			animation-name: fadeout;
 		}
 
 		&.out {
 			@extend %visible;
+
 			animation-name: fadein;
 		}
 	}
@@ -149,6 +159,7 @@
 @keyframes fadeoutnoheight {
 	0% {
 		@include visible;
+
 		max-height: 100%;
 	}
 
@@ -158,6 +169,7 @@
 
 	100% {
 		@include invisible;
+
 		max-height: 0;
 	}
 }
