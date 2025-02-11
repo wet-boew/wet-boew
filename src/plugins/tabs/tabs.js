@@ -588,12 +588,12 @@ var componentName = "wb-tabs",
 	/**
 	 * @method onCycle
 	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {integer} shifto The item to shift to
+	 * @param {integer} shiftto The item to shift to
 	 */
-	onCycle = function( $elm, shifto ) {
+	onCycle = function( $elm, shiftto ) {
 		$elm.trigger( {
 			type: shiftEvent,
-			shiftto: shifto
+			shiftto: shiftto
 		} );
 	},
 
