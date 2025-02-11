@@ -25,13 +25,13 @@ summary {
 }
 
 details {
-	padding-left: $details-identation;
-	padding-right: $details-identation;
+	padding-left: $details-indentation;
+	padding-right: $details-indentation;
 
 	> {
 		summary {
-			margin-left: -$details-identation;
-			margin-right: -$details-identation;
+			margin-left: -$details-indentation;
+			margin-right: -$details-indentation;
 		}
 	}
 
