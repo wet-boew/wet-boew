@@ -1491,7 +1491,7 @@ var componentName = "wb-geomap",
 		$( "#wb-geomap-geocode-search-" + geomap.id ).attr( "aria-haspopup", "true" );
 		$( "#wb-geomap-geocode-search-" + geomap.id ).attr( "aria-autocomplete", "list" );
 		$( "#wb-geomap-geocode-search-" + geomap.id ).attr( "aria-owns", "wb-geomap-geoloc-al-" + geomap.id );
-		$( "#wb-geomap-geocode-search-" + geomap.id ).attr( "aria-activedescendent", "" );
+		$( "#wb-geomap-geocode-search-" + geomap.id ).attr( "aria-activedescendant", "" );
 
 		width = parseFloat( $( ".geomap-geoloc" ).parent().width() );
 		x = width > 768 ? .6 : .8;
@@ -1579,7 +1579,7 @@ var componentName = "wb-geomap",
 			autolist.innerHTML = "";
 			autolist.setAttribute( "aria-hidden", "true" );
 			input.setAttribute( "aria-expanded", "false" );
-			input.setAttribute( "aria-activedescendent", "" );
+			input.setAttribute( "aria-activedescendant", "" );
 		}
 
 		/**
@@ -1715,7 +1715,7 @@ var componentName = "wb-geomap",
 					}
 
 				// Up / down arrow
-				} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+				} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendant" ) === "" ) {
 
 					if ( autolistHidden ) {
 						showOptions( input );
@@ -1729,7 +1729,7 @@ var componentName = "wb-geomap",
 
 					dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-					input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+					input.setAttribute( "aria-activedescendant", dest.parentNode.getAttribute( "id" ) );
 
 					// Assign focus to dest
 					$( dest ).trigger( setFocusEvent );
@@ -1850,7 +1850,7 @@ var componentName = "wb-geomap",
 					}
 					dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-					input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+					input.setAttribute( "aria-activedescendant", dest.parentNode.getAttribute( "id" ) );
 					$( dest ).trigger( setFocusEvent );
 
 					return false;
