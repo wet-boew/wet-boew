@@ -14,7 +14,7 @@ Veuillez mentionner que votre demande est reliée à un problème de sécurité,
 
 Vous pouvez vous attendre à des suivis périodiques de la part de l'Éditeur principal une fois les informations envoyées.
 
-Note : Si vous n'arrivez pas à accéder le Bureau de service de l'Éditeur principal, veuillez communiquer avec l'Éditeur principal par courriel au ESDC.SD.DEV-DEV.DS.EDSC@servicecanada.gc.ca.
+Note : Si vous n'arrivez pas à accéder le Bureau de service de l'Éditeur principal, veuillez communiquer avec l'Éditeur principal par courriel au <ESDC.SD.DEV-DEV.DS.EDSC@servicecanada.gc.ca>.
 
 ______________________
 
@@ -32,4 +32,4 @@ Please mention that your request is related to a security issue, and that you ar
 
 Expect periodic follow-ups from the Principal Publisher once all related informations are sent.
 
-Note: If you are unable to access the Principal Publisher Service desk, please reach out to the Principal Publisher by email at ESDC.SD.DEV-DEV.DS.EDSC@servicecanada.gc.ca.
+Note: If you are unable to access the Principal Publisher Service desk, please reach out to the Principal Publisher by email at <ESDC.SD.DEV-DEV.DS.EDSC@servicecanada.gc.ca>.
