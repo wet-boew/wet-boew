@@ -203,7 +203,7 @@
 		position: 0 0;
 	}
 
-	cursor: W-resize;
+	cursor: w-resize;
 	font-size: 10px;
 	line-height: 20px;
 	/* Are these needed?
@@ -246,8 +246,8 @@
 body {
 	&.fd-slider-drag-horizontal,
 	&.fd-slider-drag-horizontal * {
-		cursor: N-resize !important;
-		cursor: W-resize !important;
+		cursor: n-resize !important;
+		cursor: w-resize !important;
 		user-select: none;
 	}
 }
