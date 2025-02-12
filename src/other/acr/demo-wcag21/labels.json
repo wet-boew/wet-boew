@@ -372,7 +372,7 @@
       },
       "fr": {
         "wbv:acr#sufficient": "Technique suffisante",
-        "wbv:acr#advisoryy": "Technique complémentaire technique",
+        "wbv:acr#advisory": "Technique complémentaire technique",
         "wbv:acr#statement": "Énoncé de l'exigence",
         "wbv:acr#failure": "Échec de la règle",
         "wbv:acr#compatibility": "Compatibilité technologique",
