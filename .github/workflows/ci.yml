@@ -25,9 +25,10 @@ jobs:
           java-version: 8
           distribution: "temurin"
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
       - name: Install puppeteer libraries
         run: |
          sudo apt-get update
