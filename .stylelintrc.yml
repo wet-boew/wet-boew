@@ -8,8 +8,15 @@ plugins:
 # See #9545 for the cleanup and the re-activation tasks related to the following rules
 rules:
   # Suppress stylelint-config-recommended errors
-  font-family-no-duplicate-names: null
-  font-family-no-missing-generic-family-keyword: null
+  font-family-no-duplicate-names:
+    - true
+    - ignoreFontFamilyNames:
+      - "monospace" # Issue from Bootstrap-sass/normalize.scss
+  font-family-no-missing-generic-family-keyword:
+    - true
+    - ignoreFontFamilies:
+      - "Glyphicons Halflings" # Icons don't need fallbacks
+      - /a/ # Weird buggy thing from text-hide mixin from Bootstrap 3
   function-no-unknown: null
   media-feature-name-no-unknown: null
   no-descending-specificity: null # Extremely slow
@@ -28,7 +35,6 @@ rules:
   declaration-block-no-duplicate-properties: null # Needed to fix build because of bootstrap-sass/assets/stylesheets/bootstrap/normalize line 113
   declaration-property-value-no-unknown: null # Uses legacy syntax
   declaration-property-value-keyword-no-deprecated: null # Fix use of break-word
-  font-family-name-quotes: null
   function-name-case: null
   function-url-quotes: null
   length-zero-no-unit: null
