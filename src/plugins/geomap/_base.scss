@@ -26,7 +26,7 @@
 	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);
 	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,.2));
 	background-color: white;
-	border: 1px solid #cccccc;
+	border: 1px solid #ccc;
 	border-radius: 3px;
 	bottom: 12px;
 	box-shadow: 0 1px 4px rgba(0,0,0,.2);
@@ -56,7 +56,7 @@
 }
 
 .ol-popup:before {
-	border-top-color: #cccccc;
+	border-top-color: #ccc;
 	border-width: 11px;
 	left: 48px;
 	margin-left: -11px
@@ -502,7 +502,7 @@ ol-geolocate button {
 }
 
 .ol-dragbox {
-	border: 2px solid #ff0033;
+	border: 2px solid #f03;
 	border-radius: 2px;
 	box-sizing: border-box
 }

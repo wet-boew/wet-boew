@@ -95,7 +95,6 @@ module.exports = {
 				"at-rule-empty-line-before": null,
 				"at-rule-no-vendor-prefix": null,
 				"color-function-notation": null,
-				"color-hex-length": null,
 				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
 				"declaration-block-no-redundant-longhand-properties": null,
