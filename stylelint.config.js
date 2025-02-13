@@ -92,7 +92,6 @@ module.exports = {
 				"stylelint-config-standard-scss"
 			],
 			rules: {
-				"at-rule-empty-line-before": null,
 				"at-rule-no-vendor-prefix": null,
 				"color-function-notation": null,
 				"comment-empty-line-before": null,
