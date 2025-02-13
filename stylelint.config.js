@@ -98,7 +98,6 @@ module.exports = {
 				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
 				"declaration-block-no-redundant-longhand-properties": null,
-				"length-zero-no-unit": null,
 				"no-descending-specificity": null, // Extremely slow
 				"no-duplicate-selectors": null,
 				"no-invalid-position-at-import-rule": null, // Fixable, need to run sass migrator
