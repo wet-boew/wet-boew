@@ -104,8 +104,7 @@ module.exports = {
 				"selector-class-pattern": null,
 				"selector-id-pattern": null,
 				"selector-not-notation": null,
-				"selector-pseudo-element-colon-notation": null,
-				"shorthand-property-no-redundant-values": null
+				"selector-pseudo-element-colon-notation": null
 			}
 		}
 	],
