@@ -88,6 +88,7 @@ body {
 /* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-arrow {
 	opacity: 1;
+
 	&:focus {
 		@extend %lightbox-button-outline;
 	}

@@ -99,7 +99,6 @@ module.exports = {
 				"no-duplicate-selectors": null,
 				"no-invalid-position-at-import-rule": null, // Fixable, need to run sass migrator
 				"property-no-vendor-prefix": null,
-				"rule-empty-line-before": null,
 				"scss/comment-no-empty": null,
 				"scss/dollar-variable-pattern": null, // Fixable
 				"scss/no-global-function-names": null, // Fixable, need to run sass migrator

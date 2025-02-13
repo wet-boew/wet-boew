@@ -48,6 +48,7 @@
 	top: 100%;
 	width: 0
 }
+
 .ol-popup:after {
 	border-top-color: white;
 	border-width: 10px;
@@ -690,7 +691,6 @@ ol-geolocate button {
 }
 
 @-webkit-keyframes spin {
-
 	0% {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
@@ -703,7 +703,6 @@ ol-geolocate button {
 }
 
 @keyframes spin {
-
 	0% {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);

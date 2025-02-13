@@ -84,7 +84,6 @@
 	position: relative;
 
 	&.video {
-
 		&:not(.playing):not(.waiting) {
 			@include multimedia-overlay-base;
 			@include multimedia-overlay-play;
@@ -440,7 +439,6 @@
 
 .xxsmallview {
 	.wb-mm-ctrls {
-
 		.frstpnl {
 			@extend %multimedia-xxsmall-ui-panels;
 		}

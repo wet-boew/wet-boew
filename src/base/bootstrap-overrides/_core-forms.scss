@@ -47,6 +47,7 @@ input[type=button], input[type=reset], input[type=submit] {
 	height: auto;
 	min-height: 37px;
 }
+
 .form-control {
 	height: auto;
 	max-width: 100%;
@@ -64,6 +65,7 @@ input[type=button], input[type=reset], input[type=submit] {
 	.label-inline {
 		position: relative;
 		vertical-align: middle;
+
 		label {
 			font-weight: 400;
 			margin-bottom: 0;
