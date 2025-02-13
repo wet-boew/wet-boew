@@ -150,7 +150,7 @@ blockquote {
 /*
  *  Right-to-left support
  */
-[dir=rtl] {
+[dir="rtl"] {
 	.list-unstyled {
 		padding-right: 0;
 	}

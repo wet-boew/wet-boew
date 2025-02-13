@@ -102,7 +102,6 @@ module.exports = {
 				"scss/comment-no-empty": null,
 				"scss/dollar-variable-pattern": null, // Fixable
 				"scss/no-global-function-names": null, // Fixable, need to run sass migrator
-				"selector-attribute-quotes": null,
 				"selector-class-pattern": null,
 				"selector-id-pattern": null,
 				"selector-not-notation": null,

@@ -346,7 +346,7 @@
 	}
 
 	input {
-		&[type=range] {
+		&[type="range"] {
 			@extend %multimedia-controls-outline;
 
 			-webkit-appearance: none;
