@@ -5,6 +5,7 @@ module.exports = {
 	rules: {
 
 		"alpha-value-notation": "number",
+		"color-function-notation": "legacy",
 
 		// Suppress stylelint-config-recommended errors
 		"font-family-no-duplicate-names": [
@@ -59,7 +60,6 @@ module.exports = {
 				// Suppress stylelint-config-standard errors
 				"at-rule-empty-line-before": null,
 				"at-rule-no-vendor-prefix": null,
-				"color-function-notation": null,
 				"color-hex-length": null,
 				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
@@ -93,7 +93,6 @@ module.exports = {
 			],
 			rules: {
 				"at-rule-no-vendor-prefix": null,
-				"color-function-notation": null,
 				"declaration-block-no-redundant-longhand-properties": null,
 				"no-descending-specificity": null, // Extremely slow
 				"no-duplicate-selectors": null,
