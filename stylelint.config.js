@@ -94,7 +94,6 @@ module.exports = {
 			rules: {
 				"at-rule-no-vendor-prefix": null,
 				"color-function-notation": null,
-				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
 				"declaration-block-no-redundant-longhand-properties": null,
 				"no-descending-specificity": null, // Extremely slow
