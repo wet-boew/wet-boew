@@ -271,7 +271,7 @@ var componentName = "wb-geomap",
 					this.id + "' class='geomap-table-wrapper' style='display:none;'></div></div></div>" );
 		}
 
-		// Make isVisibile Reactive
+		// Make isVisible Reactive
 		Object.defineProperty( _this, "isVisible", {
 			get: function get() {
 				return _this.visibilityState;
@@ -2377,7 +2377,7 @@ MapLayer.prototype.addToLegend = function() {
 			i18nText.toggleLayer + "</legend></fieldset>" ).appendTo( legendDiv );
 	}
 
-	checked = this.isVisibile ? "checked='checked'" : "";
+	checked = this.isVisible ? "checked='checked'" : "";
 
 	$ul = legendDiv.find( "ul.geomap-lgnd" );
 	if ( $ul.length === 0 ) {
