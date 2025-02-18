@@ -22,7 +22,7 @@ Description claire et concise des solutions alternatives ou autres fonctionnalit
 **Qui devrait travailler à développer cette fonctionnalité?**
 [Je vais le faire, je veux contribuer] ou [Je demande à l'Éditeur principal de faire le travail svp]
 
-## Information additionnelle (optionel)
+## Information additionnelle (optionnel)
 
 **Échéance**
 Y-a-t'il une échéance relié à cette requête? Si oui, veuillez brièvement expliquer pourquoi et fournissez une date (YYYY-MM-DD)

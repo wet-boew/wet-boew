@@ -63,7 +63,7 @@ var componentName = "wb-twitter",
 					console.warn( componentName + ": i18n text is missing. Iframe title override and skip links will be disabled." );
 				}
 
-				// Set Chinese (Simplfified)'s language code to "zh-cn"
+				// Set Chinese (Simplified)'s language code to "zh-cn"
 				// If the link doesn't specify a widget language and its "in-page" language code is "zh-Hans"...
 				// Notes:
 				// -WET uses "zh-Hans", Twitter uses "zh-ch" and falls back to English if the former is used

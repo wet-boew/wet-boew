@@ -351,7 +351,7 @@ $document.on( "keyup", function( ) {
 		}
 
 		// Ensure the element in focus is visible
-		// TODO: Find a solution for when there isn't enough page to scoll up or down
+		// TODO: Find a solution for when there isn't enough page to scroll up or down
 		if ( elmInFocusRect.top < focusAreaBelow ) {
 
 			// Scroll down till the top of the element is visible

@@ -71,7 +71,7 @@ for ( i = 0; i !== len; i += 1 ) {
 		dans la variable $buttons, faites alors <code>$buttons.find( "a.mybutton" )</code> pour trouver les éléments
 		a plutôt que <code>$( "a.mybutton" )</code>. Lorsque possible, utilisez du JavaScript natif pour rechercher
 		tel que <code>getElementById</code> et <code>getElementsByTagName</code>.</li>
-		<li><strong>Recherches DOM optimisées tout d'adord, filtrage ensuite:</strong> Les recherches DOM les plus rapides
+		<li><strong>Recherches DOM optimisées tout d'abord, filtrage ensuite:</strong> Les recherches DOM les plus rapides
 		en JavaScript sont par id et nom de balise à cause des fonctions JavaScript natives <code>getElementById</code>
 		et <code>getElementsByTagName</code>. Prenez avantage de cette performance en exécutant d'abord des recherches optimisées
 		et filtrez ensuite. Par exemple, au lieu de <code>.find( "a[href=*'url_fragment']" )</code> effectuez <code>.find( "a" ).filter( "[href=*'url_fragment']" )</code>.</li>
@@ -110,7 +110,7 @@ $elem.on( "mouseout", function( event ) {
 		<pre><code>var test = ( new Date() ).getTime();
 // Code à tester
 console.log( ( new Date() ).getTime() - test );</code></pre>
-		<p>Un autre option est d'tiliser un site tel que <a rel="external" href="https://jsperf.com/">jsPerf</a> pour mesurer différents morceaux de code JavaScript.</p>
+		<p>Un autre option est d'utiliser un site tel que <a rel="external" href="https://jsperf.com/">jsPerf</a> pour mesurer différents morceaux de code JavaScript.</p>
 	</section>
 
 	<section>
@@ -147,7 +147,7 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 	</ul>
 
 	<section>
-		<h3>Techniques aditionelles</h3>
+		<h3>Techniques additionnelles</h3>
 		<ul lang="en">
 			<li><a rel="external" href="https://www.queness.com/post/588/15-ways-to-optimize-css-and-reduce-css-file-size">15 Ways to Optimize CSS and Reduce CSS File Size</a></li>
 			<li><a rel="external" href="https://web.archive.org/web/20190119144722/http://www.dailycoding.com/Posts/top_7_tip_for_optimizing_css.aspx">Top 7 Tip for Optimizing CSS</a></li>
