@@ -53,7 +53,7 @@
 /*
  *	Fix for missing bullets in Chrome and Safari
  */
-[class*=clmn-] {
+[class*="clmn-"] {
 	list-style: outside;
 	padding-left: 1.3em;
 
@@ -239,7 +239,7 @@
 /*
  *	Fix for missing bullets in Chrome and Safari
  */
-[class*=colcount-] {
+[class*="colcount-"] {
 	list-style-position: outside;
 	padding-left: 1.3em;
 

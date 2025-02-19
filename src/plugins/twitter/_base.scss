@@ -91,7 +91,9 @@
 	}
 
 	/* Prevent the iframe from getting too wide */
+
 	/* When the iframe gets populated, Twitter's third party widget script injects a style attribute with a width in pixels... but it sometimes gets wider than its container (causing skip links to look misaligned). This sets min/max widths to avoid that behaviour and avoid truncating content if the iframe gets too narrow. */
+
 	/* The timeline's minimum widths are documented in https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview's Dimensions section... went with the narrowest width that works in practice. */
 	iframe {
 		max-width: 100%;
@@ -109,7 +111,9 @@
 		@extend %global-display-none;
 
 		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to start link gets activated */
+
 		/* When that happens, the start notice gets unveiled as invisible content to make it focusable (hidden elements can't receive focus programmatically) */
+
 		/* The notice reverts to hidden upon losing focus (plugin removes tabindex attribute) to hide it from screen readers */
 		&[tabindex] {
 			@extend %accessible-invisible;
@@ -167,7 +171,9 @@
 		@extend %global-display-none;
 
 		/* setfocus.wb() automatically adds a tabindex="-1" attribute to the end notice if a skip to end link gets activated */
+
 		/* When that happens, the end notice gets unveiled as invisible content to make it focusable (hidden elements can't receive focus programmatically) */
+
 		/* The notice reverts to hidden upon losing focus (plugin removes tabindex attribute) to hide it from screen readers */
 		&[tabindex] {
 			@extend %twitter-overlay;
@@ -182,13 +188,12 @@
 	}
 }
 
-[dir=rtl] {
+[dir="rtl"] {
 	.wb-twitter {
 		a {
 			&.twitter-timeline {
 				+ {
 					.twitter-timeline-loading {
-
 						/* Align the loading icon rightwards by default */
 						&::before {
 							left: auto;

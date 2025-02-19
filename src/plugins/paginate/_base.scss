@@ -38,6 +38,7 @@
 					outline-offset: -2px;
 				}
 			}
+
 			& > button {
 				background-color: $btn-default-bg;
 				border: 1px solid $btn-default-border;
@@ -57,6 +58,7 @@
 					@include tab-focus;
 				}
 			}
+
 			&.disabled {
 				& + li {
 					& > button {
