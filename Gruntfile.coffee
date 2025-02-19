@@ -1306,13 +1306,14 @@ module.exports = (grunt) ->
 
 		eslint:
 			options:
-				configFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
+				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
 				quiet: true
 			all:
 				src: [
 					"site/**/*.js"
 					"src/**/*.js"
 					"theme/**/*.js"
+					"*.js"
 				]
 
 		connect:
