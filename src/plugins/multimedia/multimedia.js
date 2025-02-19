@@ -567,7 +567,7 @@ var componentName = "wb-mltmd",
 	/**
 	 * @method youTubeEvents
 	 * @description YouTube API event manager
-	 * @param {object} event The event object fior the triggered event
+	 * @param {object} event The event object for the triggered event
 	 */
 	youTubeEvents = function( event ) {
 		var media = event.target.getIframe(),

@@ -23,7 +23,7 @@
         "act:standard/profiles/en301549#hardware": "Hardware",
         "act:standard/profiles/en301549#web": "Web",
         "act:standard/profiles/en301549#nonWeb": "Non-web documents",
-        "act:standard/profiles/en301549#oftware": "Software",
+        "act:standard/profiles/en301549#software": "Software",
         "act:standard/profiles/en301549#supportServices": "Support services",
         "act:standard/profiles/en301549#relayServices": "Relay services",
         "act:standard/profiles/en301549#twoWayCommEmergencyServices": "Two way communication emergency service"
@@ -37,7 +37,7 @@
         "act:standard/profiles/en301549#hardware": "Matériel",
         "act:standard/profiles/en301549#web": "Web",
         "act:standard/profiles/en301549#nonWeb": "Documents non-web",
-        "act:standard/profiles/en301549#oftware": "Logiciel",
+        "act:standard/profiles/en301549#software": "Logiciel",
         "act:standard/profiles/en301549#supportServices": "Service d'assistance",
         "act:standard/profiles/en301549#relayServices": "Services de relayement",
         "act:standard/profiles/en301549#twoWayCommEmergencyServices": "Service d'urgence de communication bidirectionnelle"

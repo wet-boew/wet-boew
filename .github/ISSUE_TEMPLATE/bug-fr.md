@@ -28,7 +28,7 @@ Une description claire et concise de ce qui devrait se passer en tant normal.
 **Qui devrait travailler à corriger ce problem?**
 [Je vais le faire, je veux contribuer] ou [Je demande à l'Éditeur principal de faire le travail svp]
 
-## Information additionnelle (optionel)
+## Information additionnelle (optionnel)
 
 **Version de WET-BOEW/GCWeb que vous utilisez**
 e.g. v4.0.36

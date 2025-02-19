@@ -83,7 +83,7 @@ wb.add( selecteur );
 	<dd>C'est ici où que toute les actions d'initialisation nécessaire seront exécuté. Le défi est de faire le moins d'exécution que possible afin de rendre votre plugiel en attente d'action de l'utilisateur. Les plugiciels de la BOEW sont orienté sur une approche événementielle où qu'on essai de ne pas exécuter des lignes de script qui n'est actuellement pas nécessaire. Ceci pour des raison de performance.</dd>
 
 	<dt>À la ligne 43-45 <code>// Ajouter votre code pour gérer les événement de votre plugiciel</code></dt>
-	<dd>C'est ici que vous allez déclarer une série d'événement pour votre plugiciel. Vous pouvez déclencher vos propre événement en utilisant l'instance jQuery d'un élément. L'appel à la fonction trigger suivi de votre nom d'événement et de vos donnée s'il y lieu. Par example: <code>$elm.trigger( "nom.de.votre.evenement", mesdonnee );</code>. Le paramètre mesdonnee est optionel.</dd>
+	<dd>C'est ici que vous allez déclarer une série d'événement pour votre plugiciel. Vous pouvez déclencher vos propre événement en utilisant l'instance jQuery d'un élément. L'appel à la fonction trigger suivi de votre nom d'événement et de vos donnée s'il y lieu. Par example: <code>$elm.trigger( "nom.de.votre.evenement", mesdonnee );</code>. Le paramètre mesdonnee est optionnel.</dd>
 </dl>
 
 <h2>Étape 2 - Ajouter votre code javascript</h2>
@@ -272,7 +272,7 @@ wb.add( selecteur );
 	<dd>Ici, le second paramètre est la configuration de l'instance en cours et qui sera utilisé par l'événement.</dd>
 
 	<dt>À la ligne 58 <code>function( evenement, donnee ) {</code></dt>
-	<dd>Ajoute un second paramètre, <var>donnee</var>, à la fonction afin d'être en mesure de recevoir les données lorsque l'évélement est déclenché.</dd>
+	<dd>Ajoute un second paramètre, <var>donnee</var>, à la fonction afin d'être en mesure de recevoir les données lorsque l'événement est déclenché.</dd>
 
 	<dt>À la ligne 64-66 <code>if ( donnee &amp;&amp; donnee.surpassetoi ) {</code></dt>
 	<dd>S'il la variable <var>donnee</var> a été initialisé et qu'il contient une propriété nommé <var>surpassetoi</var> avec n'importe lequel valeur qui est vrai, alors les mots &quot;Surpasse toi&quot; sera ajouté au début de l'élément.</dd>

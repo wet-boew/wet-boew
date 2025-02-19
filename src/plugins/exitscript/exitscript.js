@@ -137,7 +137,7 @@ var componentName = "wb-exitscript",
 
 			}
 
-			// Remove the plugin data and ensure it is removed from the localstorage
+			// Remove the plugin data and ensure it is removed from the localStorage
 			localStorage.removeItem( componentName );
 			localStorage.removeItem( keyForKeyHolder );
 
@@ -216,7 +216,7 @@ $document.on( "click", selector, function( event ) {
 
 	} else if ( crypto && this[ componentName ] ) {
 
-		// Save to localstorage, the plugin init will ensure this data is only used once
+		// Save to localStorage, the plugin init will ensure this data is only used once
 		localStorage.setItem( componentName, wb.string.arrayBufferToBase64( this[ componentName ] ) );
 		localStorage.setItem( keyForKeyHolder, JSON.stringify( this[ keyForKeyHolder ] ) );
 	}

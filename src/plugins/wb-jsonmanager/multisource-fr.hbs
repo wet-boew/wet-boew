@@ -18,22 +18,22 @@
 <p>Note technique:</p>
 <ul>
 	<li>Le plugiciel data JSON <code>data-wb-json</code> dois être défini sur l'élément <code>&lt;table></code> du tableau. </li>
-	<li>Les liens (URLs) configuré dans le gestionaire JSON doit référer à un tableau JSON (<span lang="en">array</span>), sinon le contenu ne pourra pas être fusioné (<span lang="en">concatenated</span>)</li>
+	<li>Les liens (URLs) configuré dans le gestionnaire JSON doit référer à un tableau JSON (<span lang="en">array</span>), sinon le contenu ne pourra pas être fusionné (<span lang="en">concatenated</span>)</li>
 </ul>
 
-<p>L'exemple suivant fusione deux fois la même source de donnée. Le résultat obtenue est un duplicata de chaque ligne.</p>
+<p>L'exemple suivant fusionné deux fois la même source de donnée. Le résultat obtenue est un duplicata de chaque ligne.</p>
 
 <div data-wb-jsonmanager='{
 	"url": [
 		"../wb-data-json/demo/data-fr.json#/listeAdresses",
 		"../wb-data-json/demo/data-fr.json#/listeAdresses"
 	],
-	"name": "source-fusioné"
+	"name": "source-fusionné"
 }'></div>
 
 <!-- data-wb-json doit être définie sur le "table" element -->
 <table class="table wb-tables" data-wb-json='{
-	"url": "#[source-fusioné]",
+	"url": "#[source-fusionné]",
 	"source": "#tbl3",
 	"mapping": [
 		{ "selector": "a", "value": "/nom" },
@@ -76,12 +76,12 @@
 		"../wb-data-json/demo/data-fr.json#/listeAdresses",
 		"../wb-data-json/demo/data-fr.json#/listeAdresses"
 	],
-	"name": "source-fusioné"
+	"name": "source-fusionné"
 }'>&lt;/div>
 
 &lt;!-- data-wb-json doit être définie sur le "table" element -->
 &lt;table class="table wb-tables" data-wb-json='{
-	"url": "#[source-fusioné]",
+	"url": "#[source-fusionné]",
 	"source": "#tbl3",
 	"mapping": [
 		{ "selector": "a", "value": "/nom" },

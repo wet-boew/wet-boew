@@ -1,9 +1,10 @@
 _(Pick the language of your choice to fill out the following information. / Choisissez la langue de votre choix pour remplir l'information ci-dessous.)_
 
 ## What does this pull request (PR) do? / Que fait cette demande « pull » (PR)?
+
 A clear and concise description of what the code of this PR accomplishes. /// Une description claire et concise de ce que le code de cette PR accompli.
 
-## Additional information (optional) / Information additionnelle (optionel)
+## Additional information (optional) / Information additionnelle (optionnel)
 
 **General checklist / Liste de contrôle générale**
 Make your own list for the purpose of your Pull request. /// Faites votre propre liste en fonction des besoins de votre demande « pull ».
