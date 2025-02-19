@@ -64,7 +64,6 @@
     "grunt-assemble": "^0.6.3",
     "grunt-banner": "^0.6.0",
     "grunt-bootlint": "^1.1.0",
-    "grunt-check-dependencies": "^1.0.0",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^3.0.0",

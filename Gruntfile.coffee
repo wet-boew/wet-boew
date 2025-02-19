@@ -34,7 +34,6 @@ module.exports = (grunt) ->
 		"build"
 		"Run full build."
 		[
-			"checkDependencies"
 			"clean:dist"
 			"assets"
 			"sprite"
@@ -333,11 +332,6 @@ module.exports = (grunt) ->
 		)) + "<%= commitMessage %>"
 
 		deployBranch: "v4.0-dist"
-
-		checkDependencies:
-			all:
-				options:
-					npmInstall: false
 
 		clean:
 			dist: ["dist"]
