@@ -12,12 +12,16 @@ label,
 legend,
 .checkbox {
 	&.required {
-		&:before {
-			@extend %forms-color-red-bold;
+		/* Set required asterisk styles... unless any parent element uses a disable class */
+		/* Credit: Stack Overflow answer (https://stackoverflow.com/a/73773370) by magda and Zach Jensz (zach-jensz) */
+		&:not(.required-no-asterisk .required) {
+			&:before {
+				@extend %forms-color-red-bold;
 
-			content: "* ";
-			margin-left: -$wb-forms-asterisk-width;
-			vertical-align: top;
+				content: "* ";
+				margin-left: -$wb-forms-asterisk-width;
+				vertical-align: top;
+			}
 		}
 
 		strong {

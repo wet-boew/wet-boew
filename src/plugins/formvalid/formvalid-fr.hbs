@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2023-12-04"
+	"dateModified": "2025-02-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -452,6 +452,93 @@
 			</details>
 
 			<input type="submit" value="Soumettre" class="btn btn-primary" /> <input type="reset" value="Réinitialiser la page aux valeurs par défaut" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
+		</form>
+	</div>
+</section>
+<hr>
+<section>
+	<h2>Exemples utilisant des champs obligatoires sans astérisques</h2>
+	<p>Les champs obligatoires peuvent être alternativement stylés sans astérisques en ajoutant la classe <code>required-no-asterisk</code> à l’un de leurs éléments parents (comme <code>&lt;div class="wb-frmvld"&gt;</code> ou <code>&lt;form&gt;</code>).</p>
+	<p>Que les astérisques soient utilisés ou non, il est recommandé qu’ils soient implémentés de façon uniforme dans un même formulaire. Veuillez ne pas mélanger les styles d’astérisques différents dans un même formulaire.</p>
+	<div class="wb-frmvld required-no-asterisk">
+		<form action="#" method="get" id="validation-example-4">
+			<div class="form-group">
+				<label for="nname1" class="required"><span class="field-name">Pseudonyme</span> <strong class="required">(obligatoire)</strong></label>
+				<input class="form-control" id="nname1" name="nname1" type="text" autocomplete="nickname" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				{{>alertariahidden}}
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+&lt;form action="#" method="get" id="validation-example-4"&gt;
+	...
+	&lt;div class="form-group"&gt;
+		&lt;label for="nname1" class="required required-no-asterisk"&gt;&lt;span class="field-name"&gt;Pseudonyme&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+		&lt;input class="form-control" id="nname1" name="nname1" type="text" autocomplete="nickname" required="required" /&gt;
+	&lt;/div&gt;</code></pre>
+			</details>
+
+			<div class="form-group">
+				<label for="cname1" class="required"><span class="field-name">Nom du pays</span> <strong class="required">(obligatoire)</strong></label>
+				<input class="form-control" id="cname1" name="cname1" type="text" autocomplete="country-name" required="required" />
+			</div>
+			<details class="mrgn-bttm-md">
+				<summary>Voir le code</summary>
+				{{>alertariahidden}}
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+&lt;form action="#" method="get" id="validation-example-4"&gt;
+	...
+	&lt;div class="form-group"&gt;
+		&lt;label for="cname1" class="required required-no-asterisk"&gt;&lt;span class="field-name"&gt;Nom du pays&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+		&lt;input class="form-control" id="cname1" name="cname1" type="text" autocomplete="country-name" required="required" /&gt;
+	&lt;/div&gt;</code></pre>
+			</details>
+
+			<fieldset class="chkbxrdio-grp">
+				<legend class="required"><span class="field-name">Navigateur Web favori</span> <strong class="required">(obligatoire)</strong></legend>
+				<div class="radio">
+					<label for="fbrowser1"><input type="radio" name="fbrowser" value="1" id="fbrowser1" data-rule-required="true" /> Chrome</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser2"><input type="radio" name="fbrowser" value="2" id="fbrowser2" /> Edge</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser3"><input type="radio" name="fbrowser" value="3" id="fbrowser3" /> Firefox</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser4"><input type="radio" name="fbrowser" value="4" id="fbrowser4" /> Safari</label>
+				</div>
+				<div class="radio">
+					<label for="fbrowser5"><input type="radio" name="fbrowser" value="5" id="fbrowser5" /> Autre</label>
+				</div>
+			</fieldset>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				{{>alertariahidden}}
+				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
+	&lt;form action="#" method="get" id="validation-example-4"&gt;
+		...
+		&lt;fieldset class="chkbxrdio-grp"&gt;
+			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Favourite web browser&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser1"&gt;&lt;input type="radio" name="fbrowser" value="1" id="fbrowser1" data-rule-required="true" /&gt; Chrome&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser2"&gt;&lt;input type="radio" name="fbrowser" value="2" id="fbrowser2" /&gt; Edge&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser3"&gt;&lt;input type="radio" name="fbrowser" value="3" id="fbrowser3" /&gt; Firefox&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser4"&gt;&lt;input type="radio" name="fbrowser" value="4" id="fbrowser4" /&gt; Safari&lt;/label&gt;
+			&lt;/div&gt;
+			&lt;div class="radio"&gt;
+				&lt;label for="fbrowser5"&gt;&lt;input type="radio" name="fbrowser" value="5" id="fbrowser5" /&gt; Other&lt;/label&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;</code></pre>
+			</details>
+
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input type="reset" value="Reset page to defaults" class="btn btn-link btn-sm show p-0 mrgn-tp-md" />
 		</form>
 	</div>
 </section>

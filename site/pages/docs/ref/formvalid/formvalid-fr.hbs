@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis.",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2025-02-05"
+	"dateModified": "2025-02-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -71,6 +71,10 @@
 		</li>
 		<li><strong>Optional:</strong>
 			<ul class="lst-spcd">
+				<li>
+					<p>Required fields are visually-prefixed with an asterisk (*) by default. To omit it, add the <code>required-no-asterisk</code> class to one of their parent elements (such as <code>&lt;div class="wb-frmvld"&gt;</code> or <code>&lt;form&gt;</code>).</p>
+					<p>Whether or not asterisks are used, it is recommended that they be implemented consistently within the same form. Please don't mix and match different asterisk styles within the same form.</p>
+				</li>
 				<li>To make a standalone checkbox field's label look consistent with text field labels (i.e. bolded), add the <code>checkbox checkbox-standalone</code> classes to the checkbox and place it in a <code>&lt;div class="form-group"&gt;</code> element.</li>
 				<li>For input fields, add one of these <a href="#SpecializedValidation">options</a> for specialized validation, or else you can use a <a href="#pattern">custom pattern validation</a> only if your pattern is very specific and is not part of the options for specialized validation.</li>
 				<li>For ASP validators add the following attributes to enable the <a href="#MergeSCE">Merge Server-Client errors functionality</a>:<br /><code>Display="Dynamic" EnableClientScript="false" CssClass="label label-danger wb-server-error"</code></li>
