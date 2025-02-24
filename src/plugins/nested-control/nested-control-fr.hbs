@@ -1,0 +1,122 @@
+---
+{
+	"title": "Contrôle imbriqué (pure CSS)",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Un plugiciel CSS pour l'ajout de champs indentés à l'intérieur des contrôles boîtes à cocher et boutons radio.",
+	"tag": "nested-control",
+	"parentdir": "nested-control",
+	"altLangPrefix": "nested-control",
+	"dateModified": "2022-03-29"
+}
+---
+<section>
+	<h2>Fonction</h2>
+	<p>Offre la possibilité d'avoir un champ indenté à l'intérieur d'un contrôle de type boîte à cocher ou bouton radio.</p>
+</section>
+
+<section>
+	<h2>Exemple</h2>
+	<h3>Boutons radio</h3>
+	<form>
+		<fieldset class="chkbxrdio-grp">
+			<legend class="required"><span class="field-name">Statut de citoyen</span> <strong class="required">(obligatoire)</strong></legend>
+			<ul>
+				<li class="radio">
+					<input type="radio" name="status" value="1" id="status1" data-rule-required="true">
+					<label for="status1">Citoyen canadien</label>
+				</li>
+				<li class="radio">
+					<input type="radio" name="status" value="2" id="status2">
+					<label for="status2">Résident permanent</label>
+				</li>
+				<li class="radio">
+					<input type="radio" name="status" value="3" id="status3">
+					<label for="status3">Autre</label>
+					<div class="form-group provisional wb-nested-control">
+						<label for="statusother">Veuillez spécifier&nbsp;:</label>
+						<input type="text" name="statusother" value="" id="statusother" class="form-control">
+					</div>
+				</li>
+			</ul>
+		</fieldset>
+	</form>
+
+	<h4>Code</h4>
+<pre><code>&lt;form&gt;
+	&lt;fieldset class="chkbxrdio-grp"&gt;
+		&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Statut de citoyen&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
+		&lt;ul&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="1" id="status1" data-rule-required="true"&gt;
+				&lt;label for="status1"&gt;Citoyen canadien&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="2" id="status2"&gt;
+				&lt;label for="status2"&gt;Résident permanent&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="radio"&gt;
+				&lt;input type="radio" name="status" value="3" id="status3"&gt;
+				&lt;label for="status3"&gt;Autre&lt;/label&gt;
+				&lt;div class="form-group provisional wb-nested-control"&gt;
+					&lt;label for="statusother"&gt;Veuillez spécifier&nbsp;:&lt;/label&gt;
+					&lt;input type="text" name="statusother" value="" id="statusother" class="form-control"&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/fieldset&gt;
+	&lt;input type="submit" class="btn btn-primary" value="Soumettre"&gt;
+&lt;/form&gt;</code></pre>
+
+	<h3>Boîtes à cocher</h3>
+	<form>
+		<fieldset class="chkbxrdio-grp">
+			<legend class="required"><span class="field-name">Animaux favoris</span> <strong class="required">(obligatoire)</strong></legend>
+			<ul>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true">
+					<label for="animal1">Chien</label>
+				</li>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="2" id="animal2">
+					<label for="animal2">Chat</label>
+				</li>
+				<li class="checkbox">
+					<input type="checkbox" name="animal" value="3" id="animal3">
+					<label for="animal3">Autre</label>
+					<div class="form-group provisional wb-nested-control">
+						<label for="animalother">Veuillez spécifier&nbsp;:</label>
+						<input type="text" name="animalother" value="" id="animalother" class="form-control">
+					</div>
+				</li>
+			</ul>
+		</fieldset>
+		<input type="submit" class="btn btn-primary" value="Soumettre">
+	</form>
+
+	<h4>Code</h4>
+<pre><code>&lt;form&gt;
+	&lt;fieldset class="chkbxrdio-grp"&gt;
+		&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Animaux favoris&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
+		&lt;ul&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="1" id="animal1" data-rule-required="true"&gt;
+				&lt;label for="animal1"&gt;Chien&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="2" id="animal2"&gt;
+				&lt;label for="animal2"&gt;Chat&lt;/label&gt;
+			&lt;/li&gt;
+			&lt;li class="checkbox"&gt;
+				&lt;input type="checkbox" name="animal" value="3" id="animal3"&gt;
+				&lt;label for="animal3"&gt;Autre&lt;/label&gt;
+				&lt;div class="form-group provisional wb-nested-control"&gt;
+					&lt;label for="animalother"&gt;Veuillez spécifier&nbsp;:&lt;/label&gt;
+					&lt;input type="text" name="animalother" value="" id="animalother" class="form-control"&gt;
+				&lt;/div&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/fieldset&gt;
+	&lt;input type="submit" class="btn btn-primary" value="Soumettre"&gt;
+&lt;/form&gt;</code></pre>
+</section>
