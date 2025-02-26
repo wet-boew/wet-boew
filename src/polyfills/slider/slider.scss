@@ -161,7 +161,6 @@
 .fd-slider-focused {
 	.fd-slider-bar {
 		box-shadow: 0 0 6px rgba(10, 130, 170, .7);
-
 		/* Not sure what to do with this
 		@include experimental(animation, fd-pulse 2s infinite, -moz, -webkit, -o, not -ms, not -khtml, official);
 		*/
@@ -207,7 +206,6 @@
 	cursor: w-resize;
 	font-size: 10px;
 	line-height: 20px;
-
 	/* Are these needed?
 	@if $experimental-support-for-mozilla {-moz-outline: 0 none;}
 	@if $experimental-support-for-webkit {-webkit-touch-callout: none;}
@@ -217,7 +215,6 @@
 	&:focus {
 		@extend %slider-outline-0;
 		@extend %slider-border-none;
-
 		/* Is this needed?
 		@if $experimental-support-for-mozilla {-moz-user-focus: normal;}
 		*/

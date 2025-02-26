@@ -8,6 +8,7 @@
  */
 
 .wb-overlay-dlg, .wb-modal {
+
 	main {
 		// Hide white spaces
 		> * {
@@ -22,6 +23,7 @@
 }
 
 .wb-overlay {
+
 	&.open {
 		position: static;
 

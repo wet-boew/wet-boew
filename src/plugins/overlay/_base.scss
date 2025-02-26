@@ -124,7 +124,6 @@
 	&.wb-bar-t,
 	&.wb-bar-b {
 		background-color: $overlay-bar-background-color;
-
 		header {
 			background-color: $overlay-bar-background-color;
 		}
@@ -159,7 +158,7 @@
 	}
 }
 
-[dir="rtl"] {
+[dir=rtl] {
 	.mfp-close {
 		left: 0;
 		right: auto;

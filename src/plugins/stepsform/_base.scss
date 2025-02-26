@@ -6,6 +6,7 @@
 	counter-reset: fieldset_counter;
 
 	.wb-tggle-fildst {
+
 		> legend {
 			&:before {
 				content: counter(fieldset_counter) ".\00a0 ";

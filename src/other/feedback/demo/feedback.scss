@@ -12,7 +12,7 @@
 		@extend %wb-fdbck-display-none;
 
 		label {
-			&[for="fbop"] {
+			&[for=fbop] {
 				display: inline;
 			}
 		}

@@ -14,7 +14,6 @@
 			flex-direction: column;
 		}
 	}
-
 	&.grow>[class*="col-"] {
 		flex-grow: 1;
 	}

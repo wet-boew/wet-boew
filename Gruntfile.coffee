@@ -745,7 +745,7 @@ module.exports = (grunt) ->
 
 		stylelint:
 			options:
-				configFile: "stylelint.config.js"
+				configFile: ".stylelintrc.yml"
 
 			unmin:
 				src: [
