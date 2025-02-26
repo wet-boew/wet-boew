@@ -35,7 +35,6 @@
 	}
 
 	.cal-days {
-
 		a {
 			color: #111;
 			text-decoration: underline;
@@ -64,7 +63,7 @@
 	display: inline !important;
 }
 
-[dir=rtl] {
+[dir="rtl"] {
 	.picker-toggle {
 		margin-left: 0;
 		margin-right: 5px;

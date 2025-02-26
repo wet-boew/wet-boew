@@ -84,7 +84,6 @@
 	position: relative;
 
 	&.video {
-
 		&:not(.playing):not(.waiting) {
 			@include multimedia-overlay-base;
 			@include multimedia-overlay-play;
@@ -306,6 +305,7 @@
 	/* Progress Bar */
 	progress {
 		@extend %multimedia-controls-outline;
+
 		/* Important Thing */
 		-webkit-appearance: none;
 		background: $mm-progress-bg-color;
@@ -346,7 +346,7 @@
 	}
 
 	input {
-		&[type=range] {
+		&[type="range"] {
 			@extend %multimedia-controls-outline;
 
 			-webkit-appearance: none;
@@ -439,7 +439,6 @@
 
 .xxsmallview {
 	.wb-mm-ctrls {
-
 		.frstpnl {
 			@extend %multimedia-xxsmall-ui-panels;
 		}

@@ -66,9 +66,11 @@ a {
 		dt + dd {
 			padding-bottom: 0;
 		}
+
 		&.dt-max {
 			display: grid;
 			grid-template-columns: minmax(min-content, min-content) auto;
+
 			dt {
 				-ms-hyphens: none;
 				-webkit-hyphens: none;
@@ -78,6 +80,7 @@ a {
 				width: auto;
 				word-break: initial;
 			}
+
 			dd {
 				margin-left: 0;
 			}
@@ -147,7 +150,7 @@ blockquote {
 /*
  *  Right-to-left support
  */
-[dir=rtl] {
+[dir="rtl"] {
 	.list-unstyled {
 		padding-right: 0;
 	}

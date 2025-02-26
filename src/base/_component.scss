@@ -12,9 +12,11 @@
 .bg-cover {
 	background-size: cover;
 }
+
 .bg-center {
 	background-position: center;
 }
+
 .bg-norepeat {
 	background-repeat: no-repeat;
 }
@@ -29,6 +31,7 @@
 .bg-dark {
 	background-color: #343a40;
 }
+
 button {
 	&.bg-dark {
 		&:hover, &:focus {

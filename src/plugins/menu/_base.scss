@@ -249,6 +249,7 @@
 
 	#wb-sm {
 		@extend %global-display-block-important;
+
 		.menu {
 			background: $mb-pnl-body-background;
 		}
@@ -263,7 +264,7 @@
 	}
 }
 
-[dir=rtl] {
+[dir="rtl"] {
 	.wb-menu {
 		.menu {
 			padding-right: 0;

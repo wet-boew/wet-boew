@@ -942,6 +942,7 @@ table {
 
 		.dataTables_info {
 			padding-left: 7px;
+
 			&:after {
 				content: "";
 			}
@@ -1107,7 +1108,7 @@ table {
 	@include border-right-radius(0);
 }
 
-[dir=rtl] {
+[dir="rtl"] {
 	table {
 		&.dataTable {
 			thead {

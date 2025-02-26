@@ -95,6 +95,7 @@
 .text-white, a.text-white:visited {
 	color: #fff;
 }
+
 a {
 	&.text-white {
 		&:hover, &:focus {
@@ -102,6 +103,7 @@ a {
 		}
 	}
 }
+
 .btn {
 	&.text-white {
 		&:hover, &:focus {
