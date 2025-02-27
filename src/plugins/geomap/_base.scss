@@ -23,8 +23,6 @@
 }
 
 .ol-popup {
-	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);
-	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,.2));
 	background-color: white;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -120,7 +118,6 @@
 	position: relative;
 
 	&.active {
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
 		outline-color: #66afe9
 	}
@@ -296,10 +293,7 @@
 }
 
 .ol-viewport .ol-unselectable {
-	-moz-user-select: none;
-	-ms-user-select: none;
 	-webkit-tap-highlight-color: transparent;
-	-webkit-user-select: none;
 	user-select: none
 }
 
@@ -613,8 +607,6 @@ ol-geolocate button {
 }
 
 .tooltip-txt {
-	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
-	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2));
 	background: rgb(192, 192, 192);
 	border: solid 1px rgb(192, 192, 192);
 	border-radius: 5px;
@@ -686,18 +678,15 @@ ol-geolocate button {
 }
 
 .glyphicon-spin {
-	-webkit-animation: spin 1000ms infinite linear;
 	animation: spin 1000ms infinite linear;
 }
 
 @keyframes spin {
 	0% {
-		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
 
 	100% {
-		-webkit-transform: rotate(359deg);
 		transform: rotate(359deg);
 	}
 }
