@@ -92,7 +92,6 @@ module.exports = {
 				"stylelint-config-standard-scss"
 			],
 			rules: {
-				"at-rule-no-vendor-prefix": null,
 				"declaration-block-no-redundant-longhand-properties": null,
 				"no-descending-specificity": null, // Extremely slow
 				"no-duplicate-selectors": null,
