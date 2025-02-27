@@ -249,6 +249,7 @@ wb.i18nDict = {
 	/* Filter */
 	"fltr-lbl": "@fltr-lbl@",
 	"fltr-info": "@fltr-info@",
+	"fltr-typed": "@fltr-typed@",
 
 	/* Data scrub */
 	"pii-header": "@pii-header@",
@@ -258,8 +259,6 @@ wb.i18nDict = {
 	"pii-yes-btn": "@pii-yes-btn@",
 	"pii-cancel-btn": "@pii-cancel-btn@",
 	"redacted": "@redacted@"
-	"fltr-info": "@fltr-info@",
-	"fltr-typed": "@fltr-typed@"
 };
 
 } )( wb );

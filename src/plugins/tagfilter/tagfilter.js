@@ -238,15 +238,15 @@ $document.on( "change", selectorCtrl, function( event )  {
 		filterGroup = elm.filters[ filterName ];
 
 	switch ( filterType ) {
-	case "checkbox":
+		case "checkbox":
 
-		// Update virtual filter to the new state
-		filterGroup.find( function( filter ) {
-			return filter.value === filterValue;
-		} ).isChecked = !!control.checked;
-		break;
+			// Update virtual filter to the new state
+			filterGroup.find( function( filter ) {
+				return filter.value === filterValue;
+			} ).isChecked = !!control.checked;
+			break;
 
-	case "radio":
+		case "radio":
 
 			// Set all virtual radio items to unchecked
 			filterGroup.forEach( function( filterItem ) {
@@ -255,13 +255,13 @@ $document.on( "change", selectorCtrl, function( event )  {
 				}
 			} );
 
-		// Set selected radio button's associated virtual filter to checked
-		filterGroup.find( function( filter ) {
-			return filter.value === filterValue;
-		} ).isChecked = true;
-		break;
+			// Set selected radio button's associated virtual filter to checked
+			filterGroup.find( function( filter ) {
+				return filter.value === filterValue;
+			} ).isChecked = true;
+			break;
 
-	case "select-one":
+		case "select-one":
 
 			// Update virtual filter to the new value
 			filterGroup.find( function( filterItem ) {
