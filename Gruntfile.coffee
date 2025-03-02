@@ -569,31 +569,16 @@ module.exports = (grunt) ->
 			all:
 				src: [
 						# Root files
-						".*rc"
-						".editorconfig"
-						".eslint*"
-						".git*"
-						".*.{json,yml}"
-						".npmignore"
-						"*.{json,md}"
-						"Gruntfile.coffee"
-						"Licen?e-*.txt"
-						"Rakefile"
-
-						# Folders
-						"dep/**"
-						"script/**"
-						"site/**"
-						"src/**"
-						"theme/**"
+						"\.*"
+						"**"
 
 						# Exemptions...
+						"!node_modules/**"
+						"!lib/**"
+						"!dist/**"
 
 						# Images
-						"!site/pages/docs/img/*.{jpg,png}"
-						"!src/plugins/**/*.{jpg,png}"
-						"!src/polyfills/**/*.{jpg,png}"
-						"!theme/assets/*.{ico,jpg,png}"
+						"!**/*.{jpg,png,ico}"
 
 						# Docker environment file
 						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
@@ -601,7 +586,7 @@ module.exports = (grunt) ->
 
 						# Tracked third party files
 						# Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
-						"!dep/modernizr-custom.js"
+						"!src/core/dep/modernizr-custom.js"
 						"!src/polyfills/events/mobile.js"
 						"!src/polyfills/slider/slider.js"
 

@@ -45,7 +45,7 @@ puppeteer.launch( {
 	} ).then( async browser => {
 
 	// Wait a little to help concurrent test
-    await sleep( 1000 );
+	await sleep( 1000 );
 
 	console.log( "Puppeteer Chromium started, navigating to:\n" + webPageUrlToTest );
 	const page = await browser.newPage();
