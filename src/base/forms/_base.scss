@@ -53,9 +53,11 @@ legend,
 	label,
 	legend {
 		&.required {
-			&:before {
-				margin-left: auto;
-				margin-right: -$wb-forms-asterisk-width;
+			&:not(.required-no-asterisk .required) {
+				&:before {
+					margin-left: auto;
+					margin-right: -$wb-forms-asterisk-width;
+				}
 			}
 		}
 	}
