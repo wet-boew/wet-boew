@@ -97,7 +97,7 @@ jobs:
         with:
           github-token: ${{ secrets.my_token }}
           script: |
-            github.repos.createRelease({
+            github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: process.env.repo,
               tag_name: process.env.ref_name,
@@ -138,7 +138,7 @@ jobs:
         with:
           github-token: ${{ secrets.my_token }}
           script: |
-            github.repos.createRelease({
+            github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: process.env.repo,
               tag_name: process.env.ref_name,
