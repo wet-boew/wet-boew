@@ -55,7 +55,7 @@
 	<li>Create your checkbox. <strong>The attribute <code>name</code> is mandatory for checkboxes</strong>.</li>
 	<li>Add the attribute <code>value</code> to the checkbox. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the checkbox.</li>
-	<li>Add the <a href="#groupOption">group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li>
 </ol>
 <p>Your final checkbox should look like this:</p>
 <pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="myTag" /></code></pre>
@@ -159,9 +159,9 @@
 					</dl></td>
 			</tr>
 			<tr>
-				<td id="groupOption"><code>group</code></td>
+				<td id="groupOption"><code>data-wb-tagfilter-group</code></td>
 				<td>Set on tag filter form controls or a parent legend to set the behavior; controls in the same group will have an "Or" behavior while different groups will have an "And" behavior.</td>
-				<td><code>data-wb-tagfilter='{"group": "groupName"}'</code></td>
+				<td><code>data-wb-tagfilter-group="groupName"</code></td>
 				<td><dl>
 						<dt>None (default):</dt>
 						<dd>Defaults to the control's name attribute</dd>
