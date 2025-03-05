@@ -202,17 +202,12 @@ const componentName = "wb-tagfilter",
 	},
 
 	getControlFilterName = function( control ) {
-		const controlLegend = $( control ).closest( "fieldset[data-" + componentName + "]" );
-		let controlSettings = {};
+		const controlFieldset = $( control ).closest( "fieldset[data-" + componentName + "-group]" );
 
-		if ( control.getAttribute( "data-" + componentName ) !== null ) {
-			controlSettings = wb.getData( control, componentName );
-		} else if ( controlLegend.length > 0 ) {
-			controlSettings = wb.getData( controlLegend, componentName );
-		}
-
-		if ( controlSettings.group !== undefined ) {
-			return controlSettings.group;
+		if ( control.getAttribute( "data-" + componentName + "-group" ) !== null ) {
+			return control.getAttribute( "data-" + componentName + "-group" );
+		} else if ( controlFieldset.length > 0 ) {
+			return controlFieldset.attr( "data-" + componentName + "-group" );
 		}
 		return control.name;
 	},
@@ -267,7 +262,6 @@ $document.on( "change", selectorCtrl, function( event )  {
 			filterGroup.find( function( filterItem ) {
 				return filterItem.name === controlName;
 			} ).value = filterValue;
-
 			break;
 	}
 
