@@ -694,8 +694,7 @@ module.exports = (grunt) ->
 				]
 
 		postcss:
-			# Only vendor prefixing
-			modern:
+			all:
 				options:
 					processors: [
 						require("autoprefixer")()
@@ -718,29 +717,25 @@ module.exports = (grunt) ->
 						dest: "<%= themeDist %>/css"
 						expand: true
 					}
-				]
 
-			# Mixed vendor prefixing
-			mixed:
-				options:
-					processors: [
-						require("autoprefixer")()
-					]
-				files: [
-					cwd: "<%= coreDist %>/css/polyfills"
-					src: [
-						"**/*.css"
-					]
-					dest: "<%= coreDist %>/css/polyfills/"
-					expand: true
-				,
-					cwd: "dist"
-					src: [
-						"demos/**/*.css"
-						"docs/**/*.css"
-					]
-					dest: "dist"
-					expand: true
+					{
+						cwd: "<%= coreDist %>/css/polyfills"
+						src: [
+							"**/*.css"
+						]
+						dest: "<%= coreDist %>/css/polyfills/"
+						expand: true
+					}
+
+					{
+						cwd: "dist"
+						src: [
+							"demos/**/*.css"
+							"docs/**/*.css"
+						]
+						dest: "dist"
+						expand: true
+					}
 				]
 
 		stylelint:
