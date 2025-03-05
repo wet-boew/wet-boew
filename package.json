@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
-    "prepare": "bower update && grunt init && grunt deploy-build",
+    "prepare": "bower update && grunt deploy-build",
     "travis_script": "grunt dist",
     "travis_after_success": "grunt deploy"
   },
