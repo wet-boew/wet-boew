@@ -58,7 +58,7 @@
 	...
 &lt;/ul&gt;</code></pre>
 		</li>
-		<li><p><strong>Optional:</strong> Set the live option to false and include a form element in the container.</p>
+		<li><p><strong>Optional:</strong> Set the live option to false to filter only on a button click instead of when user types in the search field. This can be either a button or a submit event when using the <code>uiTemplate</code> option.</p>
 
 		<pre><code>&lt;div class=&quot;wb-filter&quot; data-wb-filter='{ "live": "false" }'&gt;
 		&lt;form role="search" aria-label="On this page"&gt;
@@ -271,7 +271,7 @@
 	<h3 id="uiTemplateEB">uiTemplate</h3>
 	<ul>
 		<li>The template <strong>must</strong> include an <code>&lt;input type="search"></code>.</li>
-		<li>The template <strong>must</strong> include an <code>&lt;button></code> if the <code>live: false</code> option is used.</li>
+		<li>The template <strong>must</strong> include a <code>&lt;button></code> if the <code>live: false</code> option is used.</li>
 		<li>The template <strong>can</strong> display the amount of visible items and total items. To do so, add an element with the class <code>.wb-fltr-info</code>. Within this element, the following elements can be added to display information:
 			<ul>
 				<li><code>&lt;span data-nbitem>&lt;/span></code> will display the amount of visible items.</li>

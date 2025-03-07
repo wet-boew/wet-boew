@@ -56,8 +56,7 @@
 	<li>Créez votre case à cocher. <strong>L'attribut <code>name</code> est obligatoire pour les cases à cocher</strong>.</li>
 	<li>Ajoutez l'attribut <code>value</code> à la case à cocher. Remarque&nbsp;: la valeur de cet attribut doit être identique à celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contrôlés, par exemple, <code>value="maBalise"</code>.</li>
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
-	<li>Ajoutez l'<a href="#groupOption">option "group"</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li>
-</ol>
+	<li>Ajoutez l'<a href="#groupOption">option data-wb-tagfilter-group</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li></ol>
 <p>Votre case à cocher finale devrait ressembler à ceci&nbsp;:</p>
 <pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="maBalise" /></code></pre>
 
@@ -76,8 +75,7 @@
 	<li>Créez votre liste déroulante avec votre option par défaut. <strong>L'attribut <code>name</code> est obligatoire pour les listes déroulantes</strong>.</li>
 	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à la case à cocher.</li>
 	<li>Ajoutez vos autres options et définissez l'attribut <code>value</code>. Remarque&nbsp;: la valeur de cet attribut doit être la même que celle de la balise ajoutée à l'élément ou aux éléments qui pourront être contrôlés, par exemple, <code>value="maBalise"</code>.</li>
-	<li>Ajoutez l'<a href="#groupOption">option "group"</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li>
-</ol>
+	<li>Ajoutez l'<a href="#groupOption">option data-wb-tagfilter-group</a> afin d'obtenir un comportement <span lang="en">"OR"</span> à travers différentes composantes <strong>(Optionnel)</strong>.</li></ol>
 <p>Votre liste déroulante finale devrait ressembler à ceci&nbsp;:</p>
 <pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
 	&lt;option value="">Tous&lt;/option>
@@ -134,16 +132,16 @@
 <p>Pour des raisons sémantiques, chaque groupe logique de filtres devrait être enveloppé par un élément <code>&lt;fieldset></code>.</p>
 
 <section>
-	<h2>Configuration options</h2>
-	<p>All configuration options of the plugin are controlled by the <code>data-wb-tagfilter</code> attribute.</p>
+	<h2>Options de configuration</h2>
+	<p>Toute les options de configuration du plugiciel sont controlé par l'attribut <code>data-wb-tagfilter</code>.</p>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Comment configurer</th>
+				<th>Valeur</th>
 			</tr>
 		</thead>
 		<tbody>

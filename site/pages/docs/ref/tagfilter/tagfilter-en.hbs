@@ -65,8 +65,7 @@
 	<li>Create your radio button. <strong>The attribute <code>name</code> is mandatory for radio buttons</strong>.</li>
 	<li>Add the attribute <code>value</code> to the radio button. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the radio button.</li>
-	<li>Add the <a href="#groupOption">group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li>
-</ol>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li></ol>
 <p>Your final radio button should look like this:</p>
 <pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="myTag" /></code></pre>
 
@@ -75,8 +74,7 @@
 	<li>Create your dropdown with your default option. <strong>The attribute <code>name</code> is mandatory for dropdowns</strong>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the dropdown.</li>
 	<li>Add your other options and define the attribute <code>value</code>. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
-	<li>Add the <a href="#groupOption">group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li>
-</ol>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li></ol>
 <p>Your final dropdown should look like this:</p>
 <pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
 	&lt;option value="">All&lt;/option>
