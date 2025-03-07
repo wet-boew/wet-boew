@@ -11,6 +11,7 @@ var componentName = "wb-filter",
 	inputClass = "wb-fltr-inpt",
 	buttonClass = "wb-fltr-btn",
 	dtNameFltrArea = "wbfltrid",
+	dtForm = "wb-fltr-form",
 	selectorInput = "." + inputClass,
 	defaults = {
 		live: true,
@@ -41,7 +42,7 @@ var componentName = "wb-filter",
 			itemsObserver,
 			inptId, totalEntries,
 			secSelector,
-			uiTemplate, uiInpt, uiInfo, uiBtn,
+			uiTemplate, uiInpt, uiInfo, uiBtn, formElement,
 			uiNbItems, uiTotal, uiInfoID;
 
 		if ( elm ) {
@@ -90,6 +91,10 @@ var componentName = "wb-filter",
 			if ( settings.uiTemplate ) {
 				uiTemplate = document.querySelector( settings.uiTemplate );
 				uiInpt = uiTemplate.querySelector( "input[type=search]" );
+				formElement = uiTemplate.querySelector( "form" );
+				if ( formElement ) {
+					formElement.setAttribute( "data-" + dtForm, elm.id );
+				}
 
 				if ( uiInpt ) {
 					uiInfo = uiTemplate.querySelector( ".wb-fltr-info" );
@@ -136,7 +141,6 @@ var componentName = "wb-filter",
 					"</div>" +
 					"<p role=\"status\" id=\"" + uiInfoID + "\">" + i18nText.fltr_info + "</p>" );
 				}
-
 
 				if ( settings.source ) {
 					$( settings.source ).prepend( filterUI );
@@ -307,7 +311,7 @@ $document.on( "keyup", selectorInput, function( event ) {
 } );
 
 //	Trigger on form submit if not live changes
-$document.on( "submit", selector + " form", filterBtnClick );
+$document.on( "submit", selector + " form, form[data-" + dtForm + "]", filterBtnClick );
 $document.on( "click", "." + buttonClass, filterBtnClick );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
