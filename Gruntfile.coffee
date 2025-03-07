@@ -576,6 +576,7 @@ module.exports = (grunt) ->
 						"!node_modules/**"
 						"!lib/**"
 						"!dist/**"
+						"!.DS_Store"
 
 						# Images
 						"!**/*.{jpg,png,ico}"
