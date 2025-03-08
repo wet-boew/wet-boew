@@ -1,5 +1,3 @@
-path = require("path")
-fs = require("fs")
 sass = require("sass")
 
 module.exports = (grunt) ->
@@ -286,12 +284,6 @@ module.exports = (grunt) ->
 			)
 	)
 
-	globalConnectMiddleware = (connect, middlewares) ->
-		middlewares.unshift(
-			connect.compression filter: (req, res) ->
-				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
-		)
-
 	@util.linefeed = "\n"
 	# Project configuration.
 	@initConfig
@@ -303,9 +295,6 @@ module.exports = (grunt) ->
 		jqueryVersion: "<%= pkg.dependencies.jquery %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
-		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
-		i18nGDocsID: "1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o"
-		i18nGDocsSheet: 1
 
 		# Commit Messages
 		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
@@ -333,12 +322,12 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					overwrite: true
-				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
+				src: "https://docs.google.com/spreadsheets/d/1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o/export?gid=1&format=csv"
 				dest: "src/i18n/i18n.csv"
 
 		concat:
 			options:
-				banner: "<%= banner %><%= modernizrBanner %>"
+				banner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 			core:
 				options:
@@ -1029,11 +1018,8 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1041,15 +1027,16 @@ module.exports = (grunt) ->
 					src: [
 						"code-prettify/src/*.js"
 						"datatables.net/js/jquery.dataTables.js"
-						"jquery-validation/dist/jquery.validate.js"
+						"fast-json-patch/src/json-patch.js"
 						"jquery-validation/dist/additional-methods.js"
+						"jquery-validation/dist/jquery.validate.js"
+						"jsonpointer.js/src/jsonpointer.js",
 						"magnific-popup/dist/jquery.magnific-popup.js"
+						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1078,23 +1065,6 @@ module.exports = (grunt) ->
 					cwd: "src/plugins"
 					src: [
 						"**/deps/*.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"openlayers/dist/ol.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"jsonpointer.js/src/jsonpointer.js",
-						"fast-json-patch/src/json-patch.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
@@ -1272,7 +1242,6 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						# globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace "/v4.0-ci/", "/"
