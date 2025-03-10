@@ -97,14 +97,6 @@ module.exports = (grunt) ->
 		]
 	)
 
-	@registerTask(
-		"update-i18n"
-		" Update the i18n CSV file used to generate the i18n files"
-		[
-			"wget:i18n"
-		]
-	)
-
 	#Internal task groups
 	@registerTask(
 		"js"
@@ -316,14 +308,6 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: ["dist"]
-
-		# Task configuration.
-		wget:
-			i18n:
-				options:
-					overwrite: true
-				src: "https://docs.google.com/spreadsheets/d/1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o/export?gid=1&format=csv"
-				dest: "src/i18n/i18n.csv"
 
 		concat:
 			options:
