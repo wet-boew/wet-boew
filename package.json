@@ -9,9 +9,7 @@
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
     "update-i18n": "node script/i18n.mjs",
-    "prepare": "bower update && grunt deploy-build",
-    "travis_script": "grunt dist",
-    "travis_after_success": "grunt deploy"
+    "prepare": "bower update && grunt deploy-build"
   },
   "repository": {
     "type": "git",

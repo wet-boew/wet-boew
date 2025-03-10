@@ -2,8 +2,7 @@
 
 # Web Experience Toolkit (WET)
 
-[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.svg?branch=master)](https://travis-ci.org/wet-boew/wet-boew)
-[![devDependency Status](https://david-dm.org/wet-boew/wet-boew/dev-status.svg)](https://david-dm.org/wet-boew/wet-boew#info=devDependencies)
+[![Continuous Deployment](https://github.com/wet-boew/wet-boew/actions/workflows/cd.yml/badge.svg)](https://github.com/wet-boew/wet-boew/actions/workflows/cd.yml)
 
 ## What is the Web Experience Toolkit?
 
