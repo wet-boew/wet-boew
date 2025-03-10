@@ -99,14 +99,6 @@ module.exports = (grunt) ->
 		]
 	)
 
-	@registerTask(
-		"update-i18n"
-		" Update the i18n CSV file used to generate the i18n files"
-		[
-			"wget:i18n"
-		]
-	)
-
 	#Internal task groups
 	@registerTask(
 		"js"
@@ -304,8 +296,6 @@ module.exports = (grunt) ->
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
-		i18nGDocsID: "1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o"
-		i18nGDocsSheet: 1
 
 		# Commit Messages
 		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
@@ -327,14 +317,6 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: ["dist"]
-
-		# Task configuration.
-		wget:
-			i18n:
-				options:
-					overwrite: true
-				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
-				dest: "src/i18n/i18n.csv"
 
 		concat:
 			options:
