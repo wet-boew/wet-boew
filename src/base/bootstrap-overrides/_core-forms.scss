@@ -16,7 +16,17 @@ input {
 	&[type="reset"],
 	&[type="button"],
 	&[type="submit"] {
-		height: $input-height-base;
+		/*
+		 *  Form control width
+		 *
+		 *  Default should be representative of the expected length of input.
+		*  Full width should be only for cases when the expected length of input is
+		*  greater than the available width.
+		*  height:37px; rule of Bootstrap was overwritten by height: auto; first
+		*  then a min-height specified, in order to address the issue #8492. July 2019.
+		*/
+		height: auto;
+		min-height: 37px;
 
 		&.btn-lg,
 		&.input-lg {
@@ -32,20 +42,6 @@ input {
 			height: $input-height-xs;
 		}
 	}
-}
-
-/*
- *  Form control width
- *
- *  Default should be representative of the expected length of input.
- *  Full width should be only for cases when the expected length of input is
- *  greater than the available width.
- *  height:37px; rule of Bootstrap was overwritten by height: auto; first
- *  then a min-height specified, in order to address the issue #8492. July 2019.
- */
-input[type="button"], input[type="reset"], input[type="submit"] {
-	height: auto;
-	min-height: 37px;
 }
 
 .form-control {
