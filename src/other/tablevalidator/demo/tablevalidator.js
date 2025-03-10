@@ -575,6 +575,10 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	options = $elm.data( ).wbvalidateoptions;
 
 	// Quick Complex Tables Detection
+	if ( options.accessibilty ) {
+		options.accessibility = options.accessibilty;
+	}
+
 	if ( options.accessibility === "headers" ||
 			tblparser.theadRowStack.length > 2 ||
 			tblparser.desccell || tblparser.keycell ||
