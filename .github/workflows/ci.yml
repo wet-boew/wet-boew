@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
   pull_request:
 
 jobs:
@@ -14,32 +17,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          ruby-version: 3.0
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v4
-        with:
-          java-version: 8
-          distribution: "temurin"
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
       - name: Install puppeteer libraries
         run: |
          sudo apt-get update
          sudo apt-get install -y libgbm1
-      - run: gem install rake html-proofer
-      - run: npm i -g bower grunt-cli
-      - run: npm ci
-      # - run: grunt dist
-      - if: ${{ !env.ACT }}
-        run: grunt test
-      - run: grunt htmllint
-      - run: grunt bootlint
+
+      - name: Install Grunt and Bower
+        run: npm i -g bower grunt-cli --force
+
+      - name: Install npm dependencies
+        run: npm ci
+
       - run: npm test
-      - run: rake

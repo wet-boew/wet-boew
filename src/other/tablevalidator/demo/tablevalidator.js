@@ -575,7 +575,11 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	options = $elm.data( ).wbvalidateoptions;
 
 	// Quick Complex Tables Detection
-	if ( options.accessibilty === "headers" ||
+	if ( options.accessibilty ) {
+		options.accessibility = options.accessibilty;
+	}
+
+	if ( options.accessibility === "headers" ||
 			tblparser.theadRowStack.length > 2 ||
 			tblparser.desccell || tblparser.keycell ||
 			( tblparser.colgroup[ 0 ].type === 2 && tblparser.colgroup[ 0 ].col.length > 2 ) ) {
@@ -622,7 +626,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	}
 
 	// it is a simple table.
-	if ( options.accessibilty === "auto" && tblparser.theadRowStack.length <= 1 &&
+	if ( options.accessibility === "auto" && tblparser.theadRowStack.length <= 1 &&
 			( tblparser.lstrowgroup.length === 1 ||
 			( tblparser.lstrowgroup[ 0 ].type === 2 && tblparser.lstrowgroup[ 1 ].type === 3 && tblparser.lstrowgroup[ 1 ].level === 0 ) ) ) {
 		$elm.trigger( addnothingEvent );
@@ -630,7 +634,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	}
 
 	// Simple Grouping Table
-	if ( options.accessibilty === "auto" || options.accessibilty === "scope" ) {
+	if ( options.accessibility === "auto" || options.accessibility === "scope" ) {
 		$elm.trigger( addscopeEvent );
 		return;
 	}
@@ -782,15 +786,15 @@ function detectValidationOptions( $tbl ) {
 	if ( $( "#access-1" ).is( ":checked" ) ) {
 
 		// Auto ( default )
-		opts.accessibilty = "auto";
+		opts.accessibility = "auto";
 	} else if ( $( "#access-2" ).is( ":checked" ) ) {
 
 		// Scope
-		opts.accessibilty = "scope";
+		opts.accessibility = "scope";
 	} else {
 
 		// Ids/Headers
-		opts.accessibilty = "headers";
+		opts.accessibility = "headers";
 	}
 
 	opts.prefix = $( "#idprefix" ).val( );

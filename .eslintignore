@@ -1,3 +1,5 @@
+node_modules/
+dist/
 src/polyfills/slider/slider.js
 src/polyfills/events/mobile.js
 lib/

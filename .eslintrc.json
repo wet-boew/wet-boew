@@ -50,6 +50,15 @@
       "env": {
         "mocha": true
       }
+    },
+    {
+      "files":[
+        "test-runner.js",
+        "stylelint.config.js"
+      ],
+      "env": {
+        "node": true
+      }
     }
   ]
 }

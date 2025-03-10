@@ -19,6 +19,7 @@
 }
 
 .ol-overlay-container {
+	will-change: left, right, top, bottom;
 	z-index: 1000
 }
 
@@ -282,10 +283,6 @@
 	margin: 1px;
 	text-align: center;
 	will-change: contents, width
-}
-
-.ol-overlay-container {
-	will-change: left, right, top, bottom
 }
 
 .ol-unsupported {
