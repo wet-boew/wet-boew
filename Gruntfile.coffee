@@ -1,5 +1,3 @@
-path = require("path")
-fs = require("fs")
 sass = require("sass")
 
 module.exports = (grunt) ->
@@ -278,12 +276,6 @@ module.exports = (grunt) ->
 			)
 	)
 
-	globalConnectMiddleware = (connect, middlewares) ->
-		middlewares.unshift(
-			connect.compression filter: (req, res) ->
-				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
-		)
-
 	@util.linefeed = "\n"
 	# Project configuration.
 	@initConfig
@@ -295,7 +287,6 @@ module.exports = (grunt) ->
 		jqueryVersion: "<%= pkg.dependencies.jquery %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
-		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 		# Commit Messages
 		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
@@ -320,7 +311,7 @@ module.exports = (grunt) ->
 
 		concat:
 			options:
-				banner: "<%= banner %><%= modernizrBanner %>"
+				banner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 			core:
 				options:
@@ -543,31 +534,17 @@ module.exports = (grunt) ->
 			all:
 				src: [
 						# Root files
-						".*rc"
-						".editorconfig"
-						".eslint*"
-						".git*"
-						".*.{json,yml}"
-						".npmignore"
-						"*.{json,md}"
-						"Gruntfile.coffee"
-						"Licen?e-*.txt"
-						"Rakefile"
-
-						# Folders
-						"dep/**"
-						"script/**"
-						"site/**"
-						"src/**"
-						"theme/**"
+						"\.*"
+						"**"
 
 						# Exemptions...
+						"!node_modules/**"
+						"!lib/**"
+						"!dist/**"
+						"!.DS_Store"
 
 						# Images
-						"!site/pages/docs/img/*.{jpg,png}"
-						"!src/plugins/**/*.{jpg,png}"
-						"!src/polyfills/**/*.{jpg,png}"
-						"!theme/assets/*.{ico,jpg,png}"
+						"!**/*.{jpg,png,ico}"
 
 						# Docker environment file
 						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
@@ -575,7 +552,7 @@ module.exports = (grunt) ->
 
 						# Tracked third party files
 						# Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
-						"!dep/modernizr-custom.js"
+						"!src/core/dep/modernizr-custom.js"
 						"!src/polyfills/events/mobile.js"
 						"!src/polyfills/slider/slider.js"
 
@@ -1007,15 +984,9 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib"
 					src: [
-						"flot/jquery.flot.js"
-						"flot/jquery.flot.pie.js"
-						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1023,15 +994,20 @@ module.exports = (grunt) ->
 					src: [
 						"code-prettify/src/*.js"
 						"datatables.net/js/jquery.dataTables.js"
+						"fast-json-patch/src/json-patch.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
+						"jquery-validation/dist/jquery.validate.js"
+						"jsonpointer.js/src/jsonpointer.js",
 						"magnific-popup/dist/jquery.magnific-popup.js"
+						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1060,23 +1036,6 @@ module.exports = (grunt) ->
 					cwd: "src/plugins"
 					src: [
 						"**/deps/*.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"openlayers/dist/ol.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"jsonpointer.js/src/jsonpointer.js",
-						"fast-json-patch/src/json-patch.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
@@ -1237,13 +1196,19 @@ module.exports = (grunt) ->
 
 		eslint:
 			options:
-				configFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
+				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
 				quiet: true
 			all:
 				src: [
-					"site/**/*.js"
-					"src/**/*.js"
-					"theme/**/*.js"
+					"**/*.js"
+
+					# Copied ignores from .editorconfig
+					"!node_modules/**/*.js"
+					"!dist/**/*.js"
+					"!src/polyfills/slider/slider.js"
+					"!src/polyfills/events/mobile.js"
+					"!lib/**/*.js"
+					"!src/core/dep/modernizr-custom.js"
 				]
 
 		connect:
@@ -1254,7 +1219,6 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						# globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace "/v4.0-ci/", "/"
