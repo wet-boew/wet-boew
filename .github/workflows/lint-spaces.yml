@@ -1,0 +1,107 @@
+name: Space Linting
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - ".*rc"
+      - ".editorconfig"
+      - ".eslint*"
+      - ".git*"
+      - ".*.{json,yml}"
+      - ".npmignore"
+      - "*.{json,md}"
+      - "Gruntfile.coffee"
+      - "Licen?e-*.txt"
+      - "Rakefile"
+
+      # Folders
+      - "dep/**"
+      - "script/**"
+      - "site/**"
+      - "src/**"
+      - "theme/**"
+
+      # Images
+      - "!site/pages/docs/img/*.{jpg,png}"
+      - "!src/plugins/**/*.{jpg,png}"
+      - "!src/polyfills/**/*.{jpg,png}"
+      - "!theme/assets/*.{ico,jpg,png}"
+
+      # Docker environment file
+      # Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+      - "!script/docker/env"
+
+      # Tracked third party files
+      # Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
+      - "!dep/modernizr-custom.js"
+      - "!src/polyfills/events/mobile.js"
+      - "!src/polyfills/slider/slider.js"
+
+      # Untracked generated files
+      - "!site/data/i18n/*.json"
+      - "!src/plugins/*/sprites/_sprites_*.scss"
+      - ".github/workflows/lint-spaces.yml"
+
+  pull_request:
+    paths:
+      - ".*rc"
+      - ".editorconfig"
+      - ".eslint*"
+      - ".git*"
+      - ".*.{json,yml}"
+      - ".npmignore"
+      - "*.{json,md}"
+      - "Gruntfile.coffee"
+      - "Licen?e-*.txt"
+      - "Rakefile"
+
+      # Folders
+      - "dep/**"
+      - "script/**"
+      - "site/**"
+      - "src/**"
+      - "theme/**"
+
+      # Images
+      - "!site/pages/docs/img/*.{jpg,png}"
+      - "!src/plugins/**/*.{jpg,png}"
+      - "!src/polyfills/**/*.{jpg,png}"
+      - "!theme/assets/*.{ico,jpg,png}"
+
+      # Docker environment file
+      # Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+      - "!script/docker/env"
+
+      # Tracked third party files
+      # Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
+      - "!dep/modernizr-custom.js"
+      - "!src/polyfills/events/mobile.js"
+      - "!src/polyfills/slider/slider.js"
+
+      # Untracked generated files
+      - "!site/data/i18n/*.json"
+      - "!src/plugins/*/sprites/_sprites_*.scss"
+      - ".github/workflows/lint-spaces.yml"
+
+jobs:
+  lint-spaces:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+
+      - name: Install Grunt
+        run: npm i -g bower grunt-cli --force
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Lintspaces
+        run: grunt lintspaces

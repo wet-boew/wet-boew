@@ -1,0 +1,41 @@
+name: Markdown Linting
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - "package*.json"
+      - "Gruntfile.coffee"
+      - ".markdownlint.json*"
+      - "**/*.md"
+      - ".github/workflows/lint-md.yml"
+
+  pull_request:
+    paths:
+      - "package*.json"
+      - "Gruntfile.coffee"
+      - ".markdownlint.json*"
+      - "**/*.md"
+      - ".github/workflows/lint-md.yml"
+
+jobs:
+  lint-md:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+
+      - name: Install Grunt
+        run: npm i -g grunt-cli --force
+
+      - name: Install npm dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Markdownlint
+        run: grunt markdownlint
