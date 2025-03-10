@@ -82,7 +82,6 @@
     "grunt-sass-lint": "^0.2.4",
     "grunt-spritesmith": "^6.10.0",
     "grunt-sri": "^0.2.0",
-    "grunt-string-replace": "^1.3.3",
     "grunt-stylelint": "^0.20.1",
     "grunt-wet-boew-postbuild": "github:wet-boew/grunt-wet-boew-postbuild#v0.1.13",
     "grunt-wget": "github:wet-boew/grunt-wget#v0.1.4",
