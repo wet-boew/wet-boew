@@ -1025,15 +1025,9 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib"
 					src: [
-						"flot/jquery.flot.js"
-						"flot/jquery.flot.pie.js"
-						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1041,6 +1035,9 @@ module.exports = (grunt) ->
 					src: [
 						"code-prettify/src/*.js"
 						"datatables.net/js/jquery.dataTables.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
@@ -1048,8 +1045,6 @@ module.exports = (grunt) ->
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,

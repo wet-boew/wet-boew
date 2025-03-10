@@ -9,8 +9,6 @@
     "lib"
   ],
   "dependencies": {
-    "excanvas": "*",
-    "flot": "0.8.3",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
   "moduleType": [
