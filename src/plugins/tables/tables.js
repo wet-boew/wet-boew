@@ -195,7 +195,7 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 			$btn = $th.find( "button" );
 		if ( order && order.length && order[ 0 ][ 0 ] === index ) {
 			var label = ( order[ 0 ][ 1 ] === "desc" ) ? i18nText.aria.sortAscending : i18nText.aria.sortDescending;
-			label = $btn.text() + label.replace(/&#160;/g, " ");
+			label = $btn.text() + label.replace( /&#160;/g, " " );
 			$btn.attr( "title", label );
 		}
 		$th.removeAttr( "aria-label" );
