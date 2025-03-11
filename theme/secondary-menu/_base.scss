@@ -1,9 +1,11 @@
+@use "sass:color";
+
 /*
  * Secondary menu
  */
 %secmenu-wet-theme-menuitem-curr-hover-focus {
-	background: darken($clrWhite, 60%);
-	color: lighten($clrDark, 75%);
+	background: color.adjust($clrWhite, $lightness: -60%, $space: hsl);
+	color: color.adjust($clrDark, $lightness: 75%, $space: hsl);
 }
 
 #wb-sec {
@@ -49,8 +51,8 @@
 
 		.list-group {
 			.list-group-item {
-				background: darken($clrWhite, 10%);
-				color: darken($clrDark, 50%);
+				background: color.adjust($clrWhite, $lightness: -10%, $space: hsl);
+				color: color.adjust($clrDark, $lightness: -50%, $space: hsl);
 				padding-left: 1.8em;
 			}
 		}

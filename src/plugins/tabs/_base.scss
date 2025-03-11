@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -19,7 +21,7 @@ $tab-margin-width: 10px;
 
 %tab-background {
 	background: $carousel-tabpanel-figcaption-bg-color;
-	background: transparentize($carousel-tabpanel-figcaption-bg-color, .1);
+	background: color.adjust($carousel-tabpanel-figcaption-bg-color, $alpha: -.1);
 
 	img {
 		height: auto;
@@ -243,7 +245,7 @@ $tab-margin-width: 10px;
 				&:focus,
 				&:hover {
 					background: $tablist-hover-bg-color;
-					background: transparentize($tablist-hover-bg-color, .1);
+					background: color.adjust($tablist-hover-bg-color, $alpha: -.1);
 				}
 
 				&.active {
