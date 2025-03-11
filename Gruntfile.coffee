@@ -693,6 +693,7 @@ module.exports = (grunt) ->
 		# Minify
 		uglify:
 			options:
+				module: false
 				output:
 					comments: (uglify,comment) ->
 						return comment.value.match /^!/i

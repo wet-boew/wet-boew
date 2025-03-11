@@ -70,7 +70,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^5.0.0",
     "grunt-contrib-htmlmin": "^3.1.0",
-    "grunt-contrib-uglify": "github:wet-boew/grunt-contrib-uglify#v1.0.0",
+    "grunt-contrib-uglify": "github:EricDunsworth/grunt-contrib-uglify#extra-options-uglify-js",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^24.3.0",
     "grunt-gh-pages": "^4.0.0",
