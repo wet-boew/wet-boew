@@ -288,22 +288,6 @@ module.exports = (grunt) ->
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 
-		# Commit Messages
-		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
-		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-		distDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"Production files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		)) + "<%= commitMessage %>"
-		cdnDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"CDN files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		)) + "<%= commitMessage %>"
-
 		deployBranch: "v4.0-dist"
 
 		clean:
@@ -547,7 +531,7 @@ module.exports = (grunt) ->
 						"!**/*.{jpg,png,ico}"
 
 						# Docker environment file
-						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main build.
 						"!script/docker/env"
 
 						# Tracked third party files
@@ -1257,61 +1241,9 @@ module.exports = (grunt) ->
 				clone: "wet-boew-dist"
 				base: "dist"
 
-			travis:
-				options:
-					repo: process.env.DIST_REPO
-					branch: "<%= deployBranch %>"
-					message: "<%= distDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
-					))
-				src: [
-					"**/*.*"
-					"!package.json"
-				]
-
-			travis_cdn:
-				options:
-					repo: process.env.CDN_REPO
-					branch: "<%= deployBranch %>"
-					clone: "wet-boew-cdn"
-					base: "<%= coreDist %>"
-					message: "<%= cdnDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
-					))
-				src: [
-					"**/*.*"
-				]
-
-			travis_theme_cdn:
-				options:
-					repo: process.env.THEME_CDN_REPO
-					branch: "theme-wet-boew"
-					clone: "wet-boew-theme-cdn"
-					base: "<%= themeDist %>"
-					message: "<%= cdnDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-theme-wet-boew" else false
-					))
-				src: [
-					"**/*.*"
-				]
-
 			local:
 				src: [
 					"**/*.*"
-				]
-
-		"wb-update-examples":
-			travis:
-				options:
-					repo: process.env.DEMOS_REPO
-					branch: process.env.DEMOS_BRANCH
-					message: "<%= distDeployMessage %>"
-				src: [
-					"**/*.*"
-					"!package.json"
 				]
 
 		sri:
