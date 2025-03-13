@@ -87,7 +87,7 @@
     "mocha": "^11.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
     "postcss": "^8.5.3",
-    "puppeteer": "^1.20.0",
+    "puppeteer": "^24.4.0",
     "sass": "^1.85.1",
     "sinon": "^9.2.4",
     "stylelint": "^16.15.0",
