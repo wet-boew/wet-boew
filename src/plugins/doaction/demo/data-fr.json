@@ -1,0 +1,16 @@
+{
+  "ville": {
+    "gat": "Gatineau",
+    "ott": "Ottawa",
+    "vdm": "Val-des-monts"
+  },
+  "fruit": "poire",
+  "pays": {
+    "nom": "Canada",
+    "province": {
+      "qc": "Québec",
+      "on": "Ontario",
+      "ma": "Manitoba"
+    }
+  }
+}
