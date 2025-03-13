@@ -43,6 +43,3 @@ jobs:
 
       - name: Stylelint
         run: grunt stylelint
-
-      - name: Sass Lint
-        run: grunt sasslint
