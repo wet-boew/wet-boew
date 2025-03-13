@@ -70,12 +70,11 @@
 					@extend %global-loading;
 
 					margin-top: 5px;
+					position: relative;
 					min: {
 						height: 100px;
 						width: 100px;
 					}
-
-					position: relative;
 
 					/* Align the loading icon leftwards by default */
 					&::before {
