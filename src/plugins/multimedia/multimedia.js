@@ -784,14 +784,14 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
+			width: data.width,
+			height: data.height,
 			playerVars: {
 				autoplay: 0,
 				controls: 0,
+				hl: wb.lang,
 				origin: wb.pageUrlParts.host,
-				modestbranding: 1,
 				rel: 0,
-				showinfo: 0,
-				html5: 1,
 				cc_load_policy: 1
 			},
 			events: {
