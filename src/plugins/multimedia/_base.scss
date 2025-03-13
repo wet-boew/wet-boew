@@ -220,13 +220,12 @@
 
 		background: transparent;
 		border: 0;
+		color: $mm-ctrl-fg-color;
+		font-size: 130%;
 		border-top: {
 			left-radius: 0 !important;
 			right-radius: 0 !important;
 		}
-
-		color: $mm-ctrl-fg-color;
-		font-size: 130%;
 
 		&[disabled] {
 			&:active {
