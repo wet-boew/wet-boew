@@ -76,6 +76,7 @@
     "grunt-gh-pages": "^4.0.0",
     "grunt-html": "^15.2.2",
     "grunt-i18n-csv": "^0.1.0",
+    "grunt-jsonlint": "^3.0.0",
     "grunt-lintspaces": "^0.12.0",
     "grunt-markdownlint": "^3.1.6",
     "grunt-sass": "^3.1.0",
