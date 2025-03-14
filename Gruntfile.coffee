@@ -567,7 +567,7 @@ module.exports = (grunt) ->
 		sass:
 			options:
 				implementation: sass,
-				includePaths: [
+				loadPaths: [
 					"node_modules"
 				],
 				indentType: "tab",
