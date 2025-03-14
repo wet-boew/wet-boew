@@ -218,6 +218,7 @@ module.exports = (grunt) ->
 			"eslint"
 			"sasslint"
 			"lintspaces"
+			"jsonlint"
 		]
 	)
 
@@ -1275,6 +1276,18 @@ module.exports = (grunt) ->
 					'!node_modules/**/*.md'
 					'!lib/**/*.md'
 				]
+
+		jsonlint:
+			all:
+				src: [
+					"**/*.json",
+					"**/*.json-ld"
+					"!**/bad-json-content*.*"
+					"!node_modules/**"
+				]
+				options: {
+					indent: "\t"
+				}
 
 	require( "load-grunt-tasks" )( grunt, requireResolution: true )
 
