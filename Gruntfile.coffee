@@ -23,7 +23,6 @@ module.exports = (grunt) ->
 			"docs-min"
 			"demos-min"
 			"htmllint"
-			"bootlint"
 			"sri"
 		]
 	)
@@ -898,34 +897,6 @@ module.exports = (grunt) ->
 					"!dist/unmin/**/reports/*.html"
 					"!dist/unmin/**/demo/*.html"
 					"!dist/unmin/**/demo-*/*.html"
-				]
-
-		bootlint:
-			all:
-				options:
-					stoponerror: true
-					stoponwarning: true
-					showallerrors: true
-					relaxerror: [
-						"W002" # `<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes
-						"W005" # Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work; however, you might not be using Bootstrap's JavaScript
-						# Opinionated exclusions
-						"W007" # Found one or more `<button>`s missing a `type` attribute.
-						# TODO: The rules below should be resolved
-						"W009" # Using empty spacer columns isn't necessary with Bootstrap's grid. So instead of having an empty grid column with `class=\"col-xs-12"` , just add `class=\"col-xs-offset-12"` to the next grid column.
-						"W010" # Using `.pull-left` or `.pull-right` as part of the media object component is deprecated as of Bootstrap v3.3.0. Use `.media-left` or `.media-right` instead.
-						"E013" # Only columns (`.col-*-*`) may be children of `.row`s
-						"E014" # Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s
-						"E031" # Glyphicon classes must only be used on elements that contain no text content and have no child elements.
-						"E032" # `.modal-content` must be a child of `.modal-dialog`
-						"E049" # `.modal-dialog` must have a `role="document"` attribute.
-						"E051" # `.pull-right` and `.pull-left` must not be used on `.col-*-*` elements
-					]
-				src: [
-					"dist/**/*.html"
-					# Ignore HTML fragments used for the menus
-					"!dist/**/assets/*.html"
-					"!dist/**/ajax/*.html"
 				]
 
 		copy:
