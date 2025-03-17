@@ -9,7 +9,7 @@
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
     "update-i18n": "node script/i18n.mjs",
-    "prepare": "bower update && grunt deploy-build"
+    "prepare": "grunt deploy-build"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "magnific-popup": "^1.2.0",
     "mathjax": "^3.2.2",
     "proj4": "2.15.0",
+    "SideBySideImproved": "github:pkoltermann/SideBySideImproved#a680afcd91194b9c6bb7c6e830de1d475204a686",
     "unorm": "^1.6.0"
   },
   "devDependencies": {
