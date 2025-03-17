@@ -6,9 +6,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - "bower.json"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js"
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
@@ -17,9 +15,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - "bower.json"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js"
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
