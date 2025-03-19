@@ -7,7 +7,7 @@
 	"tag": "jsonmanager",
 	"parentdir": "wb-jsonmanager",
 	"altLangPage": "jsonmanager-fr.html",
-	"dateModified": "2022-10-31"
+	"dateModified": "2025-03-19"
 }
 ---
 <!--
@@ -150,7 +150,7 @@
 			{ "selector": ".event-start", "value": "/startDate" },
 			{ "selector": ".event-end", "value": "/endDate" },
 			{ "selector": ".event-location", "value": "/city" },
-			{ "selector": ".event-status", "value": "/registrationStatus/en" },
+			{ "selector": ".event-status", "value": "/registrationStatus/{{page.language}}" },
 			{ "selector": ".event-provinces", "value": "/province", "queryall": "li" },
 			{ "selector": ".event-registered", "value": "/registeredPeople",
 				"mapping": [
@@ -196,7 +196,7 @@
 		{ "op": "patches", "path": "/items", "patches": [
 			{ "op": "wb-swap", "path": "/eventLanguage", "ref": "/reference/language/{{page.language}}" },
 			{ "op": "wb-swap", "path": "/province", "ref": "/reference/province/{{page.language}}" },
-			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus/{{page.language}}" },
+			{ "op": "wb-swap", "path": "/registrationStatus", "ref": "/reference/registrationStatus" },
 			{ "op": "wb-toDateISO", "path": "/startDate" },
 			{ "op": "wb-toDateISO", "path": "/endDate" },
 			{ "op": "patches", "path": "/registeredPeople", "patches": [
@@ -214,7 +214,7 @@
 			{ "selector": ".event-start", "value": "/startDate" },
 			{ "selector": ".event-end", "value": "/endDate" },
 			{ "selector": ".event-location", "value": "/city" },
-			{ "selector": ".event-status", "value": "/registrationStatus" },
+			{ "selector": ".event-status", "value": "/registrationStatus/{{page.language}}" },
 			{ "selector": ".event-provinces", "value": "/province", "queryall": "li" },
 			{ "selector": ".event-registered", "value": "/registeredPeople",
 				"mapping": [
