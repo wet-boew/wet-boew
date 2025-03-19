@@ -1,0 +1,39 @@
+name: JSON Linting
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+    paths:
+      - "Gruntfile.coffee"
+      - "**/*.json"
+      - "**/*.json-ld"
+      - ".github/workflows/lint-json.yml"
+
+  pull_request:
+    paths:
+      - "Gruntfile.coffee"
+      - "**/*.json"
+      - "**/*.json-ld"
+      - ".github/workflows/lint-json.yml"
+
+jobs:
+  lint-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+
+      - name: Install Grunt
+        run: npm i -g bower grunt-cli --force
+
+      - name: Install npm dependencies
+        run: npm ci --ignore-scripts
+
+      - name: JSONLint
+        run: grunt jsonlint
