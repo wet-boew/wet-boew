@@ -966,14 +966,6 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "lib"
-					src: [
-						"SideBySideImproved/jquery.flot.orderBars.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
 					cwd: "node_modules"
 					src: [
 						"code-prettify/src/*.js"
@@ -989,6 +981,7 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
+						"SideBySideImproved/jquery.flot.orderBars.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
