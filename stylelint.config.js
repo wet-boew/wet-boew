@@ -69,6 +69,7 @@ module.exports = {
 				"declaration-property-value-keyword-no-deprecated": null, // Fix use of break-word
 				"function-name-case": null,
 				"function-url-quotes": null,
+				"hue-degree-notation": null, // Sass doesn't pad this out from 0 to 0deg
 				"length-zero-no-unit": null,
 				"media-feature-name-no-vendor-prefix": null,
 				"number-max-precision": null,
