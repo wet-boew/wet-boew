@@ -83,7 +83,6 @@
     "grunt-spritesmith": "^6.10.0",
     "grunt-sri": "^0.2.0",
     "grunt-stylelint": "^0.20.1",
-    "grunt-wet-boew-postbuild": "github:wet-boew/grunt-wet-boew-postbuild#v0.1.13",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^11.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
