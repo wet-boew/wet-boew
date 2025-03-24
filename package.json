@@ -85,7 +85,7 @@
     "grunt-stylelint": "^0.20.1",
     "grunt-wet-boew-postbuild": "github:wet-boew/grunt-wet-boew-postbuild#v0.1.13",
     "load-grunt-tasks": "^5.1.0",
-    "mocha": "^10.7.3",
+    "mocha": "^11.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
     "postcss": "^8.5.3",
     "puppeteer": "^1.20.0",
