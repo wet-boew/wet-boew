@@ -302,7 +302,7 @@ $document.on( "keyup", selectorInput, function( event ) {
 		$elm = $( "#" + $input.data( dtNameFltrArea ) ),
 		live = $elm.data( componentName ).live;
 
-	if ( live || event.which == 13 ) {
+	if ( live || event.which === 13 ) {
 		if ( wait ) {
 			clearTimeout( wait );
 		}
