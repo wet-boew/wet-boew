@@ -1,0 +1,70 @@
+---
+{
+	"title": "Multimedia Player - Video (SRT test)",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Provides an accessible multimedia player for embedding video into web pages.",
+	"tag": "multimedia",
+	"parentdir": "multimedia",
+	"altLangPrefix": "multimedia",
+	"dateModified": "2025-03-24"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<div class="row">
+		<section class="col-md-6">
+			<h3>XML captions</h3>
+			<figure class="wb-mltmd">
+				<video poster="demo/video2-en.jpg" title="Training and Development">
+					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.webm" />
+					<track src="demo/video2-captions-en.xml" kind="captions" data-type="application/ttml+xml" srclang="en" label="English" />
+				</video>
+				<figcaption>
+					<p>Training and Development (<a href="cpts-lg2-en.html">Transcript</a>)</p>
+				</figcaption>
+			</figure>
+		</section>
+		<section class="col-md-6">
+			<h3>SRT captions</h3>
+			<figure class="wb-mltmd">
+				<video poster="demo/video2-en.jpg" title="Training and Development">
+					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.webm" />
+					<track src="demo/captions.srt" kind="captions" data-type="application/x-subrip" srclang="en" label="English" />
+					<!--
+					TODO: According to https://stackoverflow.com/questions/68893143/mime-type-for-srt-in-android, https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types and https://archive.org/download/FreedomProjectMovieAndTvSeries-MissionToMir/Mission_to_mir.srt ...
+
+					It looks like SRT MIME types can be any of these in practice:
+					text/plain
+					application/x-subrip
+					application/octet-stream (might be Android-only?)
+
+					What do these sites use for SRT MIME types?
+					GitHub (https://eldinzenderink.github.io/SubPlayerJS/DemoSubtitle/inferno.srt): application/x-subrip
+					Canada.ca (https://www.canada.ca/content/dam/esdc-edsc/videos/corporate/portfolio/service-canada/workplace/esdc-workplace-en.srt): text/plain;charset=utf-8
+					Archive.org (https://archive.org/download/FreedomProjectMovieAndTvSeries-MissionToMir/Mission_to_mir.srt): text/plain;charset=UTF-8
+
+					Side note (.ass subtitle format):
+					GitHub (https://eldinzenderink.github.io/SubPlayerJS/DemoSubtitle/sintel.ass): application/octet-stream
+
+					WebVTT's MIME type is text/vtt
+
+					So based on all that... I think I'm gonna need to support these at minimum:
+					application/x-subrip (for localhost + GitHub)
+					text/plain;charset=utf-8 (for Canada.ca... unsure about the charset part)
+
+					Umm won't I have a problem if the data-type attribute that works for GitHub doesn't work for Canada.ca? Is data-type just a hint for the plugin and not actually tied to the server's MIME types?
+
+					Btw it looks like SRT has basic formatting support too according to https://en.wikipedia.org/wiki/SubRip#Formatting
+
+					Gonna need to try mapping different kinds of SRT MIME types for further testing
+					-->
+				</video>
+				<figcaption>
+					<p>Training and Development (<a href="cpts-lg2-en.html">Transcript</a>)</p>
+				</figcaption>
+			</figure>
+		</section>
+	</div>
+</section>
