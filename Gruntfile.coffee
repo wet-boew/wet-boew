@@ -1273,6 +1273,7 @@ module.exports = (grunt) ->
 					config: grunt.file.readJSON(".markdownlint.json")
 				src: [
 					'**/*.md'
+					'.github/**/*.md'
 					'!node_modules/**/*.md'
 					'!lib/**/*.md'
 				]
