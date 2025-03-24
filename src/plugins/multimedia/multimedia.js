@@ -761,6 +761,8 @@ $document.on( initializedEvent, selector, function( event ) {
 						loadedIframeApi = true;
 
 						console.log( "inside loadedIframeApi if" );
+						console.log( performance.getEntries() );
+						console.log( entry );
 
 						setTimeout( function() {
 							if ( !loadedWidgetApi ) {
