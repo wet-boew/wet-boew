@@ -827,8 +827,8 @@ $document.on( initializedEvent, selector, function( event ) {
 								setTimeout( function() {
 									const resources = window.performance.getEntriesByType( "resource" );
 
-									resources.getEntriesByType( "resource" ).forEach( function( entry ) {
-										if ( entry.initiatorType === "iframe" && entry.name.includes( data.youTubeId ) ) {
+									resources.forEach( function( entryo ) {
+										if ( entryo.initiatorType === "iframe" && entryo.name.includes( data.youTubeId ) ) {
 											//found a video iframe... but how can I verify things were successful? I need to verify that the player is actually happy to PROVE the iframe didn't just return HTTP 403 denied or something...
 											//else show error... once again
 
