@@ -296,7 +296,7 @@ module.exports = (grunt) ->
 
 		concat:
 			options:
-				banner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
+				banner: "<%= banner %>\n\n/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 			core:
 				options:
