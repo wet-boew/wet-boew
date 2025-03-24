@@ -2,15 +2,12 @@
   "name": "wet-boew",
   "ignore": [
     ".git*",
-    ".travis.yml",
     ".editorconfig",
     "node_modules",
     "test",
     "lib"
   ],
   "dependencies": {
-    "excanvas": "*",
-    "flot": "0.8.3",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
   "moduleType": [

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -132,18 +134,18 @@ $table-bg-hover: #f0f0f0 !default;
 // Bootstrap Overrides
 $btn-default-color: #335075 !default;
 $btn-default-bg: #eaebed !default;
-$btn-default-border: darken($btn-default-bg, 5%) !default;
+$btn-default-border: color.adjust($btn-default-bg, $lightness: -5%, $space: hsl) !default;
 $btn-primary-bg: $brand-primary !default;
-$btn-primary-border: darken($btn-primary-bg, 20%) !default;
+$btn-primary-border: color.adjust($btn-primary-bg, $lightness: -20%, $space: hsl) !default;
 $btn-success-bg: $brand-success !default;
-$btn-success-border: darken($btn-success-bg, 20%) !default;
+$btn-success-border: color.adjust($btn-success-bg, $lightness: -20%, $space: hsl) !default;
 $btn-info-bg: $brand-info !default;
-$btn-info-border: darken($btn-info-bg, 20%) !default;
+$btn-info-border: color.adjust($btn-info-bg, $lightness: -20%, $space: hsl) !default;
 $btn-warning-color: #000 !default;
 $btn-warning-bg: $brand-warning !default;
-$btn-warning-border: darken($btn-warning-bg, 20%) !default;
+$btn-warning-border: color.adjust($btn-warning-bg, $lightness: -20%, $space: hsl) !default;
 $btn-danger-bg: $brand-danger !default;
-$btn-danger-border: darken($btn-danger-bg, 20%) !default;
+$btn-danger-border: color.adjust($btn-danger-bg, $lightness: -20%, $space: hsl) !default;
 
 
 // == Media queries breakpoints
@@ -170,8 +172,8 @@ $pagination-color: $btn-default-color !default;
 $pagination-bg: $btn-default-bg !default;
 $pagination-border: $btn-default-border !default;
 $pagination-hover-color: $btn-default-color !default;
-$pagination-hover-bg: darken($btn-default-bg, 8%) !default;
-$pagination-hover-border: darken($btn-default-border, 12%) !default;
+$pagination-hover-bg: color.adjust($btn-default-bg, $lightness: -8%, $space: hsl) !default;
+$pagination-hover-border: color.adjust($btn-default-border, $lightness: -12%, $space: hsl) !default;
 
 // WET Custom
 $pager-border-radius: 4px !default;

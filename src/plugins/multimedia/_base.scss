@@ -307,7 +307,7 @@
 		@extend %multimedia-controls-outline;
 
 		/* Important Thing */
-		-webkit-appearance: none;
+		appearance: none;
 		background: $mm-progress-bg-color;
 		background-clip: padding-box;
 		border: 7px solid #3e3e3e;
@@ -349,7 +349,7 @@
 		&[type="range"] {
 			@extend %multimedia-controls-outline;
 
-			-webkit-appearance: none;
+			appearance: none;
 			background: transparent;
 			display: inline-block;
 			height: 2.5em;
@@ -367,7 +367,7 @@
 			}
 
 			&::-webkit-slider-thumb {
-				-webkit-appearance: none;
+				appearance: none;
 				background: $mm-volume-thumb-color;
 				border: $mm-volume-thumb-border;
 				box-sizing: content-box;

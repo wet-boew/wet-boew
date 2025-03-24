@@ -1,5 +1,3 @@
-path = require("path")
-fs = require("fs")
 sass = require("sass")
 
 module.exports = (grunt) ->
@@ -91,27 +89,11 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"init"
-		"Only needed when the repo is first cloned"
-		[
-#			"modernizr"
-		]
-	)
-
-	@registerTask(
 		"server"
 		"Run the Connect web server for local repo"
 		[
 			"connect:server"
 			"watch"
-		]
-	)
-
-	@registerTask(
-		"update-i18n"
-		" Update the i18n CSV file used to generate the i18n files"
-		[
-			"wget:i18n"
 		]
 	)
 
@@ -294,12 +276,6 @@ module.exports = (grunt) ->
 			)
 	)
 
-	globalConnectMiddleware = (connect, middlewares) ->
-		middlewares.unshift(
-			connect.compression filter: (req, res) ->
-				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
-		)
-
 	@util.linefeed = "\n"
 	# Project configuration.
 	@initConfig
@@ -311,42 +287,15 @@ module.exports = (grunt) ->
 		jqueryVersion: "<%= pkg.dependencies.jquery %>"
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
-		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
-		i18nGDocsID: "1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o"
-		i18nGDocsSheet: 1
-
-		# Commit Messages
-		commitMessage: " Commit wet-boew/wet-boew#" + process.env.TRAVIS_COMMIT
-		travisBuildMessage: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-		distDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"Production files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		)) + "<%= commitMessage %>"
-		cdnDeployMessage: ((
-			if process.env.TRAVIS_TAG
-				"CDN files for the " + process.env.TRAVIS_TAG + " release."
-			else
-				"<%= travisBuildMessage %>"
-		)) + "<%= commitMessage %>"
 
 		deployBranch: "v4.0-dist"
 
 		clean:
 			dist: ["dist"]
 
-		# Task configuration.
-		wget:
-			i18n:
-				options:
-					overwrite: true
-				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
-				dest: "src/i18n/i18n.csv"
-
 		concat:
 			options:
-				banner: "<%= banner %><%= modernizrBanner %>"
+				banner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 			core:
 				options:
@@ -569,40 +518,25 @@ module.exports = (grunt) ->
 			all:
 				src: [
 						# Root files
-						".*rc"
-
-						".editorconfig"
-						".eslint*"
-						".git*"
-						".*.{json,yml}"
-						".npmignore"
-						"*.{json,md}"
-						"Gruntfile.coffee"
-						"Licen?e-*.txt"
-						"Rakefile"
-
-						# Folders
-						"dep/**"
-						"script/**"
-						"site/**"
-						"src/**"
-						"theme/**"
+						"\.*"
+						"**"
 
 						# Exemptions...
+						"!node_modules/**"
+						"!lib/**"
+						"!dist/**"
+						"!.DS_Store"
 
 						# Images
-						"!site/pages/docs/img/*.{jpg,png}"
-						"!src/plugins/**/*.{jpg,png}"
-						"!src/polyfills/**/*.{jpg,png}"
-						"!theme/assets/*.{ico,jpg,png}"
+						"!**/*.{jpg,png,ico}"
 
 						# Docker environment file
-						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main Travis-CI build.
+						# Empty file that gets populated in a manner that goes against .editorconfig settings during the main build.
 						"!script/docker/env"
 
 						# Tracked third party files
 						# Prevents lintspaces from immediately aborting upon encountering .editorconfig properties that use the "unset" value.
-						"!dep/modernizr-custom.js"
+						"!src/core/dep/modernizr-custom.js"
 						"!src/polyfills/events/mobile.js"
 						"!src/polyfills/slider/slider.js"
 
@@ -695,8 +629,7 @@ module.exports = (grunt) ->
 				]
 
 		postcss:
-			# Only vendor prefixing
-			modern:
+			all:
 				options:
 					processors: [
 						require("autoprefixer")()
@@ -719,29 +652,25 @@ module.exports = (grunt) ->
 						dest: "<%= themeDist %>/css"
 						expand: true
 					}
-				]
 
-			# Mixed vendor prefixing
-			mixed:
-				options:
-					processors: [
-						require("autoprefixer")()
-					]
-				files: [
-					cwd: "<%= coreDist %>/css/polyfills"
-					src: [
-						"**/*.css"
-					]
-					dest: "<%= coreDist %>/css/polyfills/"
-					expand: true
-				,
-					cwd: "dist"
-					src: [
-						"demos/**/*.css"
-						"docs/**/*.css"
-					]
-					dest: "dist"
-					expand: true
+					{
+						cwd: "<%= coreDist %>/css/polyfills"
+						src: [
+							"**/*.css"
+						]
+						dest: "<%= coreDist %>/css/polyfills/"
+						expand: true
+					}
+
+					{
+						cwd: "dist"
+						src: [
+							"demos/**/*.css"
+							"docs/**/*.css"
+						]
+						dest: "dist"
+						expand: true
+					}
 				]
 
 		stylelint:
@@ -1001,44 +930,6 @@ module.exports = (grunt) ->
 					"!dist/**/ajax/*.html"
 				]
 
-# Remove modernizr temp
-#		modernizr:
-#			dist:
-#				devFile: "lib/modernizr/modernizr-custom.js"
-#				outputFile: "lib/modernizr/modernizr-custom.js"
-#				extra:
-#					shiv: false
-#					printshiv: false
-#					load: true
-#					mq: true
-#					css3: true
-#					input: true
-#					inputtypes: true
-#					svg: true
-#					html5: false
-#					cssclasses: true
-#					csstransitions: true
-#					fontface: true
-#					backgroundsize: true
-#					borderimage: true
-#				extensibility:
-#					addtest: false
-#					prefixed: false
-#					teststyles: true
-#					testprops: true
-#					testallprops: true
-#					hasevents: true
-#					prefixes: true
-#					domprefixes: true
-#				tests: [
-#					"elem_details"
-#					"elem_progress_meter"
-#					"mathml"
-#					"cors"
-#				]
-#				parseFiles: false
-#				matchCommunityTests: false
-
 		copy:
 			bootstrap:
 				cwd: "node_modules/bootstrap-sass/assets/fonts/bootstrap"
@@ -1080,15 +971,9 @@ module.exports = (grunt) ->
 				,
 					cwd: "lib"
 					src: [
-						"flot/jquery.flot.js"
-						"flot/jquery.flot.pie.js"
-						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1096,15 +981,20 @@ module.exports = (grunt) ->
 					src: [
 						"code-prettify/src/*.js"
 						"datatables.net/js/jquery.dataTables.js"
+						"fast-json-patch/src/json-patch.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
 						"jquery-validation/dist/jquery.validate.js"
 						"jquery-validation/dist/additional-methods.js"
+						"jquery-validation/dist/jquery.validate.js"
+						"jsonpointer.js/src/jsonpointer.js",
 						"magnific-popup/dist/jquery.magnific-popup.js"
+						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
-					rename: (dest, src) ->
-						return dest + "/" + src.replace ".debug", ""
 					expand: true
 					flatten: true
 				,
@@ -1133,23 +1023,6 @@ module.exports = (grunt) ->
 					cwd: "src/plugins"
 					src: [
 						"**/deps/*.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"openlayers/dist/ol.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
-					cwd: "node_modules"
-					src: [
-						"jsonpointer.js/src/jsonpointer.js",
-						"fast-json-patch/src/json-patch.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
@@ -1310,13 +1183,19 @@ module.exports = (grunt) ->
 
 		eslint:
 			options:
-				configFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
+				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
 				quiet: true
 			all:
 				src: [
-					"site/**/*.js"
-					"src/**/*.js"
-					"theme/**/*.js"
+					"**/*.js"
+
+					# Copied ignores from .editorconfig
+					"!node_modules/**/*.js"
+					"!dist/**/*.js"
+					"!src/polyfills/slider/slider.js"
+					"!src/polyfills/events/mobile.js"
+					"!lib/**/*.js"
+					"!src/core/dep/modernizr-custom.js"
 				]
 
 		connect:
@@ -1327,7 +1206,6 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						# globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace "/v4.0-ci/", "/"
@@ -1366,61 +1244,9 @@ module.exports = (grunt) ->
 				clone: "wet-boew-dist"
 				base: "dist"
 
-			travis:
-				options:
-					repo: process.env.DIST_REPO
-					branch: "<%= deployBranch %>"
-					message: "<%= distDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
-					))
-				src: [
-					"**/*.*"
-					"!package.json"
-				]
-
-			travis_cdn:
-				options:
-					repo: process.env.CDN_REPO
-					branch: "<%= deployBranch %>"
-					clone: "wet-boew-cdn"
-					base: "<%= coreDist %>"
-					message: "<%= cdnDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
-					))
-				src: [
-					"**/*.*"
-				]
-
-			travis_theme_cdn:
-				options:
-					repo: process.env.THEME_CDN_REPO
-					branch: "theme-wet-boew"
-					clone: "wet-boew-theme-cdn"
-					base: "<%= themeDist %>"
-					message: "<%= cdnDeployMessage %>"
-					tag: ((
-						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG + "-theme-wet-boew" else false
-					))
-				src: [
-					"**/*.*"
-				]
-
 			local:
 				src: [
 					"**/*.*"
-				]
-
-		"wb-update-examples":
-			travis:
-				options:
-					repo: process.env.DEMOS_REPO
-					branch: process.env.DEMOS_BRANCH
-					message: "<%= distDeployMessage %>"
-				src: [
-					"**/*.*"
-					"!package.json"
 				]
 
 		sri:

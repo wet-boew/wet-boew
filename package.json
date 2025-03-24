@@ -1,16 +1,15 @@
 {
   "name": "wet-boew",
-  "version": "4.0.86.1",
+  "version": "4.0.87",
   "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
   "main": "index.html",
   "engines": {
-    "npm": "^10.7.0"
+    "npm": ">=10.7.0"
   },
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
-    "prepare": "bower update && grunt init && grunt deploy-build",
-    "travis_script": "grunt dist",
-    "travis_after_success": "grunt deploy"
+    "update-i18n": "node script/i18n.mjs",
+    "prepare": "bower update && grunt deploy-build"
   },
   "repository": {
     "type": "git",
@@ -39,24 +38,25 @@
     "ie > 10"
   ],
   "dependencies": {
-    "bootstrap-sass": "3.4.1",
+    "bootstrap-sass": "3.4.3",
     "code-prettify": "^0.1.0",
     "datatables.net": "~1.13.11",
     "dompurify": "^3.2.4",
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
+    "flot": "0.8.3",
     "jquery": "2.2.4",
     "jquery-validation": "1.21.0",
     "jsonpointer.js": "^0.4.0",
     "magnific-popup": "^1.2.0",
     "mathjax": "^3.2.2",
-    "proj4": "2.14.0",
+    "proj4": "2.15.0",
     "unorm": "^1.6.0"
   },
   "devDependencies": {
-    "@double-great/stylelint-a11y": "^3.0.3",
+    "@double-great/stylelint-a11y": "^3.0.4",
     "@lodder/grunt-postcss": "^3.1.1",
     "assemble-contrib-i18n": "^0.1.6",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "coffeescript": "^2.7.0",
     "eslint-config-jquery": "^3.0.2",
     "expect.js": "^0.3.1",
@@ -65,37 +65,40 @@
     "grunt-banner": "^0.6.0",
     "grunt-bootlint": "^1.1.0",
     "grunt-contrib-clean": "^2.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-connect": "^3.0.0",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-connect": "^5.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^5.0.0",
     "grunt-contrib-htmlmin": "^3.1.0",
-    "grunt-contrib-uglify": "github:wet-boew/grunt-contrib-uglify#v1.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^23.0.0",
+    "grunt-eslint": "^24.3.0",
     "grunt-gh-pages": "^4.0.0",
     "grunt-html": "^15.2.2",
     "grunt-i18n-csv": "^0.1.0",
-    "grunt-lintspaces": "^0.9.0",
+    "grunt-lintspaces": "^0.12.0",
     "grunt-markdownlint": "^3.1.6",
     "grunt-sass": "^3.1.0",
     "grunt-sass-lint": "^0.2.4",
     "grunt-spritesmith": "^6.10.0",
     "grunt-sri": "^0.2.0",
-    "grunt-string-replace": "^1.3.3",
     "grunt-stylelint": "^0.20.1",
     "grunt-wet-boew-postbuild": "github:wet-boew/grunt-wet-boew-postbuild#v0.1.13",
-    "grunt-wget": "github:wet-boew/grunt-wget#v0.1.4",
     "load-grunt-tasks": "^5.1.0",
-    "mocha": "^10.7.3",
+    "mocha": "^11.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
-    "postcss": "^8.4.47",
+    "postcss": "^8.5.3",
     "puppeteer": "^1.20.0",
-    "sass": "^1.83.0",
+    "sass": "^1.85.1",
     "sinon": "^9.2.4",
-    "stylelint": "^16.14.1",
+    "stylelint": "^16.15.0",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
     "time-grunt": "^2.0.0"
+  },
+  "overrides": {
+    "grunt-contrib-uglify": {
+      "uglify-js": "3.17.4"
+    }
   }
 }

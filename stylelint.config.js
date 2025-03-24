@@ -69,6 +69,7 @@ module.exports = {
 				"declaration-property-value-keyword-no-deprecated": null, // Fix use of break-word
 				"function-name-case": null,
 				"function-url-quotes": null,
+				"hue-degree-notation": null, // Sass doesn't pad this out from 0 to 0deg
 				"length-zero-no-unit": null,
 				"media-feature-name-no-vendor-prefix": null,
 				"number-max-precision": null,
@@ -92,12 +93,9 @@ module.exports = {
 				"stylelint-config-standard-scss"
 			],
 			rules: {
-				"at-rule-no-vendor-prefix": null,
 				"declaration-block-no-redundant-longhand-properties": null,
 				"no-descending-specificity": null, // Extremely slow
-				"no-duplicate-selectors": null,
 				"no-invalid-position-at-import-rule": null, // Fixable, need to run sass migrator
-				"property-no-vendor-prefix": null,
 				"scss/comment-no-empty": null,
 				"scss/dollar-variable-pattern": null, // Fixable
 				"scss/no-global-function-names": null, // Fixable, need to run sass migrator
