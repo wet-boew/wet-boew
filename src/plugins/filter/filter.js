@@ -118,6 +118,7 @@ var componentName = "wb-filter",
 						console.error( componentName + ": " + "a <button> or <input type=\"button\"> is required in your UI template when using \"live\": false." );
 					} else {
 						uiBtn.setAttribute( "data-" + dtNameFltrArea, elm.id );
+						$( uiBtn ).addClass( buttonClass );
 					}
 				}
 
