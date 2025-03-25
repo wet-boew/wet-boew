@@ -31,7 +31,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 8
+          java-version: "24"
           distribution: "temurin"
 
       - name: Set up Ruby
