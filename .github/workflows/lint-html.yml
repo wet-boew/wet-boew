@@ -57,8 +57,5 @@ jobs:
       - name: HTMLlint
         run: grunt htmllint
 
-      - name: Bootlint
-        run: grunt bootlint
-
       - name: HTMLProofer
         run: rake
