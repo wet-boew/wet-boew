@@ -835,7 +835,8 @@ module.exports = (grunt) ->
 						"Element “head” is missing a required instance of child element “title”."
 						"Element “li” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)"
 						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
-						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections."
+						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections, or else use a “div” element instead for any cases where no heading is needed."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 					noLangDetect: true
 				src: [
@@ -855,6 +856,7 @@ module.exports = (grunt) ->
 						"The “contentinfo” role is unnecessary for element “footer”."
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/demos/lightbox/*.html"
@@ -870,6 +872,7 @@ module.exports = (grunt) ->
 						"The “banner” role is unnecessary for element “header”."
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
 						"The text content of element “time” was not in the required format: The literal did not satisfy the time-datetime format."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/**/reports/*.html"
@@ -886,6 +889,7 @@ module.exports = (grunt) ->
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/**/*.html"
