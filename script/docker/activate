@@ -7,7 +7,7 @@ else
 	dir="$( cd "$( dirname "${(%):-%N}" )" && pwd )"
 fi
 project="${PWD##*/}"
-bins=("npm" "bower" "grunt")
+bins=("npm" "grunt")
 
 deactivate () {
 	for bin in "${bins[@]}"
