@@ -219,18 +219,17 @@ $tab-margin-width: 10px;
 				@extend %tabs-display-inline-block;
 
 				background: $tablist-bg-color;
-				border: {
-					color: $tablist-border-color;
-					style: $tablist-border-style;
-					width: $tablist-border-width;
-				}
-
 				color: $carousel-tablist-tabcount-color;
 				cursor: pointer;
 				display: table-cell;
 				left: -$tab-margin-width;
 				position: relative;
 				text-align: center;
+				border: {
+					color: $tablist-border-color;
+					style: $tablist-border-style;
+					width: $tablist-border-width;
+				}
 
 				a {
 					@extend %tabs-display-inline-block;
