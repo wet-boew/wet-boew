@@ -84,7 +84,7 @@
 	position: relative;
 
 	&.video {
-		&:not(.playing):not(.waiting) {
+		&:not(.playing):not(.waiting):not(.youtube) {
 			@include multimedia-overlay-base;
 			@include multimedia-overlay-play;
 		}
@@ -140,16 +140,6 @@
 		&.cc_on {
 			.wb-mm-cc {
 				@extend %multimedia-display-none;
-			}
-		}
-
-		&.video {
-			&:not(.playing):not(.waiting) {
-				.display {
-					&:before {
-						background: $mm-ctrl-bg-color;
-					}
-				}
 			}
 		}
 	}
