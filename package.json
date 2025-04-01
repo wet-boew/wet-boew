@@ -9,7 +9,8 @@
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
     "update-i18n": "node script/i18n.mjs",
-    "prepare": "bower update && grunt deploy-build"
+    "prepare": "bower update && grunt deploy-build",
+    "postinstall": "patch-package"
   },
   "repository": {
     "type": "git",
@@ -86,6 +87,7 @@
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^11.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
+    "patch-package": "^8.0.0",
     "postcss": "^8.5.3",
     "puppeteer": "^24.4.0",
     "sass": "^1.85.1",
