@@ -6,8 +6,8 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".eslint*"
       - "**/*.js"
+      - "**/*.mjs"
       - ".github/workflows/lint-js.yml"
       - "!lib/"
       - "!src/core/dep/modernizr-custom.js"
@@ -18,8 +18,8 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".eslint*"
       - "**/*.js"
+      - "**/*.mjs"
       - ".github/workflows/lint-js.yml"
       - "!lib/"
       - "!src/core/dep/modernizr-custom.js"

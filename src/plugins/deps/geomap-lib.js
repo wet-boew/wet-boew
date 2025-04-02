@@ -497,12 +497,14 @@ var componentName = "wb-geomap",
 
 				if ( operators[ ruleFilter ]( feature.attributes[ rule.field ], rule.value ) ) {
 					switch ( featureType ) {
-						case "Polygon" || "MultiPolygon":
+						case "Polygon":
+						case "MultiPolygon":
 							return getPolygonStyle( {
 								fill: new ol.style.Fill( { color: fillColor } ),
 								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 							} );
-						case "Point" || "MultiPoint":
+						case "Point":
+						case "MultiPoint":
 							if ( graphicName ) {
 								return getSymbolStyle( {
 									symbol: graphicName,
@@ -523,7 +525,8 @@ var componentName = "wb-geomap",
 									stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 								} );
 							}
-						case "LineString" || "MultiLineString":
+						case "LineString":
+						case "MultiLineString":
 							return getLineStyle( {
 								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 							} );
@@ -613,7 +616,8 @@ var componentName = "wb-geomap",
 				graphicWidth = objStyle.graphicWidth ? objStyle.graphicWidth : 25;
 
 				switch ( featureType ) {
-					case "Polygon" || "MultiPolygon":
+					case "Polygon":
+					case "MultiPolygon":
 						if ( feature.attributes && feature.attributes[ field ] === obj ) {
 							return getPolygonStyle( {
 								fill: new ol.style.Fill( { color: fillColor } ),
@@ -621,7 +625,8 @@ var componentName = "wb-geomap",
 							} );
 						}
 						break;
-					case "Point" || "MultiPoint":
+					case "Point":
+					case "MultiPoint":
 						if ( externalGraphic ) {
 							if ( feature.attributes && feature.attributes[ field ] === obj ) {
 								return getIconStyle( {
@@ -640,7 +645,8 @@ var componentName = "wb-geomap",
 							}
 						}
 						break;
-					case "LineString" || "MultiLineString":
+					case "LineString":
+					case "MultiLineString":
 						if ( feature.attributes && feature.attributes[ field ] === obj ) {
 							return getLineStyle( {
 								stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
@@ -674,12 +680,14 @@ var componentName = "wb-geomap",
 			graphicWidth = style.graphicWidth ? style.graphicWidth : 25;
 
 			switch ( featureType ) {
-				case "Polygon" || "MultiPolygon":
+				case "Polygon":
+				case "MultiPolygon":
 					return getPolygonStyle( {
 						fill: new ol.style.Fill( { color: fillColor } ),
 						stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 					} );
-				case "Point" || "MultiPoint":
+				case "Point":
+				case "MultiPoint":
 					if ( externalGraphic ) {
 						return getIconStyle( {
 							src: externalGraphic,
@@ -694,7 +702,8 @@ var componentName = "wb-geomap",
 						} );
 					}
 
-				case "LineString" || "MultiLineString":
+				case "LineString":
+				case "MultiLineString":
 					return getLineStyle( {
 						stroke: new ol.style.Stroke( { color: strokeColor, width: strokeWidth, lineDash: strokeDash } )
 					} );
@@ -3591,7 +3600,8 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 		pseudoFeature, rendererMap, source, style;
 
 	switch ( featureType ) {
-		case "Polygon" || "MultiPolygon":
+		case "Polygon":
+		case "MultiPolygon":
 			pseudoFeature = new ol.Feature( {
 				geometry: new ol.geom.Polygon( [ [ [ -10, -7 ], [ 10, -7 ],
 					[ 10, 7 ], [ -10, 7 ] ] ] )
@@ -3608,7 +3618,8 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 			} );
 			pseudoFeature.setStyle( style );
 			break;
-		case "Point" || "MultiPoint":
+		case "Point":
+		case "MultiPoint":
 			pseudoFeature = new ol.Feature( {
 				geometry: new ol.geom.Point( [ 0, 0 ] )
 			} );
@@ -3634,7 +3645,8 @@ MapLegend.prototype.getSymbol = function( id, feature, symbolizer ) {
 			}
 			pseudoFeature.setStyle( style );
 			break;
-		case "LineString" || "MultiLineString":
+		case "LineString":
+		case "MultiLineString":
 			pseudoFeature = new ol.Feature( {
 				geometry: new ol.geom.LineString( [ [ -9, -4 ], [ -4, 4 ], [ 4, -4 ], [ 9, 4 ] ] )
 			} );
