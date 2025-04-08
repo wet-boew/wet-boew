@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2025-02-26"
+	"dateModified": "2025-03-28"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -392,7 +392,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
-				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -430,7 +430,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
-				<div class="alert alert-info"><p>Il est recommandé d'utiliser <code>data-rule-required="true"</code> au lieu de <code>required="required"</code> puisque cela permet d'éviter que les lecteurs d'écran indiquent que la première option est obligatoire.</p></div>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -514,7 +514,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>View code</summary>
-				{{>alertariahidden}}
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld required-no-asterisk"&gt;
 	&lt;form action="#" method="get" id="validation-example-4"&gt;
 		...
@@ -580,7 +580,7 @@
 				<legend class="required"><span class="field-name">Cases à cocher empilées dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="checkbox">
-						<label for="example1a"><input type="checkbox" name="example1" value="1" id="example1a" required="required" />Pomme</label>
+						<label for="example1a"><input type="checkbox" name="example1" value="1" id="example1a" data-rule-required="true" />Pomme</label>
 					</li>
 					<li class="checkbox">
 						<label for="example1b"><input type="checkbox" name="example1" value="2" id="example1b" />Orange</label>
@@ -595,6 +595,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -602,7 +603,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher empilées dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="checkbox"&gt;
-					&lt;label for="example1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="example1a" required="required" /&gt;Pomme&lt;/label&gt;
+					&lt;label for="example1a"&gt;&lt;input type="checkbox" name="example1" value="1" id="example1a" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="checkbox"&gt;
 					&lt;label for="example1b"&gt;&lt;input type="checkbox" name="example1" value="2" id="example1b" /&gt;Orange&lt;/label&gt;
@@ -623,7 +624,7 @@
 				<legend class="required"><span class="field-name">Boutons radio verticaux dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-group list-unstyled">
 					<li class="radio">
-						<label for="example2a"><input type="radio" name="example2" value="1" id="example2a" required="required" />Pomme</label>
+						<label for="example2a"><input type="radio" name="example2" value="1" id="example2a" data-rule-required="true" />Pomme</label>
 					</li>
 					<li class="radio">
 						<label for="example2b"><input type="radio" name="example2" value="2" id="example2b" />Orange</label>
@@ -638,6 +639,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -645,7 +647,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radio verticaux dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-group list-unstyled"&gt;
 				&lt;li class="radio"&gt;
-					&lt;label for="example2a"&gt;&lt;input type="radio" name="example2" value="1" id="example2a" required="required" /&gt;Pomme&lt;/label&gt;
+					&lt;label for="example2a"&gt;&lt;input type="radio" name="example2" value="1" id="example2a" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="radio"&gt;
 					&lt;label for="example2b"&gt;&lt;input type="radio" name="example2" value="2" id="example2b" /&gt;Orange&lt;/label&gt;
@@ -665,7 +667,7 @@
 			<fieldset class="chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Cases à cocher empilées dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="checkbox">
-					<label for="example3a"><input type="checkbox" name="example3" value="1" id="example3a" required="required" />Pomme</label>
+					<label for="example3a"><input type="checkbox" name="example3" value="1" id="example3a" data-rule-required="true" />Pomme</label>
 				</div>
 				<div class="checkbox">
 					<label for="example3b"><input type="checkbox" name="example3" value="2" id="example3b" />Orange</label>
@@ -679,13 +681,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher empilées dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="checkbox"&gt;
-				&lt;label for="example3a"&gt;&lt;input type="checkbox" name="example3" value="1" id="example3a" required="required" /&gt;Pomme&lt;/label&gt;
+				&lt;label for="example3a"&gt;&lt;input type="checkbox" name="example3" value="1" id="example3a" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="checkbox"&gt;
 				&lt;label for="example3b"&gt;&lt;input type="checkbox" name="example3" value="2" id="example3b" /&gt;Orange&lt;/label&gt;
@@ -704,7 +707,7 @@
 			<fieldset class="chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Boutons radios empilés dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="radio">
-					<label for="example4a"><input type="radio" name="example4" value="1" id="example4a" required="required" />Pomme</label>
+					<label for="example4a"><input type="radio" name="example4" value="1" id="example4a" data-rule-required="true" />Pomme</label>
 				</div>
 				<div class="radio">
 					<label for="example4b"><input type="radio" name="example4" value="2" id="example4b" />Orange</label>
@@ -718,13 +721,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radios empilés dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="radio"&gt;
-				&lt;label for="example4a"&gt;&lt;input type="radio" name="example4" value="1" id="example4a" required="required" /&gt;Pomme&lt;/label&gt;
+				&lt;label for="example4a"&gt;&lt;input type="radio" name="example4" value="1" id="example4a" data-rule-required="true" /&gt;Pomme&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="radio"&gt;
 				&lt;label for="example4b"&gt;&lt;input type="radio" name="example4" value="2" id="example4b" /&gt;Orange&lt;/label&gt;
@@ -744,7 +748,7 @@
 				<legend class="required"><span class="field-name">Cases à cocher horizontales dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-inline list-unstyled">
 					<li class="label-inline">
-						<input type="checkbox" name="example5" value="1" id="example5a" required="required" />
+						<input type="checkbox" name="example5" value="1" id="example5a" data-rule-required="true" />
 						<label for="example5a">Pomme</label>
 					</li>
 					<li class="label-inline">
@@ -763,6 +767,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -770,7 +775,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher horizontales dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-inline list-unstyled"&gt;
 				&lt;li class="label-inline"&gt;
-					&lt;input type="checkbox" name="example5" value="1" id="example5a" required="required" /&gt;
+					&lt;input type="checkbox" name="example5" value="1" id="example5a" data-rule-required="true" /&gt;
 					&lt;label for="example5a"&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="label-inline"&gt;
@@ -794,7 +799,7 @@
 				<legend class="required"><span class="field-name">Boutons radios horizontaux dans un modèle d'éléments <code>&lt;li&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<ul class="form-inline list-unstyled">
 					<li class="label-inline">
-						<input type="radio" name="example6" value="1" id="example6a" required="required" />
+						<input type="radio" name="example6" value="1" id="example6a" data-rule-required="true" />
 						<label for="example6a">Pomme</label>
 					</li>
 					<li class="label-inline">
@@ -813,6 +818,7 @@
 			</fieldset>
 			<details class="mrgn-bttm-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
@@ -820,7 +826,7 @@
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radios horizontaux dans un modèle d'éléments &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;ul class="form-inline list-unstyled"&gt;
 				&lt;li class="label-inline"&gt;
-					&lt;input type="radio" name="example6" value="1" id="example6a" required="required" /&gt;
+					&lt;input type="radio" name="example6" value="1" id="example6a" data-rule-required="true" /&gt;
 					&lt;label for="example6a"&gt;Pomme&lt;/label&gt;
 				&lt;/li&gt;
 				&lt;li class="label-inline"&gt;
@@ -842,19 +848,20 @@
 			<!-- checkboxes inline with implicit labels-->
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Cases à cocher horizontales dans un modèle d'éléments <code>&lt;label&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
-				<label for="example7a" class="checkbox-inline"><input type="checkbox" name="example7" value="1" id="example7a" required="required" />Téléphone intelligent</label>
+				<label for="example7a" class="checkbox-inline"><input type="checkbox" name="example7" value="1" id="example7a" data-rule-required="true" />Téléphone intelligent</label>
 				<label for="example7b" class="checkbox-inline"><input type="checkbox" name="example7" value="2" id="example7b" />Ordinateur portatif</label>
 				<label for="example7c" class="checkbox-inline"><input type="checkbox" name="example7" value="3" id="example7c" />Système d’assistance vocale</label>
 				<label for="example7d" class="checkbox-inline"><input type="checkbox" name="example7" value="4" id="example7d" />Réacteur à fusion</label>
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher horizontales dans un modèle d'éléments &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
-			&lt;label for="example7a" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="1" id="example7a" required="required" /&gt;Téléphone intelligent&lt;/label&gt;
+			&lt;label for="example7a" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="1" id="example7a" data-rule-required="true" /&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;label for="example7b" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="2" id="example7b" /&gt;Ordinateur portatif&lt;/label&gt;
 			&lt;label for="example7c" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="3" id="example7c" /&gt;Système d’assistance vocale&lt;/label&gt;
 			&lt;label for="example7d" class="checkbox-inline"&gt;&lt;input type="checkbox" name="example7" value="4" id="example7d" /&gt;Réacteur à fusion&lt;/label&gt;
@@ -864,19 +871,20 @@
 			<!-- radio buttons inline with implicit labels-->
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Boutons radio horizontaux dans un modèle d'éléments <code>&lt;label&gt;</code> comportant des étiquettes implicites</span> <strong class="required">(obligatoire)</strong></legend>
-				<label for="example8a" class="radio-inline"><input type="radio" name="example8" value="1" id="example8a" required="required" />Téléphone intelligent</label>
+				<label for="example8a" class="radio-inline"><input type="radio" name="example8" value="1" id="example8a" data-rule-required="true" />Téléphone intelligent</label>
 				<label for="example8b" class="radio-inline"><input type="radio" name="example8" value="2" id="example8b" />Ordinateur portatif</label>
 				<label for="example8c" class="radio-inline"><input type="radio" name="example8" value="3" id="example8c" />Système d’assistance vocale</label>
 				<label for="example8d" class="radio-inline"><input type="radio" name="example8" value="4" id="example8d" />Réacteur à fusion</label>
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radio horizontaux dans un modèle d'éléments &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; comportant des étiquettes implicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
-			&lt;label for="example8a" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="1" id="example8a" required="required" /&gt;Téléphone intelligent&lt;/label&gt;
+			&lt;label for="example8a" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="1" id="example8a" data-rule-required="true" /&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;label for="example8b" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="2" id="example8b" /&gt;Ordinateur portatif&lt;/label&gt;
 			&lt;label for="example8c" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="3" id="example8c" /&gt;Système d’assistance vocale&lt;/label&gt;
 			&lt;label for="example8d" class="radio-inline"&gt;&lt;input type="radio" name="example8" value="4" id="example8d" /&gt;Réacteur à fusion&lt;/label&gt;
@@ -887,7 +895,7 @@
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Cases à cocher horizontales dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="label-inline">
-					<input type="checkbox" name="example9" value="1" id="example9a" required="required" />
+					<input type="checkbox" name="example9" value="1" id="example9a" data-rule-required="true" />
 					<label for="example9a">Téléphone intelligent</label>
 				</div>
 				<div class="label-inline">
@@ -905,13 +913,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Cases à cocher horizontales dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="label-inline"&gt;
-				&lt;input type="checkbox" name="example9" value="1" id="example9a" required="required" /&gt;
+				&lt;input type="checkbox" name="example9" value="1" id="example9a" data-rule-required="true" /&gt;
 				&lt;label for="example9a"&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="label-inline"&gt;
@@ -933,7 +942,7 @@
 			<fieldset class="form-inline chkbxrdio-grp">
 				<legend class="required"><span class="field-name">Boutons radios horizontaux dans un modèle d’éléments <code>&lt;div&gt;</code> comportant des étiquettes explicites</span> <strong class="required">(obligatoire)</strong></legend>
 				<div class="label-inline">
-					<input type="radio" name="example10" value="1" id="example10a" required="required" />
+					<input type="radio" name="example10" value="1" id="example10a" data-rule-required="true" />
 					<label for="example10a">Téléphone intelligent</label>
 				</div>
 				<div class="label-inline">
@@ -951,13 +960,14 @@
 			</fieldset>
 			<details class="mrgn-bttm-md mrgn-tp-md">
 				<summary>Voir le code</summary>
+				{{>alertfieldsetrequired}}
 				<pre><code>&lt;div class="wb-frmvld"&gt;
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;fieldset class="form-inline chkbxrdio-grp"&gt;
 			&lt;legend class="required"&gt;&lt;span class="field-name"&gt;Boutons radios horizontaux dans un modèle d’éléments &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; comportant des étiquettes explicites&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/legend&gt;
 			&lt;div class="label-inline"&gt;
-				&lt;input type="radio" name="example10" value="1" id="example10a" required="required" /&gt;
+				&lt;input type="radio" name="example10" value="1" id="example10a" data-rule-required="true" /&gt;
 				&lt;label for="example10a"&gt;Téléphone intelligent&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class="label-inline"&gt;
