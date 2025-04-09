@@ -207,15 +207,14 @@
 
 	color: #333;
 	content: "\e031";
-	font: {
-		family: "Glyphicons Halflings";
-		size: 1em;
-	}
-
 	height: 1em;
 	line-height: 1.03;
 	width: 1em;
 	z-index: 2;
+	font: {
+		family: "Glyphicons Halflings";
+		size: 1em;
+	}
 }
 
 /* OL3 */
@@ -637,12 +636,12 @@ ol-geolocate button {
 	.wb-geomap-geoloc-al {
 		@extend %datalist-height;
 
-		-webkit-overflow-scrolling: touch; // mobile safari
 		background: #fff;
 		border: solid 1px #ccc;
 		border-top: 0;
 		font-size: .9em;
 		list-style-type: none;
+		-webkit-overflow-scrolling: touch; // mobile safari
 		overflow-y: scroll;
 		padding: 0;
 
