@@ -111,3 +111,85 @@
 		<p>Steps form cannot be used without JavaScript. Instead the form will convert back to an normal form and will rely on browser/server validation (not part of WET).</p>
 	</noscript>
 </section>
+
+<section>
+	<h2 id="default-1">Example - Steps Form with progress bar</h2>
+	<div class="wb-frmvld provisional wb-steps quiz">
+	<form action="#" id="quiz-example">
+		<fieldset>
+			<legend>1. Which is your favorite fruit?</legend>
+			<div>
+				<p>My favorite fruit is:</p>
+				<ul class="lst-spcd-2 gc-chckbxrdio">
+					<li class="radio">
+						<input type="radio" name="fruit" id="apple-1" value="apple">
+						<label for="apple-1">Apple</label>
+					</li>
+					<li class="radio">
+						<input type="radio" name="fruit" id="orange-1" value="orange">
+						<label for="orange-1">Orange</label>
+					</li>
+					<li class="radio">
+						<input type="radio" name="fruit" id="banana-1" value="banana">
+						<label for="banana-1">Banana</label>
+					</li>
+					<li class="radio">
+						<input type="radio" name="fruit" id="kiwi-1" value="Kiwi">
+						<label for="kiwi-1">Kiwi</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>2. Which is your favorite pet?</legend>
+			<div>
+				<p>My favorite pet is:</p>
+				<ul class="lst-spcd-2 gc-chckbxrdio">
+					<li class="radio">
+						<input type="radio" name="animal" id="dog-1" value="dog">
+						<label for="dog-1">Dog</label>
+					</li>
+					<li class="radio">
+						<input type="radio" name="animal" id="cat-1" value="cat">
+						<label for="cat-1">Cat</label>
+					</li>
+					<li class="radio">
+						<input type="radio" name="animal" id="bird-1" value="bird">
+						<label for="bird-1">Bird</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>3. Condiments</legend>
+			<div>
+				<p>Choose your condiments:</p>
+				<ul class="lst-spcd-2 gc-chckbxrdio">
+					<li class="checkbox">
+						<input type="checkbox" id="ketchup-1" value="ketchup" name="condiments">
+						<label for="ketchup-1">Ketchup</label>
+					</li>
+					<li class="checkbox">
+						<input type="checkbox" id="relish-1"  value="relish" name="condiments">
+						<label for="relish-1">Relish</label>
+					</li>
+					<li class="checkbox">
+						<input type="checkbox" id="mustard-1"  value="mustard" name="condiments">
+						<label for="mustard-1">Mustard</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<input type="submit" class="btn btn-primary" />
+	</form>
+	</div>
+
+	<details class="mrgn-tp-md mrgn-bttm-md">
+		<summary>View code</summary>
+		<ol>
+			<li>Add the class <code>quiz</code> to the div with the class <code>wb-steps</code>.
+				<pre><code>&lt;div class=&quot;wb-frmvld wb-steps quiz&quot;&gt;&lt;/div&gt;</code></pre>
+			</li>
+		</ol>
+	</details>
+</section>
