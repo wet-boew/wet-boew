@@ -9,7 +9,7 @@
   "scripts": {
     "test": "grunt pre-mocha && node test-runner",
     "update-i18n": "node script/i18n.mjs",
-    "prepare": "bower update && grunt deploy-build"
+    "prepare": "grunt prepare"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "mathjax": "^3.2.2",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.3",
     "proj4": "2.15.0",
+    "side-by-side-improved": "github:wet-boew/SideBySideImproved#v1.0.0",
     "unorm": "^1.6.0"
   },
   "devDependencies": {

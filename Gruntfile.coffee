@@ -52,12 +52,27 @@ module.exports = (grunt) ->
 		"deploy-build"
 		"Produces the production files"
 		[
-			"build"
-			"minify"
 			"pages:theme"
 			"docs-min"
 			"demos-min"
 			"sri"
+		]
+	)
+
+	@registerTask(
+		"prepare"
+		"Prepares wet-boew for use as dependency"
+		[
+			"clean:dist"
+			"assets"
+			"sprite"
+			"sass"
+			"concat:supports"
+			"postcss"
+			"usebanner:css"
+			"js"
+			"i18n_csv:assemble"
+			"minify"
 		]
 	)
 
@@ -942,14 +957,6 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "lib"
-					src: [
-						"SideBySideImproved/jquery.flot.orderBars.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
-					expand: true
-					flatten: true
-				,
 					cwd: "node_modules"
 					src: [
 						"code-prettify/src/*.js"
@@ -965,6 +972,7 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
+						"side-by-side-improved/jquery.flot.orderBars.js"
 						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
