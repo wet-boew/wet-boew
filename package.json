@@ -49,6 +49,7 @@
     "jsonpointer.js": "^0.4.0",
     "magnific-popup": "^1.2.0",
     "mathjax": "^3.2.2",
+    "openlayers": "github:wet-boew/openlayers-dist#v3.20.3",
     "proj4": "2.15.0",
     "unorm": "^1.6.0"
   },
@@ -85,7 +86,6 @@
     "grunt-stylelint": "^0.20.1",
     "load-grunt-tasks": "^5.1.0",
     "mocha": "^11.1.0",
-    "openlayers": "github:wet-boew/openlayers-dist#v3.20.2",
     "postcss": "^8.5.3",
     "puppeteer": "^24.6.0",
     "sass": "^1.86.3",
