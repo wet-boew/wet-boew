@@ -249,6 +249,7 @@ wb.i18nDict = {
 	/* Filter */
 	"fltr-lbl": "@fltr-lbl@",
 	"fltr-info": "@fltr-info@",
+	"fltr-typed": "@fltr-typed@",
 
 	/* Data scrub */
 	"pii-header": "@pii-header@",
