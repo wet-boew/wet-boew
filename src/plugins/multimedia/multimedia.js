@@ -819,7 +819,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		$this.addClass( "youtube" );
 
-		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
+		$media = $this.find( "#" + mId );
 
 		data.media = $media;
 		data.ytPlayer = ytPlayer;
