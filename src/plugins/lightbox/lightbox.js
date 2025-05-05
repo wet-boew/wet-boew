@@ -386,6 +386,21 @@ $( document ).on( "keydown", ".mfp-wrap:not(.mfp-close-btn-in)", function( event
 	}
 } );
 
+// Event handler for opening a popup via a button link and the spacebar key
+$( document ).on( "keydown", "." + componentName, function( event ) {
+	const sourceLink = event.currentTarget;
+
+	// If the link contains a role="button" attribute and the spacebar key was pressed...
+	if ( sourceLink.getAttribute( "role" ) === "button" && event.key === " " ) {
+
+		// Don't scroll down (typical spacebar behaviour)
+		event.preventDefault();
+
+		// Trigger a "fake" click on the button link
+		$( sourceLink ).trigger( "click" );
+	}
+} );
+
 // Event handler for opening a popup without a link
 $( document ).on( "open" + selector, function( event, items, modal, title, ajax ) {
 	if ( event.namespace === componentName ) {
