@@ -7,7 +7,7 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2023-06-19"
+	"dateModified": "2025-05-20"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -32,7 +32,7 @@
 		<section class="col-md-6">
 			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with HTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
-				<video poster="demo/video1-en.jpg" title="Looking for a Job">
+				<video poster="demo/img/video1-en.jpg" title="Looking for a Job">
 					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" />
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 					<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
@@ -47,7 +47,7 @@
 				<section>
 					<h4>In-page HTML</h4>
 					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html&quot;}'&gt;
-	&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+	&lt;video poster=&quot;demo/img/video1-en.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
 		&lt;source type=&quot;video/webm&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm&quot; /&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4&quot; /&gt;
 		&lt;track src=&quot;cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
@@ -76,10 +76,10 @@
 		<section class="col-md-6">
 			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with TTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
-				<video poster="demo/video2-en.jpg" title="Training and Development">
+				<video poster="demo/img/video2-en.jpg" title="Training and Development">
 					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.webm" />
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.mp4" />
-					<track src="demo/video2-captions-en.xml" kind="captions" data-type="application/ttml+xml" srclang="en" label="English" />
+					<track src="demo/img/video2-captions-en.xml" kind="captions" data-type="application/ttml+xml" srclang="en" label="English" />
 				</video>
 				<figcaption>
 					<p>Training and Development (<a href="cpts-lg2-en.html">Transcript</a>)</p>
@@ -91,10 +91,10 @@
 				<section>
 					<h4>In-page HTML</h4>
 					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html&quot;}'&gt;
-	&lt;video poster=&quot;demo/video2-en.jpg&quot; title=&quot;Training and Development&quot;&gt;
+	&lt;video poster=&quot;demo/img/video2-en.jpg&quot; title=&quot;Training and Development&quot;&gt;
 		&lt;source type=&quot;video/webm&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.webm&quot; /&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video2-en.mp4&quot; /&gt;
-		&lt;track src=&quot;demo/video2-captions-en.xml&quot; kind=&quot;captions&quot; data-type=&quot;application/ttml+xml&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+		&lt;track src=&quot;demo/img/video2-captions-en.xml&quot; kind=&quot;captions&quot; data-type=&quot;application/ttml+xml&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Training and Development (&lt;a href=&quot;cpts-lg2-en.html&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
@@ -127,7 +127,7 @@
 			<h3>Muted MPEG4 (H264 + AAC) source with inline HTML captions</h3>
 			<p>This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
 			<figure class="wb-mltmd">
-				<video poster="demo/video1-en.jpg" title="Looking for a Job" muted>
+				<video poster="demo/img/video1-en.jpg" title="Looking for a Job" muted>
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="English" />
 				</video>
@@ -197,7 +197,7 @@
 			<details class="mrgn-tp-md">
 				<summary>View code</summary>
 				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
-	&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot; muted&gt;
+	&lt;video poster=&quot;demo/img/video1-en.jpg&quot; title=&quot;Looking for a Job&quot; muted&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4&quot; /&gt;
 		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
 	&lt;/video&gt;
@@ -218,7 +218,7 @@
 			<h3>MPEG4 (H264 + AAC) source with cue points</h3>
 			<p>This example illustrates the use of buttons to navigate to specific cue points within the video.</p>
 			<figure class="wb-mltmd">
-				<video poster="demo/video1-en.jpg" title="Looking for a Job">
+				<video poster="demo/img/video1-en.jpg" title="Looking for a Job">
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="English" />
 				</video>
@@ -231,7 +231,7 @@
 			<details class="mrgn-tp-md">
 				<summary>View code</summary>
 				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
-	&lt;video poster=&quot;demo/video1-en.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+	&lt;video poster=&quot;demo/img/video1-en.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4&quot; /&gt;
 		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
 	&lt;/video&gt;
@@ -249,7 +249,7 @@
 		<section class="col-md-6">
 			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with full screen button</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"fullscreenBtn": true}'>
-				<video poster="demo/video1-en.jpg" title="Looking for a Job">
+				<video poster="demo/img/video1-en.jpg" title="Looking for a Job">
 					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" />
 					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 					<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
@@ -264,7 +264,7 @@
 				<section>
 					<h4>In-page HTML</h4>
 					<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"fullscreenBtn": true}'&gt;
-	&lt;video poster="demo/video1-en.jpg" title="Looking for a Job"&gt;
+	&lt;video poster="demo/img/video1-en.jpg" title="Looking for a Job"&gt;
 		&lt;source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" /&gt;
 		&lt;source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" /&gt;
 		&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
@@ -292,7 +292,7 @@
 			&lt;div class="row"&gt;
 				&lt;div class="col-xs-8 col-xs-offset-2"&gt;
 					&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'&gt;
-						&lt;video poster="demo/video1-en.jpg" title="Looking for a Job"&gt;
+						&lt;video poster="demo/img/video1-en.jpg" title="Looking for a Job"&gt;
 							&lt;source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" /&gt;
 							&lt;source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" /&gt;
 							&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
@@ -316,7 +316,7 @@
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
 				<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html"}'>
-					<video poster="demo/video1-en.jpg" title="Looking for a Job">
+					<video poster="demo/img/video1-en.jpg" title="Looking for a Job">
 						<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" />
 						<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
 						<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
