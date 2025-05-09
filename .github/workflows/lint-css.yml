@@ -6,8 +6,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
@@ -16,8 +15,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
@@ -43,6 +41,3 @@ jobs:
 
       - name: Stylelint
         run: grunt stylelint
-
-      - name: Sass Lint
-        run: grunt sasslint
