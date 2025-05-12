@@ -93,7 +93,7 @@
     "sinon": "^19.0.2",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^37.0.0",
-    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-config-standard-scss": "^15.0.0",
     "time-grunt": "^2.0.0"
   },
   "overrides": {
