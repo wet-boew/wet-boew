@@ -8,6 +8,14 @@ module.exports = {
 		"color-function-notation": "legacy",
 
 		// Suppress stylelint-config-recommended errors
+		"declaration-property-value-keyword-no-deprecated": [
+			true,
+			{
+				ignoreKeywords: [
+					"break-word" // word-break: break-word; is depreciated but used
+				]
+			}
+		],
 		"font-family-no-duplicate-names": [
 			true,
 			{
@@ -61,6 +69,7 @@ module.exports = {
 				"at-rule-empty-line-before": null,
 				"at-rule-no-vendor-prefix": null,
 				"color-hex-length": null,
+				"color-function-alias-notation": null,
 				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
 				"declaration-block-no-redundant-longhand-properties": null,

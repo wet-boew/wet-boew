@@ -146,11 +146,11 @@
 
 	background-image: linear-gradient(#ececec, #ccc);
 	border: 1px solid #606060;
-	border: 1px solid rgba(187, 187, 187, .8);
+	border: 1px solid rgb(187, 187, 187, .8);
 	border-bottom: 1px solid #aaa;
-	border-bottom: 1px solid rgba(170, 170, 170, .8);
+	border-bottom: 1px solid rgb(170, 170, 170, .8);
 	border-right: 1px solid #aaa;
-	border-right: 1px solid rgba(170, 170, 170, .8);
+	border-right: 1px solid rgb(170, 170, 170, .8);
 	left: 10px;
 	line-height: 4px;
 	right: 10px;
@@ -160,7 +160,7 @@
 
 .fd-slider-focused {
 	.fd-slider-bar {
-		box-shadow: 0 0 6px rgba(10, 130, 170, .7);
+		box-shadow: 0 0 6px rgb(10, 130, 170, .7);
 
 		/* Not sure what to do with this
 		@include experimental(animation, fd-pulse 2s infinite, -moz, -webkit, -o, not -ms, not -khtml, official);
@@ -269,11 +269,11 @@ body {
 		background-color: #555;
 		background-image: linear-gradient(to right, #666, #333);
 		border: 1px solid #888;
-		border: 1px solid rgba(136, 136, 136, .8);
+		border: 1px solid rgb(136, 136, 136, .8);
 		border-bottom: 1px solid #999;
-		border-bottom: 1px solid rgba(153, 153, 153, .8);
+		border-bottom: 1px solid rgb(153, 153, 153, .8);
 		border-right: 1px solid #999;
-		border-right: 1px solid rgba(153, 153, 153, .8);
+		border-right: 1px solid rgb(153, 153, 153, .8);
 		cursor: auto !important;
 	}
 
@@ -286,27 +286,27 @@ body {
 
 @keyframes fd-pulse {
 	0% {
-		box-shadow: 0 0 3px rgba(100, 130, 170, .55);
+		box-shadow: 0 0 3px rgb(100, 130, 170, .55);
 	}
 
 	20% {
-		box-shadow: 0 0 4px rgba(70, 130, 170, .6);
+		box-shadow: 0 0 4px rgb(70, 130, 170, .6);
 	}
 
 	40% {
-		box-shadow: 0 0 5px rgba(40, 130, 170, .65);
+		box-shadow: 0 0 5px rgb(40, 130, 170, .65);
 	}
 
 	60% {
-		box-shadow: 0 0 6px rgba(10, 130, 170, .7);
+		box-shadow: 0 0 6px rgb(10, 130, 170, .7);
 	}
 
 	80% {
-		box-shadow: 0 0 5px rgba(40, 130, 170, .65);
+		box-shadow: 0 0 5px rgb(40, 130, 170, .65);
 	}
 
 	100% {
-		box-shadow: 0 0 4px rgba(70, 130, 170, .6);
+		box-shadow: 0 0 4px rgb(70, 130, 170, .6);
 	}
 }
 

@@ -36,7 +36,7 @@
 		&:before {
 			@extend %feeds-loading;
 
-			background: rgba(0, 0, 0, 0);
+			background: rgb(0, 0, 0, 0);
 			z-index: 1;
 		}
 	}
