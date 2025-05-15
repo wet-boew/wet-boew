@@ -7,34 +7,34 @@
 	<os:startIndex>0</os:startIndex>
 	<os:itemsPerPage>5</os:itemsPerPage>
 	<link href="/api/en/nrcan-rncan/ess-sst?start-index=917313&amp;max-results=5&amp;q=Moraine"
-		rel="next"/>
+		rel="next">
 	<link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
-		type="application/opensearchdescription+xml" hreflang="en" title="GeoGratis Product Search"/>
-	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="self"/>
+		type="application/opensearchdescription+xml" hreflang="en" title="GeoGratis Product Search">
+	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="self">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=atom" rel="alternate"
-		type="application/atom+xml"/>
+		type="application/atom+xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=html" rel="alternate"
-		type="text/html"/>
+		type="text/html">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=phtml" rel="alternate"
-		type="text/phtml"/>
+		type="text/phtml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=csv" rel="alternate"
-		type="text/csv"/>
+		type="text/csv">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=xml" rel="alternate"
-		type="application/xml"/>
+		type="application/xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=rss" rel="alternate"
-		type="application/rss+xml"/>
+		type="application/rss+xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=json" rel="alternate"
-		type="application/json"/>
+		type="application/json">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=kml" rel="alternate"
-		type="application/vnd.google-earth.kml+xml"/>
+		type="application/vnd.google-earth.kml+xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=nap" rel="alternate"
-		type="application/nap+xml"/>
+		type="application/nap+xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=gcod" rel="alternate"
-		type="application/gcod+xml"/>
+		type="application/gcod+xml">
 	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=map" rel="alternate"
-		type="application/sitemap+xml"/>
-	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="en"/>
-	<link href="/api/fr/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="fr"/>
+		type="application/sitemap+xml">
+	<link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="en">
+	<link href="/api/fr/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="fr">
 	<author>
 		<name>Natural Resources Canada</name>
 	</author>
@@ -43,8 +43,8 @@
 	<id>tag:osg.nrcan.gc.ca,2011:v1:ess-sst</id>
 	<entry>
 		<id>urn:uuid:cd6ed785-763a-58a8-848c-3d78c0a9c3c8</id>
-		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="self"/>
-		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml/2" rel="edit"/>
+		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="self">
+		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml/2" rel="edit">
 		<as:entryId>cd6ed785-763a-58a8-848c-3d78c0a9c3c8</as:entryId>
 		<as:updateIndex>928625</as:updateIndex>
 		<as:revision>1</as:revision>
@@ -86,40 +86,40 @@
 			<sortValue>0.0</sortValue>
 		</spatialSort>
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.atom" rel="alternate"
-			type="application/atom+xml"/>
+			type="application/atom+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html" rel="alternate"
-			type="text/html"/>
+			type="text/html">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.phtml"
-			rel="alternate" type="text/phtml"/>
+			rel="alternate" type="text/phtml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.csv" rel="alternate"
-			type="text/csv"/>
+			type="text/csv">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
-			type="application/xml"/>
+			type="application/xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.rss" rel="alternate"
-			type="application/rss+xml"/>
+			type="application/rss+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.json" rel="alternate"
-			type="application/json"/>
+			type="application/json">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.kml" rel="alternate"
-			type="application/vnd.google-earth.kml+xml"/>
+			type="application/vnd.google-earth.kml+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.nap" rel="alternate"
-			type="application/nap+xml"/>
+			type="application/nap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.gcod" rel="alternate"
-			type="application/gcod+xml"/>
+			type="application/gcod+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.map" rel="alternate"
-			type="application/sitemap+xml"/>
+			type="application/sitemap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
-			hreflang="en"/>
+			hreflang="en">
 		<link href="/api/fr/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
-			hreflang="fr"/>
+			hreflang="fr">
 		<link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
-			type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+			type="application/opensearchdescription+xml" title="GeoGratis Product Search">
 		<link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
-		/>
+		>
 	</entry>
 	<entry>
 		<id>urn:uuid:c9724666-50b6-5981-a775-c92b144f803a</id>
-		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="self"/>
-		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml/7" rel="edit"/>
+		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="self">
+		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml/7" rel="edit">
 		<as:entryId>c9724666-50b6-5981-a775-c92b144f803a</as:entryId>
 		<as:updateIndex>928618</as:updateIndex>
 		<as:revision>6</as:revision>
@@ -184,40 +184,40 @@
 			<sortValue>0.0</sortValue>
 		</spatialSort>
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.atom" rel="alternate"
-			type="application/atom+xml"/>
+			type="application/atom+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html" rel="alternate"
-			type="text/html"/>
+			type="text/html">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.phtml"
-			rel="alternate" type="text/phtml"/>
+			rel="alternate" type="text/phtml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.csv" rel="alternate"
-			type="text/csv"/>
+			type="text/csv">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
-			type="application/xml"/>
+			type="application/xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.rss" rel="alternate"
-			type="application/rss+xml"/>
+			type="application/rss+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.json" rel="alternate"
-			type="application/json"/>
+			type="application/json">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.kml" rel="alternate"
-			type="application/vnd.google-earth.kml+xml"/>
+			type="application/vnd.google-earth.kml+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.nap" rel="alternate"
-			type="application/nap+xml"/>
+			type="application/nap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.gcod" rel="alternate"
-			type="application/gcod+xml"/>
+			type="application/gcod+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.map" rel="alternate"
-			type="application/sitemap+xml"/>
+			type="application/sitemap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
-			hreflang="en"/>
+			hreflang="en">
 		<link href="/api/fr/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
-			hreflang="fr"/>
+			hreflang="fr">
 		<link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
-			type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+			type="application/opensearchdescription+xml" title="GeoGratis Product Search">
 		<link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
-		/>
+		>
 	</entry>
 	<entry>
 		<id>urn:uuid:4e2d8e51-b46a-5f67-baab-f96c84abf7df</id>
-		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="self"/>
-		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml/4" rel="edit"/>
+		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="self">
+		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml/4" rel="edit">
 		<as:entryId>4e2d8e51-b46a-5f67-baab-f96c84abf7df</as:entryId>
 		<as:updateIndex>917315</as:updateIndex>
 		<as:revision>3</as:revision>
@@ -272,40 +272,40 @@
 			<sortValue>0.0</sortValue>
 		</spatialSort>
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.atom" rel="alternate"
-			type="application/atom+xml"/>
+			type="application/atom+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.html" rel="alternate"
-			type="text/html"/>
+			type="text/html">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.phtml"
-			rel="alternate" type="text/phtml"/>
+			rel="alternate" type="text/phtml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.csv" rel="alternate"
-			type="text/csv"/>
+			type="text/csv">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
-			type="application/xml"/>
+			type="application/xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.rss" rel="alternate"
-			type="application/rss+xml"/>
+			type="application/rss+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.json" rel="alternate"
-			type="application/json"/>
+			type="application/json">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.kml" rel="alternate"
-			type="application/vnd.google-earth.kml+xml"/>
+			type="application/vnd.google-earth.kml+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.nap" rel="alternate"
-			type="application/nap+xml"/>
+			type="application/nap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.gcod" rel="alternate"
-			type="application/gcod+xml"/>
+			type="application/gcod+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.map" rel="alternate"
-			type="application/sitemap+xml"/>
+			type="application/sitemap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
-			hreflang="en"/>
+			hreflang="en">
 		<link href="/api/fr/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
-			hreflang="fr"/>
+			hreflang="fr">
 		<link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
-			type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+			type="application/opensearchdescription+xml" title="GeoGratis Product Search">
 		<link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
-		/>
+		>
 	</entry>
 	<entry>
 		<id>urn:uuid:cdc35051-64de-5dd6-a371-327aceb8865b</id>
-		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="self"/>
-		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml/2" rel="edit"/>
+		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="self">
+		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml/2" rel="edit">
 		<as:entryId>cdc35051-64de-5dd6-a371-327aceb8865b</as:entryId>
 		<as:updateIndex>917313</as:updateIndex>
 		<as:revision>1</as:revision>
@@ -355,34 +355,34 @@
 			<sortValue>0.0</sortValue>
 		</spatialSort>
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.atom" rel="alternate"
-			type="application/atom+xml"/>
+			type="application/atom+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.html" rel="alternate"
-			type="text/html"/>
+			type="text/html">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.phtml"
-			rel="alternate" type="text/phtml"/>
+			rel="alternate" type="text/phtml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.csv" rel="alternate"
-			type="text/csv"/>
+			type="text/csv">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
-			type="application/xml"/>
+			type="application/xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.rss" rel="alternate"
-			type="application/rss+xml"/>
+			type="application/rss+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.json" rel="alternate"
-			type="application/json"/>
+			type="application/json">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.kml" rel="alternate"
-			type="application/vnd.google-earth.kml+xml"/>
+			type="application/vnd.google-earth.kml+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.nap" rel="alternate"
-			type="application/nap+xml"/>
+			type="application/nap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.gcod" rel="alternate"
-			type="application/gcod+xml"/>
+			type="application/gcod+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.map" rel="alternate"
-			type="application/sitemap+xml"/>
+			type="application/sitemap+xml">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
-			hreflang="en"/>
+			hreflang="en">
 		<link href="/api/fr/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
-			hreflang="fr"/>
+			hreflang="fr">
 		<link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
-			type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+			type="application/opensearchdescription+xml" title="GeoGratis Product Search">
 		<link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
-		/>
+		>
 	</entry>
 </feed>

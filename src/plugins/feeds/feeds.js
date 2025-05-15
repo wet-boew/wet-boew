@@ -46,7 +46,7 @@ var componentName = "wb-feeds",
 			return "<li><a class='feed-flickr' href='#' data-flickr='" +
 				wb.escapeAttribute( JSON.stringify( flickrData ) ) + "'><img src='" + flickrData.thumbnail + "' alt='" +
 				wb.escapeAttribute( flickrData.title ) + "' title='" + wb.escapeAttribute( flickrData.title ) +
-				"' class='img-responsive'/></a></li>";
+				"' class='img-responsive'></a></li>";
 		},
 
 		/**
@@ -65,7 +65,7 @@ var componentName = "wb-feeds",
 				wb.escapeAttribute( JSON.stringify( youtubeDate ) ) + "'><img src='" +
 				wb.pageUrlParts.protocol + "//img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" +
 				wb.escapeAttribute( youtubeDate.title ) + "' title='" + wb.escapeAttribute( youtubeDate.title ) +
-				"' class='img-responsive' /></button></li>";
+				"' class='img-responsive' ></button></li>";
 		},
 
 		/**
@@ -75,7 +75,7 @@ var componentName = "wb-feeds",
 		 */
 		pinterest: function( data ) {
 			var content = fromCharCode( data.description ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" +
-				data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
+				data.link + "'><img alt='' class='center-block' $1><br>$2</a>$3" );
 			return "<li class='media'>" + content +
 			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
 			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
@@ -96,7 +96,7 @@ var componentName = "wb-feeds",
 					title = title.div.content;
 				}
 			}
-			return "<li><a href='" + data.link + "'>" + title + "</a><br />" +
+			return "<li><a href='" + data.link + "'>" + title + "</a><br >" +
 				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
 				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		}
@@ -542,7 +542,7 @@ $document.on( "click", selector + " .feed-flickr", function( event ) {
 	var flickrOverlaySelector  = "#wb-feeds-flick-lbx",
 		$flickrOverlay = $( flickrOverlaySelector ),
 		flickrData = wb.getData( event.currentTarget, "flickr" ),
-		body = "<img src='" + flickrData.image + "' class='thumbnail center-block' alt='" + flickrData.title + "' /><span>" +
+		body = "<img src='" + flickrData.image + "' class='thumbnail center-block' alt='" + flickrData.title + "' ><span>" +
 			flickrData.description + "</span>";
 
 	if ( $flickrOverlay.length === 0 ) {

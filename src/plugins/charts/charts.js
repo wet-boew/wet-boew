@@ -90,7 +90,7 @@ var componentName = "wb-charts",
 								if ( optionsCharts.nolegend ) {
 
 									// Add the series label
-									textlabel = label + "<br />" + textlabel;
+									textlabel = label + "<br >" + textlabel;
 								}
 								return textlabel + "%";
 							}
@@ -749,7 +749,7 @@ var componentName = "wb-charts",
 
 		function createContainer( withDimension ) {
 			$elm
-				.wrap( "<figure class='" + optionsCharts.graphclass + "'/>" )
+				.wrap( "<figure class='" + optionsCharts.graphclass + "'>" )
 				.before(
 
 					// Copy to the inner table caption
