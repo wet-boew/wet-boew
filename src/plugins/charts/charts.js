@@ -90,7 +90,7 @@ var componentName = "wb-charts",
 								if ( optionsCharts.nolegend ) {
 
 									// Add the series label
-									textlabel = label + "<br >" + textlabel;
+									textlabel = label + "<br>" + textlabel;
 								}
 								return textlabel + "%";
 							}
