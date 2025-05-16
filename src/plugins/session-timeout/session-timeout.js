@@ -273,7 +273,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			.data( "logouturl", settings.logouturl );
 
 		openModal( {
-			body: "<p>" + timeoutBegin + "<br >" + i18nText.timeoutEnd + "</p>",
+			body: "<p>" + timeoutBegin + "<br>" + i18nText.timeoutEnd + "</p>",
 			buttons: [ $buttonContinue, $buttonEnd ],
 			open: function() {
 				var $minutes = $modal.find( ".min" ),
