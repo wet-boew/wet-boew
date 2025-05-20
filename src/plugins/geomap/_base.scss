@@ -28,9 +28,9 @@
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	bottom: 12px;
-	box-shadow: 0 1px 4px rgba(0,0,0,.2);
+	box-shadow: 0 1px 4px rgb(0,0,0,.2);
 	display: block;
-	filter: drop-shadow(0 1px 4px rgba(0,0,0,.2));
+	filter: drop-shadow(0 1px 4px rgb(0,0,0,.2));
 	font-size: .75em;
 	left: -50px;
 	min-width: 250px;
@@ -119,7 +119,7 @@
 	position: relative;
 
 	&.active {
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+		box-shadow: inset 0 1px 1px rgb(0, 0, 0, .075), 0 0 8px rgb(102, 175, 233, .6);
 		outline-color: #66afe9
 	}
 }
@@ -232,7 +232,7 @@
 
 .ol-mouse-position {
 	background: #fff;
-	background: rgba(255,255,255,.7);
+	background: rgb(255,255,255,.7);
 	border-radius: 2px;
 	bottom: 3em;
 	font-size: .75em;
@@ -263,7 +263,7 @@
 
 .ol-scale-line {
 	background: #fff;
-	background: rgba(255,255,255,.7);
+	background: rgb(255,255,255,.7);
 	border-radius: 2px;
 	bottom: .5em;
 	left: .5em;
@@ -295,14 +295,14 @@
 }
 
 .ol-control {
-	background-color: rgba(255,255,255,.4);
+	background-color: rgb(255,255,255,.4);
 	border-radius: 4px;
 	padding: 2px;
 	position: absolute
 }
 
 .ol-control:hover {
-	background-color: rgba(255,255,255,.4)
+	background-color: rgb(255,255,255,.4)
 }
 
 .ol-zoom {
@@ -351,7 +351,7 @@
 }
 
 .ol-control button {
-	background-color: rgba(255,255,255,1.0);
+	background-color: rgb(255,255,255,1.0);
 	border: none;
 	border-radius: 2px;
 	box-shadow: 1px 2px 4px #999;
@@ -406,7 +406,7 @@ ol-geolocate button {
 }
 
 .ol-attribution {
-	background:rgba( 255,255,255,.7 );
+	background:rgb( 255,255,255,.7 );
 	border-radius: 2px 0 0;
 	bottom: 0;
 	line-height: .75em;
@@ -532,11 +532,11 @@ ol-geolocate button {
 }
 
 .ol-overviewmap:not(.ol-collapsed){
-	background:rgba(255,255,255,.8)
+	background:rgb(255,255,255,.8)
 }
 
 .ol-overviewmap-box {
-	border: 2px dotted rgba(0,60,136,.7)
+	border: 2px dotted rgb(0,60,136,.7)
 }
 
 .geomap-help-btn {
@@ -560,7 +560,7 @@ ol-geolocate button {
 }
 
 .geomap-help-dialog {
-	background-color: rgba(255,255,255,1);
+	background-color: rgb(255,255,255,1);
 	height: auto;
 	margin: 10px;
 	right: 0;
@@ -589,7 +589,7 @@ ol-geolocate button {
 }
 
 .geomap-help-dialog:hover {
-	background-color: rgba(255,255,255,1);
+	background-color: rgb(255,255,255,1);
 }
 
 .tooltip-txt::after {
@@ -608,10 +608,10 @@ ol-geolocate button {
 	border: solid 1px rgb(192, 192, 192);
 	border-radius: 5px;
 	bottom: 100%;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 4px rgb(0, 0, 0, .2);
 	color: rgb(51, 51, 51);
 	cursor: default;
-	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2));
+	filter: drop-shadow(0 1px 4px rgb(0, 0, 0, .2));
 	font-size: .80em;
 	left: 50%;
 	margin-left: -60px;

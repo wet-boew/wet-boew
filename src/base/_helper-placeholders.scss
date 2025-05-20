@@ -41,7 +41,7 @@
 	&:before {
 		@extend %global-centered-overlay-container;
 
-		background: rgba(0, 0, 0, .7);
+		background: rgb(0, 0, 0, .7);
 		border-radius: 10px;
 	}
 }
