@@ -230,7 +230,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks"
 		[
 			"eslint"
-			"sasslint"
+			"stylelint:scss"
 			"lintspaces"
 			"jsonlint"
 		]
@@ -565,18 +565,6 @@ module.exports = (grunt) ->
 						"js-comments"
 					],
 					showCodes: true
-
-		sasslint:
-			options:
-				configFile: ".sass-lint.yml"
-			all:
-				expand: true
-				src: [
-						"site/**/*.scss"
-						"src/**/*.scss"
-						"theme/**/*.scss"
-						"!src/**/sprites/**"
-					]
 
 		# Compiles the Sass files
 		sass:
