@@ -47,17 +47,19 @@ puppeteer.launch( {
 	// Wait a little to help concurrent test
 	await sleep( 1000 );
 
-	console.log( "Puppeteer Chromium started, navigating to:\n" + webPageUrlToTest );
+	console.log( `Puppeteer Chromium started, navigating to:\n${ webPageUrlToTest }` );
 	const page = await browser.newPage();
 
-	page.on( "console", msg => {
-		console.log( "LOG" );
-		console.log( msg );
-	} );
-	page.on( "pageerror", msg => {
-		console.log( "ERR" );
-		console.log( msg );
-	} );
+	page
+		.on( "console", msg => {
+			console.log( `${ msg.type().substr( 0, 3 ).toUpperCase() } ${ msg.text() }` );
+		} )
+		.on( "pageerror", msg => {
+			console.log( msg );
+		} )
+		.on( "requestfailed", request =>
+			console.log( `${ request.failure().errorText } ${ request.url() }` )
+		);
 
 	await page.goto( webPageUrlToTest, { waitUntil: "domcontentloaded" } );
 
@@ -68,7 +70,7 @@ puppeteer.launch( {
 		mocha;
 	while ( limit !== counter ) {
 
-		await counter++;
+		counter++;
 
 		mocha = await page.evaluate( () => {
 
@@ -77,7 +79,7 @@ puppeteer.launch( {
 		} );
 
 		if ( !mocha || !mocha.reports ) {
-			console.log( "wait..." + counter );
+			console.log( `wait... ${ counter }` );
 
 			if ( mocha.body ) {
 				console.log( "Test ongoing" );
@@ -86,7 +88,7 @@ puppeteer.launch( {
 
 				// Reload the page if nothing happen
 				if ( !( counter % 3 ) ) {
-					console.log( "Reload the page ... " + counter );
+					console.log( `Reload the page ... ${ counter }` );
 					await page.reload( { waitUntil: "domcontentloaded", timeout: 60000 } );
 				}
 			}
@@ -106,24 +108,26 @@ puppeteer.launch( {
 
 	// Close the browser and webserver
 	await browser.close();
-	await webServer.close( () => {
+	webServer.close( () => {
 		console.log( "Web server terminated" );
 	} );
 
 	// Print the stats
-	console.log( "\n=== Test results ===\n" );
-	console.log( "Test suites: " + mocha.suites );
-	console.log( "Number of tests: " + mocha.tests );
-	console.log( "Passes: " + mocha.passes );
-	console.log( "Failures: " + mocha.failures );
-	console.log( "Duration: " + mocha.duration + " ms" );
-	console.log( "===\n" );
+	console.log( `
+=== Test results ===
+Test suites: ${ mocha.suites }
+Number of tests: ${ mocha.tests }
+Passes: ${ mocha.passes }
+Failures: ${ mocha.failures }
+Duration: ${ mocha.duration } ms
+===
+` );
 
 	// Print test error details if any
 	mocha.reports.forEach( function( details ) {
 		console.log( details.titles[ 0 ] );
-		console.log( " -> " + details.name );
-		console.log( " -> Error message: " + details.message + "\n" );
+		console.log( ` -> ${ details.name }` );
+		console.log( ` -> Error message: ${ details.message }\n` );
 	} );
 
 	// Test result summary
