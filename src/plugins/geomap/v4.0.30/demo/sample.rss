@@ -4,9 +4,9 @@
 	version="2.0">
 	<channel>
 		<atom:link rel="self" type="application/rss+xml"
-					href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=pingo&amp;alt=rss"/>
+					href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=pingo&amp;alt=rss" />
 		<atom:link rel="next" type="application/rss+xml"
-					href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?start-index=808032&amp;max-results=5&amp;q=pingo&amp;alt=rss"/>
+					href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?start-index=808032&amp;max-results=5&amp;q=pingo&amp;alt=rss" />
 		<title>GeoGratis Product Selection</title>
 		<description>Natural Resources Canada</description>
 		<link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=pingo</link>
