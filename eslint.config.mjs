@@ -71,6 +71,7 @@ export default defineConfig( [ globalIgnores( [
 		globals: {
 			...globals.mocha,
 			sinon: true,
+			nise: true,
 			expect: true
 		}
 	}

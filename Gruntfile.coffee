@@ -930,6 +930,7 @@ module.exports = (grunt) ->
 						"mocha/mocha.js"
 						"mocha/mocha.css"
 						"expect.js/index.js"
+						"nise/nise.js"
 						"sinon/pkg/sinon.js"
 					]
 					dest: "dist/unmin/test"
