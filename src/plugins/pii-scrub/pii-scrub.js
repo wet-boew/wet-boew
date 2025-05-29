@@ -175,11 +175,11 @@ var $document = wb.doc,
 		if ( form.PIIFields.length > 1 ) {
 			piiModalFields += "<dl>";
 			form.PIIFields.forEach( ( field ) => {
-				piiModalFields += "<dt>" + field.label + "</dt><dd class=\"well well-sm\">" + field.scrubValHTML.replace( /\n/g, "<br>" ) + "</dd>";
+				piiModalFields += "<dt>" + field.label + "</dt><dd class=\"well well-sm\">" + field.scrubValHTML.replace( /</g, "&lt;" ).replace( /\n/g, "<br>" ) + "</dd>";
 			} );
 			piiModalFields += "</dl>";
 		} else {
-			piiModalFields += "<div class=\"well well-sm\">" + form.PIIFields[ 0 ].scrubValHTML.replace( /\n/g, "<br>" ) + "</div>";
+			piiModalFields += "<div class=\"well well-sm\">" + form.PIIFields[ 0 ].scrubValHTML.replace( /</g, "&lt;" ).replace( /\n/g, "<br>" ) + "</div>";
 		}
 
 		piiModal.id = piiModalID;
