@@ -40,7 +40,6 @@ on:
 
       # Untracked generated files
       - "!site/data/i18n/*.json"
-      - "!src/plugins/*/sprites/_sprites_*.scss"
       - ".github/workflows/lint-spaces.yml"
 
   pull_request:
@@ -81,7 +80,6 @@ on:
 
       # Untracked generated files
       - "!site/data/i18n/*.json"
-      - "!src/plugins/*/sprites/_sprites_*.scss"
       - ".github/workflows/lint-spaces.yml"
 
 jobs:
