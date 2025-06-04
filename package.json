@@ -51,8 +51,7 @@
     "mathjax": "^3.2.2",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.3",
     "proj4": "2.17.0",
-    "side-by-side-improved": "github:wet-boew/SideBySideImproved#v1.0.0",
-    "unorm": "^1.6.0"
+    "side-by-side-improved": "github:wet-boew/SideBySideImproved#v1.0.0"
   },
   "devDependencies": {
     "@double-great/stylelint-a11y": "^3.0.4",

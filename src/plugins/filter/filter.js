@@ -71,14 +71,6 @@ var componentName = "wb-filter",
 				};
 			}
 
-			Modernizr.addTest( "stringnormalize", "normalize" in String );
-			Modernizr.load( {
-				test: Modernizr.stringnormalize,
-				nope: [
-					"site!deps/unorm" + wb.getMode() + ".js"
-				]
-			} );
-
 			if ( !elm.id ) {
 				elm.id = wb.getId();
 			}
