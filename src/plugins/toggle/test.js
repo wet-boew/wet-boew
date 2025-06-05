@@ -168,8 +168,8 @@ describe( "Toggle test suite", function() {
 		before( function() {
 
 			// Create the toggle element and start testing once it has been initialized
-			$toggledElm = $( "<div id='foo' class='test'/>" ).appendTo( $body );
-			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#foo\"}'/>" ).appendTo( $body );
+			$toggledElm = $( "<div id='foo' class='test'>" ).appendTo( $body );
+			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#foo\"}'>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
 		} );
 
@@ -200,7 +200,7 @@ describe( "Toggle test suite", function() {
 		before( function() {
 
 			// Create the toggle element and start testing once it has been initialized
-			$toggler = $( "<button type='button' class='wb-toggle test'/>" ).appendTo( $body );
+			$toggler = $( "<button type='button' class='wb-toggle test'>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
 		} );
 
@@ -230,10 +230,10 @@ describe( "Toggle test suite", function() {
 		before( function() {
 
 			// Create the toggle elements and start testing once it has been initialized
-			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"on\", \"stateOn\": \"open\"}'/>" ).appendTo( $body );
+			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"on\", \"stateOn\": \"open\"}'>" ).appendTo( $body );
 			$togglerOn.trigger( "wb-init.wb-toggle" );
 
-			$togglerOff = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"off\", \"stateOff\": \"close\"}'/>" ).appendTo( $body );
+			$togglerOff = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"off\", \"stateOff\": \"close\"}'>" ).appendTo( $body );
 			$togglerOff.trigger( "wb-init.wb-toggle" );
 		} );
 
@@ -276,9 +276,9 @@ describe( "Toggle test suite", function() {
 		before( function() {
 
 			// Create the toggle elements and start testing once it has been initialized
-			$toggler1 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
-			$toggler2 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
-			$toggler3 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle3\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
+			$toggler1 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'>" ).appendTo( $body );
+			$toggler2 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'>" ).appendTo( $body );
+			$toggler3 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle3\", \"group\": \".grouped\", \"type\": \"on\"}'>" ).appendTo( $body );
 
 			$toggle1 = $( "<div id='test-toggle1' class='grouped'>" ).appendTo( $body );
 			$toggle2 = $( "<div id='test-toggle2' class='grouped'>" ).appendTo( $body );
@@ -331,7 +331,7 @@ describe( "Toggle test suite", function() {
 			spy.resetHistory();
 
 			// Create the toggle elements and start testing once it has been initialized
-			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \".test-details\"}'/>" ).appendTo( $body );
+			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \".test-details\"}'>" ).appendTo( $body );
 			$details = $( "<details class=\"test test-details\"><summary></summary></details>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
 		} );

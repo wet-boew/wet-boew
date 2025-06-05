@@ -868,7 +868,7 @@ var componentName = "wb-geomap",
 					i18nText.labelSelect + "</label><input type='checkbox' id='cb_" +
 					feature.getId() + "' class='geomap-cbx' data-map='" + mapLayer.map.id +
 					"' data-layer='" + feature.layerId + "' data-feature='" +
-					feature.getId() + "' />";
+					feature.getId() + "' >";
 	},
 
 	/**
@@ -2401,7 +2401,7 @@ MapLayer.prototype.addToLegend = function() {
 	$chkBox = $( "<input type='checkbox' id='cb_" + this.id +
 			"' class='geomap-lgnd-cbx' value='" + this.id +
 						"' " + checked + " data-map='" + this.map.id +
-								"' data-layer='" + this.id + "' />" );
+								"' data-layer='" + this.id + "' >" );
 
 	_this.observeVisibility( function( visibility ) {
 
@@ -2430,7 +2430,7 @@ MapLayer.prototype.addToLegend = function() {
 	$ul.append( $li );
 
 	if ( this.settings.options && this.settings.options.legendUrl ) {
-		$( "#sb_" + this.id ).append( "<img src='" + this.settings.options.legendUrl + "' alt='" + i18nText.geoLgndGrphc + "'/>" );
+		$( "#sb_" + this.id ).append( "<img src='" + this.settings.options.legendUrl + "' alt='" + i18nText.geoLgndGrphc + "'>" );
 	} else if ( this.settings.options && this.settings.options.legendHTML ) {
 		$( "#sb_" + this.id ).append( this.settings.options.legendHTML );
 	} else if ( this.settings.type !== "wms" && this.settings.type !== "esritile" ) {
