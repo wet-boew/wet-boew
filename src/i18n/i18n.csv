@@ -406,3 +406,5 @@ Data-scrub,pii-header,Remove Personal information,Supprimer les informations per
 ,pii-yes-btn,Remove personal information and submit,Supprimer les informations personnelles et soumettre,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,pii-cancel-btn,Go back and edit fields,Retourner et modifier les champs,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,redacted,redacted,caviardé,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,rel-preposition, of , de ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,progress-label,Questionnaire progress:,Progression du questionnaire : ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
