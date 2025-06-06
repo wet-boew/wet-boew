@@ -2,7 +2,7 @@
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
-.provisional.wb-steps {
+.wb-steps {
 	counter-reset: fieldset_counter;
 
 	.wb-tggle-fildst {
@@ -29,67 +29,68 @@
 	.subfields {
 		border: 0;
 	}
-}
 
-.provisional.wb-steps.quiz {
-	.steps-wrapper {
-		border-bottom: none;
+	&.quiz {
+		.steps-wrapper {
+			border-bottom: none;
 
-		.buttons {
-			.btn {
-				display: inline-block;
-				margin: 10px 1%;
-				width: 48%;
+			.buttons {
+				.btn {
+					display: inline-block;
+					margin: 10px 1%;
+					width: 48%;
 
+				}
 			}
 		}
-	}
 
-	fieldset:not(:first-child):has(legend) legend {
-		border-top: 1px solid #e5e5e5;
-		padding-top: 10px;
-	}
 
-	fieldset:not(:first-child):not(:has(legend)) {
-		border-top: 1px solid #e5e5e5;
-		padding-top: 10px;
-	}
+		fieldset {
+			&:not(:first-child) legend {
+				border-top: 1px solid #e5e5e5;
+				padding-top: 10px;
+			}
 
-	fieldset {
-		legend {
-			float: none;
-		}
-	}
+			&:not(:first-child):not(:has(legend)) {
+				border-top: 1px solid #e5e5e5;
+				padding-top: 10px;
+			}
 
-	.wb-tggle-fildst {
-		> legend:before {
-			content: "";
-			counter-increment: none;
+			legend {
+				float: none;
+			}
 		}
 
-		ul {
-			list-style: none;
-			padding-left: 20px;
+		.wb-tggle-fildst {
+			> legend:before {
+				content: "";
+				counter-increment: none;
+			}
+
+			ul {
+				list-style: none;
+				padding-left: 20px;
+			}
 		}
-	}
 
-	label {
-		display: block;
-	}
+		label {
+			display: block;
+		}
 
-	progress.progressBar {
-		width: 100%;
-	}
+		progress.progressBar {
+			width: 100%;
+		}
 
-	.progressText {
-		text-align: center;
-	}
+		.progressText {
+			text-align: center;
+		}
 
-	p {
-		font-size: 20px;
+		p {
+			font-size: 20px;
+		}
 	}
 }
 
-.cnt-wdth-lmtd main .panel.stepsquiz:has( .provisional.wb-steps.quiz ) {
+.cnt-wdth-lmtd main .panel.stepsquiz:has( .wb-steps.quiz ) {
 	max-width: 65ch;
 }

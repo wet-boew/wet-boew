@@ -7,17 +7,9 @@
 	"tag": "stepsform",
 	"parentdir": "stepsform",
 	"altLangPrefix": "stepsform",
-	"dateModified": "2020-09-15"
+	"dateModified": "2025-06-02"
 }
 ---
-
-<div lang="en" class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-fr.html">Check other provisional features available.</a></small></p>
-</div>
-
 <section>
 	<h2>But</h2>
 	<p>Offre la possibilité de diviser un formulaire en différentes étapes (sans ou avec validation de formulaire).</p>
@@ -26,7 +18,7 @@
 <section>
 	<h2>Exemple pratique</h2>
 
-	<div class="wb-frmvld provisional wb-steps">
+	<div class="wb-frmvld wb-steps">
 		<form action="#" method="get" id="steps-example">
 			<fieldset id="client">
 				<legend>Informations du client</legend>
@@ -94,18 +86,76 @@
 
 	<details class="mrgn-tp-md mrgn-bttm-md">
 		<summary>Visualiser le code</summary>
-		<ol>
-			<li>Créer un élément <code>&lt;div&gt;</code> avec la classe <code>wb-steps</code> (vous pouvez aussi ajouter la classe <code>wb-frmvld</code> pour intégrer la validation).
-				<pre><code>&lt;div class=&quot;wb-frmvld wb-steps&quot;&gt;&lt;/div&gt;</code></pre>
-			</li>
-			<li>À l'intérieur de cet élément <code>&lt;div&gt;</code>, ajouter un élément <code>&lt;form&gt;</code>.
-				<pre><code>&lt;form action="#" method="get" id="steps-example"&gt;&lt;/form&gt;</code></pre>
-			</li>
-			<li>À l'intérieur de cet élément <code>&lt;form&gt;</code>, ajouter un élément <code>&lt;fieldset&gt;</code> qui aura besoin d'une légende <code>&lt;legend&gt;</code> et d'un conteneur <code>&lt;div&gt;</code>.
-				<small>Ces éléments <code>&lt;fieldset&gt;</code> deviendront les étapes du formulaire</small>
-				<pre><code>&lt;fieldset&gt;<br>&lt;legend&gt;Informations du client&lt;/legend&gt;<br>&lt;div&gt;(Tout contenu situé à l'intérieur du div sera caché.)&lt;/div&gt;<br>&lt;/fieldset&gt;</code></pre>
-			</li>
-		</ol>
+		<pre><code>&lt;section&gt;
+	&lt;h2&gt;Exemple pratique&lt;/h2&gt;
+
+	&lt;div class="wb-frmvld wb-steps"&gt;
+		&lt;form action="#" method="get" id="steps-example"&gt;
+			&lt;fieldset id="client"&gt;
+				&lt;legend&gt;Informations du client&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="firstname" class="required"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="lastname" class="required"&gt;&lt;span class="field-name"&gt;Nom de famille&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="dateOfBirth" class="required"&gt;&lt;span class="field-name"&gt;Date de naissance&lt;/span&gt;&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatre chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required="required"&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset id="contact"&gt;
+				&lt;legend&gt;Informations de contact&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="preferredNumber" class="required"&gt;Principal&nbsp;: &lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="secondaryNumber"&gt;Secondaire&nbsp;: &lt;span class="field-name"&gt;Numéro de téléphone&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="secondaryNumber" name="secondaryNumber" type="tel" data-rule-phoneUS="true"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="email"&gt;&lt;span class="field-name"&gt;Adresse courriel&lt;/span&gt; (test@domaine)&lt;/label&gt;
+						&lt;input class="form-control" id="email" name="email" type="email"&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset id="questionaire"&gt;
+				&lt;legend&gt;Questionnaire éthique&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;small&gt;Pour chacun des exemples suivants, indiquez si vous sentez qu'il s'agit d'un cas de problème éthique ou pas.&lt;/small&gt;
+					&lt;fieldset class="subfields"&gt;
+						&lt;legend&gt;&lt;span class="field-name"&gt;Exemple 1&lt;/span&gt;: Vous payez 10,00&nbsp;$ pour un achat, mais vous recevez de la monnaie comme s'il s'agissait de 20,00&nbsp;$. Garderiez vous la monnaie en surplus?&lt;/legend&gt;
+						&lt;div class="radio"&gt;
+							&lt;label for="defNot-1"&gt;&lt;input type="radio" name="ethics1" value="defNot-1" id="defNot-1"&gt;&#160;Absolument pas&lt;/label&gt;&#160;
+							&lt;label for="probNot-1"&gt;&lt;input type="radio" name="ethics1" value="probNot-1" id="probNot-1"&gt;&#160;Probablement pas&lt;/label&gt;&#160;
+							&lt;label for="maybe-1"&gt;&lt;input type="radio" name="ethics1" value="maybe-1" id="maybe-1"&gt;&#160;Peut-être (Incertain)&lt;/label&gt;&#160;
+							&lt;label for="probably-1"&gt;&lt;input type="radio" name="ethics1" value="probably-1" id="probably-1"&gt;&#160;Probablement&lt;/label&gt;&#160;
+							&lt;label for="definitely-1"&gt;&lt;input type="radio" name="ethics1" value="definitely-1" id="definitely-1"&gt;&#160;Définitivement&lt;/label&gt;
+						&lt;/div&gt;
+					&lt;/fieldset&gt;
+					&lt;fieldset class="subfields"&gt;
+						&lt;legend&gt;&lt;span class="field-name"&gt;Exemple 2&lt;/span&gt;: Vous avez besoin d'un logiciel, mais vous ne pouvez pas attendre que la gestion prenne cette décision. Le téléchargeriez-vous sans avoir de licence?&lt;/legend&gt;
+						&lt;div class="radio"&gt;
+							&lt;label for="defNot-2"&gt;&lt;input type="radio" name="ethics2" value="defNot-2" id="defNot-2"&gt;&#160;Absolument pas&lt;/label&gt;&#160;
+							&lt;label for="probNot-2"&gt;&lt;input type="radio" name="ethics2" value="probNot-2" id="probNot-2"&gt;&#160;Probablement pas&lt;/label&gt;&#160;
+							&lt;label for="maybe-2"&gt;&lt;input type="radio" name="ethics2" value="maybe-2" id="maybe-2"&gt;&#160;Peut-être (Incertain)&lt;/label&gt;&#160;
+							&lt;label for="probably-2"&gt;&lt;input type="radio" name="ethics2" value="probably-2" id="probably-2"&gt;&#160;Probablement&lt;/label&gt;&#160;
+							&lt;label for="definitely-2"&gt;&lt;input type="radio" name="ethics2" value="definitely-2" id="definitely-2"&gt;&#160;Définitivement&lt;/label&gt;
+						&lt;/div&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;input type="submit" name="submit" value="Soumettre" class="btn btn-primary"&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+	&lt;/section&gt;
+	</code></pre>
 	</details>
 
 	<noscript>
@@ -114,8 +164,8 @@
 </section>
 
 <section>
-	<h2 id="default-1">Exemple - Formulaire d'étapes avec barre de progression</h2>
-	<div class="wb-frmvld provisional wb-steps quiz">
+	<h2 id="default-1">Exemple - Formulaire d'étapes avec option de quiz</h2>
+	<div class="wb-frmvld wb-steps quiz">
 	<form action="#" id="quiz-example">
 		<fieldset>
 			<legend>1. Quel est ton fruit préféré?</legend>
@@ -187,10 +237,78 @@
 
 	<details class="mrgn-tp-md mrgn-bttm-md">
 		<summary>Visualiser le code</summary>
-		<ol>
-			<li>Ajouter la classe <code>quiz</code> au div avec la classe <code>wb-steps</code>.
-				<pre><code>&lt;div class=&quot;wb-frmvld wb-steps quiz&quot;&gt;&lt;/div&gt;</code></pre>
-			</li>
-		</ol>
+		<pre><code>&lt;section&gt;
+	&lt;h2 id="default-1"&gt;Exemple - Formulaire d'étapes avec option de quiz&lt;/h2&gt;
+	&lt;div class="wb-frmvld wb-steps quiz"&gt;
+	&lt;form action="#" id="quiz-example"&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;1. Quel est ton fruit préféré?&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;Mon fruit préféré est:&lt;/p&gt;
+				&lt;ul class="lst-spcd-2 gc-chckbxrdio"&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="fruit" id="apple-1" value="apple"&gt;
+						&lt;label for="apple-1"&gt;Pomme&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="fruit" id="orange-1" value="orange"&gt;
+						&lt;label for="orange-1"&gt;Orange&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="fruit" id="banana-1" value="banana"&gt;
+						&lt;label for="banana-1"&gt;Banane&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="fruit" id="kiwi-1" value="Kiwi"&gt;
+						&lt;label for="kiwi-1"&gt;Kiwi&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;2. Quel est ton animal de compagnie préféré?&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;Mon animal préféré est:&lt;/p&gt;
+				&lt;ul class="lst-spcd-2 gc-chckbxrdio"&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="animal" id="dog-1" value="dog"&gt;
+						&lt;label for="dog-1"&gt;Chien&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="animal" id="cat-1" value="cat"&gt;
+						&lt;label for="cat-1"&gt;Chat&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;input type="radio" name="animal" id="bird-1" value="bird"&gt;
+						&lt;label for="bird-1"&gt;Oiseau&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;3. Condiments&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;Choisissez vos condiments:&lt;/p&gt;
+				&lt;ul class="lst-spcd-2 gc-chckbxrdio"&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;input type="checkbox" id="ketchup-1" value="ketchup" name="condiments"&gt;
+						&lt;label for="ketchup-1"&gt;Ketchup&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;input type="checkbox" id="relish-1"  value="relish" name="condiments"&gt;
+						&lt;label for="relish-1"&gt;Relish&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;input type="checkbox" id="mustard-1"  value="mustard" name="condiments"&gt;
+						&lt;label for="mustard-1"&gt;Moutarde&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;input type="submit" name="submit" value="Soumettre" class="btn btn-primary" /&gt;
+	&lt;/form&gt;
+	&lt;/div&gt;
+&lt;/section&gt;
+		</code></pre>
 	</details>
 </section>
