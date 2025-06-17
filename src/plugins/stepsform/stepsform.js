@@ -14,11 +14,12 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var componentName = "wb-steps",
-	selector = ".provisional." + componentName,
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	i18n, i18nText,
 	btnPrevious, btnNext, btnSubmit,
+	quizSelector = ".wb-steps.quiz",
 
 	/**
 	 * @method init
@@ -43,7 +44,9 @@ var componentName = "wb-steps",
 				i18n = wb.i18n;
 				i18nText = {
 					prv: i18n( "prv" ),
-					nxt: i18n( "nxt" )
+					nxt: i18n( "nxt" ),
+					relpreposition: i18n( "rel-preposition" ),
+					progresslabel: i18n( "progress-label" )
 				};
 			}
 
@@ -130,8 +133,58 @@ var componentName = "wb-steps",
 				$( form ).children( "input" ).hide();
 				wb.ready( $( elm ), componentName );
 			}
+
+			//Quiz code
+			if ( elm.classList.contains( "quiz" ) ) {
+
+				//Initialize all instances
+				let $instance = $( elm ),
+					numQuestion = $( ".steps-wrapper", $instance ).length; // Calculate number of questions
+
+				// Addition to UI (Ex: progress bar)
+				if ( !$.contains( $instance, "progress" ) ) {
+					$( "form", $instance ).prepend( "<label class='full-width'><span class='wb-inv'>" + i18nText.progresslabel + "</span><progress class='progressBar' max='" + numQuestion + "'></progress><p class='progressText' role='status'></p></label>" );
+				}
+
+				hideOtherSteps( evt );
+
+				$( document ).on( "click", quizSelector + " .steps-wrapper div.buttons > :button", hideOtherSteps );
+			}
 		}
 	},
+
+	/**
+	 * @method hideOtherSteps
+	 * @param {JavaScript element} e
+	 */
+	hideOtherSteps = function( e ) {
+
+		// Get wb-steps component
+		let steps,
+			currentElement = e.currentTarget;
+
+		if ( currentElement.classList.contains( "quiz" ) ) {
+			steps = currentElement;
+		} else {
+			steps = $( currentElement ).parentsUntil( quizSelector ).parent().get( 0 );
+		}
+
+		// Find the steps form context and validate it is a quiz
+		let currentTabId = $( "legend.wb-steps-active:first-child", steps ).parents().prevAll( ".steps-wrapper" ).length + 1,
+			$progressBar = $( ".progressBar", steps ), // Get progress bar
+			numQuestion = $progressBar.attr( "max" ); // Get number of questions
+
+		// Set the progress label
+		$( "p.progressText", steps ).text( currentTabId + i18nText.relpreposition + numQuestion );
+
+		// Update progress bar
+		$progressBar.val( currentTabId );
+
+		// Hide other steps that are not active
+		$( ".steps-wrapper", steps ).removeClass( "hidden" );
+		$( ".steps-wrapper:has( div.hidden )", steps ).addClass( "hidden" );
+	},
+
 
 	/**
 	 * @method createStepsButton
