@@ -52,12 +52,27 @@ module.exports = (grunt) ->
 		"deploy-build"
 		"Produces the production files"
 		[
-			"build"
-			"minify"
 			"pages:theme"
 			"docs-min"
 			"demos-min"
 			"sri"
+		]
+	)
+
+	@registerTask(
+		"prepare"
+		"Prepares wet-boew for use as dependency"
+		[
+			"clean:dist"
+			"assets"
+			"sprite"
+			"sass"
+			"concat:supports"
+			"postcss"
+			"usebanner:css"
+			"js"
+			"i18n_csv:assemble"
+			"minify"
 		]
 	)
 
@@ -215,7 +230,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks"
 		[
 			"eslint"
-			"sasslint"
+			"stylelint:scss"
 			"lintspaces"
 			"jsonlint"
 		]
@@ -550,18 +565,6 @@ module.exports = (grunt) ->
 						"js-comments"
 					],
 					showCodes: true
-
-		sasslint:
-			options:
-				configFile: ".sass-lint.yml"
-			all:
-				expand: true
-				src: [
-						"site/**/*.scss"
-						"src/**/*.scss"
-						"theme/**/*.scss"
-						"!src/**/sprites/**"
-					]
 
 		# Compiles the Sass files
 		sass:
@@ -927,6 +930,7 @@ module.exports = (grunt) ->
 						"mocha/mocha.js"
 						"mocha/mocha.css"
 						"expect.js/index.js"
+						"nise/nise.js"
 						"sinon/pkg/sinon.js"
 					]
 					dest: "dist/unmin/test"
@@ -939,14 +943,6 @@ module.exports = (grunt) ->
 					cwd: "src/polyfills"
 					src: "**/*.js"
 					dest: "<%= coreDist %>/js/polyfills"
-					expand: true
-					flatten: true
-				,
-					cwd: "lib"
-					src: [
-						"SideBySideImproved/jquery.flot.orderBars.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
 					expand: true
 					flatten: true
 				,
@@ -965,7 +961,7 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
-						"unorm/lib/unorm.js"
+						"side-by-side-improved/jquery.flot.orderBars.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
@@ -1155,20 +1151,18 @@ module.exports = (grunt) ->
 				tasks: "pages:docs"
 
 		eslint:
-			options:
-				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
-				quiet: true
 			all:
 				src: [
 					"**/*.js"
+					"**/*.mjs"
 
 					# Copied ignores from .editorconfig
-					"!node_modules/**/*.js"
-					"!dist/**/*.js"
-					"!src/polyfills/slider/slider.js"
-					"!src/polyfills/events/mobile.js"
-					"!lib/**/*.js"
+					"!dist/**"
+					"!lib/**"
+					"!node_modules/**"
 					"!src/core/dep/modernizr-custom.js"
+					"!src/polyfills/events/mobile.js"
+					"!src/polyfills/slider/slider.js"
 				]
 
 		connect:

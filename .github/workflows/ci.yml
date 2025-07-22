@@ -29,10 +29,11 @@ jobs:
          sudo apt-get update
          sudo apt-get install -y libgbm1
 
-      - name: Install Grunt and Bower
-        run: npm i -g bower grunt-cli --force
+      - name: Install Grunt
+        run: npm i -g grunt-cli --force
 
       - name: Install npm dependencies
         run: npm ci
 
       - run: npm test
+      - run: grunt deploy-build
