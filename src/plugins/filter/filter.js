@@ -217,7 +217,13 @@ var componentName = "wb-filter",
 
 		for ( i = 0; i < itemsLength; i += 1 ) {
 			$item = $items.eq( i );
-			text = unAccent( $item.text() );
+
+			// Get the text content of the item, either from the shadow DOM or directly
+			if ( $item[ 0 ].shadowRoot ) {
+				text = unAccent( $item[ 0 ].shadowRoot.textContent );
+			} else {
+				text = unAccent( $item.text() );
+			}
 
 			if ( !searchFilterRegularExp.test( text ) ) {
 				if ( hndParentSelector ) {
