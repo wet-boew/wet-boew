@@ -7,7 +7,8 @@
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"dateModified": "2018-05-23"
+	"dateModified": "2025-08-07",
+	"css": ["https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds"]
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -18,6 +19,7 @@
 	<li><a href="#flt-search">Applying additional search filters</a></li>
 	<li><a href="#flt-uicontainer">Move UI to specific container</a></li>
 	<li><a href="#flt-customui">Custom UI</a></li>
+	<li><a href="#gcdsCard">GCDS Card</a></li>
 </ul>
 
 <h2 id="flt-section">Filtering items in sections</h2>
@@ -869,3 +871,73 @@
 	&lt;li>Alberta&lt;/li>
 	...
 &lt;/ul></code></pre>
+
+<h3 id="gcdsCard">GCDS Card</h3>
+<gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>
+	<gcds-card
+	card-title="Alberta"
+	href="#"
+	description="Known for the Rocky Mountains, vast prairies, and oil sands."
+	></gcds-card>
+	<gcds-card
+	card-title="British Columbia"
+	href="#"
+	description="A coastal province with rainforests, mountains, and vibrant cities like Vancouver."
+	></gcds-card>
+	<gcds-card
+	card-title="Manitoba"
+	href="#"
+	description="Home to the prairies, polar bears, and the cultural hub of Winnipeg."
+	></gcds-card>
+	<gcds-card
+	card-title="New Brunswick"
+	href="#"
+	description="A maritime province known for the Bay of Fundy and bilingual heritage."
+	></gcds-card>
+	<gcds-card
+	card-title="Newfoundland &amp; Labrador"
+	href="#"
+	description="Canada’s easternmost province, rich in history, cliffs, and coastal culture."
+	></gcds-card>
+	<gcds-card
+	card-title="Northwest Territories"
+	href="#"
+	description="Famous for the Northern Lights, Indigenous cultures, and the Mackenzie River."
+	></gcds-card>
+	<gcds-card
+	card-title="Nova Scotia"
+	href="#"
+	description="A scenic coastal province known for seafood, lighthouses, and maritime heritage."
+	></gcds-card>
+	<gcds-card
+	card-title="Nunavut"
+	href="#"
+	description="Canada’s newest and largest territory, home to Inuit communities and Arctic landscapes."
+	></gcds-card>
+	<gcds-card
+	card-title="Ontario"
+	href="#"
+	description="Canada’s most populous province, home to Toronto, Ottawa, and Niagara Falls."
+	></gcds-card>
+	<gcds-card
+	card-title="Prince Edward Island"
+	href="#"
+	description="Canada’s smallest province, known for red sand beaches and Anne of Green Gables."
+	></gcds-card>
+	<gcds-card
+	card-title="Quebec"
+	href="#"
+	description="A French-speaking province with rich culture, historic cities, and vast wilderness."
+	></gcds-card>
+	<gcds-card
+	card-title="Saskatchewan"
+	href="#"
+	description="Defined by open skies, wheat fields, and a strong farming tradition."
+	></gcds-card>
+	<gcds-card
+	card-title="Yukon"
+	href="#"
+	description="A rugged northern territory famous for the Klondike Gold Rush and wild landscapes."
+	></gcds-card>
+</gcds-grid>
+<script type="module" src="https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds.esm.js"></script>
