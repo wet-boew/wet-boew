@@ -46,18 +46,10 @@
 
 
 		fieldset {
-			&:not(:first-child) legend {
-				border-top: 1px solid #e5e5e5;
-				padding-top: 10px;
-			}
-
-			&:not(:first-child):not(:has(legend)) {
-				border-top: 1px solid #e5e5e5;
-				padding-top: 10px;
-			}
-
 			legend {
-				float: none;
+				& + * {
+					clear: left;
+				}
 			}
 		}
 
