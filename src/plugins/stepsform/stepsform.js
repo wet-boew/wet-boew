@@ -142,7 +142,7 @@ var componentName = "wb-steps",
 					numQuestion = $( ".steps-wrapper", $elm ).length; // Calculate number of questions
 
 				// Addition to UI (Ex: progress bar)
-				if ( !$.contains( $elm, "progress" ) ) {
+				if ( !elm.querySelector( "progress" ) ) {
 					$( "form", $elm ).prepend( "<label class='full-width'><span class='wb-inv'>" + i18nText.progresslabel + "</span><progress class='progressBar' max='" + numQuestion + "'></progress><p class='progressText' role='status'></p></label>" );
 				}
 
