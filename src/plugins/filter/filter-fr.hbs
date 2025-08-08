@@ -17,7 +17,7 @@
 	<li><a href="#flt-table">Filtrer un tableau</a></li>
 	<li><a href="#flt-search">Application de filtres de recherche supplémentaires</a></li>
 	<li><a href="#flt-uicontainer">Déplacer l'interface vers un élément spécifique</a></li>
-	<li><a href="#flt-customui">Interface personnalisée</a></li>
+	<li><a href="#flt-customui">Interface personnalisée et Data JSON</a></li>
 </ul>
 
 <h2 id="flt-section">Filtrer des items par section</h2>
@@ -800,43 +800,51 @@
 
 <p>Personnalisez l'interface utilisateur générée par le plugiciel en ajoutant un élément et en définissant l'option <code>uiTemplate</code> à son sélecteur CSS.</p>
 
-<div id="filterTemplate">
-	<div class="form-group">
-		<label for="customSearchUI">Rechercher</label>
-		<input type="search" class="form-control" placeholder="Tapez le nom d'une province..." id="customSearchUI">
-	</div>
-	<p class="wb-fltr-info"><span data-nbitem></span> / <span data-total></span> provinces</p>
-</div>
-<ul class="wb-filter" data-wb-filter='{
-	"uiTemplate": "#filterTemplate"
+<div class="wb-filter" data-wb-filter='{
+	"uiTemplate": "#filterTemplate",
+	"section": "ul"
 }'>
-	<li>Alberta</li>
-	<li>Colombie-Britannique</li>
-	<li>Île-du-Prince-Édouard</li>
-	<li>Manitoba</li>
-	<li>Nouveau-Brunswick</li>
-	<li>Nouvelle-Écosse</li>
-	<li>Nunavut</li>
-	<li>Ontario</li>
-	<li>Québec</li>
-	<li>Saskatchewan</li>
-	<li>Terre-Neuve-et-Labrador</li>
-	<li>Territoires du Nord-Ouest</li>
-	<li>Yukon</li>
-</ul>
+	<div id="filterTemplate">
+		<div class="form-group">
+			<label for="customSearchUI">Rechercher</label>
+			<input type="search" class="form-control" id="customSearchUI">
+		</div>
+		<p class="wb-fltr-info"><span data-nbitem></span> / <span data-total></span> événements</p>
+	</div>
+	<ul data-wb-json='{
+		"url": "../tagfilter/data_en.json#/events",
+		"mapping": [
+			{ "selector": "li", "value": "/title" }
+		]
+	}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+</div>
+
 
 <h4>Source code</h4>
 
-<pre><code>&lt;div id="filterTemplate">
-	&lt;div class="form-group">
-		&lt;label for="customSearchUI">Rechercher&lt;/label>
-		&lt;input type="search" class="form-control" placeholder="Tapez le nom d'une province..." id="customSearchUI">
-	&lt;/div>
-	&lt;p class="wb-fltr-info">&lt;span data-nbitem>&lt;/span> / &lt;span data-total>&lt;/span> provinces&lt;/p>
-&lt;/div>
-&lt;ul class="wb-filter" data-wb-filter='{
-	"uiTemplate": "#filterTemplate"
+<pre><code>&lt;div class="wb-filter" data-wb-filter='{
+	"uiTemplate": "#filterTemplate",
+	"section": "ul"
 }'>
-	&lt;li>Alberta&lt;/li>
-	...
-&lt;/ul></code></pre>
+	&lt;div id="filterTemplate">
+		&lt;div class="form-group">
+			&lt;label for="customSearchUI">Rechercher&lt;/label>
+			&lt;input type="search" class="form-control" id="customSearchUI">
+		&lt;/div>
+		&lt;p class="wb-fltr-info">&lt;span data-nbitem>&lt;/span> / &lt;span data-total>&lt;/span> événements&lt;/p>
+	&lt;/div>
+	&lt;ul data-wb-json='{
+		"url": "../tagfilter/data_en.json#/events",
+		"mapping": [
+			{ "selector": "li", "value": "/title" }
+		]
+	}'>
+		&lt;template>
+			&lt;li>&lt;/li>
+		&lt;/template>
+	&lt;/ul>
+&lt;/div></code></pre>
