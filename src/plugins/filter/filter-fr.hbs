@@ -7,7 +7,8 @@
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"dateModified": "2018-05-23"
+	"dateModified": "2025-08-07",
+	"css": ["https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds"]
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -18,6 +19,7 @@
 	<li><a href="#flt-search">Application de filtres de recherche supplémentaires</a></li>
 	<li><a href="#flt-uicontainer">Déplacer l'interface vers un élément spécifique</a></li>
 	<li><a href="#flt-customui">Interface personnalisée</a></li>
+	<li><a href="#gcdsCard">Carte SDGC</a></li>
 </ul>
 
 <h2 id="flt-section">Filtrer des items par section</h2>
@@ -840,3 +842,73 @@
 	&lt;li>Alberta&lt;/li>
 	...
 &lt;/ul></code></pre>
+
+<h3 id="gcdsCard">Carte SDGC</h3>
+<gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>
+	<gcds-card
+	card-title="Alberta"
+	href="#"
+	description="Réputée pour les montagnes Rocheuses, les vastes prairies et les sables bitumineux."
+	></gcds-card>
+	<gcds-card
+	card-title="Colombie-Britannique"
+	href="#"
+	description="Une province côtière avec des forêts pluviales, des montagnes et des villes dynamiques comme Vancouver."
+	></gcds-card>
+	<gcds-card
+	card-title="Manitoba"
+	href="#"
+	description="Connue pour ses prairies, ses ours polaires et Winnipeg, un centre culturel majeur."
+	></gcds-card>
+	<gcds-card
+	card-title="Nouveau-Brunswick"
+	href="#"
+	description="Une province maritime célèbre pour la baie de Fundy et son patrimoine bilingue."
+	></gcds-card>
+	<gcds-card
+	card-title="Terre-Neuve-et-Labrador"
+	href="#"
+	description="La province la plus à l’est du Canada, riche en histoire, falaises et culture côtière."
+	></gcds-card>
+	<gcds-card
+	card-title="Territoires du Nord-Ouest"
+	href="#"
+	description="Célèbres pour les aurores boréales, les cultures autochtones et le fleuve Mackenzie."
+	></gcds-card>
+	<gcds-card
+	card-title="Nouvelle-Écosse"
+	href="#"
+	description="Une province côtière pittoresque connue pour ses fruits de mer, ses phares et son patrimoine maritime."
+	></gcds-card>
+	<gcds-card
+	card-title="Nunavut"
+	href="#"
+	description="Le plus grand et plus récent territoire du Canada, peuplé de communautés inuites et de paysages arctiques."
+	></gcds-card>
+	<gcds-card
+	card-title="Ontario"
+	href="#"
+	description="La province la plus peuplée du Canada, abritant Toronto, Ottawa et les chutes du Niagara."
+	></gcds-card>
+	<gcds-card
+	card-title="Île-du-Prince-Édouard"
+	href="#"
+	description="La plus petite province du Canada, célèbre pour ses plages de sable rouge et Anne... la maison aux pignons verts."
+	></gcds-card>
+	<gcds-card
+	card-title="Québec"
+	href="#"
+	description="Une province francophone au riche patrimoine culturel, aux villes historiques et aux vastes forêts."
+	></gcds-card>
+	<gcds-card
+	card-title="Saskatchewan"
+	href="#"
+	description="Connue pour ses grands ciels, ses champs de blé et sa forte tradition agricole."
+	></gcds-card>
+	<gcds-card
+	card-title="Yukon"
+	href="#"
+	description="Un territoire nordique sauvage célèbre pour la ruée vers l’or du Klondike et ses paysages grandioses."
+	></gcds-card>
+</gcds-grid>
+<script type="module" src="https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds.esm.js"></script>
