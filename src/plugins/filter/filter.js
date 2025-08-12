@@ -98,7 +98,7 @@ var componentName = "wb-filter",
 				if ( settings.source ) {
 					console.warn( componentName + ": " + "the 'source' option is not compatible with the 'uiTemplate' option. If both options are defined, only 'uiTemplate' will be registered." );
 				}
-			} else {
+			} else if ( !document.querySelector( "input#" + elm.id + "-inpt" ) ) {
 				inptId = elm.id + "-inpt";
 				filterUI = $( "<div class=\"input-group\">" +
 					"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label>" +
@@ -238,8 +238,9 @@ var componentName = "wb-filter",
 		}
 		fCallBack.apply( this, arguments );
 
-		$elm.trigger( "wb-contentupdated" );
+		$elm.trigger( "wb-filtered" );
 	},
+
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section ),
 			sectionsLength = $sections.length,
@@ -263,7 +264,20 @@ $document.on( "keyup", selectorInput, function( event ) {
 		clearTimeout( wait );
 	}
 	wait = setTimeout( filter.bind( this, $input, $elm, $elm.data() ), 250 );
+} );
 
+// Reinitialize filter if content on the page has been updated by another plugin
+$document.on( "wb-contentupdated", selector + ", " + selector + " *", function()  {
+	let that = this;
+
+	if ( wait ) {
+		clearTimeout( wait );
+	}
+
+	wait = setTimeout( function() {
+		that.classList.remove( "wb-init", componentName + "-inited" );
+		$( that ).trigger( "wb-init." + componentName );
+	}, 100 );
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );

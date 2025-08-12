@@ -8,7 +8,7 @@
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
 	"dateModified": "2025-08-07",
-	"css": ["https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds"]
+	"gcds": true
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -19,7 +19,8 @@
 	<li><a href="#flt-search">Application de filtres de recherche supplémentaires</a></li>
 	<li><a href="#flt-uicontainer">Déplacer l'interface vers un élément spécifique</a></li>
 	<li><a href="#flt-customui">Interface personnalisée</a></li>
-	<li><a href="#gcdsCard">Carte SDGC</a></li>
+	<li><a href="#flt-customui">Interface personnalisée et Data JSON</a></li>
+	<li><a href="#flt-gcdsCard">Carte SDGC</a></li>
 </ul>
 
 <h2 id="flt-section">Filtrer des items par section</h2>
@@ -799,51 +800,55 @@
 &lt;/div&gt;</code></pre>
 
 <h3 id="flt-customui">Interface personnalisée</h3>
-
 <p>Personnalisez l'interface utilisateur générée par le plugiciel en ajoutant un élément et en définissant l'option <code>uiTemplate</code> à son sélecteur CSS.</p>
-
-<div id="filterTemplate">
-	<div class="form-group">
-		<label for="customSearchUI">Rechercher</label>
-		<input type="search" class="form-control" placeholder="Tapez le nom d'une province..." id="customSearchUI">
-	</div>
-	<p class="wb-fltr-info"><span data-nbitem></span> / <span data-total></span> provinces</p>
-</div>
-<ul class="wb-filter" data-wb-filter='{
-	"uiTemplate": "#filterTemplate"
+<div class="wb-filter" data-wb-filter='{
+	"uiTemplate": "#filterTemplate",
+	"section": "ul"
 }'>
-	<li>Alberta</li>
-	<li>Colombie-Britannique</li>
-	<li>Île-du-Prince-Édouard</li>
-	<li>Manitoba</li>
-	<li>Nouveau-Brunswick</li>
-	<li>Nouvelle-Écosse</li>
-	<li>Nunavut</li>
-	<li>Ontario</li>
-	<li>Québec</li>
-	<li>Saskatchewan</li>
-	<li>Terre-Neuve-et-Labrador</li>
-	<li>Territoires du Nord-Ouest</li>
-	<li>Yukon</li>
-</ul>
+	<div id="filterTemplate">
+		<div class="form-group">
+			<label for="customSearchUI">Rechercher</label>
+			<input type="search" class="form-control" id="customSearchUI">
+		</div>
+		<p class="wb-fltr-info"><span data-nbitem></span> / <span data-total></span> événements</p>
+	</div>
+	<ul data-wb-json='{
+		"url": "../tagfilter/data_fr.json#/events",
+		"mapping": [
+			{ "selector": "li", "value": "/title" }
+		]
+	}'>
+		<template>
+			<li></li>
+		</template>
+	</ul>
+</div>
 
 <h4>Source code</h4>
-
-<pre><code>&lt;div id="filterTemplate">
-	&lt;div class="form-group">
-		&lt;label for="customSearchUI">Rechercher&lt;/label>
-		&lt;input type="search" class="form-control" placeholder="Tapez le nom d'une province..." id="customSearchUI">
-	&lt;/div>
-	&lt;p class="wb-fltr-info">&lt;span data-nbitem>&lt;/span> / &lt;span data-total>&lt;/span> provinces&lt;/p>
-&lt;/div>
-&lt;ul class="wb-filter" data-wb-filter='{
-	"uiTemplate": "#filterTemplate"
+<pre><code>&lt;div class="wb-filter" data-wb-filter='{
+	"uiTemplate": "#filterTemplate",
+	"section": "ul"
 }'>
-	&lt;li>Alberta&lt;/li>
-	...
-&lt;/ul></code></pre>
+	&lt;div id="filterTemplate">
+		&lt;div class="form-group">
+			&lt;label for="customSearchUI">Rechercher&lt;/label>
+			&lt;input type="search" class="form-control" id="customSearchUI">
+		&lt;/div>
+		&lt;p class="wb-fltr-info">&lt;span data-nbitem>&lt;/span> / &lt;span data-total>&lt;/span> événements&lt;/p>
+	&lt;/div>
+	&lt;ul data-wb-json='{
+		"url": "../tagfilter/data_fr.json#/events",
+		"mapping": [
+			{ "selector": "li", "value": "/title" }
+		]
+	}'>
+		&lt;template>
+			&lt;li>&lt;/li>
+		&lt;/template>
+	&lt;/ul>
+&lt;/div></code></pre>
 
-<h3 id="gcdsCard">Carte SDGC</h3>
+<h3 id="flt-gcdsCard">Carte SDGC</h3>
 <gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>
 	<gcds-card
 	card-title="Alberta"
@@ -911,4 +916,18 @@
 	description="Un territoire nordique sauvage célèbre pour la ruée vers l’or du Klondike et ses paysages grandioses."
 	></gcds-card>
 </gcds-grid>
-<script type="module" src="https://cdn.design-system.alpha.canada.ca/@cdssnc/gcds-components@0.40.0/dist/gcds/gcds.esm.js"></script>
+
+<h4>Code source</h4>
+<pre><code>&lt;gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>
+	&lt;gcds-card
+	card-title="Alberta"
+	href="#"
+	description="Réputée pour les montagnes Rocheuses, les vastes prairies et les sables bitumineux."
+	>&lt;/gcds-card>
+	&lt;gcds-card
+	card-title="Colombie-Britannique"
+	href="#"
+	description="Une province côtière avec des forêts pluviales, des montagnes et des villes dynamiques comme Vancouver."
+	>&lt;/gcds-card>
+	...
+&lt;/gcds-grid></code></pre>
