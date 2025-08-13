@@ -59,7 +59,7 @@ var componentName = "wb-calevt",
 			i, appendData;
 
 		appendData = function( data ) {
-			$ajaxContainer.append(String(data).trim());
+			$ajaxContainer.append( String( data ).trim() );
 		};
 
 		for ( i = 0; i < len; i += 1 ) {

@@ -102,7 +102,7 @@ describe( "Toggle test suite", function() {
 			$( selector ).each( function() {
 				ariaControls += this.id + " ";
 			} );
-			expect($toggleOthers.attr("aria-controls")).to.equal(String(ariaControls).trim());
+			expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( String( ariaControls ).trim() );
 		} );
 
 		it( "should have aria tablist attributes if a tablist", function() {
