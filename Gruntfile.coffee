@@ -538,6 +538,7 @@ module.exports = (grunt) ->
 
 						# Exemptions...
 						"!node_modules/**"
+						"!patches/**"
 						"!lib/**"
 						"!dist/**"
 						"!.DS_Store"
