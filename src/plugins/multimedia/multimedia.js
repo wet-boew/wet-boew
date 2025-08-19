@@ -181,12 +181,17 @@ var componentName = "wb-mltmd",
 	parseTime = function( time ) {
 		var i, parts, timeStringPortion, partLength, seconds;
 
+		//console.log("yooo");
+
 		if ( time !== undef ) {
 			if ( time.charAt( time.length - 1 ) === "s" ) {
 
 				//Duration parsing
 				return parseFloat( time.substring( 0, time.length - 1 ) );
 			} else {
+
+				//Replace SRT timecode commas with dots (TODOS: need a cleaner way of doing this, commas have no place in SMTPE timecodes, no idea if SRT timecodes have a formal name, WebVTT uses dots, might want to do the replacement in the parseSrt function instead)
+				//time = time.replace( ",", ".");
 
 				//SMTPE Timecode Parsing
 				parts = time.split( ":" ).reverse();
@@ -198,6 +203,7 @@ var componentName = "wb-mltmd",
 						parseInt( parts[ i ], 10 );
 					seconds += timeStringPortion * Math.pow( 60, i );
 				}
+				//console.log("Seconds for " + time + ": + " + seconds);
 				return seconds;
 			}
 		}
@@ -331,7 +337,8 @@ var componentName = "wb-mltmd",
 	loadCaptionsExternal = function( elm, url ) {
 		$.ajax( {
 			url: url,
-			dataType: "html",
+			dataType: "html", //why is this HTML? Isn't this a bad assumption? Shouldn't this be derived from the track element's data-type attribute and fallback to HTML? Or maybe base itself on file extensions?
+			//Sounds like I'm ok for this for now based on the giant dataType section in https://api.jquery.com/jquery.ajax/... but HTML formatting might become a pain later on
 
 			//Filters out images and objects from the content to avoid loading them
 			dataFilter: function( data ) {
@@ -346,9 +353,25 @@ var componentName = "wb-mltmd",
 					// Sanitize the response
 					captionItems = parseHtml( $( DOMPurify.sanitize( data, { WHOLE_DOCUMENT: true } ) ) );
 				} else {
+					// Old else logic assumes that if the captions aren't HTML, they're XML+TTML and goes straight to parsing
+					// Gonna change it up to check if the captions URL's extension is SRT and fallback to XML in an else (since it might have several kinds of goofy file extensions)... maybe this would work better as a case statement later on
 
-					// Response is sanitized in the XML parser function
-					captionItems = parseXml( data );
+					if ( url.endsWith( ".srt" ) ) {
+						//console.log("Droids I'm looking for..." + url);
+						//console.log( data );
+						//console.log( this );
+
+						captionItems = parseSrt( data );
+
+						console.log(captionItems[3]);
+					}
+					else {
+						// Response is sanitized in the XML parser function
+						//console.log(data);
+						captionItems = parseXml( data );
+					}
+
+					//console.log(captionItems);
 				}
 
 				if ( captionItems.length ) {
@@ -369,6 +392,58 @@ var componentName = "wb-mltmd",
 				} );
 			}
 		} );
+	},
+
+	/**
+	 * @method parseSrt
+	 * @description parse a SubRip (Xml) document and extract captions
+	 * @param {String} content The SRT fragment containing the captions
+	 * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end: 10})
+	 */
+	parseSrt = function( content ) {
+		var captions = [],
+			captionSelector = "[begin]",
+			//parser = new DOMParser(),
+			//doc = parser.parseFromString( content, "application/xml" ),
+			//captionElements = doc.querySelectorAll( captionSelector ),
+			captionElements = content.split( "\r\n\r\n" ), //this wouldn't fly in practice... the \r stuff might not always exist in practice and users might fudge the amount of line breaks
+			//Experimental regex to collect pieces of data (not sure if .* will capture multiple lines of text content): (\d+)\r?\n([\d:,]+) --> ([\d:,]+)\r?\n(.*)
+			len = captionElements.length,
+			i, captionElement, begin, end, captionPieces, text;
+
+			/* MORE TODOS:
+				-Need to refine the regex to be able to ignore reckless formatting (like extra/missing spacing) and unsupported features (like extra stuff for X/Y coordinates on the timestamp lines)
+				-Need to take caption numbers into account
+				-What if numbers are skipped or out of order?
+				-What if latter numbers use earlier timecodes than prior ones? Will the plugin cope with that scenario as-is? Will I need to re-sort the captions array based on begin times?
+				-Should I replace SRT's "dumb" tags with better ones (like b to strong, i to em)?
+				-Will need to create a WebVTT parser once I'm happy with the SRT one
+			*/
+
+		//console.log(captionElements);
+
+		for ( i = 0; i !== len; i += 1 ) {
+			captionElement = captionElements[ i ];
+
+			captionPieces = captionElement.match( /(^\d+)[\r\n]+([\d:,]+) --> ([\d:,]+)[\r\n]+(.*$)/s );
+
+			// Parse times and convert SRT timecodes into SMTPE ones beforehand (i.e. change commas into dots)
+			begin = parseTime( captionPieces[2].replace( ",", ".") );
+			end = parseTime( captionPieces[3].replace( ",", ".") );
+
+			// Polish text
+			text = DOMPurify.sanitize( captionPieces[4], { ALLOWED_TAGS: ['b', 'i', 'u', 'font'], ALLOWED_ATTR: ['color'] } ); //sanitize initial SRT markup
+			text = text.replace( /[\r\n]+/g, "<br>" );
+			text = text.replace( "<font color=", "<span style=\"color: " ); //I think this needs a regex lol
+			//maybe do a second purification run at the end to ensure my replaces didn't unpurify anything :D
+
+			captions[ captions.length ] = {
+				text: text, //deliberately adding <br> AFTER purifying since I want to disallow hardcoded <br> elements in the SRT file
+				begin: begin,
+				end: end
+			};
+		}
+		return captions;
 	},
 
 	/**
@@ -851,6 +926,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 $document.on( renderUIEvent, selector, function( event, type, data ) {
 	if ( event.namespace === componentName ) {
+		//console.log(data);
 		var $this = $( event.currentTarget ),
 			captionsUrl = wb.getUrlParts( data.captions ),
 			currentUrl = wb.getUrlParts( window.location.href ),
@@ -904,6 +980,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		// Load the captions
 		if ( currentUrl.absolute.replace( currentUrl.hash || "#", "" ) !== captionsUrl.absolute.replace( captionsUrl.hash || "#", "" ) ) {
+			//This runs if the current page's URL DIFFERS from the captions file's URL
 			loadCaptionsExternal( $media, captionsUrl.absolute );
 		} else {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
