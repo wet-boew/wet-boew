@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2024-03-25"
+	"dateModified": "2025-08-26"
 }
 ---
 
@@ -27,6 +27,7 @@
 	<li><a href="#flexbox">Flexbox</a></li>
 	<li><a href="#lists">Lists</a></li>
 	<li><a href="#positioning">Positioning</a></li>
+	<li><a href="#scripting">Scripting</a></li>
 	<li><a href="#tables">Tables</a></li>
 	<li><a href="#miscellaneous">Miscellaneous</a></li>
 	<li><a href="#dl-horizontal">Horizontal description list</a></li>
@@ -605,6 +606,34 @@
 <p class="position-relative">This is a paragraph relatively positioned.</p>
 <h4>Code sample</h4>
 <pre><code>&lt;p class="<strong>position-relative</strong>"&gt;This is a paragraph relatively positioned.&lt;/p&gt;</code></pre>
+
+<h2 id="scripting">Scripting</h2>
+
+<h3><code>nojs-hide</code></h3>
+<p>Hide content exclusively in noscript and basic HTML mode.</p>
+<h4>Working example</h4>
+<p class="nojs-hide">[Interactive content]</p>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="nojs-hide"&gt;[Interactive content]&lt;/p&gt;</code></pre>
+
+<h3><code>nojs-show</code></h3>
+<p>Show content exclusively in noscript and basic HTML mode.</p>
+<h4>Working example</h4>
+<p class="nojs-show">[Fallback content]</p>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="nojs-show"&gt;[Fallback content]&lt;/p&gt;</code></pre>
+
+<h3><code>wbdisable-show</code></h3>
+<p>Show content exclusively in basic HTML mode.</p>
+<p>Use this class carefully. Consider using the <code>nojs-show</code> class instead if the content applies to both noscript and basic HTML mode. Or even a combination of <code>nojs-show</code>, <code>wbdisable-show</code> and the <code>&lt;noscript&gt;</code> element for "generic" and mode-specific content.</p>
+<h4>Working example</h4>
+<p class="nojs-show">[Fallback content]</p>
+<p class="wbdisable-show">To use interactive features, please <a href="?wbdisable=false">switch to the standard version</a> of this page.</p>
+<noscript><p>To use interactive features, please enable JavaScript in your browser settings.</p></noscript>
+<h4>Code sample</h4>
+<pre><code>&lt;p class="nojs-show"&gt;[Fallback content]&lt;/p&gt;
+&lt;p class="wbdisable-show"&gt;To use interactive features, please &lt;a href="?wbdisable=false"&gt;switch to the standard version&lt;/a&gt; of this page.&lt;/p&gt;
+&lt;noscript&gt;&lt;p&gt;To use interactive features, please enable JavaScript in your browser settings.&lt;/p&gt;&lt;/noscript&gt;</code></pre>
 
 <h2 id="tables">Tables</h2>
 <h3><code>table-responsive</code></h3>
