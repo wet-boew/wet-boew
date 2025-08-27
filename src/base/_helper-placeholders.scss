@@ -41,7 +41,7 @@
 	&:before {
 		@extend %global-centered-overlay-container;
 
-		background: rgba(0, 0, 0, .7);
+		background: rgb(0, 0, 0, .7);
 		border-radius: 10px;
 	}
 }
@@ -60,14 +60,13 @@
 
 		color: #fff;
 		content: "\e031";
-		font: {
-			family: "Glyphicons Halflings";
-			size: 3.5em;
-		}
-
 		height: 1em;
 		line-height: 1.03;
 		width: 1em;
 		z-index: 2;
+		font: {
+			family: "Glyphicons Halflings";
+			size: 3.5em;
+		}
 	}
 }

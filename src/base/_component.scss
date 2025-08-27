@@ -6,6 +6,10 @@
  * Components and helpers style for WET-BOEW
  */
 
+%components-display-none-important {
+	display: none !important;
+}
+
 /*
  Background Utility CSS
  */
@@ -46,7 +50,7 @@ Panels
 .panel, .well {
 	&:not(:has(.panel, .well)) {
 		&:has(.stretched-link):hover, &:has(.stretched-link:focus) {
-			box-shadow: 1px 5px 7px rgba(0,0,0,.15);
+			box-shadow: 1px 5px 7px rgb(0,0,0,.15);
 		}
 	}
 }
@@ -56,4 +60,18 @@ Miscellaneous Utility CSS
  */
 .max-content {
 	max-width: max-content;
+}
+
+.nojs-show {
+	@extend %components-display-none-important;
+}
+
+.wb-disable {
+	.nojs-show {
+		display: block !important;
+	}
+
+	.nojs-hide {
+		@extend %components-display-none-important;
+	}
 }

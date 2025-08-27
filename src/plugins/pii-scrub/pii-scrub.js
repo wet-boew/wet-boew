@@ -122,7 +122,7 @@ var $document = wb.doc,
 				let fieldLabel = form.querySelector( "[for=" + field.id + "] > span.field-name" ),
 					fieldLabelText = fieldLabel ? fieldLabel.innerText : form.querySelector( "[for=" + field.id + "]" ).innerText,
 					scrubbedFieldValue = wb.findPotentialPII( field.value, true, { replaceWith: form.settings.scrubChar } ),
-					scrubValHTML = wb.findPotentialPII( field.value, true, { replaceWith: "<span role='img' aria-label='" + i18nText.redacted + "'>" + form.settings.scrubChar + "</span>" } ); // Todo add i18n
+					scrubValHTML = wb.findPotentialPII( field.value.replace( /</g, "&lt;" ), true, { replaceWith: "<span role='img' aria-label='" + i18nText.redacted + "'>" + form.settings.scrubChar + "</span>" } );
 
 				form.PIIFields.push( {
 					elm: field,
@@ -203,7 +203,7 @@ var $document = wb.doc,
 				<div class="modal-footer">
 					<div class="row">
 						<div class="col-xs-12 col-sm-5 mrgn-tp-sm"><button type="button" class="btn btn-link btn-block popup-modal-dismiss">${ i18nText.cancelBtn }</button></div>
-						<div class="col-xs-12 col-sm-7 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block popup-modal-dismiss" ${ attrScrubSubmit }>${ i18nText.confirmBtn }</button></div>
+						<div class="col-xs-12 col-sm-7 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block" ${ attrScrubSubmit }>${ i18nText.confirmBtn }</button></div>
 					</div>
 				</div>`;
 		}
@@ -213,6 +213,10 @@ var $document = wb.doc,
 
 		// Add PII fields HTML if using a custom UI template
 		if ( modalTemplate ) {
+
+			// Fix for implementers that added the "popup-modal-dismiss" class to the submit button
+			$( ".popup-modal-dismiss[" + attrScrubSubmit + "]" ).removeClass( "popup-modal-dismiss" );
+
 			$( "#" + piiModalID + " [data-scrub-modal-fields]" ).html( piiModalFields );
 		}
 	};
@@ -232,6 +236,8 @@ $document.on( "click", "#" + piiModalID + " [" + attrScrubSubmit + "]", function
 	} else {
 		form.submit();
 	}
+
+	$.magnificPopup.close();
 } );
 
 // Add the timer poke to initialize the plugin

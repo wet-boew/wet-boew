@@ -6,9 +6,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - "bower.json"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
@@ -17,9 +15,7 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - "bower.json"
-      - ".stylelint*"
-      - ".sass-lint.yml"
+      - stylelint.config.js
       - "**/*.css"
       - "**/*.scss"
       - ".github/workflows/lint-css.yml"
@@ -30,7 +26,7 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -38,13 +34,10 @@ jobs:
           cache: npm
 
       - name: Install Grunt
-        run: npm i -g bower grunt-cli --force
+        run: npm i -g grunt-cli --force
 
       - name: Install npm dependencies
         run: npm ci
 
       - name: Stylelint
         run: grunt stylelint
-
-      - name: Sass Lint
-        run: grunt sasslint

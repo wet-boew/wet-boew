@@ -2,7 +2,7 @@
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
-.provisional.wb-steps {
+.wb-steps {
 	counter-reset: fieldset_counter;
 
 	.wb-tggle-fildst {
@@ -29,4 +29,60 @@
 	.subfields {
 		border: 0;
 	}
+
+	&.quiz {
+		.steps-wrapper {
+			border-bottom: none;
+
+			.buttons {
+				.btn {
+					display: inline-block;
+					margin: 10px 1%;
+					width: 48%;
+
+				}
+			}
+		}
+
+
+		fieldset {
+			legend {
+				& + * {
+					clear: left;
+				}
+			}
+		}
+
+		.wb-tggle-fildst {
+			> legend:before {
+				content: "";
+				counter-increment: none;
+			}
+
+			ul {
+				list-style: none;
+				padding-left: 20px;
+			}
+		}
+
+		label {
+			display: block;
+		}
+
+		progress.progressBar {
+			width: 100%;
+		}
+
+		.progressText {
+			text-align: center;
+		}
+
+		p {
+			font-size: 20px;
+		}
+	}
+}
+
+.cnt-wdth-lmtd main .panel.stepsquiz:has( .wb-steps.quiz ) {
+	max-width: 65ch;
 }

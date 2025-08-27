@@ -7,16 +7,9 @@
 	"tag": "stepsform",
 	"parentdir": "stepsform",
 	"altLangPrefix": "stepsform",
-	"dateModified": "2020-09-15"
+	"dateModified": "2025-08-04"
 }
 ---
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
-
 <section>
 	<h2>Purpose</h2>
 	<p>Provides the ability to split a form into steps (without/with generic validation).</p>
@@ -25,22 +18,22 @@
 <section>
 	<h2>Example</h2>
 
-	<div class="wb-frmvld provisional wb-steps">
+	<div class="wb-frmvld wb-steps">
 		<form action="#" method="get" id="steps-example">
 			<fieldset id="client">
 				<legend>Client Information</legend>
 				<div>
 					<div class="form-group">
 						<label for="firstname" class="required"><span class="field-name">First name</span></label>
-						<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required" />
+						<input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required">
 					</div>
 					<div class="form-group">
 						<label for="lastname" class="required"><span class="field-name">Last name</span></label>
-						<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required" />
+						<input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required">
 					</div>
 					<div class="form-group">
 						<label for="dateOfBirth" class="required"><span class="field-name">Date of Birth</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-						<input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required="required" />
+						<input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required="required">
 					</div>
 				</div>
 			</fieldset>
@@ -49,15 +42,15 @@
 				<div>
 					<div class="form-group">
 						<label for="preferredNumber" class="required">Preferred: <span class="field-name">Phone Number</span></label>
-						<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" required="required" />
+						<input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" required="required">
 					</div>
 					<div class="form-group">
 						<label for="secondaryNumber">Secondary: <span class="field-name">Phone Number</span></label>
-						<input class="form-control" id="secondaryNumber" name="secondaryNumber" type="tel" data-rule-phoneUS="true" />
+						<input class="form-control" id="secondaryNumber" name="secondaryNumber" type="tel" data-rule-phoneUS="true">
 					</div>
 					<div class="form-group">
 						<label for="email"><span class="field-name">Email Address</span> (test@domain)</label>
-						<input class="form-control" id="email" name="email" type="email" />
+						<input class="form-control" id="email" name="email" type="email">
 					</div>
 				</div>
 			</fieldset>
@@ -68,46 +61,236 @@
 					<fieldset class="subfields">
 						<legend><span class="field-name">Ethics 1</span>: You pay $10.00 bucks for a purchase, but receive change for $20.00 bucks. Would you keep the extra money?</legend>
 						<div class="radio">
-							<label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1"/>&#160;Definitely Not</label>&#160;
-							<label for="probNot-1"><input type="radio" name="ethics1" value="probNot-1" id="probNot-1"/>&#160;Probably Not</label>&#160;
-							<label for="maybe-1"><input type="radio" name="ethics1" value="maybe-1" id="maybe-1"/>&#160;Maybe (Not Sure)</label>&#160;
-							<label for="probably-1"><input type="radio" name="ethics1" value="probably-1" id="probably-1"/>&#160;Probably</label>&#160;
-							<label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1"/>&#160;Definitely</label>
+							<label for="defNot-1"><input type="radio" name="ethics1" value="defNot-1" id="defNot-1">&#160;Definitely Not</label>&#160;
+							<label for="probNot-1"><input type="radio" name="ethics1" value="probNot-1" id="probNot-1">&#160;Probably Not</label>&#160;
+							<label for="maybe-1"><input type="radio" name="ethics1" value="maybe-1" id="maybe-1">&#160;Maybe (Not Sure)</label>&#160;
+							<label for="probably-1"><input type="radio" name="ethics1" value="probably-1" id="probably-1">&#160;Probably</label>&#160;
+							<label for="definitely-1"><input type="radio" name="ethics1" value="definitely-1" id="definitely-1">&#160;Definitely</label>
 						</div>
 					</fieldset>
 					<fieldset class="subfields">
 						<legend><span class="field-name">Ethics 2</span>: You need a software, but can't wait for office to make a decision. Against license restrictions would you download it?</legend>
 						<div class="radio">
-							<label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2"/>&#160;Definitely Not</label>&#160;
-							<label for="probNot-2"><input type="radio" name="ethics2" value="probNot-2" id="probNot-2"/>&#160;Probably Not</label>&#160;
-							<label for="maybe-2"><input type="radio" name="ethics2" value="maybe-2" id="maybe-2"/>&#160;Maybe (Not Sure)</label>&#160;
-							<label for="probably-2"><input type="radio" name="ethics2" value="probably-2" id="probably-2"/>&#160;Probably</label>&#160;
-							<label for="definitely-2"><input type="radio" name="ethics2" value="definitely-2" id="definitely-2"/>&#160;Definitely</label>
+							<label for="defNot-2"><input type="radio" name="ethics2" value="defNot-2" id="defNot-2">&#160;Definitely Not</label>&#160;
+							<label for="probNot-2"><input type="radio" name="ethics2" value="probNot-2" id="probNot-2">&#160;Probably Not</label>&#160;
+							<label for="maybe-2"><input type="radio" name="ethics2" value="maybe-2" id="maybe-2">&#160;Maybe (Not Sure)</label>&#160;
+							<label for="probably-2"><input type="radio" name="ethics2" value="probably-2" id="probably-2">&#160;Probably</label>&#160;
+							<label for="definitely-2"><input type="radio" name="ethics2" value="definitely-2" id="definitely-2">&#160;Definitely</label>
 						</div>
 					</fieldset>
 				</div>
 			</fieldset>
-			<input type="submit" name="submit" value="Submit" class="btn btn-primary" />
+			<input type="submit" name="submit" value="Submit" class="btn btn-primary">
 		</form>
 	</div>
 
 	<details class="mrgn-tp-md mrgn-bttm-md">
 		<summary>View code</summary>
-		<ol>
-			<li>Create a <code>&lt;div&gt;</code> element with class <code>wb-steps</code> (you can also add class <code>wb-frmvld</code> for validation).
-				<pre><code>&lt;div class=&quot;wb-frmvld wb-steps&quot;&gt;&lt;/div&gt;</code></pre>
-			</li>
-			<li>Within previous the <code>&lt;div&gt;</code> element add a <code>&lt;form&gt;</code> element.
-				<pre><code>&lt;form action="#" method="get" id="steps-example"&gt;&lt;/form&gt;</code></pre>
-			</li>
-			<li>Within previous the <code>&lt;form&gt;</code> element add your <code>&lt;fieldset&gt;</code> element which will need an <code>&lt;legend&gt;</code> and <code>&lt;div&gt;</code>.
-				<small>These will become your steps</small>
-				<pre><code>&lt;fieldset&gt;<br/>&lt;legend&gt;Client Information&lt;/legend&gt;<br/>&lt;div&gt;(Any content in the div will be hidden.)&lt;/div&gt;<br/>&lt;/fieldset&gt;</code></pre>
-			</li>
-		</ol>
+		<pre><code>&lt;section&gt;
+	&lt;h2&gt;Example&lt;/h2&gt;
+
+	&lt;div class="wb-frmvld wb-steps"&gt;
+		&lt;form action="#" method="get" id="steps-example"&gt;
+			&lt;fieldset id="client"&gt;
+				&lt;legend&gt;Client Information&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="firstname" class="required"&gt;&lt;span class="field-name"&gt;First name&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="firstname" name="firstname" type="text" data-rule-minlength="2" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="lastname" class="required"&gt;&lt;span class="field-name"&gt;Last name&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="lastname" name="lastname" type="text" data-rule-minlength="2" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="dateOfBirth" class="required"&gt;&lt;span class="field-name"&gt;Date of Birth&lt;/span&gt;&lt;span class="datepicker-format"&gt; (&lt;abbr title="Four digits year, dash, two digits month, dash, two digits day"&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date" required="required"&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset id="contact"&gt;
+				&lt;legend&gt;Contact Information&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="preferredNumber" class="required"&gt;Preferred: &lt;span class="field-name"&gt;Phone Number&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="preferredNumber" name="preferredNumber" type="tel" data-rule-phoneUS="true" required="required"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="secondaryNumber"&gt;Secondary: &lt;span class="field-name"&gt;Phone Number&lt;/span&gt;&lt;/label&gt;
+						&lt;input class="form-control" id="secondaryNumber" name="secondaryNumber" type="tel" data-rule-phoneUS="true"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="email"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (test@domain)&lt;/label&gt;
+						&lt;input class="form-control" id="email" name="email" type="email"&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset id="questionaire"&gt;
+				&lt;legend&gt;Ethics Questionnaire&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;p&gt;&lt;small&gt;For each of the following examples, indicate whether or not you feel that there is an ethical issue.&lt;/small&gt;&lt;/p&gt;
+					&lt;fieldset class="subfields"&gt;
+						&lt;legend&gt;&lt;span class="field-name"&gt;Ethics 1&lt;/span&gt;: You pay $10.00 bucks for a purchase, but receive change for $20.00 bucks. Would you keep the extra money?&lt;/legend&gt;
+						&lt;div class="radio"&gt;
+							&lt;label for="defNot-1"&gt;&lt;input type="radio" name="ethics1" value="defNot-1" id="defNot-1"&gt;&#160;Definitely Not&lt;/label&gt;&#160;
+							&lt;label for="probNot-1"&gt;&lt;input type="radio" name="ethics1" value="probNot-1" id="probNot-1"&gt;&#160;Probably Not&lt;/label&gt;&#160;
+							&lt;label for="maybe-1"&gt;&lt;input type="radio" name="ethics1" value="maybe-1" id="maybe-1"&gt;&#160;Maybe (Not Sure)&lt;/label&gt;&#160;
+							&lt;label for="probably-1"&gt;&lt;input type="radio" name="ethics1" value="probably-1" id="probably-1"&gt;&#160;Probably&lt;/label&gt;&#160;
+							&lt;label for="definitely-1"&gt;&lt;input type="radio" name="ethics1" value="definitely-1" id="definitely-1"&gt;&#160;Definitely&lt;/label&gt;
+						&lt;/div&gt;
+					&lt;/fieldset&gt;
+					&lt;fieldset class="subfields"&gt;
+						&lt;legend&gt;&lt;span class="field-name"&gt;Ethics 2&lt;/span&gt;: You need a software, but can't wait for office to make a decision. Against license restrictions would you download it?&lt;/legend&gt;
+						&lt;div class="radio"&gt;
+							&lt;label for="defNot-2"&gt;&lt;input type="radio" name="ethics2" value="defNot-2" id="defNot-2"&gt;&#160;Definitely Not&lt;/label&gt;&#160;
+							&lt;label for="probNot-2"&gt;&lt;input type="radio" name="ethics2" value="probNot-2" id="probNot-2"&gt;&#160;Probably Not&lt;/label&gt;&#160;
+							&lt;label for="maybe-2"&gt;&lt;input type="radio" name="ethics2" value="maybe-2" id="maybe-2"&gt;&#160;Maybe (Not Sure)&lt;/label&gt;&#160;
+							&lt;label for="probably-2"&gt;&lt;input type="radio" name="ethics2" value="probably-2" id="probably-2"&gt;&#160;Probably&lt;/label&gt;&#160;
+							&lt;label for="definitely-2"&gt;&lt;input type="radio" name="ethics2" value="definitely-2" id="definitely-2"&gt;&#160;Definitely&lt;/label&gt;
+						&lt;/div&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;input type="submit" name="submit" value="Submit" class="btn btn-primary"&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+	&lt;/section&gt;
+		</code>
+		</pre>
 	</details>
 
 	<noscript>
 		<p>Steps form cannot be used without JavaScript. Instead the form will convert back to an normal form and will rely on browser/server validation (not part of WET).</p>
 	</noscript>
+</section>
+
+<section>
+	<h2 id="default-1">Example - Steps Form with quiz option</h2>
+	<div class="wb-frmvld wb-steps quiz">
+	<form action="#" id="quiz-example">
+		<fieldset>
+			<legend>1. Which is your favorite fruit?</legend>
+			<div>
+				<p>My favorite fruit is:</p>
+				<ul class="form-group list-unstyled">
+					<li class="radio">
+						<label for="apple-1"><input type="radio" name="fruit" id="apple-1" value="apple">Apple</label>
+					</li>
+					<li class="radio">
+						<label for="orange-1"><input type="radio" name="fruit" id="orange-1" value="orange">Orange</label>
+					</li>
+					<li class="radio">
+						<label for="banana-1"><input type="radio" name="fruit" id="banana-1" value="banana">Banana</label>
+					</li>
+					<li class="radio">
+						<label for="kiwi-1"><input type="radio" name="fruit" id="kiwi-1" value="Kiwi">Kiwi</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>2. Which is your favorite pet?</legend>
+			<div>
+				<p>My favorite pet is:</p>
+				<ul class="form-group list-unstyled">
+					<li class="radio">
+						<label for="dog-1"><input type="radio" name="animal" id="dog-1" value="dog">Dog</label>
+					</li>
+					<li class="radio">
+						<label for="cat-1"><input type="radio" name="animal" id="cat-1" value="cat">Cat</label>
+					</li>
+					<li class="radio">
+						<label for="bird-1"><input type="radio" name="animal" id="bird-1" value="bird">Bird</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>3. Condiments</legend>
+			<div>
+				<p>Choose your condiments:</p>
+				<ul class="form-group list-unstyled">
+					<li class="checkbox">
+						<label for="ketchup-1"><input type="checkbox" id="ketchup-1" value="ketchup" name="condiments">Ketchup</label>
+					</li>
+					<li class="checkbox">
+						<label for="relish-1"><input type="checkbox" id="relish-1"  value="relish" name="condiments">Relish</label>
+					</li>
+					<li class="checkbox">
+						<label for="mustard-1"><input type="checkbox" id="mustard-1"  value="mustard" name="condiments">Mustard</label>
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+		<input type="submit" class="btn btn-primary" />
+	</form>
+	</div>
+
+	<details class="mrgn-tp-md mrgn-bttm-md">
+		<summary>View code</summary>
+		<pre><code>&lt;section&gt;
+	&lt;h2 id="default-1"&gt;Example - Steps Form with quiz option&lt;/h2&gt;
+	&lt;div class="wb-frmvld wb-steps quiz"&gt;
+	&lt;form action="#" id="quiz-example"&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;1. Which is your favorite fruit?&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;My favorite fruit is:&lt;/p&gt;
+				&lt;ul class="form-group list-unstyled"&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="apple-1"&gt;&lt;input type="radio" name="fruit" id="apple-1" value="apple"&gt;Apple&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="orange-1"&gt;&lt;input type="radio" name="fruit" id="orange-1" value="orange"&gt;Orange&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="banana-1"&gt;&lt;input type="radio" name="fruit" id="banana-1" value="banana"&gt;Banana&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="kiwi-1"&gt;&lt;input type="radio" name="fruit" id="kiwi-1" value="Kiwi"&gt;Kiwi&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;2. Which is your favorite pet?&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;My favorite pet is:&lt;/p&gt;
+				&lt;ul class="form-group list-unstyled"&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="dog-1"&gt;&lt;input type="radio" name="animal" id="dog-1" value="dog"&gt;Dog&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="cat-1"&gt;&lt;input type="radio" name="animal" id="cat-1" value="cat"&gt;Cat&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="radio"&gt;
+						&lt;label for="bird-1"&gt;&lt;input type="radio" name="animal" id="bird-1" value="bird"&gt;Bird&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;3. Condiments&lt;/legend&gt;
+			&lt;div&gt;
+				&lt;p&gt;Choose your condiments:&lt;/p&gt;
+				&lt;ul class="form-group list-unstyled"&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;label for="ketchup-1"&gt;&lt;input type="checkbox" id="ketchup-1" value="ketchup" name="condiments"&gt;Ketchup&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;label for="relish-1"&gt;&lt;input type="checkbox" id="relish-1"  value="relish" name="condiments"&gt;Relish&lt;/label&gt;
+					&lt;/li&gt;
+					&lt;li class="checkbox"&gt;
+						&lt;label for="mustard-1"&gt;&lt;input type="checkbox" id="mustard-1"  value="mustard" name="condiments"&gt;Mustard&lt;/label&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;input type="submit" class="btn btn-primary" /&gt;
+	&lt;/form&gt;
+	&lt;/div&gt;
+&lt;/section&gt;
+		</code>
+		</pre>
+	</details>
 </section>

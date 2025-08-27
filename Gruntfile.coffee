@@ -23,7 +23,6 @@ module.exports = (grunt) ->
 			"docs-min"
 			"demos-min"
 			"htmllint"
-			"bootlint"
 			"sri"
 		]
 	)
@@ -53,12 +52,27 @@ module.exports = (grunt) ->
 		"deploy-build"
 		"Produces the production files"
 		[
-			"build"
-			"minify"
 			"pages:theme"
 			"docs-min"
 			"demos-min"
 			"sri"
+		]
+	)
+
+	@registerTask(
+		"prepare"
+		"Prepares wet-boew for use as dependency"
+		[
+			"clean:dist"
+			"assets"
+			"sprite"
+			"sass"
+			"concat:supports"
+			"postcss"
+			"usebanner:css"
+			"js"
+			"i18n_csv:assemble"
+			"minify"
 		]
 	)
 
@@ -216,8 +230,9 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks"
 		[
 			"eslint"
-			"sasslint"
+			"stylelint:scss"
 			"lintspaces"
+			"jsonlint"
 		]
 	)
 
@@ -295,7 +310,7 @@ module.exports = (grunt) ->
 
 		concat:
 			options:
-				banner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
+				banner: "<%= banner %>\n\n/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 			core:
 				options:
@@ -523,6 +538,7 @@ module.exports = (grunt) ->
 
 						# Exemptions...
 						"!node_modules/**"
+						"!patches/**"
 						"!lib/**"
 						"!dist/**"
 						"!.DS_Store"
@@ -551,23 +567,11 @@ module.exports = (grunt) ->
 					],
 					showCodes: true
 
-		sasslint:
-			options:
-				configFile: ".sass-lint.yml"
-			all:
-				expand: true
-				src: [
-						"site/**/*.scss"
-						"src/**/*.scss"
-						"theme/**/*.scss"
-						"!src/**/sprites/**"
-					]
-
 		# Compiles the Sass files
 		sass:
 			options:
 				implementation: sass,
-				includePaths: [
+				loadPaths: [
 					"node_modules"
 				],
 				indentType: "tab",
@@ -835,7 +839,8 @@ module.exports = (grunt) ->
 						"Element “head” is missing a required instance of child element “title”."
 						"Element “li” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)"
 						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
-						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections."
+						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections, or else use a “div” element instead for any cases where no heading is needed."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 					noLangDetect: true
 				src: [
@@ -855,6 +860,7 @@ module.exports = (grunt) ->
 						"The “contentinfo” role is unnecessary for element “footer”."
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/demos/lightbox/*.html"
@@ -870,6 +876,7 @@ module.exports = (grunt) ->
 						"The “banner” role is unnecessary for element “header”."
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
 						"The text content of element “time” was not in the required format: The literal did not satisfy the time-datetime format."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/**/reports/*.html"
@@ -889,6 +896,7 @@ module.exports = (grunt) ->
 						"Element “search” not allowed as child of element “section” in this context. (Suppressing further errors from this subtree.)"
 						"Element “search” not allowed as child of element “div” in this context. (Suppressing further errors from this subtree.)"
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
 					]
 				src: [
 					"dist/unmin/**/*.html"
@@ -900,34 +908,6 @@ module.exports = (grunt) ->
 					"!dist/unmin/**/reports/*.html"
 					"!dist/unmin/**/demo/*.html"
 					"!dist/unmin/**/demo-*/*.html"
-				]
-
-		bootlint:
-			all:
-				options:
-					stoponerror: true
-					stoponwarning: true
-					showallerrors: true
-					relaxerror: [
-						"W002" # `<head>` is missing X-UA-Compatible `<meta>` tag that disables old IE compatibility modes
-						"W005" # Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work; however, you might not be using Bootstrap's JavaScript
-						# Opinionated exclusions
-						"W007" # Found one or more `<button>`s missing a `type` attribute.
-						# TODO: The rules below should be resolved
-						"W009" # Using empty spacer columns isn't necessary with Bootstrap's grid. So instead of having an empty grid column with `class=\"col-xs-12"` , just add `class=\"col-xs-offset-12"` to the next grid column.
-						"W010" # Using `.pull-left` or `.pull-right` as part of the media object component is deprecated as of Bootstrap v3.3.0. Use `.media-left` or `.media-right` instead.
-						"E013" # Only columns (`.col-*-*`) may be children of `.row`s
-						"E014" # Columns (`.col-*-*`) can only be children of `.row`s or `.form-group`s
-						"E031" # Glyphicon classes must only be used on elements that contain no text content and have no child elements.
-						"E032" # `.modal-content` must be a child of `.modal-dialog`
-						"E049" # `.modal-dialog` must have a `role="document"` attribute.
-						"E051" # `.pull-right` and `.pull-left` must not be used on `.col-*-*` elements
-					]
-				src: [
-					"dist/**/*.html"
-					# Ignore HTML fragments used for the menus
-					"!dist/**/assets/*.html"
-					"!dist/**/ajax/*.html"
 				]
 
 		copy:
@@ -954,6 +934,7 @@ module.exports = (grunt) ->
 						"mocha/mocha.js"
 						"mocha/mocha.css"
 						"expect.js/index.js"
+						"nise/nise.js"
 						"sinon/pkg/sinon.js"
 					]
 					dest: "dist/unmin/test"
@@ -966,14 +947,6 @@ module.exports = (grunt) ->
 					cwd: "src/polyfills"
 					src: "**/*.js"
 					dest: "<%= coreDist %>/js/polyfills"
-					expand: true
-					flatten: true
-				,
-					cwd: "lib"
-					src: [
-						"SideBySideImproved/jquery.flot.orderBars.js"
-					]
-					dest: "<%= coreDist %>/js/deps"
 					expand: true
 					flatten: true
 				,
@@ -992,7 +965,7 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
-						"unorm/lib/unorm.js"
+						"side-by-side-improved/jquery.flot.orderBars.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true
@@ -1182,20 +1155,18 @@ module.exports = (grunt) ->
 				tasks: "pages:docs"
 
 		eslint:
-			options:
-				overrideConfigFile: if process.env.CI == "true" then ".eslintrc.ci.json" else ".eslintrc.json"
-				quiet: true
 			all:
 				src: [
 					"**/*.js"
+					"**/*.mjs"
 
 					# Copied ignores from .editorconfig
-					"!node_modules/**/*.js"
-					"!dist/**/*.js"
-					"!src/polyfills/slider/slider.js"
-					"!src/polyfills/events/mobile.js"
-					"!lib/**/*.js"
+					"!dist/**"
+					"!lib/**"
+					"!node_modules/**"
 					"!src/core/dep/modernizr-custom.js"
+					"!src/polyfills/events/mobile.js"
+					"!src/polyfills/slider/slider.js"
 				]
 
 		connect:
@@ -1275,9 +1246,22 @@ module.exports = (grunt) ->
 					config: grunt.file.readJSON(".markdownlint.json")
 				src: [
 					'**/*.md'
+					'.github/**/*.md'
 					'!node_modules/**/*.md'
 					'!lib/**/*.md'
 				]
+
+		jsonlint:
+			all:
+				src: [
+					"**/*.json",
+					"**/*.json-ld"
+					"!**/bad-json-content*.*"
+					"!node_modules/**"
+				]
+				options: {
+					indent: "\t"
+				}
 
 	require( "load-grunt-tasks" )( grunt, requireResolution: true )
 

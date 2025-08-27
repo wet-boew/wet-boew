@@ -6,8 +6,8 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".eslint*"
       - "**/*.js"
+      - "**/*.mjs"
       - ".github/workflows/lint-js.yml"
       - "!lib/"
       - "!src/core/dep/modernizr-custom.js"
@@ -18,8 +18,8 @@ on:
     paths:
       - "package*.json"
       - "Gruntfile.coffee"
-      - ".eslint*"
       - "**/*.js"
+      - "**/*.mjs"
       - ".github/workflows/lint-js.yml"
       - "!lib/"
       - "!src/core/dep/modernizr-custom.js"
@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # setup-node task is used without a particular version in order to load
       # the ESLint problem matchers

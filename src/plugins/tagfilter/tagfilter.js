@@ -218,7 +218,7 @@ const componentName = "wb-tagfilter",
 		matchItemsToFilters( instance );
 		updateDOMItems( instance );
 
-		$( instance ).trigger( "wb-contentupdated", [ { source: componentName } ] );
+		$( instance ).trigger( "wb-filtered", [ { source: componentName } ] );
 	};
 
 // When a filter is updated
@@ -282,36 +282,20 @@ $document.on( "submit", selector + " form", function( event )  {
 	event.preventDefault();
 } );
 
-$document.on( "wb-contentupdated", selector, function( event, data )  {
+// Reinitialize tagfilter if content on the page has been updated by another plugin
+$document.on( "wb-contentupdated", selector + ", " + selector + " *", function()  {
 	let that = this,
 		wrapper = $( this ).find( "." + itemsWrapperClass ),
-		visibleItems = this.querySelectorAll( "." + itemsWrapperClass + " " + "[data-wb-tags]:not(." + tgFilterOutClass + ", ." + filterOutClass + ")" ),
-		supportsHas = window.getComputedStyle( document.documentElement ).getPropertyValue( "--supports-has" ); // Get "--supports-has" CSS property
+		visibleItems = this.querySelectorAll( "." + itemsWrapperClass + " " + "[data-wb-tags]:not(." + tgFilterOutClass + ", ." + filterOutClass + ")" );
 
-	// Reinitialize tagfilter if content on the page has been updated by another plugin
-	if ( data && data.source !== componentName ) {
-		if ( wait ) {
-			clearTimeout( wait );
-		}
-
-		wait = setTimeout( function() {
-			that.classList.remove( "wb-init", componentName + "-inited" );
-			$( that ).trigger( "wb-init." + componentName );
-		}, 100 );
+	if ( wait ) {
+		clearTimeout( wait );
 	}
 
-	// Show no result message if on Firefox -- Remove once Firefox supports ":has()"
-	if ( supportsHas === "false" ) {
-		let noResultItem = this.querySelector( "." + noResultWrapperClass );
-
-		if ( noResultItem && this.items.length > 0 ) {
-			if ( visibleItems.length < 1 ) {
-				noResultItem.style.display = "block";
-			} else {
-				noResultItem.style.display = "none";
-			}
-		}
-	}
+	wait = setTimeout( function() {
+		that.classList.remove( "wb-init", componentName + "-inited" );
+		$( that ).trigger( "wb-init." + componentName );
+	}, 100 );
 
 	//	Filter events are bound before tag filter so it hides the container
 	if ( visibleItems.length > 0 && wrapper.hasClass( filterOutClass ) ) {

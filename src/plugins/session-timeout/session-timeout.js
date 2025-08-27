@@ -331,7 +331,11 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 		// Negative confirmation or the user took too long; logout
 		} else {
-			window.location.href = settings.signInUrl ? settings.signInUrl : settings.logouturl;
+
+			// Use setTimeout() to navigate asynchronously (to support lightbox Escape key presses)
+			setTimeout( function() {
+				window.location.href = settings.signInUrl ? settings.signInUrl : settings.logouturl;
+			} );
 		}
 	},
 
@@ -388,7 +392,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			return null;
 		}
 
-		result = /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/.exec( $.trim( value.toString() ) );
+		result = /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/.exec( value.toString().trim() );
 		if ( result[ 2 ] ) {
 			num = parseFloat( result[ 1 ] );
 			mult = powers[ result[ 2 ] ] || 1;

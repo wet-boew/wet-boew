@@ -84,7 +84,7 @@
 	position: relative;
 
 	&.video {
-		&:not(.playing):not(.waiting) {
+		&:not(.playing):not(.waiting):not(.youtube) {
 			@include multimedia-overlay-base;
 			@include multimedia-overlay-play;
 		}
@@ -140,16 +140,6 @@
 		&.cc_on {
 			.wb-mm-cc {
 				@extend %multimedia-display-none;
-			}
-		}
-
-		&.video {
-			&:not(.playing):not(.waiting) {
-				.display {
-					&:before {
-						background: $mm-ctrl-bg-color;
-					}
-				}
 			}
 		}
 	}
@@ -230,13 +220,12 @@
 
 		background: transparent;
 		border: 0;
+		color: $mm-ctrl-fg-color;
+		font-size: 130%;
 		border-top: {
 			left-radius: 0 !important;
 			right-radius: 0 !important;
 		}
-
-		color: $mm-ctrl-fg-color;
-		font-size: 130%;
 
 		&[disabled] {
 			&:active {

@@ -43,7 +43,7 @@ describe( "data-ajax test suite", function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		server = sinon.fakeServer.create();
+		server = nise.fakeServer.create();
 
 		server.respondWith( "/data-ajax.html", ajax[ "/data-ajax.html" ] );
 		server.respondWith( "/data-ajax-update.html", ajax[ "/data-ajax-update.html" ] );

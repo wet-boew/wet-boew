@@ -76,14 +76,6 @@ var componentName = "wb-filter",
 				};
 			}
 
-			Modernizr.addTest( "stringnormalize", "normalize" in String );
-			Modernizr.load( {
-				test: Modernizr.stringnormalize,
-				nope: [
-					"site!deps/unorm" + wb.getMode() + ".js"
-				]
-			} );
-
 			if ( !elm.id ) {
 				elm.id = wb.getId();
 			}
@@ -125,7 +117,7 @@ var componentName = "wb-filter",
 				if ( settings.source ) {
 					console.warn( componentName + ": " + "the 'source' option is not compatible with the 'uiTemplate' option. If both options are defined, only 'uiTemplate' will be registered." );
 				}
-			} else {
+			} else if ( !document.querySelector( "input#" + elm.id + "-inpt" ) ) {
 				inptId = elm.id + "-inpt";
 
 				if ( settings.live ) {
@@ -255,7 +247,13 @@ var componentName = "wb-filter",
 
 		for ( i = 0; i < itemsLength; i += 1 ) {
 			$item = $items.eq( i );
-			text = unAccent( $item.text() );
+
+			// Get the text content of the item, either from the shadow DOM or directly
+			if ( $item[ 0 ].shadowRoot ) {
+				text = unAccent( $item[ 0 ].shadowRoot.textContent );
+			} else {
+				text = unAccent( $item.text() );
+			}
 
 			if ( !searchFilterRegularExp.test( text ) ) {
 				if ( hndParentSelector ) {
@@ -270,8 +268,9 @@ var componentName = "wb-filter",
 		}
 		fCallBack.apply( self, arguments );
 
-		$elm.trigger( "wb-contentupdated" );
+		$elm.trigger( "wb-filtered" );
 	},
+
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section ),
 			sectionsLength = $sections.length,
@@ -309,6 +308,20 @@ $document.on( "keyup", selectorInput, function( event ) {
 		}
 		wait = setTimeout( filter.bind( this, $input, $elm, $elm.data( componentName ) ), 250 );
 	}
+} );
+
+// Reinitialize filter if content on the page has been updated by another plugin
+$document.on( "wb-contentupdated", selector + ", " + selector + " *", function()  {
+	let that = this;
+
+	if ( wait ) {
+		clearTimeout( wait );
+	}
+
+	wait = setTimeout( function() {
+		that.classList.remove( "wb-init", componentName + "-inited" );
+		$( that ).trigger( "wb-init." + componentName );
+	}, 100 );
 } );
 
 //	Trigger on form submit if not live changes

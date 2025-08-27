@@ -201,7 +201,7 @@ var componentName = "wb-charts",
 							"/getcellvalue": function( elem ) {
 
 								// Get the number from the data cell, #3267
-								var cellValue = $.trim( elem.dataset.wbChartsValue || $( elem ).text() );
+								var cellValue = String( elem.dataset.wbChartsValue || $( elem ).text() ).trim();
 								return [
 									parseFloat( cellValue.replace( /(\d{1,3}(?:(?: |,)\d{3})*)(?:(?:.|,)(\d{1,2}))?$/, function( a, b, c ) {
 										return b.replace( / |,/g, "" ) + "." + c || "0";

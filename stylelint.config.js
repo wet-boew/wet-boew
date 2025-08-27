@@ -8,6 +8,14 @@ module.exports = {
 		"color-function-notation": "legacy",
 
 		// Suppress stylelint-config-recommended errors
+		"declaration-property-value-keyword-no-deprecated": [
+			true,
+			{
+				ignoreKeywords: [
+					"break-word" // word-break: break-word; is depreciated but used
+				]
+			}
+		],
 		"font-family-no-duplicate-names": [
 			true,
 			{
@@ -61,6 +69,7 @@ module.exports = {
 				"at-rule-empty-line-before": null,
 				"at-rule-no-vendor-prefix": null,
 				"color-hex-length": null,
+				"color-function-alias-notation": null,
 				"comment-empty-line-before": null,
 				"comment-whitespace-inside": null,
 				"declaration-block-no-redundant-longhand-properties": null,
@@ -92,7 +101,15 @@ module.exports = {
 			extends: [
 				"stylelint-config-standard-scss"
 			],
+			plugins: [
+				"stylelint-order"
+			],
 			rules: {
+
+				// Additional rules for replacing sass-lint
+				"order/properties-alphabetical-order": true,
+
+				// Suppress stylelint-config-standard errors
 				"declaration-block-no-redundant-longhand-properties": null,
 				"no-descending-specificity": null, // Extremely slow
 				"no-invalid-position-at-import-rule": null, // Fixable, need to run sass migrator

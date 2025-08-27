@@ -177,7 +177,7 @@ describe( "Session Timeout test suite", function() {
 		before( function( done ) {
 
 			// Setup the fake server response for all POST requests to foo.html
-			server = sandbox.useFakeServer();
+			server = nise.fakeServer.create();
 			server.respondWith( "POST", "foo.html", "true" );
 
 			callback = done;

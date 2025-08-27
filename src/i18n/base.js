@@ -258,7 +258,11 @@ wb.i18nDict = {
 	"pii-view-more-info": "@pii-view-more-info@",
 	"pii-yes-btn": "@pii-yes-btn@",
 	"pii-cancel-btn": "@pii-cancel-btn@",
-	"redacted": "@redacted@"
+	"redacted": "@redacted@",
+
+	/* Steps form */
+	"rel-preposition": "@rel-preposition@",
+	"progress-label": "@progress-label@"
 };
 
 } )( wb );
