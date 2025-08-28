@@ -209,6 +209,7 @@ const componentName = "wb-tagfilter",
 		} else if ( controlFieldset.length > 0 ) {
 			return controlFieldset.attr( "data-" + componentName + "-group" );
 		}
+
 		return control.name;
 	},
 
@@ -279,6 +280,7 @@ $document.on( "submit", selector + " form", function( event )  {
 	if ( !live ) {
 		update( elm );
 	}
+
 	event.preventDefault();
 } );
 

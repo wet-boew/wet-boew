@@ -63,6 +63,7 @@ var componentName = "wb-filter",
 			} else {
 				setDefault = defaults.std;
 			}
+
 			setDefault.live = defaults.live;
 
 			settings = $.extend( true, {}, setDefault, window[ componentName ], wb.getData( $elm, componentName ) );
@@ -85,6 +86,7 @@ var componentName = "wb-filter",
 				uiTemplate = document.querySelector( settings.uiTemplate );
 				uiInpt = uiTemplate.querySelector( "input[type=search]" );
 				formElement = uiTemplate.querySelector( "form" );
+
 				if ( formElement ) {
 					formElement.setAttribute( "data-" + dtForm, elm.id );
 				}
@@ -286,6 +288,7 @@ var componentName = "wb-filter",
 			}
 		}
 	},
+
 	filterBtnClick = function( event )  {
 		const $input = ( event.type === "submit" ) ? $( event.currentTarget ).find( "." + inputClass ) : $( "." + inputClass + "[data-" + dtNameFltrArea + "=" + $( event.currentTarget ).data( dtNameFltrArea ) + "]" ),
 			$elm = $( "#" + $input.data( dtNameFltrArea ) ),
@@ -310,6 +313,7 @@ $document.on( "keyup", selectorInput, function( event ) {
 		if ( wait ) {
 			clearTimeout( wait );
 		}
+
 		wait = setTimeout( filter.bind( this, $input, $elm, $elm.data( componentName ) ), 250 );
 	}
 } );
