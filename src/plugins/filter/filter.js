@@ -5,6 +5,7 @@ var componentName = "wb-filter",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	tagComponentName = "wb-tagfilter",
 	filterClass = "wb-fltr-out",
 	tagFilterClass = "wb-tgfltr-out",
 	notFilterClassSel = ":not(." + filterClass + "):not(." + tagFilterClass + ")",
@@ -293,7 +294,10 @@ var componentName = "wb-filter",
 		if ( !live ) {
 			filter( $input, $elm, $elm.data( componentName ) );
 		}
-		event.preventDefault();
+
+		if ( !$elm.hasClass( tagComponentName ) ) {
+			event.preventDefault();
+		}
 	};
 
 $document.on( "keyup", selectorInput, function( event ) {
