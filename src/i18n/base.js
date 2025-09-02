@@ -261,7 +261,10 @@ wb.i18nDict = {
 
 	/* Steps form */
 	"rel-preposition": "@rel-preposition@",
-	"progress-label": "@progress-label@"
+	"progress-label": "@progress-label@",
+
+	/* Pagination */
+	"pagination-label": "@pagination-label@"
 };
 
 } )( wb );

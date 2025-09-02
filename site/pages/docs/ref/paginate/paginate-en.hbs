@@ -6,17 +6,9 @@
 	"categoryfile": "plugins",
 	"description": "Adds pagination at the bottom of a list of items.",
 	"altLangPrefix": "paginate",
-	"dateModified": "2024-05-14"
+	"dateModified": "2025-09-10"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
-
 <span class="wb-prettify all-pre"></span>
 
 <section>
@@ -36,20 +28,29 @@
 </section>
 
 <section>
+	<h2>Evaluations and reports</h2>
+	<ul>
+		<li>Accessibility assessment
+			<ul>
+				<li><a href="../../../demos/paginate/reports/a11y-1-en.html">English report</a></li>
+				<li><a href="../../../demos/paginate/reports/a11y-1-fr.html" hreflang="fr">French report</a></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<section>
 	<h2>How to implement</h2>
 	<ol>
 		<li>
-			<p>Add the CSS classes <code>wb-paginate</code> and <code>provisional</code> to an element or a group of elements to be paginated. Simply add a JSON object as its value, i.e.:</p>
-			<pre><code>&lt;div class="wb-paginate provisional" data-wb-paginate='{
-	"appendUI": false,
-	"itemsPerPage": 12
-}'></code></pre>
+			<p>Add the CSS class <code>wb-paginate</code> to an element or a group of elements to be paginated. Simply add a JSON object as its value, i.e.:</p>
+			<pre><code>&lt;div class="wb-paginate" data-wb-paginate='{"uiTarget": "#paginationElement, "itemsPerPage": 12}'></code></pre>
 			<dl>
-				<dt>If set on a <code>&lt;table&gt;</code></dt>
+				<dt>If set on a <code>&lt;table></code></dt>
 				<dd>Otherwise specified, it will select all rows (<code>&lt;tr></code>).</dd>
-				<dt>If set on a <code>&lt;ul&gt;</code></dt>
-				<dd>Otherwise specified, it will select all <code>&lt;li&gt;</code></dd>
-				<dt>If set on any other element, like <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> or <code>&lt;div&gt;</code></dt>
+				<dt>If set on a <code>&lt;ul></code></dt>
+				<dd>Otherwise specified, it will select all <code>&lt;li></code></dd>
+				<dt>If set on any other element, like <code>&lt;section></code>, <code>&lt;article></code> or <code>&lt;div></code></dt>
 				<dd>Otherwise specified, it will select all direct children of the element.</dd>
 			</dl>
 		</li>
@@ -76,13 +77,13 @@
 				<td><code>uiTarget</code></td>
 				<td>Sets the selector for the element that will hold the pagination. If not defined, the UI will be inserted after the <code>section</code> (if defined) or after the element. In the case of a <code>&lt;table></code> or a <code>&lt;ul></code>, the code will be inserted after the element even if the <code>section</code> property is defined.</td>
 				<td>String (CSS selector)</td>
-				<td>undefined</td>
+				<td>Undefined</td>
 			</tr>
 			<tr>
 				<td><code>itemsPerPage</code></td>
 				<td>Defines the amount of items visible per page.</td>
 				<td>Number</td>
-				<td><code>25</code></td>
+				<td><code>10</code></td>
 			</tr>
 			<tr>
 				<td><code>section</code></td>
@@ -95,7 +96,7 @@
 					</dl>
 					<dl>
 						<dt>For any other element</dt>
-						<dd>undefined</dd>
+						<dd>Undefined</dd>
 					</dl>
 				</td>
 			</tr>
