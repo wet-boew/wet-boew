@@ -7,20 +7,9 @@
 	"tag": "paginate",
 	"parentdir": "paginate",
 	"altLangPrefix": "paginate",
-	"dateModified": "2024-05-14"
+	"dateModified": "2025-09-10"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent
-		minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design
-				decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small>
-	</p>
-</div>
-
 <span class="wb-prettify all-pre"></span>
 
 <h2>On this page:</h2>
@@ -33,7 +22,7 @@
 
 <section id="paginatedTable">
 	<h2>Example 1 - Table</h2>
-	<table class="table wb-paginate provisional">
+	<table class="table wb-paginate">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -285,48 +274,48 @@
 	</table>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;table class="table wb-paginate provisional">
-	&lt;thead>
-		&lt;tr>
-			&lt;th>ID&lt;/th>
-			&lt;th>Text&lt;/th>
-		&lt;/tr>
-	&lt;/thead>
-	&lt;tbody>
-		&lt;tr>
-			&lt;td>Lorem.&lt;/td>
-			&lt;td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, temporibus.&lt;/td>
-		&lt;/tr>
-		&lt;tr>
-			&lt;td>Odit!&lt;/td>
-			&lt;td>Mollitia soluta est quia nihil itaque veritatis voluptatem minima dolorem.&lt;/td>
-		&lt;/tr>
-		&lt;tr>
-			&lt;td>At?&lt;/td>
-			&lt;td>Magnam iure cupiditate tenetur? Dignissimos temporibus suscipit sed perspiciatis iste.&lt;/td>
-		&lt;/tr>
-		&lt;tr>
-			&lt;td>Accusamus.&lt;/td>
-			&lt;td>Praesentium voluptatem architecto esse omnis tempore enim blanditiis, excepturi dicta.&lt;/td>
-		&lt;/tr>
-		&lt;tr>
-			&lt;td>Alias.&lt;/td>
-			&lt;td>Illo, nobis accusantium quasi tempora asperiores veniam magni est sunt.&lt;/td>
-		&lt;/tr>
-		&lt;tr>
-			&lt;td>Animi?&lt;/td>
-			&lt;td>Ratione deserunt ut amet tempora doloremque id dolorem officia dignissimos.&lt;/td>
-		&lt;/tr>
+		<pre><code>&lt;table class="table wb-paginate"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Text&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Lorem.&lt;/td&gt;
+			&lt;td&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, temporibus.&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Odit!&lt;/td&gt;
+			&lt;td&gt;Mollitia soluta est quia nihil itaque veritatis voluptatem minima dolorem.&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;At?&lt;/td&gt;
+			&lt;td&gt;Magnam iure cupiditate tenetur? Dignissimos temporibus suscipit sed perspiciatis iste.&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Accusamus.&lt;/td&gt;
+			&lt;td&gt;Praesentium voluptatem architecto esse omnis tempore enim blanditiis, excepturi dicta.&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Alias.&lt;/td&gt;
+			&lt;td&gt;Illo, nobis accusantium quasi tempora asperiores veniam magni est sunt.&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Animi?&lt;/td&gt;
+			&lt;td&gt;Ratione deserunt ut amet tempora doloremque id dolorem officia dignissimos.&lt;/td&gt;
+		&lt;/tr&gt;
 		...
-	&lt;/tbody>
-&lt;/table></code></pre>
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 	</details>
 </section>
 
 <section id="paginatedArticles">
 	<h2>Example 2 - Articles</h2>
 	<p>This example leverages the following option: <code>itemsPerPage</code></p>
-	<div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+	<div class="wb-paginate row wb-eqht-grd" data-wb-paginate='{
 		"itemsPerPage": 12
 	}'>
 		<article class="col-sm-6 col-md-4 col-lg-3">
@@ -512,35 +501,35 @@
 	</div>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+		<pre><code>&lt;div class="wb-paginate row wb-eqht-grd" data-wb-paginate='{
 		"itemsPerPage": 12
-	}'>
-	&lt;article class="col-sm-6 col-md-4 col-lg-3">
-		&lt;div class="well">
-			&lt;h3 class="mrgn-tp-0">Lorem ipsum dolor sit amet.&lt;/h3>
-			&lt;p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore sequi eius molestiae, non rerum officia?&lt;/p>
-		&lt;/div>
-	&lt;/article>
-	&lt;article class="col-sm-6 col-md-4 col-lg-3">
-		&lt;div class="well">
-			&lt;h3 class="mrgn-tp-0">Unde ullam aliquid numquam laudantium!&lt;/h3>
-			&lt;p>Facere modi possimus a hic voluptatum reiciendis, quod laboriosam, dolor voluptate praesentium alias inventore eveniet.&lt;/p>
-		&lt;/div>
-	&lt;/article>
-	&lt;article class="col-sm-6 col-md-4 col-lg-3">
-		&lt;div class="well">
-			&lt;h3 class="mrgn-tp-0">Corporis repellat nostrum inventore excepturi?&lt;/h3>
-			&lt;p>Consequuntur nostrum suscipit nisi temporibus facere, explicabo inventore reiciendis maxime. Repudiandae consequuntur eligendi quod recusandae!&lt;/p>
-		&lt;/div>
-	&lt;/article>
-	&lt;article class="col-sm-6 col-md-4 col-lg-3">
-		&lt;div class="well">
-			&lt;h3 class="mrgn-tp-0">Voluptate explicabo architecto iste a?&lt;/h3>
-			&lt;p>Dolores minus, provident nihil laudantium dicta nam, rerum doloremque ab nesciunt, vitae optio excepturi voluptas.&lt;/p>
-		&lt;/div>
-	&lt;/article>
+	}'&gt;
+	&lt;article class="col-sm-6 col-md-4 col-lg-3"&gt;
+		&lt;div class="well"&gt;
+			&lt;h3 class="mrgn-tp-0"&gt;Lorem ipsum dolor sit amet.&lt;/h3&gt;
+			&lt;p&gt;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore sequi eius molestiae, non rerum officia?&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/article&gt;
+	&lt;article class="col-sm-6 col-md-4 col-lg-3"&gt;
+		&lt;div class="well"&gt;
+			&lt;h3 class="mrgn-tp-0"&gt;Unde ullam aliquid numquam laudantium!&lt;/h3&gt;
+			&lt;p&gt;Facere modi possimus a hic voluptatum reiciendis, quod laboriosam, dolor voluptate praesentium alias inventore eveniet.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/article&gt;
+	&lt;article class="col-sm-6 col-md-4 col-lg-3"&gt;
+		&lt;div class="well"&gt;
+			&lt;h3 class="mrgn-tp-0"&gt;Corporis repellat nostrum inventore excepturi?&lt;/h3&gt;
+			&lt;p&gt;Consequuntur nostrum suscipit nisi temporibus facere, explicabo inventore reiciendis maxime. Repudiandae consequuntur eligendi quod recusandae!&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/article&gt;
+	&lt;article class="col-sm-6 col-md-4 col-lg-3"&gt;
+		&lt;div class="well"&gt;
+			&lt;h3 class="mrgn-tp-0"&gt;Voluptate explicabo architecto iste a?&lt;/h3&gt;
+			&lt;p&gt;Dolores minus, provident nihil laudantium dicta nam, rerum doloremque ab nesciunt, vitae optio excepturi voluptas.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/article&gt;
 	...
-&lt;/div></code></pre>
+&lt;/div&gt;</code></pre>
 	</details>
 </section>
 
@@ -548,7 +537,7 @@
 	<h2>Example 3 - Events list</h2>
 	<p>This example leverages the following options: <code>itemsPerPage</code>, <code>section</code>, <code>selector</code>, and <code>uiTarget</code></p>
 	<p>This example also leverages the following other two plugins: <b>Filter</b> and <b>Tagfilter</b>. In order for all three plugins to work together, they have to be added to the same HTML element.</p>
-	<div class="wb-paginate wb-tagfilter provisional wb-filter"
+	<div class="wb-paginate wb-tagfilter wb-filter"
 	data-wb-filter='{
 		"uiTemplate": "#filteredEventsList",
 		"section": ".events-list",
@@ -818,7 +807,7 @@
 	</div>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;div class="wb-paginate wb-tagfilter provisional wb-filter"
+		<pre><code>&lt;div class="wb-paginate wb-tagfilter wb-filter"
 	data-wb-filter='{
 		"uiTemplate": "#filteredEventsList",
 		"section": ".events-list",
@@ -829,269 +818,269 @@
 		"section": ".events-list",
 		"selector": "article",
 		"uiTarget": "#paginationCntnr"
-	}'>
-		&lt;div class="row">
-			&lt;div class="col-sm-6 col-md-5 col-lg-4">
-				&lt;details open>
-					&lt;summary>
-						&lt;span class="h4">Filter events&lt;/span>
-					&lt;/summary>
-					&lt;div class="form-group">
-						&lt;label for="filterSearch">Search&lt;/label>
-						&lt;input type="search" id="filterSearch" class="form-control full-width" placeholder="Type a keyword, a day, or a month">
-					&lt;/div>
-					&lt;div class="form-group">
-						&lt;label for="filterMonth">Month&lt;/label>
-						&lt;select name="filterMonth" id="filterMonth" class="form-control full-width wb-tagfilter-ctrl">
-							&lt;option value="">Any&lt;/option>
-							&lt;option value="month__january">January&lt;/option>
-							&lt;option value="month__february">February&lt;/option>
-							&lt;option value="month__march">March&lt;/option>
-							&lt;option value="month__april">April&lt;/option>
-							&lt;option value="month__may">May&lt;/option>
-							&lt;option value="month__june">June&lt;/option>
-							&lt;option value="month__july">July&lt;/option>
-							&lt;option value="month__august">August&lt;/option>
-							&lt;option value="month__september">September&lt;/option>
-							&lt;option value="month__october">October&lt;/option>
-							&lt;option value="month__november">November&lt;/option>
-							&lt;option value="month__december">December&lt;/option>
-						&lt;/select>
-					&lt;/div>
-					&lt;div class="form-group mrgn-bttm-0">
-						&lt;fieldset class="p-0">
-							&lt;legend class="mrgn-tp-0 h5">Format&lt;/legend>
-							&lt;div class="checkbox">
-								&lt;label for="format__online">
-									&lt;input type="checkbox" name="format" id="format__online" class="wb-tagfilter-ctrl" value="format__online"> Online
-								&lt;/label>
-							&lt;/div>
-							&lt;div class="checkbox">
-								&lt;label for="format__inperson">
-									&lt;input type="checkbox" name="format" id="format__inperson" class="wb-tagfilter-ctrl" value="format__inperson"> In-person
-								&lt;/label>
-							&lt;/div>
-						&lt;/fieldset>
-					&lt;/div>
-					&lt;div class="form-group">
-						&lt;label for="filterLocation">Location&lt;/label>
-						&lt;select name="filterLocation" id="filterLocation" class="form-control full-width wb-tagfilter-ctrl">
-							&lt;option value="">Any&lt;/option>
-							&lt;option value="location__montreal">Montreal&lt;/option>
-							&lt;option value="location__ottawa">Ottawa&lt;/option>
-							&lt;option value="location__toronto">Toronto&lt;/option>
-							&lt;option value="location__vancouver">Vancouver&lt;/option>
-						&lt;/select>
-					&lt;/div>
-					&lt;div class="form-group mrgn-bttm-0">
-						&lt;fieldset class="p-0">
-							&lt;legend class="mrgn-tp-0 h5">Language&lt;/legend>
-							&lt;div class="checkbox">
-								&lt;label for="language__english">
-									&lt;input type="checkbox" name="language" id="language__english" class="wb-tagfilter-ctrl" value="language__english"> English
-								&lt;/label>
-							&lt;/div>
-							&lt;div class="checkbox">
-								&lt;label for="language__french">
-									&lt;input type="checkbox" name="language" id="language__french" class="wb-tagfilter-ctrl" value="language__french"> French
-								&lt;/label>
-							&lt;/div>
-							&lt;div class="checkbox">
-								&lt;label for="language__bilingual">
-									&lt;input type="checkbox" name="language" id="language__bilingual" class="wb-tagfilter-ctrl" value="language__bilingual"> Bilingual
-								&lt;/label>
-							&lt;/div>
-							&lt;div class="checkbox">
-								&lt;label for="language__other">
-									&lt;input type="checkbox" name="language" id="language__other" class="wb-tagfilter-ctrl" value="language__other"> Other
-								&lt;/label>
-							&lt;/div>
-						&lt;/fieldset>
-					&lt;/div>
-				&lt;/details>
-			&lt;/div>
-			&lt;div class="col-sm-6 col-md-7 col-lg-8">
-				&lt;p class="h4 wb-fltr-info mrgn-bttm-lg mrgn-tp-0">&lt;span data-nbitem>&lt;/span> event(s)&lt;/p>
-				&lt;div class="events-list wb-tagfilter-items">
-					&lt;article data-wb-tags="language__english format__online month__august">
-						&lt;h3 class="h4">&lt;a href="#">Ask PAC Anything!&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Friday, August 5, 2022, 12 pm - 1 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Online&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Bidding on Opportunities&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Wednesday, August 10, 2022, 2 pm - 3:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Vancouver&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Doing business with the Government of Canada (Webinar)&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 11, 2022, 2 pm - 3:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Ottawa&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english format__online month__august">
-						&lt;h3 class="h4">&lt;a href="#">Ask PAC Anything!&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Friday, August 12, 2022, 12 pm - 1 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Online&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Bidding on opportunities (Webinar)&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 18, 2022, 2 pm - 3:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Ottawa&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english format__online month__august">
-						&lt;h3 class="h4">&lt;a href="#">Ask PAC Anything!&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Friday, August 19, 2022, 12 pm - 1 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Online&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__french location__ottawa format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous Business Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 25, 2022, 9:30 am - 11 am EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Ottawa&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>French&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous Business Directory (IBD) for Indigenous-led businesses&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 25, 2022, 1 pm - 2:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Ottawa&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Doing Business with the Government of Canada&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 25, 2022, 1:30 pm - 3 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Montreal&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>French&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Doing Business with the Government of Canada&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Thursday, August 25, 2022, 2 pm - 3:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Vancouver&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english format__online month__august">
-						&lt;h3 class="h4">&lt;a href="#">Ask PAC Anything!&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Friday, August 26, 2022, 12 pm - 1:30 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Online&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Mythbusting Federal Government Procurement and Overview of Innovation for Defence Excellence and Security (IDEaS)&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Tuesday, August 30, 2022, 10 am - 11 am EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Toronto&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Register as supplier and find opportunities on BuyAndSell.gc.ca&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Tuesday, August 30, 2022, 1:30 pm - 3 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Montreal&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>French&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august">
-						&lt;h3 class="h4">&lt;a href="#">Federal Procurement Virtual Drop-in Café&lt;/a>&lt;/h3>
-						&lt;dl class="dl-horizontal brdr-0">
-							&lt;dt>Date and time&lt;/dt>
-							&lt;dd>Wednesday, August 31, 2022, 3 pm - 4 pm EST&lt;/dd>
-							&lt;dt>Location&lt;/dt>
-							&lt;dd>Toronto&lt;/dd>
-							&lt;dt>Language&lt;/dt>
-							&lt;dd>English&lt;/dd>
-						&lt;/dl>
-						&lt;p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p>
-					&lt;/article>
-				&lt;/div>
-			&lt;/div>
-		&lt;/div>
-		&lt;div id="paginationCntnr">&lt;/div>
-	&lt;/div></code></pre>
+	}'&gt;
+		&lt;div class="row"&gt;
+			&lt;div class="col-sm-6 col-md-5 col-lg-4"&gt;
+				&lt;details open&gt;
+					&lt;summary&gt;
+						&lt;span class="h4"&gt;Filter events&lt;/span&gt;
+					&lt;/summary&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="filterSearch"&gt;Search&lt;/label&gt;
+						&lt;input type="search" id="filterSearch" class="form-control full-width" placeholder="Type a keyword, a day, or a month"&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="filterMonth"&gt;Month&lt;/label&gt;
+						&lt;select name="filterMonth" id="filterMonth" class="form-control full-width wb-tagfilter-ctrl"&gt;
+							&lt;option value=""&gt;Any&lt;/option&gt;
+							&lt;option value="month__january"&gt;January&lt;/option&gt;
+							&lt;option value="month__february"&gt;February&lt;/option&gt;
+							&lt;option value="month__march"&gt;March&lt;/option&gt;
+							&lt;option value="month__april"&gt;April&lt;/option&gt;
+							&lt;option value="month__may"&gt;May&lt;/option&gt;
+							&lt;option value="month__june"&gt;June&lt;/option&gt;
+							&lt;option value="month__july"&gt;July&lt;/option&gt;
+							&lt;option value="month__august"&gt;August&lt;/option&gt;
+							&lt;option value="month__september"&gt;September&lt;/option&gt;
+							&lt;option value="month__october"&gt;October&lt;/option&gt;
+							&lt;option value="month__november"&gt;November&lt;/option&gt;
+							&lt;option value="month__december"&gt;December&lt;/option&gt;
+						&lt;/select&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group mrgn-bttm-0"&gt;
+						&lt;fieldset class="p-0"&gt;
+							&lt;legend class="mrgn-tp-0 h5"&gt;Format&lt;/legend&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="format__online"&gt;
+									&lt;input type="checkbox" name="format" id="format__online" class="wb-tagfilter-ctrl" value="format__online"&gt; Online
+								&lt;/label&gt;
+							&lt;/div&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="format__inperson"&gt;
+									&lt;input type="checkbox" name="format" id="format__inperson" class="wb-tagfilter-ctrl" value="format__inperson"&gt; In-person
+								&lt;/label&gt;
+							&lt;/div&gt;
+						&lt;/fieldset&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;label for="filterLocation"&gt;Location&lt;/label&gt;
+						&lt;select name="filterLocation" id="filterLocation" class="form-control full-width wb-tagfilter-ctrl"&gt;
+							&lt;option value=""&gt;Any&lt;/option&gt;
+							&lt;option value="location__montreal"&gt;Montreal&lt;/option&gt;
+							&lt;option value="location__ottawa"&gt;Ottawa&lt;/option&gt;
+							&lt;option value="location__toronto"&gt;Toronto&lt;/option&gt;
+							&lt;option value="location__vancouver"&gt;Vancouver&lt;/option&gt;
+						&lt;/select&gt;
+					&lt;/div&gt;
+					&lt;div class="form-group mrgn-bttm-0"&gt;
+						&lt;fieldset class="p-0"&gt;
+							&lt;legend class="mrgn-tp-0 h5"&gt;Language&lt;/legend&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="language__english"&gt;
+									&lt;input type="checkbox" name="language" id="language__english" class="wb-tagfilter-ctrl" value="language__english"&gt; English
+								&lt;/label&gt;
+							&lt;/div&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="language__french"&gt;
+									&lt;input type="checkbox" name="language" id="language__french" class="wb-tagfilter-ctrl" value="language__french"&gt; French
+								&lt;/label&gt;
+							&lt;/div&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="language__bilingual"&gt;
+									&lt;input type="checkbox" name="language" id="language__bilingual" class="wb-tagfilter-ctrl" value="language__bilingual"&gt; Bilingual
+								&lt;/label&gt;
+							&lt;/div&gt;
+							&lt;div class="checkbox"&gt;
+								&lt;label for="language__other"&gt;
+									&lt;input type="checkbox" name="language" id="language__other" class="wb-tagfilter-ctrl" value="language__other"&gt; Other
+								&lt;/label&gt;
+							&lt;/div&gt;
+						&lt;/fieldset&gt;
+					&lt;/div&gt;
+				&lt;/details&gt;
+			&lt;/div&gt;
+			&lt;div class="col-sm-6 col-md-7 col-lg-8"&gt;
+				&lt;p class="h4 wb-fltr-info mrgn-bttm-lg mrgn-tp-0"&gt;&lt;span data-nbitem&gt;&lt;/span&gt; event(s)&lt;/p&gt;
+				&lt;div class="events-list wb-tagfilter-items"&gt;
+					&lt;article data-wb-tags="language__english format__online month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Ask PAC Anything!&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Friday, August 5, 2022, 12 pm - 1 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Online&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Bidding on Opportunities&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Wednesday, August 10, 2022, 2 pm - 3:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Vancouver&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Doing business with the Government of Canada (Webinar)&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 11, 2022, 2 pm - 3:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Ottawa&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english format__online month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Ask PAC Anything!&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Friday, August 12, 2022, 12 pm - 1 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Online&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Bidding on opportunities (Webinar)&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 18, 2022, 2 pm - 3:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Ottawa&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english format__online month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Ask PAC Anything!&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Friday, August 19, 2022, 12 pm - 1 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Online&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__french location__ottawa format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous Business Directory (IBD) for Indigenous-led businesses&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 25, 2022, 9:30 am - 11 am EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Ottawa&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;French&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__ottawa format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous Business Directory (IBD) for Indigenous-led businesses&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 25, 2022, 1 pm - 2:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Ottawa&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Doing Business with the Government of Canada&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 25, 2022, 1:30 pm - 3 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Montreal&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;French&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__vancouver format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Doing Business with the Government of Canada&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Thursday, August 25, 2022, 2 pm - 3:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Vancouver&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english format__online month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Ask PAC Anything!&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Friday, August 26, 2022, 12 pm - 1:30 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Online&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Mythbusting Federal Government Procurement and Overview of Innovation for Defence Excellence and Security (IDEaS)&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Tuesday, August 30, 2022, 10 am - 11 am EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Toronto&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__french location__montreal format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Register as supplier and find opportunities on BuyAndSell.gc.ca&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Tuesday, August 30, 2022, 1:30 pm - 3 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Montreal&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;French&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+					&lt;article data-wb-tags="language__english location__toronto format__inperson month__august"&gt;
+						&lt;h3 class="h4"&gt;&lt;a href="#"&gt;Federal Procurement Virtual Drop-in Café&lt;/a&gt;&lt;/h3&gt;
+						&lt;dl class="dl-horizontal brdr-0"&gt;
+							&lt;dt&gt;Date and time&lt;/dt&gt;
+							&lt;dd&gt;Wednesday, August 31, 2022, 3 pm - 4 pm EST&lt;/dd&gt;
+							&lt;dt&gt;Location&lt;/dt&gt;
+							&lt;dd&gt;Toronto&lt;/dd&gt;
+							&lt;dt&gt;Language&lt;/dt&gt;
+							&lt;dd&gt;English&lt;/dd&gt;
+						&lt;/dl&gt;
+						&lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi doloremque dolor perspiciatis! Laudantium expedita dolorem ut quibusdam fugiat, vel quo nisi at accusamus voluptatem quasi placeat corrupti hic molestiae natus qui mollitia, nihil praesentium incidunt, nesciunt non.&lt;/p&gt;
+					&lt;/article&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div id="paginationCntnr"&gt;&lt;/div&gt;
+	&lt;/div&gt;</code></pre>
 	</details>
 </section>
 
 <section id="paginatedList">
 	<h2>Example 4 - List</h2>
-	<ul class="wb-paginate provisional">
+	<ul class="wb-paginate">
 		<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!</li>
 		<li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?</li>
 		<li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.</li>
@@ -1177,15 +1166,15 @@
 	</ul>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;ul class="wb-paginate provisional">
-	&lt;li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li>
-	&lt;li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li>
-	&lt;li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li>
-	&lt;li>Corrupti est quos ad vero. Hic repellendus numquam officia beatae.&lt;/li>
-	&lt;li>Amet ullam, ipsam adipisci ad nisi facere veritatis fuga pariatur?&lt;/li>
-	&lt;li>Eum ipsum doloribus nisi natus dolorum maxime omnis, mollitia hic!&lt;/li>
-	&lt;li>Aperiam odit, sapiente cum modi amet labore iste dolorum minima.&lt;/li>
+		<pre><code>&lt;ul class="wb-paginate"&gt;
+	&lt;li&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li&gt;
+	&lt;li&gt;Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li&gt;
+	&lt;li&gt;Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li&gt;
+	&lt;li&gt;Corrupti est quos ad vero. Hic repellendus numquam officia beatae.&lt;/li&gt;
+	&lt;li&gt;Amet ullam, ipsam adipisci ad nisi facere veritatis fuga pariatur?&lt;/li&gt;
+	&lt;li&gt;Eum ipsum doloribus nisi natus dolorum maxime omnis, mollitia hic!&lt;/li&gt;
+	&lt;li&gt;Aperiam odit, sapiente cum modi amet labore iste dolorum minima.&lt;/li&gt;
 	...
-&lt;/ul></code></pre>
+&lt;/ul&gt;</code></pre>
 	</details>
 </section>
