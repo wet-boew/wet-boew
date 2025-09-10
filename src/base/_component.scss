@@ -10,6 +10,10 @@
 	display: none !important;
 }
 
+%components-display-block-important {
+	display: block !important;
+}
+
 /*
  Background Utility CSS
  */
@@ -66,12 +70,20 @@ Miscellaneous Utility CSS
 	@extend %components-display-none-important;
 }
 
+.wbdisable-show {
+	@extend %components-display-none-important;
+}
+
 .wb-disable {
 	.nojs-show {
-		display: block !important;
+		@extend %components-display-block-important;
 	}
 
 	.nojs-hide {
 		@extend %components-display-none-important;
+	}
+
+	.wbdisable-show {
+		@extend %components-display-block-important;
 	}
 }
