@@ -139,6 +139,13 @@ var componentName = "wb-frmvld",
 								}
 							} );
 
+							// Account for leading or trailing whitespace in user input, as well as any NBSP characters
+							$.validator.setDefaults( {
+								normalizer: function( value ) {
+									return value.replace( /\u00a0/g, " " ).trim();
+								}
+							} );
+
 							// The jQuery validation plug-in in action
 							validator = $form.validate( {
 								meta: "validate",
