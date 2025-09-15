@@ -3,12 +3,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
   - package-ecosystem: "npm"
     directory: "/"
     open-pull-requests-limit: 99
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       dependencies:
         applies-to: version-updates
