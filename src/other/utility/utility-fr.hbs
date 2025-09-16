@@ -7,7 +7,7 @@
 	"tag": "utility",
 	"parentdir": "utility",
 	"altLangPrefix": "utility",
-	"dateModified": "2024-03-25"
+	"dateModified": "2025-08-26"
 }
 ---
 
@@ -26,6 +26,7 @@
 	<li><a href="#flexbox" lang="en">Flexbox</a></li>
 	<li><a href="#listes">Listes</a></li>
 	<li><a href="#positionnement">Positionnement</a></li>
+	<li><a href="#scriptage">Scriptage</a></li>
 	<li><a href="#tables">Tables</a></li>
 	<li><a href="#divers">Divers</a></li>
 	<li><a href="#dl-horizontal">Liste descriptive horizontale</a></li>
@@ -601,6 +602,34 @@
 <p class="position-relative">Ceci est un paragraphe relativement positionné.</p>
 <h4>Exemple de code</h4>
 <pre><code>&lt;p class="<strong>position-relative</strong>"&gt;Ceci est un paragraphe relativement positionné.&lt;/p&gt;</code></pre>
+
+<h2 id="scriptage">Scriptage</h2>
+
+<h3><code>nojs-hide</code></h3>
+<p>Cachez le contenu exclusivement en noscript et le mode HTML simplifié.</p>
+<h4>Exemple pratique</h4>
+<p class="nojs-hide">[Contenu interactif]</p>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="nojs-hide"&gt;[Contenu interactif]&lt;/p&gt;</code></pre>
+
+<h3><code>nojs-show</code></h3>
+<p>Montrez le contenu exclusivement en noscript et le mode HTML simplifié.</p>
+<h4>Exemple pratique</h4>
+<p class="nojs-show">[Contenu de secours]</p>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="nojs-show"&gt;[Contenu de secours]&lt;/p&gt;</code></pre>
+
+<h3><code>wbdisable-show</code></h3>
+<p>Montrez le contenu exclusivement dans le mode HTML simplifié.</p>
+<p>Utilisez cette classe soigneusement. Considérez utiliser la classe <code>nojs-show</code> au lieu si le contenu s'applique à la fois à noscript et le mode HTML simplifié. Ou même une combinaison de <code>nojs-show</code>, <code>wbdisable-show</code> et l'élément <code>&lt;noscript&gt;</code> pour le contenu «&nbsp;générique&nbsp;» et spécifique au mode.</p>
+<h4>Exemple pratique</h4>
+<p class="nojs-show">[Contenu de secours]</p>
+<p class="wbdisable-show">Pour utiliser les fonctionnalités interactives, veuillez <a href="?wbdisable=false">passer à la version standard</a> de cette page.</p>
+<noscript><p>Pour utiliser les fonctionnalités interactives, veuillez activer le JavaScript dans les paramètres de votre navigateur.</p></noscript>
+<h4>Exemple de code</h4>
+<pre><code>&lt;p class="nojs-show"&gt;[Contenu de secours]&lt;/p&gt;
+&lt;p class="wbdisable-show"&gt;Pour utiliser les fonctionnalités interactives, veuillez &lt;a href="?wbdisable=false"&gt;passer à la version standard&lt;/a&gt; de cette page.&lt;/p&gt;
+&lt;noscript&gt;&lt;p&gt;Pour utiliser les fonctionnalités interactives, veuillez activer le JavaScript dans les paramètres de votre navigateur.&lt;/p&gt;&lt;/noscript&gt;</code></pre>
 
 <h2 id="tables">Tables</h2>
 <h3><code>table-responsive</code></h3>
