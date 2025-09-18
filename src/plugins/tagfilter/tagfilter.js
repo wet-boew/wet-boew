@@ -67,7 +67,9 @@ const componentName = "wb-tagfilter",
 		let taggedItemsArr = [];
 
 		taggedItems.forEach( function( taggedItem ) {
-			let tagsList = taggedItem.dataset.wbTags.split( " " );
+			let tagsList = taggedItem.dataset.wbTags.split( " " ),
+				timeElm = taggedItem.querySelector( "time" ),
+				dateStr = timeElm ? timeElm.getAttribute( "datetime" ) : null;
 
 			if ( !taggedItem.id ) {
 				taggedItem.setAttribute( "id", wb.getId() );
@@ -77,7 +79,8 @@ const componentName = "wb-tagfilter",
 				id: taggedItem.id,
 				tags: tagsList,
 				isMatched: true,
-				itemText: taggedItem.innerText.toLowerCase()
+				itemText: taggedItem.innerText.toLowerCase(),
+				date: dateStr
 			} );
 		} );
 
@@ -108,6 +111,7 @@ const componentName = "wb-tagfilter",
 
 					break;
 				case "select-one":
+				case "date":
 					filtersObj[ control.name ] = [ {
 						type: control.type,
 						value: control.value
@@ -124,6 +128,12 @@ const componentName = "wb-tagfilter",
 		instance.activeFilters = [ ]; // Clear active filters
 
 		for ( let filterGroupName in instance.filters ) {
+
+			// Skip date filters here
+			if ( filterGroupName === "startDate" || filterGroupName === "endDate" ) {
+				continue;
+			}
+
 			let filterGroup = instance.filters[ filterGroupName ],
 				filterGroupChkCnt = filterGroup.filter( function( o ) {
 					return o.isChecked === true;
@@ -169,11 +179,39 @@ const componentName = "wb-tagfilter",
 
 	// Match tagged items to active filters and only return items that have an active filter in every filter group
 	matchItemsToFilters = function( instance ) {
-		let filtersGroups = instance.activeFilters.length;
+
+		// Count tag filter groups only (ignore dates here)
+		let filtersGroups = instance.activeFilters.length,
+			startDate = ( instance.filters.startDate && instance.filters.startDate[ 0 ] && instance.filters.startDate[ 0 ].value ) || "",
+			endDate   = ( instance.filters.endDate && instance.filters.endDate[ 0 ] && instance.filters.endDate[ 0 ].value ) || "";
 
 		instance.items.forEach( function( item ) {
-			let matchCount = 0;
+			let matchCount = 0,
+				dateMatch = true; // default true unless proven otherwise
 
+			// --- DATE FILTERING ---
+			if ( item.date ) {
+
+				// If only startDate is set
+				if ( startDate !== "" && endDate === "" ) {
+					dateMatch = wb.date.compare( item.date, startDate ) >= 0;
+				}
+
+				// If only endDate is set
+				if ( endDate !== "" && startDate === "" ) {
+					dateMatch = wb.date.compare( item.date, endDate ) <= 0;
+				}
+
+				// If both startDate and endDate are set
+				if ( startDate !== "" && endDate !== "" ) {
+					dateMatch = (
+						wb.date.compare( item.date, startDate ) >= 0 &&
+						wb.date.compare( item.date, endDate ) <= 0
+					);
+				}
+			}
+
+			// --- TAG FILTERING ---
 			instance.activeFilters.forEach( function( filterGroup ) {
 				if ( filterGroup.length === 0 ) {
 					matchCount++;
@@ -188,7 +226,8 @@ const componentName = "wb-tagfilter",
 				}
 			} );
 
-			matchCount === filtersGroups ? item.isMatched = true : item.isMatched = false;
+			// Show item if it matches any filter and is within date range
+			matchCount === filtersGroups && dateMatch ? item.isMatched = true : item.isMatched = false;
 		} );
 	},
 
@@ -253,6 +292,7 @@ $document.on( "change", selectorCtrl, function( event )  {
 			break;
 
 		case "select-one":
+		case "date":
 
 			// Update virtual filter to the new value
 			filterGroup[ 0 ].value = filterValue;
