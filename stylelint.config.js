@@ -82,6 +82,7 @@ module.exports = {
 				"length-zero-no-unit": null,
 				"media-feature-name-no-vendor-prefix": null,
 				"number-max-precision": null,
+				"property-no-deprecated": null, // Too noisy with Bootstrap 3
 				"property-no-vendor-prefix": null,
 				"rule-empty-line-before": null,
 				"selector-attribute-quotes": null,
