@@ -67,20 +67,6 @@
 	white-space: nowrap;
 }
 
-.nojs-show {
-	@extend %display-none-important;
-}
-
-.wb-disable {
-	.nojs-show {
-		display: block !important;
-	}
-
-	.nojs-hide {
-		@extend %display-none-important;
-	}
-}
-
 // Column auto (col-auto) extension for Bootstrap grid
 // Baseline style for column auto - same style as defined in: assets/stylesheets/bootstrap/mixins/_grid-framework.scss
 .col-xs-auto, .col-sm-auto, .col-md-auto, .col-lg-auto {

@@ -111,6 +111,16 @@
 						<option value="dayOTW_sunday">Sunday</option>
 					</select>
 				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="dateRangeStart">Start Date:</label>
+					<input type="date" id="dateRangeStart" name="startDate"
+						class="wb-tagfilter-ctrl form-control" />
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="dateRangeEnd">End Date:</label>
+					<input type="date" id="dateRangeEnd" name="endDate"
+						class="wb-tagfilter-ctrl form-control" />
+				</div>
 			</details>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-lg-9">
@@ -119,7 +129,8 @@
 				"mapping": [
 					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
 					{ "selector": "h3", "value": "/title" },
-					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": "time", "attr": "datetime", "value": "/date-ISO" },
+					{ "selector": "time", "value": "/date" },
 					{ "selector": ".event-time", "value": "/time" },
 					{ "selector": ".event-location", "value": "/location" },
 					{ "selector": ".event-language", "value": "/language" }
@@ -128,7 +139,7 @@
 				<template>
 					<li data-wb-tags="">
 						<h3></h3>
-						<p><span class="event-date"></span> | <span class="event-time"></span></p>
+						<p><time datetime=""></time> | <span class="event-time"></span></p>
 						<p><strong>Location:</strong> <span class="event-location"></span>, <strong>Language</strong>: <span class="event-language"></span></p>
 					</li>
 				</template>
@@ -236,6 +247,14 @@
 						&lt;option value="dayOTW_sunday"&gt;Sunday&lt;/option&gt;
 					&lt;/select&gt;
 				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;label for="dateRangeStart"&gt;Start Date:&lt;/label&gt;
+					&lt;input type="date" id="dateRangeStart" name="startDate" class="wb-tagfilter-ctrl form-control" /&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;label for="dateRangeEnd"&gt;End Date:&lt;/label&gt;
+					&lt;input type="date" id="dateRangeEnd" name="endDate" class="wb-tagfilter-ctrl form-control" /&gt;
+				&lt;/div&gt;
 			&lt;/details&gt;
 		&lt;/div&gt;
 		&lt;div class="col-xs-12 col-sm-8 col-lg-9"&gt;
@@ -244,7 +263,8 @@
 				"mapping": [
 					{ "selector": "li", "attr": "data-wb-tags", "value": "/tags" },
 					{ "selector": "h3", "value": "/title" },
-					{ "selector": ".event-date", "value": "/date" },
+					{ "selector": "time", "attr": "datetime", "value": "/date-ISO" },
+					{ "selector": "time", "value": "/date" },
 					{ "selector": ".event-time", "value": "/time" },
 					{ "selector": ".event-location", "value": "/location" },
 					{ "selector": ".event-language", "value": "/language" }
@@ -253,7 +273,7 @@
 				&lt;template&gt;
 					&lt;li data-wb-tags=""&gt;
 						&lt;h3&gt;&lt;/h3&gt;
-						&lt;p&gt;&lt;span class="event-date"&gt;&lt;/span&gt; | &lt;span class="event-time"&gt;&lt;/span&gt;&lt;/p&gt;
+						&lt;p&gt;&lt;time datetime=""&gt;&lt;/time&gt; | &lt;span class="event-time"&gt;&lt;/span&gt;&lt;/p&gt;
 						&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="event-location"&gt;&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;&lt;/span&gt;&lt;/p&gt;
 					&lt;/li&gt;
 				&lt;/template&gt;

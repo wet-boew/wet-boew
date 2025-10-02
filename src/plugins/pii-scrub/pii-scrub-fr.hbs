@@ -20,6 +20,7 @@
 	<li><a href="#exemplePostback">Exemple avec envoi via Ajax</a></li>
 	<li><a href="#exempleValidation">Exemple avec validation de formulaire</a></li>
 	<li><a href="#exempleValidationEtPostback">Exemple avec validation de formulaire et avec envoi via Ajax</a></li>
+	<li><a href="#popupdismissUIpersonnalise">Exemple avec interface personnalisée (utilisant les instructions obsolètes)</a></li>
 </ul>
 
 <h2 id="exempleBase">Exemple de base</h2>
@@ -41,7 +42,7 @@
 	<div class="form-content">
 		<div class="form-group">
 			<label for="subject"><span class="field-name">Objet</span></label>
-			<input class="form-control" id="subject" name="subject" type="text" data-scrub-field />
+			<input class="form-control" id="subject" name="subject" type="text" data-scrub-field>
 		</div>
 		<div class="form-group">
 			<label for="message">Message</label>
@@ -57,7 +58,7 @@
 	&lt;div class="form-content">
 		&lt;div class="form-group">
 			&lt;label for="subject">&lt;span class="field-name">Objet&lt;/span>&lt;/label>
-			&lt;input class="form-control" id="subject" name="subject" type="text" data-scrub-field />
+			&lt;input class="form-control" id="subject" name="subject" type="text" data-scrub-field>
 		&lt;/div>
 		&lt;div class="form-group">
 			&lt;label for="message">Message&lt;/label>
@@ -104,18 +105,18 @@
 		<div class="modal-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-link btn-block popup-modal-dismiss">Fermer et modifier le commentaire</button></div>
-				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block popup-modal-dismiss" data-scrub-submit>Soumettre le commentaire</button></div>
+				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block" data-scrub-submit>Soumettre le commentaire</button></div>
 			</div>
 		</div>
 	</template>
 	<div class="form-content">
 		<div class="form-group">
 			<label for="firstname1"><span class="field-name">Prénom</span></label>
-			<input class="form-control" id="firstname1" name="firstname" type="text" />
+			<input class="form-control" id="firstname1" name="firstname" type="text">
 		</div>
 		<div class="form-group">
 			<label for="lastname1"><span class="field-name">Nom de famille</span></label>
-			<input class="form-control" id="lastname1" name="lastname" type="text" />
+			<input class="form-control" id="lastname1" name="lastname" type="text">
 		</div>
 		<div class="form-group">
 			<label for="comments">Commentaires</label>
@@ -153,18 +154,18 @@
 		&lt;div class="modal-footer">
 			&lt;div class="row">
 				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-link btn-block popup-modal-dismiss">Fermer et modifier le commentaire&lt;/button>&lt;/div>
-				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-primary btn-block popup-modal-dismiss" data-scrub-submit>Soumettre le commentaire&lt;/button>&lt;/div>
+				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-primary btn-block" data-scrub-submit>Soumettre le commentaire&lt;/button>&lt;/div>
 			&lt;/div>
 		&lt;/div>
 	&lt;/template>
 	&lt;div class="form-content">
 		&lt;div class="form-group">
 			&lt;label for="firstname1">&lt;span class="field-name">Prénom&lt;/span>&lt;/label>
-			&lt;input class="form-control" id="firstname1" name="firstname" type="text" />
+			&lt;input class="form-control" id="firstname1" name="firstname" type="text">
 		&lt;/div>
 		&lt;div class="form-group">
 			&lt;label for="lastname1">&lt;span class="field-name">Nom de famille&lt;/span>&lt;/label>
-			&lt;input class="form-control" id="lastname1" name="lastname" type="text" />
+			&lt;input class="form-control" id="lastname1" name="lastname" type="text">
 		&lt;/div>
 		&lt;div class="form-group">
 			&lt;label for="comments">Commentaires&lt;/label>
@@ -193,15 +194,15 @@
 		<div class="form-content">
 			<div class="form-group">
 				<label for="fname1" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
-				<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				<input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2">
 			</div>
 			<div class="form-group">
 				<label for="lname1" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
-				<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				<input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2">
 			</div>
 			<div class="form-group">
 				<label for="preferredNumber1">De préférence&nbsp;: <span class="field-name">Numéro de téléphone</span></label>
-				<input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" />
+				<input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel">
 			</div>
 			<div class="form-group">
 				<label for="comments2">Commentaires</label>
@@ -218,15 +219,15 @@
 		&lt;div class="form-content">
 			&lt;div class="form-group">
 				&lt;label for="fname1" class="required">&lt;span class="field-name">Prénom&lt;/span> &lt;strong class="required">(obligatoire)&lt;/strong>&lt;/label>
-				&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				&lt;input class="form-control" id="fname1" name="fname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2">
 			&lt;/div>
 			&lt;div class="form-group">
 				&lt;label for="lname1" class="required">&lt;span class="field-name">Nom de famille&lt;/span> &lt;strong class="required">(obligatoire)&lt;/strong>&lt;/label>
-				&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2" />
+				&lt;input class="form-control" id="lname1" name="lname1" type="text" autocomplete="given-name" required="required" data-rule-minlength="2">
 			&lt;/div>
 			&lt;div class="form-group">
 				&lt;label for="preferredNumber1">De préférence&nbsp;: &lt;span class="field-name">Numéro de téléphone&lt;/span>&lt;/label>
-				&lt;input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel" />
+				&lt;input class="form-control" id="preferredNumber1" name="preferredNumber" type="tel">
 			&lt;/div>
 			&lt;div class="form-group">
 				&lt;label for="comments">Commentaires&lt;/label>
@@ -254,7 +255,7 @@
 		<div class="form-content">
 			<div class="form-group">
 				<label for="nomComplet" class="required"><span class="field-name">Nom complet</span> <strong class="required">(required)</strong></label>
-				<input class="form-control" id="nomComplet" name="nomComplet" type="text" required="required" data-rule-minlength="2" />
+				<input class="form-control" id="nomComplet" name="nomComplet" type="text" required="required" data-rule-minlength="2">
 			</div>
 			<div class="form-group">
 				<label for="probleme">Problème</label>
@@ -273,7 +274,7 @@
 		&lt;div class="form-content">
 			&lt;div class="form-group">
 				&lt;label for="nomComplet" class="required">&lt;span class="field-name">Nom complet&lt;/span> &lt;strong class="required">(required)&lt;/strong>&lt;/label>
-				&lt;input class="form-control" id="nomComplet" name="nomComplet" type="text" required="required" data-rule-minlength="2" />
+				&lt;input class="form-control" id="nomComplet" name="nomComplet" type="text" required="required" data-rule-minlength="2">
 			&lt;/div>
 			&lt;div class="form-group">
 				&lt;label for="probleme">Problème&lt;/label>
@@ -285,4 +286,109 @@
 	&lt;p class="success-message-2 hide">Merci !&lt;/p>
 	&lt;p class="failure-message-2 hide">Une erreur s'est produite. Veuillez soumettre vos informations via une autre méthode.&lt;/p>
 &lt;/div></code></pre>
+</details>
+
+<h2 id="popupdismissUIpersonnalise">Exemple avec interface personnalisée (utilisant les instructions obsolètes)</h2>
+<p>Vous trouverez ci-dessous un exemple illustrant l'option <code>modalTemplate</code> et suivant les instructions obsolètes pour la structure HTML du modèle modal.</p>
+<section class="panel panel-info">
+	<header class="panel-heading">
+		<h3 class="panel-title">Instructions</h3>
+	</header>
+	<div class="panel-body">
+		<p>Seul le champ <strong>Commentaires</strong> possède un attribut data-scrub.</p>
+		<p>Remplissez le champ <strong>Commentaires</strong> avec les informations suivantes&nbsp;:<br><code>Visa&nbsp;: 4916 0739.3667-6891, Master&nbsp;: 5428735149026050, NAS&nbsp;: 123 123-123, Code postal&nbsp;: K2C 3N2, numéro de permis de conduire&nbsp;: P12345678912345, Compte bancaire&nbsp;: 003-1234567</code></p>
+	</div>
+</section>
+<form action="pii-scrub-fr.html" class="wb-pii-scrub" data-wb-pii-scrub='{"modalTemplate": "[data-scrub-modal]"}'>
+	<template data-scrub-modal>
+		<header class="modal-header">
+			<h2 class="modal-title">Les informations personnelles contenues dans votre commentaire ont été supprimées</h2>
+		</header>
+		<div class="modal-body">
+			<p>Les commentaires servent uniquement à améliorer notre site. Vous ne recevrez pas de réponse.</p>
+			<p><strong>Pour protéger votre vie privée, votre commentaire sera soumis comme suit&nbsp;:</strong></p>
+			<div data-scrub-modal-fields></div>
+			<details class="mrgn-tp-md">
+				<summary>Qu’est-ce qui est considéré comme une information personnelle?</summary>
+				<p>Certains types d’informations ne peuvent pas être inclus dans ce formulaire de commentaires, tels que&nbsp;:</p>
+				<ul>
+					<li>adresse courriel</li>
+					<li>numéro de téléphone</li>
+					<li>code postal</li>
+					<li>numéro de passeport</li>
+					<li>numéro d'entreprise</li>
+					<li>numéro d'assurance sociale (NAS)</li>
+				</ul>
+			</details>
+		</div>
+		<div class="modal-footer">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-link btn-block popup-modal-dismiss">Fermer et modifier le commentaire</button></div>
+				<div class="col-xs-12 col-sm-6 mrgn-tp-sm"><button type="button" class="btn btn-primary btn-block" data-scrub-submit>Soumettre le commentaire</button></div>
+			</div>
+		</div>
+	</template>
+	<div class="form-content">
+		<div class="form-group">
+			<label for="firstname2"><span class="field-name">Prénom</span></label>
+			<input class="form-control" id="firstname2" name="firstname" type="text">
+		</div>
+		<div class="form-group">
+			<label for="lastname2"><span class="field-name">Nom de famille</span></label>
+			<input class="form-control" id="lastname2" name="lastname" type="text">
+		</div>
+		<div class="form-group">
+			<label for="comments3">Commentaires</label>
+			<textarea class="form-control" id="comments3" name="comments3" data-scrub-field rows="4" cols="50"></textarea>
+		</div>
+		<button class="btn btn-primary" name="test" value="valeur de test">Soumettre</button>
+	</div>
+</form>
+<details class="mrgn-tp-md mrgn-bttm-md">
+	<summary>Afficher le code</summary>
+	<pre><code>&lt;form action="pii-scrub-fr.html" class="wb-pii-scrub" data-wb-pii-scrub='{"modalTemplate": "[data-scrub-modal]"}'>
+	&lt;template data-scrub-modal>
+		&lt;header class="modal-header">
+			&lt;h2 class="modal-title">Les informations personnelles contenues dans votre commentaire ont été supprimées&lt;/h2>
+		&lt;/header>
+		&lt;div class="modal-body">
+			&lt;p>Les commentaires servent uniquement à améliorer notre site. Vous ne recevrez pas de réponse.&lt;/p>
+			&lt;p>&lt;strong>Pour protéger votre vie privée, votre commentaire sera soumis comme suit&nbsp;:&lt;/strong>&lt;/p>
+			&lt;div data-scrub-modal-fields>&lt;/div>
+			&lt;details class="mrgn-tp-md">
+				&lt;summary>Qu’est-ce qui est considéré comme une information personnelle?&lt;/summary>
+				&lt;p>Certains types d’informations ne peuvent pas être inclus dans ce formulaire de commentaires, tels que&nbsp;:&lt;/p>
+				&lt;ul>
+					&lt;li>adresse courriel&lt;/li>
+					&lt;li>numéro de téléphone&lt;/li>
+					&lt;li>code postal&lt;/li>
+					&lt;li>numéro de passeport&lt;/li>
+					&lt;li>numéro d'entreprise&lt;/li>
+					&lt;li>numéro d'assurance sociale (NAS)&lt;/li>
+				&lt;/ul>
+			&lt;/details>
+		&lt;/div>
+		&lt;div class="modal-footer">
+			&lt;div class="row">
+				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-link btn-block popup-modal-dismiss">Fermer et modifier le commentaire&lt;/button>&lt;/div>
+				&lt;div class="col-xs-12 col-sm-6 mrgn-tp-sm">&lt;button type="button" class="btn btn-primary btn-block" data-scrub-submit>Soumettre le commentaire&lt;/button>&lt;/div>
+			&lt;/div>
+		&lt;/div>
+	&lt;/template>
+	&lt;div class="form-content">
+		&lt;div class="form-group">
+			&lt;label for="firstname2">&lt;span class="field-name">Prénom&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="firstname2" name="firstname" type="text">
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="lastname2">&lt;span class="field-name">Nom de famille&lt;/span>&lt;/label>
+			&lt;input class="form-control" id="lastname2" name="lastname" type="text">
+		&lt;/div>
+		&lt;div class="form-group">
+			&lt;label for="comments">Commentaires&lt;/label>
+			&lt;textarea class="form-control" id="comments3" name="comments3" data-scrub-field rows="4" cols="50">&lt;/textarea>
+		&lt;/div>
+		&lt;button class="btn btn-primary" name="test" value="valeur de test">Soumettre&lt;/button>
+	&lt;/div>
+&lt;/form></code></pre>
 </details>

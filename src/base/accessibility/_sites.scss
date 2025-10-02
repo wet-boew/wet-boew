@@ -4,7 +4,7 @@
  */
 
 %accessible-invisible {
-	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
 	height: 1px;
 	margin: 0;
 	overflow: hidden;
@@ -13,7 +13,7 @@
 }
 
 %accessible-invisible-show {
-	clip: rect(auto, auto, auto, auto);
+	clip-path: none;
 	height: inherit;
 	margin: inherit;
 	overflow: inherit;

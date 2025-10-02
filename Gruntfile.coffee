@@ -536,6 +536,7 @@ module.exports = (grunt) ->
 
 						# Exemptions...
 						"!node_modules/**"
+						"!patches/**"
 						"!lib/**"
 						"!dist/**"
 						"!.DS_Store"
@@ -959,7 +960,6 @@ module.exports = (grunt) ->
 						"openlayers/dist/ol.js"
 						"proj4/dist/proj4.js"
 						"side-by-side-improved/jquery.flot.orderBars.js"
-						"unorm/lib/unorm.js"
 					]
 					dest: "<%= coreDist %>/js/deps"
 					expand: true

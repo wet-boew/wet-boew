@@ -1,49 +1,67 @@
 ---
 {
-	"title": "Balise details fermée sur petits écrans",
+	"title": "Balise details fermée",
 	"language": "fr",
 	"category": "Plugiciels",
-	"description": "Garder les éléments details visés fermés sur petits écrans et moins.",
+	"description": "Garder les éléments details visés fermés sur écran défini et moins.",
 	"tag": "details-close",
 	"parentdir": "details-close",
 	"altLangPrefix": "details-close",
-	"dateModified": "2021-11-29"
+	"dateModified": "2025-08-27"
 }
 ---
-<div lang="en">
-	<div class="alert alert-warning">
-		<h2>Unstable feature</h2>
-		<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-		<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-		<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-	</div>
+<div class="wb-prettify all-pre hide"></div>
 
-	<h2>Other example</h2>
-	<ul>
-		<li><a href="details-close-md-en.html">Medium viewport example</a></li>
-	</ul>
+<h2>Exemple de l'élément <code>details</code> maintenu fermé sur un petit écran et moins (lg, md, sm, xs et xxs)</h2>
+<p>Redimensionnez votre navigateur pour voir le fonctionnement du plugiciel.</p>
+<details class="provisional wb-details-close" open>
+	<summary>Je suis fermé sur mobile (par défaut)</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="lg">
+	<summary>Je suis fermé sur un grand écran</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="md">
+	<summary>Je suis fermé sur un écran moyen</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="sm">
+	<summary>Je suis ouvert sur un petit écran</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="xs">
+	<summary>Je suis fermé sur un écran très petit</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="xxs">
+	<summary>Je suis ouvert sur un écran très très petit</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
 
-	<h2>Example of <code>details</code> element kept closed on small viewport and down (sm, xs and xxs)</h2>
-	<p>Resize your browser to view the plugin at play.</p>
-	<div class="row">
-		<div class="col-md-6">
-			<details class="provisional wb-details-close" open>
-				<summary>I am closed on mobile (uses plugin)</summary>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
-			</details>
-		</div>
-		<div class="col-md-6">
-			<details open>
-				<summary>I am opened on mobile (regular)</summary>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
-			</details>
-		</div>
-	</div>
-
-	<h3>Source code</h3>
-	<pre><code>&lt;details class="provisional wb-details-close" open&gt;
-		&lt;summary&gt;I am closed on mobile (uses plugin)&lt;/summary&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.&lt;/p&gt;
-	&lt;/details&gt;
-	</code></pre>
-</div>
+<h3>Code source</h3>
+<pre><code>&lt;details class="wb-details-close" open&gt;
+	&lt;summary&gt;Je suis fermé sur mobile (par défaut)&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="lg"&gt;
+	&lt;summary&gt;Je suis fermé sur un grand écran&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="md"&gt;
+	&lt;summary&gt;Je suis fermé sur un écran moyen&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="sm"&gt;
+	&lt;summary&gt;Je suis ouvert sur un petit écran&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="xs"&gt;
+	&lt;summary&gt;Je suis fermé sur un écran très petit&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="xxs"&gt;
+	&lt;summary&gt;Je suis ouvert sur un écran très très petit&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+</code></pre>

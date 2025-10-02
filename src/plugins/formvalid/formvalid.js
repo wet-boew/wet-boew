@@ -139,6 +139,12 @@ var componentName = "wb-frmvld",
 								}
 							} );
 
+							// Override the default jQuery validation method for Canadian postal codes to allow for trailing/leading whitespace
+							$.validator.addMethod( "postalCodeCA", function( value, element ) {
+								var trimmed = value.replace( /\u00a0/g, " " ).trim();
+								return this.optional( element ) || /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i.test( trimmed );
+							}, "Please specify a valid Canadian postal code." );
+
 							// The jQuery validation plug-in in action
 							validator = $form.validate( {
 								meta: "validate",

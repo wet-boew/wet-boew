@@ -271,8 +271,8 @@ $document.on( "click", "." + pagerClass + " button", function()  {
 
 } );
 
-// Resets items and pagination
-$document.on( "wb-contentupdated", selector, function() {
+// Resets items and pagination on filter or if content is updated
+$document.on( "wb-contentupdated wb-filtered", selector, function() {
 	this.pgSettings.currPage = 1;
 	this.pgSettings.items = this.pgSettings.items = this.querySelectorAll( ( this.pgSettings.section || ":scope" ) + " " + this.pgSettings.selector + notFilterClassSel );
 

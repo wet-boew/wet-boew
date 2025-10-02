@@ -2,4 +2,8 @@
 <link rel="stylesheet" href="{{assets}}/../{{site.theme}}/css/theme.css" />
 {{#if page.css}}{{#each page.css}}<link rel="stylesheet" href="{{this}}.css" />{{/each}}{{/if}}
 
+{{#if page.gcds}}
+<script blocking="render" src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/js/gcdsloader.js"></script>
+{{/if}}
+
 <noscript><link rel="stylesheet" href="{{assets}}/../wet-boew/css/noscript.css" /></noscript>

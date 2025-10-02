@@ -1,47 +1,67 @@
 ---
 {
-	"title": "Details closed on small views",
+	"title": "Details closed",
 	"language": "en",
 	"category": "Plugins",
-	"description": "Keep selected details elements closed on small view and down.",
+	"description": "Keep selected details elements closed on defined viewport and under.",
 	"tag": "details-close",
 	"parentdir": "details-close",
 	"altLangPrefix": "details-close",
-	"dateModified": "2021-11-29"
+	"dateModified": "2025-08-27"
 }
 ---
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
+<div class="wb-prettify all-pre hide"></div>
 
-<h2>Other example</h2>
-<ul>
-	<li><a href="details-close-md-en.html">Medium viewport example</a></li>
-</ul>
-
-<h2>Example of <code>details</code> element kept closed on small viewport and down (sm, xs and xxs)</h2>
+<h2>Example of <code>details</code> element kept closed on small viewport and down (lg, md, sm, xs and xxs)</h2>
 <p>Resize your browser to view the plugin at play.</p>
-<div class="row">
-	<div class="col-md-6">
-		<details class="provisional wb-details-close" open>
-			<summary>I am closed on mobile (uses plugin)</summary>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
-		</details>
-	</div>
-	<div class="col-md-6">
-		<details open>
-			<summary>I am opened on mobile (regular)</summary>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
-		</details>
-	</div>
-</div>
+<details class="provisional wb-details-close" open>
+	<summary>I am closed on mobile (default)</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="lg">
+	<summary>I am closed on large breakpoint</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="md">
+	<summary>I am closed on medium breakpoint</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="sm">
+	<summary>I am opened on small breakpoint</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="xs">
+	<summary>I am closed on extra-small breakpoint</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
+<details class="wb-details-close" open data-breakpoint="xxs">
+	<summary>I am opened on extra-extra-small breakpoint</summary>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.</p>
+</details>
 
 <h3>Source code</h3>
-<pre><code>&lt;details class="provisional wb-details-close" open&gt;
-	&lt;summary&gt;I am closed on mobile (uses plugin)&lt;/summary&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus, neque accumsan faucibus ultricies, libero massa mollis neque, et mollis libero enim a ligula. Ut dictum tempor luctus. Ut convallis vehicula sapien a facilisis. Morbi eget lectus efficitur, finibus metus eu, feugiat felis. Praesent sodales elit sed finibus pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent quis sem lacinia, accumsan sem et, lacinia turpis.&lt;/p&gt;
+<pre><code>&lt;details class="wb-details-close" open&gt;
+	&lt;summary&gt;I am closed on mobile (default)&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="lg"&gt;
+	&lt;summary&gt;I am closed on large breakpoint&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="md"&gt;
+	&lt;summary&gt;I am closed on medium breakpoint&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="sm"&gt;
+	&lt;summary&gt;I am closed on small breakpoint&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="xs"&gt;
+	&lt;summary&gt;I am closed on extra-small breakpoint&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
+&lt;/details&gt;
+&lt;details class="wb-details-close" open data-breakpoint="xxs"&gt;
+	&lt;summary&gt;I am closed on extra-extra-small breakpoint&lt;/summary&gt;
+	&lt;p&gt;...&lt;/p&gt;
 &lt;/details&gt;
 </code></pre>

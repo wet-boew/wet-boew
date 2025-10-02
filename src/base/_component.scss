@@ -6,6 +6,14 @@
  * Components and helpers style for WET-BOEW
  */
 
+%components-display-none-important {
+	display: none !important;
+}
+
+%components-display-block-important {
+	display: block !important;
+}
+
 /*
  Background Utility CSS
  */
@@ -56,4 +64,26 @@ Miscellaneous Utility CSS
  */
 .max-content {
 	max-width: max-content;
+}
+
+.nojs-show {
+	@extend %components-display-none-important;
+}
+
+.wbdisable-show {
+	@extend %components-display-none-important;
+}
+
+.wb-disable {
+	.nojs-show {
+		@extend %components-display-block-important;
+	}
+
+	.nojs-hide {
+		@extend %components-display-none-important;
+	}
+
+	.wbdisable-show {
+		@extend %components-display-block-important;
+	}
 }

@@ -3,7 +3,8 @@
         {
             "tags": "language__english language__french location__online dayOTW_friday",
             "title": "Ask PAC Anything!",
-            "date": "Friday August 5th, 2022",
+            "date": "Friday September 5th, 2025",
+            "date-ISO": "2025-09-05",
             "time": "12:00 PM to 1:00 PM",
             "location": "Online",
             "language": "English, French"
@@ -11,7 +12,8 @@
         {
             "tags": "language__english location__vancouver dayOTW_wednesday",
             "title": "Bidding on Opportunities",
-            "date": "Wednesday August 10th, 2022",
+            "date": "Wednesday September 10th, 2025",
+            "date-ISO": "2025-09-10",
             "time": "2:00 PM to 3:30 PM",
             "location": "Vancouver",
             "language": "English"
@@ -19,7 +21,8 @@
         {
             "tags": "language__english location__ottawa dayOTW_thursday",
             "title": "Doing business with the Government of Canada (Webinar)",
-            "date": "Thursday August 11th, 2022",
+            "date": "Thursday September 11th, 2025",
+            "date-ISO": "2025-09-11",
             "time": "12:00 PM to 2:00 PM",
             "location": "Ottawa",
             "language": "English"
@@ -27,7 +30,8 @@
         {
             "tags": "language__english location__online dayOTW_friday",
             "title": "Ask PAC Anything!",
-            "date": "Friday August 12th, 2022",
+            "date": "Friday September 12th, 2025",
+            "date-ISO": "2025-09-12",
             "time": "12:00 PM to 1:00 PM",
             "location": "Online",
             "language": "English"
@@ -35,7 +39,8 @@
         {
             "tags": "language__english location__ottawa dayOTW_thursday",
             "title": "Bidding on opportunities (Webinar)",
-            "date": "Thursday August 18th, 2022",
+            "date": "Thursday September 18th, 2025",
+            "date-ISO": "2025-09-18",
             "time": "12:00 PM to 2:00 PM",
             "location": "Ottawa",
             "language": "English"
@@ -43,7 +48,8 @@
         {
             "tags": "language__english location__online dayOTW_friday",
             "title": "Ask PAC Anything!",
-            "date": "Friday August 19th, 2022",
+            "date": "Friday September 19th, 2025",
+            "date-ISO": "2025-09-19",
             "time": "12:00 PM to 1:00 PM",
             "location": "Online",
             "language": "English"
@@ -51,7 +57,8 @@
         {
             "tags": "language__french location__ottawa dayOTW_thursday",
             "title": "Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses",
-            "date": "Thursday August 25th, 2022",
+            "date": "Thursday September 25th, 2025",
+            "date-ISO": "2025-09-25",
             "time": "9:30 AM to 11:00 AM",
             "location": "Ottawa",
             "language": "French"
@@ -59,7 +66,8 @@
         {
             "tags": "language__english location__ottawa location__montreal dayOTW_thursday",
             "title": "Workshop to register in the Supplier Registration Information (SRI) system and in the Indigenous ness Directory (IBD) for Indigenous-led businesses",
-            "date": "Thursday August 25th, 2022",
+            "date": "Thursday September 25th, 2025",
+            "date-ISO": "2025-09-25",
             "time": "1:00 PM to 2:30 PM",
             "location": "Ottawa and Montreal",
             "language": "English"
@@ -67,7 +75,8 @@
         {
             "tags": "language__french location__montreal dayOTW_thursday",
             "title": "Doing Business with the Government of Canada",
-            "date": "Thursday August 25th, 2022",
+            "date": "Thursday September 25th, 2025",
+            "date-ISO": "2025-09-25",
             "time": "1:30 PM to 3:00 PM",
             "location": "Montreal",
             "language": "French"
@@ -75,7 +84,8 @@
         {
             "tags": "language__english location__vancouver dayOTW_thursday",
             "title": "Doing Business with the Government of Canada",
-            "date": "Thursday August 25th, 2022",
+            "date": "Thursday September 25th, 2025",
+            "date-ISO": "2025-09-25",
             "time": "2:00 PM to 3:30 PM",
             "location": "Vancouver",
             "language": "English"
@@ -83,7 +93,8 @@
         {
             "tags": "language__english location__online dayOTW_friday",
             "title": "Ask PAC Anything!",
-            "date": "Friday August 26th, 2022",
+            "date": "Friday September 26th, 2025",
+            "date-ISO": "2025-09-26",
             "time": "12:00 PM to 1:30 PM",
             "location": "Online",
             "language": "English"
@@ -91,7 +102,8 @@
         {
             "tags": "language__english location__toronto dayOTW_tuesday",
             "title": "Mythbusting Federal Government Procurement and Overview of Innovation for Defence, Excellence and Security (IDEaS) ",
-            "date": "Tuesday August 30th, 2022",
+            "date": "Tuesday September 30th, 2025",
+            "date-ISO": "2025-09-30",
             "time": "10:00 AM to 11:00 AM",
             "location": "Toronto",
             "language": "English"
@@ -99,7 +111,8 @@
         {
             "tags": "language__french location__montreal dayOTW_tuesday",
             "title": "Register as supplier and find opportunities on BuyAndSell.gc.ca",
-            "date": "Tuesday August 30th, 2022",
+            "date": "Tuesday September 30th, 2025",
+            "date-ISO": "2025-09-30",
             "time": "1:30 PM to 3:00 PM",
             "location": "Montreal",
             "language": "French"
@@ -107,7 +120,8 @@
         {
             "tags": "language__english location__toronto dayOTW_wednesday",
             "title": "Federal Procurement Virtual Drop-in Café",
-            "date": "Wednesday August 31th, 2022",
+            "date": "Wednesday October 1st, 2025",
+            "date-ISO": "2025-10-01",
             "time": "3:00 PM to 4:00 PM",
             "location": "Toronto",
             "language": "English"
