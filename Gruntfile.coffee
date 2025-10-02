@@ -33,7 +33,6 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
-			"sprite"
 			"css"
 			"js"
 		]
@@ -65,7 +64,6 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
-			"sprite"
 			"sass"
 			"concat:supports"
 			"postcss"
@@ -558,7 +556,6 @@ module.exports = (grunt) ->
 
 						# Untracked generated files
 						"!site/data/i18n/*.json"
-						"!src/plugins/*/sprites/_sprites_*.scss"
 					],
 				options:
 					editorconfig: ".editorconfig",
