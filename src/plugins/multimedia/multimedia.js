@@ -560,7 +560,7 @@ var componentName = "wb-mltmd",
 					this.object.unloadModule( "cc" );
 					this.object.unloadModule( "captions" );
 				}
-				$media.trigger( "ccvischange" );
+				$( this ).trigger( captionsVisibleChangeEvent );
 		}
 	},
 
