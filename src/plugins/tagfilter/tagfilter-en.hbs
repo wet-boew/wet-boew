@@ -30,6 +30,7 @@
 	<li><a href="#filteredFAQ">Example 3 - FAQ leveraging Filter plugin</a></li>
 	<li><a href="#filteredFinder">Example 4 - Finder with "or" behavior and submit button</a></li>
 	<li><a href="#filteredTable">Example 5 - Table</a></li>
+	<li><a href="#filteredByDateRange">Example 5 - Date range filter</a></li>
 	<li><a href="#edgeCases">Edge case examples</a></li>
 </ul>
 
@@ -1354,6 +1355,228 @@
 		&lt;/tbody>
 	&lt;/table>
 &lt;/section></code></pre>
+</details>
+
+<section id="filteredByDateRange" class="wb-tagfilter provisional">
+	<h2>Example 5 - Date range filter</h2>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-lg-3">
+			<details open>
+				<summary>
+					<h3>Filter options</h3>
+				</summary>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Language</span></legend>
+						<ul class="list-unstyled">
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl" value=""
+										checked> All
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl"
+										value="french"> French
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="language" class="wb-tagfilter-ctrl"
+										value="english"> English
+								</label>
+							</li>
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<fieldset>
+						<legend class="h5 mrgn-tp-0"><span class="field-name">Event location</span></legend>
+						<ul class="list-unstyled">
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl"
+										value="montreal"> Montreal
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl"
+										value="online"> Online
+								</label>
+							</li>
+							<li class="checkbox">
+								<label>
+									<input type="checkbox" name="location" class="wb-tagfilter-ctrl"
+										value="ottawa"> Ottawa
+								</label>
+							</li>
+
+						</ul>
+					</fieldset>
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="dateRangeStart">Start Date:</label>
+					<input type="date" id="dateRangeStart" name="startDate"
+						class="wb-tagfilter-ctrl form-control" />
+				</div>
+				<div class="form-group mrgn-bttm-0">
+					<label for="dateRangeEnd">End Date:</label>
+					<input type="date" id="dateRangeEnd" name="endDate"
+						class="wb-tagfilter-ctrl form-control" />
+				</div>
+			</details>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-lg-9">
+			<ul class="list-unstyled wb-tagfilter-items">
+				<li data-wb-tags="english french online ">
+					<h3>Ask PAC Anything!</h3>
+					<time datetime="2025-09-05">September 5th, 2025</time>
+					<p><strong>Location:</strong> <span class="location2">Online</span>,
+						<strong>Language</strong>: <span class="event-language">English, French</span></p>
+				</li>
+				<li data-wb-tags="english montreal">
+					<h3>Bidding on Opportunities</h3>
+					<time datetime="2025-09-10">Wednesday September 10th, 2025</time>
+					<p><strong>Location:</strong> <span class="event-location">Montreal</span>,
+						<strong>Language</strong>: <span class="event-language">English</span></p>
+				</li>
+				<li data-wb-tags="english ottawa ">
+					<h3>Doing business with the Government of Canada (Webinar)</h3>
+					<time datetime="2025-09-25">September 25th, 2025</time>
+					<p><strong>Location:</strong> <span class="event-location">Ottawa</span>,
+						<strong>Language</strong>: <span class="event-language">English</span></p>
+				</li>
+				<li data-wb-tags="english french online ">
+					<h3>Ask PAC Anything!</h3>
+					<time datetime="2025-09-25">September 25th, 2025</time>
+					<p><strong>Location:</strong> <span class="location2">Online</span>,
+						<strong>Language</strong>: <span class="event-language">English, French</span></p>
+				</li>
+				<li data-wb-tags="french montreal">
+					<h3>Bidding on Opportunities</h3>
+					<time datetime="2025-09-15">September 15th, 2025</time>
+					<p><strong>Location:</strong> <span class="event-location">Montreal</span>,
+						<strong>Language</strong>: <span class="event-language">French</span></p>
+				</li>
+				<li data-wb-tags="english ottawa ">
+					<h3>Doing business with the Government of Canada (Webinar)</h3>
+					<time datetime="2025-09-30">September30th, 2025</time>
+					<p><strong>Location:</strong> <span class="event-location">Ottawa</span>,
+						<strong>Language</strong>: <span class="event-language">English</span></p>
+				</li>
+			</ul>
+			<div class="wb-tagfilter-noresult">
+				<p>No item match this combination of filters.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<details>
+	<summary>Source code</summary>
+	<pre><code>&lt;section id="filteredByDateRange" class="wb-tagfilter provisional"&gt;
+	&lt;h2&gt;Example 5 - Date range filter&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-xs-12 col-sm-4 col-lg-3"&gt;
+			&lt;details open&gt;
+				&lt;summary&gt;
+					&lt;h3&gt;Filter options&lt;/h3&gt;
+				&lt;/summary&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;fieldset&gt;
+						&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Language&lt;/span&gt;&lt;/legend&gt;
+						&lt;ul class="list-unstyled"&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="" checked&gt; All
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="french"&gt; French
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="radio"&gt;
+								&lt;label&gt;
+									&lt;input type="radio" name="language" class="wb-tagfilter-ctrl" value="english"&gt; English
+								&lt;/label&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;fieldset&gt;
+						&lt;legend class="h5 mrgn-tp-0"&gt;&lt;span class="field-name"&gt;Event location&lt;/span&gt;&lt;/legend&gt;
+						&lt;ul class="list-unstyled"&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label&gt;
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="montreal"&gt; Montreal
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label&gt;
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="online"&gt; Online
+								&lt;/label&gt;
+							&lt;/li&gt;
+							&lt;li class="checkbox"&gt;
+								&lt;label&gt;
+									&lt;input type="checkbox" name="location" class="wb-tagfilter-ctrl" value="ottawa"&gt; Ottawa
+								&lt;/label&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/fieldset&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;label for="dateRangeStart"&gt;Start Date:&lt;/label&gt;
+					&lt;input type="date" id="dateRangeStart" name="startDate" class="wb-tagfilter-ctrl form-control" /&gt;
+				&lt;/div&gt;
+				&lt;div class="form-group mrgn-bttm-0"&gt;
+					&lt;label for="dateRangeEnd"&gt;End Date:&lt;/label&gt;
+					&lt;input type="date" id="dateRangeEnd" name="endDate" class="wb-tagfilter-ctrl form-control" /&gt;
+				&lt;/div&gt;
+			&lt;/details&gt;
+		&lt;/div&gt;
+		&lt;div class="col-xs-12 col-sm-8 col-lg-9"&gt;
+			&lt;ul class="list-unstyled wb-tagfilter-items"&gt;
+				&lt;li data-wb-tags="english french online "&gt;
+					&lt;h3&gt;Ask PAC Anything!&lt;/h3&gt;
+					&lt;time datetime="2025-09-05"&gt;September 5th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="location2"&gt;Online&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;English, French&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+				&lt;li data-wb-tags="english montreal"&gt;
+					&lt;h3&gt;Bidding on Opportunities&lt;/h3&gt;
+					&lt;time datetime="2025-09-10"&gt;Wednesday September 10th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="event-location"&gt;Montreal&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;English&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+				&lt;li data-wb-tags="english ottawa "&gt;
+					&lt;h3&gt;Doing business with the Government of Canada (Webinar)&lt;/h3&gt;
+					&lt;time datetime="2025-09-25"&gt;September 25th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="event-location"&gt;Ottawa&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;English&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+				&lt;li data-wb-tags="english french online "&gt;
+					&lt;h3&gt;Ask PAC Anything!&lt;/h3&gt;
+					&lt;time datetime="2025-09-25"&gt;September 25th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="location2"&gt;Online&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;English, French&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+				&lt;li data-wb-tags="french montreal"&gt;
+					&lt;h3&gt;Bidding on Opportunities&lt;/h3&gt;
+					&lt;time datetime="2025-09-15"&gt;September 15th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="event-location"&gt;Montreal&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;French&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+				&lt;li data-wb-tags="english ottawa "&gt;
+					&lt;h3&gt;Doing business with the Government of Canada (Webinar)&lt;/h3&gt;
+					&lt;time datetime="2025-09-30"&gt;September30th, 2025&lt;/time&gt;
+					&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; &lt;span class="event-location"&gt;Ottawa&lt;/span&gt;, &lt;strong&gt;Language&lt;/strong&gt;: &lt;span class="event-language"&gt;English&lt;/span&gt;&lt;/p&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;div class="wb-tagfilter-noresult"&gt;
+				&lt;p&gt;No item match this combination of filters.&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
 </details>
 
 <section>

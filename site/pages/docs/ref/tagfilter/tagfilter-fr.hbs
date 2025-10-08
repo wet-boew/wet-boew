@@ -85,6 +85,27 @@
 &lt;/select></code></pre>
 <p><strong>Remarque&nbsp;:</strong> ajoutez une <code>valeur</code> vide à votre option afin d'afficher tous les items.</p>
 
+<h4>Pour la plage de dates</h4>
+<ol>
+	<li>Créez votre champ <code>type="date"</code> pour la date de début ou de fin</li>
+	<li>L'attribut <code>name</code> est obligatoire et doit être soit <code>startDate</code> soit <code>endDate</code></li>
+	<li>Ajoutez la classe CSS <code>wb-tagfilter-ctrl</code> à l'input.
+		<p>Vos champs de date finaux devraient ressembler à ceci :</p>
+		<pre><code>&lt;label for=&quot;dateRangeStart&quot;&gt;Date de début :&lt;/label&gt;
+	&lt;input type=&quot;date&quot; id=&quot;dateRangeStart&quot; name=&quot;startDate&quot; class=&quot;wb-tagfilter-ctrl form-control&quot;&gt;
+	&lt;label for=&quot;dateRangeEnd&quot;&gt;Date de fin :&lt;/label&gt;
+	&lt;input type=&quot;date&quot; id=&quot;dateRangeEnd&quot; name=&quot;endDate&quot; class=&quot;wb-tagfilter-ctrl form-control&quot;&gt;</code></pre>
+	</li>
+	<li><p>Ajoutez un élément <code>&lt;time&gt;</code> à l'élément étiqueté. L'attribut <code>datetime</code> de l'élément <code>&lt;time&gt;</code> doit contenir la <strong>date ISO</strong> de l'élément. C'est ce que le filtre de plage de dates utilise pour faire correspondre les éléments.</p>
+	<pre><code>&lt;li data-wb-tags=&quot;tag1 tag2&quot;&gt;
+&lt;time datetime=&quot;2025-09-10&quot;&gt;Mercredi 10 septembre 2025&lt;/time&gt;
+...
+	&lt;/li&gt;</code></pre>
+	</li>
+</ol>
+<p>Cela permet au plugiciel de filtrer les éléments étiquetés en fonction de l'attribut datetime de leurs éléments <code>&lt;time&gt;</code>. Vous pouvez utiliser soit la date de début, soit la date de fin, ou les deux ensemble.</p>
+
+
 <h4>Ajouter un bouton de soumission (Optionnel)</h4>
 <p>Ce plugiciel effectue ses mises-à-jours automatiquement après chaque changement de valeur; vous pouvez empêcher cette fonctionalité et ajouter un bouton de soumission si votre page le requiert. Cette option est pratique si vous devez actionner une soumission comme dans le cas o&ugrave; vous désirez collecter des données analytiques.</p>
 <ol>

@@ -5,7 +5,7 @@
 %wb-cal-event-show-event {
 	background-color: $clrWhite;
 	border: 1px solid #333;
-	clip: rect(auto, auto, auto, auto);
+	clip-path: none;
 	color: #000;
 	height: inherit;
 	list-style-type: none;

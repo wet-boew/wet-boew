@@ -84,6 +84,26 @@
 &lt;/select></code></pre>
 <p><strong>Note:</strong> add an empty <code>value</code> to your default option in order to show all items.</p>
 
+<h4>For date range</h4>
+<ol>
+	<li>Create your input <code>type="date"</code> for the start or end date</li>
+	<li>The attribute <code>name</code> is mandatory and must be either <code>startDate</code> or <code>endDate</code></li>
+	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the input.
+		<p>Your final date inputs should look like this:</p>
+		<pre><code>&lt;label for=&quot;dateRangeStart&quot;&gt;Start Date:&lt;/label&gt;
+	&lt;input type=&quot;date&quot; id=&quot;dateRangeStart&quot; name=&quot;startDate&quot; class=&quot;wb-tagfilter-ctrl form-control&quot;&gt;
+	&lt;label for=&quot;dateRangeEnd&quot;&gt;End Date:&lt;/label&gt;
+	&lt;input type=&quot;date&quot; id=&quot;dateRangeEnd&quot; name=&quot;endDate&quot; class=&quot;wb-tagfilter-ctrl form-control&quot;&gt;</code></pre>
+	</li>
+	<li><p>Add a <code>&lt;time&gt;</code> element to the tagged item. The <code>datetime</code> attribute of the <code>&lt;time&gt;</code> element must contain the <strong>ISO date</strong> for the item. This is what the date range filter uses to match items.</p>
+	<pre><code>&lt;li data-wb-tags=&quot;tag1 tag2&quot;&gt;
+&lt;time datetime=&quot;2025-09-10&quot;&gt;Wednesday September 10th, 2025&lt;/time&gt;
+...
+	&lt;/li&gt;</code></pre>
+	</li>
+</ol>
+<p>This allows the plugin to filter tagged items based on the datetime attribute of their  <code>&lt;time&gt;</code> elements. You can use either start date, end date, or both together.</p>
+
 <h4>Add a submit button (Optional)</h4>
 <p>The plugin auto-updates by default but you may prevent this behavior and add a submit button if your design requires it. This can be practical if you need to collect data via analytics that require a submission to trigger a beacon for example.</p>
 <ol>
