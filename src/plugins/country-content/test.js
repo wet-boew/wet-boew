@@ -79,7 +79,7 @@ describe( "Country Content test suite", function() {
 		before( function( done ) {
 
 			stubs.load = sandbox.stub( $.prototype, "load" );
-			
+
 			// Load the US content
 			localStorage.setItem( "countryCode", "US" );
 
@@ -104,7 +104,7 @@ describe( "Country Content test suite", function() {
 		it( "should have loaded the country specific content", function() {
 			expect( stubs.load.calledWith( "ajax/country-content-us-en.html" ) ).to.equal( true );
 		} );
-		
+
 	} );
 } );
 
