@@ -548,19 +548,23 @@ var componentName = "wb-mltmd",
 			case "setCaptionsVisible":
 				if ( args ) {
 					$( this ).addClass( captionClass );
-					try {
-						this.object.loadModule( "cc" );
+					this.object.loadModule( "cc" );
+					var ccList = this.object.getOption( "cc", "tracklist" );
+					if ( ccList && ccList.length > 0 ) {
 						this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
-					} catch ( e ) {
+					} else {
 						this.object.loadModule( "captions" );
-						this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+						var captionsList = this.object.getOption( "captions", "tracklist" );
+						if ( captionsList && captionsList.length > 0 ) {
+							this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+						}
 					}
 				} else {
 					$( this ).removeClass( captionClass );
 					this.object.unloadModule( "cc" );
 					this.object.unloadModule( "captions" );
 				}
-				$media.trigger( "ccvischange" );
+				$( this ).trigger( captionsVisibleChangeEvent );
 		}
 	},
 
