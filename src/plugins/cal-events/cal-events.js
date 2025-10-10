@@ -372,7 +372,6 @@ var componentName = "wb-calevt",
 $document.on( "timerpoke.wb " + initEvent + " wb-redraw" + selector, selector, function( event ) {
 
 	var eventType = event.type,
-		$elm = $( "#" + event.target.id ),
 		calendarId = event.currentTarget.dataset.calevtSrc;
 
 	switch ( eventType ) {
@@ -382,6 +381,7 @@ $document.on( "timerpoke.wb " + initEvent + " wb-redraw" + selector, selector, f
 			break;
 
 		case "wb-redraw":
+			var $elm = $( "#" + event.target.id );
 			$( "#" + calendarId + " .wb-clndr" ).remove();
 			processEvents( $elm );
 			$elm.trigger( "wb-updated" + selector );
