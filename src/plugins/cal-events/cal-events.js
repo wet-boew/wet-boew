@@ -381,7 +381,7 @@ $document.on( "timerpoke.wb " + initEvent + " wb-redraw" + selector, selector, f
 			break;
 
 		case "wb-redraw":
-			$elm = $( "#" + event.target.id ),
+			var $elm = $( "#" + event.target.id );
 			$( "#" + calendarId + " .wb-clndr" ).remove();
 			processEvents( $elm );
 			$elm.trigger( "wb-updated" + selector );
