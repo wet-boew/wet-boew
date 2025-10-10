@@ -7,20 +7,9 @@
 	"tag": "paginate",
 	"parentdir": "paginate",
 	"altLangPrefix": "paginate",
-	"dateModified": "2024-05-14"
+	"dateModified": "2025-09-10"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent
-		minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design
-				decision around provisional features.</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-en.html">Check other provisional features available.</a></small>
-	</p>
-</div>
-
 <span class="wb-prettify all-pre"></span>
 
 <h2>On this page:</h2>
@@ -33,7 +22,7 @@
 
 <section id="paginatedTable">
 	<h2>Example 1 - Table</h2>
-	<table class="table wb-paginate provisional">
+	<table class="table wb-paginate">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -285,7 +274,7 @@
 	</table>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;table class="table wb-paginate provisional">
+		<pre><code><table class="table wb-paginate">
 	&lt;thead>
 		&lt;tr>
 			&lt;th>ID&lt;/th>
@@ -326,7 +315,7 @@
 <section id="paginatedArticles">
 	<h2>Example 2 - Articles</h2>
 	<p>This example leverages the following option: <code>itemsPerPage</code></p>
-	<div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+	<div class="wb-paginate row wb-eqht-grd" data-wb-paginate='{
 		"itemsPerPage": 12
 	}'>
 		<article class="col-sm-6 col-md-4 col-lg-3">
@@ -512,7 +501,7 @@
 	</div>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;div class="wb-paginate provisional row wb-eqht-grd" data-wb-paginate='{
+		<pre><code>&lt;div class="wb-paginate row wb-eqht-grd" data-wb-paginate='{
 		"itemsPerPage": 12
 	}'>
 	&lt;article class="col-sm-6 col-md-4 col-lg-3">
@@ -548,7 +537,7 @@
 	<h2>Example 3 - Events list</h2>
 	<p>This example leverages the following options: <code>itemsPerPage</code>, <code>section</code>, <code>selector</code>, and <code>uiTarget</code></p>
 	<p>This example also leverages the following other two plugins: <b>Filter</b> and <b>Tagfilter</b>. In order for all three plugins to work together, they have to be added to the same HTML element.</p>
-	<div class="wb-paginate wb-tagfilter provisional wb-filter"
+	<div class="wb-paginate wb-tagfilter wb-filter"
 	data-wb-filter='{
 		"uiTemplate": "#filteredEventsList",
 		"section": ".events-list",
@@ -818,7 +807,7 @@
 	</div>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;div class="wb-paginate wb-tagfilter provisional wb-filter"
+		<pre><code>&lt;div class="wb-paginate wb-tagfilter wb-filter"
 	data-wb-filter='{
 		"uiTemplate": "#filteredEventsList",
 		"section": ".events-list",
@@ -1091,7 +1080,7 @@
 
 <section id="paginatedList">
 	<h2>Example 4 - List</h2>
-	<ul class="wb-paginate provisional">
+	<ul class="wb-paginate">
 		<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!</li>
 		<li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?</li>
 		<li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.</li>
@@ -1177,7 +1166,7 @@
 	</ul>
 	<details>
 		<summary>Source code</summary>
-		<pre><code>&lt;ul class="wb-paginate provisional">
+		<pre><code>&lt;ul class="wb-paginate">
 	&lt;li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, at!&lt;/li>
 	&lt;li>Soluta maiores deserunt fugit dolorum ratione cum necessitatibus dolore ipsum?&lt;/li>
 	&lt;li>Libero debitis dicta porro modi nobis odit labore dolor eveniet.&lt;/li>

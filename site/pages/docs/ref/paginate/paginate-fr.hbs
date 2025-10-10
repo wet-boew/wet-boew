@@ -6,17 +6,9 @@
 "categoryfile": "plugins",
 "description": "Ajoute une pagination à la fin d'une liste d'items.",
 "altLangPrefix": "paginate",
-"dateModified": "2024-05-14"
+"dateModified": "2025-09-10"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Fonctionnalité instable</h2>
-	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
-	<p><small><a href="../../../docs/ref/provisional-fr.html">Jetez un coup d'œil aux autres fonctionnalités provisoires disponibles.</a></small></p>
-</div>
-
 <span class="wb-prettify all-pre"></span>
 
 <section>
@@ -36,16 +28,28 @@
 </section>
 
 <section>
+	<h2>Évaluations et rapports</h2>
+	<ul>
+		<li>Évaluation d'accessibilité
+			<ul>
+				<li><a href="../../../demos/paginate/reports/a11y-1-fr.html">Rapport français</a></li>
+				<li><a href="../../../demos/paginate/reports/a11y-1-en.html" hreflang="fr">Rapport anglais</a></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<section>
 	<h2>Comment mettre en œuvre</h2>
 	<ol>
 		<li>
-			<p>Ajoutez les classes CSS <code>wb-paginate</code> et <code>provisional</code> à un élément ou un groupe d'éléments à paginer.</p>
+			<p>Ajoutez la classe CSS <code>wb-paginate</code> à un élément ou un groupe d'éléments à paginer.</p>
 			<dl>
-				<dt>Si défini sur un <code>&lt;table&gt;</code></dt>
+				<dt>Si défini sur un <code>&lt;table></code></dt>
 				<dd>À moins d'être spécifié autrement, il sélectionnera toutes les lignes (<code>&lt;tr></code>).</dd>
-				<dt>Si défini sur un <code>&lt;ul&gt;</code></dt>
+				<dt>Si défini sur un <code>&lt;ul></code></dt>
 				<dd>À moins d'être spécifié autrement, il sélectionnera tous les <code>&lt;li></code></dd>
-				<dt>Si défini sur tout autre élément, tel que <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> ou <code>&lt;div&gt;</code></dt>
+				<dt>Si défini sur tout autre élément, tel que <code>&lt;section></code>, <code>&lt;article></code> ou <code>&lt;div></code></dt>
 				<dd>À moins d'être spécifié autrement, il sélectionnera tous les enfants directs de l'élément.</dd>
 			</dl>
 		</li>
@@ -58,8 +62,8 @@
 <section>
 	<h2>Options de configuration</h2>
 	<p>Toutes les options de configuration du plugiciel sont contrôlées par l'attribut <code>data-wb-paginate</code>. Ajoutez simplement un objet JSON comme valeur, par exemple&nbsp;:</p>
-	<pre><code>&lt;div class="wb-paginate provisional" data-wb-paginate='{
-	"appendUI": false,
+	<pre><code>&lt;div class="wb-paginate" data-wb-paginate='{
+	"uiTarget": "#paginationElement,
 	"itemsPerPage": 12
 }'></code></pre>
 	<table class="table">
@@ -73,25 +77,18 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>appendUI</code></td>
+				<td><code>uiTarget</code></td>
 				<td>Définit le sélecteur de l'élément qui contiendra la pagination. Si elle n'est pas définie, l'IU sera insérée après la <code>section</code> (si elle est définie) ou après l'élément. Dans le cas d'un <code>&lt;table></code> ou d'un <code>&lt;ul></code>, le code sera inséré après l'élément même si la propriété <code>section</code> est définie.</td>
-				<td>Booléen</td>
+				<td>Chaîne de caractère (sélecteur CSS)</td>
 				<td>
-					<dl>
-						<dt>Pour un élément <code>&lt;table></code> ou <code>&lt;ul></code></dt>
-						<dd><code>false</code></dd>
-					</dl>
-					<dl>
-						<dt>Pour tout autre élément</dt>
-						<dd><code>true</code></dd>
-					</dl>
+					Non-défini
 				</td>
 			</tr>
 			<tr>
 				<td><code>itemsPerPage</code></td>
 				<td>Définit le nombre d'éléments visibles par page.</td>
 				<td>Nombre</td>
-				<td><code>25</code></td>
+				<td><code>10</code></td>
 			</tr>
 			<tr>
 				<td><code>section</code></td>
@@ -104,7 +101,7 @@
 					</dl>
 					<dl>
 						<dt>Pour tout autre élément</dt>
-						<dd>non-défini</dd>
+						<dd>Non-défini</dd>
 					</dl>
 				</td>
 			</tr>

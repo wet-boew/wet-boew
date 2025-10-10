@@ -1,6 +1,6 @@
 /**
- * @title WET-BOEW Tag filter
- * @overview Filter based content tagging
+ * @title WET-BOEW Paginate Plugin
+ * @overview This plugin provides pagination functionality for lists, tables, and groups of elements.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  */
@@ -10,7 +10,7 @@
 let i18n, i18nText;
 
 const componentName = "wb-paginate",
-	selector = ".provisional." + componentName,
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	filterClass = "wb-fltr-out",
@@ -47,7 +47,8 @@ const componentName = "wb-paginate",
 				i18n = wb.i18n;
 				i18nText = {
 					prv: i18n( "prv" ),
-					nxt: i18n( "nxt" )
+					nxt: i18n( "nxt" ),
+					paginationLabel: i18n( "pagination-label" )
 				};
 			}
 
@@ -71,9 +72,10 @@ const componentName = "wb-paginate",
 			elm.pgSettings.items = elm.querySelectorAll( ( elm.pgSettings.section || ":scope" ) + " " + elm.pgSettings.selector + notFilterClassSel );
 
 			// Setup pagination container
-			paginationElm = document.createElement( "div" );
+			paginationElm = document.createElement( "nav" );
 			paginationElm.id = componentName + "-" + elm.id;
 			paginationElm.classList.add( pagerClass );
+			paginationElm.setAttribute( "aria-label", i18nText.paginationLabel );
 
 			// Add pagination container
 			if ( elm.pgSettings.uiTarget ) {
@@ -117,7 +119,7 @@ const componentName = "wb-paginate",
 			// Add Previous page button
 			var prevLI = "";
 			prevLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
-			prevLI += "<button type=\"button\" class=\"paginate-prev\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.prv + "</button>";
+			prevLI += "<button type=\"button\" class=\"paginate-prev\" aria-controls=\"" + elm.id + "\">" + i18nText.prv + "</button>";
 			prevLI += "</li>";
 
 			paginationUI += prevLI;
@@ -134,7 +136,7 @@ const componentName = "wb-paginate",
 			// Add Next page button
 			var nextLI = "";
 			nextLI += "<li" + ( i === currPage ? " class=\"disabled\"" : "" ) + ">";
-			nextLI += "<button type=\"button\" class=\"paginate-next\" aria-controls=\"" + elm.id + "\"><span class=\"wb-inv\">Page </span>" + i18nText.nxt + "</button>";
+			nextLI += "<button type=\"button\" class=\"paginate-next\" aria-controls=\"" + elm.id + "\">" + i18nText.nxt + "</button>";
 			nextLI += "</li>";
 			paginationUI += nextLI;
 			paginationUI += "</ol>";
@@ -174,17 +176,9 @@ const componentName = "wb-paginate",
 			pageLink = pageItem.querySelector( "button" );
 
 			if ( pageLink.classList.contains( "paginate-prev" ) ) {
-				if ( currPage > 1 ) {
-					pageItem.classList.remove( "disabled" );
-				} else {
-					pageItem.classList.add( "disabled" );
-				}
+				currPage > 1 ? pageItem.classList.remove( "disabled" ) : pageItem.classList.add( "disabled" );
 			} else if ( pageLink.classList.contains( "paginate-next" ) ) {
-				if ( currPage < pagesCount ) {
-					pageItem.classList.remove( "disabled" );
-				} else {
-					pageItem.classList.add( "disabled" );
-				}
+				currPage < pagesCount ? pageItem.classList.remove( "disabled" ) : pageItem.classList.add( "disabled" );
 			} else {
 				pageItem.className = "";
 				pageItem.children[ 0 ].removeAttribute( "aria-current" );
@@ -256,7 +250,7 @@ $document.on( "click", "." + pagerClass + " button", function()  {
 		pageDest--;
 	}
 
-	if ( pageDest !== elm.pgSettings.currPage ) {
+	if ( pageDest !== elm.pgSettings.currPage && pageDest > 0 && pageDest <= elm.pgSettings.pagesCount ) {
 		elm.pgSettings.currPage = pageDest;
 
 		updateItems( elm );
@@ -274,7 +268,7 @@ $document.on( "click", "." + pagerClass + " button", function()  {
 // Resets items and pagination on filter or if content is updated
 $document.on( "wb-contentupdated wb-filtered", selector, function() {
 	this.pgSettings.currPage = 1;
-	this.pgSettings.items = this.pgSettings.items = this.querySelectorAll( ( this.pgSettings.section || ":scope" ) + " " + this.pgSettings.selector + notFilterClassSel );
+	this.pgSettings.items = this.querySelectorAll( ( this.pgSettings.section || ":scope" ) + " " + this.pgSettings.selector + notFilterClassSel );
 
 	updateItems( this );
 	generateUI( this );
