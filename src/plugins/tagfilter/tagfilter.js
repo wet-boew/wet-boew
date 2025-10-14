@@ -14,9 +14,13 @@ const componentName = "wb-tagfilter",
 	selectorCtrl = "." + componentName + "-ctrl",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	filterOutClass = "wb-fltr-out",
 	tgFilterOutClass = "wb-tgfltr-out",
 	itemsWrapperClass = "wb-tagfilter-items",
 	noResultWrapperClass = "wb-tagfilter-noresult",
+	defaults = {
+		live: true
+	},
 
 	init = function( event ) {
 		const elm = wb.init( event, componentName, selector );
@@ -25,11 +29,15 @@ const componentName = "wb-tagfilter",
 			const filterControls = elm.querySelectorAll( selectorCtrl ),
 				taggedItems = elm.querySelectorAll( "[data-wb-tags]" ),
 				taggedItemsWrapper = elm.querySelector( "." + itemsWrapperClass ),
-				noResultWrapper = elm.querySelector( "." + noResultWrapperClass );
+				noResultWrapper = elm.querySelector( "." + noResultWrapperClass ),
+				$elm = $( elm ),
+				data = $.extend( {}, defaults, $elm.data( componentName ) );
 
 			elm.items = [];
 			elm.filters = {};
 			elm.activeFilters = [];
+
+			$elm.data( componentName, data );
 
 			if ( taggedItemsWrapper ) {
 				taggedItemsWrapper.id = taggedItemsWrapper.id || wb.getId(); // Ensure the element has an ID
@@ -92,30 +100,34 @@ const componentName = "wb-tagfilter",
 		let filtersObj = {};
 
 		filterControls.forEach( function( control ) {
-			if ( !control.name ) {
+			const filterKey = getControlFilterName( control );
+
+			if ( !filterKey ) {
 				console.error( componentName + ": Filter controls require an attribute 'name'." );
+			}
+
+			if ( !( filterKey in filtersObj ) ) {
+				filtersObj[ filterKey ] = [ ];
 			}
 
 			switch ( control.type ) {
 				case "checkbox":
 				case "radio":
-					if ( !( control.name in filtersObj ) ) {
-						filtersObj[ control.name ] = [ ];
-					}
-
-					filtersObj[ control.name ].push( {
+					filtersObj[ filterKey ].push( {
 						isChecked: control.checked,
 						type: control.type,
-						value: control.value
+						value: control.value,
+						name: control.name
 					} );
 
 					break;
 				case "select-one":
 				case "date":
-					filtersObj[ control.name ] = [ {
+					filtersObj[ filterKey ].push( {
 						type: control.type,
-						value: control.value
-					} ];
+						value: control.value,
+						name: control.name
+					} );
 					break;
 			}
 		} );
@@ -140,38 +152,15 @@ const componentName = "wb-tagfilter",
 				} ).length,
 				filterGroupActiveFilters = [ ];
 
-			switch ( filterGroup[ 0 ].type ) {
-				case "checkbox":
-					if ( filterGroupChkCnt > 0 ) {
-						filterGroup.forEach( function( filterItem ) {
-							if ( filterItem.isChecked ) {
-								filterGroupActiveFilters.push( filterItem.value );
-							}
-						} );
-					}
-					break;
-
-				case "radio":
-					if ( filterGroupChkCnt > 0 ) {
-						for ( let filterItem of filterGroup ) {
-							if ( filterItem.isChecked === true ) {
-								if ( filterItem.value !== "" ) {
-									filterGroupActiveFilters.push( filterItem.value );
-								}
-								break;
-							}
-						}
-					} else {
-						console.warn( componentName + ": Radio button groups must have a default selected value. If you want to display all items, add an option called \"All\" with an empty value." );
-					}
-					break;
-
-				case "select-one":
-					if ( filterGroup[ 0 ].value !== "" ) {
-						filterGroupActiveFilters.push( filterGroup[ 0 ].value );
-					}
-					break;
+			if ( filterGroup[ 0 ].type === "radio" && filterGroupChkCnt < 1 ) {
+				console.warn( componentName + ": Radio button groups must have a default selected value. If you want to display all items, add an option called \"All\" with an empty value." );
 			}
+
+			filterGroup.forEach( function( filterItem ) {
+				if ( ( filterItem.isChecked || filterItem.type === "select-one" ) && filterItem.value !== "" ) {
+					filterGroupActiveFilters.push( filterItem.value );
+				}
+			} );
 
 			instance.activeFilters.push( filterGroupActiveFilters );
 		}
@@ -251,6 +240,18 @@ const componentName = "wb-tagfilter",
 		return updatedItemsList;
 	},
 
+	getControlFilterName = function( control ) {
+		const controlFieldset = $( control ).closest( "fieldset[data-" + componentName + "-group]" );
+
+		if ( control.getAttribute( "data-" + componentName + "-group" ) !== null ) {
+			return control.getAttribute( "data-" + componentName + "-group" );
+		} else if ( controlFieldset.length > 0 ) {
+			return controlFieldset.attr( "data-" + componentName + "-group" );
+		}
+
+		return control.name;
+	},
+
 	// Utility method to update stored active filters, update stored items and update visibility of tagged items
 	update = function( instance ) {
 		refineFilters( instance );
@@ -264,9 +265,11 @@ const componentName = "wb-tagfilter",
 $document.on( "change", selectorCtrl, function( event )  {
 	let control = event.currentTarget,
 		filterType = control.type,
-		filterName = control.name,
+		filterName = getControlFilterName( control ),
 		filterValue = control.value,
+		controlName = control.name,
 		elm = control.closest( selector ),
+		live = $( elm ).data( componentName ).live,
 		filterGroup = elm.filters[ filterName ];
 
 	switch ( filterType ) {
@@ -282,7 +285,9 @@ $document.on( "change", selectorCtrl, function( event )  {
 
 			// Set all virtual radio items to unchecked
 			filterGroup.forEach( function( filterItem ) {
-				filterItem.isChecked = false;
+				if ( controlName === filterItem.name ) {
+					filterItem.isChecked = false;
+				}
 			} );
 
 			// Set selected radio button's associated virtual filter to checked
@@ -295,17 +300,35 @@ $document.on( "change", selectorCtrl, function( event )  {
 		case "date":
 
 			// Update virtual filter to the new value
-			filterGroup[ 0 ].value = filterValue;
+			filterGroup.find( function( filterItem ) {
+				return filterItem.name === controlName;
+			} ).value = filterValue;
 			break;
 	}
 
 	// Update list of visible items
-	update( elm );
+	if ( live ) {
+		update( elm );
+	}
+} );
+
+//	Trigger on form submit if not live changes
+$document.on( "submit", selector + " form", function( event )  {
+	const elm = event.currentTarget.closest( selector ),
+		live = $( elm ).data( componentName ).live;
+
+	if ( !live ) {
+		update( elm );
+	}
+
+	event.preventDefault();
 } );
 
 // Reinitialize tagfilter if content on the page has been updated by another plugin
 $document.on( "wb-contentupdated", selector + ", " + selector + " *", function()  {
-	let that = this;
+	let that = this,
+		wrapper = $( this ).find( "." + itemsWrapperClass ),
+		visibleItems = this.querySelectorAll( "." + itemsWrapperClass + " " + "[data-wb-tags]:not(." + tgFilterOutClass + ", ." + filterOutClass + ")" );
 
 	if ( wait ) {
 		clearTimeout( wait );
@@ -315,6 +338,11 @@ $document.on( "wb-contentupdated", selector + ", " + selector + " *", function()
 		that.classList.remove( "wb-init", componentName + "-inited" );
 		$( that ).trigger( "wb-init." + componentName );
 	}, 100 );
+
+	//	Filter events are bound before tag filter so it hides the container
+	if ( visibleItems.length > 0 && wrapper.hasClass( filterOutClass ) ) {
+		wrapper.removeClass( filterOutClass );
+	}
 } );
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
