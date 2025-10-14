@@ -63,10 +63,6 @@ describe( "Country Content test suite", function() {
 			expect( isLookup ).to.equal( true );
 		} );
 
-		it( "should have loaded the country specific content", function() {
-			expect( stubs.load.calledWith( "ajax/country-content-ca-en.html" ) ).to.equal( true );
-		} );
-
 		it( "should have saved the country code", function() {
 			expect( localStorage.getItem( "countryCode" ) ).to.equal( "CA" );
 		} );
@@ -76,9 +72,13 @@ describe( "Country Content test suite", function() {
 	 * Test loading specific content
 	 */
 	describe( "load specific country content from localStorage", function() {
-		var $elm;
+		var $elm,
+			stubs = {},
+			sandbox = sinon.createSandbox();
 
 		before( function( done ) {
+
+			stubs.load = sandbox.stub( $.prototype, "load" );
 
 			// Load the US content
 			localStorage.setItem( "countryCode", "US" );
@@ -93,12 +93,18 @@ describe( "Country Content test suite", function() {
 		} );
 
 		after( function() {
+			sandbox.restore();
 			$elm.remove();
 		} );
 
 		it( "should have saved the country code", function() {
 			expect( localStorage.getItem( "countryCode" ) ).to.equal( "US" );
 		} );
+
+		it( "should have loaded the country specific content", function() {
+			expect( stubs.load.calledWith( "ajax/country-content-us-en.html" ) ).to.equal( true );
+		} );
+
 	} );
 } );
 
