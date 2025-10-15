@@ -48,6 +48,7 @@ describe( "data-ajax test suite", function() {
 		server.respondWith( "/data-ajax.html", ajax[ "/data-ajax.html" ] );
 		server.respondWith( "/data-ajax-update.html", ajax[ "/data-ajax-update.html" ] );
 		server.respondWith( "/data-ajax-filtered.html", ajax[ "/data-ajax-filtered.html" ] );
+		server.respondWith( "/data-ajax-filtered.html#inner", ajax[ "/data-ajax-filtered.html" ] );
 
 		$document.on( "ajax-fetched.wb ajax-failed.wb", ".ajax", function() {
 			if ( typeof callback === "function" ) {

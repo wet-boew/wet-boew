@@ -66,7 +66,7 @@ describe( "[data-pic] test suite", function() {
 			var len = spy.thisValues.length,
 				isSelector = false;
 			while ( !isSelector && len-- ) {
-				isSelector = spy.thisValues[ len ].selector === "[data-pic]";
+				isSelector = spy.thisValues[ len ].attr( "data-pic" ) !== undefined;
 			}
 			expect( isSelector ).to.equal( true );
 		} );
