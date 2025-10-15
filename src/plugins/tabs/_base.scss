@@ -141,11 +141,6 @@ $tab-margin-width: 10px;
 	box-shadow: none;
 }
 
-%tabs-carousel-border-top-none-padding-top-1 {
-	border-top: 0;
-	padding-top: 10px;
-}
-
 %tabs-display-inline-block {
 	display: inline-block;
 }
@@ -208,7 +203,8 @@ $tab-margin-width: 10px;
 
 	[role="tablist"] {
 		border-spacing: $tab-margin-width 0;
-		display: table;
+		display: flex;
+		flex-wrap: wrap;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -220,9 +216,7 @@ $tab-margin-width: 10px;
 
 				background: $tablist-bg-color;
 				color: $carousel-tablist-tabcount-color;
-				cursor: pointer;
-				display: table-cell;
-				left: -$tab-margin-width;
+				display: flex;
 				position: relative;
 				text-align: center;
 				border: {
@@ -239,31 +233,30 @@ $tab-margin-width: 10px;
 					// changed padding and margin from em to px to fix web-kit layout issue
 					padding: 10px;
 					text-decoration: none;
-				}
 
-				&:focus,
-				&:hover {
-					background: $tablist-hover-bg-color;
-					background: color.adjust($tablist-hover-bg-color, $alpha: -.1);
+					&:focus,
+					&:hover {
+						background: $tablist-hover-bg-color;
+						background: color.adjust($tablist-hover-bg-color, $alpha: -.1);
+					}
 				}
 
 				&.active {
-					@if $tablist-active-bg-color {
-						background: $tablist-active-bg-color;
-					} @else if $main-bg {
-						background: $main-bg
-					} @else if $content-bg {
-						background: $content-bg
-					} @else {
-						background: $body-bg;
-					}
-
 					border-bottom: 0;
-					cursor: default;
 					padding-bottom: 1px;
 					z-index: 2;
 
 					a {
+						@if $tablist-active-bg-color {
+							background: $tablist-active-bg-color;
+						} @else if $main-bg {
+							background: $main-bg
+						} @else if $content-bg {
+							background: $content-bg
+						} @else {
+							background: $body-bg;
+						}
+
 						border: {
 							color: $tablist-active-link-border-color;
 							style: $tablist-active-link-border-style;
@@ -288,12 +281,10 @@ $tab-margin-width: 10px;
 					.curr-count {
 						font-size: 1.5em;
 					}
+				}
 
-					&:focus,
-					&:hover {
-						background: transparent;
-						cursor: default;
-					}
+				& + li {
+					margin-left: $tab-margin-width;
 				}
 			}
 		}
@@ -348,30 +339,11 @@ $tab-margin-width: 10px;
 						@extend %tabs-display-inline-block;
 					}
 
-					&.prv {
-						margin-right: 5px;
-					}
-
 					&.tab-count {
 						background: none;
 						border: 0;
 						font-size: .9em;
 						padding: 0 .1em;
-						top: .55em;
-
-						&.active,
-						&:focus,
-						&:hover {
-							cursor: default;
-						}
-					}
-
-					&.active,
-					&:focus,
-					&:hover {
-						a {
-							@extend %tabs-carousel-border-top-none-padding-top-1;
-						}
 					}
 				}
 			}
@@ -444,6 +416,10 @@ $tab-margin-width: 10px;
 						}
 					}
 
+					&.tab-count {
+						margin: $tab-margin-width;
+					}
+
 					&.nxt {
 						@extend %carousel-s2-prv-nxt-common;
 
@@ -470,9 +446,10 @@ $tab-margin-width: 10px;
 					&.plypause {
 						background: none;
 						border: 0;
-						float: right;
+						flex-grow: 1;
 						margin-right: 0;
 						padding: 2px 0;
+						text-align: right;
 
 						a {
 							@extend %carousel-s2-btn-common;
