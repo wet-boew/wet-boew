@@ -35,60 +35,6 @@
 .wb-twitter {
 	position: relative;
 
-	/* Align the loading icon relative to the center of the Twitter link in browsers that support :has() */
-	&:has( a.twitter-timeline + .twitter-timeline-loading ) {
-		display: inline-block;
-
-		a {
-			&.twitter-timeline {
-				+ {
-					.twitter-timeline-loading {
-						&::before {
-							left: 0;
-							right: 0;
-						}
-
-						&::after {
-							margin: auto;
-						}
-					}
-				}
-			}
-		}
-
-		/* Counteract the iframe width fix (see below) to prevent the loading icon from shifting sideways when the empty iframe first appears */
-		iframe {
-			min-width: 0;
-		}
-	}
-
-	/* Display the loading icon as normal content */
-	a {
-		&.twitter-timeline {
-			+ {
-				.twitter-timeline-loading {
-					@extend %global-loading;
-
-					margin-top: 5px;
-					position: relative;
-					min: {
-						height: 100px;
-						width: 100px;
-					}
-
-					/* Align the loading icon leftwards by default */
-					&::before {
-						right: auto;
-					}
-
-					&::after {
-						margin-left: calc((100px - 1em) / 2);
-					}
-				}
-			}
-		}
-	}
-
 	/* Prevent the iframe from getting too wide */
 
 	/* When the iframe gets populated, Twitter's third party widget script injects a style attribute with a width in pixels... but it sometimes gets wider than its container (causing skip links to look misaligned). This sets min/max widths to avoid that behaviour and avoid truncating content if the iframe gets too narrow. */
@@ -183,31 +129,6 @@
 			bottom: 0;
 			color: $twitter-end-color;
 			text-align: center;
-		}
-	}
-}
-
-[dir="rtl"] {
-	.wb-twitter {
-		a {
-			&.twitter-timeline {
-				+ {
-					.twitter-timeline-loading {
-						/* Align the loading icon rightwards by default */
-						&::before {
-							left: auto;
-							right: 0;
-						}
-
-						&::after {
-							margin: {
-								left: auto;
-								right: calc((100px - 1em) / 2);
-							}
-						}
-					}
-				}
-			}
 		}
 	}
 }
