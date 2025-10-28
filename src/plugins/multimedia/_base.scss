@@ -117,10 +117,12 @@
 	}
 
 	&.cc_on {
-		.wb-mm-cc {
-			display: table;
-			height: calc(#{$line-height-base * $mm-cc-lines}em + #{$mm-cc-padding * 2});
-			padding: $mm-cc-padding;
+		&.played:not(.youtube) {
+			.wb-mm-cc {
+				display: table;
+				height: calc(#{$line-height-base * $mm-cc-lines}em + #{$mm-cc-padding * 2});
+				padding: $mm-cc-padding;
+			}
 		}
 
 		&:not(.errmsg) {

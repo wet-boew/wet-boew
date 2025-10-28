@@ -306,6 +306,40 @@
 			</details>
 		</section>
 	</div>
+
+
+	<div class="row">
+		<section class="col-md-6">
+			<h3>MPEG4 (H264 + AAC) and WebM (VP8) source with closed captions by default</h3>
+			<figure class="wb-mltmd" data-wb-mltmd='{"closedCaptions": true}'>
+				<video poster="demo/img/video1-en.jpg" title="Looking for a Job">
+					<source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" />
+					<source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" />
+					<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
+				</video>
+				<figcaption>
+					<p>Looking for a Job (<a href="cpts-lg-en.html">Transcript</a>)</p>
+				</figcaption>
+			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"closedCaptions": true}'&gt;
+	&lt;video poster="demo/img/video1-en.jpg" title="Looking for a Job"&gt;
+		&lt;source type="video/webm" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.webm" /&gt;
+		&lt;source type="video/mp4" src="https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4" /&gt;
+		&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Looking for a Job (&lt;a href="cpts-lg-en.html"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+			</details>
+		</section>
+	</div>
 </section>
 
 <section id="mltmd-overlay" class="wb-overlay modal-content overlay-def wb-popup-full">
