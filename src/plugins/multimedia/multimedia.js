@@ -27,6 +27,7 @@ var componentName = "wb-mltmd",
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
+	defaultCaptions = false,
 	multimediaEvents = [
 		"durationchange",
 		"playing",
@@ -581,7 +582,8 @@ var componentName = "wb-mltmd",
 			},
 			$mltmPlayerElm,
 			mltmPlayerElm,
-			isMuted;
+			isMuted,
+			captionStatus;
 
 		switch ( event.data ) {
 			case null: // init
@@ -612,6 +614,18 @@ var componentName = "wb-mltmd",
 				$mltmPlayerElm = $media.parentsUntil( selector ).parent();
 				mltmPlayerElm = $mltmPlayerElm.get( 0 );
 
+				//Check if closed captions should be enabled on play
+				captionStatus = mltmPlayerElm.getAttribute( "data-wb-mltmd" );
+
+				if ( captionStatus !== null ) {
+
+					captionStatus = captionStatus.replace( /"/g, "" );
+
+					if ( captionStatus.includes( "{closedCaptions: true}" ) ) {
+						youTubeApi.call( mltmPlayerElm, "setCaptionsVisible", true );
+					}
+				}
+
 				// Need to be muted here
 				isMuted = mltmPlayerElm.player( "getMuted" );
 
@@ -625,6 +639,10 @@ var componentName = "wb-mltmd",
 					.trigger( "canplay" )
 					.trigger( "play" )
 					.trigger( "playing" );
+
+
+				//Set closed captions on by default if specified
+				// youTubeApi.call( mltmPlayerElm, "setCaptionsVisible", $mltmPlayerElm.hasClass( captionClass ) );
 
 				// Reset muted as needed because youtube onMute by default when playing
 				if ( isMuted ) {
@@ -706,6 +724,10 @@ $document.on( initializedEvent, selector, function( event ) {
 		if ( settings !== undef ) {
 			data.shareUrl = settings.shareUrl;
 			data.fullscreen = settings.fullscreenBtn || false;
+			data.closedCaptions = settings.closedCaptions || false;
+			if ( data.closedCaptions !== undef ) {
+				defaultCaptions = data.closedCaptions;
+			}
 		}
 
 		$this.addClass( type );
@@ -1064,6 +1086,20 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 			if ( isPlay ) {
 				$this.addClass( "playing" );
 				$this.find( ".progress" ).addClass( "active" );
+
+				// Show captions by default if configured to do so
+				let captionStatus;
+
+				if ( $this.data( "wbMltmd" ) !== undef ) {
+					captionStatus = $this.data( "wbMltmd" ).closedCaptions;
+				}
+
+				if ( captionStatus !== undef && defaultCaptions !== undef  && !defaultCaptions ) {
+					$this.addClass( captionClass );
+
+					// Trigger caption visibility change event only on the first time the video plays
+					defaultCaptions = true;
+				}
 			} else {
 				if ( eventType === "ended" ) {
 					this.loading = clearTimeout( this.loading );
@@ -1071,7 +1107,10 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 				$this.removeClass( "playing" );
 			}
 			$button
-				.attr( "title", buttonData )
+				.attr( {
+					title: buttonData,
+					"aria-pressed": isPlay
+				} )
 				.children( "span" )
 				.toggleClass( "glyphicon-play", !isPlay )
 				.toggleClass( "glyphicon-pause", isPlay )
