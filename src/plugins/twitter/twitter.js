@@ -43,7 +43,6 @@ var componentName = "wb-twitter",
 
 			// Process the Twitter link
 			if ( twitterLink ) {
-				const loadingDiv = document.createElement( "div" );
 				let observer;
 
 				// Only initialize the i18nText once
@@ -88,10 +87,6 @@ var componentName = "wb-twitter",
 					twitterLink.dataset.dnt = "true";
 				}
 
-				// Add a loading icon below the link
-				loadingDiv.className = "twitter-timeline-loading";
-				twitterLink.after( loadingDiv );
-
 				// Observe DOM mutations
 				observer = new MutationObserver( function( mutations ) {
 					mutations.forEach( function( mutation ) {
@@ -115,12 +110,11 @@ var componentName = "wb-twitter",
 							case "childList": {
 								mutation.removedNodes.forEach( function( removedNode ) {
 
-									// If the removed node was a Twitter link, remove its adjacent loading icon, add skip links and stop observing
-									// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content... at which point the loading icon is no longer useful
-									if ( removedNode === twitterLink && mutation.nextSibling === loadingDiv ) {
-										const iframeContainer = loadingDiv.previousElementSibling;
+									// If the removed node was a Twitter link add skip links and stop observing
+									// Note: Twitter's widget script removes "a.twitter-timeline" upon displaying the timeline iframe's content
+									if ( removedNode === twitterLink ) {
+										const iframeContainer = eventTarget.querySelector( "div.twitter-timeline" );
 
-										loadingDiv.remove();
 										addSkipLinks( iframeContainer );
 
 										// The following 2 lines were added as a workaround in Safari where the iFrame is not displayed
@@ -141,16 +135,31 @@ var componentName = "wb-twitter",
 					childList: true,
 					subtree: true
 				} );
+
+				// Handle the case where the iframe never loads - wait 5 seconds before displaying a fallback message
+				setTimeout( () => {
+					const iframe = eventTarget.querySelector( "iframe.twitter-timeline" );
+					if ( !iframe ) {
+						const fallbackMessage = "Twitter timeline is currently unavailable.";
+						console.warn( componentName + ": " + fallbackMessage );
+						observer.disconnect();
+					}
+				}, 5000 ); // 5 seconds
+
 			}
 
-			Modernizr.load( {
-				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
-				complete: function() {
+			// If the Twitter script has not been loaded yet
+			if ( !document.querySelector( "script[src*='platform.twitter.com/widgets.js']" ) ) {
 
-					// Identify that initialization has completed
+				// Load the Twitter widget script
+				const script = document.createElement( "script" );
+				script.src = ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js";
+				script.onload = function() {
 					wb.ready( $( eventTarget ), componentName );
-				}
-			} );
+				};
+				document.head.appendChild( script );
+			}
+
 		}
 	},
 
