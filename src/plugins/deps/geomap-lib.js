@@ -905,7 +905,7 @@ var componentName = "wb-geomap",
 
 		if ( feature && feature.attributes ) {
 			var geometry = feature.getGeometry(),
-				coord = geometry.getType() === "Point" ? geometry.getCoordinates() : event.mapBrowserEvent.coordinate,
+				coord = geometry.getType() === "Point" ? geometry.getCoordinates() : evt.mapBrowserEvent.coordinate,
 				obj = feature.attributes,
 				key, regex;
 
@@ -3140,6 +3140,16 @@ MapLayer.prototype.createOLLayer = function() {
 				for ( var i = 0, len = features.length; i < len; i += 1 ) {
 
 					var feature = features[ i ];
+
+					if ( _this.settings.style.select ) {
+						_this.settings.style.select.type = "select";
+						var selStyleFactory = new StyleFactory(),
+							selStyle = selStyleFactory.createStyleFunction(
+								_this.settings.style.select,
+								feature.getGeometry().getType()
+							);
+						feature.selectStyle = selStyle;
+					}
 
 					feature.setId( generateGuid() );
 					feature.layerId = olLayer.id;

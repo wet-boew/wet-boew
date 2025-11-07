@@ -8,7 +8,7 @@
 	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
 	"js": ["demo/client_functions"],
-	"dateModified": "2016-04-22"
+	"dateModified": "2025-11-18"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -33,6 +33,7 @@
 			<li><a href="#aoiZoomOnLoad">Zoom to AOI on page load (extent)</a></li>
 			<li><a href="#singleItem">Merge label and legend symbol</a></li>
 			<li><a href="#twoCols">Display legend labels over two columns</a></li>
+			<li><a href="#topojson_select">TopoJSON map with selected style and popup</a></li>
 		</ul>
 	</div>
 </div>
@@ -1554,4 +1555,101 @@ var wet_boew_geomap = {
 		</div>
 		<div class="wb-geomap-layers"></div>
 	</div>
+</section>
+
+<section id="topojson_select">
+	<h2>TopoJSON with select style and popup</h2>
+	<div class="wb-geomap legend-label-only" id="geomap_topojson" data-wb-geomap='{
+		"mapExtent": "78, -105, 44, -75",
+		"caption": "List of all Canadian provinces and territories and their population",
+		"overlays": [
+			{
+				"title": "Canadian provinces (TopoJSON)",
+				"type": "topojson",
+				"url": "demo/provinces_en.json",
+				"datatable": true,
+				"tooltips": true,
+				"popups": true,
+				"attributes": {
+					"PROVINCE": "Province",
+					"POPULATION": "Population"
+				},
+				"style": {
+					"strokeColor": "rgba(255,0,0,0.5)",
+					"strokeWidth": 2.0,
+					"fillColor": "rgba(255,0,0,0.1)",
+					"select": {
+						"strokeColor": "rgba(255,0,0,0.8)",
+						"fillColor": "rgba(255,0,0,0.5)"
+					}
+				}
+			}
+		]
+	}'>
+		<div class="row mrgn-bttm-lg">
+			<div class="col-xs-12 col-md-9">
+				<div class="wb-geomap-map"></div>
+			</div>
+			<div class="col-xs-12 col-md-3">
+				<div class="panel panel-default">
+					<header class="panel-heading">
+						<h3 class="panel-title">Legend</h3>
+					</header>
+					<div class="panel-body">
+						<div class="wb-geomap-legend"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wb-geomap-layers"></div>
+	</div>
+
+	<h3>Code</h3>
+	<details>
+		<summary>View code</summary>
+		<pre><code>&lt;div class="wb-geomap legend-label-only" id="geomap_topojson" data-wb-geomap='{
+	"mapExtent": "78, -105, 44, -75",
+	"caption": "List of all Canadian provinces and territories and their population",
+	"overlays": [
+		{
+			"title": "Canadian provinces (TopoJSON)",
+			"type": "topojson",
+			"url": "demo/provinces_en.json",
+			"datatable": true,
+			"tooltips": true,
+			"popups": true,
+			"attributes": {
+				"PROVINCE": "Province",
+				"POPULATION": "Population"
+			},
+			"style": {
+				"strokeColor": "rgba(255,0,0,0.5)",
+				"strokeWidth": 2.0,
+				"fillColor": "rgba(255,0,0,0.1)",
+				"select": {
+					"strokeColor": "rgba(255,0,0,0.8)",
+					"fillColor": "rgba(255,0,0,0.5)"
+				}
+			}
+		}
+	]
+}'>
+	&lt;div class="row mrgn-bttm-lg">
+		&lt;div class="col-xs-12 col-md-9">
+			&lt;div class="wb-geomap-map">&lt;/div>
+		&lt;/div>
+		&lt;div class="col-xs-12 col-md-3">
+			&lt;div class="panel panel-default">
+				&lt;header class="panel-heading">
+					&lt;h3 class="panel-title">Legend&lt;/h3>
+				&lt;/header>
+				&lt;div class="panel-body">
+					&lt;div class="wb-geomap-legend">&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;div class="wb-geomap-layers">&lt;/div>
+&lt;/div></code></pre>
+	</details>
 </section>
