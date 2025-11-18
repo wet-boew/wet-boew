@@ -268,7 +268,7 @@ var componentName = "wb-geomap",
 		if ( this.settings.accessible ) {
 			this.map.layerDiv.append( "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title' role='heading'>" +
 					this.settings.title + "</div></div><div class='panel-body'><div data-layer='" +
-					this.id + "' class='geomap-table-wrapper' style='display:none;'></div></div></div>" );
+					this.id + "' class='geomap-table-wrapper table-responsive' style='display:none;'></div></div></div>" );
 		}
 
 		// Make isVisible Reactive
@@ -869,6 +869,15 @@ var componentName = "wb-geomap",
 					feature.getId() + "' class='geomap-cbx' data-map='" + mapLayer.map.id +
 					"' data-layer='" + feature.layerId + "' data-feature='" +
 					feature.getId() + "' />";
+	},
+
+	addLrgChkBox = function( mapLayer, feature ) {
+
+		return "<div class='checkbox gc-chckbxrdio'><input type='checkbox' id='cb_" +
+					feature.getId() + "' class='geomap-cbx' data-map='" + mapLayer.map.id +
+					"' data-layer='" + feature.layerId + "' data-feature='" +
+					feature.getId() + "' /><label for='cb_" + feature.getId() + "'><span class='wb-inv'>" +
+					i18nText.labelSelect + "</span></label></div>";
 	},
 
 	/**
@@ -2422,10 +2431,18 @@ MapLayer.prototype.addToLegend = function() {
 	$label = $( "<label>", {
 		"for": "cb_" + this.id,
 		text: this.settings.title
-	} ).prepend( $chkBox );
+	} );
 
-	$li = $( "<li class='checkbox geomap-lgnd-layer'>" )
-		.append( $label, "<div id='sb_" + this.id + "'></div>" );
+	// Display large checkboxes if class is present
+	if ( this.map.mapDiv.context.classList.contains( "large-checkboxes" ) ) {
+		$li = $( "<li class='checkbox gc-chckbxrdio geomap-lgnd-layer'>" )
+			.append( $chkBox, $label, "<div id='sb_" + this.id + "'></div>" );
+	} else {
+		$label.prepend( $chkBox );
+
+		$li = $( "<li class='checkbox geomap-lgnd-layer'>" )
+			.append( $label, "<div id='sb_" + this.id + "'></div>" );
+	}
 
 	$ul.append( $li );
 
@@ -2466,7 +2483,7 @@ Geomap.prototype.addTabularData = function() {
 			continue;
 		}
 
-		$table = $( table ).wrap( "<div data-layer='" + this.settings.tables[ lenTable ].id + "' class='geomap-table-wrapper'></div>" );
+		$table = $( table ).wrap( "<div data-layer='" + this.settings.tables[ lenTable ].id + "' class='geomap-table-wrapper table-responsive'></div>" );
 
 		featureTable = this.settings.tables[ lenTable ];
 		featureArray = [];
@@ -2579,7 +2596,14 @@ Geomap.prototype.addTabularData = function() {
 
 				// Add the checkboxes and zoom controls
 				tdChkBox = trElmsInd.insertCell( 0 );
-				tdChkBox.innerHTML = addChkBox( this, vectorFeature );
+
+				// Use large checkboxes if the map has the large-checkboxes class
+				if ( this.mapDiv.context.classList.contains( "large-checkboxes" ) ) {
+					tdChkBox.innerHTML = addLrgChkBox( this, vectorFeature );
+				} else {
+					tdChkBox.innerHTML = addChkBox( this, vectorFeature );
+				}
+
 				if ( useMapControls && featureTable.zoom ) {
 					tdZoomTo = trElmsInd.insertCell( -1 );
 					tdZoomTo.classList.add( "text-right" );
@@ -2683,7 +2707,7 @@ MapLayer.prototype.populateDataTable = function() {
 		attributes = _this.settings.attributes,
 		len = attributeLen(),
 		$table,
-		sTable = "<table aria-label='" + _this.settings.title + "' id='" + _this.id + "' " +
+		sTable = "<div class='table-responsive'><table aria-label='" + _this.settings.title + "' id='" + _this.id + "' " +
 			"data-wb-tables='{ \"order\": [], \"columnDefs\": [ { \"targets\": [ 0, " + ( len + 1 ) + " ], \"orderable\": false } ] }'" +
 			"class='table",
 		sCaption = "'><caption>" + _this.settings.caption + "</caption>",
@@ -2711,8 +2735,11 @@ MapLayer.prototype.populateDataTable = function() {
 	// Create the table body rows
 	// for ( var i = 0; i < features.length || ( function() { refreshPlugins( _this.map ); return false; }() ); i += 1 ) {
 	for ( var i = 0; i < features.length; i += 1 ) {
-
-		body += "<tr><td>" + addChkBox( _this, features[ i ] );
+		if ( _this.map.mapDiv.context.classList.contains( "large-checkboxes" ) ) {
+			body += "<tr><td>" + addLrgChkBox( _this, features[ i ] );
+		} else {
+			body += "<tr><td>" + addChkBox( _this, features[ i ] );
+		}
 
 		attributes = features[ i ].attributes;
 
@@ -2726,7 +2753,7 @@ MapLayer.prototype.populateDataTable = function() {
 
 	}
 
-	$table = $( sTable + sCaption + head + "<tbody>" + body + "</tbody>" + "</table>" );
+	$table = $( sTable + sCaption + head + "<tbody>" + body + "</tbody>" + "</table></div>" );
 
 	$( "div[ data-layer='" + _this.id + "'].geomap-table-wrapper" ).append( $table );
 
