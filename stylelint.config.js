@@ -126,7 +126,6 @@ module.exports = {
 	],
 	ignoreFiles: [
 		"**/*.min.css",
-		"src/plugins/share/sprites/_sprites_share.scss", // Ignore generated file
 		"lib/**"
 	]
 };
