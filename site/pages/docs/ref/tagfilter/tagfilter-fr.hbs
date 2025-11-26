@@ -6,16 +6,9 @@
 "categoryfile": "plugins",
 "description": "Filtre le contenu et affiche/masque le contenu qui correspond à certaines balises.",
 "altLangPrefix": "tagfilter",
-"dateModified": "2022-09-10"
+"dateModified": "2025-11-27"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Fonctionnalité instable</h2>
-	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
-	<p><small><a href="../../../docs/ref/provisional-fr.html">Jetez un coup d'œil aux autres fonctionnalités provisoires disponibles.</a></small></p>
-</div>
 
 <span class="wb-prettify all-pre"></span>
 
@@ -28,6 +21,18 @@
 <h2>Conseils d'accessibilité</h2>
 <p>Les contrôles de filtre (cases à cocher, boutons radio, listes déroulantes) <strong>doivent</strong> apparaître avant la liste des éléments qu'ils contrôlent.</p>
 
+<section>
+	<h2>Évaluations et rapports</h2>
+	<ul>
+		<li>Évaluation d'accessibilité
+			<ul>
+				<li><a href="../../../demos/tagfilter/reports/a11y-1-fr.html">Rapport français</a></li>
+				<li><a href="../../../demos/tagfilter/reports/a11y-1-en.html" hreflang="fr">Rapport anglais</a></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
 <h2>Exemple fonctionnel</h2>
 <p><a href="../../../demos/tagfilter/tagfilter-en.html">Exemple en anglais</a></p>
 <p><a href="../../../demos/tagfilter/tagfilter-fr.html">Exemple français</a></p>
@@ -35,7 +40,7 @@
 <h2>Comment mettre en œuvre</h2>
 <h3>Enveloppez votre section et ajoutez les balises à vos items.</h3>
 <ol>
-	<li>Enveloppez toute la section qui va être filtrée par balises dans un <code>&lt;div class="wb-tagfilter provisional"></code>.</li>
+	<li>Enveloppez toute la section qui va être filtrée par balises dans un <code>&lt;div class="wb-tagfilter"></code> ou un <code>&lt;section class="wb-tagfilter"></code>.</li>
 	<li>Ajoutez l'attribut <code>data-wb-tags</code> à chaque item dont vous souhaitez contrôler la visibilité, et définissez une ou plusieurs balises comme valeur. Utilisez un espace régulier entre chaque balise, par exemple, <code>data-wb-tags="balise1 balise2 balise3"</code>.</li>
 </ol>
 
@@ -117,7 +122,7 @@
 	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
 	...
 &lt;/ul>
-&lt;div class="wb-tagilfter-noresult">
+&lt;div class="wb-tagfilter-noresult">
 	&lt;p>Aucun élément ne correspond à cette combinaison de filtres.&lt;/p>
 &lt;/div></code></pre>
 

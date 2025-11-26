@@ -1,21 +1,14 @@
 ---
 {
-	"title": "Tag filter",
+	"title": "Tag Filter",
 	"language": "en",
 	"category": "Plugins",
 	"categoryfile": "plugins",
 	"description": "Filters through content and shows/hides content that match a certain tags.",
 	"altLangPrefix": "tagfilter",
-	"dateModified": "2022-09-10"
+	"dateModified": "2025-11-27"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Unstable feature</h2>
-	<p>To be used at <strong>your own risk</strong>. This feature described below can be removed in any subsequent minor/major release</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/7.html">Learn more about the design decision around provisional features.</a></small></p>
-	<p><small><a href="../../../docs/ref/provisional-en.html">Check other provisional features available.</a></small></p>
-</div>
 
 <span class="wb-prettify all-pre"></span>
 
@@ -28,6 +21,18 @@
 <h2>Accessibility guidance</h2>
 <p>The filter controls (checkboxes, radio buttons, dropdowns) <strong>must</strong> appear before the list of items they control.</p>
 
+<section>
+	<h2>Evaluations and reports</h2>
+	<ul>
+		<li>Accessibility assessment
+			<ul>
+				<li><a href="../../../demos/tagfilter/reports/a11y-1-en.html">English report</a></li>
+				<li><a href="../../../demos/tagfilter/reports/a11y-1-fr.html" hreflang="fr">French report</a></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
 <h2>Working example</h2>
 <p><a href="../../../demos/tagfilter/tagfilter-en.html">English example</a></p>
 <p><a href="../../../demos/tagfilter/tagfilter-fr.html">French example</a></p>
@@ -35,7 +40,7 @@
 <h2>How to implement</h2>
 <h3>Wrap your section and tag your items.</h3>
 <ol>
-	<li>Wrap the whole section that is going to be filtered by tags in a <code>&lt;div class="wb-tagfilter provisional"></code>.</li>
+	<li>Wrap the whole section that is going to be filtered by tags in a <code>&lt;div class="wb-tagfilter"></code> or a <code>&lt;section class="wb-tagfilter"></code></li>
 	<li>Add the attribute <code>data-wb-tags</code> to each item or section that you want to control the visibility of, and define one or multiple tags as its value. Use a regular space between each tag, e.g., <code>data-wb-tags="tag1 tag2 tag3"</code>.</li>
 </ol>
 <h3>Identify your items wrapper</h3>
@@ -115,7 +120,7 @@
 	&lt;li data-wb-tags="tag1">Item 5&lt;/li>
 	...
 &lt;/ul>
-&lt;div class="wb-tagilfter-noresult">
+&lt;div class="wb-tagfilter-noresult">
 	&lt;p>No item match this combination of filters.&lt;/p>
 &lt;/div></code></pre>
 

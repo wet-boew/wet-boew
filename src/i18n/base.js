@@ -264,7 +264,11 @@ wb.i18nDict = {
 	"progress-label": "@progress-label@",
 
 	/* Pagination */
-	"pagination-label": "@pagination-label@"
+	"pagination-label": "@pagination-label@",
+
+	/* Tag filter */
+	"items-found": "@items-found@",
+	"no-items-found": "@no-items-found@"
 };
 
 } )( wb );

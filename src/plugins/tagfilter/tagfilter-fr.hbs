@@ -7,30 +7,23 @@
 "tag": "filter",
 "parentdir": "tagfilter",
 "altLangPrefix": "tagfilter",
-"dateModified": "2022-09-10"
+"dateModified": "2025-11-27"
 }
 ---
-
-<div class="alert alert-warning">
-	<h2>Fonctionnalité instable</h2>
-	<p>À utiliser <strong>à vos risques et périls</strong>. Cette fonctionnalité décrite ci-dessous peut être supprimée dans toute version mineure/majeure ultérieure</p>
-	<p><small><a href="https://wet-boew.github.io/wet-boew-documentation/decision/10.html">Apprenez-en plus sur la décision de conception concernant les fonctionnalités provisoires (anglais seulement).</a></small></p>
-	<p><small><a href="../../docs/ref/provisional-fr.html">Jetez un coup d'œil aux autres fonctionnalités provisoires disponibles.</a></small></p>
-</div>
 
 <span class="wb-prettify all-pre"></span>
 
 <h2>Sur cette page:</h2>
 <ul>
-	<li><a href="#filteredEventsList">Exemple 1 - liste d'événements</a></li>
-	<li><a href="#filteredAppsList">Exemple 2 - liste d'applications</a></li>
+	<li><a href="#filteredEventsList">Exemple 1 - Liste d'événements</a></li>
+	<li><a href="#filteredAppsList">Exemple 2 - Liste d'applications</a></li>
 	<li><a href="#filteredFAQ">Exemple 3 - FAQ utilisant le plugiciel Filtre</a></li>
-	<li><a href="#filteredTable">Exemple 4 - tableau</a></li>
+	<li><a href="#filteredTable">Exemple 4 - Tableau</a></li>
 	<li><a href="#filteredByDateRange">Exemple 5 - Filtre de plage de dates</a></li>
 	<li><a href="#edgeCases">Exemples de cas particuliers</a></li>
 </ul>
 
-<section id="filteredEventsList" class="wb-tagfilter provisional">
+<section id="filteredEventsList" class="wb-tagfilter">
 	<h2>Exemple 1 - Liste d'événements</h2>
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-lg-3">
@@ -136,7 +129,7 @@
 
 <details>
 	<summary>Code source</summary>
-	<pre><code>&lt;section id="filteredEventsList" class="wb-tagfilter provisional">
+	<pre><code>&lt;section id="filteredEventsList" class="wb-tagfilter">
 	&lt;h2>Exemple 1 - Liste d'événements&lt;/h2>
 	&lt;div class="row">
 		&lt;div class="col-xs-12 col-sm-4 col-lg-3">
@@ -241,7 +234,7 @@
 &lt;/section></code></pre>
 </details>
 
-<section id="filteredAppsList" class="wb-tagfilter provisional">
+<section id="filteredAppsList" class="wb-tagfilter">
 	<h2>Exemple 2 - Liste d'applications</h2>
 	<div class="row">
 		<div class="col-sm-4 col-md-5 col-lg-6">
@@ -587,7 +580,7 @@
 
 <details>
 	<summary>Code source</summary>
-	<pre><code>&lt;section id=&quot;filteredAppsList&quot; class=&quot;wb-tagfilter provisional&quot;&gt;
+	<pre><code>&lt;section id=&quot;filteredAppsList&quot; class=&quot;wb-tagfilter&quot;&gt;
 	&lt;h2&gt;Exemple 2 (liste d'applications)&lt;/h2&gt;
 	&lt;div class=&quot;row&quot;&gt;
 		&lt;div class="col-sm-4 col-md-5 col-lg-6">
@@ -758,7 +751,7 @@
 &lt;/section&gt;</code></pre>
 </details>
 
-<section id="filteredFAQ" class="wb-tagfilter provisional wb-filter" data-wb-filter='{
+<section id="filteredFAQ" class="wb-tagfilter wb-filter" data-wb-filter='{
 		"selector": "article",
 		"section": ".wb-tagfilter-items",
 		"uiTemplate": "#searchFilter"
@@ -880,7 +873,7 @@
 
 <details>
 	<summary>Code source</summary>
-	<pre><code>&lt;section id="filteredFAQ" class="wb-tagfilter provisional wb-filter" data-wb-filter='{
+	<pre><code>&lt;section id="filteredFAQ" class="wb-tagfilter wb-filter" data-wb-filter='{
 		"selector": "article",
 		"section": ".wb-tagfilter-items",
 		"uiTemplate": "#searchFilter"
@@ -1001,7 +994,7 @@
 &lt;/section></code></pre>
 </details>
 
-<section id="filteredTable" class="wb-tagfilter provisional">
+<section id="filteredTable" class="wb-tagfilter">
 	<h2>Exemple de tableau</h2>
 	<fieldset>
 		<legend class="h5 mrgn-tp-0"><span class="field-name">Sélectionnez la ou les colonne(s) à afficher</span></legend>
@@ -1080,7 +1073,7 @@
 
 <details>
 	<summary>Source code</summary>
-	<pre><code>&lt;section id="filteredTable" class="wb-tagfilter provisional">
+	<pre><code>&lt;section id="filteredTable" class="wb-tagfilter">
 	&lt;h2>Exemple de tableau&lt;/h2>
 	&lt;fieldset>
 		&lt;legend class="h5 mrgn-tp-0">&lt;span class="field-name">Sélectionnez la ou les colonne(s) à afficher&lt;/span>&lt;/legend>
@@ -1131,7 +1124,7 @@
 &lt;/section></code></pre>
 </details>
 
-<section id="filteredByDateRange" class="wb-tagfilter provisional">
+<section id="filteredByDateRange" class="wb-tagfilter">
 	<h2>Exemple 5 - Filtre de plage de dates</h2>
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-lg-3">
@@ -1253,7 +1246,7 @@
 
 <details>
 	<summary>Code source</summary>
-	<pre><code>&lt;section id="filteredByDateRange" class="wb-tagfilter provisional"&gt; &lt;h2&gt;Exemple 5 - Filtre de plage de dates&lt;/h2&gt;
+	<pre><code>&lt;section id="filteredByDateRange" class="wb-tagfilter"&gt; &lt;h2&gt;Exemple 5 - Filtre de plage de dates&lt;/h2&gt;
 	&lt;div class="row"&gt;
 		&lt;div class="col-xs-12 col-sm-4 col-lg-3"&gt;
 			&lt;details open&gt;

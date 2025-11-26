@@ -409,3 +409,5 @@ Data-scrub,pii-header,Remove Personal information,Supprimer les informations per
 ,rel-preposition, of , de ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,progress-label,Questionnaire progress:,Progression du questionnaire : ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,pagination-label,Pagination,Pagination,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,items-found,items found out of,éléments trouvés sur,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,no-items-found,No items found matching this combination of filters,Aucun élément trouvé correspondant à cette combinaison de filtres,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
