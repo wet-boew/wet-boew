@@ -44,7 +44,7 @@
     "datatables.net": "~1.13.11",
     "dompurify": "^3.3.0",
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
-    "flot": "0.8.3",
+    "flot": "4.2.6",
     "jquery": "2.2.4",
     "jquery-validation": "1.21.0",
     "jsonpointer.js": "^0.4.0",
