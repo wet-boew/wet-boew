@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Submit web form through AJAX call.",
 	"altLangPrefix": "wb-postback",
-	"dateModified": "2023-02-01"
+	"dateModified": "2026-01-08"
 }
 ---
 <div class="wb-prettify all-pre hide"></div>
@@ -23,12 +23,12 @@
 <h2>Evaluation and report</h2>
 <p>There is no evaluation and report available for this component.</p>
 
-<h2>API (Version 1.0)</h2>
+<h2>API (Version 1.1)</h2>
 <dl class="dl-horizontal">
 	<dt>Function</dt>
 	<dd>Version 1.0</dd>
 	<dt>Configuration</dt>
-	<dd>Version 1.0</dd>
+	<dd>Version 1.1</dd>
 	<dt>User interface (Template)</dt>
 	<dd>Version 1.0</dd>
 	<dt>Data source</dt>
@@ -81,7 +81,7 @@
 </table>
 
 <h3>Configuration</h3>
-<p>(Version 1.0)</p>
+<p>(Version 1.1)</p>
 
 <table class="table">
 	<thead>
@@ -126,6 +126,20 @@
 			<td>CSS class to remove when the success or failure message is being displayed</td>
 			<td><code>{ "toggle": "hide" }</code></td>
 			<td>CSS class</td>
+		</tr>
+		<tr>
+			<td>JSON parameter</td>
+			<td><code>successURL</code> (String)</td>
+			<td>URL to redirect to on successful form submission. If the "success" parameter is defined, the successURL will not be activated.</td>
+			<td><code>{ "successURL": "success.html" }</code></td>
+			<td>URL (String)</td>
+		</tr>
+		<tr>
+			<td>JSON parameter</td>
+			<td><code>failureURL</code> (String)</td>
+			<td>URL to redirect to on failed form submission. If the "failure" parameter is defined, the failureURL will not be activated.</td>
+			<td><code>{ "failureURL": "failure.html" }</code></td>
+			<td>URL (String)</td>
 		</tr>
 	</tbody>
 </table>
