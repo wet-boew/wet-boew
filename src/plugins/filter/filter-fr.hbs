@@ -7,7 +7,7 @@
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"dateModified": "2025-08-07",
+	"dateModified": "2025-10-08",
 	"gcds": true
 }
 ---
@@ -20,6 +20,7 @@
 	<li><a href="#flt-uicontainer">Déplacer l'interface vers un élément spécifique</a></li>
 	<li><a href="#flt-customui">Interface personnalisée</a></li>
 	<li><a href="#flt-customui">Interface personnalisée et Data JSON</a></li>
+	<li><a href="#flt-submit">Filtrer avec bouton de soumission</a></li>
 	<li><a href="#flt-gcdsCard">Carte SDGC</a></li>
 </ul>
 
@@ -276,7 +277,6 @@
 		</ul>
 	</section>
 </div>
-
 
 <h3>Code source</h3>
 <pre><code>&lt;div class=&quot;wb-filter&quot;&gt;
@@ -847,6 +847,46 @@
 		&lt;/template>
 	&lt;/ul>
 &lt;/div></code></pre>
+
+<h2 id="flt-submit">Filtrer avec bouton de soumission</h2>
+
+<ul class="wb-filter" data-wb-filter='{
+	"live": false
+}'>
+	<li>Alberta</li>
+	<li>Colombie-Britannique</li>
+	<li>Île-du-Prince-Édouard</li>
+	<li>Manitoba</li>
+	<li>Nouveau-Brunswick</li>
+	<li>Nouvelle-Écosse</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Québec</li>
+	<li>Saskatchewan</li>
+	<li>Terre-Neuve-et-Labrador</li>
+	<li>Territoires du Nord-Ouest</li>
+	<li>Yukon</li>
+</ul>
+
+<h3>Code source</h3>
+
+<pre><code>&lt;ul class="wb-filter" data-wb-filter='{
+	"live": false
+}'&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	&lt;li&gt;Colombie-Britannique&lt;/li&gt;
+	&lt;li&gt;Île-du-Prince-Édouard&lt;/li&gt;
+	&lt;li&gt;Manitoba&lt;/li&gt;
+	&lt;li&gt;Nouveau-Brunswick&lt;/li&gt;
+	&lt;li&gt;Nouvelle-Écosse&lt;/li&gt;
+	&lt;li&gt;Nunavut&lt;/li&gt;
+	&lt;li&gt;Ontario&lt;/li&gt;
+	&lt;li&gt;Québec&lt;/li&gt;
+	&lt;li&gt;Saskatchewan&lt;/li&gt;
+	&lt;li&gt;Terre-Neuve-et-Labrador&lt;/li&gt;
+	&lt;li&gt;Territoires du Nord-Ouest&lt;/li&gt;
+	&lt;li&gt;Yukon&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 
 <h3 id="flt-gcdsCard">Carte SDGC</h3>
 <gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>

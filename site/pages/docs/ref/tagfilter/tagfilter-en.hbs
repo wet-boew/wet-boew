@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Filters through content and shows/hides content that match a certain tags.",
 	"altLangPrefix": "tagfilter",
-	"dateModified": "2022-09-10"
+	"dateModified": "2025-10-08"
 }
 ---
 
@@ -55,6 +55,7 @@
 	<li>Create your checkbox. <strong>The attribute <code>name</code> is mandatory for checkboxes</strong>.</li>
 	<li>Add the attribute <code>value</code> to the checkbox. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the checkbox.</li>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li>
 </ol>
 <p>Your final checkbox should look like this:</p>
 <pre><code>&lt;input type="checkbox" name="myCheckboxGroup" class="wb-tagfilter-ctrl" value="myTag"></code></pre>
@@ -64,7 +65,7 @@
 	<li>Create your radio button. <strong>The attribute <code>name</code> is mandatory for radio buttons</strong>.</li>
 	<li>Add the attribute <code>value</code> to the radio button. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the radio button.</li>
-</ol>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li></ol>
 <p>Your final radio button should look like this:</p>
 <pre><code>&lt;input type="radio" name="myRadioGroup" class="wb-tagfilter-ctrl" value="myTag"></code></pre>
 
@@ -73,7 +74,7 @@
 	<li>Create your dropdown with your default option. <strong>The attribute <code>name</code> is mandatory for dropdowns</strong>.</li>
 	<li>Add the CSS class <code>wb-tagfilter-ctrl</code> to the dropdown.</li>
 	<li>Add your other options and define the attribute <code>value</code>. Note: the value of this attribute must be the same as the tag added to the item(s) above in order to control it, e.g., <code>value="myTag"</code>.</li>
-</ol>
+	<li>Add the <a href="#groupOption">data-wb-tagfilter-group option</a> to have an "Or" behavior across different components. <strong>(Optional)</strong></li></ol>
 <p>Your final dropdown should look like this:</p>
 <pre><code>&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
 	&lt;option value="">All&lt;/option>
@@ -103,6 +104,25 @@
 </ol>
 <p>This allows the plugin to filter tagged items based on the datetime attribute of their  <code>&lt;time&gt;</code> elements. You can use either start date, end date, or both together.</p>
 
+<h4>Add a submit button (Optional)</h4>
+<p>The plugin auto-updates by default but you may prevent this behavior and add a submit button if your design requires it. This can be practical if you need to collect data via analytics that require a submission to trigger a beacon for example.</p>
+<ol>
+	<li>Add the "live": false option to the plugin's element</li>
+	<li>Add a form inside the plugin container.</li>
+	<li>Add a button or input type submit inside your form element.</li>
+</ol>
+<pre><code>&lt;section class="wb-tagfilter provisional" data-wb-tagfilter='{ "live": false }'>
+	&lt;form>
+		&lt;select name="myDropdown" class="wb-tagfilter-ctrl">
+			&lt;option value="">All&lt;/option>
+			&lt;option value="myTag">My tag&lt;/option>
+			&lt;option value="myTag2">My tag 2&lt;/option>
+			&lt;option value="myTag3">My tag 3&lt;/option>
+		&lt;/select>
+		&lt;button type="submit">Filter&lt;/button>
+	&lt;/form>
+&lt;/section></code></pre>
+
 <h3>Add your no result element</h3>
 <p>Optionally, you can add an element that will show when there are no item visible. Identify this element with the CSS class <code>wb-tagfilter-noresult</code>.</p>
 <p>This element needs to be added <strong>directly</strong> after the items wrapper (<code>.wb-tagfilter-items</code>).</p>
@@ -122,8 +142,50 @@
 <h3>Essential component behavior</h3>
 <ul>
 	<li>By default, for every checkbox filter group, if no checkbox is selected, it has the same effect as if all checkboxes were selected.</li>
-	<li>The behavior for multiple checkboxes in a group is to display items that have either of the tags selected (OR behavior), not show items that have all the tags selected (AND behavior).</li>
+	<li>The behavior for multiple components in a group (as defined by the component name or <a href="#groupOption">group option</a>) is to display items that have either of the tags selected (OR behavior), not show items that have all the tags selected (AND behavior).</li>
+	<li>Selected values across different groups have the "AND" behavior.</li>
 </ul>
 
 <h3>Notes</h3>
 <p>For semantic purposes, every logical group of filters should be wrapped by a <code>&lt;fieldset></code> element.</p>
+
+<section>
+	<h2>Configuration options</h2>
+
+	<p>All configuration options of the plugin are controlled by the <code>data-wb-tagfilter</code> attribute.</p>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>live</code></td>
+				<td>Define if the filtering should happen when a filter is changed. If false, a form element must be added inside the plugin container.</td>
+				<td><code>data-wb-tagfilter='{"live": <em>false</em>}'</code></td>
+				<td><dl>
+						<dt>True (default):</dt>
+						<dd>Will update the results on change.</dd>
+						<dt>False</dt>
+						<dd>Will update the results only when a submit happens on the form. Can be useful for Adobe Analytics tracking.</dd>
+					</dl></td>
+			</tr>
+			<tr>
+				<td id="groupOption"><code>data-wb-tagfilter-group</code></td>
+				<td>Set on tag filter form controls or a parent legend to set the behavior; controls in the same group will have an "Or" behavior while different groups will have an "And" behavior.</td>
+				<td><code>data-wb-tagfilter-group="groupName"</code></td>
+				<td><dl>
+						<dt>None (default):</dt>
+						<dd>Defaults to the control's name attribute</dd>
+						<dt>String</dt>
+						<dd>The name of the group sharing an "or" behavior</dd>
+					</dl></td>
+			</tr>
+		</tbody>
+	</table>
+</section>

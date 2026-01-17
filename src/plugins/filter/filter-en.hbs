@@ -7,7 +7,7 @@
 	"tag": "filter",
 	"parentdir": "filter",
 	"altLangPrefix": "filter",
-	"dateModified": "2025-08-07",
+	"dateModified": "2025-10-08",
 	"gcds": true
 }
 ---
@@ -20,6 +20,7 @@
 	<li><a href="#flt-uicontainer">Move UI to specific container</a></li>
 	<li><a href="#flt-customui">Custom UI</a></li>
 	<li><a href="#flt-customui">Custom UI and Data JSON</a></li>
+	<li><a href="#flt-submit">Filter with submit button</a></li>
 	<li><a href="#flt-gcdsCard">GCDS Card</a></li>
 </ul>
 
@@ -642,7 +643,6 @@
 	</tbody>
 </table>
 
-
 <h3>Source code</h3>
 <pre><code>&lt;table class=&quot;wb-filter table&quot;&gt;
 	&lt;caption&gt;Population of largest municipalities per provinces&lt;/caption&gt;
@@ -876,6 +876,46 @@
 		&lt;/template>
 	&lt;/ul>
 &lt;/div></code></pre>
+
+<h2 id="flt-submit">Filter with submit button</h2>
+
+<ul class="wb-filter" data-wb-filter='{
+	"live": false
+}'>
+	<li>Alberta</li>
+	<li>British Columbia</li>
+	<li>Manitoba</li>
+	<li>New Brunswick</li>
+	<li>Newfoundland &amp; Labrador</li>
+	<li>Northwest Territories</li>
+	<li>Nova Scotia</li>
+	<li>Nunavut</li>
+	<li>Ontario</li>
+	<li>Prince Edward Island</li>
+	<li>Quebec</li>
+	<li>Saskatchewan</li>
+	<li>Yukon</li>
+</ul>
+
+<h3>Source code</h3>
+
+<pre><code>&lt;ul class="wb-filter" data-wb-filter='{
+	"live": false
+}'&gt;
+	&lt;li&gt;Alberta&lt;/li&gt;
+	&lt;li&gt;British Columbia&lt;/li&gt;
+	&lt;li&gt;Manitoba&lt;/li&gt;
+	&lt;li&gt;New Brunswick&lt;/li&gt;
+	&lt;li&gt;Newfoundland &amp; Labrador&lt;/li&gt;
+	&lt;li&gt;Northwest Territories&lt;/li&gt;
+	&lt;li&gt;Nova Scotia&lt;/li&gt;
+	&lt;li&gt;Nunavut&lt;/li&gt;
+	&lt;li&gt;Ontario&lt;/li&gt;
+	&lt;li&gt;Prince Edward Island&lt;/li&gt;
+	&lt;li&gt;Quebec&lt;/li&gt;
+	&lt;li&gt;Saskatchewan&lt;/li&gt;
+	&lt;li&gt;Yukon&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 
 <h3 id="flt-gcdsCard">GCDS Card</h3>
 <gcds-grid columns="1fr" columns-tablet="1fr 1fr" columns-desktop="1fr 1fr 1fr" class="wb-filter" data-wb-filter='{ "selector": "gcds-card" }'>
