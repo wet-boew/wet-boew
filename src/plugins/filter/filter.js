@@ -24,7 +24,7 @@ var componentName = "wb-filter",
 			section: ">tbody"
 		},
 		tblgrp: {
-			selector: " th:not([scope])" + notFilterClassSel,
+			selector: "th:not([scope])",
 			hdnparentuntil: "tbody",
 			section: ">tbody"
 		}
@@ -67,7 +67,8 @@ var componentName = "wb-filter",
 				i18n = wb.i18n;
 				i18nText = {
 					filter_label: i18n( "fltr-lbl" ),
-					fltr_info: i18n( "fltr-info" )
+					fltr_info: i18n( "fltr-info" ),
+					itemsFound: i18n( "items-found" )
 				};
 			}
 
@@ -89,7 +90,6 @@ var componentName = "wb-filter",
 					if ( uiInfo ) {
 						uiInfoID = uiInfo.id || uiInfoID;
 						uiInfo.id = uiInfoID;
-						uiInfo.setAttribute( "role", "status" );
 					}
 				} else {
 					console.error( componentName + ": " + "an <input type=\"search\"> is required in your UI template." );
@@ -104,7 +104,7 @@ var componentName = "wb-filter",
 					"<label for=\"" + inptId + "\" class=\"input-group-addon\"><span class=\"glyphicon glyphicon-filter\" aria-hidden=\"true\"></span> " + i18nText.filter_label + "</label>" +
 					"<input id=\"" + inptId + "\" class=\"form-control " + inputClass + "\" data-" + dtNameFltrArea + "=\"" + elm.id + "\" aria-controls=\"" + elm.id + "\" type=\"search\">" +
 					"</div>" +
-					"<p role=\"status\" id=\"" + uiInfoID + "\">" + i18nText.fltr_info + "</p>" );
+					"<p id=\"" + uiInfoID + "\">" + i18nText.fltr_info + "</p>" );
 
 				if ( settings.source ) {
 					$( settings.source ).prepend( filterUI );
@@ -134,6 +134,18 @@ var componentName = "wb-filter",
 				uiTotal.textContent = totalEntries;
 			}
 
+			var statusMessageId = elm.id + "-status",
+				statusMessage = document.getElementById( statusMessageId );
+
+			// Create a hidden status message for screen readers which is separate from the
+			// visual status element to ensure consistent behaviour from screen readers
+			if ( !statusMessage ) {
+				statusMessage = document.createElement( "p" );
+				statusMessage.id = statusMessageId;
+				statusMessage.className = "wb-inv";
+				statusMessage.setAttribute( "role", "status" );
+				$elm.prepend( statusMessage );
+			}
 			wb.ready( $elm, componentName );
 		}
 	},
@@ -206,7 +218,7 @@ var componentName = "wb-filter",
 			filter = unAccent( $field.val().trim() ),
 			fCallBack = settings.filterCallback,
 			secSelector = ( settings.section || "" )  + " ",
-			hndParentSelector = settings.hdnparentuntil,
+			hdnParentSelector = settings.hdnparentuntil,
 			$items = $elm.find( secSelector + settings.selector ),
 			itemsLength = $items.length,
 			i, $item, text, searchFilterRegularExp;
@@ -226,8 +238,8 @@ var componentName = "wb-filter",
 			}
 
 			if ( !searchFilterRegularExp.test( text ) ) {
-				if ( hndParentSelector ) {
-					$item = $item.parentsUntil( hndParentSelector );
+				if ( hdnParentSelector ) {
+					$item.parentsUntil( hdnParentSelector ).addClass( filterClass );
 				}
 				$item.addClass( filterClass );
 			}
@@ -244,7 +256,7 @@ var componentName = "wb-filter",
 	filterCallback = function( $field, $elm, settings ) {
 		var $sections =	$elm.find( settings.section ),
 			sectionsLength = $sections.length,
-			fndSelector = notFilterClassSel + settings.selector,
+			fndSelector = settings.selector + notFilterClassSel,
 			s, $section;
 
 		for ( s = 0; s < sectionsLength; s += 1 ) {
@@ -252,6 +264,20 @@ var componentName = "wb-filter",
 			if ( $section.find( fndSelector ).length === 0 ) {
 				$section.addClass( filterClass );
 			}
+		}
+
+		var sectionSelector = settings.section || "",
+			statusMessage = document.getElementById( $elm.attr( "id" ) + "-status" );
+
+		// Build the status message using a string to avoid inconsistencies across different screen readers when reading content from dynamic markup
+		if ( statusMessage ) {
+			var cleanSelector = settings.selector.replace( notFilterClassSel, "" ),
+				totalItems = $elm.find( sectionSelector + " " + cleanSelector ).length,
+				foundItems = $elm.find( sectionSelector + " " + settings.selector + notFilterClassSel ).length;
+
+			setTimeout( function() {
+				statusMessage.textContent = foundItems + " " + i18nText.itemsFound + " " + totalItems;
+			}, 900 );
 		}
 	};
 
@@ -263,6 +289,7 @@ $document.on( "keyup", selectorInput, function( event ) {
 	if ( wait ) {
 		clearTimeout( wait );
 	}
+
 	wait = setTimeout( filter.bind( this, $input, $elm, $elm.data() ), 250 );
 } );
 
