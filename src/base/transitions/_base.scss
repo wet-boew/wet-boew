@@ -136,6 +136,14 @@
 	}
 }
 
+.wb-disable {
+	&.fade {
+		&.out {
+			@extend %visible;
+		}
+	}
+}
+
 @keyframes fadein {
 	0% {
 		@include invisible;
