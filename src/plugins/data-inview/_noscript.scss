@@ -5,6 +5,7 @@
 
 .fade {
   &.out {
-    @include visible;
-  }
+	  opacity: 1;
+	  visibility: visible;
+	}
 }
