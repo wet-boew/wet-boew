@@ -5,6 +5,6 @@
 
 .fade {
   &.out {
-    @extend %visible;
+    @include %visible;
   }
 }
