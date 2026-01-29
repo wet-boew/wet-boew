@@ -138,9 +138,7 @@
 
 .wb-disable {
 	.fade {
-		&.out {
-			@extend %visible;
-		}
+		opacity: 1;
 	}
 }
 
