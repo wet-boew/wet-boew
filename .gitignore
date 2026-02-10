@@ -3,8 +3,6 @@ node_modules/
 lib/
 site/data/i18n/
 dist/*
-?sprite*.*css
-sprite*.png
 
 # gh-pages
 wet-boew-cdn/
