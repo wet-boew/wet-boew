@@ -49,7 +49,7 @@
     "jquery-validation": "1.21.0",
     "jsonpointer.js": "^0.4.0",
     "magnific-popup": "^1.2.0",
-    "mathjax": "^3.2.2",
+    "mathjax": "^4.1.0",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.3",
     "proj4": "2.19.10",
     "side-by-side-improved": "github:wet-boew/SideBySideImproved#v1.0.0"
