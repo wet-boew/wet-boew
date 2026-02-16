@@ -41,7 +41,7 @@
   "dependencies": {
     "bootstrap-sass": "3.4.3",
     "code-prettify": "^0.1.0",
-    "datatables.net": "~1.13.11",
+    "datatables.net": "~2.3.7",
     "dompurify": "^3.3.0",
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
     "flot": "0.8.3",
