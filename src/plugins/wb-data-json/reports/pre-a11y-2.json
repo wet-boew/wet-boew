@@ -542,7 +542,7 @@
             "@type": ["earl:TestResult", "earl:Assertion"]
         },
         {
-            "earl:test": "WCAG21:error-prevention-legal-financial-data)",
+            "earl:test": "WCAG21:error-prevention-legal-financial-data",
             "earl:subject": "_:subject",
             "earl:outcome": "earl:inapplicable",
             "dct:description": "",

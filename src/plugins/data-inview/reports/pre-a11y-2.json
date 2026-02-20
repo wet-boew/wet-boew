@@ -1,0 +1,259 @@
+{
+    "@context": "https://wet-boew.github.io/vocab/context/2023/assessment-report-en.json-ld",
+
+    "@type": ["earl:Assertion", "acr:AssessmentReport"],
+
+    "earl:subject": {
+        "@id": "_:subject",
+        "dct:references": "https://wet-boew.github.io/wet-boew/demos/data-inview/data-inview-en.html",
+        "@type": [
+            "earl:TestSubject",
+            "schema:WebPage"
+        ],
+        "dct:description": "Displays an overlay when a section moves out of the viewport.",
+        "earl:pointer": {
+            "@type": "oa:CssSelector",
+            "@value": ".wb-inview"
+        }
+    },
+
+    "earl:assertedBy": {
+        "foaf:name": "Service Canada - Principal Publisher",
+        "foaf:homepage": "https://github.com/ServiceCanada",
+        "@type": ["earl:Assertor", "foaf:Organization"],
+        "earl:mainAssertor": {
+            "foaf:name": "Ilya Pak (Github: @ipaksc)",
+            "foaf:homepage": "https://github.com/ipaksc",
+            "@type": ["earl:Assertor", "foaf:Person"]
+        }
+    },
+
+    "dct:date": "2023-12-19",
+
+    "dct:description": "Evaluation of all WCAG 2.1 SC at level AA.",
+
+    "dct:source": "act:rulesets/wcag2x/wcag21_all_levelAA.json",
+    "acr:standard": "https://www.w3.org/TR/WCAG21",
+    "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+
+    "earl:result": [{
+            "earl:test": "WCAG21:info-and-relationships",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:meaningful-sequence",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:orientation",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:use-of-color",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:contrast-minimum",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:resize-text",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:reflow",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:non-text-contrast",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:text-spacing",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:content-on-hover-or-focus",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:keyboard",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:failed",
+            "dct:description": "Top bar:  The content panel cannot be operated through a keyboard. There is no mechanisms to navigate to the 'Top bar' close button.",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:no-keyboard-trap",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:focus-order",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:failed",
+            "dct:description": "1. Top bar: The content panel is skiped in focus order. When focus reaches the 'Section with a conditional bottom/top bar' focus moves to the next interactive element, skipping the  content panel. 2. Bottom bar: The content panel is skiped in focus order. When focus reaches the 'Section with a conditional bottom/top bar' focus moves to the next interactive element, skipping the  content panel.",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:headings-and-labels",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:focus-visible",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:label-in-name",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:on-focus",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:parsing",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:name-role-value",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:passed",
+            "dct:description": "",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        },
+        {
+            "earl:test": "WCAG21:status-messages",
+            "earl:subject": "_:subject",
+            "earl:outcome": "earl:failed",
+            "dct:description": "1. Top bar: There is no mechanisms that informs blind users about the content panel when the panel is activated. 2. Slide-Efect: There is no mechanisms that informs blind users about the content panel when the panel is activated. 3. Bottom bar: There is no mechanisms that informs blind users about the content panel when the panel is activated.",
+            "dct:modified": null,
+            "acr:severity": "acr:noSeverity",
+            "acr:relevancy": "wbv:acr#noRelevancy",
+            "earl:mode": "earl:manual",
+            "@type": ["earl:TestResult", "earl:Assertion"]
+        }
+    ]
+}
