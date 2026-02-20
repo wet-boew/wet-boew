@@ -1,0 +1,100 @@
+﻿1
+00:00:01,958 --> 00:00:03,750
+Want a convenient and secure way
+
+2
+00:00:03,750 --> 00:00:06,666
+to access your Government of Canada services and benefits?
+
+3
+00:00:07,250 --> 00:00:09,833
+Register for My Service Canada Account today!
+
+4
+00:00:10,250 --> 00:00:15,458
+<font color="blue">This</font> <b>account</b> gives <i>you</i> secure <u>access</u> to services and benefits
+related to the <font color="red"><b><i><u>Canada</u></i></b></font> Pension Plan,
+
+5
+00:00:15,750 --> 00:00:18,833
+Old Age Security and Employment Insurance.
+
+6
+00:00:19,333 --> 00:00:23,791
+You can also sign up for direct deposit
+to have your payments sent directly to your bank account.
+
+7
+00:00:24,250 --> 00:00:27,500
+To register, you’ll need to provide some personal information,
+
+8
+00:00:27,500 --> 00:00:30,583
+including your date of birth and Social Insurance Number.
+
+9
+00:00:30,958 --> 00:00:34,041
+For safety and security, you will need to validate your identity
+
+10
+00:00:34,041 --> 00:00:38,541
+with a personal access code
+or by using the <i>Interac</i>® verification service.
+
+11
+00:00:38,541 --> 00:00:40,166
+Don’t have a personal access code?
+
+12
+00:00:40,166 --> 00:00:44,750
+Don’t worry, you can request one online,
+by phone or at a Service Canada Centre.
+
+13
+00:00:45,250 --> 00:00:47,291
+The <i>Interac</i>® verification service
+
+14
+00:00:47,291 --> 00:00:50,166
+will allow you to register for My Service Canada Account
+
+15
+00:00:50,166 --> 00:00:54,333
+safely and instantly by using your online
+banking information.
+
+16
+00:00:55,583 --> 00:01:00,500
+To put your mind at ease, we have added multi-factor
+authentication to help protect your account!
+
+17
+00:01:01,125 --> 00:01:03,958
+Once registered, there are three ways to sign in.
+
+18
+00:01:03,958 --> 00:01:08,958
+You can sign in with your GCKey, with a sign-in partner,
+such as your bank,
+
+19
+00:01:09,333 --> 00:01:14,208
+or with your provincial digital ID
+if you live in British Columbia or Alberta.
+
+20
+00:01:14,208 --> 00:01:17,541
+Each one of the three sign-in options is safe and secure!
+
+21
+00:01:17,541 --> 00:01:21,333
+And you can do it all from your computer, phone or tablet.
+
+22
+00:01:21,750 --> 00:01:25,875
+Register now to see all the advantages
+My Service Canada Account has to offer!
+
+23
+00:01:26,416 --> 00:01:31,666
+Visit canada.ca/MyServiceCanadaAccount to register.
