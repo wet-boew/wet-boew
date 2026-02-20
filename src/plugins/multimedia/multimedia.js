@@ -737,6 +737,11 @@ $document.on( initializedEvent, selector, function( event ) {
 		$this.addClass( type );
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+			const iframeApiUrl = "https://www.youtube.com/iframe_api";
+			let observer;
+			let observer1;
+			let observer2;
+			let observer3;
 
 			// lets tweak some variables and start the load sequence
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
@@ -764,40 +769,164 @@ $document.on( initializedEvent, selector, function( event ) {
 				$this.trigger( youtubeEvent, data );
 			}
 
+			//TODO: Log the current time to compare against modernizr's complete() timings
+			let initialTimeStamp = Date.now();
+
+			let observer111;
+			let loadedIframeApi = false;
+			let loadedWidgetApi = false;
+			let loadedIframe = false;
+
+			console.log( "started" );
+
+			/*
+				NOTES:
+				There's a cross-browser way of doing responseStatus now!!! But it only works in very new FF versions and Safari is out of luck entirely... so I'll need to ensure my logic doesn't DEPEND on its existence
+
+				Also unsure if I can even do it due to https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStatus#cross-origin_response_status_codes (can't verify until YT is unblocked again). Could I expect it to return 200 when YT is working and 0 when it isn't due to CORS issues?
+
+				Btw would I need to use the buffered flag for something like this?
+
+				See these:
+				* https://caniuse.com/?search=responseStatus%20
+				* https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStatus
+			*/
+
+			// Quickly show error messages if the YouTube player fails at the hands of a firewall or extremely slow network
+			observer111 = new PerformanceObserver( function( list ) {
+				list.getEntriesByType( "resource" ).forEach( function( entry ) {
+					if ( entry.name === iframeApiUrl ) {
+						console.log( entry.responseStatus ); // always producing 0 when YT is working... lame
+						loadedIframeApi = true;
+
+						console.log( "inside loadedIframeApi if" );
+						console.log( performance.getEntries() );
+						console.log( entry );
+
+						setTimeout( function() {
+							if ( !loadedWidgetApi ) {
+								//trigger error
+								console.log("PHASE 2 FAILED");
+								observer111.disconnect();
+							}
+						}, 3000 );
+					}
+					else if ( entry.initiatorType === "script" && entry.name.endsWith( "www-widgetapi.js" ) ) {
+						//NOTE: Only ONE request will ever be made for this... won't be separate requests for each video for this particular file
+						loadedWidgetApi = true;
+
+						setTimeout( function() {
+							if ( !loadedIframe ) {
+								//trigger error
+								console.log("PHASE 3 FAILED");
+								observer111.disconnect();
+							}
+						}, 3000 );
+					}
+					else if ( entry.initiatorType === "iframe" && entry.name.includes( data.youTubeId ) ) {
+						loadedIframe = true;
+						observer111.disconnect();
+					}
+				});
+			});
+			observer111.observe( { type: "resource", buffered: true } );
+
+
+
+
+
+
+
+
+			//---------------------------------------------------
+
+
+
+
+			// Show error message if the YouTube iframe API isn't ready within 3 seconds of receiving a network response (likely means a firewall has blocked YouTube's domain)
+			observer = new PerformanceObserver( function( list ) {
+				list.getEntriesByType( "resource" ).forEach( function( entry ) {
+
+					if ( entry.name === iframeApiUrl ) {
+
+						let nextTimeStamp = Date.now();
+
+						setTimeout( function() {
+							//TODO: Do network latency tests to figure out if the YT API even needs to wait 3 whole seconds (might be able to get away with like 0-1 seconds)... not sure if that second player script needs to be downloaded before it can be considered ready...
+							//If the network request stalls... will browsers eventually log an entry?
+							//TODO: Log the current time after the timeout to compare against modernizr's complete() timings
+
+							if ( youTube.ready ) {
+								console.log( "YT is ready" );
+
+								//TODO: I want a 5 second timer right after this to verify whether any iframes have loaded before resorting to showing an error... but don't know how to re-access the list array from inside itself
+
+								console.log( performance.getEntries() );
+
+								setTimeout( function() {
+									const resources = window.performance.getEntriesByType( "resource" );
+
+									resources.forEach( function( entryo ) {
+										if ( entryo.initiatorType === "iframe" && entryo.name.includes( data.youTubeId ) ) {
+											//found a video iframe... but how can I verify things were successful? I need to verify that the player is actually happy to PROVE the iframe didn't just return HTTP 403 denied or something...
+											//else show error... once again
+
+										} else {
+											//show the error
+										}
+
+										observer.disconnect();
+									});
+								}, 5000 );
+							}
+							else {
+								console.log( "YT is NOT ready" );
+
+								if ( !wb.isReady ) {
+									// show the video notification error
+									const $notifText = $( "<div aria-live='polite' class='pstn-lft-xs bg-dark text-white'><p class='mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md'>" + i18n( "msgYoutubeNotLoad" ) + "</p></div>" );
+									$this.prepend( $notifText );
+									data.notifyText = $notifText;
+									wb.ready( $this, componentName );
+								}
+							}
+						}, 3000 );
+
+						setTimeout( function() {
+							//TODO: Do network latency tests to figure out if the YT API even needs to wait 3 whole seconds (might be able to get away with like 0-1 seconds)... not sure if that second player script needs to be downloaded before it can be considered ready...
+							//If the network request stalls... will browsers eventually log an entry?
+							//TODO: Log the current time after the timeout to compare against modernizr's complete() timings
+
+							if ( !youTube.ready ) {
+								console.log( "YT is NOT ready" );
+
+								if ( !wb.isReady ) {
+									// show the video notification error
+									const $notifText = $( "<div aria-live='polite' class='pstn-lft-xs bg-dark text-white'><p class='mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md'>" + i18n( "msgYoutubeNotLoad" ) + "</p></div>" );
+									$this.prepend( $notifText );
+									data.notifyText = $notifText;
+									wb.ready( $this, componentName );
+								}
+							}
+							else {
+								console.log( "YT is ready" );
+							}
+						}, 10000 );
+
+						observer.disconnect();
+					}
+				});
+			});
+			observer.observe( { type: "resource", buffered: true } );
+
 			// finally lets load safely
 			return Modernizr.load( {
-				load: "https://www.youtube.com/iframe_api",
+				load: iframeApiUrl,
 
-				//possible solution for multimedia and doaction conflict in corporate network
 				complete: function() {
 
-					// Ensure that YouTube API is loading the iframe and if it fails, ensure that it will show a message, like accessing the web via our GC network.
-					setTimeout( function() {
-						var resources, arrIframesYt, $notifText;
-
-						resources = window.performance.getEntriesByType( "resource" );
-
-						/* get all the iframe initiators that have the same YT url id */
-						arrIframesYt  = resources.filter( function( obj ) {
-
-							return obj.initiatorType === "iframe" && obj.name.includes( data.youTubeId );
-
-						} );
-
-
-						/* if none found, most probably wb is loaded in restricted network so wb.ready() is triggered for not preventing other wb components to load*/
-						if ( arrIframesYt.length < 1 ) {
-							if ( !wb.isReady ) {
-
-								// show the video notification error
-								$notifText = $( "<div aria-live='polite' class='pstn-lft-xs bg-dark text-white'><p class='mrgn-tp-md mrgn-rght-md mrgn-bttm-md mrgn-lft-md'>" + i18n( "msgYoutubeNotLoad" ) + "</p></div>" );
-								$this.prepend( $notifText );
-								data.notifyText = $notifText;
-								wb.ready( $this, componentName );
-							}
-						}
-					}, 1000 );
-
+					//TODO: Log the current time to compare against the "outer" observer's timings
+					//TODO: Maybe go with a show error function and call it here to cover all my bases (if a network request times out... I'd rather show SOMETHING after modernizr's 10 second timeout rather than wait forever for the observer to never get any entries)
 				}
 			} );
 
