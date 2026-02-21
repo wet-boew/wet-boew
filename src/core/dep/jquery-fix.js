@@ -199,6 +199,13 @@ var localParseHTML = jQuery.parseHTML,
 		"<td />",
 		"<td/>"
 	],
+	sanitizeOptions = {
+		CUSTOM_ELEMENT_HANDLING: {
+			tagNameCheck: /^wb-config$/, // only allow the custom element we do have, eventually we might allow all tags starting with "<wb-*>" ex: /^wb-/
+			attributeNameCheck: /.+/, // allow all attributes
+			allowCustomizedBuiltInElements: false // customized built-ins are not allowed yet
+		}
+	},
 	sanitize = function( html ) {
 
 		// Add an exception for DataTable plugin
@@ -206,7 +213,7 @@ var localParseHTML = jQuery.parseHTML,
 			return html;
 		}
 
-		return DOMPurify.sanitize( html );
+		return DOMPurify.sanitize( html, sanitizeOptions );
 	};
 
 jQuery.parseHTML = function( data, context, keepScripts ) {
