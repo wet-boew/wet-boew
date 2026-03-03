@@ -970,14 +970,6 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "node_modules/mathjax/es5"
-					src: [
-						"mml-chtml.js"
-						"output/chtml/fonts/woff-v2/**"
-					]
-					dest: "<%= coreDist %>/js/MathJax/"
-					expand: true
-				,
 					cwd: "node_modules/jquery/dist"
 					src: "*.*"
 					dest: "<%= coreDist %>/js/jquery/<%= jqueryVersion %>"
