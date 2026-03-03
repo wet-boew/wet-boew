@@ -49,7 +49,6 @@
     "jquery-validation": "1.21.0",
     "jsonpointer.js": "^0.4.0",
     "magnific-popup": "^1.2.0",
-    "mathjax": "^3.2.2",
     "openlayers": "github:wet-boew/openlayers-dist#v3.20.3",
     "proj4": "2.19.10",
     "side-by-side-improved": "github:wet-boew/SideBySideImproved#v1.0.0"
@@ -60,7 +59,7 @@
     "assemble-contrib-i18n": "^0.1.6",
     "autoprefixer": "^10.4.21",
     "coffeescript": "^2.7.0",
-    "eslint": "^9.39.0",
+    "eslint": "^10.0.2",
     "eslint-config-jquery": "^3.0.2",
     "expect.js": "^0.3.1",
     "globals": "^17.4.0",
