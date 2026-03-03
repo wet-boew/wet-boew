@@ -77,7 +77,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^26.0.0",
     "grunt-gh-pages": "^4.0.0",
-    "grunt-html": "^17.1.0",
+    "grunt-html": "^18.0.2",
     "grunt-i18n-csv": "^0.1.0",
     "grunt-jsonlint": "^3.0.0",
     "grunt-lintspaces": "^0.12.0",
