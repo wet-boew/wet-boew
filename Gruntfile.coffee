@@ -893,7 +893,9 @@ module.exports = (grunt) ->
 						"The “navigation” role is unnecessary for element “nav”."
 						"The “banner” role is unnecessary for element “header”."
 						"Attribute “href” without an explicit value seen. The attribute may be dropped by IE7."
-						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values."
+						"Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.",
+						"This document appears to be written in English but the “html” start tag has “lang=\"fr\"”. Consider using “lang=\"en\"” (or variant) instead.",
+						"This document appears to be written in Lorem ipsum text but the “html” start tag has “lang=\"en\"”. Consider using “lang=\"zxx\"” (or variant) instead."
 					]
 				src: [
 					"dist/unmin/**/*.html"
