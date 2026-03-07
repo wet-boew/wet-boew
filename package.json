@@ -95,15 +95,18 @@
     "puppeteer": "^24.37.5",
     "sass": "^1.97.3",
     "sinon": "^21.0.1",
-    "stylelint": "^16.25.0",
-    "stylelint-config-standard": "^39.0.1",
-    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^7.0.1",
     "time-grunt": "^2.0.0"
   },
   "overrides": {
     "grunt-contrib-uglify": {
       "uglify-js": "3.17.4"
+    },
+    "grunt-stylelint": {
+      "stylelint": ">=17.0.0"
     }
   }
 }
