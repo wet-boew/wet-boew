@@ -1,0 +1,257 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$blogger-name: 'blogger';
+$blogger-x: 0px;
+$blogger-y: 0px;
+$blogger-offset-x: 0px;
+$blogger-offset-y: 0px;
+$blogger-width: 32px;
+$blogger-height: 32px;
+$blogger-total-width: 128px;
+$blogger-total-height: 128px;
+$blogger-image: '#{$wb-assets-path}/sprites_share.png';
+$blogger: (0px, 0px, 0px, 0px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'blogger', );
+$bluesky-name: 'bluesky';
+$bluesky-x: 32px;
+$bluesky-y: 0px;
+$bluesky-offset-x: -32px;
+$bluesky-offset-y: 0px;
+$bluesky-width: 32px;
+$bluesky-height: 32px;
+$bluesky-total-width: 128px;
+$bluesky-total-height: 128px;
+$bluesky-image: '#{$wb-assets-path}/sprites_share.png';
+$bluesky: (32px, 0px, -32px, 0px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'bluesky', );
+$diigo-name: 'diigo';
+$diigo-x: 0px;
+$diigo-y: 32px;
+$diigo-offset-x: 0px;
+$diigo-offset-y: -32px;
+$diigo-width: 32px;
+$diigo-height: 32px;
+$diigo-total-width: 128px;
+$diigo-total-height: 128px;
+$diigo-image: '#{$wb-assets-path}/sprites_share.png';
+$diigo: (0px, 32px, 0px, -32px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'diigo', );
+$facebook-name: 'facebook';
+$facebook-x: 32px;
+$facebook-y: 32px;
+$facebook-offset-x: -32px;
+$facebook-offset-y: -32px;
+$facebook-width: 32px;
+$facebook-height: 32px;
+$facebook-total-width: 128px;
+$facebook-total-height: 128px;
+$facebook-image: '#{$wb-assets-path}/sprites_share.png';
+$facebook: (32px, 32px, -32px, -32px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'facebook', );
+$feed-name: 'feed';
+$feed-x: 64px;
+$feed-y: 0px;
+$feed-offset-x: -64px;
+$feed-offset-y: 0px;
+$feed-width: 32px;
+$feed-height: 32px;
+$feed-total-width: 128px;
+$feed-total-height: 128px;
+$feed-image: '#{$wb-assets-path}/sprites_share.png';
+$feed: (64px, 0px, -64px, 0px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'feed', );
+$gmail-name: 'gmail';
+$gmail-x: 64px;
+$gmail-y: 32px;
+$gmail-offset-x: -64px;
+$gmail-offset-y: -32px;
+$gmail-width: 32px;
+$gmail-height: 32px;
+$gmail-total-width: 128px;
+$gmail-total-height: 128px;
+$gmail-image: '#{$wb-assets-path}/sprites_share.png';
+$gmail: (64px, 32px, -64px, -32px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'gmail', );
+$linkedin-name: 'linkedin';
+$linkedin-x: 0px;
+$linkedin-y: 64px;
+$linkedin-offset-x: 0px;
+$linkedin-offset-y: -64px;
+$linkedin-width: 32px;
+$linkedin-height: 32px;
+$linkedin-total-width: 128px;
+$linkedin-total-height: 128px;
+$linkedin-image: '#{$wb-assets-path}/sprites_share.png';
+$linkedin: (0px, 64px, 0px, -64px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'linkedin', );
+$myspace-name: 'myspace';
+$myspace-x: 32px;
+$myspace-y: 64px;
+$myspace-offset-x: -32px;
+$myspace-offset-y: -64px;
+$myspace-width: 32px;
+$myspace-height: 32px;
+$myspace-total-width: 128px;
+$myspace-total-height: 128px;
+$myspace-image: '#{$wb-assets-path}/sprites_share.png';
+$myspace: (32px, 64px, -32px, -64px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'myspace', );
+$pinterest-name: 'pinterest';
+$pinterest-x: 64px;
+$pinterest-y: 64px;
+$pinterest-offset-x: -64px;
+$pinterest-offset-y: -64px;
+$pinterest-width: 32px;
+$pinterest-height: 32px;
+$pinterest-total-width: 128px;
+$pinterest-total-height: 128px;
+$pinterest-image: '#{$wb-assets-path}/sprites_share.png';
+$pinterest: (64px, 64px, -64px, -64px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'pinterest', );
+$reddit-name: 'reddit';
+$reddit-x: 96px;
+$reddit-y: 0px;
+$reddit-offset-x: -96px;
+$reddit-offset-y: 0px;
+$reddit-width: 32px;
+$reddit-height: 32px;
+$reddit-total-width: 128px;
+$reddit-total-height: 128px;
+$reddit-image: '#{$wb-assets-path}/sprites_share.png';
+$reddit: (96px, 0px, -96px, 0px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'reddit', );
+$tinyurl-name: 'tinyurl';
+$tinyurl-x: 96px;
+$tinyurl-y: 32px;
+$tinyurl-offset-x: -96px;
+$tinyurl-offset-y: -32px;
+$tinyurl-width: 32px;
+$tinyurl-height: 32px;
+$tinyurl-total-width: 128px;
+$tinyurl-total-height: 128px;
+$tinyurl-image: '#{$wb-assets-path}/sprites_share.png';
+$tinyurl: (96px, 32px, -96px, -32px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'tinyurl', );
+$tumblr-name: 'tumblr';
+$tumblr-x: 96px;
+$tumblr-y: 64px;
+$tumblr-offset-x: -96px;
+$tumblr-offset-y: -64px;
+$tumblr-width: 32px;
+$tumblr-height: 32px;
+$tumblr-total-width: 128px;
+$tumblr-total-height: 128px;
+$tumblr-image: '#{$wb-assets-path}/sprites_share.png';
+$tumblr: (96px, 64px, -96px, -64px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'tumblr', );
+$twitter-name: 'twitter';
+$twitter-x: 0px;
+$twitter-y: 96px;
+$twitter-offset-x: 0px;
+$twitter-offset-y: -96px;
+$twitter-width: 32px;
+$twitter-height: 32px;
+$twitter-total-width: 128px;
+$twitter-total-height: 128px;
+$twitter-image: '#{$wb-assets-path}/sprites_share.png';
+$twitter: (0px, 96px, 0px, -96px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'twitter', );
+$whatsapp-name: 'whatsapp';
+$whatsapp-x: 32px;
+$whatsapp-y: 96px;
+$whatsapp-offset-x: -32px;
+$whatsapp-offset-y: -96px;
+$whatsapp-width: 32px;
+$whatsapp-height: 32px;
+$whatsapp-total-width: 128px;
+$whatsapp-total-height: 128px;
+$whatsapp-image: '#{$wb-assets-path}/sprites_share.png';
+$whatsapp: (32px, 96px, -32px, -96px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'whatsapp', );
+$x-name: 'x';
+$x-x: 64px;
+$x-y: 96px;
+$x-offset-x: -64px;
+$x-offset-y: -96px;
+$x-width: 32px;
+$x-height: 32px;
+$x-total-width: 128px;
+$x-total-height: 128px;
+$x-image: '#{$wb-assets-path}/sprites_share.png';
+$x: (64px, 96px, -64px, -96px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'x', );
+$yahoomail-name: 'yahoomail';
+$yahoomail-x: 96px;
+$yahoomail-y: 96px;
+$yahoomail-offset-x: -96px;
+$yahoomail-offset-y: -96px;
+$yahoomail-width: 32px;
+$yahoomail-height: 32px;
+$yahoomail-total-width: 128px;
+$yahoomail-total-height: 128px;
+$yahoomail-image: '#{$wb-assets-path}/sprites_share.png';
+$yahoomail: (96px, 96px, -96px, -96px, 32px, 32px, 128px, 128px, '#{$wb-assets-path}/sprites_share.png', 'yahoomail', );
+$spritesheet-width: 128px;
+$spritesheet-height: 128px;
+$spritesheet-image: '#{$wb-assets-path}/sprites_share.png';
+$spritesheet-sprites: ($blogger, $bluesky, $diigo, $facebook, $feed, $gmail, $linkedin, $myspace, $pinterest, $reddit, $tinyurl, $tumblr, $twitter, $whatsapp, $x, $yahoomail, );
+$spritesheet: (128px, 128px, '#{$wb-assets-path}/sprites_share.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+	width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+	height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+	$sprite-offset-x: nth($sprite, 3);
+	$sprite-offset-y: nth($sprite, 4);
+
+	background-position: $sprite-offset-x $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+	$sprite-image: nth($sprite, 9);
+
+	background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+	@include sprite-image($sprite);
+	@include sprite-position($sprite);
+	@include sprite-width($sprite);
+	@include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+// but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+	@each $sprite in $sprites {
+		$sprite-name: nth($sprite, 10);
+		.#{$sprite-name} {
+			@include sprite($sprite);
+		}
+	}
+}
