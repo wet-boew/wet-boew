@@ -232,12 +232,13 @@ var getUrlParts = function( url ) {
 			// Filter out any events triggered by descendants and only initializes
 			// the element once (if is an event and document node is not the target)
 			if ( !isEvent || isDocumentNode || ( event.currentTarget === node &&
-				node.className.indexOf( initedClass ) === -1 ) ) {
+				node.classList &&
+				!node.classList.contains( initedClass ) ) ) {
 
 				this.initQueue += 1;
 				this.remove( selector );
 				if ( !isDocumentNode ) {
-					node.className += " " + initedClass;
+					node.classList.add( initedClass );
 
 					if ( !noAutoId && !node.id ) {
 						node.id = wb.getId();
