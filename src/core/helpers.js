@@ -1406,10 +1406,36 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			looseEmail2: /([a-zA-Z0-9._%+-]+)\s?@\s?(gmail|outlook|icloud|hotmail|yahoo)(\s?\.?\s?(com|ca))?/ig,
 
 			/*
+			* Loose email 3: to catch obfuscated emails: supports +, spaces in domain, optional TLD, longer TLDs
+			*/
+			looseEmail3: /([a-zA-Z0-9_+\-\\.]+)\s*@\s*([a-zA-Z0-9_\-\\.]+)(?:\s*[\\.,]\s*([a-zA-Z]{0,10}))?/ig,
+
+			/*
 			* Postal code:
 			* valid Canadian postal code
 			*/
 			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig,
+
+			/*
+			* Address pattern 1: NUMBER + WORD(S) + SUFFIX + DIRECTION (optional)
+			*/
+			address_pattern_1: /\b(\d{1,6}[A-Za-z]?)\s+([A-Za-z][A-Za-z''\\-]*(?:\s+[A-Za-z][A-Za-z''\\-]*){0,3})\s+(?:st|street|ave|avenue|av|av\.|rd|road|dr|drive|blvd|boulevard|boul|boul\.|ln|lane|ct|court|pl|place|ter|terrace|terr|pkwy|parkway|cir|circle|hwy|highway|rue|chemin|ch|ch\.|chem|chem\.|route|rte|all[ée]e?|all\.|allee|cours|voie|terrain|terrasse|rang|promenade|prom|prom\.)(?:\s+(?:n|s|e|w|ne|nw|se|sw|o|no|so))?\b/ig,
+
+			/*
+			* Address pattern 2: NUMBER + DIRECTION + WORD(S) + SUFFIX
+			*/
+			address_pattern_2: /\b(\d{1,6}[A-Za-z]?)\s+(?:n|s|e|w|ne|nw|se|sw|o|no|so)\s+([A-Za-z][A-Za-z''\\-]*(?:\s+[A-Za-z][A-Za-z''\\-]*){0,3})\s+(?:st|street|ave|avenue|av|av\.|rd|road|dr|drive|blvd|boulevard|boul|boul\.|ln|lane|ct|court|pl|place|ter|terrace|terr|pkwy|parkway|cir|circle|hwy|highway|rue|chemin|ch|ch\.|chem|chem\.|route|rte|all[ée]e?|all\.|allee|cours|voie|terrain|terrasse|rang|promenade|prom|prom\.)\b/ig,
+
+			/*
+			* Address pattern 3: NUMBER + WORD(S) + SUFFIX (fallback pattern)
+			*/
+			address_pattern_3: /\b(\d{1,6}[A-Za-z]?)\s+([A-Za-z][A-Za-z''\\-]*(?:\s+[A-Za-z][A-Za-z''\\-]*){0,3})\s+(?:st|street|ave|avenue|av|av\.|rd|road|dr|drive|blvd|boulevard|boul|boul\.|ln|lane|ct|court|pl|place|ter|terrace|terr|pkwy|parkway|cir|circle|hwy|highway|rue|chemin|ch|ch\.|chem|chem\.|route|rte|all[ée]e?|all\.|allee|cours|voie|terrain|terrasse|rang|promenade|prom|prom\.)(?:\s+(?:n|s|e|w|ne|nw|se|sw|o|no|so))?\b/ig,
+
+			/*
+			* Address pattern 4: PO BOX + NUMBER
+			* e.g., “PO Box 123”, “P.O. Box 456”, “Post Office Box 789”, “C.P. 123”, “B.P. 456”, “Case postale 789”, “Boîte postale 123”, “Casier postal 456”
+			*/
+			address_pattern_4: /\b(?:(?:p\.?\s*o\.?\s*box)|(?:post\s+office\s+box)|(?:c\.?\s*p\.?)|(?:b\.?\s*p\.?)|(?:case\s+postale)|(?:bo[iî]te\s+postale)|(?:casier\s+postal))(?:\.+)?[ \t]*(?:#|no\.?|n[º°]|n°|num(?:[ée]ro)?\.?)?[ \t]*(?<box_number>[A-Za-z0-9][A-Za-z0-9\\-]*)\b/giu,
 
 			/*
 			* Username:
