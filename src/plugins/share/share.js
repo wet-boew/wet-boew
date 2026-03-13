@@ -77,6 +77,10 @@ var componentName = "wb-share",
 				name: "LinkedIn®",
 				url: "https://www.linkedin.com/shareArticle?mini=true&amp;url={u}&amp;title={t}&amp;ro=false&amp;summary={d}&amp;source="
 			},
+			mastodon: {
+				name: "Mastodon",
+				url: "https://share.joinmastodon.org/#text={t}%20{u}"
+			},
 			myspace: {
 				name: "MySpace",
 				url: "https://www.myspace.com/Modules/PostTo/Pages/?u={u}&amp;t={t}"
