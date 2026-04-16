@@ -41,7 +41,7 @@
     "bootstrap-sass": "3.4.3",
     "code-prettify": "^0.1.0",
     "datatables.net": "~1.13.11",
-    "dompurify": "^3.3.2",
+    "dompurify": "^3.4.0",
     "fast-json-patch": "github:wet-boew/JSON-Patch#wb1.0+1.1.4",
     "flot": "github:wet-boew/flot#v0.8.3+patch",
     "jquery": "2.2.4",
