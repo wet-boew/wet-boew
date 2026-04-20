@@ -222,8 +222,8 @@
 					<p>Create a <code>&lt;form&gt;</code> with the following attributes <code>class="wb-tables-filter"</code> and <code>data-bind-to="TABLE_ID"</code>.</p>
 				</li>
 				<li>
-					<p>For date range create two date inputs (<code>&lt;input type="date"/&gt;</code>) add the following attribute <code>data-column="COLUMN_NUMBER"</code></p>
-					<p>Example: <code>&lt;input type="date" class="form-control" id="dt_mindate" name="dt_mindate" data-column="1"/&gt;</code></p>
+					<p>For date range create two date inputs (<code>&lt;input type="date"&gt;</code>) add the following attribute <code>data-column="COLUMN_NUMBER"</code></p>
+					<p>Example: <code>&lt;input type="date" class="form-control" id="dt_mindate" name="dt_mindate" data-column="1"&gt;</code></p>
 					<p><small>Each date input requires the same column number. Please note that the column numbers start at 0.</small></p>
 				</li>
 				<li>
@@ -257,7 +257,7 @@
 				</li>
 				<li>Column is the checkboxes that the filter well apply too (must match there 'data-column').</li>
 			</ol>
-			<pre><code>&lt;label for="dt_location_aopts1"&gt;&lt;input type="radio" name="dt_location_aopts" id="dt_location_aopts1" data-aopts='{"type": "any", "column": "5"}' checked /&gt;Any&lt;/label&gt;</code></pre>
+			<pre><code>&lt;label for="dt_location_aopts1"&gt;&lt;input type="radio" name="dt_location_aopts" id="dt_location_aopts1" data-aopts='{"type": "any", "column": "5"}' checked&gt;Any&lt;/label&gt;</code></pre>
 		</div>
 	</div>
 
@@ -382,7 +382,7 @@
 				</li>
 				<li>Column is the number range that the filter well apply too (must match there 'data-column').</li>
 			</ol>
-			<pre><code>&lt;label for="dt_age_aopts1"&gt;&lt;input type="radio" name="dt_age_aopts" id="dt_age_aopts1" data-aopts='{"type": "either", "column": "5"}' checked /&gt;Either&lt;/label&gt;</code></pre>
+			<pre><code>&lt;label for="dt_age_aopts1"&gt;&lt;input type="radio" name="dt_age_aopts" id="dt_age_aopts1" data-aopts='{"type": "either", "column": "5"}' checked&gt;Either&lt;/label&gt;</code></pre>
 		</div>
 	</div>
 	<h3>Other Filters</h3>

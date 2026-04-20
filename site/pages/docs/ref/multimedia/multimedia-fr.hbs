@@ -94,14 +94,14 @@
 				<li>
 					Ajoutez un ou plusieurs éléments <code>source</code> à l'élément <code>video</code> avec l'attribut <code>src</code> ayant comme valeur l'URL du fichier média et l'attribut <code>type</code> étant son type MIME.<br>
 					<strong>Note :</strong> Si vous indiquez plusieurs sources média pour la vidéo, le lecteur jouera le premier média qui fonctionne (est disponible, compatible, etc.).
-					<pre><code>&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm" /&gt;
-&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" /&gt;</code></pre>
+					<pre><code>&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm"&gt;
+&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"&gt;</code></pre>
 				</li>
 				<li>Ajoutez l'élément <code>track</code> avec <code>kind="captions"</code> à l'élément <code>video</code> pour inclure le sous-titrage.
 					<ol>
 						<li>
 							Ajoutez les attributs <code>srclang</code> et <code>label</code> à l'élément <code>track</code> pour identifier la langue du sous-titrage.
-							<pre><code>&lt;track srclang="fr" label="Français" /&gt;</code></pre>
+							<pre><code>&lt;track srclang="fr" label="Français"&gt;</code></pre>
 						</li>
 						<li>Ajoutez les attributs <code>src</code> et <code>data-type</code> à l'élément <code>track</code> pour identifier la source du sous-titrage.
 							<ul>
@@ -111,7 +111,7 @@
 							</ul>
 						</li>
 					</ol>
-					<pre><code>&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;</code></pre>
+					<pre><code>&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français"&gt;</code></pre>
 				</li>
 				<li><strong>Facultatif : </strong>Ajoutez des boutons pour accéder aux marqueurs temporels dans la vidéo.
 					<ul>
@@ -127,9 +127,9 @@
 				<h5>Code</h5>
 				<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "https://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-fr.html"}'&gt;
 	&lt;video poster="demo/video1-fr.jpg" title="Trouver un emploi"&gt;
-		&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm" /&gt;
-		&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" /&gt;
-		&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;
+		&lt;source type="video/webm" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm"&gt;
+		&lt;source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"&gt;
+		&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français"&gt;
 	&lt;/video&gt;
 	&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Marqueur temporel - 75s&lt;/button&gt;
 	&lt;figcaption&gt;
@@ -144,9 +144,9 @@
 			<ol>
 				<li>Ajoutez l'attribut <code>title</code> à l'élément <code>video</code> avec la valeur étant le titre de la vidéo.</li>
 				<li><p>Ajoutez un élément <code>source</code> à l'élément <code>video</code> avec l'attribut <code>type="video/youtube"</code> et l'attribut <code>src</code> étant l'URL de la vidéo.</p>
-					<pre><code>&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
+					<pre><code>&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY"&gt;</code></pre>
 					<p>Ou</p>
-					<pre><code>&lt;source type="video/youtube" src="https://youtu.be/9znKJqnFuuY" /&gt;</code></pre>
+					<pre><code>&lt;source type="video/youtube" src="https://youtu.be/9znKJqnFuuY"&gt;</code></pre>
 				</li>
 				<li>Si le sous-titrage n'est pas déjà inclut pour la vidéo, l'ajouter avec les outils fournis par YouTube.</li>
 			</ol>
@@ -155,7 +155,7 @@
 				<h5>Code</h5>
 			<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;video title="Suspect"&gt;
-		&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;
+		&lt;source type="video/youtube" src="https://www.youtube.com/watch?v=9znKJqnFuuY"&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Suspect&lt;/p&gt;
@@ -171,8 +171,8 @@
 				<li>
 					Ajoutez un ou plusieurs éléments <code>source</code> à l'élément <code>audio</code> avec l'attribut <code>src</code> avec la valeur étant l'URL du fichier média et l'attribut <code>type</code> étant le type MIME du fichier.<br>
 					<strong>Note :</strong> Si vous indiquez plusieurs sources média pour l'audio, le lecteur jouera le premier fichier média qui fonctionne (est disponible, compatible, etc.).
-					<pre><code>&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
-&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;</code></pre>
+					<pre><code>&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3"&gt;
+&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg"&gt;</code></pre>
 				</li>
 			</ol>
 
@@ -180,8 +180,8 @@
 				<h5>Code</h5>
 				<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;audio title="Ride of the Valkyries"&gt;
-		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
-		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;
+		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3"&gt;
+		&lt;source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg"&gt;
 	&lt;/audio&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Ride of the Valkyries&lt;/p&gt;
