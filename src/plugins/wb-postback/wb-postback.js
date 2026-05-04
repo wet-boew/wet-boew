@@ -86,7 +86,7 @@ var $document = wb.doc,
 						if ( settings.successURL && !settings.success ) {
 							window.location.href = settings.successURL;
 						} else {
-							$selectorSuccess.removeClass( classToggle );
+							$selectorSuccess.removeClass( classToggle ).trigger( "setfocus.wb" );
 						}
 						$elm.trigger( successEvent );
 					} )
@@ -96,7 +96,7 @@ var $document = wb.doc,
 						if ( settings.failureURL && !settings.failure ) {
 							window.location.href = settings.failureURL;
 						} else {
-							$selectorFailure.removeClass( classToggle );
+							$selectorFailure.removeClass( classToggle ).trigger( "setfocus.wb" );
 						}
 						$elm.trigger( failEvent, response );
 					} )
