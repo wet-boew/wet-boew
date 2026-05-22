@@ -100,9 +100,6 @@
   "overrides": {
     "grunt-contrib-uglify": {
       "uglify-js": "3.17.4"
-    },
-    "grunt-stylelint": {
-      "stylelint": ">=17.0.0"
     }
   }
 }
