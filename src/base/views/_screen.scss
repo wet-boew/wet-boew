@@ -36,22 +36,6 @@
 	}
 }
 
-/* Hide MathML check */
-.mathml,
-.no-mathml {
-	body {
-		> {
-			div {
-				> {
-					math {
-						@extend %display-none-important;
-					}
-				}
-			}
-		}
-	}
-}
-
 #wb-dtmd {
 	margin: 2em 0 0;
 
@@ -69,10 +53,13 @@
 
 // Column auto (col-auto) extension for Bootstrap grid
 // Baseline style for column auto - same style as defined in: assets/stylesheets/bootstrap/mixins/_grid-framework.scss
-.col-xs-auto, .col-sm-auto, .col-md-auto, .col-lg-auto {
+.col-xs-auto,
+.col-sm-auto,
+.col-md-auto,
+.col-lg-auto {
 	min-height: 1px;
-	padding-left:  ($grid-gutter-width * .5);
-	padding-right: ($grid-gutter-width * .5);
+	padding-left: ($grid-gutter-width * 0.5);
+	padding-right: ($grid-gutter-width * 0.5);
 }
 
 .col-xs-auto {
