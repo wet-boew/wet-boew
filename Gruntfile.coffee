@@ -949,7 +949,7 @@ module.exports = (grunt) ->
 					cwd: "node_modules"
 					src: [
 						"code-prettify/src/*.js"
-						"datatables.net/js/jquery.dataTables.js"
+						"datatables.net/js/dataTables.js"
 						"fast-json-patch/src/json-patch.js"
 						"flot/jquery.flot.js"
 						"flot/jquery.flot.pie.js"
