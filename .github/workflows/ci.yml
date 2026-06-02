@@ -20,16 +20,14 @@ jobs:
           node-version: 24
           cache: 'npm'
 
-      - name: Install puppeteer libraries
-        run: |
-         sudo apt-get update
-         sudo apt-get install -y libgbm1
-
       - name: Install Grunt
         run: npm i -g grunt-cli --force
 
       - name: Install npm dependencies
         run: npm ci
+
+      - name: Install puppeteer browsers
+        run: npx puppeteer browsers install chrome
 
       - run: npm test
       - run: grunt deploy-build
