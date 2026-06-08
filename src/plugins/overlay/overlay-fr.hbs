@@ -9,7 +9,7 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2014-07-22"
+	"dateModified": "2026-06-08"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -125,6 +125,23 @@
 		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé mi-écran&lt;/h2&gt;
 	&lt;/header&gt;
 	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#cs-mi-ecran-lien-cache" aria-controls="cs-mi-ecran-lien-cache" class="overlay-lnk" role="button">Contenu superposé mi-écran - Commençant par un lien caché</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-mi-ecran-lien-cache&quot; aria-controls=&quot;cs-mi-ecran-lien-cache&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé mi-écran - Commençant par un lien caché&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-mi-ecran-lien-cache&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé mi-écran - Commençant par un lien caché&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		&lt;p hidden&gt;&lt;a href="#"&gt;Lien caché&lt;/a&gt;&lt;/p&gt;
 		...
 	&lt;/div&gt;
 &lt;/section&gt;</code></pre>
@@ -396,6 +413,30 @@ wb.doc.on( "click", "#overlay-open-btn", function( event ) {
 		<h2 class="modal-title">Contenu superposé mi-écran</h2>
 	</header>
 	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
+	</div>
+</section>
+
+<section id="cs-mi-ecran-lien-cache" class="wb-overlay modal-content overlay-def wb-popup-mid">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé mi-écran - Commençant par un lien caché</h2>
+	</header>
+	<div class="modal-body">
+		<p hidden><a href="#">Lien caché</a></p>
 		<ol>
 			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
 			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut

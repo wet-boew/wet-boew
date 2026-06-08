@@ -9,7 +9,7 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2014-07-22"
+	"dateModified": "2026-06-08"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -125,6 +125,23 @@
 		&lt;h2 class=&quot;modal-title&quot;&gt;Middle screen overlay&lt;/h2&gt;
 	&lt;/header&gt;
 	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#mid-screen-hidden-link" aria-controls="mid-screen-hidden-link" class="overlay-lnk" role="button">Middle screen overlay - Beginning with a hidden link</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#mid-screen-hidden-link&quot; aria-controls=&quot;mid-screen-hidden-link&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Middle screen overlay - Beginning with a hidden link&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;mid-screen-hidden-link&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-mid&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Middle screen overlay - Beginning with a hidden link&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		&lt;p hidden&gt;&lt;a href="#"&gt;Hidden link&lt;/a&gt;&lt;/p&gt;
 		...
 	&lt;/div&gt;
 &lt;/section&gt;</code></pre>
@@ -392,6 +409,29 @@ wb.doc.on( "click", "#overlay-open-btn", function( event ) {
 		<h2 class="modal-title">Middle screen overlay</h2>
 	</header>
 	<div class="modal-body">
+		<ol>
+			<li>ordered list (<code>ol</code>) first level default appearance</li>
+			<li>ordered list (<code>ol</code>) first level default appearance
+				<ol>
+					<li>ordered list (<code>ol</code>) second level default appearance</li>
+					<li>ordered list (<code>ol</code>) second level default appearance
+						<ol>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+							<li>ordered list (<code>ol</code>) third level default appearance</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</section>
+
+<section id="mid-screen-hidden-link" class="wb-overlay modal-content overlay-def wb-popup-mid">
+	<header class="modal-header">
+		<h2 class="modal-title">Middle screen overlay - Beginning with a hidden link</h2>
+	</header>
+	<div class="modal-body">
+		<p hidden><a href="#">Hidden link</a></p>
 		<ol>
 			<li>ordered list (<code>ol</code>) first level default appearance</li>
 			<li>ordered list (<code>ol</code>) first level default appearance
