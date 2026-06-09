@@ -96,7 +96,7 @@ var componentName = "wb-menu",
 				$elm.attr( "aria-haspopup", "true" );
 
 				$subMenu.attr( {
-					"aria-expanded": "false",
+					//"aria-expanded": "false",
 					"aria-hidden": "true"
 				} );
 
@@ -121,7 +121,8 @@ var componentName = "wb-menu",
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
 				menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
 				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
-				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
+				"<ul class='list-unstyled mb-sm' role='menu' aria-hidden='true'>";
+				//"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
 
 		// Convert each of the list items into WAI-ARIA menuitems
 		for ( k = 0; k !== itemsLength; k += 1 ) {
@@ -441,7 +442,7 @@ var componentName = "wb-menu",
 			.removeClass( "open" )
 			.attr( {
 				"aria-hidden": "true",
-				"aria-expanded": "false"
+				//"aria-expanded": "false"
 			} )
 
 		// Close nested submenus
@@ -450,7 +451,7 @@ var componentName = "wb-menu",
 			.children( "ul" )
 			.attr( {
 				"aria-hidden": "true",
-				"aria-expanded": "false"
+				//"aria-expanded": "false"
 			} );
 
 		if ( removeActive ) {
@@ -480,7 +481,7 @@ var componentName = "wb-menu",
 				.addClass( "open" )
 				.attr( {
 					"aria-hidden": "false",
-					"aria-expanded": "true"
+					//"aria-expanded": "true"
 				} );
 		}
 	},
@@ -556,7 +557,9 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 
 // Prevent opening another menu if mouse re-enters already opened menu
 $document.on( "mouseenter", selector + " .sm", function() {
-	if ( $( this ).attr( "aria-expanded" ) === "true" ) {
+	//if ( $( this ).attr( "aria-expanded" ) === "true" ) {
+	//if ( $( this ).hasClass( "aria-hidden" ) === "false" ) {
+	if ( $( this ).hasClass( "open" ) ) {
 		clearTimeout( globalTimeout );
 	}
 } );
@@ -607,7 +610,7 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 		}
 	}
 
-	submenu.setAttribute( "aria-expanded", !isOpen );
+	//submenu.setAttribute( "aria-expanded", !isOpen );
 	submenu.setAttribute( "aria-hidden", isOpen );
 } );
 
@@ -773,7 +776,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					// the first submenu item
 					$parent.children( "ul" )
 						.attr( {
-							"aria-expanded": "true",
+							//"aria-expanded": "true",
 							"aria-hidden": "false"
 						} )
 						.find( "[role=menuitem]:first" )
