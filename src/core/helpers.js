@@ -1537,63 +1537,90 @@ $.fn.wb = function( method ) {
 
 } )( jQuery );
 
+/*!
+ * jQuery UI Focusable/Tabbable
+ * https://jqueryui.com
+ *
+ * Copyright OpenJS Foundation and other contributors
+ * Released under the MIT license.
+ * https://jquery.org/license
+ */
+
 /*
-:focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
+:focusable, :discoverable and :tabbable jQuery helper expressions
+
+Derived from jQuery UI, with the following changes:
+* Adheres to WET's ESLint settings (no-eq-null: changed loose null checks into strict undefined checks)
+* Adds an isVisible parameter to the focusable method (preset to true to behave like jQuery UI by default, can optionally be set to false)
+* Adds an extra discoverable method (leverages the focusable method with isVisible set to false)
+
+Based on:
+* https://github.com/jquery/jquery-ui/blob/e803d4f67be9d7ae9a5a125c188dd003e3e3043a/ui/focusable.js#L31-L73
+* https://github.com/jquery/jquery-ui/blob/e803d4f67be9d7ae9a5a125c188dd003e3e3043a/ui/tabbable.js#L30-L36
+* https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js#L121-L142 (old logic's extend structure)
 */
 ( function( $ ) {
 
 "use strict";
 
-function focusable( element, isTabIndexNotNaN, visibility ) {
-	var map, mapName, img,
-		nodeName = element.nodeName.toLowerCase( );
-	if ( nodeName === "area" ) {
+function focusable( element, hasTabindex, isVisible = true ) {
+	var map, mapName, img, focusableIfVisible, fieldset,
+		nodeName = element.nodeName.toLowerCase();
+
+	if ( "area" === nodeName ) {
 		map = element.parentNode;
 		mapName = map.name;
-		if ( !element.href || !mapName || map.nodeName.toLowerCase( ) !== "map" ) {
+		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
 			return false;
 		}
-		img = $( "img[usemap=#" + mapName + "]" )[ 0 ];
-		return !!img && visible( img );
-	}
-	if ( visibility ) {
-		return ( /input|select|textarea|button|object|summary/.test( nodeName ) ? !element.disabled :
-			nodeName === "a" ?
-				element.href || isTabIndexNotNaN :
-				isTabIndexNotNaN ) &&
-		visible( element ); /* the element and all of its ancestors must be visible */
-	} else {
-		return ( /input|select|textarea|button|object|summary/.test( nodeName ) ? !element.disabled :
-			nodeName === "a" ?
-				element.href || isTabIndexNotNaN :
-				isTabIndexNotNaN );
-	}
-}
+		img = $( "img[usemap='#" + mapName + "']" );
 
-function visible( element ) {
-	return $.expr.filters.visible( element ) && !$( element )
-		.parents( )
-		.addBack( )
-		.filter( function() {
-			return $.css( this, "visibility" ) === "hidden";
-		} )
-		.length;
+		if ( isVisible ) {
+			return img.length > 0 && img.is( ":visible" );
+		}
+
+		return img.length > 0;
+	}
+
+	if ( /^(input|select|textarea|button|object)$/.test( nodeName ) ) {
+		focusableIfVisible = !element.disabled;
+
+		if ( focusableIfVisible ) {
+
+			// Form controls within a disabled fieldset are disabled.
+			// However, controls within the fieldset's legend do not get disabled.
+			// Since controls generally aren't placed inside legends, we skip
+			// this portion of the check.
+			fieldset = $( element ).closest( "fieldset" )[ 0 ];
+			if ( fieldset ) {
+				focusableIfVisible = !fieldset.disabled;
+			}
+		}
+	} else if ( "a" === nodeName ) {
+		focusableIfVisible = element.href || hasTabindex;
+	} else {
+		focusableIfVisible = hasTabindex;
+	}
+
+	if ( isVisible ) {
+		return focusableIfVisible && $( element ).is( ":visible" ) &&
+			$( element ).css( "visibility" ) === "visible";
+	}
+
+	return focusableIfVisible && $( element );
 }
 
 $.extend( $.expr.pseudos, {
-	data: function( elem, index, match ) {
-		return !!$.data( elem, match[ 3 ] );
-	},
 	focusable: function( element ) {
-		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ), true );
+		return focusable( element, $.attr( element, "tabindex" ) !== undefined );
 	},
 	discoverable: function( element ) {
-		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
+		return focusable( element, $.attr( element, "tabindex" ) !== undefined, false );
 	},
 	tabbable: function( element ) {
 		var tabIndex = $.attr( element, "tabindex" ),
-			isTabIndexNaN = isNaN( tabIndex );
-		return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
+			hasTabindex = tabIndex !== undefined;
+		return ( !hasTabindex || tabIndex >= 0 ) && focusable( element, hasTabindex );
 	}
 } );
 
