@@ -211,9 +211,9 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 						length = $focusable.length;
 						index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
 
-						if ( index === -1 || index === length ) {
+						if ( index < 0 || index === length ) {
 							event.preventDefault();
-							$focusable.eq( index === -1 ? length - 1 : 0 )
+							$focusable.eq( index < 0 ? length - 1 : 0 )
 								.trigger( setFocusEvent );
 						}
 					}
