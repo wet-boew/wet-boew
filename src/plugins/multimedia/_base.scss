@@ -77,6 +77,21 @@
 	vertical-align: middle;
 }
 
+:fullscreen .wb-mltmd {
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+	max-width: 100%;
+}
+
+:fullscreen .wb-mltmd  video{
+	min-height: 0;
+	object-fit: contain;
+	width: 100%;
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -184,11 +199,25 @@
 	}
 }
 
+:fullscreen .wb-mm-cc {
+	bottom: 4.5em;
+	left: 0;
+	position: relative;
+	width: 100%;
+}
+
+:fullscreen .wb-mm-ctrls {
+	bottom: 0;
+	position: relative;
+	width: 100%;
+}
+
 .wb-mm-cc {
 	@extend %captions-hidden;
 
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
+	position: relative;
 	text-align: center;
 	transition: all .26s ease;
 	width: 100%;
