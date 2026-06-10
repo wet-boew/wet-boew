@@ -90,7 +90,7 @@
     "postcss": "^8.5.14",
     "puppeteer": "^25.1.0",
     "sass": "^1.99.0",
-    "sinon": "^21.1.2",
+    "sinon": "^22.0.0",
     "stylelint": "^17.10.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
