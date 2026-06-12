@@ -866,7 +866,11 @@ $document.on( "keyup", selector + " [role=menuitem]", function( event ) {
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
-		$( mobilePanel ).trigger( "close.wb-overlay" );
+		$( mobilePanel ).trigger( {
+			type: ( "close" ),
+			namespace: "wb-overlay",
+			noFocus: true
+		} );
 	}
 } );
 
