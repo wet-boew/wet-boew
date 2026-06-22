@@ -1,0 +1,227 @@
+---
+{
+	"title": "Configuration via composante web",
+	"language": "fr",
+	"category": "Autre",
+	"description": "Composant Web qui facilite et réduit les erreurs d'analyse JSON des configurations complexes d'un plugin wet-boew.",
+	"tag": "utility",
+	"parentdir": "utility",
+	"altLangPage": "wb-config-en.html",
+	"dateModified": "2023-09-29"
+}
+---
+<div class="wb-prettify all-pre hide"></div>
+
+<p>Composant Web qui facilite et réduit les erreurs d'analyse JSON des configurations complexes d'un plugin wet-boew.</p>
+<p>Ce composant Web peut être utilisé sur tous les plugins wet-boew qui exploitent le coeur de BOEW pour extraire la configuration du plugin.</p>
+
+<h2>Exemple</h2>
+
+<div class="row">
+	<div class="col-md-7">
+		<h3>Avec <code>&lt;wb-config></code></h3>
+
+		<div class="dl-horizontal" data-wb-json>
+			<wb-config wb-plugin="wb-json" streamline template="template">
+				<wb-config wb-prop="url">../wb-data-json/demo/data-fr.json</wb-config>
+				<wb-config wb-prop="mapping">
+					<wb-config selector="p" value="/produit"></wb-config>
+				</wb-config>
+			</wb-config>
+			<template>
+				<p></p>
+			</template>
+		</div>
+		<pre><code>&lt;div class="dl-horizontal" data-wb-json>
+	&lt;wb-config wb-plugin="wb-json" streamline template="template">
+		&lt;wb-config wb-prop="url">../wb-data-json/demo/data-fr.json&lt;/wb-config>
+		&lt;wb-config wb-prop="mapping">
+			&lt;wb-config selector="p" value="/produit">&lt;/wb-config>
+		&lt;/wb-config>
+	&lt;/wb-config>
+	&lt;template>
+		&lt;p>&lt;/p>
+	&lt;/template>
+&lt;/div></code></pre>
+	</div>
+	<div class="col-md-5">
+		<h3>Avec une configuration JSON</h3>
+		<div class="dl-horizontal" data-wb-json='{ "url": "../wb-data-json/demo/data-fr.json", "streamline": true, "template": "template", "mapping": [ { "selector": "p", "value": "/produit" } ]}'>
+			<template>
+				<p></p>
+			</template>
+		</div>
+		<pre><code>&lt;div class="dl-horizontal" data-wb-json='{ "url": "../wb-data-json/demo/data-fr.json", "streamline": true, "template": "template", "mapping": [ { "selector": "p", "value": "/produit" } ] }'>
+	&lt;template>
+		&lt;p>&lt;/p>
+	&lt;/template>
+&lt;/div></code></pre>
+	</div>
+</div>
+
+
+<h2>Comment l'utiliser</h2>
+
+<ol>
+	<li>Ajoutez un élément <code>&lt;wb-config></code> en tant qu'enfant du plugin que vous souhaitez configurer.</li>
+	<li>Identifiez le plugin avec la configuration en définissant le nom du plugin via l'attribut <code>wb-plugin</code>. Alternativement, vous pouvez configurer la configuration à distance, voir l'exemple ci-dessous avec le plugin de tableau de données.</li>
+
+	<li>Spécifiez la configuration (clé/valeur) en suivant ces méthodes :
+		<ul>
+			<li>Écrivez la configuration nécessaire en tant qu'attribut de l'élément. Notez que le nom de l'attribut est toujours converti en minuscules.</li>
+			<li>Créez un élément enfant <code>&lt;wb-config></code> où vous définissez le nom de la propriété via l'attribut <code>wb-prop</code>.</li>
+			<li>Créez un tableau en créant un élément enfant <code>&lt;wb-config></code> sans nom de propriété.</li>
+			<li>Vous pouvez définir la valeur d'une propriété :
+				<ul>
+					<li>Dans un format JSON valide via la propriété <code>wb-value</code></li>
+					<li>Sous forme de texte en tant que contenu textuel de l'élément.</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ol>
+
+<h3>Configuration</h3>
+
+<dl class="dl-horizontal">
+	<dt><code>wb-plugin</code></dt>
+	<dd>Nom du plugin pour lequel la configuration est destinée.</dd>
+	<dt><code>wb-ignore</code></dt>
+	<dd>Liste d'attributs séparés par des espaces qui ne sont pas pris en compte dans la configuration du plugin. Notez que tout attribut préfixé par <code>wb-</code> ou <code>data-</code> est toujours hors de portée. Lorsqu'une configuration est utilisée à distance, sa valeur par défaut sera définie sur "id" si cet attribut n'est pas déjà défini.</dd>
+
+	<dt><code>wb-prop</code></dt>
+	<dd>Nom de la propriété.</dd>
+	<dt><code>wb-value</code></dt>
+	<dd>Valeur JSON de la propriété nommée, sauf si le type de données est spécifié. Si ce n'est pas défini, <code>&lt;wb-config></code> sera pris en compte, puis le contenu textuel du noeud.</dd>
+	<dt><code>wb-type</code></dt>
+	<dd>
+		<p>Type de données de la valeur prenant en charge les éléments suivants :</p>
+		<ul>
+			<li><code>string</code> (par défaut) Chaîne de caractères.</li>
+			<li><code>bool</code> Booléen: Si la valeur est définie sur <code>0</code> ou <code>false</code>, elle sera résolue à <strong>false</strong>, sinon elle sera <strong>true</strong>.</li>
+			<li><code>number</code> Nombre: La valeur sera interprétée comme un flottant et en cas d'erreur, elle sera définie comme une valeur non numérique.</li>
+			<li><code>pre</code> Préformaté: Chaîne de caractères où tous les espaces sont préservés.</li>
+			<li><code>json</code> Notation d'objet JavaScript: C'est la valeur par défaut uniquement lorsque la valeur est définie via <code>wb-value</code> et que le type de données est omis.</li>
+		</ul>
+	</dd>
+</dl>
+
+<p>Vous pouvez encapsuler autant d'éléments <code>&lt;wb-config></code> que nécessaire. Si une valeur de configuration JSON est également définie, <code>&lt;wb-config></code> l'étendra.</p>
+<p>Si cela ne fonctionne pas comme prévu, consultez la console du navigateur pour les erreurs enregistrées.</p>
+
+
+<h2>Tableaux de données avec configuration à distance</h2>
+
+<p>Ajoutez un attribut de données sur l'élément amélioré avec le nom du plugin suivi de <code>-config</code> et d'un pointeur d'ID vers l'élément <code>&lt;wb-config></code>.</p>
+
+<wb-config id="data-table-config" wb-plugin="wb-tables">
+	<!-- Table basic setting -->
+	<wb-config wb-prop="ajaxSource">../tables/ajax/datasource.json</wb-config>
+	<wb-config wb-prop="bDeferRender" wb-type="bool" wb-value="true"></wb-config>
+	<wb-config wb-prop="order" wb-value='[5, "desc"]'></wb-config>
+
+	<!-- Defining the table column -->
+	<wb-config wb-prop="columns">
+		<wb-config data="TITLE" className="nws-tbl-ttl h4"></wb-config>
+		<wb-config data="PUBDATE" className="nws-tbl-date"></wb-config>
+		<wb-config data="DEPT" className="nws-tbl-dept"></wb-config>
+		<wb-config data="TYPE" className="nws-tbl-type"></wb-config>
+		<wb-config data="TEASER" className="nws-tbl-desc"></wb-config>
+
+		<!-- Field used for filtering, not used here in this demo -->
+		<wb-config data="LOCATION">
+			<wb-config wb-prop="visible" wb-type="bool">false</wb-config>
+		</wb-config>
+		<wb-config data="AUDIENCE">
+			<wb-config wb-prop="visible" wb-type="bool">false</wb-config>
+		</wb-config>
+		<wb-config data="SUBJECT">
+			<wb-config wb-prop="visible" wb-type="bool">false</wb-config>
+		</wb-config>
+		<wb-config data="MINISTER">
+			<wb-config wb-prop="visible" wb-type="bool">false</wb-config>
+		</wb-config>
+	</wb-config>
+</wb-config>
+<table class="wb-tables table table-striped table-hover" data-wb-tables-config="data-table-config">
+	<thead>
+	<tr>
+		<th>Titre</th>
+		<th>Date de publication</th>
+		<th>Département</th>
+		<th>Type de nouvelles</th>
+		<th>Résumé</th>
+		<th>Emplacement</th>
+		<th>Public</th>
+		<th>Suject</th>
+		<th>Ministre</th>
+	</tr>
+	</thead>
+</table>
+
+<h3>Source code</h3>
+
+<pre><code>&lt;wb-config id="data-table-config" wb-plugin="wb-tables">
+	&lt;!-- Table basic setting -->
+	&lt;wb-config wb-prop="ajaxSource">../tables/ajax/datasource.json&lt;/wb-config>
+	&lt;wb-config wb-prop="bDeferRender" wb-type="bool" wb-value="true">&lt;/wb-config>
+	&lt;wb-config wb-prop="order" wb-value='[5, "desc"]'>&lt;/wb-config>
+
+	&lt;!-- Defining the table column -->
+	&lt;wb-config wb-prop="columns">
+		&lt;wb-config data="TITLE" className="nws-tbl-ttl h4">&lt;/wb-config>
+		&lt;wb-config data="PUBDATE" className="nws-tbl-date">&lt;/wb-config>
+		&lt;wb-config data="DEPT" className="nws-tbl-dept">&lt;/wb-config>
+		&lt;wb-config data="TYPE" className="nws-tbl-type">&lt;/wb-config>
+		&lt;wb-config data="TEASER" className="nws-tbl-desc">&lt;/wb-config>
+
+		&lt;!-- Field used for filtering, not used here in this demo -->
+		&lt;wb-config data="LOCATION">
+			&lt;wb-config wb-prop="visible" wb-type="bool">false&lt;/wb-config>
+		&lt;/wb-config>
+		&lt;wb-config data="AUDIENCE">
+			&lt;wb-config wb-prop="visible" wb-type="bool">false&lt;/wb-config>
+		&lt;/wb-config>
+		&lt;wb-config data="SUBJECT">
+			&lt;wb-config wb-prop="visible" wb-type="bool">false&lt;/wb-config>
+		&lt;/wb-config>
+		&lt;wb-config data="MINISTER">
+			&lt;wb-config wb-prop="visible" wb-type="bool">false&lt;/wb-config>
+		&lt;/wb-config>
+	&lt;/wb-config>
+&lt;/wb-config>
+&lt;table class="wb-tables table table-striped table-hover" data-wb-tables-config="data-table-config">
+	&lt;thead>
+	&lt;tr>
+		&lt;th>Titre&lt;/th>
+		&lt;th>Date de publication&lt;/th>
+		&lt;th>Département&lt;/th>
+		&lt;th>Type de nouvelles&lt;/th>
+		&lt;th>Résumé&lt;/th>
+		&lt;th>Emplacement&lt;/th>
+		&lt;th>Public&lt;/th>
+		&lt;th>Suject&lt;/th>
+		&lt;th>Ministre&lt;/th>
+	&lt;/tr>
+	&lt;/thead>
+&lt;/table></code></pre>
+
+<details>
+	<summary>Voir la version JSON produite par le composant web <code>&lt;wb-config></code></summary>
+	<pre><code>{
+	"bDeferRender": true,
+	"ajaxSource": "ajax/datasource.json",
+	"order": [5, "desc"],
+	"columns": [
+		{ "data": "TITLE", "className": "nws-tbl-ttl h4" },
+		{ "data": "PUBDATE", "className": "nws-tbl-date" },
+		{ "data": "DEPT", "className": "nws-tbl-dept" },
+		{ "data": "TYPE", "className": "nws-tbl-type" },
+		{ "data": "TEASER",  "className": "nws-tbl-desc" },
+		{ "data": "LOCATION",  "visible": false },
+		{ "data": "AUDIENCE",  "visible": false },
+		{ "data": "SUBJECT", "visible": false },
+		{ "data": "MINISTER", "visible": false }
+	]
+}</code></pre>
+</details>
