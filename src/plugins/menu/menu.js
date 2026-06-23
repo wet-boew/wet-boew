@@ -461,20 +461,20 @@ var componentName = "wb-menu",
 	/**
 	 * @method menuDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {jQuery event} menu The menu to display
+	 * @param {jQuery DOM element} $menu The menu to display
 	 */
-	menuDisplay = function( $elm, menu ) {
-		var menuLink = menu.children( "a" );
+	menuDisplay = function( $elm, $menu ) {
+		var $menuLink = $menu.children( "a" );
 
 		menuClose( $elm.find( ".active" ), true );
 
-		menu.addClass( "active" );
+		$menu.addClass( "active" );
 
 		// Ignore if doesn't have a submenu
-		if ( menuLink.attr( "aria-haspopup" ) === "true" ) {
+		if ( $menuLink.attr( "aria-haspopup" ) === "true" ) {
 
 			// Add the open state classes
-			menu
+			$menu
 				.addClass( "sm-open" )
 				.children( ".sm" )
 				.addClass( "open" )
