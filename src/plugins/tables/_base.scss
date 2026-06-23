@@ -229,7 +229,7 @@ table {
 				}
 			}
 
-			.sorting {
+			.dt-orderable-asc.dt-orderable-desc {
 				@extend %tables-cursor-pointer;
 
 				.sorting-icons {
@@ -242,7 +242,7 @@ table {
 				}
 			}
 
-			.sorting_asc {
+			.dt-ordering-asc {
 				@extend %tables-cursor-pointer;
 				@extend %tables-bg-color-e7e7e7;
 
@@ -259,7 +259,7 @@ table {
 				}
 			}
 
-			.sorting_desc {
+			.dt-ordering-desc {
 				@extend %tables-cursor-pointer;
 				@extend %tables-bg-color-e7e7e7;
 
@@ -915,7 +915,7 @@ table {
 	@include border-right-radius($border-radius-base);
 }
 
-.dataTables_wrapper {
+.dt-container {
 	clear: both;
 	position: relative;
 	zoom: 1;
@@ -963,12 +963,12 @@ table {
 		display: inline-block;
 	}
 
-	.dataTables_paginate {
+	.dt-paging {
 		padding-top: 1.25em;
 		text-align: center;
 
 		// Duplicating Bootstrap CSS
-		.paginate_button {
+		.dt-paging-button {
 			background-color: $pagination-bg;
 			border: 1px solid $pagination-border;
 			color: $pagination-color;
@@ -1113,8 +1113,8 @@ table {
 		&.dataTable {
 			thead {
 				.sorting,
-				.sorting_asc,
-				.sorting_desc,
+				.dt-ordering-asc,
+				.dt-ordering-desc,
 				.sorting_asc_disabled,
 				.sorting_desc_disabled {
 					@extend %tables-sorting-text-align-right;
@@ -1127,7 +1127,7 @@ table {
 		}
 	}
 
-	.dataTables_wrapper {
+	.dt-container {
 		.dataTables_info,
 		.dataTables_length {
 			float: right;
@@ -1143,8 +1143,8 @@ table {
 			}
 		}
 
-		.dataTables_paginate {
-			.paginate_button {
+		.dt-paging {
+			.dt-paging-button {
 				&.previous {
 					@extend %tables-pagination-first-button-rtl;
 

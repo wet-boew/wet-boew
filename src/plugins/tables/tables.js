@@ -79,7 +79,7 @@ var componentName = "wb-tables",
 			};
 
 			Modernizr.load( {
-				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
+				load: [ "site!deps/dataTables" + wb.getMode() + ".js" ],
 				testReady: function() {
 					return ( $.fn.dataTable && $.fn.dataTable.version );
 				},
@@ -131,7 +131,7 @@ var componentName = "wb-tables",
 
 		var ol = document.createElement( "OL" ),
 			li = document.createElement( "LI" ),
-			paginate_buttons = $pagination.find( ".paginate_button" ),
+			paginate_buttons = $pagination.find( ".dt-paging-button" ),
 			navFocusOnId;
 
 		if ( $pagination.length === 0 ) {
@@ -154,7 +154,7 @@ var componentName = "wb-tables",
 
 		// Update the aria-pressed properties on the pagination buttons
 		// Should be pushed upstream to DataTables
-		$pagination.find( ".paginate_button" )
+		$pagination.find( ".dt-paging-button" )
 			.attr( {
 				"href": "#" + navFocusOnId
 			} )
@@ -182,8 +182,8 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "draw.dt", selector, function( event, settings ) {
 	var $elm = $( event.target ),
 		pagination = $elm.next( ".bottom" ).find( "div:first-child" ),
-		pagination_top = $elm.prevAll( ".top" ).find( "div.dataTables_paginate" ),
-		paginate_buttons = $elm.next( ".bottom" ).find( ".paginate_button" ),
+		pagination_top = $elm.prevAll( ".top" ).find( "div.dt-paging" ),
+		paginate_buttons = $elm.next( ".bottom" ).find( ".dt-paging-button" ),
 		pbLength = paginate_buttons.length,
 		pHasLF = pagination.find( ".last, .first" ).length === 2,
 		pHasPN = pagination.find( ".previous, .next" ).length === 2;
