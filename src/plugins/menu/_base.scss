@@ -6,6 +6,25 @@
 /*
  * Menu Sass
  */
+
+/* Extras to prevent goofy default summary styling */
+.wb-menu .menu > li summary {
+	display: inline-block !important;
+}
+
+.wb-menu summary > :first-child {
+  display: inline-block;
+}
+
+.wb-menu summary::marker {
+	content: none;
+}
+
+.wb-menu details summary {
+	border-radius: initial;
+	text-indent: initial;
+}
+
 .expicon {
 	font-size: .7em;
 	margin: 0 -.35em 0 .7em;
@@ -17,8 +36,9 @@
 		max-height: 0;
 		overflow: hidden;
 		position: relative;
+	}
 
-		&.open {
+		.sm.open, [open] {
 			display: inline;
 			max-height: 1000px;
 			min-width: 12.5em;
@@ -36,6 +56,7 @@
 			}
 		}
 
+	.sm {
 		details {
 			> {
 				* {
@@ -56,25 +77,30 @@
 				margin: 0;
 				padding: 0;
 
-				a {
+				a, summary {
 					@extend %global-text-decoration-none;
 
-					display: block;
+					display: block; /* TODO: Get rid of this property or change it to inline-block whenever I go all-in on mega menu bar summaries AND give it important */
 					padding: 1em;
 					text-align: center;
+				}
 
-					&:hover,
-					&:focus {
+					a:hover,
+					a:focus {
 						@extend %global-text-decoration-none;
 					}
 
-					&[aria-haspopup] {
+					a[aria-haspopup] {
 						&:hover,
 						&:focus {
 							cursor: default;
 						}
 					}
-				}
+
+					/* Rehash of a[aria-haspopup] selector */
+					summary {
+							cursor: default;
+					}
 			}
 		}
 	}
