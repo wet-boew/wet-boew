@@ -59,7 +59,7 @@
 	}
 
 	// .sm {
-		.sm.open, [open] { //TODO: This selector's probably gonna need to be revised to target the open details' UL... making the background colour of the entire details grey will more than likely mess with what's "behind" the summary
+		.sm.open, [open] .sm {
 			background: $wb-sm-sm-open-background;
 			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
 			border-left: 0;
@@ -94,7 +94,7 @@
 			}
 		}
 
-		.sm .row {
+		.sm .row { /* Unsure what the use case for this is... */
 			background: transparent;
 
 			a {
@@ -182,7 +182,7 @@
 		}
 	}
 
-	.sm-pnl {
+	.sm-pnl { /* Top part of the mobile menu overlay */
 		@extend %wet-theme-site-menu-mb-pnl-bg;
 	}
 
