@@ -75,7 +75,6 @@ var componentName = "wb-menu",
 	 * @method drizzleAria
 	 * @param {jQuery DOM elements} $elements The collection of elements
 	 */
-	// This is currently orphaned
 	drizzleAria = function( $elements ) {
 		var length = $elements.length,
 			$elm, $subMenu, i;
@@ -111,16 +110,15 @@ var componentName = "wb-menu",
 	 */
 	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
 
+		// Got rid of *most* ARIA attributes in the mobile menu by nuking this method... only remainders are tabindex=0/-1 on the summaries and role=menu on the top-level UL
+
 		// Use details/summary for the collapsible mechanism
 		var k, $elm, elm, $item, $subItems, subItemsLength,
 			$section = $( section ),
-			posinset = "' aria-posinset='",
-			menuitem = " role='menuitem' aria-setsize='",
 			sectionHtml = "<li><details>" + "<summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
-				menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
-				"' aria-haspopup='true' aria-expanded='false'>" + $section.text() + "</summary>" +
-				"<ul class='list-unstyled mb-sm' role='menu'>";
+				">" + $section.text() + "</summary>" +
+				"<ul class='list-unstyled mb-sm'>";
 
 		// Convert each of the list items into WAI-ARIA menuitems
 		for ( k = 0; k !== itemsLength; k += 1 ) {
@@ -131,12 +129,7 @@ var componentName = "wb-menu",
 			subItemsLength = $subItems.length;
 
 			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
-				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
-					/(<a\s)/,
-					"$1" + menuitem + itemsLength +
-							posinset + ( k + 1 ) +
-							"' tabindex='-1' "
-				) + "</li>";
+				sectionHtml += "<li>" + $item[ 0 ].innerHTML + "</li>";
 			} else {
 				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
 			}
@@ -151,6 +144,9 @@ var componentName = "wb-menu",
 	 * @return {string}
 	 */
 	createMobilePanelMenu = function( allProperties ) {
+
+		// Got rid of role=menu from the top-level UL in the mobile menu
+
 		var panel = "",
 			sectionHtml, properties, sections, section, parent, $items,
 			linkHtml, i, j, len, sectionsLength, itemsLength;
@@ -203,7 +199,7 @@ var componentName = "wb-menu",
 			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
 				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu wb-menu-inited'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
-				"<ul class='list-unstyled mb-menu' role='menu'>" +
+				"<ul class='list-unstyled mb-menu'>" +
 				sectionHtml + "</ul></nav>";
 		}
 
@@ -230,8 +226,6 @@ var componentName = "wb-menu",
 					$panel = $( panelDOM ),
 					allProperties = [],
 					$navCurr, $menuItem, $langItems, len, i;
-
-				console.log($ajaxed[0].outerHTML);
 
 				/*
 				 * Build the mobile panel
@@ -309,8 +303,6 @@ var componentName = "wb-menu",
 					}
 
 					panel += createMobilePanelMenu( allProperties );
-
-					//console.log(panel);
 				}
 
 				// Let's now populate the DOM since we have done all the work in a documentFragment
@@ -333,6 +325,25 @@ var componentName = "wb-menu",
 				/*
 				 * Build the regular mega menu
 				 */
+
+				// I think this is the spot I want... the entire mobile menu has already been built by this point and a mega menu copy/paste from the AJAX fragment seems to be in place by now...
+
+				// Challenges would be... do I want this at a later point? In order to support scenarios where the mega menu was hardcoded into the page...
+
+				// What would happen to mobile menu creation if the details/summary mega menu was hardcoded OR was already coded like that in an AJAX fragment?
+
+				// How does the menu plugin behave when the mega menu is hardcoded - WITHOUT an AJAX fragment? Do its roles/etc get set/managed? Does the mobile menu still get generated? Yes, yes and yes... everything works perfectly in all scenarios with hardcoded mega menus :S
+
+				// Don't forget about noscript and basic HTML modes
+
+				// Don't forget to remove orphaned variables (like params for some of the methods I nuked)
+
+				// Don't forget to ensure navcurr still works correctly
+
+				// Don't forget about mobile menu scrolling offset functionality
+
+				// Don't forget about the mega menu's keystroke search feature
+
 				$ajaxed
 					.find( ":discoverable" )
 					.attr( "tabindex", "-1" );
@@ -340,9 +351,6 @@ var componentName = "wb-menu",
 				if ( $menu.length !== 0 ) {
 					$menu[ 0 ].setAttribute( "tabindex", "0" );
 					drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
-					console.log("hmm in");
-					console.log($menu);
-					console.log("hmm out");
 					$menu
 						.filter( "[aria-haspopup=true], summary" )
 						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
@@ -407,15 +415,13 @@ var componentName = "wb-menu",
 	 * @param {jQuery object} $panel Current panel
 	 */
 	initOverlay = function( $panel ) {
+
+		// Got rid of summary tabindex attributes in the mobile menu by nuking this method
+
 		$panel
 			.trigger( "wb-init.wb-overlay" )
 			.find( "summary" )
-			.attr( "tabindex", "-1" )
 			.trigger( detailsInitEvent );
-		$panel
-			.find( ".mb-menu > li:first-child" )
-			.find( ".mb-item" )
-			.attr( "tabindex", "0" );
 	},
 
 	/**
@@ -655,7 +661,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
 		isOpen, menuItemOffsetTop, menuContainer;
-console.log("oh man I'm a keydown!!!");
+
 	// Define keycodes. (Make const when WET supports ES6)
 	var TAB_KC = 9,
 		ENTER_KC = 13,
