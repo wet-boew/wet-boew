@@ -8,33 +8,33 @@
  */
 
 /* Extras to prevent goofy default summary styling */
-.wb-menu .menu > li summary {
+.wb-menu .menu > li > details > summary { /* Prevents top-level mega menu links from becoming super wide when their submenus are open */
 	display: inline-block !important;
 }
 
-.wb-menu summary > :first-child {
+.wb-menu summary > .glyphicon:first-child { /* Undoes a default summary selector to prevent glyphicons from becoming inline and consequently causing top-level mega menu links to split across lines */
   display: inline-block;
 }
 
-.wb-menu summary::marker {
+.wb-menu .menu > li > details > summary::marker { /* Prevents summary arrows from appearing on top-level mega menu links */
 	content: none;
 }
 
-.wb-menu details[open] {
+.wb-menu details[open] { /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
 	padding-bottom: 0;
 }
 
-.wb-menu details summary {
+.wb-menu details summary { /* Undoes goofy default selectors */
 	border-radius: initial;
 	text-indent: initial;
 }
 
-.wb-menu details[open] > summary {
+.wb-menu details[open] > summary { /* Undoes a default summary selector that adds a small bottom margin */
 	margin-bottom: 0;
 }
 
 .wb-menu details[open] .sm {
-	margin-left: -1.1em; /* Not very elegant... */
+	margin-left: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
 }
 
 .expicon {
@@ -62,7 +62,7 @@
 			li {
 				@extend %global-display-block;
 
-				a {
+				a, summary {
 					text-align: left;
 				}
 			}
@@ -314,15 +314,16 @@
 			}
 		}
 
-		//.sm { // TODO: RTL will need to be tested
+		// .sm { /* TODO: RTL will need to be tested */
 			.sm.open, [open] .sm {
 				li {
-					a {
+					a, summary {
 						text-align: right;
 					}
 				}
 			}
-		//}
+
+		// }
 	}
 
 	.expicon {
