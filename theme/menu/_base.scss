@@ -24,7 +24,7 @@
 		> {
 			li {
 				> {
-					a {
+					a, details > summary {
 						border-left: 1px solid $wb-sm-menu-li-a-border-left;
 						color: $mb-pnl-body-link-color;
 
@@ -41,7 +41,7 @@
 
 				&:last-child {
 					> {
-						a {
+						a, details > summary {
 							border-right: 1px solid $wb-sm-menu-li-last-child-border-right;
 						}
 					}
@@ -49,7 +49,7 @@
 
 				&.active {
 					> {
-						a {
+						a, details > summary {
 							@extend %wet-theme-wb-menu-hover-active;
 						}
 					}
@@ -58,8 +58,8 @@
 		}
 	}
 
-	.sm {
-		&.open {
+	// .sm {
+		.sm.open, [open] { //TODO: This selector's probably gonna need to be revised to target the open details' UL... making the background colour of the entire details grey will more than likely mess with what's "behind" the summary
 			background: $wb-sm-sm-open-background;
 			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
 			border-left: 0;
@@ -94,14 +94,15 @@
 			}
 		}
 
-		.row {
+		.sm .row {
 			background: transparent;
 
 			a {
 				color: $wb-sm-sm-row-a-color;
 			}
 		}
-	}
+
+	// }
 
 	#wb-sec-p {
 		display: none;

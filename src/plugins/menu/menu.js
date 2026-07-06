@@ -75,6 +75,7 @@ var componentName = "wb-menu",
 	 * @method drizzleAria
 	 * @param {jQuery DOM elements} $elements The collection of elements
 	 */
+	// This is currently orphaned
 	drizzleAria = function( $elements ) {
 		var length = $elements.length,
 			$elm, $subMenu, i;
@@ -230,6 +231,8 @@ var componentName = "wb-menu",
 					allProperties = [],
 					$navCurr, $menuItem, $langItems, len, i;
 
+				console.log($ajaxed[0].outerHTML);
+
 				/*
 				 * Build the mobile panel
 				 */
@@ -306,6 +309,8 @@ var componentName = "wb-menu",
 					}
 
 					panel += createMobilePanelMenu( allProperties );
+
+					//console.log(panel);
 				}
 
 				// Let's now populate the DOM since we have done all the work in a documentFragment
@@ -334,9 +339,12 @@ var componentName = "wb-menu",
 
 				if ( $menu.length !== 0 ) {
 					$menu[ 0 ].setAttribute( "tabindex", "0" );
-					drizzleAria( $menu );
+					drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
+					console.log("hmm in");
+					console.log($menu);
+					console.log("hmm out");
 					$menu
-						.filter( "[aria-haspopup=true]" )
+						.filter( "[aria-haspopup=true], summary" )
 						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
 				}
 
@@ -647,7 +655,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
 		isOpen, menuItemOffsetTop, menuContainer;
-
+console.log("oh man I'm a keydown!!!");
 	// Define keycodes. (Make const when WET supports ES6)
 	var TAB_KC = 9,
 		ENTER_KC = 13,
