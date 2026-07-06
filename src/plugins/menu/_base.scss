@@ -20,9 +20,21 @@
 	content: none;
 }
 
+.wb-menu details[open] {
+	padding-bottom: 0;
+}
+
 .wb-menu details summary {
 	border-radius: initial;
 	text-indent: initial;
+}
+
+.wb-menu details[open] > summary {
+	margin-bottom: 0;
+}
+
+.wb-menu details[open] .sm {
+	margin-left: -1.1em; /* Not very elegant... */
 }
 
 .expicon {
@@ -32,13 +44,13 @@
 
 .wb-menu {
 	.sm {
-		display: none;
+		display: none; // TODO: Not needed anymore
 		max-height: 0;
 		overflow: hidden;
 		position: relative;
 	}
 
-		.sm.open, [open] {
+		.sm.open, [open] .sm {
 			display: inline;
 			max-height: 1000px;
 			min-width: 12.5em;
@@ -99,7 +111,7 @@
 
 					/* Rehash of a[aria-haspopup] selector */
 					summary {
-							cursor: default;
+						cursor: default;
 					}
 			}
 		}
@@ -302,15 +314,15 @@
 			}
 		}
 
-		.sm {
-			&.open {
+		//.sm { // TODO: RTL will need to be tested
+			.sm.open, [open] .sm {
 				li {
 					a {
 						text-align: right;
 					}
 				}
 			}
-		}
+		//}
 	}
 
 	.expicon {
