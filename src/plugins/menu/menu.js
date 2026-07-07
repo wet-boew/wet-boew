@@ -655,7 +655,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		$menu = $menuItem.parent().closest( "[role^='menu']" ),
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
-		menuitemSelector, isOpen, menuItemOffsetTop, menuContainer;
+		isOpen, menuItemOffsetTop, menuContainer;
 
 	// Define keycodes. (Make const when WET supports ES6)
 	var TAB_KC = 9,
@@ -723,13 +723,12 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 		// Menu item is not within a menu bar
 		} else {
-			menuitemSelector = menuItemSelector;
 
 			// Up / down arrow = Previous / next menu item
 			if ( which === UP_KC || which === DOWN_KC ) {
 				event.preventDefault();
 				menuIncrement(
-					$menu.children( "li" ).find( menuitemSelector ),
+					$menu.children( "li" ).find( menuItemSelector ),
 					$menuItem,
 					which === UP_KC ? -1 : 1
 				);
@@ -820,7 +819,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					if ( $parentMenu.length !== 0 ) {
 						event.preventDefault();
 						$menu.closest( "li" )
-							.find( menuitemSelector )
+							.find( menuItemSelector )
 							.trigger( "click" )
 							.trigger( focusEvent );
 
@@ -841,14 +840,14 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				// Try to find a match in the next siblings
 				result = selectByLetter(
 					which,
-					$parent.nextAll().find( menuitemSelector ).get()
+					$parent.nextAll().find( menuItemSelector ).get()
 				);
 
 				// If couldn't find a match, try the previous siblings
 				if ( !result ) {
 					result = selectByLetter(
 						which,
-						$parent.prevAll().find( menuitemSelector ).get()
+						$parent.prevAll().find( menuItemSelector ).get()
 					);
 				}
 			}
