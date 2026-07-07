@@ -229,6 +229,14 @@ $document.on( "draw.dt", selector, function( event, settings ) {
 		updatePaginationMarkup( pagination_top );
 	}
 
+	if ( wb.isReady ) {
+		$elm
+			.find( wb.allSelectors )
+			.addClass( "wb-init" )
+			.filter( ":not(#" + $elm.id + " .wb-init .wb-init)" )
+			.trigger( "timerpoke.wb" );
+	}
+
 	// Identify that the table has been updated
 	$elm.trigger( "wb-updated" + selector, [ settings ] );
 } );
