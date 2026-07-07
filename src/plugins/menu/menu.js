@@ -340,9 +340,17 @@ var componentName = "wb-menu",
 
 				// Don't forget to ensure navcurr still works correctly
 
-				// Don't forget about mobile menu scrolling offset functionality
+				// Don't forget about mobile menu scrolling offset functionality (or scrap it?)
 
-				// Don't forget about the mega menu's keystroke search feature
+				// Should scrap the menu's keystroke search feature... don't want random letter key presses doing anything interactive if nothing else will
+
+				// Don't forget about Home/End support (btw the JS for them doesn't run in NVDA)
+
+				// APG disclosure pattern talks about aria-current="page" for links to the current page...
+
+				// NOTE: aria-setsize and aria-posinset don't cause anything to be announced by default... seems to only work when using certain ARIA roles
+
+				// NOTE: Remove createCollapsibleSection's unused params at some point... and params from any other similar situations
 
 				$ajaxed
 					.find( ":discoverable" )
