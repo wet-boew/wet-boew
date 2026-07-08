@@ -443,6 +443,7 @@ var componentName = "wb-menu",
 			index = $menuItems.index( $current ) + indexChange;
 
 		// Correct out-of-range indexes
+		//NOTE: this is the menu list looping logic... scrap it if I don't want it in the disclosure pattern... will need a little more logic though to trigger the focus event in a smarter manner
 		index = index === menuItemsLength ? 0 : index === -1 ? menuItemsLength - 1 : index;
 
 		// Move to the new menu item
@@ -596,7 +597,11 @@ $document.on( "click", selector + " .item[aria-haspopup=true]", function( event 
 } );
 
 // Click on menu items with submenus should open and close those submenus
-$document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
+$document.on( "click", selector + " summary", function( event ) {
+
+	//When opening a details in the mobile menu overlay, this is what auto-closes other open details elements (basically a fake accordion)... it MIGHT work in the mega menu too... consider scrapping it if I go with native accordions
+	console.log("Closing other submenus");
+
 	var menuItem = event.currentTarget,
 		parent = menuItem.parentNode,
 		isOpen = parent.hasAttribute( "open" ),
@@ -605,9 +610,9 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 	// Close any other open menus
 	if ( !isOpen ) {
 		$( parent )
-			.closest( "[role^='menu']" )
+			.closest( "ul" )
 			.find( "[open]" )
-			.find( "[aria-haspopup=true]" )
+			.find( "summary" )
 			.not( menuItem )
 			.trigger( "click" );
 
@@ -620,8 +625,6 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 			menuContainer.scrollTop = menuItemOffsetTop;
 		}
 	}
-
-	parent.firstElementChild.setAttribute( "aria-expanded", !isOpen );
 } );
 
 // Clicks and touches outside of menus should close any open menus
@@ -660,12 +663,12 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 /*
  * Keyboard bindings
  */
-$document.on( "keydown", selector + " [role=menuitem]", function( event ) {
+$document.on( "keydown", selector + " a[href], " + selector + " summary", function( event ) {
 	var menuItem = event.currentTarget,
 		which = event.which,
 		$menuItem = $( menuItem ),
-		hasPopup = $menuItem.attr( "aria-haspopup" ) === "true",
-		$menu = $menuItem.parent().closest( "[role^='menu']" ),
+		hasPopup = menuItem.nodeName.toLowerCase( "summary" ),
+		$menu = $menuItem.parent().closest( "ul" ),
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
 		isOpen, menuItemOffsetTop, menuContainer;
@@ -682,20 +685,28 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
+		// Many strange issues will likely occur as a result of the ARIA roles/etc I scrapped
+
 		// Tab key = Hide all sub-menus
+		//Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
 		if ( which === TAB_KC ) {
+			console.log("Tab key = Hide all sub-menus... calling menuClose");
 			menuClose( $( selector + " .active" ), true );
 
 		//Enter or spacebar on a link = follow the link and close menus
+		//Always runs when clicking links in either the mega or mobile menu (regardless of anchor vs page)
 		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
+			console.log("Enter or spacebar on a link = follow the link and close menus... fake link click + calling menuClose");
 			event.preventDefault();
 			menuItem.click();
 			menuClose( $( selector + " .active" ), true );
 
 		// Menu item is within a menu bar
 		} else if ( inMenuBar ) {
+
+			console.log("In inMenuBar if");
 
 			// Left / right arrow = Previous / next menu item
 			if ( which === LEFT_KC || which === RIGHT_KC ) {
@@ -736,10 +747,12 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 		// Menu item is not within a menu bar
 		} else {
+			console.log("In else");
 
 			// Up / down arrow = Previous / next menu item
 			if ( which === UP_KC || which === DOWN_KC ) {
 				event.preventDefault();
+				console.log("Up / down arrow = Previous / next menu item... calling menuIncrement");
 				menuIncrement(
 					$menu.children( "li" ).find( menuItemSelector ),
 					$menuItem,
@@ -754,11 +767,17 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				event.stopImmediatePropagation();
 				event.preventDefault();
 
+				console.log("Enter, space, or right arrow with a submenu... does misc stuff");
+
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
 					isOpen = !!$parent.attr( "open" );
 
+					console.log("summary element check");
+
 					// Close any other open menus
+					// BRAINDUMP: This is misleading... I don't see any logic here that would actually close other open menus... I think it's because that line comment was copied from somewhere else that actually does what it's supposed to
+					// TODO: Did I mess around with this part of the logic in my pending aria-expanded PR? Maybe I just forgot to revise the comment after gutting some of its logic? In any case, revise the comment to make sense!
 					if ( !isOpen ) {
 
 						// Ensure the opened menu is in view if in a mobile panel
@@ -771,22 +790,21 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						}
 
 						// Ensure the menu is opened or stays open
+						console.log("fake click triggered to open the clicked summary in mobile menu");
 						$menuItem.trigger( "click" );
 					}
 
-					// Update the menu item's WAI-ARIA state
-					menuItem.setAttribute( "aria-expanded", "true" );
-
 					// Move focus to the first submenu item
 					$parent.children( "ul" )
-						.find( "[role=menuitem]:first" )
+						.find( "a[href], summary" )
+						.first()
 						.trigger( focusEvent );
 				}
 
 			// Escape, left / right arrow without a submenu
 			} else if ( which === ESC_KC || which === LEFT_KC || which === RIGHT_KC ) {
 				$parent = $menu.parent();
-				$parentMenu = $parent.closest( "[role^='menu']" );
+				$parentMenu = $parent.closest( "ul" );
 				if ( which === LEFT_KC || which === RIGHT_KC ) {
 					event.preventDefault();
 				}
