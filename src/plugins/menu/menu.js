@@ -452,22 +452,24 @@ var componentName = "wb-menu",
 
 	/**
 	 * @method menuClose
-	 * @param {jQuery DOM element} $elm Parent of the element to close
+	 * @param {jQuery DOM element} $elm Parent of the element to close - btw this can potentially be an ARRAY of li elements (one call to it passes-in an $openMenus variable...)
 	 * @param {boolean} removeActive Whether or not to keep the active class
 	 */
 	menuClose = function( $elm, removeActive ) {
 
-		// Adjust top-level menu item's aria-expanded attribute
-		$elm
-			.find( "[aria-haspopup=true]" )
-			.attr( "aria-expanded", "false" );
+		// This logic is designed with li in mind
+		console.log("my $elm:");
+		console.log($elm);
+		console.log($elm.get(0));
 
+		// Adjust top-level menu item's class and open attribute
 		$elm
 			.removeClass( "sm-open" )
-			.children( ".open" )
-			.removeClass( "open" )
+			.children( "[open]" )
+			.removeAttr( "open" )
 
-		// Close nested submenus
+		// Close nested submenus... is that actually necessary? Is it desirable for users to have this mindlessly reset to closed?
+		//TODO: If I keep this, remove preceding children and removeAttr method calls since there's no point removing the open attribute separately for the top-level vs deeper details elements (unless I want to do fake clicking...?)
 			.find( "details" )
 			.removeAttr( "open" );
 
@@ -482,23 +484,27 @@ var componentName = "wb-menu",
 	 * @param {jQuery DOM element} $menu The menu to display
 	 */
 	menuDisplay = function( $elm, $menu ) {
-		var $menuLink = $menu.children( "a" );
+		var $menuLink = $menu.find( "> details > summary" );
+
+		console.log("inside menuDisplay");
 
 		menuClose( $elm.find( ".active" ), true );
 
 		$menu.addClass( "active" );
 
 		// Ignore if doesn't have a submenu
-		if ( $menuLink.attr( "aria-haspopup" ) === "true" ) {
+		if ( $menuLink ) { //TODO: This needs to be smarter than this... won't the status quo evaluate undefined to truthy and ultimately do nothing apart from TONS of pointless confusion?
 
-			// Add an aria-expanded attribute to the menu link
-			menuLink.attr( "aria-expanded", "true" );
+			console.log($menuLink);
+			console.log($menuLink.get(0));
+			console.log($menuLink.parent().get(0));
+
+			// Add an open attribute to the menu link's parent details element
+			$menuLink.parent().attr( "open", "open" ); //TODO: Should this be a fake click based on whether the details is already open?
 
 			// Add the open state classes
 			$menu
-				.addClass( "sm-open" )
-				.children( ".sm" )
-				.addClass( "open" );
+				.addClass( "sm-open" );
 		}
 	},
 
@@ -645,8 +651,10 @@ $document.on( "click", function( event ) {
 
 $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
-		$parent = $elm.parent(),
+		$parent = $elm.parent().parent(), //double-parent to get to the li element... but it might make more sense if it were the first parent (details element) and that got passed over to menuDisplay... hmm... btw calling this variable parent is goofy if it now a double-parent :P
 		$container = $parent.closest( selector );
+
+	console.log("mousing over something...");
 
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
@@ -711,8 +719,9 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			// Left / right arrow = Previous / next menu item
 			if ( which === LEFT_KC || which === RIGHT_KC ) {
 				event.preventDefault();
+				console.log("Moving left/right on mega menu bar");
 				menuIncrement(
-					$menu.find( "> li > a" ),
+					$menu.find( "> li > details > summary" ),
 					$menuItem,
 					which === LEFT_KC ? -1 : 1
 				);
@@ -720,16 +729,18 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			// Enter sub-menu
 			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === UP_KC || which === DOWN_KC ) ) {
 				event.preventDefault();
+				console.log("inside mystery mega menu submenu logic");
 				$parent = $menuItem.parent();
 				$subMenu = $parent.find( ".sm" );
 
 				// Open the submenu if it is not already open
 				if ( !$subMenu.hasClass( "open" ) ) {
+					console.log("opening the mega menu submenu");
 					menuDisplay( $menu.closest( selector ), $parent );
 				}
 
 				// Set focus on the first submenu item
-				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
+				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent ); //oooooooooooooooooooooooooo
 
 			// Hide sub-menus and set focus
 			} else if ( which === ESC_KC ) {
@@ -773,7 +784,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
 					isOpen = !!$parent.attr( "open" );
 
-					console.log("summary element check");
+					console.log("summary element check... works in mobile menu and mega menu");
 
 					// Close any other open menus
 					// BRAINDUMP: This is misleading... I don't see any logic here that would actually close other open menus... I think it's because that line comment was copied from somewhere else that actually does what it's supposed to
@@ -790,7 +801,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						}
 
 						// Ensure the menu is opened or stays open
-						console.log("fake click triggered to open the clicked summary in mobile menu");
+						console.log("fake click triggered to open the clicked summary in mobile menu... runs in mega menu too");
 						$menuItem.trigger( "click" );
 					}
 
