@@ -216,7 +216,7 @@ var componentName = "wb-menu",
 			inner = function() {
 				var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
 					$menubar = $ajaxed.find( ".menu" ),
-					$menu = $menubar.find( "> li > a" ),
+					$menu = $menubar.find( "> li > a" ), //TODO: this might need to cover summaries too (via > li > details > summary)... but aren't 100% sure, adjusting it currently breaks things (like adding second dropdown arrows beside the hardcoded ones in the summaries and focus plugin console errors)... should it only be targeting DROPDOWN links? As in top-level summaries exclusively?
 					target = $elm.data( "trgt" ),
 					$secnav = $( "#wb-sec" ),
 					$language = $( "#wb-lng" ),
@@ -447,6 +447,8 @@ var componentName = "wb-menu",
 		index = index === menuItemsLength ? 0 : index === -1 ? menuItemsLength - 1 : index;
 
 		// Move to the new menu item
+		console.log("NEW: about to focus onto this via menuIncrement():");
+		console.log($menuItems.eq( index )[0]);
 		$menuItems.eq( index ).trigger( focusEvent );
 	},
 
@@ -462,6 +464,7 @@ var componentName = "wb-menu",
 		console.log($elm);
 		console.log($elm.get(0));
 
+		//IDEA TO CONSIDER: Should I adjust this logic to only start running if the sm-open class exists in the first place?
 		// Adjust top-level menu item's class and open attribute
 		$elm
 			.removeClass( "sm-open" )
@@ -484,16 +487,34 @@ var componentName = "wb-menu",
 	 * @param {jQuery DOM element} $menu The menu to display
 	 */
 	menuDisplay = function( $elm, $menu ) {
-		var $menuLink = $menu.find( "> details > summary" );
+		var $menuLink = $menu.find( "> a, > details > summary" ); //the issue seems to be that menu is getting passed as the mega menu UL (instead of LI.active) when hovering over an A element in the top-level mega menu items... which means some logic that calls this method is passing crap for $menu... ACTUALLY even though that's a bug, it's not causing any console errors in practice
 
 		console.log("inside menuDisplay");
 
-		menuClose( $elm.find( ".active" ), true );
+		//if ($elm.find( ".active.sm-open" ).length) {
+			console.log("yay!!!");
+			menuClose( $elm.find( ".active" ), true );
+		//} else {
+			console.log("nah!!!");
+		//}
+		console.log($elm);
+		console.log($elm.find( ".active.sm-open" ));
 
 		$menu.addClass( "active" );
+		console.log("loggy loggy");
+		console.log("$elm:");
+		console.log($elm);
+		console.log("$menu (added active class to it too):");
+		console.log($menu);
+		console.log("$menuLink:");
+		console.log($menuLink);
+
+		if (!$menuLink.length) {
+			console.log("OH NOES, I have no length!!!");
+		}
 
 		// Ignore if doesn't have a submenu
-		if ( $menuLink ) { //TODO: This needs to be smarter than this... won't the status quo evaluate undefined to truthy and ultimately do nothing apart from TONS of pointless confusion?
+		if ( $menuLink.prop( "nodeName" ).toLowerCase() === "summary" ) { //TODO: This needs to be smarter than this... won't the status quo evaluate undefined to truthy and ultimately do nothing apart from TONS of pointless confusion?
 
 			console.log($menuLink);
 			console.log($menuLink.get(0));
@@ -651,8 +672,8 @@ $document.on( "click", function( event ) {
 
 $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
-		$parent = $elm.parent().parent(), //double-parent to get to the li element... but it might make more sense if it were the first parent (details element) and that got passed over to menuDisplay... hmm... btw calling this variable parent is goofy if it now a double-parent :P
-		$container = $parent.closest( selector );
+		$parentLi = $elm.closest( "li" ), //closest() is the best compromise between a vs summary elements.... unless I want to do an terniary element check or something (don't see a need for it)
+		$container = $parentLi.closest( selector );
 
 	console.log("mousing over something...");
 
@@ -660,10 +681,17 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	clearTimeout( globalTimeout );
 
 	if ( event.type === "focusin" ) {
-		menuDisplay( $container, $parent );
+		console.log("NEW: ---");
+		console.log("NEW: focusin...");
+		console.log("NEW: $container:");
+		console.log($container);
+		console.log("NEW: $parentLi");
+		console.log($parentLi);
+		console.log("NEW: ---");
+		menuDisplay( $container, $parentLi );
 	} else {
 		globalTimeout = setTimeout( function() {
-			menuDisplay( $container, $parent );
+			menuDisplay( $container, $parentLi );
 		}, hoverDelay );
 	}
 } );
@@ -675,7 +703,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 	var menuItem = event.currentTarget,
 		which = event.which,
 		$menuItem = $( menuItem ),
-		hasPopup = menuItem.nodeName.toLowerCase( "summary" ),
+		hasPopup = menuItem.nodeName.toLowerCase() === "summary",
 		$menu = $menuItem.parent().closest( "ul" ),
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
@@ -721,7 +749,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				event.preventDefault();
 				console.log("Moving left/right on mega menu bar");
 				menuIncrement(
-					$menu.find( "> li > details > summary" ),
+					$menu.find( "> li > a, > li > details > summary" ),
 					$menuItem,
 					which === LEFT_KC ? -1 : 1
 				);
@@ -730,7 +758,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === UP_KC || which === DOWN_KC ) ) {
 				event.preventDefault();
 				console.log("inside mystery mega menu submenu logic");
-				$parent = $menuItem.parent();
+				$parent = $menuItem.closest( "li" );
 				$subMenu = $parent.find( ".sm" );
 
 				// Open the submenu if it is not already open
@@ -772,18 +800,21 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			// Enter, space, or right arrow with a submenu
 			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === RIGHT_KC ) ) {
-				$parent = $menuItem.parent();
+				$parent = $menuItem.parent(); //shouldn't need to use closest() for this part since the else if condition's hasPopup check will guarantee this can only run against summaries that are top-level mega menu items
 
 				// Prevent handling by details.js polyfill
 				event.stopImmediatePropagation();
 				event.preventDefault();
 
 				console.log("Enter, space, or right arrow with a submenu... does misc stuff");
+				console.log(menuItem);
+				console.log(menuItem.nodeName.toLowerCase() === "summary");
 
 				// If the menu item is a summary element
-				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
+				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
 					isOpen = !!$parent.attr( "open" );
 
+					//this is is where things are spiralling out of control... the old logic never got into this if when left/right pressing while deep inside a mega menu dropdown
 					console.log("summary element check... works in mobile menu and mega menu");
 
 					// Close any other open menus
@@ -814,15 +845,17 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			// Escape, left / right arrow without a submenu
 			} else if ( which === ESC_KC || which === LEFT_KC || which === RIGHT_KC ) {
+				console.log("NEW: uh oh 1...");
 				$parent = $menu.parent();
 				$parentMenu = $parent.closest( "ul" );
 				if ( which === LEFT_KC || which === RIGHT_KC ) {
 					event.preventDefault();
+					console.log("NEW: uh oh 2...");
 				}
 
 				// If the parent menu is a menubar
 				if ( $parentMenu.attr( "role" ) === "menubar" ) {
-					$menuLink = $menu.siblings( "a" );
+					$menuLink = $menu.siblings( "a, summary" );
 
 					// Escape key = Close menu and return to menu bar item
 					if ( which === ESC_KC ) {
@@ -836,8 +869,15 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 					// Left / right key = Next / previous menu bar item
 					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
+						console.log("NEW: about to increment...");
+						console.log("$parentMenu:");
+						console.log($parentMenu);
+						console.log("$parentMenu.find( \"> li > a, > li > details > summary\" ):");
+						console.log($parentMenu.find( "> li > a, > li > details > summary" )); //returns a 1 item array with "some random link" A element
+						console.log("$menuLink:");
+						console.log($menuLink); //returns a 0 length array... maybe because the summaries aren't being selected
 						menuIncrement(
-							$parentMenu.find( "> li > a" ),
+							$parentMenu.find( "> li > a, > li > details > summary" ), //I think my issue is that something's wrong with this selector... I think it should be going to a summary? Btw another selector variable earlier on is a duplicate of this selector... fixed it
 							$menuLink,
 							which === LEFT_KC ? -1 : 1
 						);
