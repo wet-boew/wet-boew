@@ -70,6 +70,7 @@ var componentName = "wb-menu",
 		}
 	},
 
+	//TODO: Scrap this entirely since it's probably no longer needed
 	/**
 	 * Lets set some aria states and attributes
 	 * @method drizzleAria
@@ -84,19 +85,8 @@ var componentName = "wb-menu",
 			$elm = $elements.eq( i );
 			$subMenu = $elm.siblings( "ul" );
 
-			$elm.attr( {
-				"aria-posinset": ( i + 1 ),
-				"aria-setsize": length,
-				role: "menuitem"
-			} );
-
 			// if there is a submenu lets put in the aria for it
 			if ( $subMenu.length !== 0 ) {
-
-				$elm.attr( {
-					"aria-haspopup": "true",
-					"aria-expanded": "false"
-				} );
 
 				// recurse into submenu
 				drizzleAria( $subMenu.children( "li" ).find( menuItemSelector ) );
@@ -149,7 +139,7 @@ var componentName = "wb-menu",
 
 		var panel = "",
 			sectionHtml, properties, sections, section, parent, $items,
-			linkHtml, i, j, len, sectionsLength, itemsLength;
+			linkHtml, i, j, len, itemsLength;
 
 		// Process the secondary and site menus
 		len = allProperties.length;
@@ -157,8 +147,7 @@ var componentName = "wb-menu",
 			properties = allProperties[ i ];
 			sectionHtml = "";
 			sections = properties[ 0 ];
-			sectionsLength = sections.length;
-			for ( j = 0; j !== sectionsLength; j += 1 ) {
+			for ( j = 0; j !== sections.length; j += 1 ) {
 				section = sections[ j ];
 				$items = $( section.parentNode ).find( "> ul > li" );
 				itemsLength = $items.length;
@@ -184,19 +173,13 @@ var componentName = "wb-menu",
 							section.innerHTML + "</a>";
 					}
 
-					// Convert the list item to a WAI-ARIA menuitem
-					sectionHtml += "<li class='no-sect'>" +
-						linkHtml.replace(
-							/(<a\s)/,
-							"$1 class='mb-item' " + "role='menuitem' aria-setsize='" +
-								sectionsLength + "' aria-posinset='" + ( j + 1 ) +
-								"' tabindex='-1' "
-						) + "</li>";
+					// Convert the list item to a menuitem
+					sectionHtml += "<li class='no-sect'>" + linkHtml + "</li>";
 				}
 			}
 
 			// Create the panel section
-			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
+			panel += "<nav typeof='SiteNavigationElement' id='" +
 				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu wb-menu-inited'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
 				"<ul class='list-unstyled mb-menu'>" +
@@ -276,9 +259,7 @@ var componentName = "wb-menu",
 					if ( $menubar.length !== 0 ) {
 
 						// Add the menubar role if it is missing
-						if ( !$menubar.attr( "role" ) ) {
-							$menubar.attr( "role", "menubar" );
-						}
+						// TODO: Turn this into something that *removes* the menubar role if it's present?
 
 						allProperties.push( [
 							$menu.get(),
@@ -352,13 +333,8 @@ var componentName = "wb-menu",
 
 				// NOTE: Remove createCollapsibleSection's unused params at some point... and params from any other similar situations
 
-				$ajaxed
-					.find( ":discoverable" )
-					.attr( "tabindex", "-1" );
-
 				if ( $menu.length !== 0 ) {
-					$menu[ 0 ].setAttribute( "tabindex", "0" );
-					drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
+					//drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
 					$menu
 						.filter( "[aria-haspopup=true], summary" )
 						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
@@ -389,7 +365,7 @@ var componentName = "wb-menu",
 
 					// Open up the secondary menu if it has wb-navcurr and has a submenu
 					$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
-					if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
+					if ( $menuItem.attr( "aria-haspopup" ) === "true" ) { //TODO: Unsure how this logic works, need to investigate further...
 						$menuItem
 							.trigger( "click" )
 							.parent()
@@ -606,7 +582,7 @@ $document.on( "mouseenter", selector + " .sm", function() {
 } );
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
-$document.on( "click", selector + " .item[aria-haspopup=true]", function( event ) {
+$document.on( "click", selector + " summary.item", function( event ) {
 	var which = event.which,
 		$this, $parent;
 
@@ -705,7 +681,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		$menuItem = $( menuItem ),
 		hasPopup = menuItem.nodeName.toLowerCase() === "summary",
 		$menu = $menuItem.parent().closest( "ul" ),
-		inMenuBar = $menu.attr( "role" ) === "menubar",
+		inMenuBar = $menu.hasClass( "menu" ),
 		$menuLink, $parentMenu, $parent, $subMenu, result,
 		isOpen, menuItemOffsetTop, menuContainer;
 
@@ -854,7 +830,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				}
 
 				// If the parent menu is a menubar
-				if ( $parentMenu.attr( "role" ) === "menubar" ) {
+				if ( $parentMenu.hasClass( "menu" ) ) {
 					$menuLink = $menu.siblings( "a, summary" );
 
 					// Escape key = Close menu and return to menu bar item
@@ -868,7 +844,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						}, 100 );
 
 					// Left / right key = Next / previous menu bar item
-					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
+					} else if ( $parentMenu.hasClass( "menu" ) ) {
 						console.log("NEW: about to increment...");
 						console.log("$parentMenu:");
 						console.log($parentMenu);
@@ -936,6 +912,7 @@ $document.on( "keyup", selector + " [role=menuitem]", function( event ) {
 } );
 
 // Close the mobile panel if switching to medium, large or extra large view
+//TODO: Need to investigate this
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
 	if ( mobilePanel && mobilePanel.getAttribute( "role" ) && !mobilePanel.getAttribute( "open" ) ) {
