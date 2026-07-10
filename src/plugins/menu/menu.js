@@ -108,7 +108,7 @@ var componentName = "wb-menu",
 	 * @method createCollapsibleSection
 	 * @return {string}
 	 */
-	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
+	createCollapsibleSection = function( section, $items, itemsLength ) {
 
 		// Got rid of *most* ARIA attributes in the mobile menu by nuking this method... only remainders are tabindex=0/-1 on the summaries and role=menu on the top-level UL
 
@@ -131,7 +131,7 @@ var componentName = "wb-menu",
 			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
 				sectionHtml += "<li>" + $item[ 0 ].innerHTML + "</li>";
 			} else {
-				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
+				sectionHtml += createCollapsibleSection( elm, $subItems, $subItems.length );
 			}
 		}
 
@@ -165,7 +165,7 @@ var componentName = "wb-menu",
 
 				// Collapsible section
 				if ( itemsLength !== 0 ) {
-					sectionHtml += createCollapsibleSection( section, j, sectionsLength, $items, itemsLength );
+					sectionHtml += createCollapsibleSection( section, $items, itemsLength );
 				} else {
 					parent = section.parentNode;
 
@@ -929,6 +929,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 } );
 
 // Prevent Firefox from double-triggering menu behaviour
+//TODO: Need to investigate this
 $document.on( "keyup", selector + " [role=menuitem]", function( event ) {
 	event.preventDefault();
 	return false;
