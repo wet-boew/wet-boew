@@ -241,6 +241,7 @@ var componentName = "wb-menu",
 				if ( $secnav.length !== 0 || $menubar.length !== 0 || $info.length !== 0 ) {
 
 					// Add the secondary menu
+					//This logic looks for a left nav and replicates it in the mobile menu
 					if ( $secnav.length !== 0 ) {
 						allProperties.push( [
 							$secnav.find( "ul" ).filter( ":not(li > ul)" ).find( " > li > *:first-child" ).get(),
@@ -364,8 +365,10 @@ var componentName = "wb-menu",
 					}
 
 					// Open up the secondary menu if it has wb-navcurr and has a submenu
+					//This auto-expands the left nav's details element in the mobile menu (by fake clicking its summary and adding an open attribute... attribute is probably for the polyfill)
 					$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
-					if ( $menuItem.attr( "aria-haspopup" ) === "true" ) { //TODO: Unsure how this logic works, need to investigate further...
+					if ( $menuItem.prop( "nodeName" ).toLowerCase() === "summary" ) {
+						console.log("auto-expanding the left nav's mobile details element...");
 						$menuItem
 							.trigger( "click" )
 							.parent()
