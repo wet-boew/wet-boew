@@ -367,7 +367,7 @@ var componentName = "wb-menu",
 					// Open up the secondary menu if it has wb-navcurr and has a submenu
 					//This auto-expands the left nav's details element in the mobile menu (by fake clicking its summary and adding an open attribute... attribute is probably for the polyfill)
 					$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
-					if ( $menuItem.prop( "nodeName" ).toLowerCase() === "summary" ) {
+					if ( $menuItem.length && $menuItem.prop( "nodeName" ).toLowerCase() === "summary" ) {
 						console.log("auto-expanding the left nav's mobile details element...");
 						$menuItem
 							.trigger( "click" )
@@ -493,7 +493,7 @@ var componentName = "wb-menu",
 		}
 
 		// Ignore if doesn't have a submenu
-		if ( $menuLink.prop( "nodeName" ).toLowerCase() === "summary" ) { //TODO: This needs to be smarter than this... won't the status quo evaluate undefined to truthy and ultimately do nothing apart from TONS of pointless confusion?
+		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" ) {
 
 			console.log($menuLink);
 			console.log($menuLink.get(0));
