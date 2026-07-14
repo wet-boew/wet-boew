@@ -199,7 +199,7 @@ var componentName = "wb-menu",
 			inner = function() {
 				var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
 					$menubar = $ajaxed.find( ".menu" ),
-					$menu = $menubar.find( "> li > a" ), //TODO: this might need to cover summaries too (via > li > details > summary)... but aren't 100% sure, adjusting it currently breaks things (like adding second dropdown arrows beside the hardcoded ones in the summaries and focus plugin console errors)... should it only be targeting DROPDOWN links? As in top-level summaries exclusively?
+					$menu = $menubar.find( "> li > a, > li > details > summary" ), //TODO: this might need to cover summaries too (via > li > details > summary)... but aren't 100% sure, adjusting it currently breaks things (like adding second dropdown arrows beside the hardcoded ones in the summaries and focus plugin console errors)... should it only be targeting DROPDOWN links? As in top-level summaries exclusively?
 					target = $elm.data( "trgt" ),
 					$secnav = $( "#wb-sec" ),
 					$language = $( "#wb-lng" ),
@@ -209,6 +209,9 @@ var componentName = "wb-menu",
 					$panel = $( panelDOM ),
 					allProperties = [],
 					$navCurr, $menuItem, $langItems, len, i;
+
+					console.log("MY MENU:");
+					console.log($menu);
 
 				/*
 				 * Build the mobile panel
