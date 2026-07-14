@@ -915,10 +915,10 @@ $document.on( "keyup", selector + " [role=menuitem]", function( event ) {
 } );
 
 // Close the mobile panel if switching to medium, large or extra large view
-//TODO: Need to investigate this
+//NOTE: These ARIA attributes come from the overlay plugin, so leave this logic as-is... no need to tamper with them
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
-	if ( mobilePanel && mobilePanel.getAttribute( "role" ) && !mobilePanel.getAttribute( "open" ) ) {
+	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
 		$( mobilePanel ).trigger( {
 			type: ( "close" ),
 			namespace: "wb-overlay",
