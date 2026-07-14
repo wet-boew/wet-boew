@@ -908,8 +908,11 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 } );
 
 // Prevent Firefox from double-triggering menu behaviour
-//TODO: Need to investigate this
-$document.on( "keyup", selector + " [role=menuitem]", function( event ) {
+//Leave this alone apart from the tweaked selector
+//NOTE: Unable to replicate the issue this logic claims to be resolving in Firefox... AFAIK FF+Chromium currently behave identically
+//Maybe caused by https://stackoverflow.com/a/45169196 (claims Firefox fires click events upon releasing keys) OR https://community.adobe.com/questions-652/keydown-eventlistener-firing-twice-for-some-keys-796664 (one reply says Windows works fine and others experiencing the issue say they're on macOS)
+//Guessing the mindset behind this logic was to take in the first keydown normally, then disable subsequent events after the first keyup
+$document.on( "keyup", selector + " a[href], " + selector + " summary", function( event ) {
 	event.preventDefault();
 	return false;
 } );
