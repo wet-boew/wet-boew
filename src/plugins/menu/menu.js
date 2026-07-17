@@ -64,7 +64,7 @@ var componentName = "wb-menu",
 				//Enhance menus that don't rely on the data-ajax plugin
 				ajaxFetch = $elm.data( "ajax-replace" ) || $elm.data( "ajax-append" ) || $elm.data( "ajax-prepend" );
 				if ( !ajaxFetch ) {
-					onAjaxLoaded( $elm, $elm );
+					onAjaxLoaded( $elm, $elm ); //NOTE TO SELF: this is the logic that upgrades hardcoded mega menus that don't use AJAX fragments
 				}
 			}
 		}
@@ -210,8 +210,8 @@ var componentName = "wb-menu",
 					allProperties = [],
 					$navCurr, $menuItem, $langItems, len, i;
 
-					console.log("MY MENU:");
-					console.log($menu);
+				console.log("MY MENU:");
+				console.log($menu);
 
 				/*
 				 * Build the mobile panel
@@ -307,10 +307,6 @@ var componentName = "wb-menu",
 					initOverlay( $panel );
 				}
 
-				/*
-				 * Build the regular mega menu
-				 */
-
 				// I think this is the spot I want... the entire mobile menu has already been built by this point and a mega menu copy/paste from the AJAX fragment seems to be in place by now...
 
 				// Challenges would be... do I want this at a later point? In order to support scenarios where the mega menu was hardcoded into the page...
@@ -337,11 +333,44 @@ var componentName = "wb-menu",
 
 				// NOTE: Remove createCollapsibleSection's unused params at some point... and params from any other similar situations
 
-				if ( $menu.length !== 0 ) {
-					//drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
-					$menu
-						.filter( "[aria-haspopup=true], summary" )
-						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
+
+
+				/*
+				 * Build the regular mega menu
+				 */
+
+				//drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
+
+				// Revise the menu bar's structure as needed
+				if ( $menubar.length ) {
+
+					// Remove hardcoded role attributes (menu/menubar pattern leftovers...)
+					$ajaxed.find( "ul[role]" ).removeAttr( "role" );
+
+					// Loop over top-level menu items
+					$menubar.children( "li" ).each(function() {
+						const $topLevelLi = $( this );
+						const $item = $topLevelLi.find( ".item" ).first();
+						const $submenu = $item.next( ".sm" );
+						const arrowIcon = "<span class='expicon glyphicon glyphicon-chevron-down' aria-hidden='true'></span>";
+
+						// If the item has a submenu...
+						if ( $item.length && $submenu.length ) {
+
+							// Add an arrow icon
+							$item.append( arrowIcon );
+
+							// Transform link/submenu combination into a details/summary structure
+							if ( $item.prop( "nodeName" ).toLowerCase() === "a" ) {
+
+								// Create a details element, turn the link into a summary and add its submenu
+								const $newDetails = $( "<details><summary class='item'>" + $item.html() + "</summary>" + $submenu[0].outerHTML + "</details>" );
+
+								// Replace the item's contents with the details element
+								$topLevelLi.empty().append($newDetails);
+							}
+						}
+					});
 				}
 
 				// Replace elements
