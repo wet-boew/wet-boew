@@ -470,6 +470,8 @@ var componentName = "wb-menu",
 	 */
 	menuClose = function( $elm, removeActive ) {
 
+		console.log("inside menuClose");
+
 		// This logic is designed with li in mind
 		console.log("my $elm:");
 		console.log($elm);
@@ -480,7 +482,7 @@ var componentName = "wb-menu",
 		$elm
 			.removeClass( "sm-open" )
 			.children( "[open]" )
-			.removeAttr( "open" )
+			.removeAttr( "open" ) // FMI: I don't this this part of the logic actually works... couldn't get Enter key presses that close the menu to work correctly without preventDefault (even though space worked fine as-is)
 
 		// Close nested submenus... is that actually necessary? Is it desirable for users to have this mindlessly reset to closed?
 		//TODO: If I keep this, remove preceding children and removeAttr method calls since there's no point removing the open attribute separately for the top-level vs deeper details elements (unless I want to do fake clicking...?)
@@ -502,12 +504,12 @@ var componentName = "wb-menu",
 
 		console.log("inside menuDisplay");
 
-		//if ($elm.find( ".active.sm-open" ).length) {
+		if ($elm.find( ".active" ).not( $elm ).length) { //prevents menuClose from getting needlessly called (like if entering the menu for the first time or collapsing the current top-level menu item)
 			console.log("yay!!!");
 			menuClose( $elm.find( ".active" ), true );
 		//} else {
-			console.log("nah!!!");
-		//}
+		//	console.log("nah!!!");
+		}
 		console.log($elm);
 		console.log($elm.find( ".active.sm-open" ));
 
@@ -617,22 +619,8 @@ $document.on( "mouseenter", selector + " .sm", function() {
 } );
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
-$document.on( "click", selector + " summary.item", function( event ) {
-	var which = event.which,
-		$this, $parent;
-
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 ) {
-		event.preventDefault();
-		$this = $( this );
-		$parent = $this.parent();
-
-		// Open the submenu if it is closed
-		if ( !$parent.hasClass( "sm-open" ) ) {
-			$this.trigger( "focusin" );
-		}
-	}
-} );
+//NOTE: This is pointless now... scrapped it
+//Would I need to restore it to bring back the arrow icon when in a collapsed+focused state?
 
 // Click on menu items with submenus should open and close those submenus
 $document.on( "click", selector + " summary", function( event ) {
@@ -722,8 +710,10 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 	// Define keycodes. (Make const when WET supports ES6)
 	var TAB_KC = 9,
+		END_KC = 35,
 		ENTER_KC = 13,
 		ESC_KC = 27,
+		HOME_KC = 36,
 		LEFT_KC = 37,
 		UP_KC = 38,
 		RIGHT_KC = 39,
@@ -737,8 +727,9 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		// Tab key = Hide all sub-menus
 		//Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
 		if ( which === TAB_KC ) {
-			console.log("Tab key = Hide all sub-menus... calling menuClose");
-			menuClose( $( selector + " .active" ), true );
+			//commenting-out since this makes it impossible to tab into the mega menu's submenu dropdowns
+			//console.log("Tab key = Hide all sub-menus... calling menuClose");
+			//menuClose( $( selector + " .active" ), true );
 
 		//Enter or spacebar on a link = follow the link and close menus
 		//Always runs when clicking links in either the mega or mobile menu (regardless of anchor vs page)
@@ -755,33 +746,67 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			console.log("In inMenuBar if");
 
-			// Left / right arrow = Previous / next menu item
-			if ( which === LEFT_KC || which === RIGHT_KC ) {
+			// Left-up / right-down arrow = Previous / next menu item
+			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
 				event.preventDefault();
-				console.log("Moving left/right on mega menu bar");
+				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
+				console.log("Moving left-up/right-down on mega menu bar");
+
+				if ( hasPopup && $menuItem.parent().attr( "open" ) ) {
+					console.log("GOING TO FIRST SUBMENU ITEM!!!");
+					console.log($menuItem.attr( "open" ));
+					event.preventDefault();
+					let $parentLi = $menuItem.closest( "li" );
+					$subMenu = $parentLi.find( ".sm" );
+
+					// Set focus on the first submenu item
+					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
+				} else {
+
+					console.log("going left/right...");
+					menuIncrement(
+						$menu.find( "> li > a, > li > details > summary" ),
+						$menuItem,
+						which === LEFT_KC || which === UP_KC ? -1 : 1
+					);
+				}
+
+			// HOME / END keys = First / last menu item
+			//NOTE: Only works on top menu bar atm
+			} else if ( which === HOME_KC || which === END_KC ) {
+				event.preventDefault();
+				console.log("Pressed HOME or END on mega menu bar");
+				const $menuItems = $menu.find( "> li > a, > li > details > summary" );
+				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
 				menuIncrement(
-					$menu.find( "> li > a, > li > details > summary" ),
-					$menuItem,
-					which === LEFT_KC ? -1 : 1
+					$menuItems,
+					which === HOME_KC ? $menuItems.first() : $menuItems.last(),
+					which === 0
 				);
 
-			// Enter sub-menu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === UP_KC || which === DOWN_KC ) ) {
-				event.preventDefault();
+			// Toggle sub-menu
+			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC ) ) {
+				event.preventDefault(); // Absolutely need this for Enter key compatibility!!!
 				console.log("inside mystery mega menu submenu logic");
-				$parent = $menuItem.closest( "li" );
-				$subMenu = $parent.find( ".sm" );
+				let $parentDetails = $menuItem.parent();
+				let $parentLi = $menuItem.closest( "li" );
+				$subMenu = $parentLi.find( ".sm" );
 
 				// Open the submenu if it is not already open
-				if ( !$subMenu.hasClass( "open" ) ) {
+				if ( !$parentDetails.attr( "open" ) ) {
 					console.log("opening the mega menu submenu");
-					menuDisplay( $menu.closest( selector ), $parent );
+					menuDisplay( $menu.closest( selector ), $parentLi );
+				} else {
+					console.log("closing the mega menu submenu");
+					menuClose( $menu.closest( selector ).find( ".active" ), false );
 				}
 
 				// Set focus on the first submenu item
-				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent ); //oooooooooooooooooooooooooo
+				// Nerfed this to prevent pressing top-level mega menu items from auto-focusing onto the first submenu item
+				//$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent ); //oooooooooooooooooooooooooo
 
 			// Hide sub-menus and set focus
+			//NOTE: Very similar to aforementioned else if, but doesn't toggle (if I try porting it there I'd need to ensure ESC never toggles)
 			} else if ( which === ESC_KC ) {
 				event.preventDefault();
 				menuClose( $menu.closest( selector ).find( ".active" ), false );
@@ -799,14 +824,15 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		} else {
 			console.log("In else");
 
-			// Up / down arrow = Previous / next menu item
-			if ( which === UP_KC || which === DOWN_KC ) {
+			// Up-left / down-right arrow = Previous / next menu item
+			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
 				event.preventDefault();
-				console.log("Up / down arrow = Previous / next menu item... calling menuIncrement");
+				console.log("Up-left / down-right arrow = Previous / next menu item... calling menuIncrement");
 				menuIncrement(
 					$menu.children( "li" ).find( menuItemSelector ),
 					$menuItem,
-					which === UP_KC ? -1 : 1
+					which === LEFT_KC || which === UP_KC ? -1 : 1
+					//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
 				);
 
 			// Enter, space, or right arrow with a submenu
@@ -865,7 +891,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				}
 
 				// If the parent menu is a menubar
-				if ( $parentMenu.hasClass( "menu" ) ) {
+				if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
 					$menuLink = $menu.siblings( "a, summary" );
 
 					// Escape key = Close menu and return to menu bar item
@@ -879,7 +905,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						}, 100 );
 
 					// Left / right key = Next / previous menu bar item
-					} else if ( $parentMenu.hasClass( "menu" ) ) {
+					} else if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
 						console.log("NEW: about to increment...");
 						console.log("$parentMenu:");
 						console.log($parentMenu);
