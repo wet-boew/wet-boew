@@ -24,9 +24,15 @@
 	padding-bottom: 0;
 }
 
-.wb-menu details summary { /* Undoes goofy default selectors */
+.wb-menu details summary { /* Undoes goofy default selectors... should these be set to revert instead of initial? */
 	border-radius: initial;
 	text-indent: initial;
+}
+
+.wb-menu details summary.item:focus {
+	outline-offset: -2px; /* Replicate the same outline offset as focused links (to match how the old top-level mega menu links looked when focused) */
+	outline-style: revert; /* Undoes goofy default selector */
+	outline-width: revert; /* Undoes goofy default selector */
 }
 
 .wb-menu details[open] > summary { /* Undoes a default summary selector that adds a small bottom margin */
