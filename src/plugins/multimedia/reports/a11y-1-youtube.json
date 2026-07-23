@@ -1,0 +1,624 @@
+{
+  "@context": "https://wet-boew.github.io/vocab/context/2023/assessment-report-en.json-ld",
+  "@type": [
+    "earl:Assertion",
+    "acr:AssessmentReport"
+  ],
+  "dct:date": "2025-06-16",
+  "earl:subject": {
+    "@id": "_:subject",
+    "dct:references": [
+      "https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-youtube-en.html"
+    ],
+    "@type": [
+      "earl:TestSubject",
+      "schema:WebPage"
+    ],
+    "dct:description": "Only on the component 'Multimedia (Youtube)', not its container neither any other sibling component.",
+    "oa:hasState": [
+      {
+        "@type": "acr:MediaQueryList",
+        "acr:stateValue": "(min-width: 992px) and (max-width: 1199px)"
+      },
+      {
+        "@type": "acr:MediaQueryList",
+        "acr:stateValue": "(min-width: 768px) and (max-width: 991px)"
+      }
+    ],
+    "earl:pointer": {
+      "@type": "oa:CssSelector",
+      "@value": ".wb-mltmd.video.youtube"
+    }
+  },
+  "dct:description": "Evaluation of the multimedia player (Youtube) plugin in order to determine if it is aligned with our design and is compliant to our accessibility guideline when used as is without any special customization. The plugin was assessed to ensure that it meets the Web Content Accessibility Guideline by manually testing each success criteria.",
+  "earl:result": [
+    {
+      "earl:test": "WCAG21:non-text-content",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:audio-only-and-video-only-prerecorded",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:captions-prerecorded",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:audio-description-or-media-alternative-prerecorded",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:captions-live",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:audio-description-prerecorded",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:info-and-relationships",
+      "earl:subject": {
+        "@id": "_info-and-relationships_itm1",
+        "dct:isPartOf": "_:subject",
+        "@type": [
+          "earl:TestSubject",
+          "schema:WebPageElement"
+        ],
+        "dct:description": ""
+      },
+      "earl:result": [
+        {
+          "earl:test": "act:rules/wcag2x/sc/1_3_1_situation_a",
+          "earl:outcome": "earl:passed",
+          "earl:mode": "earl:manual",
+          "earl:subject": "_info-and-relationships_itm1",
+          "dct:description": "Certain ARIA roles must contain particular children"
+        }
+      ],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "The component provides semantic structure, including headings, to make information and relationships clear and accessible.",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:meaningful-sequence",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:sensory-characteristics",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:orientation",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:identify-input-purpose",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:use-of-color",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:audio-control",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:contrast-minimum",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:resize-text",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:image-of-text",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:reflow",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:non-text-contrast",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:text-spacing",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:content-on-hover-or-focus",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:keyboard",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "The Youtube multimedia plugin contains elements such as watch later and share which are not focusable through keyboard navigation only. Therefore the plugin fails the assessment.",
+      "earl:outcome": "earl:failed"
+    },
+    {
+      "earl:test": "WCAG21:no-keyboard-trap",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:character-key-shortcuts",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:timing-adjustable",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:pause-stop-hide",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:three-flashes-or-below-threshold",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:bypass-blocks",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:page-titled",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:focus-order",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:link-purpose-in-context",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:multiple-ways",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:headings-and-labels",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:focus-visible",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:pointer-gestures",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:pointer-cancellation",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:label-in-name",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:motion-actuation",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:language-of-page",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:language-of-parts",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:on-focus",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:on-input",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:consistent-navigation",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:consistent-identification",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:error-identification",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:labels-or-instructions",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:error-suggestion",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:error-prevention-legal-financial-data)",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    },
+    {
+      "earl:test": "WCAG21:parsing",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:name-role-value",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:forEvaluation",
+      "acr:relevancy": "acr:forEvaluation",
+      "dct:description": "",
+      "earl:outcome": "earl:passed"
+    },
+    {
+      "earl:test": "WCAG21:status-messages",
+      "earl:subject": "_:subject",
+      "earl:result": [],
+      "acr:asset": [],
+      "earl:mode": "earl:manual",
+      "acr:severity": "acr:notRelevant",
+      "acr:relevancy": "acr:notRelevant",
+      "dct:description": "",
+      "earl:outcome": "earl:inapplicable"
+    }
+  ],
+  "acr:standard": "https://www.w3.org/TR/WCAG21",
+  "acr:conformanceOption": "act:standard/profiles/wcag#levelAA",
+  "acr:stateValue": "(min-width: 768px) and (max-width: 991px)",
+  "earl:assertedBy": {
+    "@type": [
+      "earl:Assertor",
+      "foaf:Organization"
+    ],
+    "earl:mainAssertor": {
+      "@type": [
+        "earl:Assertor",
+        "foaf:Person"
+      ],
+      "foaf:name": "Brahim Mahadi Wachilli",
+      "foaf:homepage": "https://github.com/BrahimMahadi"
+    },
+    "foaf:name": "Service Canada - Principal Publisher",
+    "foaf:homepage": "https://github.com/ServiceCanada"
+  },
+  "foaf:name": "Service Canada - Principal Publisher",
+  "foaf:homepage": "https://github.com/ServiceCanada",
+  "workspace-id": "0"
+}
