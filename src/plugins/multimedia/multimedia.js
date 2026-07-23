@@ -428,6 +428,8 @@ var componentName = "wb-mltmd",
 	playerApi = function( fn, args ) {
 		var $this, method;
 
+		const fullscreenTarget = document.getElementById( "mltmd-fs-btn" );
+
 		switch ( fn ) {
 			case "play":
 				try {
@@ -455,12 +457,20 @@ var componentName = "wb-mltmd",
 				$this.trigger( captionsVisibleChangeEvent );
 				break;
 			case "fullscreen":
-				if ( this.object.requestFullscreen ) {
-					this.object.requestFullscreen();
-				} else if ( this.object.webkitRequestFullscreen ) { /* Safari */
-					this.object.webkitRequestFullscreen();
-				} else if ( this.object.msRequestFullscreen ) { /* IE11 */
-					this.object.msRequestFullscreen();
+				if ( document.fullscreenElement ) {
+					document.exitFullscreen();
+				} else {
+					var video = document.getElementById( "fs-video" );
+					if ( video ) {
+						video.setAttribute( "playsinline", "true" );
+					}
+					if ( fullscreenTarget.requestFullscreen ) {
+						fullscreenTarget.requestFullscreen();
+					} else if ( fullscreenTarget.webkitRequestFullscreen ) { /* Safari */
+						fullscreenTarget.webkitRequestFullscreen();
+					} else if ( fullscreenTarget.msRequestFullscreen ) { /* IE11 */
+						fullscreenTarget.msRequestFullscreen();
+					}
 				}
 				break;
 			case "getBuffering":
