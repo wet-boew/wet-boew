@@ -776,7 +776,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			} else if ( which === HOME_KC || which === END_KC ) {
 				event.preventDefault();
 				console.log("Pressed HOME or END on mega menu bar");
-				const $menuItems = $menu.find( "> li > a, > li > details > summary" );
+				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
 				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
 				menuIncrement(
 					$menuItems,
@@ -833,6 +833,19 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					$menuItem,
 					which === LEFT_KC || which === UP_KC ? -1 : 1
 					//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
+				);
+
+			// HOME / END keys = First / last menu item
+			//NOTE: Copy of the top menu bar's logic for "not within a menu bar" scenarios, logic hasn't changed at all... so maybe only provide the logic once
+			} else if ( which === HOME_KC || which === END_KC ) {
+				event.preventDefault();
+				console.log("Pressed HOME or END on when not within a menu bar");
+				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
+				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
+				menuIncrement(
+					$menuItems,
+					which === HOME_KC ? $menuItems.first() : $menuItems.last(),
+					which === 0
 				);
 
 			// Enter, space, or right arrow with a submenu
