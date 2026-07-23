@@ -1,0 +1,66 @@
+{
+	"@context": {
+		"@version": 1.1,
+		"dct": "http://purl.org/dc/terms/",
+		"title": { "@id": "dct:title", "@container": "@language" },
+		"description": { "@id": "dct:description", "@container": "@language" },
+		"modified": "dct:modified"
+	},
+	"title": {
+		"en": "Do action",
+		"fr": "Exécuter des actions"
+	},
+	"description": {
+		"en": "Execute action, like filter a table, based on pre-established set of configuration.",
+		"fr": "Exécute des actions, tel que filtrer un tableau, selon une configuration pré-établis."
+	},
+	"modified": "2019-1-12",
+	"componentName": "wb-doaction",
+	"status": "stable",
+	"pages": {
+		"examples": [
+			{
+				"title": "Table",
+				"language": "en",
+				"path": "tblfilter-en.html"
+			},
+			{
+				"title": "Filtrer un tableau",
+				"language": "fr",
+				"path": "tblfilter-fr.html"
+			},
+			{
+				"title": "JSON",
+				"language": "en",
+				"path": "json-en.html"
+			},
+			{
+				"title": "JSON",
+				"language": "fr",
+				"path": "json-fr.html"
+			},
+			{
+				"title": "JSON manager patches",
+				"language": "en",
+				"path": "../wb-jsonmanager/jsonmanager-doaction-en.html"
+			},
+			{
+				"title": "Gestionnaire JSON avec l'exécuteur d'action de patches",
+				"language": "fr",
+				"path": "../wb-jsonmanager/jsonmanager-doaction-fr.html"
+			}
+		],
+		"docs": [
+			{
+				"title": "Do action",
+				"language": "en",
+				"path": "doaction-doc-en.html"
+			},
+			{
+				"title": "Exécuter des actions",
+				"language": "fr",
+				"path": "doaction-doc-fr.html"
+			}
+		]
+	}
+}
