@@ -1365,6 +1365,24 @@ wb.findPotentialPII = function( str, scope, opts ) {
 	if ( str && typeof str  !== "string" ) {
 		return false;
 	}
+	const STREET_TYPES =
+			"(?:street|avenue|road|drive|boulevard|lane|court|place|terrace|parkway|" +
+			"circle|highway|way|loop|trail|pike|row|crescent|close|point|green|grove|" +
+			"gate|heights|landing|link|manor|park|ridge|rise|square|view|walk|crossing|" +
+			"meadow|garden|gardens|glen|heath|hollow|knoll|mews|village|shore|shores|" +
+			"hill|hills|acres|valley|rue|chemin|route|terrasse|rang|promenade|cours|" +
+			"voie|terrain|all[ée]e?|st|ave|av|av\\.|rd|dr|blvd|boul|boul\\.|ln|ct|pl|" +
+			"ter|terr|pkwy|cir|ci|hwy|wy|trl|cres|cr|cl|pt|gr|gv|ga|ht|hts|ld|lk|mr|pa|" +
+			"pk|rg|ri|rw|sq|tc|vi|vw|wk|co|ba|bv|hl|tr|cv|li|me|gd|mt|ca|gw|ce|he|sm|" +
+			"rp|al|ch|ch\\.|chem|chem\\.|rte|all\\.|allee|prom|prom\\.)",
+		NAME_PART =
+			"(?:\\d{1,2}(?:st|nd|rd|th)|[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ''\\-]*)",
+		DIRECTIONS =
+			"(?:n|s|e|w|ne|nw|se|sw|o|no|so|north|south|east|west)",
+		FR_ARTICLES =
+			"(?:de\\s+la\\s+|du\\s+|des\\s+|de\\s+|le\\s+|la\\s+|les\\s+|d'|l')?",
+		HOUSE_NUMBER = "(\\d{1,6}[A-Za-zÀ-ÿ]?)";
+
 	var oRegEx = {
 
 			/*
@@ -1406,10 +1424,59 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			looseEmail2: /([a-zA-Z0-9._%+-]+)\s?@\s?(gmail|outlook|icloud|hotmail|yahoo)(\s?\.?\s?(com|ca))?/ig,
 
 			/*
+			* Loose email 3: to catch obfuscated emails: supports +, spaces in domain, optional TLD, longer TLDs
+			*/
+			looseEmail3: /([a-zA-Z0-9_+\-\\.]+)\s*@\s*([a-zA-Z0-9_\-\\.]+)(?:\s*[\\.,]\s*([a-zA-Z]{0,10}))?/ig,
+
+			/*
 			* Postal code:
 			* valid Canadian postal code
 			*/
 			postalCode: /\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b/ig,
+
+			/*
+			* Address pattern 1: NUMBER + (DIRECTION) + WORD(S) + STREET_TYPES + (DIRECTION)
+			*/
+			address_pattern_1: new RegExp(
+				"\\b" + HOUSE_NUMBER + "\\s+" +
+				`(?:${ DIRECTIONS }\\s+)?` +
+				`(?:${ NAME_PART }(?:\\s+${ NAME_PART }){0,3})\\s+` +
+				STREET_TYPES +
+				`(?:\\s+${ DIRECTIONS })?\\b`,
+				"ig" ),
+
+			/*
+			* Address pattern 2: NUMBER + STREET_TYPES + (FR_ARTICLES) + WORD(S)
+			*/
+			address_pattern_2: new RegExp(
+				"\\b" + HOUSE_NUMBER + ",?\\s+" +
+				STREET_TYPES +
+				"\\s+" +
+				FR_ARTICLES +
+				`(?:${ NAME_PART }(?:\\s+${ NAME_PART }){0,3})\\b`,
+				"ig" ),
+
+			/*
+			* Address pattern 3: NUMBER + STREET_TYPES
+			*/
+			address_pattern_3: RegExp(
+				"\\b" + HOUSE_NUMBER + "\\s+" +
+				STREET_TYPES +
+				"\\b",
+				"ig" ),
+
+			/*
+			* Address pattern 4: STREET_TYPES + NUMBER
+			*/
+			address_pattern_4: new RegExp(
+				`\\b${ STREET_TYPES }\\s+${ HOUSE_NUMBER }\\b`,
+				"ig" ),
+
+			/*
+			* Address pattern 5: PO BOX + NUMBER
+			* e.g., “PO Box 123”, “P.O. Box 456”, “Post Office Box 789”, “C.P. 123”, “B.P. 456”, “Case postale 789”, “Boîte postale 123”, “Casier postal 456”
+			*/
+			address_pattern_5: /\b(?:(?:p\.?\s*o\.?\s*box)|(?:post\s+office\s+box)|(?:c\.?\s*p\.?)|(?:b\.?\s*p\.?)|(?:case\s+postale)|(?:bo[iî]te\s+postale)|(?:casier\s+postal))(?:\.+)?[ \t]*(?:#|no\.?|n[º°]|n°|num(?:[ée]ro)?\.?)?[ \t]*(?<box_number>[A-Za-z0-9][A-Za-z0-9\\-]*)\b/giu,
 
 			/*
 			* Username:
