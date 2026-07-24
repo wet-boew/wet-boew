@@ -888,10 +888,11 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					}
 
 					// Move focus to the first submenu item
-					$parent.children( "ul" )
+					//NOTE: Not needed anymore... autofocusing to the first submenu item only makes sense in the menu pattern
+					/*$parent.children( "ul" )
 						.find( "a[href], summary" )
 						.first()
-						.trigger( focusEvent );
+						.trigger( focusEvent );*/
 				}
 
 			// Escape, left / right arrow without a submenu
