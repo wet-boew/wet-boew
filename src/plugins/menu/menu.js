@@ -868,15 +868,15 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					which === 0
 				);
 
-			// Enter, space, or right arrow with a submenu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === RIGHT_KC ) ) {
+			// Enter or space arrow with a submenu
+			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC ) ) {
 				$parent = $menuItem.parent(); //shouldn't need to use closest() for this part since the else if condition's hasPopup check will guarantee this can only run against summaries that are top-level mega menu items
 
 				// Prevent handling by details.js polyfill
 				event.stopImmediatePropagation();
 				event.preventDefault();
 
-				console.log("Enter, space, or right arrow with a submenu... does misc stuff");
+				console.log("Enter or space arrow with a submenu... does misc stuff");
 				console.log(menuItem);
 				console.log(menuItem.nodeName.toLowerCase() === "summary");
 
