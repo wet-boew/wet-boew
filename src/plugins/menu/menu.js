@@ -755,8 +755,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
 				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
 					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the mega menu...");
-					console.log($menuItem.attr( "open" ));
-					event.preventDefault();
+					console.log($menuItem.parent().attr( "open" ));
+					event.preventDefault(); //this is pointless... it's already in the parent if condition
 					let $parentLi = $menuItem.closest( "li" );
 					$subMenu = $parentLi.find( ".sm" );
 
@@ -825,16 +825,35 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		} else {
 			console.log("In else");
 
-			// Up-left / down-right arrow = Previous / next menu item
+			// Left-up / right-down arrow = Previous / next menu item
 			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
 				event.preventDefault();
 				console.log("Up-left / down-right arrow = Previous / next menu item... calling menuIncrement");
-				menuIncrement(
-					$menu.children( "li" ).find( menuItemSelector ),
-					$menuItem,
-					which === LEFT_KC || which === UP_KC ? -1 : 1
-					//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
-				);
+
+				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
+				console.log("Moving left-up/right-down on mobile menu");
+
+				// In the mobile menu... if the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
+				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
+					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the mobile menu...");
+					console.log($menuItem);
+					console.log($menuItem.parent().attr( "open" ));
+					event.preventDefault(); //this is pointless... it's already in the parent if condition
+					let $parentLi = $menuItem.closest( "li" );
+					$subMenu = $parentLi.find( ".mb-sm" ); //NOTE: This is the same as the mega menu logic's selector, but targets a mobile flavour of its class name
+
+					// Set focus on the first submenu item
+					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
+				} else {
+
+					console.log("going left/right in the mobile menu...");
+					menuIncrement(
+						$menu.children( "li" ).find( menuItemSelector ),
+						$menuItem,
+						which === LEFT_KC || which === UP_KC ? -1 : 1
+						//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
+					);
+				}
 
 			// HOME / END keys = First / last menu item
 			//NOTE: Copy of the top menu bar's logic for "not within a menu bar" scenarios, logic hasn't changed at all... so maybe only provide the logic once
