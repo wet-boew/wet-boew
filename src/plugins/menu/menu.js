@@ -752,8 +752,9 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
 				console.log("Moving left-up/right-down on mega menu bar");
 
-				if ( hasPopup && $menuItem.parent().attr( "open" ) ) {
-					console.log("GOING TO FIRST SUBMENU ITEM!!!");
+				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
+				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
+					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the mega menu...");
 					console.log($menuItem.attr( "open" ));
 					event.preventDefault();
 					let $parentLi = $menuItem.closest( "li" );
