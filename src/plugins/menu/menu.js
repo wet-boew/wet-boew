@@ -900,11 +900,12 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 							menuContainer.scrollTop = menuItemOffsetTop;
 						}
-
-						// Ensure the menu is opened or stays open
-						console.log("fake click triggered to open the clicked summary in mobile menu... runs in mega menu too");
-						$menuItem.trigger( "click" );
 					}
+
+					// Ensure the menu is opened or stays open
+					// NOTE: Unsure why this had to be taken out of the !isOpen if condition... but it appears to fully work in both the mega+mobile menus
+					console.log("fake click triggered to open the clicked summary in mobile menu... runs in mega menu too");
+					$menuItem.trigger( "click" );
 
 					// Move focus to the first submenu item
 					//NOTE: Not needed anymore... autofocusing to the first submenu item only makes sense in the menu pattern
