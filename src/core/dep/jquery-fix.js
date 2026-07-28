@@ -199,6 +199,9 @@ var localParseHTML = jQuery.parseHTML,
 		"<td />",
 		"<td/>"
 	],
+	allowedTags = [
+		"gc-combobox"
+	],
 	sanitize = function( html ) {
 
 		// Add an exception for DataTable plugin
@@ -206,7 +209,7 @@ var localParseHTML = jQuery.parseHTML,
 			return html;
 		}
 
-		return DOMPurify.sanitize( html );
+		return DOMPurify.sanitize( html, { ADD_TAGS: allowedTags } );
 	};
 
 jQuery.parseHTML = function( data, context, keepScripts ) {
