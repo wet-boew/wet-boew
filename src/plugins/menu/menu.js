@@ -470,6 +470,8 @@ var componentName = "wb-menu",
 	 */
 	menuClose = function( $elm, removeActive ) {
 
+		//NOTE: Sometimes null $elm elements (like jQuery arrays with a legth of 0) get passed into this method... like when clicking out of open mega menu dropdowns or other weird circumstances
+		//TODO: Should I put all this logic into something like an if block that checks whether $elm.length is truthy? No logic truly needs it atm, but normal JS logic in this function or prop checks would risk breaking if $elm didn't actually exist...
 		console.log("inside menuClose");
 
 		// This logic is designed with li in mind
@@ -490,7 +492,18 @@ var componentName = "wb-menu",
 			.removeAttr( "open" );
 
 		if ( removeActive ) {
+			console.log("REMOVING active class");
 			$elm.removeClass( "active" );
+
+			console.log($elm);
+
+			if ($elm.length === 0) {
+				console.log("Huh? $elm doesn't exist...?");
+			}
+
+			if ($elm.length && $elm.children().first().prop( "nodeName" ).toLowerCase() === "a") {
+				console.log("HEADS-UP: Moving away from an active LINK (not summary)");
+			}
 		}
 	},
 
@@ -611,6 +624,19 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	}, hoverDelay );
 } );
 
+//Focus equivalent for mouseleave
+$document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
+	var $currentTarget = $( event.currentTarget );
+
+	console.log("Focus is leaving the menu bar...");
+	console.log(event);
+
+	// Close the menu if the element that gained focus ISN'T a child of the menu
+	if ($currentTarget.find(event.relatedTarget).length === 0) {
+		menuClose( $currentTarget.find( ".active" ), true ); //NOTE: Can't pass event.target here directly since it's a link/summary and menuClose needs to take in an LI... although I could do closest() on event.target if I want... it's more in line with some other calls and might match faster since .item is a parent element
+	}
+} );
+
 // Prevent opening another menu if mouse re-enters already opened menu
 $document.on( "mouseenter", selector + " .sm", function() {
 	if ( $( this ).hasClass( "open" ) ) {
@@ -729,6 +755,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		if ( which === TAB_KC ) {
 			//commenting-out since this makes it impossible to tab into the mega menu's submenu dropdowns
 			//console.log("Tab key = Hide all sub-menus... calling menuClose");
+
+			//console.log("Tab key pressed, calling menuClose");
 			//menuClose( $( selector + " .active" ), true );
 
 		//Enter or spacebar on a link = follow the link and close menus
