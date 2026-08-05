@@ -47,6 +47,7 @@
 	.display {
 		&:before {
 			text-align: center;
+			z-index: 1;
 		}
 
 		&:after {
@@ -75,6 +76,34 @@
 	display: table-cell;
 	height: #{$line-height-base * $mm-cc-lines}em;
 	vertical-align: middle;
+}
+
+:fullscreen figcaption, :fullscreen .wb-mm-ctrls {
+	display: none !important;
+}
+
+:fullscreen .display {
+	height: 100%;
+}
+
+:fullscreen video {
+	height: 100% !important;
+	object-fit: contain;
+}
+
+:fullscreen .wb-mm-cc {
+	bottom: 8em;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: auto;
+}
+
+// Hide the leftover caption text when captions are off
+:fullscreen:not(.cc_on) .wb-mm-cc {
+	display: none;
 }
 
 .wb-mltmd {
@@ -189,6 +218,7 @@
 
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
+	position: relative;
 	text-align: center;
 	transition: all .26s ease;
 	width: 100%;

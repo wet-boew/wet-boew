@@ -452,15 +452,69 @@ var componentName = "wb-mltmd",
 				} else {
 					$this.removeClass( captionClass );
 				}
+
+				// Sync browser's caption button with text tracks
+				$.each( this.object.textTracks || [], function( i, track ) {
+					if ( track.kind === "captions" ) {
+						track.mode = args ? "showing" : "disabled";
+					}
+				} );
+
 				$this.trigger( captionsVisibleChangeEvent );
 				break;
 			case "fullscreen":
-				if ( this.object.requestFullscreen ) {
-					this.object.requestFullscreen();
-				} else if ( this.object.webkitRequestFullscreen ) { /* Safari */
-					this.object.webkitRequestFullscreen();
-				} else if ( this.object.msRequestFullscreen ) { /* IE11 */
-					this.object.msRequestFullscreen();
+				$this = $( this.object );
+				var fullscreenTarget = this.object.parentElement.parentElement;
+
+				// makes pressing the esc key exit the fullscreen
+				document.addEventListener( "keydown", function( e ) {
+					if ( e.key === "Escape" ) {
+						if ( document.fullscreenElement ) {
+							document.exitFullscreen();
+						}
+					}
+				}, true );
+
+				// fixes issues with pausing/playing not working when video element is pressed
+				this.object.addEventListener( "click", function() {
+					var vid = $this.get( 0 );
+					if ( document.fullscreenElement ) {
+						if ( vid.paused ) {
+							vid.play();
+						} else if ( vid.played ) {
+							vid.pause();
+						}
+					}
+				}, false );
+
+				// fullscreen minimizes when button is pressed
+				this.object.addEventListener( "fullscreenchange", function() {
+					document.exitFullscreen();
+				}, false );
+
+				// custom controls on minimized screen and native controls on fs
+				document.addEventListener( "fullscreenchange", function() {
+					if ( document.fullscreenElement !== null ) {
+						$this.attr( "controls", true );
+					} else {
+						$this.removeAttr( "controls" );
+					}
+				} );
+
+				if ( document.fullscreenElement ) {
+					document.exitFullscreen();
+				} else {
+					if ( $this ) {
+						this.object.setAttribute( "playsinline", "true" );
+					}
+
+					if ( fullscreenTarget.requestFullscreen ) {
+						fullscreenTarget.requestFullscreen();
+					} else if ( fullscreenTarget.webkitRequestFullscreen ) { /* Safari */
+						fullscreenTarget.webkitRequestFullscreen();
+					} else if ( fullscreenTarget.msRequestFullscreen ) { /* IE11 */
+						fullscreenTarget.msRequestFullscreen();
+					}
 				}
 				break;
 			case "getBuffering":
@@ -948,6 +1002,31 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			loadCaptionsExternal( $media, captionsUrl.absolute );
 		} else {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
+		}
+
+		// Keep the browser's captions button in sync with the player's captions
+		if ( this.object.textTracks ) {
+
+			// Browsers hide the native captions button when a track fails to load, so we hide
+			// the original <track> and add an empty one to ensure the button is always there
+			$media.children( "track[kind='captions']" ).each( function( i, track ) {
+				$media.get( 0 ).addTextTrack( "captions", track.label, track.srclang );
+				track.kind = "metadata";
+			} );
+
+			this.object.textTracks.addEventListener( "change", function() {
+				var nativeCaptionsOn = false;
+
+				$.each( this, function( i, track ) {
+					if ( track.kind === "captions" && track.mode === "showing" ) {
+						nativeCaptionsOn = true;
+					}
+				} );
+
+				if ( nativeCaptionsOn !== $this.get( 0 ).player( "getCaptionsVisible" ) ) {
+					$this.get( 0 ).player( "setCaptionsVisible", nativeCaptionsOn );
+				}
+			} );
 		}
 
 		// The fullscreen button is not visible by default because there are no controls when in full screen.
