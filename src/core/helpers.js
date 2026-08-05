@@ -1366,14 +1366,13 @@ wb.findPotentialPII = function( str, scope, opts ) {
 		return false;
 	}
 	const STREET_TYPES =
-			"(?:street|avenue|road|drive|boulevard|lane|court|place|terrace|parkway|" +
-			"circle|highway|way|loop|trail|pike|row|crescent|close|point|green|grove|" +
-			"gate|heights|landing|link|manor|park|ridge|rise|square|view|walk|crossing|" +
-			"meadow|garden|gardens|glen|heath|hollow|knoll|mews|village|shore|shores|" +
-			"hill|hills|acres|valley|rue|chemin|route|terrasse|rang|promenade|cours|" +
-			"voie|terrain|all[ée]e?|st|ave|av|av\\.|rd|dr|blvd|boul|boul\\.|ln|ct|pl|" +
-			"ter|terr|pkwy|cir|ci|hwy|wy|trl|cres|cr|cl|pt|gr|gv|ga|ht|hts|ld|lk|mr|pa|" +
-			"pk|rg|ri|rw|sq|tc|vi|vw|wk|co|ba|bv|hl|tr|cv|li|me|gd|mt|ca|gw|ce|he|sm|" +
+			"(?:street|avenue|road|drive|boulevard|lane|place|terrace|parkway|" +
+			"circle|highway|pike|row|crescent|close|green|grove|" +
+			"gate|heights|manor|ridge|rise|square|" +
+			"hill|hills|acres|valley|rue|chemin|route|terrasse|rang|promenade|" +
+			"all[ée]e?|st|ave|av|av\\.|rd|dr|blvd|boul|boul\\.|ln|ct|pl|" +
+			"ter|terr|pkwy|cir|ci|hwy|wy|trl|cres|cr|cl|pt|gr|gv|ga|ht|hts|ld|lk|pa|" +
+			"pk|rg|ri|rw|sq|tc|vi|vw|wk|co|ba|bv|hl|tr|cv|gd|mt|gw|sm|" +
 			"rp|al|ch|ch\\.|chem|chem\\.|rte|all\\.|allee|prom|prom\\.)",
 		NAME_PART =
 			"(?:\\d{1,2}(?:st|nd|rd|th)|[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ''\\-]*)",
@@ -1479,16 +1478,6 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			address_pattern_5: /\b(?:(?:p\.?\s*o\.?\s*box)|(?:post\s+office\s+box)|(?:c\.?\s*p\.?)|(?:b\.?\s*p\.?)|(?:case\s+postale)|(?:bo[iî]te\s+postale)|(?:casier\s+postal))(?:\.+)?[ \t]*(?:#|no\.?|n[º°]|n°|num(?:[ée]ro)?\.?)?[ \t]*(?<box_number>[A-Za-z0-9][A-Za-z0-9\\-]*)\b/giu,
 
 			/*
-			* Address pattern 6:
-			* NUMBER + STREET NAME (without street type)
-			* e.g. 123 Main, 456 Wellington
-			*
-			* This regex should only be executed when the sentence
-			* contains address-related keywords.
-			*/
-			address_pattern_6: /\b\d{1,6}[A-Za-z]?\s+[A-ZÀ-ÿ][A-Za-zÀ-ÿ'-]*(?:\s+[A-ZÀ-ÿ][A-Za-zÀ-ÿ'-]*){0,2}\b/g,
-
-			/*
 			* Username:
 			* "username" or "user",
 			* followed by a colon or an equals sign,
@@ -1502,18 +1491,7 @@ wb.findPotentialPII = function( str, scope, opts ) {
 			* followed by a ":" or a "=",
 			* followed by any character that is not a " " or a "&"
 			*/
-			password: /(?:(password|pass)[%20]?([:=]|(%EF%BC%9A))[^\s&]*)/ig,
-
-			/*
-			* Generic identifiers following common keywords
-			*/
-			identifier: new RegExp(
-				"\\b(?:tracking(?:\\s+number)?|tracking\\s+code|reference(?:\\s+(?:number|code))?|confirmation(?:\\s+(?:number|code))?|request(?:\\s+number)?|" +
-			"ticket(?:\\s+number)?|case(?:\\s+number)?|file(?:\\s+number)?|application(?:\\s+number)?|account(?:\\s+code)?|client\\s+code|identifier|" +
-			"num(?:é|e)ro\\s+de\\s+dossier|num(?:é|e)ro\\s+de\\s+demande|num(?:é|e)ro\\s+de\\s+suivi|num(?:é|e)ro\\s+de\\s+r(?:é|e)f(?:é|e)rence|" +
-			"r(?:é|e)f(?:é|e)rence|identifiant|code\\s+client|id)(?:\\s+(?:is|was|est|était))?\\s*[:#=-]?\\s*((?=[A-Za-z0-9_-]{4,}\\b)[A-Za-z0-9_-]*\\d[A-Za-z0-9_-]*)\\b",
-				"ig"
-			)
+			password: /(?:(password|pass)[%20]?([:=]|(%EF%BC%9A))[^\s&]*)/ig
 		},
 		isFound = false,
 		txtMarker = opts && opts.replaceWith ? opts.replaceWith : "",
@@ -1559,15 +1537,8 @@ wb.findPotentialPII = function( str, scope, opts ) {
 		if ( arMatchedStr ) {
 			isFound = true;
 			if ( toClean ) {
-				if ( valKey === "identifier" ) {
-					str = str.replace( validatedScope[ valKey ], function( match, value ) {
-						var marker = isFullBlock ? "█".repeat( value.length ) : settings.replaceWith;
-						return match.slice( 0, match.length - value.length ) + marker;
-					} );
-				} else {
-					txtMarker = isFullBlock ? "█".repeat( arMatchedStr[ 0 ].length ) : txtMarker;
-					str = str.replaceAll( validatedScope[ valKey ], txtMarker );
-				}
+				txtMarker = isFullBlock ? "█".repeat( arMatchedStr[ 0 ].length ) : txtMarker;
+				str = str.replaceAll( validatedScope[ valKey ], txtMarker );
 			}
 		}
 	}
