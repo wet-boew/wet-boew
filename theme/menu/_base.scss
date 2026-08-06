@@ -24,7 +24,7 @@
 		> {
 			li {
 				> {
-					a {
+					a, details > summary {
 						border-left: 1px solid $wb-sm-menu-li-a-border-left;
 						color: $mb-pnl-body-link-color;
 
@@ -41,7 +41,7 @@
 
 				&:last-child {
 					> {
-						a {
+						a, details > summary {
 							border-right: 1px solid $wb-sm-menu-li-last-child-border-right;
 						}
 					}
@@ -49,7 +49,7 @@
 
 				&.active {
 					> {
-						a {
+						a, details > summary {
 							@extend %wet-theme-wb-menu-hover-active;
 						}
 					}
@@ -58,8 +58,8 @@
 		}
 	}
 
-	.sm {
-		&.open {
+	// .sm {
+		.sm.open, [open] .sm {
 			background: $wb-sm-sm-open-background;
 			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
 			border-left: 0;
@@ -94,14 +94,15 @@
 			}
 		}
 
-		.row {
+		.sm .row { /* Unsure what the use case for this is... */
 			background: transparent;
 
 			a {
 				color: $wb-sm-sm-row-a-color;
 			}
 		}
-	}
+
+	// }
 
 	#wb-sec-p {
 		display: none;
@@ -181,7 +182,7 @@
 		}
 	}
 
-	.sm-pnl {
+	.sm-pnl { /* Top part of the mobile menu overlay */
 		@extend %wet-theme-site-menu-mb-pnl-bg;
 	}
 
