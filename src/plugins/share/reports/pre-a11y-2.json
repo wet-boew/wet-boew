@@ -5,15 +5,15 @@
 
     "earl:subject": {
         "@id": "_:subject",
-        "dct:references": "https://wet-boew.github.io/gcweb-compiled-demos/wetboew-demos/equalheight/equalheight-en.html",
+        "dct:references": "https://wet-boew.github.io/wet-boew/demos/share/share-en.html",
         "@type": [
             "earl:TestSubject",
             "schema:WebPage"
         ],
-        "dct:description": "Equalize the height of elements on the same baseline.",
+        "dct:description": "Share widget on your site enables users to quickly share content with their networks, hence increasing the reach of your website.",
         "earl:pointer": {
             "@type": "oa:CssSelector",
-            "@value": ".wb-eqht"
+            "@value": ".wb-share,[data-wb-share]"
         }
     },
 
@@ -28,7 +28,7 @@
         }
     },
 
-    "dct:date": "2023-07-25",
+    "dct:date": "2023-09-19",
 
     "dct:description": "Evaluation of all WCAG 2.1 SC at level AA.",
 
@@ -38,7 +38,7 @@
 
     "earl:result": [{
             "earl:test": "WCAG21:non-text-content",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "earl:subject": "_:subject",
             "dct:description": "",
             "dct:modified": null,
@@ -247,7 +247,7 @@
         {
             "earl:test": "WCAG21:content-on-hover-or-focus",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
@@ -346,8 +346,8 @@
         {
             "earl:test": "WCAG21:focus-order",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:passed",
-            "dct:description": "",
+            "earl:outcome": "earl:cantTell",
+            "dct:description": "When users click on the link Share this page the dialog box pop up. The focus should move to the dialog box. Currently the screen reader (NVDA) doesn't inform the users about the dialog box.",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
             "acr:relevancy": "wbv:acr#noRelevancy",
@@ -357,7 +357,7 @@
         {
             "earl:test": "WCAG21:link-purpose-in-context",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
@@ -390,7 +390,7 @@
         {
             "earl:test": "WCAG21:focus-visible",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
@@ -423,7 +423,7 @@
         {
             "earl:test": "WCAG21:label-in-name",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
@@ -467,7 +467,7 @@
         {
             "earl:test": "WCAG21:on-focus",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
@@ -555,8 +555,8 @@
         {
             "earl:test": "WCAG21:parsing",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:passed",
-            "dct:description": "",
+            "earl:outcome": "earl:failed",
+            "dct:description": "Attribute open not allowed on element div at this point. div class=mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready ... open=open",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
             "acr:relevancy": "wbv:acr#noRelevancy",
@@ -566,7 +566,7 @@
         {
             "earl:test": "WCAG21:name-role-value",
             "earl:subject": "_:subject",
-            "earl:outcome": "earl:inapplicable",
+            "earl:outcome": "earl:passed",
             "dct:description": "",
             "dct:modified": null,
             "acr:severity": "acr:noSeverity",
