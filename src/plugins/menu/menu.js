@@ -93,11 +93,9 @@ var componentName = "wb-menu",
 			// if there is a submenu lets put in the aria for it
 			if ( $subMenu.length !== 0 ) {
 
-				$elm.attr( "aria-haspopup", "true" );
-
-				$subMenu.attr( {
-					"aria-expanded": "false",
-					"aria-hidden": "true"
+				$elm.attr( {
+					"aria-haspopup": "true",
+					"aria-expanded": "false"
 				} );
 
 				// recurse into submenu
@@ -120,8 +118,8 @@ var componentName = "wb-menu",
 			sectionHtml = "<li><details>" + "<summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
 				menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
-				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
-				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
+				"' aria-haspopup='true' aria-expanded='false'>" + $section.text() + "</summary>" +
+				"<ul class='list-unstyled mb-sm' role='menu'>";
 
 		// Convert each of the list items into WAI-ARIA menuitems
 		for ( k = 0; k !== itemsLength; k += 1 ) {
@@ -435,23 +433,20 @@ var componentName = "wb-menu",
 	 * @param {boolean} removeActive Whether or not to keep the active class
 	 */
 	menuClose = function( $elm, removeActive ) {
+
+		// Adjust top-level menu item's aria-expanded attribute
+		$elm
+			.find( "[aria-haspopup=true]" )
+			.attr( "aria-expanded", "false" );
+
 		$elm
 			.removeClass( "sm-open" )
 			.children( ".open" )
 			.removeClass( "open" )
-			.attr( {
-				"aria-hidden": "true",
-				"aria-expanded": "false"
-			} )
 
 		// Close nested submenus
 			.find( "details" )
-			.removeAttr( "open" )
-			.children( "ul" )
-			.attr( {
-				"aria-hidden": "true",
-				"aria-expanded": "false"
-			} );
+			.removeAttr( "open" );
 
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
@@ -473,15 +468,14 @@ var componentName = "wb-menu",
 		// Ignore if doesn't have a submenu
 		if ( $menuLink.attr( "aria-haspopup" ) === "true" ) {
 
+			// Add an aria-expanded attribute to the menu link
+			menuLink.attr( "aria-expanded", "true" );
+
 			// Add the open state classes
 			$menu
 				.addClass( "sm-open" )
 				.children( ".sm" )
-				.addClass( "open" )
-				.attr( {
-					"aria-hidden": "false",
-					"aria-expanded": "true"
-				} );
+				.addClass( "open" );
 		}
 	},
 
@@ -556,7 +550,7 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 
 // Prevent opening another menu if mouse re-enters already opened menu
 $document.on( "mouseenter", selector + " .sm", function() {
-	if ( $( this ).attr( "aria-expanded" ) === "true" ) {
+	if ( $( this ).hasClass( "open" ) ) {
 		clearTimeout( globalTimeout );
 	}
 } );
@@ -583,16 +577,14 @@ $document.on( "click", selector + " .item[aria-haspopup=true]", function( event 
 $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
 	var menuItem = event.currentTarget,
 		parent = menuItem.parentNode,
-		submenu = parent.getElementsByTagName( "ul" )[ 0 ],
-		isOpen = submenu.getAttribute( "aria-hidden" ) === "false",
+		isOpen = parent.hasAttribute( "open" ),
 		menuItemOffsetTop, menuContainer;
 
 	// Close any other open menus
 	if ( !isOpen ) {
 		$( parent )
 			.closest( "[role^='menu']" )
-			.find( "[aria-hidden=false]" )
-			.parent()
+			.find( "[open]" )
 			.find( "[aria-haspopup=true]" )
 			.not( menuItem )
 			.trigger( "click" );
@@ -607,8 +599,7 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 		}
 	}
 
-	submenu.setAttribute( "aria-expanded", !isOpen );
-	submenu.setAttribute( "aria-hidden", isOpen );
+	parent.firstElementChild.setAttribute( "aria-expanded", !isOpen );
 } );
 
 // Clicks and touches outside of menus should close any open menus
@@ -747,13 +738,6 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 					// Close any other open menus
 					if ( !isOpen ) {
-						$( parent )
-							.closest( "[role^='menu']" )
-							.find( "[aria-hidden=false]" )
-							.parent()
-							.find( "[aria-haspopup=true]" )
-							.not( menuItem )
-							.trigger( "click" );
 
 						// Ensure the opened menu is in view if in a mobile panel
 						menuContainer = document.getElementById( "mb-pnl" );
@@ -768,13 +752,11 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						$menuItem.trigger( "click" );
 					}
 
-					// Update the WAI-ARIA states and move focus to
-					// the first submenu item
+					// Update the menu item's WAI-ARIA state
+					menuItem.setAttribute( "aria-expanded", "true" );
+
+					// Move focus to the first submenu item
 					$parent.children( "ul" )
-						.attr( {
-							"aria-expanded": "true",
-							"aria-hidden": "false"
-						} )
 						.find( "[role=menuitem]:first" )
 						.trigger( focusEvent );
 				}
@@ -824,7 +806,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 							.trigger( focusEvent );
 
 					// No higher-level menu but the current submenu is open
-					} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
+					} else if ( $menuItem.parent().attr( "open" ) ) {
 						event.preventDefault();
 						$menuItem
 							.trigger( "click" )
@@ -864,7 +846,7 @@ $document.on( "keyup", selector + " [role=menuitem]", function( event ) {
 // Close the mobile panel if switching to medium, large or extra large view
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
-	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
+	if ( mobilePanel && mobilePanel.getAttribute( "role" ) && !mobilePanel.getAttribute( "open" ) ) {
 		$( mobilePanel ).trigger( {
 			type: ( "close" ),
 			namespace: "wb-overlay",
