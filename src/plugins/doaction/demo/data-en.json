@@ -1,0 +1,16 @@
+{
+  "city": {
+    "gat": "Gatineau",
+    "ott": "Ottawa",
+    "vdm": "Val-des-monts"
+  },
+  "fruit": "Perry",
+  "country": {
+    "name": "Canada",
+    "province": {
+      "qc": "Quebec",
+      "on": "Ontario",
+      "ma": "Manitoba"
+    }
+  }
+}
