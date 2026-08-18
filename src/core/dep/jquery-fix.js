@@ -199,6 +199,15 @@ var localParseHTML = jQuery.parseHTML,
 		"<td />",
 		"<td/>"
 	],
+	allowedTags = [
+		"gc-combobox"
+	],
+
+	// Declare the allowed attributes for custom tags
+	allowedTagAttributes = {
+		"gc-combobox": [ "all-options-tag", "enable-select-all", "options" ]
+	},
+
 	sanitize = function( html ) {
 
 		// Add an exception for DataTable plugin
@@ -206,7 +215,14 @@ var localParseHTML = jQuery.parseHTML,
 			return html;
 		}
 
-		return DOMPurify.sanitize( html );
+		return DOMPurify.sanitize( html, {
+			ADD_TAGS: allowedTags,
+
+			// Add the allowed attributes for the declared custom tags to prevent them from being stripped during sanitization
+			ADD_ATTR: function( attributeName, tagName ) {
+				return ( allowedTagAttributes[ tagName ] || [] ).includes( attributeName );
+			}
+		} );
 	};
 
 jQuery.parseHTML = function( data, context, keepScripts ) {
