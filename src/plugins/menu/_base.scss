@@ -6,6 +6,43 @@
 /*
  * Menu Sass
  */
+
+/* Extras to prevent goofy default summary styling */
+.wb-menu .menu > li > details > summary { /* Prevents top-level mega menu links from becoming super wide when their submenus are open */
+	display: inline-block !important;
+}
+
+.wb-menu summary > .glyphicon:first-child { /* Undoes a default summary selector to prevent glyphicons from becoming inline and consequently causing top-level mega menu links to split across lines */
+  display: inline-block;
+}
+
+.wb-menu .menu > li > details > summary::marker { /* Prevents summary arrows from appearing on top-level mega menu links */
+	content: none;
+}
+
+.wb-menu details[open] { /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
+	padding-bottom: 0;
+}
+
+.wb-menu details summary { /* Undoes goofy default selectors... should these be set to revert instead of initial? */
+	border-radius: initial;
+	text-indent: initial;
+}
+
+.wb-menu details summary.item:focus {
+	outline-offset: -2px; /* Replicate the same outline offset as focused links (to match how the old top-level mega menu links looked when focused) */
+	outline-style: revert; /* Undoes goofy default selector */
+	outline-width: revert; /* Undoes goofy default selector */
+}
+
+.wb-menu details[open] > summary { /* Undoes a default summary selector that adds a small bottom margin */
+	margin-bottom: 0;
+}
+
+.wb-menu details[open] .sm {
+	margin-left: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
+}
+
 .expicon {
 	font-size: .7em;
 	margin: 0 -.35em 0 .7em;
@@ -13,12 +50,13 @@
 
 .wb-menu {
 	.sm {
-		display: none;
+		display: none; // TODO: Not needed anymore
 		max-height: 0;
 		overflow: hidden;
 		position: relative;
+	}
 
-		&.open {
+		.sm.open, [open] .sm {
 			display: inline;
 			max-height: 1000px;
 			min-width: 12.5em;
@@ -30,12 +68,13 @@
 			li {
 				@extend %global-display-block;
 
-				a {
+				a, summary {
 					text-align: left;
 				}
 			}
 		}
 
+	.sm {
 		details {
 			> {
 				* {
@@ -56,25 +95,30 @@
 				margin: 0;
 				padding: 0;
 
-				a {
+				a, summary {
 					@extend %global-text-decoration-none;
 
-					display: block;
+					display: block; /* TODO: Get rid of this property or change it to inline-block whenever I go all-in on mega menu bar summaries AND give it important */
 					padding: 1em;
 					text-align: center;
+				}
 
-					&:hover,
-					&:focus {
+					a:hover,
+					a:focus {
 						@extend %global-text-decoration-none;
 					}
 
-					&[aria-haspopup] {
+					a[aria-haspopup] {
 						&:hover,
 						&:focus {
 							cursor: default;
 						}
 					}
-				}
+
+					/* Rehash of a[aria-haspopup] selector */
+					summary {
+						cursor: default;
+					}
 			}
 		}
 	}
@@ -276,15 +320,16 @@
 			}
 		}
 
-		.sm {
-			&.open {
+		// .sm { /* TODO: RTL will need to be tested */
+			.sm.open, [open] .sm {
 				li {
-					a {
+					a, summary {
 						text-align: right;
 					}
 				}
 			}
-		}
+
+		// }
 	}
 
 	.expicon {
