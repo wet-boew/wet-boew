@@ -428,6 +428,10 @@ var componentName = "wb-mltmd",
 	playerApi = function( fn, args ) {
 		var $this, method;
 
+		var video = document.getElementById( "fs-video" );
+
+		const fullscreenTarget = document.getElementById( "mltmd-fs-btn" );
+
 		switch ( fn ) {
 			case "play":
 				try {
@@ -447,20 +451,35 @@ var componentName = "wb-mltmd",
 				return $( this ).hasClass( captionClass );
 			case "setCaptionsVisible":
 				$this = $( this );
-				if ( args ) {
-					$this.addClass( captionClass );
+				if ( document.fullscreenElement ) {
+					if ( args ) {
+						$this.addClass( captionClass );
+					} else {
+						$this.removeClass( captionClass );
+					}
 				} else {
-					$this.removeClass( captionClass );
+					if ( args ) {
+						$this.addClass( captionClass );
+					} else {
+						$this.removeClass( captionClass );
+					}
 				}
 				$this.trigger( captionsVisibleChangeEvent );
 				break;
 			case "fullscreen":
-				if ( this.object.requestFullscreen ) {
-					this.object.requestFullscreen();
-				} else if ( this.object.webkitRequestFullscreen ) { /* Safari */
-					this.object.webkitRequestFullscreen();
-				} else if ( this.object.msRequestFullscreen ) { /* IE11 */
-					this.object.msRequestFullscreen();
+				if ( document.fullscreenElement ) {
+					document.exitFullscreen();
+				} else {
+					if ( video ) {
+						video.setAttribute( "playsinline", "true" );
+					}
+					if ( fullscreenTarget.requestFullscreen ) {
+						fullscreenTarget.requestFullscreen();
+					} else if ( fullscreenTarget.webkitRequestFullscreen ) { /* Safari */
+						fullscreenTarget.webkitRequestFullscreen();
+					} else if ( fullscreenTarget.msRequestFullscreen ) { /* IE11 */
+						fullscreenTarget.msRequestFullscreen();
+					}
 				}
 				break;
 			case "getBuffering":

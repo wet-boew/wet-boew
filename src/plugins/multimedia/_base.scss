@@ -47,6 +47,11 @@
 	.display {
 		&:before {
 			text-align: center;
+			z-index: 1;
+
+			&:fullscreen {
+				padding-bottom: 10em;
+			}
 		}
 
 		&:after {
@@ -75,6 +80,33 @@
 	display: table-cell;
 	height: #{$line-height-base * $mm-cc-lines}em;
 	vertical-align: middle;
+}
+
+:fullscreen .wb-mltmd {
+	display: flex;
+	height: auto;
+	position: relative;
+	width: auto;
+}
+
+:fullscreen .mltmd-fs-fc {
+	bottom: 0;
+	position: absolute;
+}
+
+:fullscreen .wb-mltmd-video {
+	height: auto;
+	margin: auto;
+	padding-bottom: 10em;
+	width: 100%;
+}
+
+:fullscreen .display {
+	cursor: pointer;
+	height: 80%;
+	margin: auto;
+	position: relative;
+	width: auto;
 }
 
 .wb-mltmd {
@@ -121,7 +153,7 @@
 			.wb-mm-cc {
 				display: table;
 				height: calc(#{$line-height-base * $mm-cc-lines}em + #{$mm-cc-padding * 2});
-				padding: $mm-cc-padding;
+				padding: 0;
 			}
 		}
 
@@ -184,11 +216,30 @@
 	}
 }
 
+:fullscreen .wb-mm-cc {
+	bottom: 7em;
+	padding-bottom: 0.5em;
+	position: absolute;
+	width: 100%;
+}
+
+:fullscreen .wb-mm-ctrls {
+	bottom: 2.5em;
+	position: absolute;
+	width: 100%;
+}
+
+:fullscreen .figcaption {
+	bottom: 0;
+	position: absolute;
+}
+
 .wb-mm-cc {
 	@extend %captions-hidden;
 
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
+	position: relative;
 	text-align: center;
 	transition: all .26s ease;
 	width: 100%;
