@@ -152,8 +152,15 @@ var componentName = "wb-tables",
 		$pagination.empty();
 		$pagination.append( ol );
 
-		// Update the aria-pressed properties on the pagination buttons
-		// Should be pushed upstream to DataTables
+		// Prefix each page number with an invisible "Page" so the link reads as
+		// "Page 2" rather than a bare "2".
+		//
+		// The current page is not marked here. DataTables sets aria-current="page"
+		// on it, which is the correct pattern for pagination. This used to add
+		// aria-pressed as well, from a time when DataTables did not, but these are
+		// anchors carrying an explicit role="link" and aria-pressed is not allowed
+		// on that role, so it was an axe aria-allowed-attr error on every page
+		// button.
 		$pagination.find( ".paginate_button" )
 			.attr( {
 				"href": "#" + navFocusOnId
@@ -167,12 +174,9 @@ var componentName = "wb-tables",
 			} )
 
 			.not( ".previous, .next" )
-			.attr( "aria-pressed", "false" )
 			.html( function( index, oldHtml ) {
 				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
-			} )
-			.filter( ".current" )
-			.attr( "aria-pressed", "true" );
+			} );
 	};
 
 // Bind the init event of the plugin
