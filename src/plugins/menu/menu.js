@@ -786,9 +786,13 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					console.log($menuItem.parent().attr( "open" ));
 					event.preventDefault(); //this is pointless... it's already in the parent if condition
 					let $parentLi = $menuItem.closest( "li" );
-					$subMenu = $parentLi.find( ".sm, .mb-sm" ); //NOTE: Targets mega/mobile menu flavours of the same class name
+					console.log("PARENT LI:");
+					console.log($parentLi);
+					$subMenu = $parentLi.find( "ul" );
 
 					// Set focus on the first submenu item
+					console.log("TRYING TO FOCUS ONTO A LINK OR SUMMARY IN THIS CHILD:");
+					console.log($subMenu.children( "li" ));
 					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
 				} else {
 
