@@ -748,8 +748,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-		// Many strange issues will likely occur as a result of the ARIA roles/etc I scrapped
-
 		// Tab key = Hide all sub-menus
 		//Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
 		if ( which === TAB_KC ) {
@@ -769,87 +767,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			menuItem.click();
 			menuClose( $( selector + " .active" ), true );
 
-		// Menu item is within a menu bar
-		} else if ( inMenuBar ) {
-
-			console.log("In inMenuBar if");
-
-			// Left-up / right-down arrow = Previous / next menu item
-			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
-				event.preventDefault();
-				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
-				console.log("Moving left-up/right-down on mega menu bar");
-
-				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
-				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
-					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the mega menu...");
-					console.log($menuItem.parent().attr( "open" ));
-					event.preventDefault(); //this is pointless... it's already in the parent if condition
-					let $parentLi = $menuItem.closest( "li" );
-					$subMenu = $parentLi.find( ".sm" );
-
-					// Set focus on the first submenu item
-					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
-				} else {
-
-					console.log("going left/right...");
-					menuIncrement(
-						$menu.find( "> li > a, > li > details > summary" ),
-						$menuItem,
-						which === LEFT_KC || which === UP_KC ? -1 : 1
-					);
-				}
-
-			// HOME / END keys = First / last menu item
-			//NOTE: Only works on top menu bar atm
-			} else if ( which === HOME_KC || which === END_KC ) {
-				event.preventDefault();
-				console.log("Pressed HOME or END on mega menu bar");
-				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
-				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
-				menuIncrement(
-					$menuItems,
-					which === HOME_KC ? $menuItems.first() : $menuItems.last(),
-					which === 0
-				);
-
-			// Toggle sub-menu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC ) ) {
-				event.preventDefault(); // Absolutely need this for Enter key compatibility!!!
-				console.log("inside mystery mega menu submenu logic");
-				let $parentDetails = $menuItem.parent();
-				let $parentLi = $menuItem.closest( "li" );
-				$subMenu = $parentLi.find( ".sm" );
-
-				// Open the submenu if it is not already open
-				if ( !$parentDetails.attr( "open" ) ) {
-					console.log("opening the mega menu submenu");
-					menuDisplay( $menu.closest( selector ), $parentLi );
-				} else {
-					console.log("closing the mega menu submenu");
-					menuClose( $menu.closest( selector ).find( ".active" ), false );
-				}
-
-				// Set focus on the first submenu item
-				// Nerfed this to prevent pressing top-level mega menu items from auto-focusing onto the first submenu item
-				//$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent ); //oooooooooooooooooooooooooo
-
-			// Hide sub-menus and set focus
-			//NOTE: Very similar to aforementioned else if, but doesn't toggle (if I try porting it there I'd need to ensure ESC never toggles)
-			} else if ( which === ESC_KC ) {
-				event.preventDefault();
-				menuClose( $menu.closest( selector ).find( ".active" ), false );
-
-			// Letters only
-			} else if ( which > 64 && which < 91 ) {
-				event.preventDefault();
-				selectByLetter(
-					which,
-					$menuItem.parent().find( "> ul > li > a, > ul > li > details > summary" ).get()
-				);
-			}
-
-		// Menu item is not within a menu bar
+		// Menu item is within a menu
 		} else {
 			console.log("In else");
 
@@ -861,20 +779,20 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
 				console.log("Moving left-up/right-down on mobile menu");
 
-				// In the mobile menu... if the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
+				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
 				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
-					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the mobile menu...");
+					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the menu...");
 					console.log($menuItem);
 					console.log($menuItem.parent().attr( "open" ));
 					event.preventDefault(); //this is pointless... it's already in the parent if condition
 					let $parentLi = $menuItem.closest( "li" );
-					$subMenu = $parentLi.find( ".mb-sm" ); //NOTE: This is the same as the mega menu logic's selector, but targets a mobile flavour of its class name
+					$subMenu = $parentLi.find( ".sm, .mb-sm" ); //NOTE: Targets mega/mobile menu flavours of the same class name
 
 					// Set focus on the first submenu item
 					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
 				} else {
 
-					console.log("going left/right in the mobile menu...");
+					console.log("going left/right in the menu...");
 					menuIncrement(
 						$menu.children( "li" ).find( menuItemSelector ),
 						$menuItem,
@@ -884,10 +802,9 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				}
 
 			// HOME / END keys = First / last menu item
-			//NOTE: Copy of the top menu bar's logic for "not within a menu bar" scenarios, logic hasn't changed at all... so maybe only provide the logic once
 			} else if ( which === HOME_KC || which === END_KC ) {
 				event.preventDefault();
-				console.log("Pressed HOME or END on when not within a menu bar");
+				console.log("Pressed HOME or END");
 				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
 				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
 				menuIncrement(
@@ -896,6 +813,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					which === 0
 				);
 
+			// Toggle sub-menu
 			// Enter or space arrow with a submenu
 			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC ) ) {
 				$parent = $menuItem.parent(); //shouldn't need to use closest() for this part since the else if condition's hasPopup check will guarantee this can only run against summaries that are top-level mega menu items
