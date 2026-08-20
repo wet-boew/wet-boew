@@ -29,6 +29,7 @@ details {
 		}
 
 		&:focus {
+			outline-color: currentColor;
 			outline-style: dotted;
 			outline-width: 1px;
 		}

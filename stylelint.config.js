@@ -92,6 +92,12 @@ module.exports = {
 				"selector-no-vendor-prefix": null,
 				"selector-pseudo-element-colon-notation": null,
 				"shorthand-property-no-redundant-values": null,
+				"value-keyword-case": [
+					"lower",
+					{
+						"camelCaseSvgKeywords": true
+					}
+				],
 				"value-no-vendor-prefix": null
 			}
 		},
@@ -120,7 +126,13 @@ module.exports = {
 				"selector-class-pattern": null,
 				"selector-id-pattern": null,
 				"selector-not-notation": null,
-				"selector-pseudo-element-colon-notation": null
+				"selector-pseudo-element-colon-notation": null,
+				"value-keyword-case": [
+					"lower",
+					{
+						"camelCaseSvgKeywords": true
+					}
+				]
 			}
 		}
 	],
