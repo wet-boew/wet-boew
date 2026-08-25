@@ -39,8 +39,12 @@
 	margin-bottom: 0;
 }
 
-.wb-menu details[open] .sm {
+.wb-menu details[open] .sm { /* Prevents mega menu dropdowns from getting horizontally-misaligned */
 	margin-left: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
+}
+
+[dir="rtl"] .wb-menu details[open] .sm {
+	margin-right: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
 }
 
 .expicon {
