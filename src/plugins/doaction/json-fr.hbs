@@ -1,0 +1,349 @@
+---
+{
+	"title": "Effectuer un action - JSON",
+	"language": "fr",
+	"category": "Plugiciels",
+	"description": "Execute JSON loading and patching action through the JSON manager",
+	"tag": "doaction",
+	"parentdir": "doaction",
+	"altLangPage": "json-en.html",
+	"dateModified": "2023-10-03"
+}
+---
+
+<p>Cette application est utilisé avec JSON-Manager et Data-JSON. La documentation sur l'application du correctif est documentée dans le gestionnaire JSON et dans le correctif de  mappage d'URL.</p>
+<h2>Télécharger un fichier JSON sur demande</h2>
+<p>Télécharger les fichiers</p>
+
+<ul>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader", "url": "demo/file-1-fr.json" }'>JSON fichier 1</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader", "url": "demo/file-2-fr.json" }'>JSON fichier 2</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader", "url": "demo/file-3-fr.json" }'>JSON fichier 3</button></li>
+<li><button type="button" data-wb-doaction='{ "action": "loadJSON", "source": "#testLoader", "url": "demo/file-4-fr.json" }'>JSON fichier 4</button></li>
+</ul>
+
+<div id="testLoader" data-wb-jsonmanager='{
+		"url": "demo/empty.json",
+		"name": "jmanager"
+	}'></div>
+<p>Téléchargement des données: <span data-json-replace="#[jmanager]/data">rien n'est encore télechargé</span></p>
+<div>
+<ul data-wb-json='{
+		"url": "#[example2]",
+		"mapping": [
+			{ "selector": "li", "value": "/itm1" }
+		]
+	}'>
+<template>
+<li></li>
+</template>
+</ul>
+</div>
+<details>
+<summary>Code source</summary>
+<h3>HTML</h3>
+<pre><code>&lt;p&gt;Télécharger les fichiers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#testLoader&quot;, &quot;url&quot;: &quot;demo/file-1-fr.json&quot; }'&gt;JSON fichier 1&lt;/button&gt;&lt;/li&gt;
+&lt;li&gt;&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#testLoader&quot;, &quot;url&quot;: &quot;demo/file-2-fr.json&quot; }'&gt;JSON fichier 2&lt;/button&gt;&lt;/li&gt;
+&lt;li&gt;&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#testLoader&quot;, &quot;url&quot;: &quot;demo/file-3-fr.json&quot; }'&gt;JSON fichier 3&lt;/button&gt;&lt;/li&gt;
+&lt;li&gt;&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#testLoader&quot;, &quot;url&quot;: &quot;demo/file-4-fr.json&quot; }'&gt;JSON fichier 4&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&quot;testLoader&quot; data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/empty.json&quot;,
+		&quot;name&quot;: &quot;jmanager&quot;
+	}'&gt;&lt;/div&gt;
+&lt;p&gt;Téléchargement des données: &lt;span data-json-replace=&quot;#[jmanager]/data&quot;&gt;rien n'est encore télechargé&lt;/span&gt;&lt;/p&gt;</code></pre>
+<h3>Fichier <code>demo/file-1-fr.json</code></h3>
+<pre><code>{"data": "Du fichier JSON 1"}</code></pre>
+<h3>Fichier <code>demo/file-2-fr.json</code></h3>
+<pre><code>{"data": "+Du fichier JSON 2"}</code></pre>
+<h3>Fichier <code>demo/file-3-fr.json</code></h3>
+<pre><code>{"data": "-Du fichier JSON 3"}</code></pre>
+<h3>Fichier <code>demo/file-4-fr.json</code></h3>
+<pre><code>{"data": "&amp;Du fichier JSON 4"}</code></pre>
+</details>
+<h2>Appliquer un correctif JSON</h2>
+<p>Utiliser la même configuration que celle décrite par le mappage d'URL</p>
+<button class="btn btn-primary" type="button" data-wb-doaction='{ "action": "patch", "source": "#testLoader", "patches": [
+	{ "op": "add", "path": "/data", "value": "Patched Data" }
+] }'>Appliquer un correctif</button>
+
+<p>Téléchargement des données: <span data-json-replace="#[jmanager]/data">rien n'est encore télechargé </span></p>
+<div>
+	<ul data-wb-json='{
+		"url": "#[example2]",
+		"mapping": [
+			{ "selector": "li", "value": "/itm1" }
+		]
+	}'>
+<template>
+<li></li>
+</template>
+</ul>
+</div>
+<details>
+<summary>Code source</summary>
+<h3>HTML</h3>
+<pre><code>&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#testLoader&quot;, &quot;patches&quot;: [
+	{ &quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/data&quot;, &quot;value&quot;: &quot;Patched Data&quot; }
+] }'&gt;Appliquer un correctif&lt;/button&gt;
+&lt;div id=&quot;testLoader&quot; data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/empty.json&quot;,
+		&quot;name&quot;: &quot;jmanager&quot;
+	}'&gt;&lt;/div&gt;
+&lt;p&gt;Téléchargement des données: &lt;span data-json-replace=&quot;#[jmanager]/data&quot;&gt;rien n'est encore télechargé &lt;/span&gt;&lt;/p&gt;</code></pre>
+<h3>Fichier <code>demo/empty.json</code></h3>
+<pre><code>{
+}</code></pre>
+</details>
+<h2>Appliquer un correctif JSON basé sur une valeur d'une entrée</h2>
+<p>Similaire à l'exemple de travail du
+correctif de mappage d'URL, elle partage les mêmes exigences qu'une expression par défaut + une expression régulière pour l'analyse.</p>
+<label>Entrez l'une des 3 valeurs suivantes "vdm" | "gat" | "ott"
+<input id="myinput" type="text" value="">
+</label>
+<div>
+<button class="btn btn-primary" type="button" data-wb-doaction='{ "action": "withInput", "srcInput": "#myinput", "actions": [
+	{
+		"action": "patch", "source": "#jmexample3", "base": "/ville", "match": "^[a-z][a-z][a-z]$", "default": "vdm",
+
+		"patches" : {
+			"op": "move",
+			"path": "{base}",
+			"from": "{base}/{qval}"
+		}
+	}
+] }'>Appliquer un correctif basé sur l'entrée d'utilisateur</button>
+</div>
+<p id="jmexample3" data-wb-jsonmanager='{ "url": "demo/data-fr.json", "name": "example4", "wait": true }'>Données corrigées selon la valeur de l'entrée: <span data-json-replace="#[example4]/ville">Rien n'est encore chargé</span></p>
+<div>
+	<ul data-wb-json='{
+		"url": "#[example2]",
+		"mapping": [
+			{ "selector": "li", "value": "/itm1" }
+		]
+	}'>
+<template>
+<li></li>
+</template>
+</ul>
+</div>
+<details>
+<summary>Code source</summary>
+<h3>HTML</h3>
+<pre><code>&lt;label&gt;Entrez l'une des 3 valeurs suivantes &quot;vdm&quot; | &quot;gat&quot; | &quot;ott&quot;
+&lt;input id=&quot;myinput&quot; type="text" value=&quot;&quot;&gt;
+&lt;/label&gt;
+&lt;button type=&quot;button&quot; data-wb-doaction='{ &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#myinput&quot;, &quot;actions&quot;: [
+	{
+		&quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#jmexample3&quot;, &quot;base&quot;: &quot;/ville&quot;, &quot;match&quot;: &quot;^[a-z][a-z][a-z]$&quot;, &quot;default&quot;: &quot;vdm&quot;,
+
+		&quot;patches&quot; : {
+			&quot;op&quot;: &quot;move&quot;,
+			&quot;path&quot;: &quot;{base}&quot;,
+			&quot;from&quot;: &quot;{base}/{qval}&quot;
+		}
+	}
+] }'&gt;Appliquer un correctif basé sur l'entrée d'utilisateur&lt;/button&gt;
+&lt;p id=&quot;jmexample3&quot; data-wb-jsonmanager='{ &quot;url&quot;: &quot;demo/data-fr.json&quot;, &quot;name&quot;: &quot;example4&quot;, &quot;wait&quot;: true }'&gt;Données corrigées selon la valeur de l'entrée: &lt;span data-json-replace=&quot;#[example4]/ville&quot;&gt;Rien n'est encore chargé&lt;/span&gt;&lt;/p&gt;</code></pre>
+<h3>Fichier <code>demo/data-en.json</code></h3>
+<pre><code>
+{
+"city": {
+"gat": "Gatineau",
+"ott": "Ottawa",
+"vdm": "Val-des-monts"
+},
+"fruit": "Perry",
+"country": {
+"name": "Canada",
+"province": {
+"qc": "Québec",
+"on": "Ontario",
+"ma": "Manitoba"
+}
+}
+}
+</code></pre>
+</details>
+
+<h2>Combinaison de télécharger et appliquer correctif basé sur la valeur d'un champ de date</h2>
+
+<div class="alert alert-danger"><p>Important: This example need to be moved in GCWeb because it show an example with Fieldflow</p></div>
+
+<ul>
+<li>Cet exemple inclut un élément de flux de champ utilisé pour afficher / masquer le code HTML approprié à l'aide des actions ajouterClasse&quot;addClass&quot; et supprimerClasse quot;removeClass&quot; de la classe caché &quot;hidden&quot;.</li>
+<li>La différence dans le corretif &quot;copier&quot; est visible dans le paramètre &quot;de&quot;. Un est &quot;standard&quot; et l'autre, &quot;express&quot;. Ceci définit le chemin pour la recherche JSON.</li>
+<li>L'action &quot;withIput&quot; nécessite un paramètre &quot;match&quot; et une paramètre &quot;default&quot;. Le paramètre &quot;match&quot; est une expression rationnelle pour les valeurs acceptables attendues du paramêtre &quot;srcInput&quot;. Le paramêtre &quot;défaut&quot; peut être une clé pour une recherche JSON - généralement un message d'erreur.</li>
+</ul>
+
+
+<div class="wb-fieldflow" data-wb-fieldflow='{
+	"default": [ { "action": "addClass", "source":"#standardaddremove", "class": "hidden" },
+					{ "action": "addClass", "source":"#expressaddremove", "class": "hidden"}]
+	}'>
+	<p>Sélectionnez une option de livraison:</p>
+	<ul>
+		<li data-wb-fieldflow='{ "action": "removeClass", "source":"#expressaddremove", "class": "hidden" }'>Rapide</li>
+		<li data-wb-fieldflow='{ "action": "removeClass", "source":"#standardaddremove", "class": "hidden" }'>Standard</li>
+	</ul>
+</div>
+
+<div id="standardaddremove" class="hidden">
+<label>Date de commande
+	<input type="date" id="standarddatefield" min="2019-06-10" max="2019-06-12" value="">
+</label>
+<button type="button" data-wb-doaction='[
+{ "action": "loadJSON", "source": "#smallLoader", "url": "demo/doaction-date-en.json" },
+{ "action": "withInput", "srcInput": "#standarddatefield", "actions": [
+{
+"action": "patch", "source": "#smallLoader", "match": "^20[1,2][8,9,0]-[1,0][0-9]-[0,1,2,3][0-9]$", "default": "bad-date",
+			"patches" : [
+				{
+				"op": "copy",
+				"path": "/date",
+				"from": "/standard/{qval}"
+				}
+			]
+		}
+	] }
+]'>Appliquez un correctif basé sur la date entrée</button>
+</div>
+
+<div id="expressaddremove" class="hidden">
+<label>Date de commande
+	<input type="date" id="expressdatefield" min="2019-06-10" max="2019-06-12" value="">
+</label>
+<button type="button" data-wb-doaction='[
+	{ "action": "loadJSON", "source": "#smallLoader", "url": "demo/doaction-date-fr.json" },
+	{ "action": "withInput", "srcInput": "#expressdatefield", "actions": [
+		{
+			"action": "patch", "source": "#smallLoader", "match": "^20[1,2][8,9,0]-[1,0][0-9]-[0,1,2,3][0-9]$", "default": "bad-date",
+
+			"patches" : [
+				{
+				"op": "copy",
+				"path": "/date",
+				"from": "/express/{qval}"
+				}
+			]
+		}
+	] }
+]'>Appliquez un correctif basé sur la date entrée</button>
+</div>
+
+<div id="smallLoader" data-wb-jsonmanager='{
+		"url": "demo/empty.json",
+		"name": "jsonsmall",
+		"wait": true
+	}'></div>
+
+
+<p>Date de livraison prévue: <span data-json-replace="#[jsonsmall]/date">Date pas encore été téléchargé</span></p>
+<div>
+	<ul data-wb-json='{
+		"url": "#[example2]",
+		"mapping": [
+			{ "selector": "li", "value": "/itm1" }
+		]
+	}'>
+<template>
+<li></li>
+</template>
+</ul>
+</div>
+<details>
+<summary>Code source</summary>
+<h3>HTML</h3>
+<pre><code>
+
+&lt;div class=&quot;wb-fieldflow&quot; data-wb-fieldflow='{
+	&quot;default&quot;: [ { &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#standardaddremove&quot;, &quot;class&quot;: &quot;hidden&quot; },
+					{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#expressaddremove&quot;, &quot;class&quot;: &quot;hidden&quot;}]
+	}'&gt;
+	&lt;p&gt;Sélectionnez une option de livraison:&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#expressaddremove&quot;, &quot;class&quot;: &quot;hidden&quot; }'&gt;Rapide&lt;/li&gt;
+		&lt;li data-wb-fieldflow='{ &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;#standardaddremove&quot;, &quot;class&quot;: &quot;hidden&quot; }'&gt;Standard&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;standardaddremove&quot; class=&quot;hidden&quot;&gt;
+&lt;label&gt;Date de commande
+	&lt;input type=&quot;date&quot; id=&quot;standarddatefield&quot; min=&quot;2019-06-10&quot; max=&quot;2019-06-12&quot; value=&quot;&quot;&gt;
+&lt;/label&gt;
+&lt;button type=&quot;button&quot; data-wb-doaction='[
+{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;url&quot;: &quot;demo/doaction-date-fr.json&quot; },
+{ &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#standarddatefield&quot;, &quot;actions&quot;: [
+{
+&quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;match&quot;: &quot;^20[1,2][8,9,0]-[1,0][0-9]-[0,1,2,3][0-9]$&quot;, &quot;default&quot;: &quot;bad-date&quot;,
+			&quot;patches&quot; : [
+				{
+				&quot;op&quot;: &quot;copy&quot;,
+				&quot;path&quot;: &quot;/date&quot;,
+				&quot;from&quot;: &quot;/standard/{qval}&quot;
+				}
+			]
+		}
+	] }
+]'&gt;Appliquez un correctif basé sur la date entrée&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;expressaddremove&quot; class=&quot;hidden&quot;&gt;
+&lt;label&gt;Date de commande
+	&lt;input type=&quot;date&quot; id=&quot;expressdatefield&quot; min=&quot;2019-06-10&quot; max=&quot;2019-06-12&quot; value=&quot;&quot;&gt;
+&lt;/label&gt;
+&lt;button type=&quot;button&quot; data-wb-doaction='[
+	{ &quot;action&quot;: &quot;loadJSON&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;url&quot;: &quot;demo/doaction-date-fr.json&quot; },
+	{ &quot;action&quot;: &quot;withInput&quot;, &quot;srcInput&quot;: &quot;#expressdatefield&quot;, &quot;actions&quot;: [
+		{
+			&quot;action&quot;: &quot;patch&quot;, &quot;source&quot;: &quot;#smallLoader&quot;, &quot;match&quot;: &quot;^20[1,2][8,9,0]-[1,0][0-9]-[0,1,2,3][0-9]$&quot;, &quot;default&quot;: &quot;bad-date&quot;,
+
+			&quot;patches&quot; : [
+				{
+				&quot;op&quot;: &quot;copy&quot;,
+				&quot;path&quot;: &quot;/date&quot;,
+				&quot;from&quot;: &quot;/express/{qval}&quot;
+				}
+			]
+		}
+	] }
+]'&gt;Appliquez un correctif basé sur la date entrée&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;smallLoader&quot; data-wb-jsonmanager='{
+		&quot;url&quot;: &quot;demo/empty.json&quot;,
+		&quot;name&quot;: &quot;jsonsmall&quot;,
+		&quot;wait&quot;: true
+	}'&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Date de livraison prévue: &lt;span data-json-replace=&quot;#[jsonsmall]/date&quot;&gt;Date pas encore été téléchargé&lt;/span&gt;&lt;/p&gt;
+&lt;div&gt;
+	&lt;ul data-wb-json='{
+		&quot;url&quot;: &quot;#[example2]&quot;,
+		&quot;mapping&quot;: [
+			{ &quot;selector&quot;: &quot;li&quot;, &quot;value&quot;: &quot;/itm1&quot; }
+		]
+	}'&gt;
+</code></pre>
+<h3>Fichier <code>demo/doaction-date-fr.json</code></h3>
+<pre><code>
+{
+	"test" : "test trouvé!",
+	"express" : {
+		"bad-date" : "Date introuvable",
+		"2019-06-10" : "2019-06-13",
+		"2019-06-11" : "2019-06-14",
+		"2019-06-12" : "2019-06-15"
+	},
+	"standard" : {
+		"bad-date" : "Date introuvable",
+		"2019-06-10" : "2019-06-20",
+		"2019-06-11" : "2019-06-21",
+		"2019-06-12" : "2019-06-22"
+	}
+}
+</code></pre>
+</details>
