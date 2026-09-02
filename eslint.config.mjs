@@ -62,7 +62,11 @@ export default defineConfig( [ globalIgnores( [
 		"max-len": [ 2, 500 ],
 		"no-irregular-whitespace": 2,
 		"no-nested-ternary": 0,
-		"linebreak-style": 0
+		"linebreak-style": 0,
+
+		// failures from ESLint 10 that should be addressed
+		"no-useless-assignment": 0,
+		"no-unassigned-vars": 0
 	}
 }, {
 	files: [ "**/test.js" ],
