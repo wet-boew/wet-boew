@@ -54,6 +54,8 @@
   },
   "devDependencies": {
     "@double-great/stylelint-a11y": "^3.5.4",
+    "@eslint/eslintrc": "^3.3.7",
+    "@eslint/js": "^10.0.1",
     "@lodder/grunt-postcss": "^3.1.1",
     "assemble-contrib-i18n": "^0.1.6",
     "autoprefixer": "^10.6.1",
@@ -73,7 +75,7 @@
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^26.0.0",
+    "grunt-eslint": "^27.0.0",
     "grunt-gh-pages": "^4.0.0",
     "grunt-html": "^18.1.0",
     "grunt-i18n-csv": "^0.1.0",
