@@ -384,6 +384,11 @@ var componentName = "wb-frmvld",
 								$form.validate().element( this );
 							} );
 
+							// Ensuring email validation isn't done without the top-level domain (.com, .ca, .net, etc)
+							$.validator.addMethod( "emailDomain", function( value, element ) {
+								return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9]{0,61}[a-zA-Z0-9])?)+$/i.test( value );
+							}, "Please include the top-level domain (.com, .ca, .net, etc.) of the email address." );
+
 							// Clear the form and remove error messages on reset
 							$document.on( "click", selector + " input[type=reset]", function( event ) {
 								var which = event.which,
