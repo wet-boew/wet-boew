@@ -21,6 +21,7 @@ var componentName = "wb-menu",
 	focusEvent = "setfocus.wb",
 	detailsInitEvent = "wb-init.wb-details",
 	menuItemSelector = "> a, > details > summary",
+	stillInMenu = false,
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -625,16 +626,44 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 } );
 
 //Focus equivalent for mouseleave
+//Prevents active (highlight) effect from getting "stuck" when tabbing beyond top-level mega menu links
 $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 	var $currentTarget = $( event.currentTarget );
 
 	console.log("Focus is leaving the menu bar...");
+	console.log("Focusout event");
 	console.log(event);
+	console.log("$currentTarget:");
+	console.log($currentTarget);
+	console.log("event.relatedTarget:");
+	console.log(event.relatedTarget);
+	console.log("document.activeElement:");
+	console.log(document.activeElement);
+	console.log("stillInMenu:");
+	console.log(stillInMenu);
 
 	// Close the menu if the element that gained focus ISN'T a child of the menu
-	if ($currentTarget.find(event.relatedTarget).length === 0) {
+
+	//Debug attempt...
+	if (!event.relatedTarget) {
+		//window.alert("NOOOOOOO!!! relatedTarget is null :S!!!");
+	}
+
+	// Close the active mega menu dropdown only if focus landed outside of it
+	// Notes:
+	// * event.relatedTarget should correspond to the interactive element that's gaining focus
+	// * When pressing the Escape key to close nested dropdowns, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
+	if ( $currentTarget.find( event.relatedTarget ).length === 0 && !stillInMenu ) {
+		console.log("Closing the menu since the element that gained focus ISN'T a child of the menu");
 		menuClose( $currentTarget.find( ".active" ), true ); //NOTE: Can't pass event.target here directly since it's a link/summary and menuClose needs to take in an LI... although I could do closest() on event.target if I want... it's more in line with some other calls and might match faster since .item is a parent element
 	}
+
+	stillInMenu = false;
+} );
+
+$document.on( "focusin", function( event ) {
+	console.log("focusing in...");
+	console.log(event);
 } );
 
 // Prevent opening another menu if mouse re-enters already opened menu
@@ -659,8 +688,15 @@ $document.on( "click", selector + " summary", function( event ) {
 		isOpen = parent.hasAttribute( "open" ),
 		menuItemOffsetTop, menuContainer;
 
+	console.log("menuItem:");
+	console.log(menuItem);
+	console.log("parent:");
+	console.log(parent);
+
 	// Close any other open menus
 	if ( !isOpen ) {
+		console.log("parent details lacks an open attribute, so close other open menus");
+
 		$( parent )
 			.closest( "ul" )
 			.find( "[open]" )
@@ -818,8 +854,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				);
 
 			// Toggle sub-menu
-			// Enter or space arrow with a submenu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC ) ) {
+			// Enter, space or Escape key with a submenu
+			} else if ( hasPopup && ( ( which === ENTER_KC || which === SPACE_KC ) || (which === ESC_KC && $menuItem.parent().attr( "open" ) ) ) ) {
 				$parent = $menuItem.parent(); //shouldn't need to use closest() for this part since the else if condition's hasPopup check will guarantee this can only run against summaries that are top-level mega menu items
 
 				// Prevent handling by details.js polyfill
@@ -833,6 +869,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
 					isOpen = !!$parent.attr( "open" );
+					console.log("isOpen:");
+					console.log(isOpen);
 
 					//this is is where things are spiralling out of control... the old logic never got into this if when left/right pressing while deep inside a mega menu dropdown
 					console.log("summary element check... works in mobile menu and mega menu");
@@ -868,8 +906,15 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			// Escape, left / right arrow without a submenu
 			} else if ( which === ESC_KC || which === LEFT_KC || which === RIGHT_KC ) {
 				console.log("NEW: uh oh 1...");
+				console.log("ESC pressed 1");
+				console.log("$menu:");
+				console.log($menu);
 				$parent = $menu.parent();
+				console.log("$parent:");
+				console.log($parent);
 				$parentMenu = $parent.closest( "ul" );
+				console.log("$parentMenu:");
+				console.log($parentMenu);
 				if ( which === LEFT_KC || which === RIGHT_KC ) {
 					event.preventDefault();
 					console.log("NEW: uh oh 2...");
@@ -878,15 +923,21 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// If the parent menu is a menubar
 				if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
 					$menuLink = $menu.siblings( "a, summary" );
+					console.log("$menuLink:");
+					console.log($menuLink);
 
 					// Escape key = Close menu and return to menu bar item
 					if ( which === ESC_KC ) {
+						console.log("NEW: uh oh 3...");
+						console.log("ESC pressed 3");
 						event.preventDefault();
 						$menuLink.trigger( focusEvent );
 
 						// Close the menu but keep the referring link active
 						setTimeout( function() {
-							menuClose( $menuLink.parent(), false );
+							console.log("ESC pressed 3... trying to close the mega menu dropdown");
+							//NOTE: Using closest fixes mega menu dropdowns when inside a top-level menu item (using parent wasn't enough on its own because it matched details... whereas menuClose expects an li as its first param)
+							menuClose( $menuLink.parent().closest( "li" ), false );
 						}, 100 );
 
 					// Left / right key = Next / previous menu bar item
@@ -909,18 +960,28 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// menu or close the current submenu if there isn't
 				} else if ( which !== RIGHT_KC ) {
 					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
+					console.log("Inside the Escape or left arrow IF condition");
 
 					// There is a higher-level menu
 					if ( $parentMenu.length !== 0 ) {
 						event.preventDefault();
+						console.log("Fake click 1");
+						stillInMenu = true;
+						console.log("closest li menuItemSelector:");
+						console.log($menu.closest( "li" ).find( menuItemSelector ));
+						console.log("COMMENCING CLICK+FOCUS OF DEATH...");
 						$menu.closest( "li" )
-							.find( menuItemSelector )
+							.find( menuItemSelector ) //TODO: Don't use this anymore, menuItemSelector's scope is too broad since it covers regular links (which will never apply in this context)
 							.trigger( "click" )
 							.trigger( focusEvent );
 
 					// No higher-level menu but the current submenu is open
+					// BRAINDUMP: When would this actually run in practice? It sounds like this is meant to collapse a nested details element if its summary has focus and gets pressed... but that scenario is impossible in the old incarnation of the menu plugin (unless it predates when auto-focusing onto the first child menu item got implemented?)
+					// TODO: This needs to be restored and tested since it's now possible to focus onto an open nested details' summary
 					} else if ( $menuItem.parent().attr( "open" ) ) {
 						event.preventDefault();
+						console.log("Fake click 2");
+						stillInMenu = true;
 						$menuItem
 							.trigger( "click" )
 							.trigger( focusEvent );
