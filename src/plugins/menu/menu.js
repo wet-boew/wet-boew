@@ -512,8 +512,9 @@ var componentName = "wb-menu",
 	 * @method menuDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery DOM element} $menu The menu to display
+	 * @param {boolean} autoExpand Whether to open the menu's dropdown
 	 */
-	menuDisplay = function( $elm, $menu ) {
+	menuDisplay = function( $elm, $menu, autoExpand = true ) {
 		var $menuLink = $menu.find( "> a, > details > summary" ); //the issue seems to be that menu is getting passed as the mega menu UL (instead of LI.active) when hovering over an A element in the top-level mega menu items... which means some logic that calls this method is passing crap for $menu... ACTUALLY even though that's a bug, it's not causing any console errors in practice
 
 		console.log("inside menuDisplay");
@@ -540,8 +541,8 @@ var componentName = "wb-menu",
 			console.log("OH NOES, I have no length!!!");
 		}
 
-		// Ignore if doesn't have a submenu
-		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" ) {
+		// Ignore if doesn't have a submenu or isn't meant to auto-expand
+		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
 
 			console.log($menuLink);
 			console.log($menuLink.get(0));
@@ -685,6 +686,7 @@ $document.on( "click", selector + " summary", function( event ) {
 
 	var menuItem = event.currentTarget,
 		parent = menuItem.parentNode,
+		$parentLi = $( parent.closest( "li" ) ),
 		isOpen = parent.hasAttribute( "open" ),
 		menuItemOffsetTop, menuContainer;
 
@@ -692,6 +694,17 @@ $document.on( "click", selector + " summary", function( event ) {
 	console.log(menuItem);
 	console.log("parent:");
 	console.log(parent);
+
+	// Toggle parent list item's submenu open class if it's tied to a top-level mega menu summary
+	if ( $parentLi.children( ".item.active" ).first() ) {
+		if ( !isOpen ) {
+			$parentLi
+				.addClass( "sm-open" );
+		} else {
+			$parentLi
+				.removeClass( "sm-open" );
+		}
+	}
 
 	// Close any other open menus
 	if ( !isOpen ) {
@@ -749,7 +762,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 		console.log("NEW: $parentLi");
 		console.log($parentLi);
 		console.log("NEW: ---");
-		menuDisplay( $container, $parentLi );
+		menuDisplay( $container, $parentLi, false );
 	} else {
 		globalTimeout = setTimeout( function() {
 			menuDisplay( $container, $parentLi );
@@ -1038,3 +1051,4 @@ $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 wb.add( selector );
 
 } )( jQuery, window, document, wb );
+
