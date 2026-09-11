@@ -764,6 +764,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 		console.log("NEW: ---");
 		menuDisplay( $container, $parentLi, false );
 	} else {
+		stillInMenu = true;
 		globalTimeout = setTimeout( function() {
 			menuDisplay( $container, $parentLi );
 		}, hoverDelay );
