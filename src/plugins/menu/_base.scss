@@ -39,8 +39,8 @@
 		details {
 			> {
 				* {
-					margin-left: auto;
-					margin-right: auto;
+					margin-left: -$details-indentation;
+					margin-right: -$details-indentation;
 				}
 			}
 		}
@@ -94,19 +94,21 @@
 	}
 
 	details {
-		&,
+		margin-bottom: 0;
+
 		&[open] {
 			border: 0;
-			margin-bottom: 0;
+		}
 
-			summary {
-				border: 0;
-				color: inherit;
+		summary {
+			border: 0;
+			border-radius: 0;
+			color: inherit;
+			text-indent: 0;
 
-				&:focus,
-				&:hover {
-					text-decoration: none;
-				}
+			&:focus,
+			&:hover {
+				text-decoration: none;
 			}
 		}
 	}
