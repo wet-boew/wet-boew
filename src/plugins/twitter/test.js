@@ -49,6 +49,50 @@ describe( "Twitter test suite", function() {
 		} );
 	} );
 
+	describe( "unavailable timeline", function() {
+		it( "preserves the link and removes the message if the timeline loads later", function( done ) {
+			const originalSetTimeout = window.setTimeout;
+			let fallbackTimer;
+			const timerStub = sinon.stub( window, "setTimeout" ).callsFake( function( callback, delay ) {
+				if ( delay === 5000 ) {
+					fallbackTimer = callback;
+					return 0;
+				}
+				return originalSetTimeout.apply( window, arguments );
+			} );
+			const $fallbackElm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/Example'>Tweets by @Example</a></div>" )
+				.appendTo( $body )
+				.trigger( "wb-init.wb-twitter" );
+			timerStub.restore();
+
+			fallbackTimer();
+			const fallback = $fallbackElm.find( ".wb-twitter-fallback" );
+			expect( fallback.length ).to.equal( 1 );
+			expect( fallback.attr( "role" ) ).to.equal( "status" );
+			expect( fallback.text() ).to.equal( wb.i18n( "twitter-unavailable" ) );
+			expect( $fallbackElm.find( "a.twitter-timeline" ).attr( "href" ) ).to.equal( "https://twitter.com/Example" );
+
+			const iframeContainer = document.createElement( "div" );
+			const iframe = document.createElement( "iframe" );
+			iframeContainer.className = "twitter-timeline";
+			iframe.id = "twitter-widget-late";
+			iframe.src = "about:blank#/screen-name/Example";
+			iframeContainer.appendChild( iframe );
+			$fallbackElm.find( "a.twitter-timeline" )[ 0 ].replaceWith( iframeContainer );
+			setTimeout( function() {
+				try {
+					expect( $fallbackElm.find( ".wb-twitter-fallback" ).length ).to.equal( 0 );
+					expect( $fallbackElm.find( ".wb-twitter-skip" ).length ).to.equal( 2 );
+					done();
+				} catch ( error ) {
+					done( error );
+				} finally {
+					$fallbackElm.remove();
+				}
+			}, 0 );
+		} );
+	} );
+
 } );
 
 }( jQuery, wb ) );
