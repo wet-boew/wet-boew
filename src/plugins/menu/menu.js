@@ -451,17 +451,18 @@ var componentName = "wb-menu",
 	 * @param {integer} indexChange Requested relative change to the menu item index
 	 */
 	menuIncrement = function( $menuItems, $current, indexChange ) {
-		var menuItemsLength = $menuItems.length,
-			index = $menuItems.index( $current ) + indexChange;
+		const oldIndex = $menuItems.index( $current );
+		let newIndex = oldIndex + indexChange;
 
-		// Correct out-of-range indexes
-		//NOTE: this is the menu list looping logic... scrap it if I don't want it in the disclosure pattern... will need a little more logic though to trigger the focus event in a smarter manner
-		index = index === menuItemsLength ? 0 : index === -1 ? menuItemsLength - 1 : index;
+		// Clamp out-of-range indexes
+		// Credit: Stack Overflow answer (https://stackoverflow.com/a/11409978) by CAFxX (cafxx) */
+		newIndex = Math.max( 0, Math.min( newIndex, $menuItems.length - 1 ) );
 
 		// Move to the new menu item
+		// Will need a little more logic to trigger the focus event in a smarter manner
 		console.log("NEW: about to focus onto this via menuIncrement():");
-		console.log($menuItems.eq( index )[0]);
-		$menuItems.eq( index ).trigger( focusEvent );
+		console.log($menuItems.eq( newIndex )[0]);
+		$menuItems.eq( newIndex ).trigger( focusEvent );
 	},
 
 	/**
