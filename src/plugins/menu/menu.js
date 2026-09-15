@@ -459,10 +459,11 @@ var componentName = "wb-menu",
 		newIndex = Math.max( 0, Math.min( newIndex, $menuItems.length - 1 ) );
 
 		// Move to the new menu item
-		// Will need a little more logic to trigger the focus event in a smarter manner
-		console.log("NEW: about to focus onto this via menuIncrement():");
-		console.log($menuItems.eq( newIndex )[0]);
-		$menuItems.eq( newIndex ).trigger( focusEvent );
+		if ( oldIndex !== newIndex ) {
+			console.log("NEW: about to focus onto this via menuIncrement():");
+			console.log($menuItems.eq( newIndex )[0]);
+			$menuItems.eq( newIndex ).trigger( focusEvent );
+		}
 	},
 
 	/**
@@ -839,11 +840,12 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				event.preventDefault();
 				console.log("Pressed HOME or END");
 				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
+				const index = $menuItems.index( $menuItem );
 				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if curreny focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
 				menuIncrement(
 					$menuItems,
-					which === HOME_KC ? $menuItems.first() : $menuItems.last(),
-					which === 0
+					$menuItem,
+					which === HOME_KC ? -index : $menuItems.length - 1 - index
 				);
 
 			// Toggle sub-menu
