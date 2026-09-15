@@ -555,28 +555,6 @@ var componentName = "wb-menu",
 			$menu
 				.addClass( "sm-open" );
 		}
-	},
-
-	/**
-	 * Searches for the next link that has link text starting with a specific letter
-	 * @method selectByLetter
-	 * @param {integer} charCode The charCode of the letter to search for
-	 * @param {DOM elements} links Collection of links to search
-	 */
-	selectByLetter = function( charCode, links ) {
-		var len = links.length,
-			keyChar = String.fromCharCode( charCode ),
-			link, i;
-
-		for ( i = 0; i !== len; i += 1 ) {
-			link = links[ i ];
-			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
-				$( link ).trigger( focusEvent );
-				return true;
-			}
-		}
-
-		return false;
 	};
 
 // Bind the events of the plugin
@@ -1000,25 +978,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 							.trigger( "click" )
 							.trigger( focusEvent );
 					}
-				}
-
-			// Select a menu item in the current menu by the first letter
-			} else if ( which > 64 && which < 91 ) {
-				event.preventDefault();
-				$parent = $menuItem.closest( "li" );
-
-				// Try to find a match in the next siblings
-				result = selectByLetter(
-					which,
-					$parent.nextAll().find( menuItemSelector ).get()
-				);
-
-				// If couldn't find a match, try the previous siblings
-				if ( !result ) {
-					result = selectByLetter(
-						which,
-						$parent.prevAll().find( menuItemSelector ).get()
-					);
 				}
 			}
 		}
