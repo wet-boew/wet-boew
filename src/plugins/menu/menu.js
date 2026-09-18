@@ -813,11 +813,17 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				event.preventDefault();
 				console.log("Up-left / down-right arrow = Previous / next menu item... calling menuIncrement");
 
-				//const advancing = RIGHT_KC || DOWN_KC ? true : false;
+				// Setup variables to track forward arrow key actions
+				// Note: Inverts left/right arrow keys in right-to-left (RTL) scenarios
+				const isRTL = menuItem.closest( "[dir=rtl]" ) ? true : false;
+				const arrowingForward = ( !isRTL && which === RIGHT_KC ) || ( isRTL && which === LEFT_KC ) || which === DOWN_KC ? true : false;
+				console.log("arrowingForward:");
+				console.log(arrowingForward);
+
 				console.log("Moving left-up/right-down on mobile menu");
 
 				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
-				if ( hasPopup && $menuItem.parent().attr( "open" ) && ( which === RIGHT_KC || which === DOWN_KC ) ) {
+				if ( hasPopup && $menuItem.parent().attr( "open" ) && arrowingForward ) {
 					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the menu...");
 					console.log($menuItem);
 					console.log($menuItem.parent().attr( "open" ));
@@ -837,7 +843,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					menuIncrement(
 						$menu.children( "li" ).find( menuItemSelector ),
 						$menuItem,
-						which === LEFT_KC || which === UP_KC ? -1 : 1
+						arrowingForward ? 1 : -1
 						//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
 					);
 				}
@@ -905,8 +911,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						.trigger( focusEvent );*/
 				}
 
-			// Escape, left / right arrow without a submenu
-			} else if ( which === ESC_KC || which === LEFT_KC || which === RIGHT_KC ) {
+			// Escape key without a submenu
+			} else if ( which === ESC_KC ) {
 				console.log("NEW: uh oh 1...");
 				console.log("ESC pressed 1");
 				console.log("$menu:");
@@ -917,10 +923,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				$parentMenu = $parent.closest( "ul" );
 				console.log("$parentMenu:");
 				console.log($parentMenu);
-				if ( which === LEFT_KC || which === RIGHT_KC ) {
-					event.preventDefault();
-					console.log("NEW: uh oh 2...");
-				}
 
 				// If the parent menu is a menubar
 				if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
@@ -929,38 +931,21 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					console.log($menuLink);
 
 					// Escape key = Close menu and return to menu bar item
-					if ( which === ESC_KC ) {
-						console.log("NEW: uh oh 3...");
-						console.log("ESC pressed 3");
-						event.preventDefault();
-						$menuLink.trigger( focusEvent );
+					console.log("NEW: uh oh 3...");
+					console.log("ESC pressed 3");
+					event.preventDefault();
+					$menuLink.trigger( focusEvent );
 
-						// Close the menu but keep the referring link active
-						setTimeout( function() {
-							console.log("ESC pressed 3... trying to close the mega menu dropdown");
-							//NOTE: Using closest fixes mega menu dropdowns when inside a top-level menu item (using parent wasn't enough on its own because it matched details... whereas menuClose expects an li as its first param)
-							menuClose( $menuLink.parent().closest( "li" ), false );
-						}, 100 );
+					// Close the menu but keep the referring link active
+					setTimeout( function() {
+						console.log("ESC pressed 3... trying to close the mega menu dropdown");
+						//NOTE: Using closest fixes mega menu dropdowns when inside a top-level menu item (using parent wasn't enough on its own because it matched details... whereas menuClose expects an li as its first param)
+						menuClose( $menuLink.parent().closest( "li" ), false );
+					}, 100 );
 
-					// Left / right key = Next / previous menu bar item
-					} else if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
-						console.log("NEW: about to increment...");
-						console.log("$parentMenu:");
-						console.log($parentMenu);
-						console.log("$parentMenu.find( \"> li > a, > li > details > summary\" ):");
-						console.log($parentMenu.find( "> li > a, > li > details > summary" )); //returns a 1 item array with "some random link" A element
-						console.log("$menuLink:");
-						console.log($menuLink); //returns a 0 length array... maybe because the summaries aren't being selected
-						menuIncrement(
-							$parentMenu.find( "> li > a, > li > details > summary" ), //I think my issue is that something's wrong with this selector... I think it should be going to a summary? Btw another selector variable earlier on is a duplicate of this selector... fixed it
-							$menuLink,
-							which === LEFT_KC ? -1 : 1
-						);
-					}
-
-				// Escape or left arrow: Go up a level if there is a higher-level
+				// Escape key: Go up a level if there is a higher-level
 				// menu or close the current submenu if there isn't
-				} else if ( which !== RIGHT_KC ) {
+				} else {
 					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
 					console.log("Inside the Escape or left arrow IF condition");
 
