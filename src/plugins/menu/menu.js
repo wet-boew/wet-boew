@@ -496,6 +496,11 @@ var componentName = "wb-menu",
 
 		if ( removeActive ) {
 			console.log("REMOVING active class");
+
+			console.log("INCOMING $elm:");
+			console.log($elm);
+
+			// Remove active class
 			$elm.removeClass( "active" );
 
 			console.log($elm);
@@ -507,6 +512,11 @@ var componentName = "wb-menu",
 			if ($elm.length && $elm.children().first().prop( "nodeName" ).toLowerCase() === "a") {
 				console.log("HEADS-UP: Moving away from an active LINK (not summary)");
 			}
+		} else {
+			console.log("SKIPPING removeActive on this/these element(s):");
+			console.log($elm);
+			console.log("Specifically $elm.children( \"details[open]\"):");
+			console.log($elm.children( "details[open]"));
 		}
 	},
 
@@ -514,19 +524,34 @@ var componentName = "wb-menu",
 	 * @method menuDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery DOM element} $menu The menu to display
-	 * @param {boolean} autoExpand Whether to open the menu's dropdown
+	 * @param {boolean} autoExpand (Optional) Whether to open the menu's dropdown (default is true)
+	 * @param {string} eventType (Optional) Type of event that was triggered (default is undefined)
 	 */
-	menuDisplay = function( $elm, $menu, autoExpand = true ) {
+	menuDisplay = function( $elm, $menu, autoExpand = true, eventType ) {
 		var $menuLink = $menu.find( "> a, > details > summary" ); //the issue seems to be that menu is getting passed as the mega menu UL (instead of LI.active) when hovering over an A element in the top-level mega menu items... which means some logic that calls this method is passing crap for $menu... ACTUALLY even though that's a bug, it's not causing any console errors in practice
 
 		console.log("inside menuDisplay");
 
-		if ($elm.find( ".active" ).not( $elm ).length) { //prevents menuClose from getting needlessly called (like if entering the menu for the first time or collapsing the current top-level menu item)
+		// If another dropdown was already active, close it
+		if ($elm.find( ".active" ).not( $menu ).length) { //prevents menuClose from getting needlessly called (like if entering the menu for the first time or collapsing the current top-level menu item)
 			console.log("yay!!!");
-			menuClose( $elm.find( ".active" ), true );
+			console.log("$elm:");
+			console.log($elm);
+
+			// Exclude dropdowns that are already open (so their top-level menu items don't lose their highlight effects when reverse-tabbing)
+			const $activeLis = $elm.find( ".active" );
+			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ".sm-open" ) : $activeLis; //sm-open has already disappeared by this point when reverse-tabbing... relegating section 3 to an active expanded details element with a missing sm-open class :S
+
+			console.log("START POINT ($activeLis):");
+			console.log($activeLis);
+			console.log("END POINT ($filteredActiveLis):");
+			console.log($filteredActiveLis);
+
+			menuClose( $filteredActiveLis, true );
 		//} else {
 		//	console.log("nah!!!");
 		}
+		console.log("$elm + .active.sm-open:");
 		console.log($elm);
 		console.log($elm.find( ".active.sm-open" ));
 
@@ -597,6 +622,9 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 
 $document.on( "mouseleave", selector + " .menu", function( event ) {
 	var $currentTarget = $( event.currentTarget );
+
+	// Prevent hovering out of a focused menu from causing auto-reopening behaviour on focusin (i.e. mixed keyboard/mouse usage)
+	stillInMenu = false;
 
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
@@ -675,7 +703,13 @@ $document.on( "click", selector + " summary", function( event ) {
 	console.log("parent:");
 	console.log(parent);
 
+	//TODO: Can I change all the non-scrolling logic below to just pass some top-level LIs that are still active to menuClose? Is this stuff used to manage accordion behaviour in nested details elements?
+
+	//Interested in seeing if maybe I can use hover/focus SCSS selectors for "backup" highlight effects... to be less dependent on micromanaging the active class
+
 	// Toggle parent list item's submenu open class if it's tied to a top-level mega menu summary
+	// NOTE: This is what's causing sm-open to appear in the mobile menu's dropdowns
+	// NOTE: Scrapping this logic causes reverse-tabbing to auto-close when transitioning from section 3 (expanded) to section 2's top-level item
 	if ( $parentLi.children( ".item.active" ).first() ) {
 		if ( !isOpen ) {
 			$parentLi
@@ -687,15 +721,29 @@ $document.on( "click", selector + " summary", function( event ) {
 	}
 
 	// Close any other open menus
+	// NOTE: Seems to be needed for nested dropdown accordions (to only open one at a time in mobile+desktop)... and probably the mobile menu as a whole ugh
 	if ( !isOpen ) {
 		console.log("parent details lacks an open attribute, so close other open menus");
 
-		$( parent )
+		//Call menuClose for real instead of trying to rehash its functionality... and exclude current submenu and any other open ones
+		menuClose(
+			$( parent )
+				.closest( "ul" )
+				.find( "[open]" )
+				.find( "summary" )
+				.not( menuItem )
+				.not( "sm-open" )
+				.closest( "li" ),
+			true
+		);
+
+		// Remove "stuck" active class if a user tabs to a top-level summary and expands it while another submenu was already open
+		// NOTE: Is this event handler even supposed to be used for top-level menu items? Or was it only meant to apply to nested details elements in the old menubar pattern?
+		// TODO: This is overly-hacky... find a better way of dealing with it
+		/*$( parent )
 			.closest( "ul" )
-			.find( "[open]" )
-			.find( "summary" )
-			.not( menuItem )
-			.trigger( "click" );
+			.find( "li.active:not(.sm-open):has(details)" )
+			.removeClass( "active" );*/
 
 		// Ensure the opened menu is in view if in a mobile panel
 		menuContainer = document.getElementById( "mb-pnl" );
@@ -734,7 +782,8 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
-	if ( event.type === "focusin" ) {
+	if ( event.type === "focusin" && !stillInMenu ) {
+		//stillInMenu = true; //not helping so far
 		console.log("NEW: ---");
 		console.log("NEW: focusin...");
 		console.log("NEW: $container:");
@@ -742,9 +791,16 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 		console.log("NEW: $parentLi");
 		console.log($parentLi);
 		console.log("NEW: ---");
-		menuDisplay( $container, $parentLi, false );
+
+		// Highlight the top-level mega menu item... but don't auto-expand it for keyboard users
+		// Note: Also passes over an event type to prevent open dropdowns from auto-closing when reverse-tabbing
+		menuDisplay( $container, $parentLi, false, event.type );
 	} else {
-		stillInMenu = true;
+		//if ( event.type === "focusin" ) {
+		//	stillInMenu = true; // touch screen tapping support only works if this is unconditionally set to true inside the else [UPDATE: not anymore...]
+		//} else {
+		//	stillInMenu = false;
+		//}
 		globalTimeout = setTimeout( function() {
 			menuDisplay( $container, $parentLi );
 		}, hoverDelay );
