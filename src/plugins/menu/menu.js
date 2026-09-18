@@ -482,10 +482,8 @@ var componentName = "wb-menu",
 		console.log($elm);
 		console.log($elm.get(0));
 
-		//IDEA TO CONSIDER: Should I adjust this logic to only start running if the sm-open class exists in the first place?
 		// Adjust top-level menu item's class and open attribute
 		$elm
-			.removeClass( "sm-open" )
 			.children( "[open]" )
 			.removeAttr( "open" ) // FMI: I don't this this part of the logic actually works... couldn't get Enter key presses that close the menu to work correctly without preventDefault (even though space worked fine as-is)
 
@@ -540,7 +538,7 @@ var componentName = "wb-menu",
 
 			// Exclude dropdowns that are already open (so their top-level menu items don't lose their highlight effects when reverse-tabbing)
 			const $activeLis = $elm.find( ".active" );
-			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ".sm-open" ) : $activeLis; //sm-open has already disappeared by this point when reverse-tabbing... relegating section 3 to an active expanded details element with a missing sm-open class :S
+			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ":has([open])" ) : $activeLis;
 
 			console.log("START POINT ($activeLis):");
 			console.log($activeLis);
@@ -551,9 +549,8 @@ var componentName = "wb-menu",
 		//} else {
 		//	console.log("nah!!!");
 		}
-		console.log("$elm + .active.sm-open:");
+		console.log("$elm:");
 		console.log($elm);
-		console.log($elm.find( ".active.sm-open" ));
 
 		$menu.addClass( "active" );
 		console.log("loggy loggy");
@@ -577,10 +574,6 @@ var componentName = "wb-menu",
 
 			// Add an open attribute to the menu link's parent details element
 			$menuLink.parent().attr( "open", "open" ); //TODO: Should this be a fake click based on whether the details is already open?
-
-			// Add the open state classes
-			$menu
-				.addClass( "sm-open" );
 		}
 	};
 
@@ -703,23 +696,6 @@ $document.on( "click", selector + " summary", function( event ) {
 	console.log("parent:");
 	console.log(parent);
 
-	//TODO: Can I change all the non-scrolling logic below to just pass some top-level LIs that are still active to menuClose? Is this stuff used to manage accordion behaviour in nested details elements?
-
-	//Interested in seeing if maybe I can use hover/focus SCSS selectors for "backup" highlight effects... to be less dependent on micromanaging the active class
-
-	// Toggle parent list item's submenu open class if it's tied to a top-level mega menu summary
-	// NOTE: This is what's causing sm-open to appear in the mobile menu's dropdowns
-	// NOTE: Scrapping this logic causes reverse-tabbing to auto-close when transitioning from section 3 (expanded) to section 2's top-level item
-	if ( $parentLi.children( ".item.active" ).first() ) {
-		if ( !isOpen ) {
-			$parentLi
-				.addClass( "sm-open" );
-		} else {
-			$parentLi
-				.removeClass( "sm-open" );
-		}
-	}
-
 	// Close any other open menus
 	// NOTE: Seems to be needed for nested dropdown accordions (to only open one at a time in mobile+desktop)... and probably the mobile menu as a whole ugh
 	if ( !isOpen ) {
@@ -732,18 +708,9 @@ $document.on( "click", selector + " summary", function( event ) {
 				.find( "[open]" )
 				.find( "summary" )
 				.not( menuItem )
-				.not( "sm-open" )
 				.closest( "li" ),
 			true
 		);
-
-		// Remove "stuck" active class if a user tabs to a top-level summary and expands it while another submenu was already open
-		// NOTE: Is this event handler even supposed to be used for top-level menu items? Or was it only meant to apply to nested details elements in the old menubar pattern?
-		// TODO: This is overly-hacky... find a better way of dealing with it
-		/*$( parent )
-			.closest( "ul" )
-			.find( "li.active:not(.sm-open):has(details)" )
-			.removeClass( "active" );*/
 
 		// Ensure the opened menu is in view if in a mobile panel
 		menuContainer = document.getElementById( "mb-pnl" );
@@ -752,22 +719,6 @@ $document.on( "click", selector + " summary", function( event ) {
 			menuItemOffsetTop < menuContainer.scrollTop ) {
 
 			menuContainer.scrollTop = menuItemOffsetTop;
-		}
-	}
-} );
-
-// Clicks and touches outside of menus should close any open menus
-$document.on( "click", function( event ) {
-	var $openMenus,
-		which = event.which;
-
-	// Ignore middle and right mouse buttons
-	if ( event.type === "" || ( !which || which === 1 ) ) {
-		$openMenus = $( selector + " .sm-open" );
-		if ( $openMenus.length !== 0 &&
-			$( event.target ).closest( selector ).length === 0 ) {
-
-			menuClose( $openMenus, true );
 		}
 	}
 } );
