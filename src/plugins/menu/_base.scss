@@ -20,10 +20,12 @@
 	content: none;
 }
 
+/* TODO: Scrap whenever wet-boew/wet-boew#10218 lands */
 .wb-menu details[open] { /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
 	padding-bottom: 0;
 }
 
+/* TODO: Scrap whenever wet-boew/wet-boew#10218 lands */
 .wb-menu details summary { /* Undoes goofy default selectors... should these be set to revert instead of initial? */
 	border-radius: initial;
 	text-indent: initial;
@@ -35,16 +37,17 @@
 	outline-width: revert; /* Undoes goofy default selector */
 }
 
+/* TODO: Scrap whenever wet-boew/wet-boew#10218 lands */
 .wb-menu details[open] > summary { /* Undoes a default summary selector that adds a small bottom margin */
 	margin-bottom: 0;
 }
 
 .wb-menu details[open] .sm { /* Prevents mega menu dropdowns from getting horizontally-misaligned */
-	margin-left: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
+	margin-left: -1.1em; /* If I keep this, use the SASS variable ($details-indentation) */
 }
 
 [dir="rtl"] .wb-menu details[open] .sm {
-	margin-right: -1.1em; /* If I keep this, use the SASS variable (if it even exists) */
+	margin-right: -1.1em; /* If I keep this, use the SASS variable ($details-indentation) */
 }
 
 .expicon {
