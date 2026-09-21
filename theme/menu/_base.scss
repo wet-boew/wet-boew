@@ -59,7 +59,7 @@
 	}
 
 	// .sm {
-		.sm.open, [open] .sm {
+		[open] .sm {
 			background: $wb-sm-sm-open-background;
 			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
 			border-left: 0;

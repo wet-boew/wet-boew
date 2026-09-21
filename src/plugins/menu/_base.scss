@@ -63,7 +63,7 @@
 		position: relative;
 	}
 
-		.sm.open, [open] .sm {
+		[open] .sm {
 			display: inline;
 			max-height: 1000px;
 			min-width: 12.5em;
@@ -115,13 +115,6 @@
 						@extend %global-text-decoration-none;
 					}
 
-					a[aria-haspopup] {
-						&:hover,
-						&:focus {
-							cursor: default;
-						}
-					}
-
 					/* Rehash of a[aria-haspopup] selector */
 					> details > summary {
 						cursor: default;
@@ -138,7 +131,7 @@
 		}
 	}
 
-	.sm-open [open], .active > details[open] {
+	.active > details[open] {
 		.expicon {
 			z-index: -1;
 		}
@@ -330,7 +323,7 @@
 		}
 
 		// .sm { /* TODO: RTL will need to be tested */
-			.sm.open, [open] .sm {
+			[open] .sm {
 				li {
 					a, summary {
 						text-align: right;
