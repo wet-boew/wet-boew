@@ -138,7 +138,7 @@
 		}
 	}
 
-	.sm-open [open] {
+	.sm-open [open], .active > details[open] {
 		.expicon {
 			z-index: -1;
 		}
