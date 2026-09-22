@@ -121,6 +121,7 @@ var componentName = "wb-navcurr",
 
 				if ( match ) {
 					link.className += " " + className;
+					link.setAttribute( "aria-current", "page" );
 					if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
 						$( link ).closest( ".sm" ).parent().children( "a" ).addClass( className );
 					}
