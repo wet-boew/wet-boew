@@ -64,8 +64,32 @@ describe( "wb.core helpers test suite", function() {
 			expect( wb.findPotentialPII( "email: 1%gf. @ gmail . com, email: 1%-gf. @gmail. com", true ) ).to.equal( "email: , email: " );
 		} );
 
+		it( "should match loose email pattern 3", function() {
+			expect( wb.findPotentialPII( "email: 1.gf +test  @   example   .   com, email: support_team@my-domain", true ) ).to.equal( "email: 1.gf , email: " );
+		} );
+
 		it( "should match postal code pattern", function() {
 			expect( wb.findPotentialPII( "postal code:K2C3N2, postal code:K2C 3N2, postal code:K2C-3N2", true ) ).to.equal( "postal code:, postal code:, postal code:" );
+		} );
+
+		it( "should match address pattern 1", function() {
+			expect( wb.findPotentialPII( "address pattern 1:123 Main St, address pattern 1:123 Main St W", true ) ).to.equal( "address pattern 1:, address pattern 1:" );
+		} );
+
+		it( "should match address pattern 2", function() {
+			expect( wb.findPotentialPII( "address pattern 2:123 W Main Street, address pattern 2:123 West Main St, address pattern 2:123 rue Maisonneuve Ouest", true ) ).to.equal( "address pattern 2:, address pattern 2:, address pattern 2:" );
+		} );
+
+		it( "should match address pattern 3", function() {
+			expect( wb.findPotentialPII( "address pattern 3:123 Main Ave, address pattern 3:Avenue 123", true ) ).to.equal( "address pattern 3:, address pattern 3:" );
+		} );
+
+		it( "should match address pattern 4", function() {
+			expect( wb.findPotentialPII( "address pattern 4:123 Main Ave, address pattern 4:Avenue 123", true ) ).to.equal( "address pattern 4:, address pattern 4:" );
+		} );
+
+		it( "should match address pattern 5", function() {
+			expect( wb.findPotentialPII( "address pattern 5:PO Box 123, address pattern 5:Post Office Box 789, address pattern 5:Case postale 789", true ) ).to.equal( "address pattern 5:, address pattern 5:, address pattern 5:" );
 		} );
 
 		it( "should match username = value", function() {
