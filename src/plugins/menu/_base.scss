@@ -20,20 +20,18 @@
 	content: none;
 }
 
-/* TODO: Scrap whenever wet-boew/wet-boew#10218 lands */
-.wb-menu details[open] { /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
+.wb-menu .menu > li > details[open] { /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
 	padding-bottom: 0;
+}
+
+.wb-menu .menu > li > details[open] > summary { /* Undoes a default summary selector that adds a small space in the mega menu bar when any submenu is open */
+	margin-bottom: 0;
 }
 
 .wb-menu details summary.item:focus {
 	outline-offset: -2px; /* Replicate the same outline offset as focused links (to match how the old top-level mega menu links looked when focused) */
 	outline-style: revert; /* Undoes goofy default selector */
 	outline-width: revert; /* Undoes goofy default selector */
-}
-
-/* TODO: Scrap whenever wet-boew/wet-boew#10218 lands */
-.wb-menu details[open] > summary { /* Undoes a default summary selector that adds a small bottom margin */
-	margin-bottom: 0;
 }
 
 .wb-menu details[open] .sm { /* Prevents mega menu dropdowns from getting horizontally-misaligned */
