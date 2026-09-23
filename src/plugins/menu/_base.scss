@@ -13,7 +13,7 @@
 }
 
 .wb-menu summary > .glyphicon:first-child { /* Undoes a default summary selector to prevent glyphicons from becoming inline and consequently causing top-level mega menu links to split across lines */
-  display: inline-block;
+	display: inline-block;
 }
 
 .wb-menu .menu > li > details > summary::marker { /* Prevents summary arrows from appearing on top-level mega menu links */

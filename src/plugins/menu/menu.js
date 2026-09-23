@@ -1005,4 +1005,3 @@ $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 wb.add( selector );
 
 } )( jQuery, window, document, wb );
-
