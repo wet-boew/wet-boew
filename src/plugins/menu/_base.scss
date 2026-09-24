@@ -14,8 +14,6 @@
 
 .wb-menu {
 	.sm {
-		display: none; // TODO: Not needed anymore
-		max-height: 0;
 		overflow: hidden;
 		position: relative;
 
@@ -34,7 +32,6 @@
 			.sm {
 				display: inline;
 				margin-left: -$details-indentation; /* Prevents mega menu dropdowns from getting horizontally-misaligned */
-				max-height: 1000px;
 				min-width: 12.5em;
 				position: absolute;
 				text-transform: none;
