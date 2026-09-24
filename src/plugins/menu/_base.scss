@@ -31,7 +31,7 @@
 		&[open] {
 			.sm {
 				display: inline;
-				margin-left: -$details-indentation; /* Prevents mega menu dropdowns from getting horizontally-misaligned */
+				margin-left: -$details-indentation;
 				min-width: 12.5em;
 				position: absolute;
 				text-transform: none;
@@ -49,24 +49,25 @@
 			}
 		}
 
-		/* TODO: This selector and its properties might need refinements... */
+		/* Make the menu bar's summary item outlines consistent with link items */
 		summary {
 			&.item {
 				&:focus {
-					outline-offset: -2px; /* Replicate the same outline offset as focused links (to match how the old top-level mega menu links looked when focused) */
-					outline-style: revert; /* Undoes goofy default selector */
-					outline-width: revert; /* Undoes goofy default selector */
+					outline-offset: -2px;
+					outline-style: revert;
+					outline-width: revert;
 				}
 			}
 		}
 	}
 
+	/* Counteract a summary heading override that makes the menu bar's arrow icons very tall */
 	summary {
 		/* TODO: Consider removing the nested selector rule... and maybe even roll this into a selector rule that specifically targets the menu bar itself */
 		> {
 			.glyphicon {
 				&:first-child {
-					display: inline-block; /* Undoes a default summary selector to prevent glyphicons from becoming inline and consequently causing top-level mega menu links to split across lines */
+					display: inline-block;
 				}
 			}
 		}
@@ -99,16 +100,16 @@
 					text-align: center;
 				}
 
-				/* Rehash of a[aria-haspopup] selector */
+				/* Menu bar's details/summary elements */
 				> {
 					details {
 						&[open] {
-							padding-bottom: 0; /* Undoes a default details selector to prevent a big space from appearing in the mega menu bar when any submenu is open */
+							padding-bottom: 0;
 
 							> {
 								summary {
-									display: inline-block !important; /* Prevents top-level mega menu links from becoming super wide when their submenus are open */
-									margin-bottom: 0; /* Undoes a default summary selector that adds a small space in the mega menu bar when any submenu is open */
+									display: inline-block !important;
+									margin-bottom: 0;
 								}
 							}
 						}
@@ -118,7 +119,7 @@
 								cursor: default;
 
 								&::marker {
-									content: none; /* Prevents summary arrows from appearing on top-level mega menu links */
+									content: none;
 								}
 							}
 						}
@@ -330,9 +331,9 @@
 		}
 
 		details {
-			&[open] { /* TODO: RTL will need to be tested */
+			&[open] {
 				.sm {
-					margin-right: -$details-indentation; /* Prevents mega menu dropdowns from getting horizontally-misaligned */
+					margin-right: -$details-indentation;
 
 					li {
 						a,
