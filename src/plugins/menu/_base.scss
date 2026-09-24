@@ -82,18 +82,21 @@
 				margin: 0;
 				padding: 0;
 
+				a {
+					display: block;
+
+					&:hover,
+					&:focus {
+						@extend %global-text-decoration-none;
+					}
+				}
+
 				a,
 				summary {
 					@extend %global-text-decoration-none;
 
-					display: block; /* TODO: Get rid of this property or change it to inline-block whenever I go all-in on mega menu bar summaries AND give it important */
 					padding: 1em;
 					text-align: center;
-				}
-
-				a:hover,
-				a:focus {
-					@extend %global-text-decoration-none;
 				}
 
 				/* Rehash of a[aria-haspopup] selector */
