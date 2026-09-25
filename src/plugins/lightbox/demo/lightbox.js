@@ -15,7 +15,7 @@ $document.on( "click", "#lbx-open-btn", function() {
 		$document.trigger( "open.wb-lbx", [
 			[
 				{
-					src: "demo/1_b.jpg",
+					src: "https://dummyimage.com/612x612/2e5274/FFF.jpg&text=Image+1",
 					type: "image"
 				}
 			],
@@ -56,13 +56,13 @@ $document.on( "click", "#lbx-open-btn", function() {
 		$document.trigger( "open.wb-lbx", [
 			[
 				{
-					src: "demo/1_b.jpg",
+					src: "https://dummyimage.com/612x612/2e5274/FFF.jpg&text=Image+1",
 					type: "image"
 				}, {
-					src: "demo/2_b.jpg",
+					src: "https://dummyimage.com/612x612/2e5274/FFF.jpg&text=Image+2",
 					type: "image"
 				}, {
-					src: "demo/3_b.jpg",
+					src: "https://dummyimage.com/612x612/2e5274/FFF.jpg&text=Image+3",
 					type: "image"
 				}
 			],
