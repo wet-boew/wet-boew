@@ -129,9 +129,8 @@
 		}
 	}
 
-	/* TODO: Should this be rolled into the details[open] selector? */
+	/* Possibly unused... submenus don't usually contain row classes, unclear why only row link colours would need to be customized */
 	.sm {
-		/* Unsure what the use case for this is... */
 		.row {
 			background: transparent;
 
