@@ -99,7 +99,7 @@
 					text-align: center;
 				}
 
-				/* Menu bar's details/summary elements */
+				/* Menu bar's details/summary elements (excludes submenus) */
 				> {
 					details {
 						&[open] {
