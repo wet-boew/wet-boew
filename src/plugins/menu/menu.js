@@ -889,6 +889,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
 					isOpen = !!$parent.attr( "open" );
+					let menuBarJustOpened = false;
 					console.log("isOpen:");
 					console.log(isOpen);
 
@@ -899,6 +900,21 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					// BRAINDUMP: This is misleading... I don't see any logic here that would actually close other open menus... I think it's because that line comment was copied from somewhere else that actually does what it's supposed to
 					// TODO: Did I mess around with this part of the logic in my pending aria-expanded PR? Maybe I just forgot to revise the comment after gutting some of its logic? In any case, revise the comment to make sense!
 					if ( !isOpen ) {
+						// If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
+						// Example of a scenario this helps with: Tab to the menu demo page's section 1, hover to section 3, press space (will open section 1 and close section 3), then hover to section 2... without this logic, both section 1+2's dropdowns will appear simultaneously
+						console.log("inMenuBar:");
+						console.log(inMenuBar);
+						console.log("$menuItem.parent().attr( \open\" ):");
+						console.log($menuItem.parent().attr( "open" ));
+						console.log("which:");
+						console.log(which);
+						if ( inMenuBar && !$menuItem.parent().attr( "open" ) && which !== ESC_KC ) {
+							console.log("DISPLAYING collapsed submenu for non-active focused menu bar item!!!");
+							menuDisplay( $menuItem.closest( selector ), $menuItem.closest( "li" ) );
+							menuBarJustOpened = true;
+						} else {
+							console.log("SKIPPING collapsed submenu display logic for non-active focused menu item!!!");
+						}
 
 						// Ensure the opened menu is in view if in a mobile panel
 						menuContainer = document.getElementById( "mb-pnl" );
@@ -912,8 +928,10 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 					// Ensure the menu is opened or stays open
 					// NOTE: Unsure why this had to be taken out of the !isOpen if condition... but it appears to fully work in both the mega+mobile menus
-					console.log("fake click triggered to open the clicked summary in mobile menu... runs in mega menu too");
-					$menuItem.trigger( "click" );
+					if ( !menuBarJustOpened ) {
+						console.log("fake click triggered to open the clicked summary in mobile menu... runs in mega menu too");
+						$menuItem.trigger( "click" );
+					}
 
 					// Move focus to the first submenu item
 					//NOTE: Not needed anymore... autofocusing to the first submenu item only makes sense in the menu pattern
