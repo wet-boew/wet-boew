@@ -63,7 +63,6 @@
 
 	/* Counteract a summary heading override that makes the menu bar's arrow icons very tall */
 	summary {
-		/* TODO: Consider removing the nested selector rule... and maybe even roll this into a selector rule that specifically targets the menu bar itself */
 		> {
 			.glyphicon {
 				&:first-child {
