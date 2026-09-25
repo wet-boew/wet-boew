@@ -816,14 +816,14 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				// Setup variables to track forward arrow key actions
 				// Note: Inverts left/right arrow keys in right-to-left (RTL) scenarios
 				const isRTL = menuItem.closest( "[dir=rtl]" ) ? true : false;
-				const arrowingForward = ( !isRTL && which === RIGHT_KC ) || ( isRTL && which === LEFT_KC ) || which === DOWN_KC ? true : false;
-				console.log("arrowingForward:");
-				console.log(arrowingForward);
+				const arrowKeyForward = ( !isRTL && which === RIGHT_KC ) || ( isRTL && which === LEFT_KC ) || which === DOWN_KC ? true : false;
+				console.log("arrowKeyForward:");
+				console.log(arrowKeyForward);
 
 				console.log("Moving left-up/right-down on mobile menu");
 
 				// If the focused menu item is a summary for an open details element and the user is trying to advance via the right/down arrows... focus onto its submenu's first item
-				if ( hasPopup && $menuItem.parent().attr( "open" ) && arrowingForward ) {
+				if ( hasPopup && $menuItem.parent().attr( "open" ) && arrowKeyForward ) {
 					console.log("GOING TO FIRST SUBMENU ITEM!!! Pressed right/down on an expanded summary in the menu...");
 					console.log($menuItem);
 					console.log($menuItem.parent().attr( "open" ));
@@ -843,7 +843,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					menuIncrement(
 						$menu.children( "li" ).find( menuItemSelector ),
 						$menuItem,
-						arrowingForward ? 1 : -1
+						arrowKeyForward ? 1 : -1
 						//TODO: This should do the job for fixing up/down arrow support... but still need to look into the latter conditions beyond here to look into removing more right/left variable checks
 					);
 				}
