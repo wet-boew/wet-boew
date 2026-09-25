@@ -568,12 +568,17 @@ var componentName = "wb-menu",
 		// Ignore if doesn't have a submenu or isn't meant to auto-expand
 		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
 
+			console.log("menuDisplay is auto-opening the submenu dropdown");
 			console.log($menuLink);
 			console.log($menuLink.get(0));
 			console.log($menuLink.parent().get(0));
 
 			// Add an open attribute to the menu link's parent details element
 			$menuLink.parent().attr( "open", "open" ); //TODO: Should this be a fake click based on whether the details is already open?
+
+			// When hovering from a submenu dropdown with an open nested details element to another top-level mega menu bar item... don't auto-close the latter right as its submenu is trying to auto-expand
+			// Also prevents similar unexpected auto-closing behaviour when clicking into the top/bottom spaces near nested details elements that are expanded
+			stillInMenu = true;
 		}
 	};
 
@@ -655,9 +660,16 @@ $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 	// Notes:
 	// * event.relatedTarget should correspond to the interactive element that's gaining focus
 	// * When pressing the Escape key to close nested dropdowns, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
+
+	//BRAINDUMP: this is the broken logic... auto-closes section 2 when hovering over to it AFTER having expanded any of section 3's nested dropdowns
+	//relatedTarget is null during the focusout event, activeElement becomes the body, stillInMenu is false... so auto-closing behaviour occurs
+	//btw keyboard controls work fine in this scenario (although that correctness might be what's causing the bug for all I know...)
 	if ( $currentTarget.find( event.relatedTarget ).length === 0 && !stillInMenu ) {
-		console.log("Closing the menu since the element that gained focus ISN'T a child of the menu");
+		console.log("Focusout closing the menu since the element that gained focus ISN'T a child of the menu");
 		menuClose( $currentTarget.find( ".active" ), true ); //NOTE: Can't pass event.target here directly since it's a link/summary and menuClose needs to take in an LI... although I could do closest() on event.target if I want... it's more in line with some other calls and might match faster since .item is a parent element
+	}
+	else {
+		console.log("Focusout event ELSE (WON'T close the submenu)");
 	}
 
 	stillInMenu = false;
