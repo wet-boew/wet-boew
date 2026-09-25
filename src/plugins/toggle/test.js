@@ -38,7 +38,8 @@ describe( "Toggle test suite", function() {
 	 * Test initialization of the plugin
 	 */
 	describe( "initialization", function() {
-		var $test, $toggleSelf, $toggleOthers, $accordion, $toggleTabs;
+		var $test, $toggleSelf, $toggleOthers, $accordion, $toggleTabs,
+			$tablist, $tabs;
 
 		before( function() {
 
@@ -68,6 +69,14 @@ describe( "Toggle test suite", function() {
 				.appendTo( $body );
 			$toggleTabs = $accordion.find( ".wb-toggle" )
 				.trigger( "wb-init.wb-toggle" );
+
+			$tablist = $( "<div class='toggle-test-tablist'>" +
+					"<div class='toggle-test-tab'><button class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".toggle-test-tablist\", \"group\": \".toggle-test-tab\"}'></button><div class='tgl-panel'></div></div>" +
+					"<div class='toggle-test-tab'><button class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".toggle-test-tablist\", \"group\": \".toggle-test-tab\"}'></button><div class='tgl-panel'></div></div>" +
+				"</div>" )
+				.appendTo( $body );
+			$tabs = $tablist.find( ".wb-toggle" )
+				.trigger( "wb-init.wb-toggle" );
 		} );
 
 		after( function() {
@@ -75,6 +84,7 @@ describe( "Toggle test suite", function() {
 			$toggleSelf.remove();
 			$toggleOthers.remove();
 			$accordion.remove();
+			$tablist.remove();
 		} );
 
 		it( "should have been marked toggle elements as initialized", function() {
@@ -105,24 +115,26 @@ describe( "Toggle test suite", function() {
 			expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( String( ariaControls ).trim() );
 		} );
 
-		it( "should have aria tablist attributes if a tablist", function() {
-			var data, $panel, $parent;
+		it( "should preserve native accordion semantics", function() {
+			var data, $parent;
 
 			$toggleTabs.each( function() {
 				data = $( this ).data( "toggle" );
 				$parent = $( data.parent );
-				expect( $parent.attr( "role" ) ).to.equal( "tablist" );
-				$parent.find( "div.tgl-tab" ).each( function() {
-					expect( this.getAttribute( "role" ) ).to.equal( "tab" );
-				} );
-				$parent.find( ".tgl-panel" ).each( function() {
-					expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
-				} );
-				$parent.find( data.group ).each( function() {
-					$panel = $( this );
-					expect( $panel.find( ".tgl-panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tgl-tab" ).attr( "id" ) );
-				} );
+				expect( data.isTablist ).to.equal( false );
+				expect( $parent.attr( "role" ) ).to.equal( undefined );
+				expect( $parent.children( "details" ).length ).to.equal( 2 );
+				expect( $parent.children( "div.tgl-tab" ).length ).to.equal( 0 );
+				expect( this.getAttribute( "role" ) ).to.equal( null );
+				expect( this.getAttribute( "aria-selected" ) ).to.equal( null );
+				expect( $( this ).next( ".tgl-panel" ).attr( "role" ) ).to.equal( undefined );
 			} );
+		} );
+
+		it( "should preserve ARIA semantics for tab interfaces", function() {
+			expect( $tablist.attr( "role" ) ).to.equal( "tablist" );
+			expect( $tabs.filter( "[role='tab']" ).length ).to.equal( 2 );
+			expect( $tablist.find( ".tgl-panel[role='tabpanel']" ).length ).to.equal( 2 );
 		} );
 	} );
 
@@ -358,18 +370,14 @@ describe( "Toggle test suite", function() {
 	 * Accordion
 	 */
 	describe( "Accordion", function() {
-		var $accordion, $details, $panels, $tabs, $wrapper,
+		var $accordion, $details, $panels, $tabs,
 			testAccordionClosed = function( idx ) {
 				expect( $details.eq( idx ).hasClass( "on" ) ).to.equal( false );
-				expect( $wrapper.eq( idx ).attr( "aria-selected" ) ).to.equal( "false" );
-				expect( $panels.eq( idx ).attr( "aria-expanded" ) ).to.equal( "false" );
-				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "true" );
+				expect( $details.eq( idx ).prop( "open" ) ).to.equal( false );
 			},
 			testAccordionOpen = function( idx ) {
 				expect( $details.eq( idx ).hasClass( "on" ) ).to.equal( true );
-				expect( $wrapper.eq( idx ).attr( "aria-selected" ) ).to.equal( "true" );
-				expect( $panels.eq( idx ).attr( "aria-expanded" ) ).to.equal( "true" );
-				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "false" );
+				expect( $details.eq( idx ).prop( "open" ) ).to.equal( true );
 			};
 
 		before( function() {
@@ -389,7 +397,6 @@ describe( "Toggle test suite", function() {
 				.trigger( "wb-init.wb-toggle" );
 			$details = $accordion.find( "details" );
 			$panels = $accordion.find( ".tgl-panel" );
-			$wrapper = $accordion.find( "div.tgl-tab" );
 
 
 			// Check if the <details> element is supported by the browser.
@@ -397,6 +404,14 @@ describe( "Toggle test suite", function() {
 			if ( !wb.supportsDetails ) {
 				$tabs.trigger( "wb-init.wb-details" );
 			}
+		} );
+
+		it( "should keep details as direct children without tab roles", function() {
+			expect( $accordion.attr( "role" ) ).to.equal( undefined );
+			expect( $accordion.children( "details" ).length ).to.equal( 2 );
+			expect( $accordion.children( "div.tgl-tab" ).length ).to.equal( 0 );
+			expect( $tabs.filter( "[role='tab']" ).length ).to.equal( 0 );
+			expect( $panels.filter( "[role='tabpanel']" ).length ).to.equal( 0 );
 		} );
 
 		after( function() {
