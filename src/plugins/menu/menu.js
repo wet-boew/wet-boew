@@ -238,9 +238,6 @@ var componentName = "wb-menu",
 					// Add the site menu
 					if ( $menubar.length !== 0 ) {
 
-						// Add the menubar role if it is missing
-						// TODO: Turn this into something that *removes* the menubar role if it's present?
-
 						allProperties.push( [
 							$menu.get(),
 							"sm-pnl",
