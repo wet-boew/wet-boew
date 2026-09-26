@@ -708,7 +708,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
 				const index = $menuItems.index( $menuItem );
 
-				//TODO: Add a condition here (or in menuIncrement itself) to not needlessly call menuIncrement if current focus is already on the first or last item in the array (like by comparing $menuItem vs $menuItems.first() or $menuItems.last()
 				menuIncrement(
 					$menuItems,
 					$menuItem,
