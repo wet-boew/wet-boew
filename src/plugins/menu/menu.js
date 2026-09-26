@@ -20,7 +20,9 @@ var componentName = "wb-menu",
 	navCurrentEvent = "navcurr.wb",
 	focusEvent = "setfocus.wb",
 	detailsInitEvent = "wb-init.wb-details",
-	menuItemSelector = "> a, > details > summary",
+	menuItemSelectorA = "> a",
+	menuItemSelectorSummary = "> details > summary",
+	menuItemSelector = menuItemSelectorA + ", " + menuItemSelectorSummary,
 	stillInMenu = false,
 	$document = wb.doc,
 
@@ -782,19 +784,14 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						menuClose( $menuLink.parent().closest( "li" ), false );
 					}, 100 );
 
-				// Escape key: Go up a level if there is a higher-level
-				// menu or close the current submenu if there isn't
-				} else {
-					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
-
-					// There is a higher-level menu
-					if ( $parentMenu.length !== 0 ) {
-						event.preventDefault( );
-						stillInMenu = true;
-						$menu.closest( "li" )
-							.find( menuItemSelector ) //TODO: Don't use this anymore, menuItemSelector's scope is too broad since it covers regular links (which will never apply in this context)
-							.trigger( "click" )
-							.trigger( focusEvent );
+				// Go up a level if there is a higher-level menu
+				} else if ( $parentMenu.length !== 0 ) {
+					event.preventDefault( );
+					stillInMenu = true;
+					$menu.closest( "li" )
+						.find( menuItemSelectorSummary )
+						.trigger( "click" )
+						.trigger( focusEvent );
 				}
 			}
 		}
