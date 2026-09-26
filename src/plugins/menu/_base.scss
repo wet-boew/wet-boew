@@ -6,6 +6,7 @@
 /*
  * Menu Sass
  */
+
 .expicon {
 	font-size: .7em;
 	margin: 0 -.35em 0 .7em;
@@ -13,34 +14,59 @@
 
 .wb-menu {
 	.sm {
-		display: none;
-		max-height: 0;
 		overflow: hidden;
 		position: relative;
-
-		&.open {
-			display: inline;
-			max-height: 1000px;
-			min-width: 12.5em;
-			position: absolute;
-			text-transform: none;
-			top: auto;
-			z-index: 500;
-
-			li {
-				@extend %global-display-block;
-
-				a {
-					text-align: left;
-				}
-			}
-		}
 
 		details {
 			> {
 				* {
 					margin-left: -$details-indentation;
 					margin-right: -$details-indentation;
+				}
+			}
+		}
+	}
+
+	details {
+		&[open] {
+			.sm {
+				display: inline;
+				margin-left: -$details-indentation;
+				min-width: 12.5em;
+				position: absolute;
+				text-transform: none;
+				top: auto;
+				z-index: 500;
+
+				li {
+					@extend %global-display-block;
+
+					a,
+					summary {
+						text-align: left;
+					}
+				}
+			}
+		}
+
+		/* Make the menu bar's summary item outlines consistent with link items */
+		summary {
+			&.item {
+				&:focus {
+					outline-offset: -2px;
+					outline-style: revert;
+					outline-width: revert;
+				}
+			}
+		}
+	}
+
+	/* Counteract a summary heading override that makes the menu bar's arrow icons very tall */
+	summary {
+		> {
+			.glyphicon {
+				&:first-child {
+					display: inline-block;
 				}
 			}
 		}
@@ -57,21 +83,44 @@
 				padding: 0;
 
 				a {
-					@extend %global-text-decoration-none;
-
 					display: block;
-					padding: 1em;
-					text-align: center;
 
 					&:hover,
 					&:focus {
 						@extend %global-text-decoration-none;
 					}
+				}
 
-					&[aria-haspopup] {
-						&:hover,
-						&:focus {
-							cursor: default;
+				a,
+				summary {
+					@extend %global-text-decoration-none;
+
+					padding: 1em;
+					text-align: center;
+				}
+
+				/* Menu bar's details/summary elements (excludes submenus) */
+				> {
+					details {
+						&[open] {
+							padding-bottom: 0;
+
+							> {
+								summary {
+									display: inline-block !important;
+									margin-bottom: 0;
+								}
+							}
+						}
+
+						> {
+							summary {
+								cursor: default;
+
+								&::marker {
+									content: none;
+								}
+							}
 						}
 					}
 				}
@@ -84,12 +133,14 @@
 			a {
 				@extend %global-text-decoration-none;
 			}
-		}
-	}
 
-	.sm-open {
-		.expicon {
-			z-index: -1;
+			details {
+				&[open] {
+					.expicon {
+						z-index: -1;
+					}
+				}
+			}
 		}
 	}
 
@@ -278,11 +329,16 @@
 			}
 		}
 
-		.sm {
-			&.open {
-				li {
-					a {
-						text-align: right;
+		details {
+			&[open] {
+				.sm {
+					margin-right: -$details-indentation;
+
+					li {
+						a,
+						summary {
+							text-align: right;
+						}
 					}
 				}
 			}
