@@ -796,17 +796,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 							.find( menuItemSelector ) //TODO: Don't use this anymore, menuItemSelector's scope is too broad since it covers regular links (which will never apply in this context)
 							.trigger( "click" )
 							.trigger( focusEvent );
-
-					// No higher-level menu but the current submenu is open
-					// BRAINDUMP: When would this actually run in practice? It sounds like this is meant to collapse a nested details element if its summary has focus and gets pressed... but that scenario is impossible in the old incarnation of the menu plugin (unless it predates when auto-focusing onto the first child menu item got implemented?)
-					// TODO: This needs to be restored and tested since it's now possible to focus onto an open nested details' summary
-					} else if ( $menuItem.parent().attr( "open" ) ) {
-						event.preventDefault( );
-						stillInMenu = true;
-						$menuItem
-							.trigger( "click" )
-							.trigger( focusEvent );
-					}
 				}
 			}
 		}
