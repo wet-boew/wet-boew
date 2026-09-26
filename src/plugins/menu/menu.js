@@ -442,11 +442,6 @@ var componentName = "wb-menu",
 	 */
 	menuClose = function( $elm, removeActive ) {
 
-		//NOTE: Sometimes null $elm elements (like jQuery arrays with a legth of 0) get passed into this method... like when clicking out of open mega menu dropdowns or other weird circumstances
-		//TODO: Should I put all this logic into something like an if block that checks whether $elm.length is truthy? No logic truly needs it atm, but normal JS logic in this function or prop checks would risk breaking if $elm didn't actually exist...
-
-		// This logic is designed with li in mind
-
 		// Adjust top-level menu item's class and open attribute
 		$elm
 			.children( "[open]" )
