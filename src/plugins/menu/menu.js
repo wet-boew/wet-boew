@@ -437,7 +437,7 @@ var componentName = "wb-menu",
 
 	/**
 	 * @method menuClose
-	 * @param {jQuery DOM element} $elm Parent of the element to close - btw this can potentially be an ARRAY of li elements (one call to it passes-in an $openMenus variable...)
+	 * @param {jQuery DOM element} $elm Parent LI(s) of the element(s) to close
 	 * @param {boolean} removeActive Whether or not to keep the active class
 	 */
 	menuClose = function( $elm, removeActive ) {
@@ -473,7 +473,7 @@ var componentName = "wb-menu",
 		var $menuLink = $menu.find( menuItemSelector );
 
 		// If another dropdown was already active, close it
-		if ( $elm.find( ".active" ).not( $menu ).length ) { //prevents menuClose from getting needlessly called (like if entering the menu for the first time or collapsing the current top-level menu item)
+		if ( $elm.find( ".active" ).not( $menu ).length ) {
 
 			// Exclude dropdowns that are already open (so their top-level menu items don't lose their highlight effects when reverse-tabbing)
 			const $activeLis = $elm.find( ".active" );
@@ -487,11 +487,13 @@ var componentName = "wb-menu",
 		// Ignore if doesn't have a submenu or isn't meant to auto-expand
 		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
 
-			// Add an open attribute to the menu link's parent details element
-			$menuLink.parent().attr( "open", "open" ); //TODO: Should this be a fake click based on whether the details is already open?
+			// Expand the submenu
+			$menuLink.parent().attr( "open", "open" );
 
-			// When hovering from a submenu dropdown with an open nested details element to another top-level mega menu bar item... don't auto-close the latter right as its submenu is trying to auto-expand
-			// Also prevents similar unexpected auto-closing behaviour when clicking into the top/bottom spaces near nested details elements that are expanded
+			// Set a stillInMenu flag
+			// Notes:
+			// * When hovering from a submenu dropdown with an open nested details element to another top-level menu bar item... prevents the latter from auto-closing right as its submenu is trying to auto-expand
+			// * Prevents similar unexpected auto-closing behaviour when clicking into the top/bottom spaces near nested details elements that are expanded
 			stillInMenu = true;
 		}
 	};
