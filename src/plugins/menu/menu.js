@@ -442,7 +442,6 @@ var componentName = "wb-menu",
 
 		//NOTE: Sometimes null $elm elements (like jQuery arrays with a legth of 0) get passed into this method... like when clicking out of open mega menu dropdowns or other weird circumstances
 		//TODO: Should I put all this logic into something like an if block that checks whether $elm.length is truthy? No logic truly needs it atm, but normal JS logic in this function or prop checks would risk breaking if $elm didn't actually exist...
-		console.log( "inside menuClose" );
 
 		// This logic is designed with li in mind
 
@@ -473,8 +472,6 @@ var componentName = "wb-menu",
 	menuDisplay = function( $elm, $menu, autoExpand = true, eventType ) {
 		var $menuLink = $menu.find( "> a, > details > summary" ); //the issue seems to be that menu is getting passed as the mega menu UL (instead of LI.active) when hovering over an A element in the top-level mega menu items... which means some logic that calls this method is passing crap for $menu... ACTUALLY even though that's a bug, it's not causing any console errors in practice
 
-		console.log( "inside menuDisplay" );
-
 		// If another dropdown was already active, close it
 		if ( $elm.find( ".active" ).not( $menu ).length ) { //prevents menuClose from getting needlessly called (like if entering the menu for the first time or collapsing the current top-level menu item)
 
@@ -489,8 +486,6 @@ var componentName = "wb-menu",
 
 		// Ignore if doesn't have a submenu or isn't meant to auto-expand
 		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
-
-			console.log( "menuDisplay is auto-opening the submenu dropdown" );
 
 			// Add an open attribute to the menu link's parent details element
 			$menuLink.parent().attr( "open", "open" ); //TODO: Should this be a fake click based on whether the details is already open?
@@ -569,16 +564,10 @@ $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 	// * event.relatedTarget should correspond to the interactive element that's gaining focus
 	// * When pressing the Escape key to close nested dropdowns, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
 	if ( $currentTarget.find( event.relatedTarget ).length === 0 && !stillInMenu ) {
-		console.log( "Focusout closing the menu since the element that gained focus ISN'T a child of the menu" );
 		menuClose( $currentTarget.find( ".active" ), true );
 	}
 
 	stillInMenu = false;
-} );
-
-$document.on( "focusin", function( event ) {
-	console.log( "focusing in..." );
-	console.log( event );
 } );
 
 // Prevent opening another menu if mouse re-enters already opened menu
@@ -592,17 +581,15 @@ $document.on( "mouseenter", selector + " .sm", function( ) {
 $document.on( "click", selector + " summary", function( event ) {
 
 	//When opening a details in the mobile menu overlay, this is what auto-closes other open details elements (basically a fake accordion)... it MIGHT work in the mega menu too... consider scrapping it if I go with native accordions
-	console.log( "Closing other submenus" );
 
 	var menuItem = event.currentTarget,
 		parent = menuItem.parentNode,
 		isOpen = parent.hasAttribute( "open" ),
 		menuItemOffsetTop, menuContainer;
 
-	// Close any other open menus
+	// Close any other open submenus
 	// NOTE: Seems to be needed for nested dropdown accordions (to only open one at a time in mobile+desktop)... and probably the mobile menu as a whole ugh
 	if ( !isOpen ) {
-		console.log( "parent details lacks an open attribute, so close other open menus" );
 
 		//Call menuClose for real instead of trying to rehash its functionality... and exclude current submenu and any other open ones
 		menuClose(
@@ -630,8 +617,6 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
 		$parentLi = $elm.closest( "li" ), //closest() is the best compromise between a vs summary elements.... unless I want to do an terniary element check or something (don't see a need for it)
 		$container = $parentLi.closest( selector );
-
-	console.log( "mousing over something..." );
 
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
@@ -684,14 +669,12 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
-			console.log( "Enter or spacebar on a link = follow the link and close menus... fake link click + calling menuClose" );
 			event.preventDefault( );
 			menuItem.click( );
 			menuClose( $( selector + " .active" ), true );
 
 		// Menu item is within a menu
 		} else {
-			console.log( "In else" );
 
 			// Left-up / right-down arrow (or opposite for RTL) = Previous / next menu item
 			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
@@ -712,8 +695,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 				// Otherwise, focus onto the previous menu item
 				} else {
-
-					console.log( "going left/right in the menu..." );
 					menuIncrement(
 						$menu.children( "li" ).find( menuItemSelector ),
 						$menuItem,
@@ -743,10 +724,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 				event.stopImmediatePropagation( );
 				event.preventDefault( );
 
-				console.log( "Enter or space arrow with a submenu... does misc stuff" );
-				console.log( menuItem );
-				console.log( menuItem.nodeName.toLowerCase() === "summary" );
-
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
 					let menuBarJustOpened = false;
@@ -759,11 +736,11 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					// Display collapsed details element
 					if ( !isOpen ) {
 
+						// Display collapsed submenu for non-active focused menu bar item
 						// If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
 						// Example of a scenario this helps with: Tab to the menu demo page's section 1, hover to section 3, press space (will open section 1 and close section 3), then hover to section 2... without this logic, both section 1+2's dropdowns will appear simultaneously
 						//TODO: This is breaking simple mixed keyboard/mouse scenarios... like tabbing to a dropdown menu bar item, expanding it, then clicking outside of the menu (submenu won't collapse)... need to refine logic to account for both the simple + advanced scenarios
 						if ( inMenuBar && !$menuItem.parent().attr( "open" ) && which !== ESC_KC ) {
-							console.log( "DISPLAYING collapsed submenu for non-active focused menu bar item!!!" );
 							menuDisplay( $menuItem.closest( selector ), $menuItem.closest( "li" ) );
 							menuBarJustOpened = true;
 						}
@@ -781,30 +758,19 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					// Ensure the menu is opened or stays open
 					// NOTE: Unsure why this had to be taken out of the !isOpen if condition... but it appears to fully work in both the mega+mobile menus
 					if ( !menuBarJustOpened ) {
-						console.log( "fake click triggered to open the clicked summary in mobile menu... runs in mega menu too" );
 						$menuItem.trigger( "click" );
 					}
 				}
 
 			// Escape key without a submenu
 			} else if ( which === ESC_KC ) {
-				console.log( "NEW: uh oh 1..." );
-				console.log( "ESC pressed 1" );
-				console.log( "$menu:" );
-				console.log( $menu );
 				$parent = $menu.parent( );
-				console.log( "$parent:" );
-				console.log( $parent );
 				$parentMenu = $parent.closest( "ul" );
-				console.log( "$parentMenu:" );
-				console.log( $parentMenu );
 
 				// If the parent menu is a menubar
 				//TODO: Is that comment still accurate? Don't think so...
 				if ( $parentMenu.hasClass( "menu" ) ) { //MINI TODO: Should this only be checking whether the direct parent UL has a menu class? Or any super high-level parent?
 					$menuLink = $menu.siblings( "a, summary" );
-					console.log( "$menuLink:" );
-					console.log( $menuLink );
 
 					// Escape key = Close menu and return to menu bar item
 					event.preventDefault( );
