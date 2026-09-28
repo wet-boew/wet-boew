@@ -593,8 +593,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		isOpen, menuItemOffsetTop, menuContainer;
 
 	// Define keycodes.
-	const TAB_KC = 9,
-		END_KC = 35,
+	const END_KC = 35,
 		ENTER_KC = 13,
 		ESC_KC = 27,
 		HOME_KC = 36,
@@ -606,12 +605,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-		// Tab key = Hide all sub-menus
-		// Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
-		if ( which === TAB_KC ) {
-
 		// Enter or spacebar on a link = follow the link and close menus
-		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
+		if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
 			event.preventDefault();
