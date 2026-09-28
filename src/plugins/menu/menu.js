@@ -592,8 +592,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		$menuLink, $parentMenu, $parent, $subMenu,
 		isOpen, menuItemOffsetTop, menuContainer;
 
-	// Define keycodes. (Make const when WET supports ES6)
-	var TAB_KC = 9,
+	// Define keycodes.
+	const TAB_KC = 9,
 		END_KC = 35,
 		ENTER_KC = 13,
 		ESC_KC = 27,
