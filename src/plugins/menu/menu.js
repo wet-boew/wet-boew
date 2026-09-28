@@ -171,7 +171,7 @@ var componentName = "wb-menu",
 	 */
 	onAjaxLoaded = function( $elm, $ajaxResult ) {
 		var $info = $( "#wb-info" ),
-			inner = function( ) {
+			inner = function() {
 				var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
 					$menubar = $ajaxed.find( ".menu" ),
 					$menu = $menubar.find( "> li " + menuItemSelectorA + ", > li " + menuItemSelectorSummary ),
@@ -268,7 +268,7 @@ var componentName = "wb-menu",
 
 				// fix #8241
 				if ( $.active > 0 ) {
-					$( document ).ajaxStop( function( ) {
+					$( document ).ajaxStop( function() {
 						initOverlay( $panel );
 					} );
 				} else {
@@ -286,9 +286,9 @@ var componentName = "wb-menu",
 					$ajaxed.find( "ul[role]" ).removeAttr( "role" );
 
 					// Loop over top-level menu items
-					$menubar.children( "li" ).each( function( ) {
+					$menubar.children( "li" ).each( function() {
 						const $topLevelLi = $( this );
-						const $item = $topLevelLi.find( ".item" ).first( );
+						const $item = $topLevelLi.find( ".item" ).first();
 						const $submenu = $item.next( ".sm" );
 						const arrowIcon = "<span class='expicon glyphicon glyphicon-chevron-down' aria-hidden='true'></span>";
 
@@ -315,7 +315,7 @@ var componentName = "wb-menu",
 				$elm.html( $ajaxed.html() );
 
 				// Trigger the navcurrent plugin
-				setTimeout( function( ) {
+				setTimeout( function() {
 					$elm.trigger( navCurrentEvent, breadcrumb );
 					$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
 
@@ -353,12 +353,12 @@ var componentName = "wb-menu",
 
 		// Delay the execution of the menu until any ajaxed footer content is in
 		if ( footerAjaxLength === 0 ) {
-			inner( );
+			inner();
 		} else {
-			$info.on( "wb-contentupdated ajax-failed.wb", function( ) {
+			$info.on( "wb-contentupdated ajax-failed.wb", function() {
 				ajaxCount += 1;
 				if ( ajaxCount === footerAjaxLength ) {
-					inner( );
+					inner();
 				}
 			} );
 		}
@@ -500,7 +500,7 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
-	globalTimeout = setTimeout( function( ) {
+	globalTimeout = setTimeout( function() {
 		menuClose( $currentTarget.find( ".active" ), true );
 	}, hoverDelay );
 } );
@@ -522,7 +522,7 @@ $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 } );
 
 // Prevent opening another menu if mouse re-enters already opened menu
-$document.on( "mouseenter", selector + " .sm", function( ) {
+$document.on( "mouseenter", selector + " .sm", function() {
 	if ( $( this ).hasClass( "open" ) ) {
 		clearTimeout( globalTimeout );
 	}
@@ -573,7 +573,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 		// Note: Also passes over an event type to prevent open dropdowns from auto-closing when reverse-tabbing
 		menuDisplay( $container, $parentLi, false, event.type );
 	} else {
-		globalTimeout = setTimeout( function( ) {
+		globalTimeout = setTimeout( function() {
 			menuDisplay( $container, $parentLi );
 		}, hoverDelay );
 	}
@@ -614,8 +614,8 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
-			event.preventDefault( );
-			menuItem.click( );
+			event.preventDefault();
+			menuItem.click();
 			menuClose( $( selector + " .active" ), true );
 
 		// Menu item is within a menu
@@ -623,7 +623,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			// Left-up / right-down arrow (or opposite for RTL) = Previous / next menu item
 			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
-				event.preventDefault( );
+				event.preventDefault();
 
 				// Setup variables to track forward arrow key actions
 				// Note: Inverts left/right arrow keys in right-to-left (RTL) scenarios
@@ -649,7 +649,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			// HOME / END keys = First / last menu item
 			} else if ( which === HOME_KC || which === END_KC ) {
-				event.preventDefault( );
+				event.preventDefault();
 				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
 				const index = $menuItems.index( $menuItem );
 
@@ -662,11 +662,11 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 			// Toggle sub-menu
 			// Enter, space or Escape key with a submenu
 			} else if ( hasPopup && ( ( which === ENTER_KC || which === SPACE_KC ) || ( which === ESC_KC && $menuItem.parent().attr( "open" ) ) ) ) {
-				$parent = $menuItem.parent( );
+				$parent = $menuItem.parent();
 
 				// Prevent handling by details.js polyfill
-				event.stopImmediatePropagation( );
-				event.preventDefault( );
+				event.stopImmediatePropagation();
+				event.preventDefault();
 
 				// If the menu item is a summary element
 				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
@@ -703,7 +703,7 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 
 			// Escape key
 			} else if ( which === ESC_KC ) {
-				$parent = $menu.parent( );
+				$parent = $menu.parent();
 				$parentMenu = $parent.closest( "ul" );
 
 				// If the parent menu is a menubar
@@ -711,17 +711,17 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					$menuLink = $menu.siblings( "a, summary" );
 
 					// Close menu and return to menu bar item
-					event.preventDefault( );
+					event.preventDefault();
 					$menuLink.trigger( focusEvent );
 
 					// Close the menu but keep the referring link active
-					setTimeout( function( ) {
+					setTimeout( function() {
 						menuClose( $menuLink.parent().closest( "li" ), false );
 					}, 100 );
 
 				// Go up a level if there is a higher-level menu
 				} else if ( $parentMenu.length !== 0 ) {
-					event.preventDefault( );
+					event.preventDefault();
 					stillInMenu = true;
 					$menu.closest( "li" )
 						.find( menuItemSelectorSummary )
@@ -736,12 +736,12 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 // Prevent Firefox from double-triggering menu behaviour
 // Note: Might no longer be an issue in modern versions of Firefox
 $document.on( "keyup", selector + " a[href], " + selector + " summary", function( event ) {
-	event.preventDefault( );
+	event.preventDefault();
 	return false;
 } );
 
 // Close the mobile panel if switching to medium, large or extra large view
-$document.on( "mediumview.wb largeview.wb xlargeview.wb", function( ) {
+$document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
 		$( mobilePanel ).trigger( {
