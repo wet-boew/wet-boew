@@ -407,7 +407,7 @@ var componentName = "wb-menu",
 		// Adjust top-level menu item's class and open attribute
 		$elm
 			.children( "[open]" )
-			.removeAttr( "open" ) // TODO - FMI: I don't think this this part of the logic actually works... couldn't get Enter key presses that close the menu to work correctly without preventDefault (even though space worked fine as-is)
+			.removeAttr( "open" )
 
 			// Close nested submenus
 			.find( "details" )
