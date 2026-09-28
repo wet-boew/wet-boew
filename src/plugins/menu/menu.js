@@ -64,10 +64,10 @@ var componentName = "wb-menu",
 				} );
 			} else {
 
-				//Enhance menus that don't rely on the data-ajax plugin
+				// Enhance menus that don't rely on the data-ajax plugin
 				ajaxFetch = $elm.data( "ajax-replace" ) || $elm.data( "ajax-append" ) || $elm.data( "ajax-prepend" );
 				if ( !ajaxFetch ) {
-					onAjaxLoaded( $elm, $elm ); //NOTE TO SELF: this is the logic that upgrades hardcoded mega menus that don't use AJAX fragments
+					onAjaxLoaded( $elm, $elm );
 				}
 			}
 		}
@@ -79,8 +79,6 @@ var componentName = "wb-menu",
 	 */
 	createCollapsibleSection = function( section, $items, itemsLength ) {
 
-		// Got rid of *most* ARIA attributes in the mobile menu by nuking this method... only remainders are tabindex=0/-1 on the summaries and role=menu on the top-level UL
-
 		// Use details/summary for the collapsible mechanism
 		var k, $elm, elm, $item, $subItems, subItemsLength,
 			$section = $( section ),
@@ -89,7 +87,7 @@ var componentName = "wb-menu",
 				">" + $section.text() + "</summary>" +
 				"<ul class='list-unstyled mb-sm'>";
 
-		// Convert each of the list items into WAI-ARIA menuitems
+		// Convert each of the list items into menuitems
 		for ( k = 0; k !== itemsLength; k += 1 ) {
 			$item = $items.eq( k );
 			$elm = $item.find( menuItemSelector );
@@ -113,8 +111,6 @@ var componentName = "wb-menu",
 	 * @return {string}
 	 */
 	createMobilePanelMenu = function( allProperties ) {
-
-		// Got rid of role=menu from the top-level UL in the mobile menu
 
 		var panel = "",
 			sectionHtml, properties, sections, section, parent, $items,
@@ -220,7 +216,6 @@ var componentName = "wb-menu",
 				if ( $secnav.length !== 0 || $menubar.length !== 0 || $info.length !== 0 ) {
 
 					// Add the secondary menu
-					//This logic looks for a left nav and replicates it in the mobile menu
 					if ( $secnav.length !== 0 ) {
 						allProperties.push( [
 							$secnav.find( "ul" ).filter( ":not(li > ul)" ).find( " > li > *:first-child" ).get(),
@@ -280,37 +275,9 @@ var componentName = "wb-menu",
 					initOverlay( $panel );
 				}
 
-				// I think this is the spot I want... the entire mobile menu has already been built by this point and a mega menu copy/paste from the AJAX fragment seems to be in place by now...
-
-				// Challenges would be... do I want this at a later point? In order to support scenarios where the mega menu was hardcoded into the page...
-
-				// What would happen to mobile menu creation if the details/summary mega menu was hardcoded OR was already coded like that in an AJAX fragment?
-
-				// How does the menu plugin behave when the mega menu is hardcoded - WITHOUT an AJAX fragment? Do its roles/etc get set/managed? Does the mobile menu still get generated? Yes, yes and yes... everything works perfectly in all scenarios with hardcoded mega menus :S
-
-				// Don't forget about noscript and basic HTML modes
-
-				// Don't forget to remove orphaned variables (like params for some of the methods I nuked)
-
-				// Don't forget to ensure navcurr still works correctly
-
-				// Don't forget about mobile menu scrolling offset functionality (or scrap it?)
-
-				// Should scrap the menu's keystroke search feature... don't want random letter key presses doing anything interactive if nothing else will
-
-				// Don't forget about Home/End support (btw the JS for them doesn't run in NVDA)
-
-				// APG disclosure pattern talks about aria-current="page" for links to the current page...
-
-				// NOTE: aria-setsize and aria-posinset don't cause anything to be announced by default... seems to only work when using certain ARIA roles
-
-				// NOTE: Remove createCollapsibleSection's unused params at some point... and params from any other similar situations
-
 				/*
 				 * Build the regular mega menu
 				 */
-
-				//drizzleAria( $menu ); //don't need any ARIA attributes... except the mega menu blows up without this ugh lol
 
 				// Revise the menu bar's structure as needed
 				if ( $menubar.length ) {
@@ -384,7 +351,7 @@ var componentName = "wb-menu",
 			footerAjaxLength = $footerAjax.length,
 			ajaxCount = 0;
 
-		//Delay the execution the menu until any ajaxed footer content is in
+		// Delay the execution of the menu until any ajaxed footer content is in
 		if ( footerAjaxLength === 0 ) {
 			inner( );
 		} else {
@@ -403,8 +370,6 @@ var componentName = "wb-menu",
 	 * @param {jQuery object} $panel Current panel
 	 */
 	initOverlay = function( $panel ) {
-
-		// Got rid of summary tabindex attributes in the mobile menu by nuking this method
 
 		$panel
 			.trigger( "wb-init.wb-overlay" )
@@ -426,7 +391,7 @@ var componentName = "wb-menu",
 		// Credit: Stack Overflow answer (https://stackoverflow.com/a/11409978) by CAFxX (cafxx)
 		newIndex = Math.max( 0, Math.min( newIndex, $menuItems.length - 1 ) );
 
-		// Move to the new menu item
+		// Move to the new menu item... if it's changed
 		if ( oldIndex !== newIndex ) {
 			$menuItems.eq( newIndex ).trigger( focusEvent );
 		}
@@ -442,7 +407,7 @@ var componentName = "wb-menu",
 		// Adjust top-level menu item's class and open attribute
 		$elm
 			.children( "[open]" )
-			.removeAttr( "open" ) // FMI: I don't this this part of the logic actually works... couldn't get Enter key presses that close the menu to work correctly without preventDefault (even though space worked fine as-is)
+			.removeAttr( "open" ) // TODO - FMI: I don't think this this part of the logic actually works... couldn't get Enter key presses that close the menu to work correctly without preventDefault (even though space worked fine as-is)
 
 			// Close nested submenus
 			.find( "details" )
@@ -458,16 +423,16 @@ var componentName = "wb-menu",
 	 * @method menuDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery DOM element} $menu The menu to display
-	 * @param {boolean} autoExpand (Optional) Whether to open the menu's dropdown (default is true)
+	 * @param {boolean} autoExpand (Optional) Whether to open the submenu (default is true)
 	 * @param {string} eventType (Optional) Type of event that was triggered (default is undefined)
 	 */
 	menuDisplay = function( $elm, $menu, autoExpand = true, eventType ) {
 		var $menuLink = $menu.find( menuItemSelector );
 
-		// If another dropdown was already active, close it
+		// If another menubar menuitem was already active, close it
 		if ( $elm.find( ".active" ).not( $menu ).length ) {
 
-			// Exclude dropdowns that are already open (so their top-level menu items don't lose their highlight effects when reverse-tabbing)
+			// Exempt open submenus if navigating via keyboard (to avoid unexpected auto-closing when reverse-tabbing)
 			const $activeLis = $elm.find( ".active" );
 			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ":has([open])" ) : $activeLis;
 
@@ -476,16 +441,16 @@ var componentName = "wb-menu",
 
 		$menu.addClass( "active" );
 
-		// Ignore if doesn't have a submenu or isn't meant to auto-expand
+		// Ignore if it doesn't have a submenu or isn't meant to auto-expand
 		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
 
 			// Expand the submenu
 			$menuLink.parent().attr( "open", "open" );
 
-			// Set a stillInMenu flag
+			// Prevent unexpected auto-closing behaviour
 			// Notes:
-			// * When hovering from a submenu dropdown with an open nested details element to another top-level menu bar item... prevents the latter from auto-closing right as its submenu is trying to auto-expand
-			// * Prevents similar unexpected auto-closing behaviour when clicking into the top/bottom spaces near nested details elements that are expanded
+			// * When hovering from a submenu dropdown with an open nested submenu to another menubar menuitem... prevents the latter from auto-closing right as its submenu is trying to auto-expand
+			// * Prevents similar auto-closing behaviour when clicking into the top/bottom spaces of nested submenus that are open
 			stillInMenu = true;
 		}
 	};
@@ -540,15 +505,15 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	}, hoverDelay );
 } );
 
-//Focusout equivalent for mouseleave
-//Prevents active (highlight) effect from getting "stuck" when tabbing beyond top-level mega menu links
+// Focusout equivalent for mouseleave
+// Prevents active (highlight) effect from getting "stuck" when tabbing beyond menubar menuitems
 $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 	var $currentTarget = $( event.currentTarget );
 
-	// Close the active mega menu dropdown only if focus landed outside of it
+	// Close the active open submenu if focus landed outside of it
 	// Notes:
 	// * event.relatedTarget should correspond to the interactive element that's gaining focus
-	// * When pressing the Escape key to close nested dropdowns, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
+	// * When pressing the Escape key to close nested submenus, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
 	if ( $currentTarget.find( event.relatedTarget ).length === 0 && !stillInMenu ) {
 		menuClose( $currentTarget.find( ".active" ), true );
 	}
@@ -573,8 +538,6 @@ $document.on( "click", selector + " summary", function( event ) {
 
 	// Close any other open submenus
 	if ( !isOpen ) {
-
-		//Call menuClose for real instead of trying to rehash its functionality... and exclude current submenu and any other open ones
 		menuClose(
 			$( parent )
 				.closest( "ul" )
@@ -606,7 +569,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 
 	if ( event.type === "focusin" && !stillInMenu ) {
 
-		// Highlight the top-level mega menu item... but don't auto-expand it for keyboard users
+		// Highlight the menubar menuitem... but don't auto-expand it for keyboard users
 		// Note: Also passes over an event type to prevent open dropdowns from auto-closing when reverse-tabbing
 		menuDisplay( $container, $parentLi, false, event.type );
 	} else {
@@ -644,11 +607,10 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
 		// Tab key = Hide all sub-menus
-		//Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
+		// Auto-closes the mega menu when tabbing over it (the open top-level link has the active class)... runs in the mobile menu too, but is pointless in that context
 		if ( which === TAB_KC ) {
 
-		//Enter or spacebar on a link = follow the link and close menus
-		//Always runs when clicking links in either the mega or mobile menu (regardless of anchor vs page)
+		// Enter or spacebar on a link = follow the link and close menus
 		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
@@ -711,13 +673,13 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 					let menuBarJustOpened = false;
 					isOpen = !!$parent.attr( "open" );
 
-					// Display collapsed details element
+					// Display collapsed submenu
 					if ( !isOpen ) {
 
-						// Display collapsed submenu for non-active focused menu bar item
-						// If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
+						// Re-activate focused menubar item and re-expand its submenu
+						// Note: If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
 						// Example of a scenario this helps with: Tab to the menu demo page's section 1, hover to section 3, press space (will open section 1 and close section 3), then hover to section 2... without this logic, both section 1+2's dropdowns will appear simultaneously
-						//TODO: This is breaking simple mixed keyboard/mouse scenarios... like tabbing to a dropdown menu bar item, expanding it, then clicking outside of the menu (submenu won't collapse)... need to refine logic to account for both the simple + advanced scenarios
+						// TODO: This is breaking simple mixed keyboard/mouse scenarios... like tabbing to a dropdown menu bar item, expanding it, then clicking outside of the menu (submenu won't collapse)... need to refine logic to account for both the simple + advanced scenarios
 						if ( inMenuBar && !$menuItem.parent().attr( "open" ) && which !== ESC_KC ) {
 							menuDisplay( $menuItem.closest( selector ), $menuItem.closest( "li" ) );
 							menuBarJustOpened = true;
@@ -772,17 +734,13 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 } );
 
 // Prevent Firefox from double-triggering menu behaviour
-//Leave this alone apart from the tweaked selector
-//NOTE: Unable to replicate the issue this logic claims to be resolving in Firefox... AFAIK FF+Chromium currently behave identically
-//Maybe caused by https://stackoverflow.com/a/45169196 (claims Firefox fires click events upon releasing keys) OR https://community.adobe.com/questions-652/keydown-eventlistener-firing-twice-for-some-keys-796664 (one reply says Windows works fine and others experiencing the issue say they're on macOS)
-//Guessing the mindset behind this logic was to take in the first keydown normally, then disable subsequent events after the first keyup
+// Note: Might no longer be an issue in modern versions of Firefox
 $document.on( "keyup", selector + " a[href], " + selector + " summary", function( event ) {
 	event.preventDefault( );
 	return false;
 } );
 
 // Close the mobile panel if switching to medium, large or extra large view
-//NOTE: These ARIA attributes come from the overlay plugin, so leave this logic as-is... no need to tamper with them
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function( ) {
 	var mobilePanel = document.getElementById( "mb-pnl" );
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
