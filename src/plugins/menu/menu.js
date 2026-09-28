@@ -428,12 +428,12 @@ var componentName = "wb-menu",
 	 */
 	menuDisplay = function( $elm, $menu, autoExpand = true, eventType ) {
 		var $menuLink = $menu.find( menuItemSelector );
+		const $activeLis = $elm.find( ".active" );
 
 		// If another menubar menuitem was already active, close it
-		if ( $elm.find( ".active" ).not( $menu ).length ) {
+		if ( $activeLis.not( $menu ).length ) {
 
 			// Exempt open submenus if navigating via keyboard (to avoid unexpected auto-closing when reverse-tabbing)
-			const $activeLis = $elm.find( ".active" );
 			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ":has([open])" ) : $activeLis;
 
 			menuClose( $filteredActiveLis, true );
