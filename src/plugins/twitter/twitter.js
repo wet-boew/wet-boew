@@ -150,6 +150,7 @@ var componentName = "wb-twitter",
 						fallback.setAttribute( "role", "status" );
 						fallback.textContent = i18nText.unavailable;
 						twitterLink.before( fallback );
+						observer.disconnect();
 					}
 				}, 5000 ); // 5 seconds
 
