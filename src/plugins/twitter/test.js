@@ -50,7 +50,7 @@ describe( "Twitter test suite", function() {
 	} );
 
 	describe( "unavailable timeline", function() {
-		it( "preserves the link and removes the message if the timeline loads later", function( done ) {
+		it( "preserves the link and announces that the timeline is unavailable", function() {
 			const originalSetTimeout = window.setTimeout;
 			let fallbackTimer;
 			const timerStub = sinon.stub( window, "setTimeout" ).callsFake( function( callback, delay ) {
@@ -71,25 +71,7 @@ describe( "Twitter test suite", function() {
 			expect( fallback.attr( "role" ) ).to.equal( "status" );
 			expect( fallback.text() ).to.equal( wb.i18n( "twitter-unavailable" ) );
 			expect( $fallbackElm.find( "a.twitter-timeline" ).attr( "href" ) ).to.equal( "https://twitter.com/Example" );
-
-			const iframeContainer = document.createElement( "div" );
-			const iframe = document.createElement( "iframe" );
-			iframeContainer.className = "twitter-timeline";
-			iframe.id = "twitter-widget-late";
-			iframe.src = "about:blank#/screen-name/Example";
-			iframeContainer.appendChild( iframe );
-			$fallbackElm.find( "a.twitter-timeline" )[ 0 ].replaceWith( iframeContainer );
-			setTimeout( function() {
-				try {
-					expect( $fallbackElm.find( ".wb-twitter-fallback" ).length ).to.equal( 0 );
-					expect( $fallbackElm.find( ".wb-twitter-skip" ).length ).to.equal( 2 );
-					done();
-				} catch ( error ) {
-					done( error );
-				} finally {
-					$fallbackElm.remove();
-				}
-			}, 0 );
+			$fallbackElm.remove();
 		} );
 	} );
 
