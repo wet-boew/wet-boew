@@ -813,7 +813,6 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				// Escape or left arrow: Go up a level if there is a higher-level
 				// menu or close the current submenu if there isn't
 				} else if ( which !== RIGHT_KC ) {
-					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
 
 					// There is a higher-level menu
 					if ( $parentMenu.length !== 0 ) {
@@ -845,7 +844,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 				// If couldn't find a match, try the previous siblings
 				if ( !result ) {
-					result = selectByLetter(
+					selectByLetter(
 						which,
 						$parent.prevAll().find( menuItemSelector ).get()
 					);

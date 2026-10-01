@@ -51,7 +51,7 @@ var componentName = "wb-tabs",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			isCarousel = true,
+			isCarousel,
 			open = "open",
 			hashTargetLen = 0,
 			$panels, $tablist, activeId, $openPanel, $elm, elmId, $hashTarget,

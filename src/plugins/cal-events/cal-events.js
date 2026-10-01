@@ -136,9 +136,9 @@ var componentName = "wb-calevt",
 		// Simplified conversion to date object
 		var date1 = wb.date.convert( dateLow ),
 			date2 = wb.date.convert( dateHigh ),
-			dstAdjust = 0,
 			oneMinute = 1000 * 60,
 			oneDay = oneMinute * 60 * 24,
+			dstAdjust,
 			diff;
 
 		// Equalize times in case date objects have them

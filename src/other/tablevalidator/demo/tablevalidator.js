@@ -238,7 +238,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 		currRow = tblparser.row[ i ];
 		rowheadersgroup = "";
 		rowheaders = "";
-		currrowheader = "";
 		ongoingRowHeader = "";
 
 		// Get or Generate a unique ID for each header in this row
@@ -649,7 +648,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 $document.on( "error" + tableParserSelector, "#visualoutput > table:eq( 0 )", function( event ) {
 	var numerr = event.err,
 		html = "#" + numerr + ", ",
-		errorHTML = "",
+		errorHTML,
 		techNum;
 
 	errorHTML = ErrorMessage[ "%tblparser" + numerr ];
@@ -673,7 +672,7 @@ $document.on( "error" + tableParserSelector, "#visualoutput > table:eq( 0 )", fu
 $document.on( "warning" + tableParserSelector, "#visualoutput > table:eq( 0 )", function( event ) {
 	var numerr = event.err,
 		html = "#" + numerr + ", ",
-		errorHTML = "",
+		errorHTML,
 		techNum;
 
 	errorHTML = ErrorMessage[ "%tblparser" + numerr ];
