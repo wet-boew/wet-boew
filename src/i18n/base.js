@@ -195,6 +195,7 @@ wb.i18nDict = {
 	"twitter-skip-end": "@twitter-skip-end@",
 	"twitter-skip-start": "@twitter-skip-start@",
 	"twitter-timeline-title": "@twitter-timeline-title@",
+	"twitter-unavailable": "@twitter-unavailable@",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
