@@ -47,6 +47,7 @@
 	.display {
 		&:before {
 			text-align: center;
+			z-index: 1;
 		}
 
 		&:after {
@@ -84,6 +85,14 @@
 	position: relative;
 
 	&.video {
+		&:fullscreen {
+			.display {
+				margin: auto;
+				text-align: center;
+				width: 80%;
+			}
+		}
+
 		&:not(.playing):not(.waiting):not(.youtube) {
 			@include multimedia-overlay-base;
 			@include multimedia-overlay-play;
@@ -189,6 +198,7 @@
 
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
+	position: relative;
 	text-align: center;
 	transition: all .26s ease;
 	width: 100%;
