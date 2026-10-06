@@ -49,6 +49,32 @@ describe( "Twitter test suite", function() {
 		} );
 	} );
 
+	describe( "unavailable timeline", function() {
+		it( "preserves the link and announces that the timeline is unavailable", function() {
+			const originalSetTimeout = window.setTimeout;
+			let fallbackTimer;
+			const timerStub = sinon.stub( window, "setTimeout" ).callsFake( function( callback, delay ) {
+				if ( delay === 5000 ) {
+					fallbackTimer = callback;
+					return 0;
+				}
+				return originalSetTimeout.apply( window, arguments );
+			} );
+			const $fallbackElm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/Example'>Tweets by @Example</a></div>" )
+				.appendTo( $body )
+				.trigger( "wb-init.wb-twitter" );
+			timerStub.restore();
+
+			fallbackTimer();
+			const fallback = $fallbackElm.find( ".wb-twitter-fallback" );
+			expect( fallback.length ).to.equal( 1 );
+			expect( fallback.attr( "role" ) ).to.equal( "status" );
+			expect( fallback.text() ).to.equal( wb.i18n( "twitter-unavailable" ) );
+			expect( $fallbackElm.find( "a.twitter-timeline" ).attr( "href" ) ).to.equal( "https://twitter.com/Example" );
+			$fallbackElm.remove();
+		} );
+	} );
+
 } );
 
 }( jQuery, wb ) );
