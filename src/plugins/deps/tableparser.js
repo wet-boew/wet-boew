@@ -440,7 +440,6 @@ var componentName = "wb-tableparser",
 				// There are no colgroup elements defined.
 				// All cells will be considered to be a data cells.
 				// Data Colgroup
-				dataColgroup = {};
 				dataColumns = [];
 				colgroup = {
 					start: ( colgroupHeaderColEnd + 1 ),
@@ -591,15 +590,6 @@ var componentName = "wb-tableparser",
 						colgroupFrame[ 0 ].end + 1
 				);
 
-				colgroup = {
-					start: currColPos,
-					end: undefined,
-					col: [],
-					row: [],
-
-					// Set colgroup data type, that is the initial colgroup type
-					type: 2
-				};
 				currColgroupStructure = [];
 				bigTotalColgroupFound = false;
 
@@ -1959,9 +1949,7 @@ var componentName = "wb-tableparser",
 				currRow = tblparser.row[ i ];
 				rowheadersgroup = [];
 				rowheaders = [];
-				currrowheader = [];
 				ongoingRowHeader = [];
-				coldataheader = [];
 
 				// Get or Generate a unique ID for each header in this row
 				if ( currRow.headerset && !currRow.idsheaderset ) {

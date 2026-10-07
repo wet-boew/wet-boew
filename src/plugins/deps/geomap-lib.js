@@ -167,7 +167,7 @@ var componentName = "wb-geomap",
 	Geomap = function( options ) {
 
 		var $elm = options.target,
-			viewOptions = {};
+			viewOptions;
 
 		this.id = $elm.attr( "id" );
 		this.mapLayers = [];
@@ -1630,7 +1630,7 @@ var componentName = "wb-geomap",
 					if ( data.length > 0 ) {
 
 						var len = data.length,
-							icon = "",
+							icon,
 							i, item, label, title, bnd, ll;
 
 						for ( i = 0; i !== len; i += 1 ) {
@@ -2490,7 +2490,6 @@ Geomap.prototype.addTabularData = function() {
 		attr = [];
 		thElms = table.getElementsByTagName( "th" );
 		trElms = table.getElementsByTagName( "tr" );
-		trLen = trElms.length;
 		useMapControls = this.settings.useMapControls;
 
 		if ( $table.hasClass( "wb-tables" ) && typeof $table.attr( "data-wb-tables" ) === "undefined" ) {
@@ -3040,7 +3039,6 @@ MapLayer.prototype.createOLLayer = function() {
 				atts = {};
 
 				for ( var name in layerAttributes ) {
-					path = null;
 					if ( Object.prototype.hasOwnProperty.call( layerAttributes, name ) ) {
 						path = layerAttributes[ name ].path;
 						if ( path ) {

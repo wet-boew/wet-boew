@@ -59,11 +59,11 @@ var componentName = "wb-eqht",
 	onResize = function() {
 		var $elm, $children, $anchor, currentChild, childCSS, i, j,
 			$elms = $( selector ),
-			row = [],
-			rowTop = -1,
-			currentChildTop = -1,
-			currentChildHeight = -1,
-			tallestHeight = -1;
+			row,
+			rowTop,
+			currentChildTop,
+			currentChildHeight,
+			tallestHeight;
 
 		for ( i = $elms.length - 1; i !== -1; i -= 1 ) {
 			$elm = $elms.eq( i );
@@ -102,7 +102,7 @@ var componentName = "wb-eqht",
 				currentChild.style.cssText = childCSS;
 				$children.eq( j ).data( minHeightCSS, minHeightDefault );
 			}
-			$elm = reattachElement( $anchor );
+			reattachElement( $anchor );
 
 			// set the top offset and tallest height to the first element
 			rowTop = $children[ 0 ] ? $children[ 0 ].getBoundingClientRect().top + window.pageYOffset : 0;

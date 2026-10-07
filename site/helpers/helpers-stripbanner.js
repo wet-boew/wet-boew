@@ -7,10 +7,7 @@
 
 // Export helper
 // eslint-disable-next-line no-undef
-module.exports.register = function( Handlebars, options ) {
-
-	// eslint-disable-next-line no-unused-vars
-	options = options || {};
+module.exports.register = function( Handlebars ) {
 
 	Handlebars.registerHelper( "stripbanner", function( options ) {
 		return options.fn( this ).replace( /^\/\*[\s\S]*?\*\/\r?\n?/m, "" );
