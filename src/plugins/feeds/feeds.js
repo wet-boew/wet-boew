@@ -238,7 +238,7 @@ var componentName = "wb-feeds",
 	corsEntry = function( xmlDoc, limit ) {
 		var entries = xmlDoc.getElementsByTagName( "entry" ).length,
 			arr_entry = [],
-			corsObj = {},
+			corsObj,
 			jsonString = JSON.stringify( xmlToJson( xmlDoc ) ),
 			jsonObj = JSON.parse( jsonString ),
 			i, iCache;
@@ -546,7 +546,7 @@ $document.on( "click", selector + " .feed-flickr", function( event ) {
 			flickrData.description + "</span>";
 
 	if ( $flickrOverlay.length === 0 ) {
-		$flickrOverlay = $( "<section id='wb-feeds-flick-lbx' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+		$( "<section id='wb-feeds-flick-lbx' class='mfp-hide modal-dialog modal-content overlay-def'>" +
 			"<header class='modal-header'><h2 class='modal-title'>" + flickrData.title + "</h2></header>" +
 			"<div class='modal-body'>" + body + "</div></section>" ).insertAfter( "main" );
 	} else {

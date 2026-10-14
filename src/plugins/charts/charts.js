@@ -30,15 +30,15 @@ var componentName = "wb-charts",
 	 */
 	createCharts = function( $elm ) {
 		var allSeries = [],
-			chartslabels = [],
-			dataSeries = [],
+			chartslabels,
+			dataSeries,
 			nbBarChart = 0,
 			$caption = $( "caption", $elm ),
 			captionHtml = $caption.html() || "",
 			captionText = $caption.text() || "",
-			valuePoint = 0,
+			valuePoint,
 			dataCellUnitRegExp = /[^+\-., 0-9]+[^\-+0-9]*/,
-			lowestFlotDelta, $imgContainer, $placeHolder,
+			lowestFlotDelta, $placeHolder,
 			$wetChartContainer, htmlPlaceHolder, figurehtml,
 			cellValue, datacolgroupfound, dataGroup, header,
 			i, iLength, j, jLength, parsedData, rIndex, currVectorOptions,
@@ -519,7 +519,7 @@ var componentName = "wb-charts",
 		 * @param {number} referenceValue - Reference Value Vector ID
 		 */
 		function setInnerStepValuesChildRecursive( headerCell, headerLevel, stepsValue, referenceValue ) {
-			var cumulativeValue = 0,
+			var cumulativeValue,
 
 				// Step Values for childs header in headerCell
 				flotDelta,
@@ -641,8 +641,7 @@ var componentName = "wb-charts",
 		function verticalLabels( parsedData ) {
 
 			// Get the appropriate ticks
-			var headerlevel = 0,
-				labelsVectorPosition, stepsValue, columnReferenceValue;
+			var headerlevel, labelsVectorPosition, stepsValue, columnReferenceValue;
 
 			if ( !reverseTblParsing || ( reverseTblParsing && optionsCharts.referencevalue === false ) ) {
 				columnReferenceValue = parsedData.colgrouphead.col.length;
@@ -682,7 +681,7 @@ var componentName = "wb-charts",
 
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
-				headerlevel = 0,
+				headerlevel,
 				theadRowStack = parsedData.theadRowStack,
 				i, iLength, labelsVectorPosition,
 				stepsValue, rowReferenceValue;
@@ -837,8 +836,6 @@ var componentName = "wb-charts",
 						}
 
 						// Gets the value
-						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
-
 						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ?
 							currentDataGroupVector.cell[ rIndex ].elem :
 							currentDataGroupVector.datacell[ rIndex ].elem );
@@ -852,12 +849,8 @@ var componentName = "wb-charts",
 							]
 						);
 
-						valuePoint += header[ header.length - 1 ].flotDelta;
-
 						break;
 					}
-
-					pieQuaterFlotSeries = { };
 
 					// Get the setting from the associative cell header
 					dataCell = !reverseTblParsing ?
@@ -927,7 +920,6 @@ var componentName = "wb-charts",
 				// Fix the legend that appear under the graphic
 				$( ".legend > div", $wetChartContainer ).remove();
 				$( ".legend > table", $wetChartContainer ).removeAttr( "style" ).addClass( "font-small" );
-				$( ".legend", $placeHolder ).appendTo( $imgContainer );
 			}
 
 			// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
@@ -944,9 +936,6 @@ var componentName = "wb-charts",
 
 			// If normal parsing
 			dataGroup = currentRowGroup;
-			rIndex = ( parsedData.colgroup[ 0 ].type === 1 ?
-				parsedData.colgroup[ 1 ].col.length :
-				parsedData.colgroup[ 0 ].col.length ) - 1;
 			chartslabels = horizontalLabels( parsedData );
 		} else {
 
@@ -954,7 +943,6 @@ var componentName = "wb-charts",
 			dataGroup = parsedData.colgroup[ 0 ].type === 1 ?
 				parsedData.colgroup[ 1 ] :
 				parsedData.colgroup[ 0 ];
-			rIndex = currentRowGroup.row.length - 1;
 			chartslabels = verticalLabels( parsedData );
 		}
 

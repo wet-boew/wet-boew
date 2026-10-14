@@ -47,7 +47,6 @@ var componentName = "wb-meter",
 			max = parseFloat( $elm.attr( "max" ) || 1 ),
 			high = parseFloat( $elm.attr( "high" ) ),
 			low = parseFloat( $elm.attr( "low" ) ),
-			optimum = parseFloat( $elm.attr( "optimum" ) ),
 			value = $elm.attr( "value" ) !== null ? parseFloat( $elm.attr( "value" ) ) : ( elm.textContent ? elm.textContent : elm.innerText ),
 			children = elm.children,
 			indicator, width;
@@ -76,10 +75,6 @@ var componentName = "wb-meter",
 		if ( low !== null && low < min ) {
 			low = min;
 			$elm.attr( "low", low );
-		}
-
-		if ( optimum !== null && ( optimum < min || optimum > max ) ) {
-			optimum = ( max - min ) / 2;
 		}
 
 		if ( high !== null && high > max ) {

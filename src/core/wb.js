@@ -119,8 +119,7 @@ var getUrlParts = function( url ) {
 	 * @return {integer} of IE version
 	 */
 	oldie = ( function() {
-		var undef,
-			v = 3,
+		var v = 3,
 			div = document.createElement( "div" ),
 			all = div.getElementsByTagName( "i" );
 

@@ -23,9 +23,7 @@ var helpers = {
 
 // Export helpers
 // eslint-disable-next-line no-undef
-module.exports.register = function( Handlebars, options ) {
-	// eslint-disable-next-line no-unused-vars
-	options = options || {};
+module.exports.register = function( Handlebars ) {
 	for ( var helper in helpers ) {
 		if ( Object.prototype.hasOwnProperty.call( helpers, helper ) ) {
 			Handlebars.registerHelper( helper, helpers[ helper ] );
