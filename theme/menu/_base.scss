@@ -13,6 +13,24 @@
 	color: $wet-theme-wb-menu-hover-active-color;
 }
 
+%wet-theme-wb-menu-bar-item {
+	border-left: 1px solid $wb-sm-menu-li-a-border-left;
+	color: $mb-pnl-body-link-color;
+
+	&.wb-navcurr {
+		@extend %wet-theme-wb-sm-wb-navcurr;
+	}
+
+	// :focus not needed since already covered by the &.active state
+	&:hover {
+		@extend %wet-theme-wb-menu-hover-active;
+	}
+}
+
+%wet-theme-wb-menu-bar-item-last-child {
+	border-right: 1px solid $wb-sm-menu-li-last-child-border-right;
+}
+
 #wb-sm {
 	background: $mb-pnl-body-background;
 	color: $mb-pnl-body-color;
@@ -25,16 +43,14 @@
 			li {
 				> {
 					a {
-						border-left: 1px solid $wb-sm-menu-li-a-border-left;
-						color: $mb-pnl-body-link-color;
+						@extend %wet-theme-wb-menu-bar-item;
+					}
 
-						&.wb-navcurr {
-							@extend %wet-theme-wb-sm-wb-navcurr;
-						}
-
-						// :focus not needed since already covered by the &.active state
-						&:hover {
-							@extend %wet-theme-wb-menu-hover-active;
+					details {
+						> {
+							summary {
+								@extend %wet-theme-wb-menu-bar-item;
+							}
 						}
 					}
 				}
@@ -42,7 +58,15 @@
 				&:last-child {
 					> {
 						a {
-							border-right: 1px solid $wb-sm-menu-li-last-child-border-right;
+							@extend %wet-theme-wb-menu-bar-item-last-child;
+						}
+
+						details {
+							> {
+								summary {
+									@extend %wet-theme-wb-menu-bar-item-last-child;
+								}
+							}
 						}
 					}
 				}
@@ -52,48 +76,61 @@
 						a {
 							@extend %wet-theme-wb-menu-hover-active;
 						}
+
+						details {
+							> {
+								summary {
+									@extend %wet-theme-wb-menu-hover-active;
+								}
+							}
+						}
 					}
 				}
 			}
 		}
 	}
 
-	.sm {
-		&.open {
-			background: $wb-sm-sm-open-background;
-			border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
-			border-left: 0;
-			border-right: 0;
-			padding: 0;
+	details {
+		&[open] {
+			.sm {
+				background: $wb-sm-sm-open-background;
+				border-bottom: 5px solid $wb-sm-sm-open-border-bottom;
+				border-left: 0;
+				border-right: 0;
+				padding: 0;
 
-			li {
-				a,
-				summary {
-					border-left: 0;
-					border-right: 0;
-					color: $wb-sm-sm-open-li-summary-color;
-					padding: 5px 10px;
-					text-decoration: none;
-					text-shadow: none;
+				li {
+					a,
+					summary {
+						border-left: 0;
+						border-right: 0;
+						color: $wb-sm-sm-open-li-summary-color;
+						padding: 5px 10px;
+						text-decoration: none;
+						text-shadow: none;
 
-					&.wb-navcurr {
-						@extend %wet-theme-wb-sm-wb-navcurr;
-					}
+						&.wb-navcurr {
+							@extend %wet-theme-wb-sm-wb-navcurr;
+						}
 
-					&:hover,
-					&:focus {
-						@extend %wet-theme-wb-sm-wb-navcurr;
+						&:hover,
+						&:focus {
+							@extend %wet-theme-wb-sm-wb-navcurr;
+						}
 					}
 				}
-			}
 
-			.slflnk {
-				a {
-					background: $wb-sm-sm-open-slflnk-a;
+				.slflnk {
+					a {
+						background: $wb-sm-sm-open-slflnk-a;
+					}
 				}
 			}
 		}
+	}
 
+	/* Possibly unused... submenus don't usually contain row classes, unclear why only row link colours would need to be customized */
+	.sm {
 		.row {
 			background: transparent;
 

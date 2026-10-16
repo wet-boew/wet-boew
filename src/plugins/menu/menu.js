@@ -20,7 +20,10 @@ var componentName = "wb-menu",
 	navCurrentEvent = "navcurr.wb",
 	focusEvent = "setfocus.wb",
 	detailsInitEvent = "wb-init.wb-details",
-	menuItemSelector = "> a, > details > summary",
+	menuItemSelectorA = "> a",
+	menuItemSelectorSummary = "> details > summary",
+	menuItemSelector = menuItemSelectorA + ", " + menuItemSelectorSummary,
+	stillInMenu = false,
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -61,7 +64,7 @@ var componentName = "wb-menu",
 				} );
 			} else {
 
-				//Enhance menus that don't rely on the data-ajax plugin
+				// Enhance menus that don't rely on the data-ajax plugin
 				ajaxFetch = $elm.data( "ajax-replace" ) || $elm.data( "ajax-append" ) || $elm.data( "ajax-prepend" );
 				if ( !ajaxFetch ) {
 					onAjaxLoaded( $elm, $elm );
@@ -71,59 +74,20 @@ var componentName = "wb-menu",
 	},
 
 	/**
-	 * Lets set some aria states and attributes
-	 * @method drizzleAria
-	 * @param {jQuery DOM elements} $elements The collection of elements
-	 */
-	drizzleAria = function( $elements ) {
-		var length = $elements.length,
-			$elm, $subMenu, i;
-
-		// Lets tweak for aria
-		for ( i = 0; i !== length; i += 1 ) {
-			$elm = $elements.eq( i );
-			$subMenu = $elm.siblings( "ul" );
-
-			$elm.attr( {
-				"aria-posinset": ( i + 1 ),
-				"aria-setsize": length,
-				role: "menuitem"
-			} );
-
-			// if there is a submenu lets put in the aria for it
-			if ( $subMenu.length !== 0 ) {
-
-				$elm.attr( "aria-haspopup", "true" );
-
-				$subMenu.attr( {
-					"aria-expanded": "false",
-					"aria-hidden": "true"
-				} );
-
-				// recurse into submenu
-				drizzleAria( $subMenu.children( "li" ).find( menuItemSelector ) );
-			}
-		}
-	},
-
-	/**
 	 * @method createCollapsibleSection
 	 * @return {string}
 	 */
-	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
+	createCollapsibleSection = function( section, $items, itemsLength ) {
 
 		// Use details/summary for the collapsible mechanism
 		var k, $elm, elm, $item, $subItems, subItemsLength,
 			$section = $( section ),
-			posinset = "' aria-posinset='",
-			menuitem = " role='menuitem' aria-setsize='",
 			sectionHtml = "<li><details>" + "<summary class='mb-item" +
 				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
-				menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
-				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
-				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
+				">" + $section.text() + "</summary>" +
+				"<ul class='list-unstyled mb-sm'>";
 
-		// Convert each of the list items into WAI-ARIA menuitems
+		// Convert each of the list items into menuitems
 		for ( k = 0; k !== itemsLength; k += 1 ) {
 			$item = $items.eq( k );
 			$elm = $item.find( menuItemSelector );
@@ -132,14 +96,9 @@ var componentName = "wb-menu",
 			subItemsLength = $subItems.length;
 
 			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
-				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
-					/(<a\s)/,
-					"$1" + menuitem + itemsLength +
-							posinset + ( k + 1 ) +
-							"' tabindex='-1' "
-				) + "</li>";
+				sectionHtml += "<li>" + $item[ 0 ].innerHTML + "</li>";
 			} else {
-				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
+				sectionHtml += createCollapsibleSection( elm, $subItems, $subItems.length );
 			}
 		}
 
@@ -152,9 +111,10 @@ var componentName = "wb-menu",
 	 * @return {string}
 	 */
 	createMobilePanelMenu = function( allProperties ) {
+
 		var panel = "",
 			sectionHtml, properties, sections, section, parent, $items,
-			linkHtml, i, j, len, sectionsLength, itemsLength;
+			linkHtml, i, j, len, itemsLength;
 
 		// Process the secondary and site menus
 		len = allProperties.length;
@@ -162,15 +122,14 @@ var componentName = "wb-menu",
 			properties = allProperties[ i ];
 			sectionHtml = "";
 			sections = properties[ 0 ];
-			sectionsLength = sections.length;
-			for ( j = 0; j !== sectionsLength; j += 1 ) {
+			for ( j = 0; j !== sections.length; j += 1 ) {
 				section = sections[ j ];
 				$items = $( section.parentNode ).find( "> ul > li" );
 				itemsLength = $items.length;
 
 				// Collapsible section
 				if ( itemsLength !== 0 ) {
-					sectionHtml += createCollapsibleSection( section, j, sectionsLength, $items, itemsLength );
+					sectionHtml += createCollapsibleSection( section, $items, itemsLength );
 				} else {
 					parent = section.parentNode;
 
@@ -189,22 +148,16 @@ var componentName = "wb-menu",
 							section.innerHTML + "</a>";
 					}
 
-					// Convert the list item to a WAI-ARIA menuitem
-					sectionHtml += "<li class='no-sect'>" +
-						linkHtml.replace(
-							/(<a\s)/,
-							"$1 class='mb-item' " + "role='menuitem' aria-setsize='" +
-								sectionsLength + "' aria-posinset='" + ( j + 1 ) +
-								"' tabindex='-1' "
-						) + "</li>";
+					// Convert the list item to a menuitem
+					sectionHtml += "<li class='no-sect'>" + linkHtml + "</li>";
 				}
 			}
 
 			// Create the panel section
-			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
+			panel += "<nav typeof='SiteNavigationElement' id='" +
 				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu wb-menu-inited'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
-				"<ul class='list-unstyled mb-menu' role='menu'>" +
+				"<ul class='list-unstyled mb-menu'>" +
 				sectionHtml + "</ul></nav>";
 		}
 
@@ -221,7 +174,7 @@ var componentName = "wb-menu",
 			inner = function() {
 				var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
 					$menubar = $ajaxed.find( ".menu" ),
-					$menu = $menubar.find( "> li > a" ),
+					$menu = $menubar.find( "> li " + menuItemSelectorA + ", > li " + menuItemSelectorSummary ),
 					target = $elm.data( "trgt" ),
 					$secnav = $( "#wb-sec" ),
 					$language = $( "#wb-lng" ),
@@ -280,11 +233,6 @@ var componentName = "wb-menu",
 					// Add the site menu
 					if ( $menubar.length !== 0 ) {
 
-						// Add the menubar role if it is missing
-						if ( !$menubar.attr( "role" ) ) {
-							$menubar.attr( "role", "menubar" );
-						}
-
 						allProperties.push( [
 							$menu.get(),
 							"sm-pnl",
@@ -330,16 +278,37 @@ var componentName = "wb-menu",
 				/*
 				 * Build the regular mega menu
 				 */
-				$ajaxed
-					.find( ":discoverable" )
-					.attr( "tabindex", "-1" );
 
-				if ( $menu.length !== 0 ) {
-					$menu[ 0 ].setAttribute( "tabindex", "0" );
-					drizzleAria( $menu );
-					$menu
-						.filter( "[aria-haspopup=true]" )
-						.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
+				// Revise the menu bar's structure as needed
+				if ( $menubar.length ) {
+
+					// Remove hardcoded role attributes (menu/menubar pattern leftovers...)
+					$ajaxed.find( "ul[role]" ).removeAttr( "role" );
+
+					// Loop over top-level menu items
+					$menubar.children( "li" ).each( function() {
+						const $topLevelLi = $( this );
+						const $item = $topLevelLi.find( ".item" ).first();
+						const $submenu = $item.next( ".sm" );
+						const arrowIcon = "<span class='expicon glyphicon glyphicon-chevron-down' aria-hidden='true'></span>";
+
+						// If the item has a submenu...
+						if ( $item.length && $submenu.length ) {
+
+							// Add an arrow icon
+							$item.append( arrowIcon );
+
+							// Transform link/submenu combination into a details/summary structure
+							if ( $item.prop( "nodeName" ).toLowerCase() === "a" ) {
+
+								// Create a details element, turn the link into a summary and add its submenu
+								const $newDetails = $( "<details><summary class='item'>" + $item.html() + "</summary>" + $submenu[ 0 ].outerHTML + "</details>" );
+
+								// Replace the item's contents with the details element
+								$topLevelLi.empty().append( $newDetails );
+							}
+						}
+					} );
 				}
 
 				// Replace elements
@@ -367,7 +336,7 @@ var componentName = "wb-menu",
 
 					// Open up the secondary menu if it has wb-navcurr and has a submenu
 					$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
-					if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
+					if ( $menuItem.length && $menuItem.prop( "nodeName" ).toLowerCase() === "summary" ) {
 						$menuItem
 							.trigger( "click" )
 							.parent()
@@ -382,7 +351,7 @@ var componentName = "wb-menu",
 			footerAjaxLength = $footerAjax.length,
 			ajaxCount = 0;
 
-		//Delay the execution the menu until any ajaxed footer content is in
+		// Delay the execution of the menu until any ajaxed footer content is in
 		if ( footerAjaxLength === 0 ) {
 			inner();
 		} else {
@@ -401,15 +370,11 @@ var componentName = "wb-menu",
 	 * @param {jQuery object} $panel Current panel
 	 */
 	initOverlay = function( $panel ) {
+
 		$panel
 			.trigger( "wb-init.wb-overlay" )
 			.find( "summary" )
-			.attr( "tabindex", "-1" )
 			.trigger( detailsInitEvent );
-		$panel
-			.find( ".mb-menu > li:first-child" )
-			.find( ".mb-item" )
-			.attr( "tabindex", "0" );
 	},
 
 	/**
@@ -419,40 +384,36 @@ var componentName = "wb-menu",
 	 * @param {integer} indexChange Requested relative change to the menu item index
 	 */
 	menuIncrement = function( $menuItems, $current, indexChange ) {
-		var menuItemsLength = $menuItems.length,
-			index = $menuItems.index( $current ) + indexChange;
+		const oldIndex = $menuItems.index( $current );
+		let newIndex = oldIndex + indexChange;
 
-		// Correct out-of-range indexes
-		index = index === menuItemsLength ? 0 : index === -1 ? menuItemsLength - 1 : index;
+		// Clamp out-of-range indexes
+		// Credit: Stack Overflow answer (https://stackoverflow.com/a/11409978) by CAFxX (cafxx)
+		newIndex = Math.max( 0, Math.min( newIndex, $menuItems.length - 1 ) );
 
-		// Move to the new menu item
-		$menuItems.eq( index ).trigger( focusEvent );
+		// Move to the new menu item... if it's changed
+		if ( oldIndex !== newIndex ) {
+			$menuItems.eq( newIndex ).trigger( focusEvent );
+		}
 	},
 
 	/**
 	 * @method menuClose
-	 * @param {jQuery DOM element} $elm Parent of the element to close
+	 * @param {jQuery DOM element} $elm Parent LI(s) of the element(s) to close
 	 * @param {boolean} removeActive Whether or not to keep the active class
 	 */
 	menuClose = function( $elm, removeActive ) {
+
+		// Adjust top-level menu item's class and open attribute
 		$elm
-			.removeClass( "sm-open" )
-			.children( ".open" )
-			.removeClass( "open" )
-			.attr( {
-				"aria-hidden": "true",
-				"aria-expanded": "false"
-			} )
-
-		// Close nested submenus
-			.find( "details" )
+			.children( "[open]" )
 			.removeAttr( "open" )
-			.children( "ul" )
-			.attr( {
-				"aria-hidden": "true",
-				"aria-expanded": "false"
-			} );
 
+			// Close nested submenus
+			.find( "details" )
+			.removeAttr( "open" );
+
+		// Remove active class
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
 		}
@@ -462,49 +423,36 @@ var componentName = "wb-menu",
 	 * @method menuDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery DOM element} $menu The menu to display
+	 * @param {boolean} autoExpand (Optional) Whether to open the submenu (default is true)
+	 * @param {string} eventType (Optional) Type of event that was triggered (default is undefined)
 	 */
-	menuDisplay = function( $elm, $menu ) {
-		var $menuLink = $menu.children( "a" );
+	menuDisplay = function( $elm, $menu, autoExpand = true, eventType ) {
+		var $menuLink = $menu.find( menuItemSelector );
+		const $activeLis = $elm.find( ".active" );
 
-		menuClose( $elm.find( ".active" ), true );
+		// If another menubar menuitem was already active, close it
+		if ( $activeLis.not( $menu ).length ) {
+
+			// Exempt open submenus if navigating via keyboard (to avoid unexpected auto-closing when reverse-tabbing)
+			const $filteredActiveLis = eventType === "focusin" ? $activeLis.not( ":has([open])" ) : $activeLis;
+
+			menuClose( $filteredActiveLis, true );
+		}
 
 		$menu.addClass( "active" );
 
-		// Ignore if doesn't have a submenu
-		if ( $menuLink.attr( "aria-haspopup" ) === "true" ) {
+		// Ignore if it doesn't have a submenu or isn't meant to auto-expand
+		if ( $menuLink.length && $menuLink.prop( "nodeName" ).toLowerCase() === "summary" && autoExpand ) {
 
-			// Add the open state classes
-			$menu
-				.addClass( "sm-open" )
-				.children( ".sm" )
-				.addClass( "open" )
-				.attr( {
-					"aria-hidden": "false",
-					"aria-expanded": "true"
-				} );
+			// Expand the submenu
+			$menuLink.parent().attr( "open", "open" );
+
+			// Prevent unexpected auto-closing behaviour
+			// Notes:
+			// * When hovering from a submenu dropdown with an open nested submenu to another menubar menuitem... prevents the latter from auto-closing right as its submenu is trying to auto-expand
+			// * Prevents similar auto-closing behaviour when clicking into the top/bottom spaces of nested submenus that are open
+			stillInMenu = true;
 		}
-	},
-
-	/**
-	 * Searches for the next link that has link text starting with a specific letter
-	 * @method selectByLetter
-	 * @param {integer} charCode The charCode of the letter to search for
-	 * @param {DOM elements} links Collection of links to search
-	 */
-	selectByLetter = function( charCode, links ) {
-		var len = links.length,
-			keyChar = String.fromCharCode( charCode ),
-			link, i;
-
-		for ( i = 0; i !== len; i += 1 ) {
-			link = links[ i ];
-			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
-				$( link ).trigger( focusEvent );
-				return true;
-			}
-		}
-
-		return false;
 	};
 
 // Bind the events of the plugin
@@ -546,6 +494,9 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 $document.on( "mouseleave", selector + " .menu", function( event ) {
 	var $currentTarget = $( event.currentTarget );
 
+	// Prevent hovering out of a focused menu from causing auto-reopening behaviour on focusin (i.e. mixed keyboard/mouse usage)
+	stillInMenu = false;
+
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
@@ -554,48 +505,48 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	}, hoverDelay );
 } );
 
+// Focusout equivalent for mouseleave
+// Prevents active (highlight) effect from getting "stuck" when tabbing beyond menubar menuitems
+$document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
+	var $currentTarget = $( event.currentTarget );
+
+	// Close the active open submenu if focus landed outside of it
+	// Notes:
+	// * event.relatedTarget should correspond to the interactive element that's gaining focus
+	// * When pressing the Escape key to close nested submenus, event.relatedTarget is inexplicably null... using a flag variable (stillInMenu) to work around it
+	if ( $currentTarget.find( event.relatedTarget ).length === 0 && !stillInMenu ) {
+		menuClose( $currentTarget.find( ".active" ), true );
+	}
+
+	stillInMenu = false;
+} );
+
 // Prevent opening another menu if mouse re-enters already opened menu
 $document.on( "mouseenter", selector + " .sm", function() {
-	if ( $( this ).attr( "aria-expanded" ) === "true" ) {
+	if ( $( this ).hasClass( "open" ) ) {
 		clearTimeout( globalTimeout );
 	}
 } );
 
-// Touchscreen "touches" on menubar items should close the submenu if it is open
-$document.on( "click", selector + " .item[aria-haspopup=true]", function( event ) {
-	var which = event.which,
-		$this, $parent;
-
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 ) {
-		event.preventDefault();
-		$this = $( this );
-		$parent = $this.parent();
-
-		// Open the submenu if it is closed
-		if ( !$parent.hasClass( "sm-open" ) ) {
-			$this.trigger( "focusin" );
-		}
-	}
-} );
-
 // Click on menu items with submenus should open and close those submenus
-$document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
+$document.on( "click", selector + " summary", function( event ) {
+
 	var menuItem = event.currentTarget,
 		parent = menuItem.parentNode,
-		submenu = parent.getElementsByTagName( "ul" )[ 0 ],
-		isOpen = submenu.getAttribute( "aria-hidden" ) === "false",
+		isOpen = parent.hasAttribute( "open" ),
 		menuItemOffsetTop, menuContainer;
 
-	// Close any other open menus
+	// Close any other open submenus
 	if ( !isOpen ) {
-		$( parent )
-			.closest( "[role^='menu']" )
-			.find( "[aria-hidden=false]" )
-			.parent()
-			.find( "[aria-haspopup=true]" )
-			.not( menuItem )
-			.trigger( "click" );
+		menuClose(
+			$( parent )
+				.closest( "ul" )
+				.find( "[open]" )
+				.find( "summary" )
+				.not( menuItem )
+				.closest( "li" ),
+			true
+		);
 
 		// Ensure the opened menu is in view if in a mobile panel
 		menuContainer = document.getElementById( "mb-pnl" );
@@ -606,40 +557,24 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 			menuContainer.scrollTop = menuItemOffsetTop;
 		}
 	}
-
-	submenu.setAttribute( "aria-expanded", !isOpen );
-	submenu.setAttribute( "aria-hidden", isOpen );
-} );
-
-// Clicks and touches outside of menus should close any open menus
-$document.on( "click", function( event ) {
-	var $openMenus,
-		which = event.which;
-
-	// Ignore middle and right mouse buttons
-	if ( event.type === "" || ( !which || which === 1 ) ) {
-		$openMenus = $( selector + " .sm-open" );
-		if ( $openMenus.length !== 0 &&
-			$( event.target ).closest( selector ).length === 0 ) {
-
-			menuClose( $openMenus, true );
-		}
-	}
 } );
 
 $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
-		$parent = $elm.parent(),
-		$container = $parent.closest( selector );
+		$parentLi = $elm.closest( "li" ),
+		$container = $parentLi.closest( selector );
 
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
-	if ( event.type === "focusin" ) {
-		menuDisplay( $container, $parent );
+	if ( event.type === "focusin" && !stillInMenu ) {
+
+		// Highlight the menubar menuitem... but don't auto-expand it for keyboard users
+		// Note: Also passes over an event type to prevent open dropdowns from auto-closing when reverse-tabbing
+		menuDisplay( $container, $parentLi, false, event.type );
 	} else {
 		globalTimeout = setTimeout( function() {
-			menuDisplay( $container, $parent );
+			menuDisplay( $container, $parentLi );
 		}, hoverDelay );
 	}
 } );
@@ -647,20 +582,21 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 /*
  * Keyboard bindings
  */
-$document.on( "keydown", selector + " [role=menuitem]", function( event ) {
+$document.on( "keydown", selector + " a[href], " + selector + " summary", function( event ) {
 	var menuItem = event.currentTarget,
 		which = event.which,
 		$menuItem = $( menuItem ),
-		hasPopup = $menuItem.attr( "aria-haspopup" ) === "true",
-		$menu = $menuItem.parent().closest( "[role^='menu']" ),
-		inMenuBar = $menu.attr( "role" ) === "menubar",
-		$menuLink, $parentMenu, $parent, $subMenu, result,
+		hasPopup = menuItem.nodeName.toLowerCase() === "summary",
+		$menu = $menuItem.parent().closest( "ul" ),
+		inMenuBar = $menu.hasClass( "menu" ),
+		$menuLink, $parentMenu, $parent, $subMenu,
 		isOpen, menuItemOffsetTop, menuContainer;
 
-	// Define keycodes. (Make const when WET supports ES6)
-	var TAB_KC = 9,
+	// Define keycodes.
+	const END_KC = 35,
 		ENTER_KC = 13,
 		ESC_KC = 27,
+		HOME_KC = 36,
 		LEFT_KC = 37,
 		UP_KC = 38,
 		RIGHT_KC = 39,
@@ -669,72 +605,58 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-		// Tab key = Hide all sub-menus
-		if ( which === TAB_KC ) {
-			menuClose( $( selector + " .active" ), true );
-
-		//Enter or spacebar on a link = follow the link and close menus
-		} else if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
+		// Enter or spacebar on a link = follow the link and close menus
+		if ( menuItem.nodeName === "A" && menuItem.hasAttribute( "href" ) &&
 			( which === ENTER_KC || which === SPACE_KC ) ) {
 
 			event.preventDefault();
 			menuItem.click();
 			menuClose( $( selector + " .active" ), true );
 
-		// Menu item is within a menu bar
-		} else if ( inMenuBar ) {
-
-			// Left / right arrow = Previous / next menu item
-			if ( which === LEFT_KC || which === RIGHT_KC ) {
-				event.preventDefault();
-				menuIncrement(
-					$menu.find( "> li > a" ),
-					$menuItem,
-					which === LEFT_KC ? -1 : 1
-				);
-
-			// Enter sub-menu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === UP_KC || which === DOWN_KC ) ) {
-				event.preventDefault();
-				$parent = $menuItem.parent();
-				$subMenu = $parent.find( ".sm" );
-
-				// Open the submenu if it is not already open
-				if ( !$subMenu.hasClass( "open" ) ) {
-					menuDisplay( $menu.closest( selector ), $parent );
-				}
-
-				// Set focus on the first submenu item
-				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
-
-			// Hide sub-menus and set focus
-			} else if ( which === ESC_KC ) {
-				event.preventDefault();
-				menuClose( $menu.closest( selector ).find( ".active" ), false );
-
-			// Letters only
-			} else if ( which > 64 && which < 91 ) {
-				event.preventDefault();
-				selectByLetter(
-					which,
-					$menuItem.parent().find( "> ul > li > a, > ul > li > details > summary" ).get()
-				);
-			}
-
-		// Menu item is not within a menu bar
+		// Menu item is within a menu
 		} else {
 
-			// Up / down arrow = Previous / next menu item
-			if ( which === UP_KC || which === DOWN_KC ) {
+			// Left-up / right-down arrow (or opposite for RTL) = Previous / next menu item
+			if ( which === LEFT_KC || which === UP_KC || which === RIGHT_KC || which === DOWN_KC ) {
 				event.preventDefault();
+
+				// Setup variables to track forward arrow key actions
+				// Note: Inverts left/right arrow keys in right-to-left (RTL) scenarios
+				const isRTL = menuItem.closest( "[dir=rtl]" ) ? true : false;
+				const arrowKeyForward = ( !isRTL && which === RIGHT_KC ) || ( isRTL && which === LEFT_KC ) || which === DOWN_KC ? true : false;
+
+				// If the focused menu item is a summary for an open details element and the user is trying to advance... focus onto its submenu's first item
+				if ( hasPopup && $menuItem.parent().attr( "open" ) && arrowKeyForward ) {
+					let $parentLi = $menuItem.closest( "li" );
+					$subMenu = $parentLi.find( "ul" );
+
+					// Set focus on the first submenu item
+					$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
+
+				// Otherwise, focus onto the previous menu item
+				} else {
+					menuIncrement(
+						$menu.children( "li" ).find( menuItemSelector ),
+						$menuItem,
+						arrowKeyForward ? 1 : -1
+					);
+				}
+
+			// HOME / END keys = First / last menu item
+			} else if ( which === HOME_KC || which === END_KC ) {
+				event.preventDefault();
+				const $menuItems = $menu.children( "li" ).find( menuItemSelector );
+				const index = $menuItems.index( $menuItem );
+
 				menuIncrement(
-					$menu.children( "li" ).find( menuItemSelector ),
+					$menuItems,
 					$menuItem,
-					which === UP_KC ? -1 : 1
+					which === HOME_KC ? -index : $menuItems.length - 1 - index
 				);
 
-			// Enter, space, or right arrow with a submenu
-			} else if ( hasPopup && ( which === ENTER_KC || which === SPACE_KC || which === RIGHT_KC ) ) {
+			// Toggle sub-menu
+			// Enter, space or Escape key with a submenu
+			} else if ( hasPopup && ( ( which === ENTER_KC || which === SPACE_KC ) || ( which === ESC_KC && $menuItem.parent().attr( "open" ) ) ) ) {
 				$parent = $menuItem.parent();
 
 				// Prevent handling by details.js polyfill
@@ -742,18 +664,21 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				event.preventDefault();
 
 				// If the menu item is a summary element
-				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
+				if ( menuItem.nodeName.toLowerCase() === "summary" ) {
+					let menuBarJustOpened = false;
 					isOpen = !!$parent.attr( "open" );
 
-					// Close any other open menus
+					// Display collapsed submenu
 					if ( !isOpen ) {
-						$( parent )
-							.closest( "[role^='menu']" )
-							.find( "[aria-hidden=false]" )
-							.parent()
-							.find( "[aria-haspopup=true]" )
-							.not( menuItem )
-							.trigger( "click" );
+
+						// Re-activate focused menubar item and re-expand its submenu
+						// Note: If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
+						// Example of a scenario this helps with: Tab to the menu demo page's section 1, hover to section 3, press space (will open section 1 and close section 3), then hover to section 2... without this logic, both section 1+2's dropdowns will appear simultaneously
+						// TODO: This is breaking simple mixed keyboard/mouse scenarios... like tabbing to a dropdown menu bar item, expanding it, then clicking outside of the menu (submenu won't collapse)... need to refine logic to account for both the simple + advanced scenarios
+						if ( inMenuBar && !$menuItem.parent().attr( "open" ) && which !== ESC_KC ) {
+							menuDisplay( $menuItem.closest( selector ), $menuItem.closest( "li" ) );
+							menuBarJustOpened = true;
+						}
 
 						// Ensure the opened menu is in view if in a mobile panel
 						menuContainer = document.getElementById( "mb-pnl" );
@@ -763,92 +688,40 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 							menuContainer.scrollTop = menuItemOffsetTop;
 						}
+					}
 
-						// Ensure the menu is opened or stays open
+					// Ensure the menu is opened or stays open
+					if ( !menuBarJustOpened ) {
 						$menuItem.trigger( "click" );
 					}
-
-					// Update the WAI-ARIA states and move focus to
-					// the first submenu item
-					$parent.children( "ul" )
-						.attr( {
-							"aria-expanded": "true",
-							"aria-hidden": "false"
-						} )
-						.find( "[role=menuitem]:first" )
-						.trigger( focusEvent );
 				}
 
-			// Escape, left / right arrow without a submenu
-			} else if ( which === ESC_KC || which === LEFT_KC || which === RIGHT_KC ) {
+			// Escape key
+			} else if ( which === ESC_KC ) {
 				$parent = $menu.parent();
-				$parentMenu = $parent.closest( "[role^='menu']" );
-				if ( which === LEFT_KC || which === RIGHT_KC ) {
-					event.preventDefault();
-				}
+				$parentMenu = $parent.closest( "ul" );
 
 				// If the parent menu is a menubar
-				if ( $parentMenu.attr( "role" ) === "menubar" ) {
-					$menuLink = $menu.siblings( "a" );
+				if ( $parentMenu.hasClass( "menu" ) ) {
+					$menuLink = $menu.siblings( "a, summary" );
 
-					// Escape key = Close menu and return to menu bar item
-					if ( which === ESC_KC ) {
-						event.preventDefault();
-						$menuLink.trigger( focusEvent );
+					// Close menu and return to menu bar item
+					event.preventDefault();
+					$menuLink.trigger( focusEvent );
 
-						// Close the menu but keep the referring link active
-						setTimeout( function() {
-							menuClose( $menuLink.parent(), false );
-						}, 100 );
+					// Close the menu but keep the referring link active
+					setTimeout( function() {
+						menuClose( $menuLink.parent().closest( "li" ), false );
+					}, 100 );
 
-					// Left / right key = Next / previous menu bar item
-					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
-						menuIncrement(
-							$parentMenu.find( "> li > a" ),
-							$menuLink,
-							which === LEFT_KC ? -1 : 1
-						);
-					}
-
-				// Escape or left arrow: Go up a level if there is a higher-level
-				// menu or close the current submenu if there isn't
-				} else if ( which !== RIGHT_KC ) {
-					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
-
-					// There is a higher-level menu
-					if ( $parentMenu.length !== 0 ) {
-						event.preventDefault();
-						$menu.closest( "li" )
-							.find( menuItemSelector )
-							.trigger( "click" )
-							.trigger( focusEvent );
-
-					// No higher-level menu but the current submenu is open
-					} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
-						event.preventDefault();
-						$menuItem
-							.trigger( "click" )
-							.trigger( focusEvent );
-					}
-				}
-
-			// Select a menu item in the current menu by the first letter
-			} else if ( which > 64 && which < 91 ) {
-				event.preventDefault();
-				$parent = $menuItem.closest( "li" );
-
-				// Try to find a match in the next siblings
-				result = selectByLetter(
-					which,
-					$parent.nextAll().find( menuItemSelector ).get()
-				);
-
-				// If couldn't find a match, try the previous siblings
-				if ( !result ) {
-					result = selectByLetter(
-						which,
-						$parent.prevAll().find( menuItemSelector ).get()
-					);
+				// Go up a level if there is a higher-level menu
+				} else if ( $parentMenu.length !== 0 ) {
+					event.preventDefault();
+					stillInMenu = true;
+					$menu.closest( "li" )
+						.find( menuItemSelectorSummary )
+						.trigger( "click" )
+						.trigger( focusEvent );
 				}
 			}
 		}
@@ -856,7 +729,8 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 } );
 
 // Prevent Firefox from double-triggering menu behaviour
-$document.on( "keyup", selector + " [role=menuitem]", function( event ) {
+// Note: Might no longer be an issue in modern versions of Firefox
+$document.on( "keyup", selector + " a[href], " + selector + " summary", function( event ) {
 	event.preventDefault();
 	return false;
 } );
