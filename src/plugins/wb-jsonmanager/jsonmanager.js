@@ -448,8 +448,7 @@ var componentName = "wb-jsonmanager",
 				}
 
 				if ( arrPath.length > 1 ) {
-					var pointer = "";
-					pointer = arrPath.pop();
+					var pointer = arrPath.pop();
 
 					if ( arrPath[ 0 ] && arrPath[ 0 ] !== "" ) {
 

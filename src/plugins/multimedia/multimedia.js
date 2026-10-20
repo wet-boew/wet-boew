@@ -1029,7 +1029,7 @@ $document.on( "input change", selector, function( event ) {
 $document.on( "keydown", dispCtrls, function( event ) {
 	var playerTarget = event.currentTarget.parentNode,
 		which = event.which,
-		volume = 0,
+		volume,
 		step = 0.05,
 		$playerTarget = $( playerTarget );
 
@@ -1121,7 +1121,6 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 
 				if ( firstPlay === false ) {
 					$this.addClass( firstPlayClass );
-					firstPlay = true;
 				}
 
 			} else {

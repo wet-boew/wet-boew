@@ -7,10 +7,7 @@
 
 // Export helper
 // eslint-disable-next-line no-undef
-module.exports.register = function( Handlebars, options ) {
-
-	// eslint-disable-next-line no-unused-vars
-	options = options || {};
+module.exports.register = function( Handlebars ) {
 
 	Handlebars.registerHelper( "escape", function( options ) {
 		return Handlebars.escapeExpression( options.fn( this ) );
