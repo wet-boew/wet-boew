@@ -205,7 +205,7 @@ var localParseHTML = jQuery.parseHTML,
 
 	// Declare the allowed attributes for custom tags
 	allowedTagAttributes = {
-		"gc-combobox": [ "all-options-tag", "enable-select-all", "options" ]
+		"gc-combobox": [ "all-options-tag", "enable-select-all", "options", "required-message" ]
 	},
 
 	sanitize = function( html ) {
