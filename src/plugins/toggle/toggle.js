@@ -79,13 +79,23 @@ var componentName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	initAria = function( link, data ) {
-		var i, len, elm, elms, parent, tabs, tab, panel, isOpen, wrapper,
+		var i, len, elm, elms, parent, tabs, tab, panel, isOpen,
 			ariaControls = "",
 			hasOpen = false;
 
 		// Group toggle elements with a parent are assumed to be a tablist
 		if ( data.group != null && data.parent != null ) { //eslint-disable-line no-eq-null
 			parent = document.querySelector( data.parent );
+
+			// Preserve the native details and summary semantics for accordions
+			if ( link.nodeName.toLowerCase() === "summary" &&
+				link.parentNode.nodeName.toLowerCase() === "details" &&
+				parent.className.toLowerCase().indexOf( "accordion" ) > -1 ) {
+				data.isTablist = false;
+				return;
+			}
+
+			data.isTablist = true;
 
 			// Check that the tablist widget hasn't already been initialized
 			if ( parent.getAttribute( "role" ) !== "tablist" ) {
@@ -119,24 +129,11 @@ var componentName = "wb-toggle",
 						tab.setAttribute( "id", wb.getId() );
 					}
 
-					//Details and summary don't support aria roles and some aria attribute that is why they are wrapped in a div
-					if ( elm.nodeName.toLowerCase() === "details" && elm.parentNode.className.toLowerCase().indexOf( "accordion" ) > -1 ) {
-						wrapper = document.createElement( "div" );
-						wrapper.classList.add( "tgl-tab" );
-						wrapper.setAttribute( "role", "tab" );
-						wrapper.setAttribute( "aria-selected", isOpen );
-						wrapper.setAttribute( "tabindex", isOpen ? "0" : "-1" );
-						wrapper.setAttribute( "aria-posinset", i + 1 );
-						wrapper.setAttribute( "aria-setsize", len );
-						parent.replaceChild( wrapper, elm );
-						wrapper.appendChild( elm );
-					} else {
-						tab.setAttribute( "role", "tab" );
-						tab.setAttribute( "aria-selected", isOpen );
-						tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
-						tab.setAttribute( "aria-posinset", i + 1 );
-						tab.setAttribute( "aria-setsize", len );
-					}
+					tab.setAttribute( "role", "tab" );
+					tab.setAttribute( "aria-selected", isOpen );
+					tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
+					tab.setAttribute( "aria-posinset", i + 1 );
+					tab.setAttribute( "aria-setsize", len );
 					panel.setAttribute( "role", "tabpanel" );
 					panel.setAttribute( "aria-labelledby", tab.getAttribute( "id" ) );
 					panel.setAttribute( "aria-expanded", isOpen );
@@ -236,13 +233,14 @@ var componentName = "wb-toggle",
 			var dataGroup, key, $elmsGroup,
 				isGroup = !!data.group,
 				isPersist = !!data.persist,
-				isTablist = isGroup && !!data.parent,
+				isGroupedWidget = isGroup && !!data.parent,
+				isTablist = isGroupedWidget && data.isTablist !== false,
 				link = event.currentTarget,
 				$link = $( link ),
 				stateFrom = getState( $link, data ),
 				isToggleOn = stateFrom === data.stateOff,
 				stateTo = isToggleOn ? data.stateOn : data.stateOff,
-				$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
+				$elms = isGroupedWidget ? $link.parent( data.group ) : getElements( link, data );
 
 			// Group toggle behaviour: only one element in the group open at a time.
 			if ( isGroup ) {
