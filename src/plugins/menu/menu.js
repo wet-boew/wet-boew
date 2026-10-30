@@ -522,8 +522,9 @@ $document.on( "focusout", selector + " .menu:has(.active)", function( event ) {
 } );
 
 // Prevent opening another menu if mouse re-enters already opened menu
+// Note: Prevents submenus from changing when quickly hovering from a submenu's first item to a different menu bar item and back to the initial submenu item
 $document.on( "mouseenter", selector + " .sm", function() {
-	if ( $( this ).hasClass( "open" ) ) {
+	if ( $( this ).parent().attr( "open" ) ) {
 		clearTimeout( globalTimeout );
 	}
 } );
