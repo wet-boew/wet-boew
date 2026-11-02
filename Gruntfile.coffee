@@ -1268,5 +1268,4 @@ module.exports = (grunt) ->
 
 	require( "load-grunt-tasks" )( grunt, requireResolution: true )
 
-	require( "time-grunt" )( grunt )
 	@
