@@ -96,8 +96,7 @@
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
-    "stylelint-order": "^8.1.2",
-    "time-grunt": "^2.0.0"
+    "stylelint-order": "^8.1.2"
   },
   "overrides": {
     "grunt-contrib-uglify": {
