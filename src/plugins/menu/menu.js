@@ -560,6 +560,22 @@ $document.on( "click", selector + " summary", function( event ) {
 	}
 } );
 
+// Clicks and touches outside of the menu bar's submenus should close them
+$document.on( "click", function( event ) {
+	var $openMenus,
+		which = event.which;
+
+	// Ignore middle and right mouse buttons
+	if ( event.type === "" || ( !which || which === 1 ) ) {
+		$openMenus = $( selector + " .menu > li:has(> [open])" );
+		if ( $openMenus.length !== 0 &&
+			$( event.target ).closest( selector ).length === 0 ) {
+
+			menuClose( $openMenus, true );
+		}
+	}
+} );
+
 $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
 		$parentLi = $elm.closest( "li" ),
