@@ -105,7 +105,6 @@ module.exports = (grunt) ->
 		"Run the Connect web server for local repo"
 		[
 			"connect:server"
-			"watch"
 		]
 	)
 
@@ -1127,34 +1126,6 @@ module.exports = (grunt) ->
 						if filepath.match /\.css/
 							return content.replace /\.\.\/\.\.\/wet-boew\/(assets|fonts)/g, '../$1'
 						content
-
-
-		watch:
-			options:
-				livereload: true
-			js:
-				files: "<%= eslint.all.src %>"
-				tasks: [
-					"js"
-				]
-			css:
-				files: [
-					"src/**/*.scss"
-					"site/**/*.scss"
-					"theme/**/*.scss"
-				]
-				tasks: "css"
-			json:
-				files: "src/**/*.json*"
-				tasks: "copy:demos"
-
-			demos:
-				files: "src/**/*.hbs"
-				tasks: "pages:demos"
-
-			docs:
-				files: "site/pages/docs/**/*.hbs"
-				tasks: "pages:docs"
 
 		eslint:
 			all:
