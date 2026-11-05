@@ -10,32 +10,6 @@ module.exports = (grunt) ->
 			grunt.log.warn("Please run `npm run build` instead.")
 	)
 
-	@registerTask(
-		"build-pkg-json"
-		"Build package.json for deployment"
-		->
-			pkgOriginal = grunt.file.readJSON("package.json");
-			addToRepo = "wet-boew-cdn";
-			writeTo = "dist/wet-boew/package.json";
-			pkg = {
-				name: "wet-boew",
-				version: pkgOriginal.version,
-				description: pkgOriginal.name.toLowerCase() + " theme"
-				repository: {
-					type: "git",
-					url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
-				},
-				author: "wet-boew-bot",
-				license: "MIT",
-				bugs: {
-					url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
-				},
-				homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
-			};
-			grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
-
-	)
-
 	#Internal task groups
 	@registerTask(
 		"pages"

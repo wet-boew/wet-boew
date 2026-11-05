@@ -8,7 +8,7 @@
   },
   "scripts": {
     "assets": "grunt copy:themeAssets copy:bootstrap",
-    "build-pkg-json": "grunt build-pkg-json",
+    "build-pkg-json": "node script/build-pkg-json.mjs",
     "build": "grunt clean:dist && npm run assets && npm run css && npm run js",
     "clean": "grunt clean",
     "css": "grunt stylelint:scss sass concat:supports postcss stylelint:unmin usebanner:css",
