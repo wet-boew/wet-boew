@@ -6,246 +6,11 @@ module.exports = (grunt) ->
 	@registerTask(
 		"default"
 		"Default task that runs the core unminified build"
-		[
-			"build"
-			"demos"
-		]
-	)
-
-	@registerTask(
-		"dist"
-		"Produces the production files"
-		[
-			"test"
-			"build"
-			"minify"
-			"pages:theme"
-			"docs-min"
-			"demos-min"
-			"htmllint"
-			"sri"
-		]
-	)
-
-	@registerTask(
-		"build"
-		"Run full build."
-		[
-			"clean:dist"
-			"assets"
-			"css"
-			"js"
-		]
-	)
-
-	@registerTask(
-		"minify"
-		"Minify built files."
-		[
-			"js-min"
-			"css-min"
-		]
-	)
-
-	@registerTask(
-		"deploy-build"
-		"Produces the production files"
-		[
-			"pages:theme"
-			"docs-min"
-			"demos-min"
-			"sri"
-		]
-	)
-
-	@registerTask(
-		"prepare"
-		"Prepares wet-boew for use as dependency"
-		[
-			"clean:dist"
-			"assets"
-			"sass"
-			"concat:supports"
-			"postcss"
-			"usebanner:css"
-			"js"
-			"i18n_csv:assemble"
-			"minify"
-		]
-	)
-
-	@registerTask(
-		"build-pkg-json"
-		"Build package.json for deployment"
-		->
-			pkgOriginal = grunt.file.readJSON("package.json");
-			addToRepo = "wet-boew-cdn";
-			writeTo = "dist/wet-boew/package.json";
-			pkg = {
-				name: "wet-boew",
-				version: pkgOriginal.version,
-				description: pkgOriginal.name.toLowerCase() + " theme"
-				repository: {
-					type: "git",
-					url: "git+https://github.com/wet-boew/" + addToRepo + ".git"
-				},
-				author: "wet-boew-bot",
-				license: "MIT",
-				bugs: {
-					url: "https://github.com/wet-boew/" + pkgOriginal.name.toLowerCase() + "/issues"
-				},
-				homepage: "https://github.com/wet-boew/" + addToRepo + "#readme"
-			};
-			grunt.file.write(writeTo, JSON.stringify(pkg, null, 2));
-
-	)
-
-	@registerTask(
-		"server"
-		"Run the Connect web server for local repo"
-		[
-			"connect:server"
-			"watch"
-		]
+		() ->
+			grunt.log.warn("Please run `npm run build` instead.")
 	)
 
 	#Internal task groups
-	@registerTask(
-		"js"
-		"INTERNAL: Copies all third party JS to the dist folder"
-		[
-			"i18n_csv:js"
-			"copy:js"
-			"concat:core"
-			"concat:coreIE8"
-			"concat:pluginsIE8"
-			"concat:i18n"
-		]
-	)
-
-	@registerTask(
-		"js-min"
-		"INTERNAL: Minify the built Javascript files"
-		[
-			"uglify:polyfills"
-			"uglify:core"
-			"uglify:coreIE8"
-			"uglify:i18n"
-			"uglify:deps"
-		]
-	)
-
-	@registerTask(
-		"css"
-		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
-		[
-			"stylelint:scss"
-			"sass"
-			"concat:supports"
-			"postcss"
-			"stylelint:unmin"
-			"usebanner:css"
-		]
-	)
-
-	@registerTask(
-		"css-min"
-		"INTERNAL: Minify the CSS files"
-		[
-			"cssmin:dist"
-		]
-	)
-
-	@registerTask(
-		"assets-min"
-		"INTERNAL: Process non-CSS/JS assets to dist"
-		[
-			"copy:assets_min"
-		]
-	)
-
-	@registerTask(
-		"demos"
-		"INTERNAL: Create unminified demos"
-		[
-			"copy:demos"
-			"stylelint:demos"
-			"pages:demos"
-			"pages:ajax"
-		]
-	)
-
-	@registerTask(
-		"docs"
-		"INTERNAL: Create unminified docs"
-		[
-			"pages:docs"
-			"copy:docs"
-		]
-	)
-
-	@registerTask(
-		"docs-min"
-		"INTERNAL: Create minified docs"
-		[
-			"docs"
-			"cssmin:docs_min"
-			"copy:docs_min"
-		]
-	)
-
-	@registerTask(
-		"theme"
-		"INTERNAL: Create unminified theme"
-		[
-			"pages:theme"
-		]
-	)
-
-	@registerTask(
-		"demos-min"
-		"INTERNAL: Create minified demos"
-		[
-			"demos"
-			"copy:demos_min"
-			"cssmin:demos_min"
-			"uglify:demos"
-			"pages:min"
-		]
-	)
-
-	@registerTask(
-		"assets"
-		"INTERNAL: Process non-CSS/JS assets to dist"
-		[
-			"copy:themeAssets"
-			"copy:bootstrap"
-		]
-	)
-
-	@registerTask(
-		"test"
-		"INTERNAL: Runs testing tasks"
-		[
-			"eslint"
-			"stylelint:scss"
-			"lintspaces"
-			"jsonlint"
-		]
-	)
-
-	@registerTask(
-		"pre-mocha"
-		"INTERNAL: prepare for running Mocha unit tests"
-		() ->
-			grunt.task.run [
-				"concat:test"
-				"copy:test"
-				"pages:test"
-			]
-
-	)
-
 	@registerTask(
 		"pages"
 		"Task to intelligently call Assemble targets"
@@ -272,7 +37,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"useMinAssets"
-		"Replace unmin references with the min paths for HTML files"
+		"INTERNAL: Replace unmin references with the min paths for HTML files"
 		() ->
 			htmlFiles = grunt.file.expand(
 				"dist/**/*.html"
@@ -1135,7 +900,12 @@ module.exports = (grunt) ->
 			js:
 				files: "<%= eslint.all.src %>"
 				tasks: [
-					"js"
+					"i18n_csv:js"
+					"copy:js"
+					"concat:core"
+					"concat:coreIE8"
+					"concat:pluginsIE8"
+					"concat:i18n"
 				]
 			css:
 				files: [
@@ -1143,7 +913,14 @@ module.exports = (grunt) ->
 					"site/**/*.scss"
 					"theme/**/*.scss"
 				]
-				tasks: "css"
+				tasks: [
+					"stylelint:scss"
+					"sass"
+					"concat:supports"
+					"postcss"
+					"stylelint:unmin"
+					"usebanner:css"
+				]
 			json:
 				files: "src/**/*.json*"
 				tasks: "copy:demos"
