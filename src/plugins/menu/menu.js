@@ -691,7 +691,6 @@ $document.on( "keydown", selector + " a[href], " + selector + " summary", functi
 						// Re-activate focused menubar item and re-expand its submenu
 						// Note: If a collapsed submenu's parent menu bar item is being opened in mixed keyboard/mouse scenarios, call menuDisplay on it to avoid the risk of multiple submenus becoming open at the same time
 						// Example of a scenario this helps with: Tab to the menu demo page's section 1, hover to section 3, press space (will open section 1 and close section 3), then hover to section 2... without this logic, both section 1+2's dropdowns will appear simultaneously
-						// TODO: This is breaking simple mixed keyboard/mouse scenarios... like tabbing to a dropdown menu bar item, expanding it, then clicking outside of the menu (submenu won't collapse)... need to refine logic to account for both the simple + advanced scenarios
 						if ( inMenuBar && !$menuItem.parent().attr( "open" ) && which !== ESC_KC ) {
 							menuDisplay( $menuItem.closest( selector ), $menuItem.closest( "li" ) );
 							menuBarJustOpened = true;
