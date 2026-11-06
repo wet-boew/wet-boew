@@ -28,7 +28,17 @@
 	}
 
 	details {
+		/* Prevent find in page searches (aka hidden=until-found) from auto-expanding collapsed details elements containing hits */
+		&::details-content {
+			display: none;
+		}
+
 		&[open] {
+			/* Allow find-in-page searches on expanded details elements */
+			&::details-content {
+				display: block;
+			}
+
 			.sm {
 				display: inline;
 				margin-left: -$details-indentation;
