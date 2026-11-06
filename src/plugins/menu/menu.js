@@ -24,6 +24,7 @@ var componentName = "wb-menu",
 	menuItemSelectorSummary = "> details > summary",
 	menuItemSelector = menuItemSelectorA + ", " + menuItemSelectorSummary,
 	stillInMenu = false,
+	stillInMenuItem = false,
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -584,16 +585,27 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
+	// Manage menu bar item highlighting when focusing or auto-expand submenus when hovering over them
 	if ( event.type === "focusin" && !stillInMenu ) {
 
 		// Highlight the menubar menuitem... but don't auto-expand it for keyboard users
 		// Note: Also passes over an event type to prevent open dropdowns from auto-closing when reverse-tabbing
 		menuDisplay( $container, $parentLi, false, event.type );
-	} else {
+	} else if ( !stillInMenuItem ) {
+
+		// Auto-expand submenus when hovering over menu items
 		globalTimeout = setTimeout( function() {
 			menuDisplay( $container, $parentLi );
+
+			stillInMenuItem = true;
 		}, hoverDelay );
 	}
+} );
+
+// Set stillInMenu to false when hovering between menu items or outside the menu bar
+// Note: Prevents submenus from automatically re-expanding if the user clicks on a menu item to collapse it
+$document.on( "mouseleave", selector + " .item", function( event ) {
+	stillInMenuItem = false;
 } );
 
 /*
