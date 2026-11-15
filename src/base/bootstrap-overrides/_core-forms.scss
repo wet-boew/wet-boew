@@ -127,3 +127,51 @@ fieldset {
 		}
 	}
 }
+
+/*
+ *  Right-to-left support
+ */
+[dir="rtl"] {
+	.radio,
+	.checkbox {
+		label {
+			padding-left: 0;
+			padding-right: 20px;
+		}
+	}
+
+	.radio input[type="radio"],
+	.radio-inline input[type="radio"],
+	.checkbox input[type="checkbox"],
+	.checkbox-inline input[type="checkbox"] {
+		margin-left: 0;
+		margin-right: -20px;
+	}
+
+	// Radios and checkboxes on same line
+	.radio-inline,
+	.checkbox-inline {
+		padding-left: 0;
+		padding-right: 20px;
+	}
+
+	//TODOS:
+	//-Make things work to my liking
+	//-Figure out if I want to strictly add overrides for WET's demo page... or provide RTL overrides for the entire Bootstrap 3.4 forms file
+	//-Even if I go strictly with WET, I still need to verify that there aren't any other outlier styles in the Bootstrap forms file that I missed that could potentially blow up the WET demo page in edge cases...
+	//-Do more testing, including head-to-head LTR vs RTL testing
+
+	//UNTESTED FROM THIS POINT ONWARDS...
+
+	//is this even a logical use case?
+	/*.radio-inline + .radio-inline,
+	.checkbox-inline + .checkbox-inline {
+		margin-left: 0;
+		margin-right: 10px; // space out consecutive inline controls
+	}*/
+
+	//TODO: Need to figure these out (sets margin-left to 0 twice... but no sign of right properties... what gives?):
+	//https://github.com/twbs/bootstrap-sass/blob/a996521067f794441860da292d2ace97f80d3ecc/assets/stylesheets/bootstrap/_forms.scss#L517-L525
+
+	//padding-left: $padding-base-horizontal; if I want to invert the padding for .has-feedback
+}
