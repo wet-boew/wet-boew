@@ -137,7 +137,6 @@ module.exports = {
 		}
 	],
 	ignoreFiles: [
-		"**/*.min.css",
-		"lib/**"
+		"**/*.min.css"
 	]
 };
