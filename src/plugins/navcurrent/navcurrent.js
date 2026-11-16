@@ -122,7 +122,7 @@ var componentName = "wb-navcurr",
 				if ( match ) {
 					link.className += " " + className;
 					if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-						$( link ).closest( ".sm" ).parent().children( "a" ).addClass( className );
+						$( link ).closest( ".sm" ).parent().children( "summary" ).addClass( className );
 					}
 				}
 
