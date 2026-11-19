@@ -20,9 +20,6 @@ jobs:
           node-version: 24
           cache: 'npm'
 
-      - name: Install Grunt
-        run: npm i -g grunt-cli --force
-
       - name: Install npm dependencies
         run: npm ci
 
@@ -30,4 +27,4 @@ jobs:
         run: npx puppeteer browsers install chrome
 
       - run: npm test
-      - run: grunt deploy-build
+      - run: npm run deploy-build

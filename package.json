@@ -7,9 +7,30 @@
     "npm": ">=10.7.0"
   },
   "scripts": {
-    "test": "grunt pre-mocha && node test-runner",
-    "update-i18n": "node script/i18n.mjs",
-    "prepare": "grunt prepare"
+    "assets": "grunt copy:themeAssets copy:bootstrap",
+    "build-pkg-json": "node script/build-pkg-json.mjs",
+    "build": "grunt clean:dist && npm run assets && npm run css && npm run js",
+    "clean": "grunt clean",
+    "css": "grunt stylelint:scss sass concat:supports postcss stylelint:unmin usebanner:css",
+    "demos-min": "npm run demos && grunt copy:demos_min cssmin:demos_min uglify:demos pages:min",
+    "demos": "grunt copy:demos stylelint:demos pages:demos pages:ajax",
+    "deploy-build": "grunt pages:theme && npm run docs-min && npm run demos-min && grunt sri",
+    "dist": "npm run lint && npm run build && npm run minify && grunt pages:theme && npm run docs-min && npm run demos-min && npm run htmllint && grunt sri",
+    "docs-min": "npm run docs && grunt cssmin:docs_min copy:docs_min",
+    "docs": "grunt pages:docs copy:docs",
+    "eslint": "grunt eslint",
+    "htmllint": "grunt htmllint",
+    "js": "grunt i18n_csv:js copy:js concat:core concat:coreIE8 concat:pluginsIE8 concat:i18n",
+    "jsonlint": "grunt jsonlint",
+    "lint": "npm run eslint && grunt stylelint && npm run lintspaces && npm run jsonlint",
+    "lintspaces": "grunt lintspaces",
+    "markdownlint": "grunt markdownlint",
+    "minify": "grunt uglify:polyfills uglify:core uglify:coreIE8 uglify:i18n uglify:deps cssmin:dist",
+    "prepare": "grunt clean:dist && npm run assets && grunt sass concat:supports postcss usebanner:css && npm run js && grunt i18n_csv:assemble && npm run minify",
+    "server": "grunt connect:server watch",
+    "stylelint": "grunt stylelint",
+    "test": "grunt concat:test copy:test pages:test && node test-runner",
+    "update-i18n": "node script/i18n.mjs"
   },
   "repository": {
     "type": "git",

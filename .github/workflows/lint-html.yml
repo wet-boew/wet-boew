@@ -48,14 +48,11 @@ jobs:
         with:
           cache: npm
 
-      - name: Install Grunt
-        run: npm i -g grunt-cli --force
-
       - name: Install npm dependencies
         run: npm ci
 
       - name: HTMLlint
-        run: grunt htmllint
+        run: npm run htmllint
 
       - name: HTMLProofer
         run: rake

@@ -27,9 +27,8 @@ jobs:
         with:
           node-version: 24
           cache: 'npm'
-      - run: npm i -g grunt-cli
       - run: npm ci
-      - run: grunt deploy-build
+      - run: npm run deploy-build
 
       #
       # Prepare wet-boew deployment
@@ -106,7 +105,7 @@ jobs:
       # wet-boew Dist CDN
       #
       - name: Dist CDN - Prepare and build package.json
-        run: grunt build-pkg-json
+        run: npm run build-pkg-json
       - name: Dist CDN - Applying changes
         run: |
           git clone --depth 1 https://github.com/${{ github.repository_owner }}/${{ env.REPO_DIST_CDN }}.git --branch v4.0-dist ~wet-boew-cdn
