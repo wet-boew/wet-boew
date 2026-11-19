@@ -537,7 +537,6 @@ module.exports = (grunt) ->
 						# Exemptions...
 						"!node_modules/**"
 						"!patches/**"
-						"!lib/**"
 						"!dist/**"
 						"!.DS_Store"
 
@@ -1164,7 +1163,6 @@ module.exports = (grunt) ->
 
 					# Copied ignores from .editorconfig
 					"!dist/**"
-					"!lib/**"
 					"!node_modules/**"
 					"!src/core/dep/modernizr-custom.js"
 					"!src/polyfills/events/mobile.js"
@@ -1250,7 +1248,6 @@ module.exports = (grunt) ->
 					'**/*.md'
 					'.github/**/*.md'
 					'!node_modules/**/*.md'
-					'!lib/**/*.md'
 				]
 
 		jsonlint:
