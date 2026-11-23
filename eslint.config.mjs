@@ -18,7 +18,6 @@ export default defineConfig( [ globalIgnores( [
 	"**/dist/",
 	"src/polyfills/slider/slider.js",
 	"src/polyfills/events/mobile.js",
-	"**/lib/",
 	"src/core/dep/modernizr-custom.js"
 ] ), {
 	extends: compat.extends( "eslint:recommended", "jquery" ),
