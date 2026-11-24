@@ -18,8 +18,8 @@ var componentName = "wb-lbx",
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
 	dependenciesLoadedEvent = "deps-loaded" + selector,
-	modalHideSelector = "#wb-tphp, body > header, body > main, body > footer",
 	$document = wb.doc,
+	hiddenElms = [],
 	callbacks, i18n, i18nText,
 	defaults = {
 
@@ -159,7 +159,7 @@ var componentName = "wb-lbx",
 					createCloseButton( $modal );
 
 					$document.find( "body" ).addClass( "wb-modal" );
-					$document.find( modalHideSelector ).attr( "aria-hidden", "true" );
+					hideBackground( $wrap[ 0 ] );
 					for ( i = 0; i !== len; i += 1 ) {
 						button = $buttons[ i ];
 						button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
@@ -177,13 +177,18 @@ var componentName = "wb-lbx",
 
 					if ( !$containerParent.is( "dialog" ) ) {
 						$container.wrap( "<dialog class='mfp-container' open='open'></dialog>" );
+						$containerParent = $container.parent();
 					} else {
 						$containerParent.attr( "open", "open" );
 					}
+					$containerParent.attr( {
+						"aria-modal": this.st.modal ? "true" : null,
+						"aria-labelledby": this.st.modal ? "lbx-title" : null
+					} );
 				},
 				close: function() {
 					$document.find( "body" ).removeClass( "wb-modal" );
-					$document.find( modalHideSelector ).removeAttr( "aria-hidden" );
+					restoreBackground();
 					this.wrap.find( "dialog" ).removeAttr( "open" );
 
 				},
@@ -311,6 +316,34 @@ var componentName = "wb-lbx",
 			}
 		}
 	},
+	hideBackground = function( elm ) {
+		var parent, sibling;
+
+		restoreBackground();
+		while ( elm !== document.body && ( parent = elm.parentNode ) ) {
+			for ( sibling = parent.firstElementChild; sibling; sibling = sibling.nextElementSibling ) {
+				if ( sibling !== elm && !$( sibling ).is( ".mfp-bg, script, template" ) ) {
+					hiddenElms.push( [ sibling, sibling.getAttribute( "aria-hidden" ) ] );
+					sibling.setAttribute( "aria-hidden", "true" );
+				}
+			}
+			elm = parent;
+		}
+	},
+	restoreBackground = function() {
+		var i, elm, value;
+
+		for ( i = hiddenElms.length - 1; i >= 0; i -= 1 ) {
+			elm = hiddenElms[ i ][ 0 ];
+			value = hiddenElms[ i ][ 1 ];
+			if ( value === null ) {
+				elm.removeAttribute( "aria-hidden" );
+			} else {
+				elm.setAttribute( "aria-hidden", value );
+			}
+		}
+		hiddenElms = [];
+	},
 	trapTabbing = function( $wrap ) {
 
 		$wrap.on( "keydown", function( e ) {
@@ -323,7 +356,7 @@ var componentName = "wb-lbx",
 				if ( !e.shiftKey && currentFocus === lastTabbable ) {
 					e.preventDefault();
 					firstTabbable.focus();
-				} else if ( e.shiftKey && ( currentFocus === firstTabbable || currentFocus === $wrap[ 0 ] ) ) {
+				} else if ( e.shiftKey && ( currentFocus === firstTabbable || firstTabbable.compareDocumentPosition( currentFocus ) & Node.DOCUMENT_POSITION_PRECEDING ) ) {
 					e.preventDefault();
 					lastTabbable.focus();
 				}
@@ -383,6 +416,19 @@ $( document ).on( "keydown", ".mfp-wrap:not(.mfp-close-btn-in)", function( event
 		// -Allows Escape key presses to "piggyback" on additional functionality in close button click handlers (such as preventDefault and the session timeout plugin's confirm method)
 		// -Targets the last close button link to accomodate plugins that use multiple close buttons (such as exit script)... the last button is more likely to represent no in those scenarios
 		$( closeButtons[ closeButtons.length - 1 ] ).trigger( "click" );
+	}
+} );
+
+// Event handler for moving focus from the popup wrapper into the popup content
+$document.on( "focusin", ".mfp-wrap", function( event ) {
+	if ( event.target === event.currentTarget ) {
+		const $content = $( event.currentTarget ).find( ".mfp-content" );
+		let $focusTarget = $content.find( ".modal-title, h1" ).filter( "#lbx-title" );
+
+		if ( $focusTarget.length === 0 ) {
+			$focusTarget = $content.find( ":tabbable" ).first();
+		}
+		$focusTarget.trigger( setFocusEvent );
 	}
 } );
 
