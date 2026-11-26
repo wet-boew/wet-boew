@@ -86,13 +86,20 @@ var componentName = "wb-charts",
 									textlabel = Math.round( series.percent * Math.pow( 10, optionsCharts.decimal ) );
 									textlabel = textlabel / Math.pow( 10, optionsCharts.decimal );
 								}
-
 								if ( optionsCharts.nolegend ) {
 
 									// Add the series label
 									textlabel = label + "<br />" + textlabel;
 								}
-								return textlabel + "%";
+
+								if ( wb.lang === "fr" ) {
+									if ( textlabel.toString().includes( "." ) ) {
+										textlabel = textlabel.toString().replace( ".", "," );
+									}
+									return textlabel + " %";
+								} else {
+									return textlabel + "%";
+								}
 							}
 						}
 					},
