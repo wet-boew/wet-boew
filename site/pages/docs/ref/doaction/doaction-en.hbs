@@ -1,0 +1,859 @@
+---
+{
+	"title": "Do action - Documentation",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Execute action, like filter a table, based on pre-established set of configuration.",
+	"altLangPage": "doaction-fr.html",
+	"dateModified": "2023-10-03"
+}
+---
+<div class="wb-prettify all-pre"></div>
+<section>
+<h2>Purpose</h2>
+<p>Execute action, like filter a table, based on pre-established set of configuration.</p>
+</section>
+<section>
+<h2>Use when</h2>
+<p>To send an action to a wet-boew plugin.</p>
+</section>
+<section>
+<h2>Do not use when</h2>
+<p>When executing a such action can make your page not WCAG compliant.</p>
+</section>
+<section>
+<h2>Working examples</h2>
+<p>English:</p>
+<ul>
+<li><a href="../../../demos/doaction/tblfilter-en.html">Do action - Table filtering</a></li>
+<li><a href="../../../demos/doaction/json-en.html">Do action - Load JSON</a></li>
+</ul>
+<p>French:</p>
+<ul>
+<li><a href="../../../demos/doaction/tblfilter-fr.html" hreflang="fr" lang="fr">Exécuter des actions - Filtrer un tableau</a></li>
+<li><a href="../../../demos/doaction/json-fr.html" hreflang="fr" lang="fr">Exécuter des actions - JSON</a></li>
+</ul>
+</section>
+<section>
+<h2>How to implement</h2>
+<h3>Table filtering</h3>
+<pre><code>&lt;button data-wb-doaction='{
+			&quot;action&quot;: &quot;tblfilter&quot;,
+			&quot;column&quot;: 1,
+			&quot;value&quot;: &quot;2016-07-26&quot;
+	}' &gt;Apply a filter&lt;/button&gt;</code></pre>
+<p>Where:</p>
+<dl class="dl-horizontal">
+<dt><code>&quot;action&quot;: &quot;tblfilter&quot;</code></dt>
+<dd>Will apply a table column filter action by using the data tables plugin.</dd>
+<dt><code>&quot;column&quot;: 1</code></dt>
+<dd>The filtering will be applied on the column index 1. That is visually the second column of the table.</dd>
+<dt><code>&quot;value&quot;: &quot;2016-07-26&quot;</code></dt>
+<dd>The filter value will be the string &quot;2016-07-26&quot;.</dd>
+</dl>
+<h3>Ajaxing</h3>
+<pre><code>&lt;button data-wb-doaction='{
+			&quot;action&quot;: &quot;ajax&quot;,
+			&quot;url&quot;: &quot;ajax/ajax-1.html&quot;
+	}' &gt;Ajax content&lt;/button&gt;</code></pre>
+<p>Where:</p>
+<dl class="dl-horizontal">
+<dt><code>&quot;action&quot;: &quot;ajax&quot;</code></dt>
+<dd>Will execute an ajax request with the data-ajax plugin.</dd>
+<dt><code>&quot;url&quot;: &quot;ajax/ajax-1.html&quot;</code></dt>
+<dd>URL of the ajax file.</dd>
+</dl>
+<h3>Patching</h3>
+<p>Note: Any data-json that is binded to that dataset will be updated. Patches are not persistant by default unless the configuration <code>cumulative</code> is true.</p>
+<pre><code>&lt;button data-wb-doaction='{
+			&quot;action&quot;: &quot;patch&quot;,
+			&quot;source&quot;: &quot;#jmexample1&quot;,
+			&quot;patches&quot;:
+				{
+					&quot;op&quot;: &quot;add&quot;,
+					&quot;path&quot;: &quot;/city&quot;,
+					&quot;value&quot;: &quot;Gatineau&quot;
+				}
+			}
+	}' &gt;Patches JSON dataset&lt;/button&gt;</code></pre>
+<p>Where:</p>
+<dl class="dl-horizontal">
+<dt><code>&quot;action&quot;: &quot;patch&quot;</code></dt>
+<dd>Will apply the patch action to an existing JSON manager plugin.</dd>
+<dt><code>&quot;source&quot;: &quot;#jmexample1&quot;</code></dt>
+<dd>The source represent a pointer to the JSON manager. "<code>#jmexample1</code>" is representing the id of the element containing the JSON manager.</dd>
+<dt><code>&quot;patches&quot;: { ... }</code></dt>
+<dd>Contain a patch or an array of patch. See the JSON manager documentation to know how to create JSON patch operation.</dd>
+</dl>
+<h3>Load JSON</h3>
+<pre><code>&lt;button data-wb-doaction='{
+			&quot;action&quot;: &quot;loadJSON&quot;,
+			&quot;url&quot;: &quot;ajax/ajax-load.json&quot;,
+			&quot;source&quot;: &quot;#jsonloader&quot;
+	}' &gt;Ajax content&lt;/button&gt;</code></pre>
+<p>Where:</p>
+<dl class="dl-horizontal">
+<dt><code>&quot;action&quot;: &quot;ajax&quot;</code></dt>
+<dd>Will load a JSON file designated by the url onto a JSON manager specified by source.</dd>
+<dt><code>&quot;url&quot;: &quot;ajax/ajax-1.html&quot;</code></dt>
+<dd>URL of the JSON file.</dd>
+<dt><code>&quot;source&quot;: &quot;#smallloader&quot;</code></dt>
+<dd>A pointer to the JSON manager. "<code>#jsonloader</code>" is representing the id of the element containing the JSON manager.</dd>
+<dt><code>&quot;nocache&quot;</code></dt>
+	<dd>See <a href="../wb-jsonmanager/wb-jsonmanager-en.html#cachebusting">cache busting</a> configuration options for the JSON manager.</dd>
+	<dt><code>&quot;nocachekey&quot;</code></dt>
+	<dd>See <a href="../wb-jsonmanager/wb-jsonmanager-en.html#cachebusting">cache busting</a> configuration options for the JSON manager.</dd>
+	<dt><code>data</code></dt>
+	<dd>See <a href="../wb-jsonmanager/wb-jsonmanager-en.html">data</a> configuration options for the JSON manager.</dd>
+	<dt><code>contenttype</code></dt>
+	<dd>See <a href="../wb-jsonmanager/wb-jsonmanager-en.html">contenttype</a> configuration options for the JSON manager.</dd>
+	<dt><code>method</code></dt>
+	<dd>See <a href="../wb-jsonmanager/wb-jsonmanager-en.html">method</a> configuration options for the JSON manager.</dd>
+</dl>
+<h3>With Input</h3>
+<pre><code>&lt;button data-wb-doaction='{
+			&quot;action&quot;: &quot;withInput&quot;,
+			&quot;srcInput&quot;: &quot;#myfield&quot;,
+			&quot;actions&quot;: &quot;[... ]&quot;
+	}' &gt;Ajax content&lt;/button&gt;</code></pre>
+<p>Where:</p>
+<dl class="dl-horizontal">
+<dt><code>&quot;action&quot;: &quot;withInput&quot;</code></dt>
+<dd>Indicate that subsequent actions may use data from input field designated by srcInput.</dd>
+<dt><code>&quot;srcInput&quot;: &quot;#myfield&quot;</code></dt>
+<dd>The id of an input field whose value may be used in subsequent actions.</dd>
+<dt><code>&quot;actions&quot;: &quot;{ ... }&quot;</code></dt>
+<dd>An action or an array of actions.</dd>
+</dl>
+</section>
+<section>
+	<h2>Binding actions to the page query</h2>
+<p>The following variable can be used to map the query information for ajax url, table filter or patches selector.</p>
+<dl class="dl-horizontal">
+<dt>{qval} string</dt>
+<dd>Query value in the url required to match a regular expression with <code>match</code> configuration. It can be specified by setting the parameter <code>qval</code>.</dd>
+<dt>{base} string</dt>
+<dd>Only for patches. Define the base string of a JSON pointer. Default value is <code>/</code>. It can be specified by setting the parameter <code>base</code>.</dd>
+</dl>
+<h3><code>match</code> and <code>default</code> configuration</h3>
+<p>If <code>match</code> is defined in your configuration, then the <code>default</code> configuration <strong>must</strong> be also defined.</p>
+<p>For security reason, any value retreived from the page URL always require to configure <code>match</code> that will contain a regular expresion. If there no match or the matching result is an empty string, the <code>default</code> configuration will be used as the value fallback.</p>
+<p>When you specify a regular expression, it is recommended to have it prefixed with "<code>^</code>" and suffixed with "<code>$</code>". Be careful to not use regular expression that could compromise the security.</p>
+</section>
+<section>
+<h3>Example 1 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;[A-Z][a-z][A-Z][a-z][A-Z][a-z]&quot;, &quot;default&quot;: &quot;default&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=canada</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-default.html</code></dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-CaNaDa.html</code></dd>
+	</dl>
+
+	<h3>Example 2 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx=2&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;match&quot;: &quot;[0-9]&quot;, &quot;default&quot;: &quot;null&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-2.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Do nothing</dd>
+		<dt><code>?ajx=5</code></dt>
+		<dd>Do nothing</dd>
+	</dl>
+
+	<h3>Example 3 - Ajax</h3>
+	<p><code>data-wb-urlmapping='{ &quot;ajx&quot;: { &quot;action&quot;: &quot;ajax&quot;, &quot;url&quot;: &quot;ajax/ajax-{qval}.html&quot;, &quot;qval&quot;: &quot;TEST&quot; } }'</code></p>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?ajx</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=2</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=wetboew</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+		<dt><code>?ajx=CaNaDa</code></dt>
+		<dd>Will load ajax file: <code>ajax/ajax-TEST.html</code></dd>
+	</dl>
+	<p>Note: The result of <code>match</code> configuration is ignored when the query value is set.</p>
+
+	<h3>Example 4 - Table filtering</h3>
+	<pre><code>data-wb-urlmapping='{
+	&quot;date-search&quot;:
+		{
+			&quot;action&quot;: &quot;tblfilter&quot;,
+			&quot;source&quot;: &quot;#myDataTable&quot;,
+			&quot;column&quot;: 1,
+			&quot;value&quot;: &quot;{qval}&quot;,
+			&quot;match&quot;: &quot;[1-2][0-9][0-9][0-9]-[0,1][0-9]-[0-3][0-9]&quot;,
+			&quot;default&quot;: &quot;2016-07-23&quot;
+		}
+	}'</code></pre>
+	<p>Means that:</p>
+	<dl class="dl-horizontal">
+		<dt><code>?</code></dt>
+		<dd>Will show all result</dd>
+		<dt><code>?date-search</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+		<dt><code>?date-search=</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+		<dt><code>?date-search=2016-07-26</code></dt>
+		<dd>Will show result that match the string "2016-07-26" in the second column.</dd>
+		<dt><code>?date-search=YYYY-MM-DD</code></dt>
+		<dd>Will show result that match the default "2016-07-23" in the second column.</dd>
+	</dl>
+</section>
+
+
+<h2>Default patch operation</h2>
+<pre><code>{
+	op: "move",
+	path: "{base}",
+	from: "{base}/{qval}"
+}</code></pre>
+<section>
+<h2>Add pre-defined action identified by a group name</h2>
+<p>Defined in a attribute <code>data-wb-actionmng</code> set on an element.</p>
+<pre><code>&lt;div data-wb-actionmng='[
+		{ &quot;trggroup&quot;:&quot;clearFilter&quot;, &quot;action&quot;: &quot;tblfilter&quot;, &quot;source&quot;: &quot;#dataset-filter&quot;, &quot;column&quot;: 2, &quot;value&quot;: &quot;&quot; },
+		{ &quot;trggroup&quot;:&quot;clearFilter&quot;, &quot;action&quot;: &quot;tblfilter&quot;, &quot;source&quot;: &quot;#dataset-filter&quot;, &quot;column&quot;: 3, &quot;value&quot;: &quot;&quot; }
+]'&gt;&lt;/div&gt;</code></pre>
+</section>
+<section>
+<h2>Configuration options</h2>
+<p>The <code>data-wb-doaction</code> attribute must contain an JSON object or an array of JSON object representing a list of valid action.</p>
+<pre><code>data-wb-doaction='
+	[
+		{ Action object },
+		{ Action object },
+		{ Action object },
+		{ Action object }
+	]</code></pre>
+<form id="frmActionConfig" class="hidden">
+<div class="wb-fieldflow" data-wb-fieldflow='{
+		"noForm": true,
+		"unhideelm":
+		"#frmActionConfig",
+		"srctype":"tblfilter",
+		"source":"#actionConfig",
+		"column":1,
+		"defaultselectedlabel": "All the configuration options",
+		"label":"Filter by type of action:"
+	}'></div>
+</form>
+<table id="actionConfig" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>How to configure</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action</td>
+<td><p>Required. Define the action to do.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+<li>tblfilter</li>
+<li>patch</li>
+<li>addClass</li>
+<li>run</li>
+<li>removeClass</li>
+<li>mapfilter</li>
+<li>tocsv</li>
+	<li>loadJSON</li>
+	<li>withInput</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "<em>[Name of the action]</em>" }</code></td>
+<td>
+<dl>
+<dt>ajax</dt>
+<dd>Insert content after the element</dd>
+<dt>tblfilter</dt>
+<dd>Will apply a column filter to a data table</dd>
+<dt>patch</dt>
+<dd>Will apply a patch by using a JSON manager</dd>
+<dt>run</dt>
+<dd>Execute action for a given named group</dd>
+<dt>addClass</dt>
+<dd>Add a class to an element</dd>
+<dt>removeClass</dt>
+<dd>Remove a class to an element</dd>
+<dt>mapfilter</dt>
+<dd>Apply a geomap filter</dd>
+<dt>tocsv</dt>
+<dd>Download an HTML table in CSV</dd>
+<dt>loadJSON</dt>
+<dd>Load a JSON file into a specified <a href="../wb-jsonmanager/wb-jsonmanager-en.html">JSON manager</a></dd>
+<dt>withInput</dt>
+<dd>Specify the value of an input field available to the action</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>url</td>
+<td><p>Specify the url to load. Ajax filtering is supported.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+	<li>loadJSON</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "url": "path/to/my/file.html" }</code></td>
+<td>URL</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td><p>Initiate WET features of the inserted content.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "url": "path/to/my/file.html", "trigger": true }</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>Content is kept as is</dd>
+<dt>true:</dt>
+<dd>Will initiate any WET feature that exist in the inserted content.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>container</td>
+<td><p>Specify the container to use to insert the ajax(ed) content</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "url": "path/to/my/file.html", "container": "#jQuerySelector" }</code></td>
+<td>jQuery selector
+<p>(By default the container will be a empty container inserted after the element that was clicked.)</p>
+</td>
+</tr>
+<tr>
+<td>type</td>
+<td><p>Define how content will be inserted from the container perspective.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "url": "path/to/my/file.html", "type": "replace" }'</code></td>
+<td>
+<ul>
+<li>replace(default)</li>
+<li>after</li>
+<li>append</li>
+<li>before</li>
+<li>prepend</li>
+</ul>
+<p>This value map how to call the data-ajax plugin</p>
+</td>
+</tr>
+<tr>
+<td>target</td>
+<td><p>Define a postpone action that will be triggered when actions will be executed on the targeted (id) element. Once those action are run, they are removed from the stack.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+<li>tblfilter</li>
+<li>patch</li>
+<li>run</li>
+<li>addClass</li>
+<li>removeClass</li>
+<li>tocsv</li>
+<li>loadJSON</li>
+<li>withInput</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "target": "<em>[an ID]</em>" } }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>The action is immediatly executed</dd>
+<dt>string:</dt>
+<dd>ID that would be recongnized when future action will be executed on them.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>trgbefore</td>
+<td><p>Specify this action must be executed before the action on the target get executed. Could be use in combination with <code>target</code> configuration.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+<li>tblfilter</li>
+<li>patch</li>
+<li>run</li>
+<li>addClass</li>
+<li>removeClass</li>
+<li>mapfilter</li>
+<li>tocsv</li>
+<li>loadJSON</li>
+<li>withInput</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "target": "[an ID]", "trgbefore": <em>true</em> } }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>This action will be executed after the other action are executed on the target.</dd>
+<dt>true:</dt>
+<dd>This action will be executed before the other action are executed on the target.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>trggroup</td>
+<td><p>Define a group name for the targeted action. For run action, this represent the group that action need to be run. If the group contain some run action, those won't be executed.</p>
+<p>Available for:</p>
+<ul>
+<li>ajax</li>
+<li>tblfilter</li>
+<li>patch</li>
+<li>run</li>
+<li>addClass</li>
+<li>removeClass</li>
+<li>mapfilter</li>
+<li>loadJSON</li>
+<li>withInput</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "ajax", "target": "[an ID]", "trggroup": "<em>[a name]</em>" } }'</code></td>
+<td>Any valid string that could be used to identify the group.</td>
+</tr>
+<tr>
+<td>source</td>
+<td><p>jQuery selector that refer to an existing element on the page. This configuration option can be omited for a addClass and removeClass if the source are the element itselft.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+<li>patch</li>
+<li>addClass</li>
+<li>removeClass</li>
+<li>mapfilter</li>
+<li>tocsv</li>
+	<li>loadJSON</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "source": "#jQuerySelector" }'</code></td>
+<td>jQuery selector and when the action is set to <code>tblfilter</code> the source should refer to a data table enhanced with <a href="https://wet-boew.github.io/wet-boew/demos/tables/tables-en.html">tables plugin</a>.</td>
+</tr>
+<tr>
+<td>column</td>
+<td><p>Optional for table filtering, this specifies on which column the filter should be applied. If not defined, the filter will be applied on the whole table and the term will appear in the search field.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "column": 5 }'</code></td>
+<td>
+<dl>
+<dt>Number</dt>
+<dd>Integer representing the column number where the first column of table is the number &quot;0&quot;</dd>
+<dt>Column selector</dt>
+<dd>A valid <a href="https://datatables.net/reference/type/column-selector">DataTable column selector</a></dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>value</td>
+<td><p>Required for table filtering, this specify on what value the filter should be applied.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "value": "a value to be filtered about" }'</code></td>
+<td>A value that will be searched agains the specified column in order to filter the rows.</td>
+</tr>
+<tr>
+<td>regex</td>
+<td><p>Treat the searched value as a regular expression. Enable regular expressions without desabling smart search, as smart search use regular expressions, both might conflict and cause unexpected results.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "column": 0, "regex":true, "smart":false }'</code></td>
+<td>Boolean, default false (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+</tr>
+<tr>
+<td>smart</td>
+<td><p>Perform smart search. Note that to perform a smart search, DataTables uses regular expressions, so if enable regular expressions using the regex parameter to this method, you will likely want to disable smart searching as the two regular expressions might otherwise conflict and cause unexpected results.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "column": 0, "smart":false }'</code></td>
+<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+</tr>
+<tr>
+<td>caseinsen</td>
+<td><p>Do case-insensitive matching.</p>
+<p>Available for:</p>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tblfilter", "column": 0, "caseinsen":false }'</code></td>
+<td>Boolean, default true (as defined in <a href="https://datatables.net/reference/api/search()">DataTable search() API</a>)</td>
+</tr>
+<tr>
+<td>class</td>
+<td><p>CSS Class name.</p>
+<p>Available for:</p>
+<ul>
+<li>addClass</li>
+<li>removeClass</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "addClass", "source": "#id", "class": "myclass" }'</code></td>
+<td>A CSS class name</td>
+</tr>
+<tr>
+<td>patches</td>
+<td><p>Apply patches.</p>
+<p>Required for:</p>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "patch", "source": "#myJSONmanager", "patches": [ Patches object supported by the JSON manager ] }'</code></td>
+<td>Array [] of valid patches that could be executed by the JSON manager</td>
+</tr>
+<tr>
+<td>fpath</td>
+<td><p>Define a base path in order to apply a filter. This value is required when either or both configuration <code>filter</code> and <code>filternot</code> is used.</p>
+<p>Available for:</p>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "patch", "source": "#myJSONmanager", "fpath": "<em>/data</em>" }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>Filtering is undefined and wont be applied.</dd>
+<dt>JSON Pointer:</dt>
+<dd>A valid <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer (RFC6901)</a></dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>filter</td>
+<td><p>A evaluation object as defined in the <a href="../wb-jsonmanager/wb-jsonmanager-en.html#evalobj">JSON manager documentation under the configuration option section</a> When this configuration is used, the <code>fpath</code> configuration must be set also.</p>
+<p>Available for:</p>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "patch", "source": "#myJSONmanager", "fpath": "/data", "filter": "<em>{evaluation object}</em>" }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>Filtering is undefined and wont be applied.</dd>
+<dt>Evaluation object:</dt>
+<dd>See the <a href="../wb-jsonmanager/wb-jsonmanager-en.html#evalobj">JSON manager documentation under the configuration option section</a></dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>filternot</td>
+<td><p>A evaluation object as defined in the <a href="../wb-jsonmanager/wb-jsonmanager-en.html#evalobj">JSON manager documentation under the configuration option section</a> When this configuration is used, the <code>fpath</code> configuration must be set also.</p>
+<p>Available for:</p>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "patch", "source": "#myJSONmanager", "fpath": "/data", "filternot": "<em>{evaluation object}</em>" }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>Filtering is undefined and wont be applied.</dd>
+<dt>Evaluation object:</dt>
+<dd>See the <a href="../wb-jsonmanager/wb-jsonmanager-en.html#evalobj">JSON manager documentation under the configuration option section</a></dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>cumulative</td>
+<td><p>Apply persistant patches for the current page instance. That means that patches exectued will remain when further patches modification is completed by the JSON manager during the current page load. When WET is re-executed (on page load) then all the permently change are ignored. It do not change the data source, it just apply the change in the dataset.</p>
+<p>Available for:</p>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "patch", "source": "#myJSONmanager", "patches": [ Patches object supported by the JSON manager ], "cumulative": true }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>The patches will be ignored at the next patches update by the JSON manager.</dd>
+<dt>true:</dt>
+<dd>The patches will be cumulative for the next patches updated by the JSON manager, like from instruction received by fieldflow.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>filter</td>
+<td><p>Filter type</p>
+<p>Available for:</p>
+<ul>
+<li>mapfilter</li>
+</ul>
+</td>
+<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "mapfilter", "source": "#id", "filter": "aoi", "value"="64 -10 34 -177" } }'</code><br>
+<code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "mapfilter", "source": "#id", "filter": "layout", "value"="Layout name" } }'</code></td>
+<td>
+<dl>
+<dt><code>aoi</code>:</dt>
+<dd>Area Of Interest (zoom filtering) and the configuration "value" contains a 4 cardinal point or Well-Known Text (WKT) string.</dd>
+<dt><code>layout</code>:</dt>
+<dd>Layout (overlay filtering) and the configuration "value" contains the name of that layer as displayed in the legend if any or an empty string to select all.</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>value</td>
+<td><p>The value for the action</p>
+<p>Available for:</p>
+<ul>
+<li>mapfilter</li>
+</ul>
+</td>
+<td><code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "mapfilter", "source": "#id", "filter": "aoi", "value"="64 -10 34 -177" } }'</code><br>
+<code>data-wb-urlmapping='{ "QueryStringToBeMapped": { "action": "mapfilter", "source": "#id", "filter": "layout", "value"="Layout name" } }'</code></td>
+<td>
+<dl>
+<dt><code>&lt;string&gt;</code> (aoi):</dt>
+<dd>4 cardinal point or Well-Known Text (WKT) string for filter set to the Area Of Interest (zoom filtering).</dd>
+<dt><code>&lt;string&gt;</code> (layer):</dt>
+<dd>The name of that layer as displayed in the legend or an empty string to select all for filter set to Layout (overlay filtering).</dd>
+</dl>
+</td>
+</tr>
+<tr>
+<td>filename</td>
+<td><p>Define the filename to use for downloading</p>
+<p>Available for:</p>
+<ul>
+<li>tocsv</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "tocsv", "source": "#myTable", "filename": "an awsome name.csv" }'</code></td>
+<td>
+<dl>
+<dt>false (default):</dt>
+<dd>It will use the table caption + ".csv", if not available it will fallback on "table.csv"</dd>
+<dt>String:</dt>
+<dd>The filename to use including the file extension, like <code>.csv</code></dd>
+</dl>
+</td>
+</tr>
+	<tr>
+<td>srcInput</td>
+<td><p>Define the input field so that it's value is available to the action</p>
+<p>Available for:</p>
+<ul>
+<li>withInput</li>
+</ul>
+</td>
+<td><code>data-wb-doaction='{ "action": "withInput", "srcInput": "#myField", ... }'</code></td>
+<td>
+<dl>
+<dt>String:</dt>
+<dd>jQuery selector of an input field when the action is set to <code>withInput</code></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>Events</h2>
+<table id="events" class="table wb-tables" data-wb-tables='{ "ordering" : false, "paging": false }'>
+<thead>
+<tr>
+<th>Event</th>
+<th>Trigger</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tocsv.wb-actionmng</code>
+<ul>
+<li>tocsv</li>
+</ul>
+</td>
+<td>Triggered automatically on tocsv action execution.</td>
+<td>Read the HTML table and initiate a file download.</td>
+</tr>
+<tr>
+<td><code>patch.wb-actionmng</code>
+<ul>
+<li>patch</li>
+</ul>
+</td>
+<td>Triggered automatically on patch action execution.</td>
+<td>Prepare the patches data to be sent to JSON manager throught the event "<code>patches.wb-jsonmanager</code>".</td>
+</tr>
+<tr>
+<td><code>ajax.wb-actionmng</code>
+<ul>
+<li>ajax</li>
+</ul>
+</td>
+<td>Triggered automatically on ajax action execution.</td>
+<td>Execute the ajax instruction by using the data-ajax plugin.</td>
+</tr>
+<tr>
+<td><code>addClass.wb-actionmng</code>
+<ul>
+<li>addClass</li>
+</ul>
+</td>
+<td>Triggered automatically on addClass action execution.</td>
+<td>Will add the specified class to the specified source element.</td>
+</tr>
+<tr>
+<td><code>removeClass.wb-actionmng</code>
+<ul>
+<li>removeClass</li>
+</ul>
+</td>
+<td>Triggered automatically on addClass action execution.</td>
+<td>Will removed the specified class to the specified source element.</td>
+</tr>
+<tr>
+<td><code>tblfilter.wb-actionmng</code>
+<ul>
+<li>tblfilter</li>
+</ul>
+</td>
+<td>Triggered automatically on tblfilter action execution.</td>
+<td>Filter the data table rows by searching on the specified column.</td>
+</tr>
+<tr>
+<td><code>do.wb-actionmng</code>
+<ul>
+<li>Action Manager plugin core</li>
+</ul>
+</td>
+<td>Triggered automatically when a plugin want to run action.</td>
+<td>Execute an action or an array of action provided through the property <code>actions</code> of the event object.</td>
+</tr>
+<tr>
+<td><code>clean.wb-actionmng</code>
+<ul>
+<li>Action Manager plugin core</li>
+</ul>
+</td>
+<td>Triggered automatically when a plugin want to remove all action for a given group.</td>
+<td>Remove all action for a given group identified through the property <code>trggroup</code> of the event object.</td>
+</tr>
+<tr>
+<td><code>wb-ready.wb-doaction</code>
+<ul>
+<li>Plugin core</li>
+</ul>
+</td>
+<td>Triggered automatically after an wb-doaction is initialized.</td>
+<td>Used to identify when an wb-doaction has initialized (target of the event)
+<pre><code>$( document ).on( "wb-ready.wb-doaction", ".wb-doaction", function( event ) {
+});</code></pre>
+<pre><code>$( ".wb-doaction" ).on( "wb-ready.wb-doaction", function( event ) {
+});</code></pre>
+</td>
+</tr>
+<tr>
+<td><code>wb-ready.wb-actionmng</code>
+<ul>
+<li>Plugin core</li>
+</ul>
+</td>
+<td>Triggered automatically after an wb-actionmng is initialized.</td>
+<td>Used to identify when an wb-actionmng has initialized (target of the event)
+<pre><code>$( document ).on( "wb-ready.wb-actionmng", ".wb-actionmng", function( event ) {
+});</code></pre>
+<pre><code>$( ".wb-actionmng" ).on( "wb-ready.wb-actionmng", function( event ) {
+});</code></pre>
+</td>
+</tr>
+<tr>
+<td><code>wb-init.wb-doaction</code>
+<ul>
+<li>Plugin core</li>
+</ul>
+</td>
+<td>Triggered manually (e.g., <code>$( ".wb-doaction" ).trigger( "wb-init.wb-doaction" );</code>).</td>
+<td>Used to manually initialize the wb-doaction plugin. <strong>Note:</strong> The wb-doaction plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+</tr>
+<tr>
+<td><code>wb-init.wb-actionmng</code>
+<ul>
+<li>Plugin core</li>
+</ul>
+</td>
+<td>Triggered manually (e.g., <code>$( ".wb-actionmng" ).trigger( "wb-init.wb-actionmng" );</code>).</td>
+<td>Used to manually initialize the wb-actionmng plugin. <strong>Note:</strong> The wb-actionmng plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+</tr>
+<tr>
+<td><code>wb-ready.wb</code>
+<ul class="mrgn-lft-0">
+<li>Plugin core</li>
+</ul>
+</td>
+<td>Triggered automatically when WET has finished loading and executing.</td>
+<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
+<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+</td>
+</tr>
+<tr>
+<td><code>withInput.wb-actionmng</code>
+<ul>
+<li>withInput</li>
+</ul>
+</td>
+<td>Triggered automatically on withInput action execution.</td>
+<td>Used so that subsequent actions may use data from input field designated by srcInput.</td>
+</tr>
+<tr>
+<td><code>loadJSON.wb-actionmng</code>
+<ul>
+<li>loadJSON</li>
+</ul>
+</td>
+<td>Triggered automatically on loadJSON action execution.</td>
+<td>Load a JSON file designated by the url onto a JSON manager specified by source.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>Source code</h2>
+<p><a href="https://github.com/wet-boew/GCWeb/tree/master/src/plugins/doaction">Do action plugin source code on GitHub</a></p>
+<p><a href="https://github.com/wet-boew/GCWeb/tree/master/src/plugins/actionmng">Action manager plugin source code on GitHub</a></p>
+</section>
