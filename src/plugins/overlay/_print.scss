@@ -6,18 +6,17 @@
 /**
  * Print styles
  */
+.wb-modal main > * {
+	display: none;
+}
 
-.wb-overlay-dlg, .wb-modal {
-	main {
-		// Hide white spaces
-		> * {
-			display: none;
-		}
+.wb-overlay-dlg main {
+	:not(.wb-overlay.open):not(:has(.wb-overlay.open)):not(.wb-overlay.open *) {
+		display: none;
+	}
 
-		// Show only the dialog
-		.wb-overlay.open, .mfp-content {
-			display:block;
-		}
+	.wb-overlay.open {
+		display: block;
 	}
 }
 
